@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Reflect</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Reflect.apply()</h4>
+<p id="demo"></p>
+
+<script>
+function greet(greeting, punctuation) {
+  return greeting + ", " + this.name + punctuation;
+}
+
+const person = { name: "John" };
+const member = { name: "Jane" };
+
+// Using Reflect.apply() with different 'this' values
+let result1 = Reflect.apply(greet, person, ["Hello", "!"]);
+let result2 = Reflect.apply(greet, member, ["Hi", "!!"]);
+
+document.getElementById("demo").innerHTML =
+  "Reflect.apply(greet, person, ['Hello', '!']): " + result1 + "<br>" +
+  "Reflect.apply(greet, member, ['Hi', '!!']): " + result2;
+</script>
+
+</body>
+</html>

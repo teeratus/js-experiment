@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>js-regexp_assertions</title>
+  <style>
+    body {
+      box-sizing: border-box;
+      min-width: 200px;
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 45px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+      font-size: 16px;
+      line-height: 1.5;
+      color: #24292e;
+      background-color: #ffffff;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 24px;
+      margin-bottom: 16px;
+      font-weight: 600;
+      line-height: 1.25;
+      border-bottom: 1px solid #eaecef;
+      padding-bottom: .3em;
+    }
+    h1 { font-size: 2em; }
+    h2 { font-size: 1.5em; }
+    h3 { font-size: 1.25em; }
+    code {
+      padding: .2em .4em;
+      margin: 0;
+      font-size: 85%;
+      background-color: rgba(27,31,35,.05);
+      border-radius: 3px;
+      font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
+    }
+    pre {
+      padding: 16px;
+      overflow: auto;
+      font-size: 85%;
+      line-height: 1.45;
+      background-color: #f6f8fa;
+      border-radius: 3px;
+      word-wrap: normal;
+    }
+    pre code {
+      background-color: transparent;
+      padding: 0;
+    }
+    blockquote {
+      padding: 0 1em;
+      color: #6a737d;
+      border-left: .25em solid #dfe2e5;
+      margin: 0 0 16px 0;
+    }
+    table {
+      border-spacing: 0;
+      border-collapse: collapse;
+      margin-top: 0;
+      margin-bottom: 16px;
+      width: 100%;
+    }
+    table th, table td {
+      padding: 6px 13px;
+      border: 1px solid #dfe2e5;
+    }
+    table tr:nth-child(2n) {
+      background-color: #f6f8fa;
+    }
+    img {
+      max-width: 100%;
+      box-sizing: content-box;
+    }
+    @media print {
+      body {
+        max-width: 100%;
+        padding: 0;
+      }
+      pre, blockquote, table, tr, img {
+        page-break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+<body>
+<h1>JavaScript RegExp Assertions</h1>
+<p><a href="../acp-js.php">Back to JS page</a></p>
+<p>Table of Contents</p>
+<ul>
+<li><a href="#javascript-regexp-assertions">JavaScript RegExp Assertions</a><ul>
+<li><a href="#regexp--metacharacter">RegExp ^ Metacharacter</a><ul>
+<li><a href="#example-1">Example 1</a></li>
+</ul>
+</li>
+<li><a href="#regexp--metacharacter-1">RegExp $ Metacharacter</a><ul>
+<li><a href="#example-2">Example 2</a></li>
+</ul>
+</li>
+<li><a href="#the-b-metacharacter">The \b Metacharacter</a><ul>
+<li><a href="#example-3">Example 3</a></li>
+</ul>
+</li>
+<li><a href="#regexp-lookahead-xy">RegExp Lookahead x(?=y)</a><ul>
+<li><a href="#example-4">Example 4</a></li>
+</ul>
+</li>
+<li><a href="#negative-lookahead-xy">Negative Lookahead x(?!y)</a><ul>
+<li><a href="#example-5">Example 5</a></li>
+</ul>
+</li>
+<li><a href="#document">Document</a></li>
+<li><a href="#reference">Reference</a></li>
+</ul>
+</li>
+</ul>
+<h2>RegExp Assertions</h2>
+<p>Assertions are conditions that must be true at a position in the string:</p>
+<table>
+<thead>
+<tr>
+<th>Assertion</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>^</code></td>
+<td>Matches the beginning of the string</td>
+</tr>
+<tr>
+<td><code>$</code></td>
+<td>Matches the end of the string</td>
+</tr>
+<tr>
+<td><code>\b</code></td>
+<td>Matches at a word boundary</td>
+</tr>
+<tr>
+<td><code>x(?=y)</code></td>
+<td>Lookahead: x only if followed by y</td>
+</tr>
+<tr>
+<td><code>x(?!y)</code></td>
+<td>Negative lookahead: x only if NOT followed by y</td>
+</tr>
+<tr>
+<td><code>(?&lt;=y)x</code></td>
+<td>Lookbehind: x only if preceded by y</td>
+</tr>
+<tr>
+<td><code>(?&lt;!y)x</code></td>
+<td>Negative lookbehind: x only if NOT preceded by y</td>
+</tr>
+</tbody></table>
+<h2>RegExp ^ Metacharacter</h2>
+<p><code>^</code> asserts the position at the start of the string:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript RegExp Assertions&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;RegExp ^ Metacharacter&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+const text = &quot;Hello World, Hello Again&quot;;
+const matches = text.match(/^Hello/g);
+
+document.getElementById(&quot;demo&quot;).innerHTML =
+  &quot;Text: &quot; + text + &quot;&lt;br&gt;&lt;br&gt;&quot; +
+  &quot;match(/^Hello/g): &quot; + matches + &quot;&lt;br&gt;&quot; +
+  &quot;^ matches &#39;Hello&#39; only at the start&quot;;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p1.png" alt=""></p>
+<h3>Example 1</h3>
+<p><strong>Result</strong> <a href="ex1-start_metacharacter/index.html">View Example</a></p>
+<h2>RegExp $ Metacharacter</h2>
+<p><code>$</code> asserts the position at the end of the string:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript RegExp Assertions&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;RegExp $ Metacharacter&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+const text = &quot;Hello World, Hello&quot;;
+const matches = text.match(/Hello$/g);
+
+document.getElementById(&quot;demo&quot;).innerHTML =
+  &quot;Text: &quot; + text + &quot;&lt;br&gt;&lt;br&gt;&quot; +
+  &quot;match(/Hello$/g): &quot; + matches + &quot;&lt;br&gt;&quot; +
+  &quot;$ matches &#39;Hello&#39; only at the end&quot;;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p2.png" alt=""></p>
+<h3>Example 2</h3>
+<p><strong>Result</strong> <a href="ex2-end_metacharacter/index.html">View Example</a></p>
+<h2>The \b Metacharacter</h2>
+<p><code>\b</code> asserts a word boundary - where a word starts or ends:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript RegExp Assertions&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;The \b Metacharacter&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+const text = &quot;car cart scar&quot;;
+const matches = text.match(/\bcar\b/g);
+
+document.getElementById(&quot;demo&quot;).innerHTML =
+  &quot;Text: &quot; + text + &quot;&lt;br&gt;&lt;br&gt;&quot; +
+  &quot;match(/\\bcar\\b/g): &quot; + matches + &quot;&lt;br&gt;&quot; +
+  &quot;Finds &#39;car&#39; as a whole word only&quot;;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p3.png" alt=""></p>
+<h3>Example 3</h3>
+<p><strong>Result</strong> <a href="ex3-word_boundary/index.html">View Example</a></p>
+<h2>RegExp Lookahead x(?=y)</h2>
+<p>Lookahead matches <code>x</code> only if it is followed by <code>y</code>:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript RegExp Assertions&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;RegExp Lookahead x(?=y)&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+const text = &quot;apple banana applepie&quot;;
+const matches = text.match(/apple(?=pie)/g);
+
+document.getElementById(&quot;demo&quot;).innerHTML =
+  &quot;Text: &quot; + text + &quot;&lt;br&gt;&lt;br&gt;&quot; +
+  &quot;match(/apple(?=pie)/g): &quot; + matches + &quot;&lt;br&gt;&quot; +
+  &quot;Matches &#39;apple&#39; only when followed by &#39;pie&#39;&quot;;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p4.png" alt=""></p>
+<h3>Example 4</h3>
+<p><strong>Result</strong> <a href="ex4-lookahead/index.html">View Example</a></p>
+<h2>Negative Lookahead x(?!y)</h2>
+<p>Negative lookahead matches <code>x</code> only if it is NOT followed by <code>y</code>:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript RegExp Assertions&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Negative Lookahead x(?!y)&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+const text = &quot;apple banana applepie&quot;;
+const matches = text.match(/apple(?!pie)/g);
+
+document.getElementById(&quot;demo&quot;).innerHTML =
+  &quot;Text: &quot; + text + &quot;&lt;br&gt;&lt;br&gt;&quot; +
+  &quot;match(/apple(?!pie)/g): &quot; + matches + &quot;&lt;br&gt;&quot; +
+  &quot;Matches &#39;apple&#39; only when NOT followed by &#39;pie&#39;&quot;;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p5.png" alt=""></p>
+<h3>Example 5</h3>
+<p><strong>Result</strong> <a href="ex5-negative_lookahead/index.html">View Example</a></p>
+<h2>Document</h2>
+<p>Document in project</p>
+<p>You can <a href="js-regexp_assertions.pdf">Download PDF</a> file.</p>
+<h2>Reference</h2>
+<ul>
+<li><a href="https://www.w3schools.com/js/js_regexp_assertions.asp">W3Schools JavaScript RegExp Assertions</a></li>
+</ul>
+
+</body>
+</html>

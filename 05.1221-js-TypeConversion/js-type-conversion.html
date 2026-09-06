@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>js-type-conversion</title>
+  <style>
+    body {
+      box-sizing: border-box;
+      min-width: 200px;
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 45px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+      font-size: 16px;
+      line-height: 1.5;
+      color: #24292e;
+      background-color: #ffffff;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 24px;
+      margin-bottom: 16px;
+      font-weight: 600;
+      line-height: 1.25;
+      border-bottom: 1px solid #eaecef;
+      padding-bottom: .3em;
+    }
+    h1 { font-size: 2em; }
+    h2 { font-size: 1.5em; }
+    h3 { font-size: 1.25em; }
+    code {
+      padding: .2em .4em;
+      margin: 0;
+      font-size: 85%;
+      background-color: rgba(27,31,35,.05);
+      border-radius: 3px;
+      font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
+    }
+    pre {
+      padding: 16px;
+      overflow: auto;
+      font-size: 85%;
+      line-height: 1.45;
+      background-color: #f6f8fa;
+      border-radius: 3px;
+      word-wrap: normal;
+    }
+    pre code {
+      background-color: transparent;
+      padding: 0;
+    }
+    blockquote {
+      padding: 0 1em;
+      color: #6a737d;
+      border-left: .25em solid #dfe2e5;
+      margin: 0 0 16px 0;
+    }
+    table {
+      border-spacing: 0;
+      border-collapse: collapse;
+      margin-top: 0;
+      margin-bottom: 16px;
+      width: 100%;
+    }
+    table th, table td {
+      padding: 6px 13px;
+      border: 1px solid #dfe2e5;
+    }
+    table tr:nth-child(2n) {
+      background-color: #f6f8fa;
+    }
+    img {
+      max-width: 100%;
+      box-sizing: content-box;
+    }
+    @media print {
+      body {
+        max-width: 100%;
+        padding: 0;
+      }
+      pre, blockquote, table, tr, img {
+        page-break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+<body>
+<h1>JavaScript Type Conversion</h1>
+<p><a href="../acp-js.php">Back to JS page</a></p>
+<p>Table of Contents</p>
+<ul>
+<li><a href="#javascript-type-conversion">JavaScript Type Conversion</a><ul>
+<li><a href="#converting-strings-to-numbers">Converting Strings to Numbers</a><ul>
+<li><a href="#example-1">Example 1</a></li>
+</ul>
+</li>
+<li><a href="#the-unary--operator">The Unary + Operator</a><ul>
+<li><a href="#example-2">Example 2</a></li>
+</ul>
+</li>
+<li><a href="#converting-numbers-to-strings">Converting Numbers to Strings</a><ul>
+<li><a href="#example-3">Example 3</a></li>
+</ul>
+</li>
+<li><a href="#converting-dates">Converting Dates</a><ul>
+<li><a href="#example-4">Example 4</a></li>
+</ul>
+</li>
+<li><a href="#converting-booleans">Converting Booleans</a><ul>
+<li><a href="#example-5">Example 5</a></li>
+</ul>
+</li>
+<li><a href="#automatic-type-conversion">Automatic Type Conversion</a><ul>
+<li><a href="#example-6">Example 6</a></li>
+</ul>
+</li>
+<li><a href="#document">Document</a></li>
+<li><a href="#reference">Reference</a></li>
+</ul>
+</li>
+</ul>
+<h2>Converting Strings to Numbers</h2>
+<p>The global method <code>Number()</code> converts a variable (or a value) into a number.</p>
+<ul>
+<li>A numeric string (like <code>&quot;3.14&quot;</code>) converts to a number (like <code>3.14</code>).</li>
+<li>An empty string (like <code>&quot;&quot;</code>) converts to <code>0</code>.</li>
+<li>A non numeric string (like <code>&quot;John&quot;</code>) converts to <code>NaN</code> (Not a Number).</li>
+</ul>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Type Conversion&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Converting Strings to Numbers&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+let text = &quot;&quot;;
+
+text += &quot;Number(\&quot;3.14\&quot;) = &quot; + Number(&quot;3.14&quot;) + &quot;&lt;br&gt;&quot;;
+text += &quot;Number(\&quot; \&quot;) = &quot; + Number(&quot; &quot;) + &quot;&lt;br&gt;&quot;;
+text += &quot;Number(\&quot;\&quot;) = &quot; + Number(&quot;&quot;) + &quot;&lt;br&gt;&quot;;
+text += &quot;Number(\&quot;99 88\&quot;) = &quot; + Number(&quot;99 88&quot;) + &quot;&lt;br&gt;&quot;;
+text += &quot;Number(\&quot;John\&quot;) = &quot; + Number(&quot;John&quot;);
+
+document.getElementById(&quot;demo&quot;).innerHTML = text;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p1.png" alt=""></p>
+<h3>Example 1</h3>
+<p><strong>Result</strong> <a href="ex1-converting_strings_to_numbers/index.html">View Example</a></p>
+<h2>The Unary + Operator</h2>
+<p>The <strong>unary <code>+</code> operator</strong> can be used to convert a variable to a number.</p>
+<p>If the variable cannot be converted, it will still become a number, but with the value <code>NaN</code> (Not a Number).</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Type Conversion&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;The Unary + Operator&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+let text = &quot;&quot;;
+
+let y = &quot;5&quot;;      // y is a string
+let x = + y;      // x is a number
+
+text += &quot;typeof y (\&quot;5\&quot;): &quot; + typeof y + &quot;&lt;br&gt;&quot;;
+text += &quot;typeof x (+ y): &quot; + typeof x + &quot;&lt;br&gt;&lt;br&gt;&quot;;
+
+let z = &quot;John&quot;;
+let w = + z;
+
+text += &quot;\&quot;John\&quot; to number: &quot; + w;
+
+document.getElementById(&quot;demo&quot;).innerHTML = text;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p2.png" alt=""></p>
+<h3>Example 2</h3>
+<p><strong>Result</strong> <a href="ex2-unary_plus_operator/index.html">View Example</a></p>
+<h2>Converting Numbers to Strings</h2>
+<p>The global method <code>String()</code> can convert numbers to strings.</p>
+<p>It can be used on any type of numbers, literals, variables, or expressions.</p>
+<p>The Number method <code>toString()</code> does the same.</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Type Conversion&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Converting Numbers to Strings&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+let text = &quot;&quot;;
+
+let x = 123;
+
+text += &quot;String(x): &quot; + String(x) + &quot;&lt;br&gt;&quot;;
+text += &quot;String(123): &quot; + String(123) + &quot;&lt;br&gt;&quot;;
+text += &quot;String(100 + 23): &quot; + String(100 + 23) + &quot;&lt;br&gt;&lt;br&gt;&quot;;
+
+text += &quot;x.toString(): &quot; + x.toString() + &quot;&lt;br&gt;&quot;;
+text += &quot;(123).toString(): &quot; + (123).toString() + &quot;&lt;br&gt;&quot;;
+text += &quot;(100 + 23).toString(): &quot; + (100 + 23).toString();
+
+document.getElementById(&quot;demo&quot;).innerHTML = text;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p3.png" alt=""></p>
+<h3>Example 3</h3>
+<p><strong>Result</strong> <a href="ex3-converting_numbers_to_strings/index.html">View Example</a></p>
+<h2>Converting Dates</h2>
+<p>The global method <code>Number()</code> can be used to convert dates to numbers.</p>
+<p>The date method <code>getTime()</code> does the same.</p>
+<p>The global method <code>String()</code> can convert dates to strings. The <code>Date</code> method <code>toString()</code> does the same.</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Type Conversion&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Converting Dates&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+let text = &quot;&quot;;
+
+let d = new Date();
+
+text += &quot;Number(d): &quot; + Number(d) + &quot;&lt;br&gt;&quot;;
+text += &quot;d.getTime(): &quot; + d.getTime() + &quot;&lt;br&gt;&lt;br&gt;&quot;;
+
+text += &quot;String(d): &quot; + String(d) + &quot;&lt;br&gt;&quot;;
+text += &quot;d.toString(): &quot; + d.toString();
+
+document.getElementById(&quot;demo&quot;).innerHTML = text;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p4.png" alt=""></p>
+<h3>Example 4</h3>
+<p><strong>Result</strong> <a href="ex4-converting_dates/index.html">View Example</a></p>
+<h2>Converting Booleans</h2>
+<p>The global method <code>Number()</code> can also convert booleans to numbers:</p>
+<ul>
+<li><code>Number(false)</code> returns <code>0</code></li>
+<li><code>Number(true)</code> returns <code>1</code></li>
+</ul>
+<p>The global method <code>String()</code> can convert booleans to strings. The Boolean method <code>toString()</code> does the same.</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Type Conversion&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Converting Booleans&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+let text = &quot;&quot;;
+
+text += &quot;Number(false) = &quot; + Number(false) + &quot;&lt;br&gt;&quot;;
+text += &quot;Number(true) = &quot; + Number(true) + &quot;&lt;br&gt;&lt;br&gt;&quot;;
+
+text += &quot;String(false) = \&quot;&quot; + String(false) + &quot;\&quot;&lt;br&gt;&quot;;
+text += &quot;String(true) = \&quot;&quot; + String(true) + &quot;\&quot;&lt;br&gt;&lt;br&gt;&quot;;
+
+text += &quot;false.toString() = \&quot;&quot; + false.toString() + &quot;\&quot;&lt;br&gt;&quot;;
+text += &quot;true.toString() = \&quot;&quot; + true.toString() + &quot;\&quot;&quot;;
+
+document.getElementById(&quot;demo&quot;).innerHTML = text;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p5.png" alt=""></p>
+<h3>Example 5</h3>
+<p><strong>Result</strong> <a href="ex5-converting_booleans/index.html">View Example</a></p>
+<h2>Automatic Type Conversion</h2>
+<p>When JavaScript tries to operate on a &quot;wrong&quot; data type, it will try to convert the value to a &quot;right&quot; type.</p>
+<p>The result is not always what you expect.</p>
+<p>JavaScript automatically calls the variable&#39;s <code>toString()</code> function when you try to &quot;output&quot; an object or a variable.</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Type Conversion&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Automatic Type Conversion&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+let text = &quot;&quot;;
+
+text += &quot;(5 + null) = &quot; + (5 + null) + &quot;&lt;br&gt;&quot;;
+text += &quot;(\&quot;5\&quot; + null) = \&quot;&quot; + (&quot;5&quot; + null) + &quot;\&quot;&lt;br&gt;&quot;;
+text += &quot;(\&quot;5\&quot; + 2) = \&quot;&quot; + (&quot;5&quot; + 2) + &quot;\&quot;&lt;br&gt;&quot;;
+text += &quot;(\&quot;5\&quot; - 2) = &quot; + (&quot;5&quot; - 2) + &quot;&lt;br&gt;&quot;;
+text += &quot;(\&quot;5\&quot; * \&quot;2\&quot;) = &quot; + (&quot;5&quot; * &quot;2&quot;) + &quot;&lt;br&gt;&lt;br&gt;&quot;;
+
+// Automatic string conversion
+document.getElementById(&quot;demo&quot;).innerHTML = text;
+
+// Object to string
+text += &quot;Automatic toString() on object: &quot; + {firstName:&quot;John&quot;, lastName:&quot;Doe&quot;};
+
+document.getElementById(&quot;demo&quot;).innerHTML = text;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p6.png" alt=""></p>
+<h3>Example 6</h3>
+<p><strong>Result</strong> <a href="ex6-automatic_type_conversion/index.html">View Example</a></p>
+<h2>Document</h2>
+<p>Document in project</p>
+<p>You can <a href="js-type-conversion.pdf">Download PDF</a> file.</p>
+<h2>Reference</h2>
+<ul>
+<li><a href="https://www.w3schools.com/js/js_type_conversion.asp">W3Schools JavaScript Type Conversion</a></li>
+</ul>
+
+</body>
+</html>

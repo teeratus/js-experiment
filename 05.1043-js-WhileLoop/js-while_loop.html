@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>js-while_loop</title>
+  <style>
+    body {
+      box-sizing: border-box;
+      min-width: 200px;
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 45px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+      font-size: 16px;
+      line-height: 1.5;
+      color: #24292e;
+      background-color: #ffffff;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 24px;
+      margin-bottom: 16px;
+      font-weight: 600;
+      line-height: 1.25;
+      border-bottom: 1px solid #eaecef;
+      padding-bottom: .3em;
+    }
+    h1 { font-size: 2em; }
+    h2 { font-size: 1.5em; }
+    h3 { font-size: 1.25em; }
+    code {
+      padding: .2em .4em;
+      margin: 0;
+      font-size: 85%;
+      background-color: rgba(27,31,35,.05);
+      border-radius: 3px;
+      font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
+    }
+    pre {
+      padding: 16px;
+      overflow: auto;
+      font-size: 85%;
+      line-height: 1.45;
+      background-color: #f6f8fa;
+      border-radius: 3px;
+      word-wrap: normal;
+    }
+    pre code {
+      background-color: transparent;
+      padding: 0;
+    }
+    blockquote {
+      padding: 0 1em;
+      color: #6a737d;
+      border-left: .25em solid #dfe2e5;
+      margin: 0 0 16px 0;
+    }
+    table {
+      border-spacing: 0;
+      border-collapse: collapse;
+      margin-top: 0;
+      margin-bottom: 16px;
+      width: 100%;
+    }
+    table th, table td {
+      padding: 6px 13px;
+      border: 1px solid #dfe2e5;
+    }
+    table tr:nth-child(2n) {
+      background-color: #f6f8fa;
+    }
+    img {
+      max-width: 100%;
+      box-sizing: content-box;
+    }
+    @media print {
+      body {
+        max-width: 100%;
+        padding: 0;
+      }
+      pre, blockquote, table, tr, img {
+        page-break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+<body>
+<h1>JavaScript While Loop</h1>
+<p><a href="../acp-js.php">Back to JS page</a></p>
+<p>Table of Contents</p>
+<ul>
+<li><a href="#javascript-while-loop">JavaScript While Loop</a><ul>
+<li><a href="#the-while-loop">The While Loop</a><ul>
+<li><a href="#example-1">Example 1</a></li>
+</ul>
+</li>
+<li><a href="#the-do-while-loop">The Do While Loop</a><ul>
+<li><a href="#example-2">Example 2</a></li>
+</ul>
+</li>
+<li><a href="#comparing-for-and-while">Comparing For and While</a><ul>
+<li><a href="#example-3">Example 3</a></li>
+</ul>
+</li>
+<li><a href="#document">Document</a></li>
+<li><a href="#reference">Reference</a></li>
+</ul>
+</li>
+</ul>
+<h2>The While Loop</h2>
+<p>The <code>while</code> loop loops through a block of code as long as a specified condition is <code>true</code>.</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript While Loop&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;The While Loop&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+let text = &quot;&quot;;
+let i = 0;
+while (i &lt; 5) {
+  text += &quot;Number: &quot; + i + &quot;&lt;br&gt;&quot;;
+  i++;
+}
+document.getElementById(&quot;demo&quot;).innerHTML = text;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p1.png" alt=""></p>
+<h3>Example 1</h3>
+<p><strong>Result</strong> <a href="ex1-while_loop/index.html">View Example</a></p>
+<h2>The Do While Loop</h2>
+<p>The <code>do while</code> loop is a variant of the while loop. This loop will execute the code block once, before checking if the condition is true, and then it will repeat the loop as long as the condition is true.</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript While Loop&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;The Do While Loop&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+let text = &quot;&quot;;
+let i = 0;
+do {
+  text += &quot;Number: &quot; + i + &quot;&lt;br&gt;&quot;;
+  i++;
+}
+while (i &lt; 5);
+document.getElementById(&quot;demo&quot;).innerHTML = text;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p2.png" alt=""></p>
+<h3>Example 2</h3>
+<p><strong>Result</strong> <a href="ex2-do_while/index.html">View Example</a></p>
+<h2>Comparing For and While</h2>
+<p>If you have read the previous chapter about the for loop, you will discover that a while loop is much the same as a for loop, with statement 1 and statement 3 omitted.</p>
+<p>The loop in this example uses a <code>for</code> loop to collect the car names from the cars array:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript While Loop&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Comparing For and While&lt;/h4&gt;
+&lt;p id=&quot;demo1&quot;&gt;&lt;/p&gt;
+&lt;p id=&quot;demo2&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+const cars = [&quot;BMW&quot;, &quot;Volvo&quot;, &quot;Saab&quot;, &quot;Ford&quot;];
+
+// Using for loop
+let text1 = &quot;&quot;;
+for (let i = 0; i &lt; cars.length; i++) {
+  text1 += cars[i] + &quot;&lt;br&gt;&quot;;
+}
+document.getElementById(&quot;demo1&quot;).innerHTML = &quot;For loop:&lt;br&gt;&quot; + text1;
+
+// Using while loop
+let text2 = &quot;&quot;;
+let j = 0;
+while (j &lt; cars.length) {
+  text2 += cars[j] + &quot;&lt;br&gt;&quot;;
+  j++;
+}
+document.getElementById(&quot;demo2&quot;).innerHTML = &quot;While loop:&lt;br&gt;&quot; + text2;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p3.png" alt=""></p>
+<h3>Example 3</h3>
+<p><strong>Result</strong> <a href="ex3-for_vs_while/index.html">View Example</a></p>
+<h2>Document</h2>
+<p>Document in project</p>
+<p>You can <a href="js-while_loop.pdf">Download PDF</a> file.</p>
+<h2>Reference</h2>
+<ul>
+<li><a href="https://www.w3schools.com/js/js_loop_while.asp">W3Schools JavaScript While Loop</a></li>
+</ul>
+
+</body>
+</html>

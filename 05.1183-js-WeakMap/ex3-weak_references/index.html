@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript WeakMap</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Weak References</h4>
+<p id="demo"></p>
+
+<script>
+const weakMap = new WeakMap();
+
+let person = { name: "John" };
+weakMap.set(person, "Engineer");
+
+let text = "Person object added to WeakMap<br>";
+text += "get(person): " + weakMap.get(person) + "<br><br>";
+
+// Remove all references to the object
+person = null;
+
+text += "After person = null:<br>";
+text += "The object can be garbage collected<br>";
+text += "It will be automatically removed from WeakMap<br><br>";
+text += "This automatic cleanup is the key benefit<br>";
+text += "of WeakMap for memory management";
+
+document.getElementById("demo").innerHTML = text;
+</script>
+
+</body>
+</html>

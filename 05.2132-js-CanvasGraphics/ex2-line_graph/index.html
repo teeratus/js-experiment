@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Canvas Graphics</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Line Graphs</h4>
+
+<div id="lineGraph"></div>
+
+<script src="https://cdn.plot.ly/plotly-2.27.0.min.js"></script>
+
+<script>
+const trace1 = {
+  x: [1, 2, 3, 4, 5, 6, 7, 8],
+  y: [10, 15, 13, 17, 14, 20, 18, 22],
+  mode: 'lines+markers',
+  type: 'scatter',
+  line: {color: '#2196F3', width: 3},
+  marker: {size: 8, color: '#1565C0'},
+  name: 'Series A'
+};
+
+const trace2 = {
+  x: [1, 2, 3, 4, 5, 6, 7, 8],
+  y: [5, 8, 7, 11, 9, 13, 12, 15],
+  mode: 'lines+markers',
+  type: 'scatter',
+  line: {color: '#FF5722', width: 3, dash: 'dot'},
+  marker: {size: 8, color: '#BF360C'},
+  name: 'Series B'
+};
+
+const data = [trace1, trace2];
+
+const layout = {
+  title: 'Line Graph (Plotly.js)',
+  xaxis: {title: 'Time'},
+  yaxis: {title: 'Values'},
+  showlegend: true
+};
+
+Plotly.newPlot('lineGraph', data, layout);
+</script>
+
+</body>
+</html>

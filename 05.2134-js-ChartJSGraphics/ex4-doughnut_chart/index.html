@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Chart.js Graphics</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Doughnut Charts</h4>
+
+<canvas id="doughnutChart" style="width:100%;max-width:500px;"></canvas>
+<p id="demo4"></p>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+
+<script>
+const xValues = ["North", "South", "East", "West"];
+const yValues = [35, 25, 20, 20];
+const colors = ["#4CAF50", "#2196F3", "#FF9800", "#F44336"];
+
+new Chart("doughnutChart", {
+  type: "doughnut",
+  data: {
+    labels: xValues,
+    datasets: [{
+      backgroundColor: colors,
+      data: yValues
+    }]
+  },
+  options: {
+    title: {
+      display: true,
+      text: "Regional Sales (Doughnut Chart)"
+    }
+  }
+});
+
+document.getElementById("demo4").innerHTML = "Chart.js doughnut chart created!";
+</script>
+
+</body>
+</html>

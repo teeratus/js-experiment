@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>js-dates</title>
+  <style>
+    body {
+      box-sizing: border-box;
+      min-width: 200px;
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 45px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+      font-size: 16px;
+      line-height: 1.5;
+      color: #24292e;
+      background-color: #ffffff;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 24px;
+      margin-bottom: 16px;
+      font-weight: 600;
+      line-height: 1.25;
+      border-bottom: 1px solid #eaecef;
+      padding-bottom: .3em;
+    }
+    h1 { font-size: 2em; }
+    h2 { font-size: 1.5em; }
+    h3 { font-size: 1.25em; }
+    code {
+      padding: .2em .4em;
+      margin: 0;
+      font-size: 85%;
+      background-color: rgba(27,31,35,.05);
+      border-radius: 3px;
+      font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
+    }
+    pre {
+      padding: 16px;
+      overflow: auto;
+      font-size: 85%;
+      line-height: 1.45;
+      background-color: #f6f8fa;
+      border-radius: 3px;
+      word-wrap: normal;
+    }
+    pre code {
+      background-color: transparent;
+      padding: 0;
+    }
+    blockquote {
+      padding: 0 1em;
+      color: #6a737d;
+      border-left: .25em solid #dfe2e5;
+      margin: 0 0 16px 0;
+    }
+    table {
+      border-spacing: 0;
+      border-collapse: collapse;
+      margin-top: 0;
+      margin-bottom: 16px;
+      width: 100%;
+    }
+    table th, table td {
+      padding: 6px 13px;
+      border: 1px solid #dfe2e5;
+    }
+    table tr:nth-child(2n) {
+      background-color: #f6f8fa;
+    }
+    img {
+      max-width: 100%;
+      box-sizing: content-box;
+    }
+    @media print {
+      body {
+        max-width: 100%;
+        padding: 0;
+      }
+      pre, blockquote, table, tr, img {
+        page-break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+<body>
+<h1>JavaScript Dates</h1>
+<p><a href="../acp-js.php">Back to JS page</a></p>
+<p>Table of Contents</p>
+<ul>
+<li><a href="#javascript-dates">JavaScript Dates</a><ul>
+<li><a href="#creating-date-objects">Creating Date Objects</a><ul>
+<li><a href="#example-1">Example 1</a></li>
+</ul>
+</li>
+<li><a href="#new-dateyear-month">new Date(year, month, ...)</a><ul>
+<li><a href="#example-2">Example 2</a></li>
+</ul>
+</li>
+<li><a href="#javascript-stores-dates-as-milliseconds">JavaScript Stores Dates as Milliseconds</a><ul>
+<li><a href="#example-3">Example 3</a></li>
+</ul>
+</li>
+<li><a href="#displaying-dates">Displaying Dates</a><ul>
+<li><a href="#example-4">Example 4</a></li>
+</ul>
+</li>
+<li><a href="#date-methods">Date Methods</a><ul>
+<li><a href="#example-5">Example 5</a></li>
+</ul>
+</li>
+<li><a href="#document">Document</a></li>
+<li><a href="#reference">Reference</a></li>
+</ul>
+</li>
+</ul>
+<h2>Creating Date Objects</h2>
+<p>Date objects are created with the <code>new Date()</code> constructor. There are 4 ways to create a date:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Dates&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Creating Date Objects&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+// new Date() - current date and time
+const currentDate = new Date();
+
+// new Date(date string)
+const dateString = new Date(&quot;2024-02-14&quot;);
+
+// new Date(year, month, day)
+const specificDate = new Date(2024, 1, 14);
+
+document.getElementById(&quot;demo&quot;).innerHTML =
+  &quot;new Date(): &quot; + currentDate + &quot;&lt;br&gt;&quot; +
+  &quot;new Date(&#39;2024-02-14&#39;): &quot; + dateString + &quot;&lt;br&gt;&quot; +
+  &quot;new Date(2024, 1, 14): &quot; + specificDate;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p1.png" alt=""></p>
+<h3>Example 1</h3>
+<p><strong>Result</strong> <a href="ex1-create_dates/index.html">View Example</a></p>
+<h2>new Date(year, month, ...)</h2>
+<p><code>new Date(year, month, day, hours, minutes, seconds, ms)</code> creates a date with the specified components. JavaScript counts months from 0 (January) to 11 (December):</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Dates&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;new Date(year, month, ...)&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+// Month is 0-indexed: 0=Jan, 1=Feb, ..., 11=Dec
+const date1 = new Date(2024, 0, 1);       // Jan 1, 2024
+const date2 = new Date(2024, 5, 15, 12);  // Jun 15, 2024 at 12:00
+const date3 = new Date(2024, 11, 31, 23, 59, 59); // Dec 31, 2024 at 23:59:59
+
+// Using 2 numbers: year + month
+const date4 = new Date(2024, 6);
+
+document.getElementById(&quot;demo&quot;).innerHTML =
+  &quot;new Date(2024, 0, 1): &quot; + date1 + &quot;&lt;br&gt;&quot; +
+  &quot;new Date(2024, 5, 15, 12): &quot; + date2 + &quot;&lt;br&gt;&quot; +
+  &quot;new Date(2024, 11, 31, 23, 59, 59): &quot; + date3 + &quot;&lt;br&gt;&quot; +
+  &quot;new Date(2024, 6): &quot; + date4;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p2.png" alt=""></p>
+<h3>Example 2</h3>
+<p><strong>Result</strong> <a href="ex2-date_numbers/index.html">View Example</a></p>
+<h2>JavaScript Stores Dates as Milliseconds</h2>
+<p>JavaScript stores dates as the number of milliseconds since January 1, 1970, 00:00:00 UTC:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Dates&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;JavaScript Stores Dates as Milliseconds&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+// Zero time is January 1, 1970
+const zeroTime = new Date(0);
+
+// One day in milliseconds: 24 * 60 * 60 * 1000
+const oneDay = 24 * 60 * 60 * 1000;
+const oneDayAfter = new Date(oneDay);
+
+// Current time in milliseconds
+const nowMs = Date.now();
+
+document.getElementById(&quot;demo&quot;).innerHTML =
+  &quot;new Date(0): &quot; + zeroTime + &quot; (Jan 1, 1970)&lt;br&gt;&quot; +
+  &quot;new Date(86400000): &quot; + oneDayAfter + &quot; (Jan 2, 1970)&lt;br&gt;&quot; +
+  &quot;Date.now(): &quot; + nowMs + &quot; ms&lt;br&gt;&lt;br&gt;&quot; +
+  &quot;Dates are stored as milliseconds since Jan 1, 1970&quot;;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p3.png" alt=""></p>
+<h3>Example 3</h3>
+<p><strong>Result</strong> <a href="ex3-milliseconds/index.html">View Example</a></p>
+<h2>Displaying Dates</h2>
+<p>Dates can be displayed in different formats using various methods:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Dates&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Displaying Dates&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+const d = new Date(2024, 5, 15, 12, 30, 45);
+
+document.getElementById(&quot;demo&quot;).innerHTML =
+  &quot;toString(): &quot; + d.toString() + &quot;&lt;br&gt;&quot; +
+  &quot;toDateString(): &quot; + d.toDateString() + &quot;&lt;br&gt;&quot; +
+  &quot;toISOString(): &quot; + d.toISOString() + &quot;&lt;br&gt;&quot; +
+  &quot;toUTCString(): &quot; + d.toUTCString() + &quot;&lt;br&gt;&quot; +
+  &quot;toLocaleDateString(): &quot; + d.toLocaleDateString() + &quot;&lt;br&gt;&quot; +
+  &quot;toLocaleTimeString(): &quot; + d.toLocaleTimeString();
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p4.png" alt=""></p>
+<h3>Example 4</h3>
+<p><strong>Result</strong> <a href="ex4-display_dates/index.html">View Example</a></p>
+<h2>Date Methods</h2>
+<p>Common date getter methods:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Dates&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Date Methods&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+const d = new Date(2024, 5, 15, 12, 30, 45);
+
+document.getElementById(&quot;demo&quot;).innerHTML =
+  &quot;getFullYear(): &quot; + d.getFullYear() + &quot;&lt;br&gt;&quot; +
+  &quot;getMonth(): &quot; + d.getMonth() + &quot; (0-11)&lt;br&gt;&quot; +
+  &quot;getDate(): &quot; + d.getDate() + &quot;&lt;br&gt;&quot; +
+  &quot;getDay(): &quot; + d.getDay() + &quot; (0=Sunday)&lt;br&gt;&quot; +
+  &quot;getHours(): &quot; + d.getHours() + &quot;&lt;br&gt;&quot; +
+  &quot;getMinutes(): &quot; + d.getMinutes() + &quot;&lt;br&gt;&quot; +
+  &quot;getSeconds(): &quot; + d.getSeconds() + &quot;&lt;br&gt;&quot; +
+  &quot;getMilliseconds(): &quot; + d.getMilliseconds() + &quot;&lt;br&gt;&quot; +
+  &quot;getTime(): &quot; + d.getTime();
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p5.png" alt=""></p>
+<h3>Example 5</h3>
+<p><strong>Result</strong> <a href="ex5-date_methods/index.html">View Example</a></p>
+<h2>Document</h2>
+<p>Document in project</p>
+<p>You can <a href="js-dates.pdf">Download PDF</a> file.</p>
+<h2>Reference</h2>
+<ul>
+<li><a href="https://www.w3schools.com/js/js_dates.asp">W3Schools JavaScript Dates</a></li>
+</ul>
+
+</body>
+</html>

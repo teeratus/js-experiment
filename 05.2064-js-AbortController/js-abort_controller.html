@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>js-abort_controller</title>
+  <style>
+    body {
+      box-sizing: border-box;
+      min-width: 200px;
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 45px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+      font-size: 16px;
+      line-height: 1.5;
+      color: #24292e;
+      background-color: #ffffff;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 24px;
+      margin-bottom: 16px;
+      font-weight: 600;
+      line-height: 1.25;
+      border-bottom: 1px solid #eaecef;
+      padding-bottom: .3em;
+    }
+    h1 { font-size: 2em; }
+    h2 { font-size: 1.5em; }
+    h3 { font-size: 1.25em; }
+    code {
+      padding: .2em .4em;
+      margin: 0;
+      font-size: 85%;
+      background-color: rgba(27,31,35,.05);
+      border-radius: 3px;
+      font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
+    }
+    pre {
+      padding: 16px;
+      overflow: auto;
+      font-size: 85%;
+      line-height: 1.45;
+      background-color: #f6f8fa;
+      border-radius: 3px;
+      word-wrap: normal;
+    }
+    pre code {
+      background-color: transparent;
+      padding: 0;
+    }
+    blockquote {
+      padding: 0 1em;
+      color: #6a737d;
+      border-left: .25em solid #dfe2e5;
+      margin: 0 0 16px 0;
+    }
+    table {
+      border-spacing: 0;
+      border-collapse: collapse;
+      margin-top: 0;
+      margin-bottom: 16px;
+      width: 100%;
+    }
+    table th, table td {
+      padding: 6px 13px;
+      border: 1px solid #dfe2e5;
+    }
+    table tr:nth-child(2n) {
+      background-color: #f6f8fa;
+    }
+    img {
+      max-width: 100%;
+      box-sizing: content-box;
+    }
+    @media print {
+      body {
+        max-width: 100%;
+        padding: 0;
+      }
+      pre, blockquote, table, tr, img {
+        page-break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+<body>
+<h1>JavaScript AbortController</h1>
+<p><a href="../acp-js.php">Back to JS page</a></p>
+<p>Table of Contents</p>
+<ul>
+<li><a href="#javascript-abortcontroller">JavaScript AbortController</a><ul>
+<li><a href="#creating-an-abortcontroller">Creating an AbortController</a><ul>
+<li><a href="#example-1">Example 1</a></li>
+</ul>
+</li>
+<li><a href="#canceling-a-fetch-request">Canceling a Fetch Request</a><ul>
+<li><a href="#example-2">Example 2</a></li>
+</ul>
+</li>
+<li><a href="#cancel-with-a-button">Cancel with a Button</a><ul>
+<li><a href="#example-3">Example 3</a></li>
+</ul>
+</li>
+<li><a href="#cancel-after-a-timeout">Cancel After a Timeout</a><ul>
+<li><a href="#example-4">Example 4</a></li>
+</ul>
+</li>
+<li><a href="#cancel-the-previous-request">Cancel the Previous Request</a><ul>
+<li><a href="#example-5">Example 5</a></li>
+</ul>
+</li>
+<li><a href="#document">Document</a></li>
+<li><a href="#reference">Reference</a></li>
+</ul>
+</li>
+</ul>
+<h2>Why Cancel a Request?</h2>
+<p>Sometimes you need to cancel an ongoing async operation. For example:</p>
+<ul>
+<li>The user clicked a &quot;Cancel&quot; button</li>
+<li>The request is taking too long</li>
+<li>A newer request makes the previous one irrelevant</li>
+</ul>
+<p>The <code>AbortController</code> API provides a way to cancel fetch requests (and other async operations).</p>
+<h2>Creating an AbortController</h2>
+<p>An <code>AbortController</code> is created with <code>new AbortController()</code>. The controller has a <code>signal</code> property that is passed to the fetch request:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript AbortController&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Creating an AbortController&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+const controller = new AbortController();
+const signal = controller.signal;
+
+document.getElementById(&quot;demo&quot;).innerHTML =
+  &quot;AbortController created&lt;br&gt;&quot; +
+  &quot;signal.aborted: &quot; + signal.aborted;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p1.png" alt=""></p>
+<h3>Example 1</h3>
+<p><strong>Result</strong> <a href="ex1-create_controller/index.html">View Example</a></p>
+<h2>Canceling a Fetch Request</h2>
+<p>Pass the <code>signal</code> to <code>fetch()</code> and call <code>controller.abort()</code> to cancel:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript AbortController&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Canceling a Fetch Request&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+async function fetchData() {
+  const controller = new AbortController();
+  const signal = controller.signal;
+
+  // Cancel after 1 second
+  setTimeout(function() {
+    controller.abort();
+  }, 1000);
+
+  try {
+    const response = await fetch(&#39;https://jsonplaceholder.typicode.com/users/1&#39;, { signal });
+    const data = await response.json();
+    document.getElementById(&quot;demo&quot;).innerHTML = &quot;Success: &quot; + data.name;
+  } catch(error) {
+    if (error.name === &quot;AbortError&quot;) {
+      document.getElementById(&quot;demo&quot;).innerHTML = &quot;Fetch was aborted!&quot;;
+    } else {
+      document.getElementById(&quot;demo&quot;).innerHTML = &quot;Error: &quot; + error.message;
+    }
+  }
+}
+
+fetchData();
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p2.png" alt=""></p>
+<h3>Example 2</h3>
+<p><strong>Result</strong> <a href="ex2-cancel_fetch/index.html">View Example</a></p>
+<h2>Cancel with a Button</h2>
+<p>Allow users to cancel a request with a button click:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript AbortController&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Cancel with a Button&lt;/h4&gt;
+&lt;button id=&quot;startBtn&quot;&gt;Start Fetch&lt;/button&gt;
+&lt;button id=&quot;cancelBtn&quot;&gt;Cancel&lt;/button&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+let controller;
+
+document.getElementById(&quot;startBtn&quot;).addEventListener(&quot;click&quot;, function() {
+  controller = new AbortController();
+  const signal = controller.signal;
+
+  document.getElementById(&quot;demo&quot;).innerHTML = &quot;Fetching...&quot;;
+
+  fetch(&#39;https://jsonplaceholder.typicode.com/users&#39;, { signal })
+    .then(function(response) { return response.json(); })
+    .then(function(data) {
+      document.getElementById(&quot;demo&quot;).innerHTML = &quot;Loaded &quot; + data.length + &quot; users&quot;;
+    })
+    .catch(function(error) {
+      if (error.name === &quot;AbortError&quot;) {
+        document.getElementById(&quot;demo&quot;).innerHTML = &quot;Request was canceled by user&quot;;
+      } else {
+        document.getElementById(&quot;demo&quot;).innerHTML = &quot;Error: &quot; + error.message;
+      }
+    });
+});
+
+document.getElementById(&quot;cancelBtn&quot;).addEventListener(&quot;click&quot;, function() {
+  if (controller) {
+    controller.abort();
+  }
+});
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p3.png" alt=""></p>
+<h3>Example 3</h3>
+<p><strong>Result</strong> <a href="ex3-cancel_button/index.html">View Example</a></p>
+<h2>Cancel After a Timeout</h2>
+<p>Automatically cancel a request if it takes too long (timeout):</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript AbortController&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Cancel After a Timeout&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+async function fetchWithTimeout(url, timeoutMs) {
+  const controller = new AbortController();
+  const signal = controller.signal;
+
+  // Set timeout to abort
+  const timeoutId = setTimeout(function() {
+    controller.abort();
+  }, timeoutMs);
+
+  try {
+    const response = await fetch(url, { signal });
+    clearTimeout(timeoutId); // Cancel the timeout if fetch completed
+    const data = await response.json();
+    document.getElementById(&quot;demo&quot;).innerHTML = &quot;Data loaded in time!&lt;br&gt;User: &quot; + data.name;
+  } catch(error) {
+    if (error.name === &quot;AbortError&quot;) {
+      document.getElementById(&quot;demo&quot;).innerHTML = &quot;Timeout: Request took too long!&quot;;
+    } else {
+      document.getElementById(&quot;demo&quot;).innerHTML = &quot;Error: &quot; + error.message;
+    }
+  }
+}
+
+// Try with a 3-second timeout (should complete quickly)
+fetchWithTimeout(&#39;https://jsonplaceholder.typicode.com/users/1&#39;, 3000);
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p4.png" alt=""></p>
+<h3>Example 4</h3>
+<p><strong>Result</strong> <a href="ex4-timeout/index.html">View Example</a></p>
+<h2>Cancel the Previous Request</h2>
+<p>Cancel an old request when a new one starts (useful for search-as-you-type):</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript AbortController&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Cancel the Previous Request&lt;/h4&gt;
+&lt;p&gt;Type in the input field:&lt;/p&gt;
+&lt;input type=&quot;text&quot; id=&quot;searchInput&quot; placeholder=&quot;Search users...&quot;&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+let currentController = null;
+
+document.getElementById(&quot;searchInput&quot;).addEventListener(&quot;input&quot;, function() {
+  const query = this.value;
+  if (query.length &lt; 2) {
+    document.getElementById(&quot;demo&quot;).innerHTML = &quot;&quot;;
+    return;
+  }
+
+  // Cancel the previous request
+  if (currentController) {
+    currentController.abort();
+  }
+
+  currentController = new AbortController();
+  const signal = currentController.signal;
+
+  document.getElementById(&quot;demo&quot;).innerHTML = &quot;Searching for: &quot; + query + &quot;...&quot;;
+
+  fetch(&#39;https://jsonplaceholder.typicode.com/users&#39;, { signal })
+    .then(function(response) { return response.json(); })
+    .then(function(users) {
+      const results = users.filter(function(u) {
+        return u.name.toLowerCase().includes(query.toLowerCase());
+      });
+      let text = &quot;Found &quot; + results.length + &quot; users:&lt;br&gt;&quot;;
+      for (let user of results) {
+        text += user.name + &quot;&lt;br&gt;&quot;;
+      }
+      document.getElementById(&quot;demo&quot;).innerHTML = text;
+    })
+    .catch(function(error) {
+      if (error.name !== &quot;AbortError&quot;) {
+        document.getElementById(&quot;demo&quot;).innerHTML = &quot;Error: &quot; + error.message;
+      }
+    });
+});
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p5.png" alt=""></p>
+<h3>Example 5</h3>
+<p><strong>Result</strong> <a href="ex5-cancel_previous/index.html">View Example</a></p>
+<h2>Document</h2>
+<p>Document in project</p>
+<p>You can <a href="js-abort_controller.pdf">Download PDF</a> file.</p>
+<h2>Reference</h2>
+<ul>
+<li><a href="https://www.w3schools.com/js/js_async_abortcontroller.asp">W3Schools JavaScript AbortController</a></li>
+</ul>
+
+</body>
+</html>

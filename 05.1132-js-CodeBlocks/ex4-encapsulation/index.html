@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Code Blocks</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Encapsulation</h4>
+<p id="demo"></p>
+
+<script>
+let message = ""; // Global variable
+
+{
+  // Temporary variables - only used inside the block
+  let temp1 = 15;
+  let temp2 = 25;
+  let sum = temp1 + temp2;
+
+  message = "Sum of temporary values: " + sum;
+}
+
+// temp1, temp2, and sum are NOT accessible here
+// They are encapsulated inside the block
+document.getElementById("demo").innerHTML =
+  message + "<br><br>" +
+  "Temporary variables were kept inside the block";
+</script>
+
+</body>
+</html>

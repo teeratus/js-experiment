@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>js-set_methods</title>
+  <style>
+    body {
+      box-sizing: border-box;
+      min-width: 200px;
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 45px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+      font-size: 16px;
+      line-height: 1.5;
+      color: #24292e;
+      background-color: #ffffff;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 24px;
+      margin-bottom: 16px;
+      font-weight: 600;
+      line-height: 1.25;
+      border-bottom: 1px solid #eaecef;
+      padding-bottom: .3em;
+    }
+    h1 { font-size: 2em; }
+    h2 { font-size: 1.5em; }
+    h3 { font-size: 1.25em; }
+    code {
+      padding: .2em .4em;
+      margin: 0;
+      font-size: 85%;
+      background-color: rgba(27,31,35,.05);
+      border-radius: 3px;
+      font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
+    }
+    pre {
+      padding: 16px;
+      overflow: auto;
+      font-size: 85%;
+      line-height: 1.45;
+      background-color: #f6f8fa;
+      border-radius: 3px;
+      word-wrap: normal;
+    }
+    pre code {
+      background-color: transparent;
+      padding: 0;
+    }
+    blockquote {
+      padding: 0 1em;
+      color: #6a737d;
+      border-left: .25em solid #dfe2e5;
+      margin: 0 0 16px 0;
+    }
+    table {
+      border-spacing: 0;
+      border-collapse: collapse;
+      margin-top: 0;
+      margin-bottom: 16px;
+      width: 100%;
+    }
+    table th, table td {
+      padding: 6px 13px;
+      border: 1px solid #dfe2e5;
+    }
+    table tr:nth-child(2n) {
+      background-color: #f6f8fa;
+    }
+    img {
+      max-width: 100%;
+      box-sizing: content-box;
+    }
+    @media print {
+      body {
+        max-width: 100%;
+        padding: 0;
+      }
+      pre, blockquote, table, tr, img {
+        page-break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+<body>
+<h1>JavaScript Set Methods</h1>
+<p><a href="../acp-js.php">Back to JS page</a></p>
+<p>Table of Contents</p>
+<ul>
+<li><a href="#javascript-set-methods">JavaScript Set Methods</a><ul>
+<li><a href="#the-add-method">The add() Method</a><ul>
+<li><a href="#example-1">Example 1</a></li>
+</ul>
+</li>
+<li><a href="#the-has-method">The has() Method</a><ul>
+<li><a href="#example-2">Example 2</a></li>
+</ul>
+</li>
+<li><a href="#the-values-and-keys-methods">The values() and keys() Methods</a><ul>
+<li><a href="#example-3">Example 3</a></li>
+</ul>
+</li>
+<li><a href="#the-entries-method">The entries() Method</a><ul>
+<li><a href="#example-4">Example 4</a></li>
+</ul>
+</li>
+<li><a href="#document">Document</a></li>
+<li><a href="#reference">Reference</a></li>
+</ul>
+</li>
+</ul>
+<h2>Set Methods &amp; Properties</h2>
+<p>Set has the following methods and properties:</p>
+<table>
+<thead>
+<tr>
+<th>Method/Property</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>new Set()</code></td>
+<td>Create a new Set</td>
+</tr>
+<tr>
+<td><code>add(value)</code></td>
+<td>Add a new element</td>
+</tr>
+<tr>
+<td><code>delete(value)</code></td>
+<td>Delete an element</td>
+</tr>
+<tr>
+<td><code>has(value)</code></td>
+<td>Check if element exists</td>
+</tr>
+<tr>
+<td><code>clear()</code></td>
+<td>Remove all elements</td>
+</tr>
+<tr>
+<td><code>forEach(fn)</code></td>
+<td>Call function for each element</td>
+</tr>
+<tr>
+<td><code>values()</code></td>
+<td>Returns iterator of values</td>
+</tr>
+<tr>
+<td><code>keys()</code></td>
+<td>Same as values() for Set</td>
+</tr>
+<tr>
+<td><code>entries()</code></td>
+<td>Returns [value, value] pairs</td>
+</tr>
+<tr>
+<td><code>size</code></td>
+<td>Number of elements</td>
+</tr>
+</tbody></table>
+<h2>The add() Method</h2>
+<p><code>add()</code> adds a new element to the Set. Chain multiple <code>add()</code> calls for cleaner code:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Set Methods&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;The add() Method&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+const letters = new Set();
+
+// Chained add() calls
+letters.add(&quot;a&quot;).add(&quot;b&quot;).add(&quot;c&quot;).add(&quot;d&quot;);
+
+document.getElementById(&quot;demo&quot;).innerHTML =
+  &quot;Set: &quot; + [...letters] + &quot;&lt;br&gt;&quot; +
+  &quot;size: &quot; + letters.size;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p1.png" alt=""></p>
+<h3>Example 1</h3>
+<p><strong>Result</strong> <a href="ex1-add_method/index.html">View Example</a></p>
+<h2>The has() Method</h2>
+<p><code>has()</code> returns true if the Set contains a specific value:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Set Methods&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;The has() Method&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+const letters = new Set([&quot;a&quot;, &quot;b&quot;, &quot;c&quot;]);
+
+let text = &quot;Set: &quot; + [...letters] + &quot;&lt;br&gt;&lt;br&gt;&quot;;
+text += &quot;has(&#39;a&#39;): &quot; + letters.has(&quot;a&quot;) + &quot;&lt;br&gt;&quot;;
+text += &quot;has(&#39;x&#39;): &quot; + letters.has(&quot;x&quot;) + &quot;&lt;br&gt;&lt;br&gt;&quot;;
+
+// delete() removes an element
+letters.delete(&quot;b&quot;);
+text += &quot;After delete(&#39;b&#39;): &quot; + [...letters] + &quot;&lt;br&gt;&quot;;
+text += &quot;has(&#39;b&#39;) after delete: &quot; + letters.has(&quot;b&quot;);
+
+document.getElementById(&quot;demo&quot;).innerHTML = text;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p2.png" alt=""></p>
+<h3>Example 2</h3>
+<p><strong>Result</strong> <a href="ex2-has_method/index.html">View Example</a></p>
+<h2>The values() and keys() Methods</h2>
+<p>For a Set, <code>values()</code> and <code>keys()</code> are the same - both return an iterator of all values:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Set Methods&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;The values() and keys() Methods&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+const letters = new Set([&quot;a&quot;, &quot;b&quot;, &quot;c&quot;]);
+
+// values() returns iterator
+let text = &quot;values(): &quot;;
+for (let v of letters.values()) {
+  text += v + &quot; &quot;;
+}
+text += &quot;&lt;br&gt;&quot;;
+
+// keys() returns same as values() for Set
+text += &quot;keys(): &quot;;
+for (let k of letters.keys()) {
+  text += k + &quot; &quot;;
+}
+
+document.getElementById(&quot;demo&quot;).innerHTML = text;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p3.png" alt=""></p>
+<h3>Example 3</h3>
+<p><strong>Result</strong> <a href="ex3-values_keys/index.html">View Example</a></p>
+<h2>The entries() Method</h2>
+<p><code>entries()</code> returns an iterator with [value, value] pairs:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Set Methods&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;The entries() Method&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+const letters = new Set([&quot;a&quot;, &quot;b&quot;, &quot;c&quot;]);
+
+let text = &quot;entries():&lt;br&gt;&quot;;
+for (let entry of letters.entries()) {
+  text += &quot;[&quot; + entry[0] + &quot;, &quot; + entry[1] + &quot;]&lt;br&gt;&quot;;
+}
+
+document.getElementById(&quot;demo&quot;).innerHTML = text;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p4.png" alt=""></p>
+<h3>Example 4</h3>
+<p><strong>Result</strong> <a href="ex4-entries_method/index.html">View Example</a></p>
+<h2>Document</h2>
+<p>Document in project</p>
+<p>You can <a href="js-set_methods.pdf">Download PDF</a> file.</p>
+<h2>Reference</h2>
+<ul>
+<li><a href="https://www.w3schools.com/js/js_set_methods.asp">W3Schools JavaScript Set Methods</a></li>
+</ul>
+
+</body>
+</html>

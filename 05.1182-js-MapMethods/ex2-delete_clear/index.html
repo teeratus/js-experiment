@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Map Methods</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Map.delete() and Map.clear()</h4>
+<p id="demo"></p>
+
+<script>
+const fruits = new Map([
+  ["apple", 500],
+  ["banana", 300],
+  ["orange", 200]
+]);
+
+// delete() removes one entry
+fruits.delete("banana");
+
+let text = "After delete('banana'): " + [...fruits] + "<br><br>";
+
+// clear() removes all entries
+fruits.clear();
+text += "After clear(): size = " + fruits.size + " (empty)";
+
+document.getElementById("demo").innerHTML = text;
+</script>
+
+</body>
+</html>

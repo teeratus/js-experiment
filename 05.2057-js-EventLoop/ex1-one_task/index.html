@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Event Loop</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>JavaScript Executes One Task at a Time</h4>
+<p id="demo"></p>
+
+<script>
+function first() {
+  document.getElementById("demo").innerHTML += "1. First function<br>";
+}
+
+function second() {
+  document.getElementById("demo").innerHTML += "2. Second function<br>";
+}
+
+function third() {
+  document.getElementById("demo").innerHTML += "3. Third function<br>";
+}
+
+// Functions execute in order, one at a time
+first();
+second();
+third();
+</script>
+
+</body>
+</html>

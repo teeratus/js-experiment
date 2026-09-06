@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Hoisting</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>JavaScript Initializations are Not Hoisted</h4>
+<p id="demo"></p>
+
+<script>
+// The declaration of y is hoisted, but the assignment is not
+// So y is undefined when we try to use it
+
+function showHoisting() {
+  document.getElementById("demo").innerHTML =
+    "y is " + x + " and " + y + "<br><br>" +
+    "x is 5 (declaration and initialization at top)<br>" +
+    "y is undefined (only declaration hoisted, not value)";
+}
+
+var x = 5; // Declaration AND initialization
+var y = 7; // Declaration is hoisted, initialization is not
+showHoisting();
+</script>
+
+</body>
+</html>

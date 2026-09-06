@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>js-array_reference</title>
+  <style>
+    body {
+      box-sizing: border-box;
+      min-width: 200px;
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 45px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+      font-size: 16px;
+      line-height: 1.5;
+      color: #24292e;
+      background-color: #ffffff;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 24px;
+      margin-bottom: 16px;
+      font-weight: 600;
+      line-height: 1.25;
+      border-bottom: 1px solid #eaecef;
+      padding-bottom: .3em;
+    }
+    h1 { font-size: 2em; }
+    h2 { font-size: 1.5em; }
+    h3 { font-size: 1.25em; }
+    code {
+      padding: .2em .4em;
+      margin: 0;
+      font-size: 85%;
+      background-color: rgba(27,31,35,.05);
+      border-radius: 3px;
+      font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
+    }
+    pre {
+      padding: 16px;
+      overflow: auto;
+      font-size: 85%;
+      line-height: 1.45;
+      background-color: #f6f8fa;
+      border-radius: 3px;
+      word-wrap: normal;
+    }
+    pre code {
+      background-color: transparent;
+      padding: 0;
+    }
+    blockquote {
+      padding: 0 1em;
+      color: #6a737d;
+      border-left: .25em solid #dfe2e5;
+      margin: 0 0 16px 0;
+    }
+    table {
+      border-spacing: 0;
+      border-collapse: collapse;
+      margin-top: 0;
+      margin-bottom: 16px;
+      width: 100%;
+    }
+    table th, table td {
+      padding: 6px 13px;
+      border: 1px solid #dfe2e5;
+    }
+    table tr:nth-child(2n) {
+      background-color: #f6f8fa;
+    }
+    img {
+      max-width: 100%;
+      box-sizing: content-box;
+    }
+    @media print {
+      body {
+        max-width: 100%;
+        padding: 0;
+      }
+      pre, blockquote, table, tr, img {
+        page-break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+<body>
+<h1>JavaScript Array Reference</h1>
+<p><a href="../acp-js.php">Back to JS page</a></p>
+<p>Table of Contents</p>
+<ul>
+<li><a href="#javascript-array-reference">JavaScript Array Reference</a><ul>
+<li><a href="#array-properties">Array Properties</a><ul>
+<li><a href="#example-1">Example 1</a></li>
+</ul>
+</li>
+<li><a href="#basic-methods">Basic Methods</a><ul>
+<li><a href="#example-2">Example 2</a></li>
+</ul>
+</li>
+<li><a href="#search-methods">Search Methods</a><ul>
+<li><a href="#example-3">Example 3</a></li>
+</ul>
+</li>
+<li><a href="#iteration-methods">Iteration Methods</a><ul>
+<li><a href="#example-4">Example 4</a></li>
+</ul>
+</li>
+<li><a href="#addremove-methods">Add/Remove Methods</a><ul>
+<li><a href="#example-5">Example 5</a></li>
+</ul>
+</li>
+<li><a href="#document">Document</a></li>
+<li><a href="#reference">Reference</a></li>
+</ul>
+</li>
+</ul>
+<h2>Array Properties</h2>
+<p>The complete <code>Array</code> object reference:</p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>length</code></td>
+<td>Number of elements in the array</td>
+</tr>
+<tr>
+<td><code>constructor</code></td>
+<td>The array constructor function</td>
+</tr>
+</tbody></table>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Array Reference&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Array Properties&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+const fruits = [&quot;Banana&quot;, &quot;Orange&quot;, &quot;Apple&quot;, &quot;Mango&quot;];
+
+document.getElementById(&quot;demo&quot;).innerHTML =
+  &quot;Array: &quot; + fruits + &quot;&lt;br&gt;&quot; +
+  &quot;length: &quot; + fruits.length + &quot;&lt;br&gt;&quot; +
+  &quot;constructor: &quot; + fruits.constructor;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p1.png" alt=""></p>
+<h3>Example 1</h3>
+<p><strong>Result</strong> <a href="ex1-properties/index.html">View Example</a></p>
+<h2>Basic Methods</h2>
+<p>Basic array methods for converting and joining:</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>toString()</code></td>
+<td>Convert array to comma-separated string</td>
+</tr>
+<tr>
+<td><code>join(sep)</code></td>
+<td>Join elements with a separator</td>
+</tr>
+<tr>
+<td><code>at(index)</code></td>
+<td>Get element at index (supports negative)</td>
+</tr>
+<tr>
+<td><code>fill(value)</code></td>
+<td>Fill all elements with a value</td>
+</tr>
+</tbody></table>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Array Reference&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Basic Methods&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+const fruits = [&quot;Banana&quot;, &quot;Orange&quot;, &quot;Apple&quot;];
+
+// Create a copy for fill demonstration
+const filled = new Array(3);
+filled.fill(&quot;Kiwi&quot;);
+
+document.getElementById(&quot;demo&quot;).innerHTML =
+  &quot;toString(): &quot; + fruits.toString() + &quot;&lt;br&gt;&quot; +
+  &quot;join(&#39; - &#39;): &quot; + fruits.join(&quot; - &quot;) + &quot;&lt;br&gt;&quot; +
+  &quot;at(-1): &quot; + fruits.at(-1) + &quot;&lt;br&gt;&quot; +
+  &quot;fill(&#39;Kiwi&#39;): &quot; + filled;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p2.png" alt=""></p>
+<h3>Example 2</h3>
+<p><strong>Result</strong> <a href="ex2-basic_methods/index.html">View Example</a></p>
+<h2>Search Methods</h2>
+<p>Array search methods reference:</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>indexOf(item)</code></td>
+<td>First index of item (-1 if not found)</td>
+</tr>
+<tr>
+<td><code>lastIndexOf(item)</code></td>
+<td>Last index of item</td>
+</tr>
+<tr>
+<td><code>includes(item)</code></td>
+<td>True if item exists</td>
+</tr>
+<tr>
+<td><code>find(fn)</code></td>
+<td>First value passing test</td>
+</tr>
+<tr>
+<td><code>findIndex(fn)</code></td>
+<td>First index passing test</td>
+</tr>
+</tbody></table>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Array Reference&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Search Methods&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+const numbers = [10, 20, 30, 20, 40];
+
+document.getElementById(&quot;demo&quot;).innerHTML =
+  &quot;Array: &quot; + numbers + &quot;&lt;br&gt;&lt;br&gt;&quot; +
+  &quot;indexOf(20): &quot; + numbers.indexOf(20) + &quot;&lt;br&gt;&quot; +
+  &quot;lastIndexOf(20): &quot; + numbers.lastIndexOf(20) + &quot;&lt;br&gt;&quot; +
+  &quot;includes(30): &quot; + numbers.includes(30) + &quot;&lt;br&gt;&quot; +
+  &quot;find(v &gt; 25): &quot; + numbers.find(v =&gt; v &gt; 25) + &quot;&lt;br&gt;&quot; +
+  &quot;findIndex(v &gt; 25): &quot; + numbers.findIndex(v =&gt; v &gt; 25);
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p3.png" alt=""></p>
+<h3>Example 3</h3>
+<p><strong>Result</strong> <a href="ex3-search_methods/index.html">View Example</a></p>
+<h2>Iteration Methods</h2>
+<p>Array iteration methods reference:</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>forEach(fn)</code></td>
+<td>Call function for each element</td>
+</tr>
+<tr>
+<td><code>map(fn)</code></td>
+<td>Create new array from results</td>
+</tr>
+<tr>
+<td><code>filter(fn)</code></td>
+<td>Keep elements passing test</td>
+</tr>
+<tr>
+<td><code>reduce(fn)</code></td>
+<td>Reduce to a single value</td>
+</tr>
+<tr>
+<td><code>every(fn)</code></td>
+<td>True if all pass</td>
+</tr>
+<tr>
+<td><code>some(fn)</code></td>
+<td>True if any pass</td>
+</tr>
+</tbody></table>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Array Reference&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Iteration Methods&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+const numbers = [1, 2, 3, 4, 5];
+
+let text = &quot;Array: &quot; + numbers + &quot;&lt;br&gt;&lt;br&gt;&quot;;
+
+// forEach
+let sum = 0;
+numbers.forEach(v =&gt; sum += v);
+text += &quot;forEach (sum): &quot; + sum + &quot;&lt;br&gt;&quot;;
+
+// map
+text += &quot;map(v * 10): &quot; + numbers.map(v =&gt; v * 10) + &quot;&lt;br&gt;&quot;;
+
+// filter
+text += &quot;filter(v % 2 == 0): &quot; + numbers.filter(v =&gt; v % 2 === 0) + &quot;&lt;br&gt;&quot;;
+
+// reduce
+text += &quot;reduce(sum): &quot; + numbers.reduce((acc, v) =&gt; acc + v, 0) + &quot;&lt;br&gt;&quot;;
+
+// every/some
+text += &quot;every(v &gt; 0): &quot; + numbers.every(v =&gt; v &gt; 0) + &quot;&lt;br&gt;&quot;;
+text += &quot;some(v &gt; 4): &quot; + numbers.some(v =&gt; v &gt; 4);
+
+document.getElementById(&quot;demo&quot;).innerHTML = text;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p4.png" alt=""></p>
+<h3>Example 4</h3>
+<p><strong>Result</strong> <a href="ex4-iteration_methods/index.html">View Example</a></p>
+<h2>Add/Remove Methods</h2>
+<p>Methods for adding and removing elements:</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>push(item)</code></td>
+<td>Add to the end</td>
+</tr>
+<tr>
+<td><code>pop()</code></td>
+<td>Remove from the end</td>
+</tr>
+<tr>
+<td><code>shift()</code></td>
+<td>Remove from the beginning</td>
+</tr>
+<tr>
+<td><code>unshift(item)</code></td>
+<td>Add to the beginning</td>
+</tr>
+<tr>
+<td><code>splice(start, count)</code></td>
+<td>Add/remove in the middle</td>
+</tr>
+<tr>
+<td><code>concat(arr)</code></td>
+<td>Merge arrays</td>
+</tr>
+</tbody></table>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Array Reference&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Add/Remove Methods&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+const arr = [&quot;A&quot;, &quot;B&quot;];
+
+let text = &quot;Start: &quot; + arr + &quot;&lt;br&gt;&lt;br&gt;&quot;;
+
+arr.push(&quot;C&quot;);
+text += &quot;push(&#39;C&#39;): &quot; + arr + &quot;&lt;br&gt;&quot;;
+
+arr.unshift(&quot;Z&quot;);
+text += &quot;unshift(&#39;Z&#39;): &quot; + arr + &quot;&lt;br&gt;&quot;;
+
+arr.pop();
+text += &quot;pop(): &quot; + arr + &quot;&lt;br&gt;&quot;;
+
+arr.shift();
+text += &quot;shift(): &quot; + arr + &quot;&lt;br&gt;&quot;;
+
+arr.splice(1, 0, &quot;X&quot;);
+text += &quot;splice(1,0,&#39;X&#39;): &quot; + arr + &quot;&lt;br&gt;&quot;;
+
+text += &quot;concat([&#39;Y&#39;]): &quot; + arr.concat([&quot;Y&quot;]);
+
+document.getElementById(&quot;demo&quot;).innerHTML = text;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p5.png" alt=""></p>
+<h3>Example 5</h3>
+<p><strong>Result</strong> <a href="ex5-add_remove/index.html">View Example</a></p>
+<h2>Document</h2>
+<p>Document in project</p>
+<p>You can <a href="js-array_reference.pdf">Download PDF</a> file.</p>
+<h2>Reference</h2>
+<ul>
+<li><a href="https://www.w3schools.com/js/js_array_reference.asp">W3Schools JavaScript Array Reference</a></li>
+</ul>
+
+</body>
+</html>

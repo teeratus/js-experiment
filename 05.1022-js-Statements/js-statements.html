@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>js-statements</title>
+  <style>
+    body {
+      box-sizing: border-box;
+      min-width: 200px;
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 45px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+      font-size: 16px;
+      line-height: 1.5;
+      color: #24292e;
+      background-color: #ffffff;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 24px;
+      margin-bottom: 16px;
+      font-weight: 600;
+      line-height: 1.25;
+      border-bottom: 1px solid #eaecef;
+      padding-bottom: .3em;
+    }
+    h1 { font-size: 2em; }
+    h2 { font-size: 1.5em; }
+    h3 { font-size: 1.25em; }
+    code {
+      padding: .2em .4em;
+      margin: 0;
+      font-size: 85%;
+      background-color: rgba(27,31,35,.05);
+      border-radius: 3px;
+      font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
+    }
+    pre {
+      padding: 16px;
+      overflow: auto;
+      font-size: 85%;
+      line-height: 1.45;
+      background-color: #f6f8fa;
+      border-radius: 3px;
+      word-wrap: normal;
+    }
+    pre code {
+      background-color: transparent;
+      padding: 0;
+    }
+    blockquote {
+      padding: 0 1em;
+      color: #6a737d;
+      border-left: .25em solid #dfe2e5;
+      margin: 0 0 16px 0;
+    }
+    table {
+      border-spacing: 0;
+      border-collapse: collapse;
+      margin-top: 0;
+      margin-bottom: 16px;
+      width: 100%;
+    }
+    table th, table td {
+      padding: 6px 13px;
+      border: 1px solid #dfe2e5;
+    }
+    table tr:nth-child(2n) {
+      background-color: #f6f8fa;
+    }
+    img {
+      max-width: 100%;
+      box-sizing: content-box;
+    }
+    @media print {
+      body {
+        max-width: 100%;
+        padding: 0;
+      }
+      pre, blockquote, table, tr, img {
+        page-break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+<body>
+<h1>JavaScript Statements</h1>
+<p><a href="../acp-js.php">Back to JS page</a></p>
+<p>Table of Contents</p>
+<ul>
+<li><a href="#javascript-statements">JavaScript Statements</a><ul>
+<li><a href="#javascript-programs">JavaScript Programs</a></li>
+<li><a href="#javascript-statements">JavaScript Statements</a><ul>
+<li><a href="#example-1">Example 1</a></li>
+</ul>
+</li>
+<li><a href="#semicolons">Semicolons</a><ul>
+<li><a href="#example-2">Example 2</a></li>
+</ul>
+</li>
+<li><a href="#javascript-white-space">JavaScript White Space</a></li>
+<li><a href="#javascript-line-length-and-line-breaks">JavaScript Line Length and Line Breaks</a><ul>
+<li><a href="#example-3">Example 3</a></li>
+</ul>
+</li>
+<li><a href="#javascript-code-blocks">JavaScript Code Blocks</a><ul>
+<li><a href="#example-4">Example 4</a></li>
+</ul>
+</li>
+<li><a href="#javascript-keywords">JavaScript Keywords</a></li>
+<li><a href="#document">Document</a></li>
+<li><a href="#reference">Reference</a></li>
+</ul>
+</li>
+</ul>
+<h2>JavaScript Programs</h2>
+<p>A <strong>computer program</strong> is a list of &quot;instructions&quot; to be &quot;executed&quot; by a computer.</p>
+<p>These programming instructions are called <strong>statements</strong>.</p>
+<p>Most JavaScript programs contain many statements.</p>
+<p>The statements are executed, one by one, in the same order as they are written.</p>
+<p>In HTML, JavaScript programs are executed by the web browser.</p>
+<h2>JavaScript Statements</h2>
+<p>JavaScript statements are composed of: Values, Operators, Expressions, Keywords, and Comments.</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Statements&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;JavaScript Statements&lt;/h4&gt;
+&lt;p&gt;A &lt;b&gt;JavaScript program&lt;/b&gt; is a list of &lt;b&gt;statements&lt;/b&gt; to be executed by a computer.&lt;/p&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+let x, y, z;
+x = 5;
+y = 6;
+z = x + y;
+document.getElementById(&quot;demo&quot;).innerHTML = &quot;The value of z is &quot; + z + &quot;.&quot;;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p1.png" alt=""></p>
+<h3>Example 1</h3>
+<p><strong>Result</strong> <a href="ex1-statements/index.html">View Example</a></p>
+<h2>Semicolons</h2>
+<p>Semicolons separate JavaScript statements.</p>
+<p>Add a semicolon at the end of each executable statement:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Statements&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Semicolons&lt;/h4&gt;
+&lt;p&gt;Multiple statements on one line are allowed when separated by semicolons:&lt;/p&gt;
+&lt;p id=&quot;demo1&quot;&gt;&lt;/p&gt;
+&lt;p id=&quot;demo2&quot;&gt;&lt;/p&gt;
+&lt;p id=&quot;demo3&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+let a, b, c;
+a = 5;
+b = 6;
+c = a + b;
+document.getElementById(&quot;demo1&quot;).innerHTML = &quot;Value of a is &quot; + a + &quot;;&quot;;
+document.getElementById(&quot;demo2&quot;).innerHTML = &quot;Value of b is &quot; + b + &quot;;&quot;;
+document.getElementById(&quot;demo3&quot;).innerHTML = &quot;Value of c is &quot; + c + &quot;;&quot;;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p2.png" alt=""></p>
+<h3>Example 2</h3>
+<p><strong>Result</strong> <a href="ex2-semicolons/index.html">View Example</a></p>
+<h2>JavaScript White Space</h2>
+<p>JavaScript ignores multiple spaces. You can add white space to your script to make it more readable.</p>
+<p>The following lines are equivalent:</p>
+<pre><code class="language-javascript">let person = &quot;Hege&quot;;
+let person=&quot;Hege&quot;;
+</code></pre>
+<p>A good practice is to put spaces around operators (<code>=</code> <code>+</code> <code>-</code> <code>*</code> <code>/</code>).</p>
+<h2>JavaScript Line Length and Line Breaks</h2>
+<p>For best readability, programmers often like to avoid code lines longer than 80 characters.</p>
+<p>If a JavaScript statement does not fit on one line, the best place to break it is after an operator:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Statements&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Line Length and Line Breaks&lt;/h4&gt;
+&lt;p&gt;The best place to break a code line is after an operator:&lt;/p&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+document.getElementById(&quot;demo&quot;).innerHTML =
+&quot;Hello Dolly!&quot;;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p3.png" alt=""></p>
+<h3>Example 3</h3>
+<p><strong>Result</strong> <a href="ex3-line_breaks/index.html">View Example</a></p>
+<h2>JavaScript Code Blocks</h2>
+<p>JavaScript statements can be grouped together in code blocks, inside curly brackets <code>{...}</code>.</p>
+<p>The purpose of code blocks is to define statements to be executed together.</p>
+<p>One place you will find statements grouped together in blocks is in JavaScript functions:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Statements&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;JavaScript Code Blocks&lt;/h4&gt;
+&lt;p&gt;JavaScript code blocks are used to group statements together.&lt;/p&gt;
+&lt;button type=&quot;button&quot; onclick=&quot;myFunction()&quot;&gt;Click Me!&lt;/button&gt;
+&lt;p id=&quot;demo1&quot;&gt;&lt;/p&gt;
+&lt;p id=&quot;demo2&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+function myFunction() {
+  document.getElementById(&quot;demo1&quot;).innerHTML = &quot;Hello Dolly!&quot;;
+  document.getElementById(&quot;demo2&quot;).innerHTML = &quot;How are you?&quot;;
+}
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p4.png" alt=""></p>
+<h3>Example 4</h3>
+<p><strong>Result</strong> <a href="ex4-code_blocks/index.html">View Example</a></p>
+<h2>JavaScript Keywords</h2>
+<p>JavaScript statements often start with a <strong>keyword</strong> to identify the JavaScript action to be performed.</p>
+<p>Here is a list of some of the keywords you will learn about in this tutorial:</p>
+<table>
+<thead>
+<tr>
+<th>Keyword</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>let</code></td>
+<td>Declares a variable</td>
+</tr>
+<tr>
+<td><code>const</code></td>
+<td>Declares a constant</td>
+</tr>
+<tr>
+<td><code>if</code></td>
+<td>Marks a block of statements to be executed on a condition</td>
+</tr>
+<tr>
+<td><code>switch</code></td>
+<td>Marks a block of statements to be executed in different cases</td>
+</tr>
+<tr>
+<td><code>function</code></td>
+<td>Declares a function</td>
+</tr>
+<tr>
+<td><code>return</code></td>
+<td>Exits a function</td>
+</tr>
+<tr>
+<td><code>for</code></td>
+<td>Marks a block of statements to be executed in a loop</td>
+</tr>
+<tr>
+<td><code>while</code></td>
+<td>Marks a block of statements to be executed in a loop</td>
+</tr>
+</tbody></table>
+<p>JavaScript keywords are reserved words. Reserved words cannot be used as names for variables.</p>
+<h2>Document</h2>
+<p>Document in project</p>
+<p>You can <a href="js-statements.pdf">Download PDF</a> file.</p>
+<h2>Reference</h2>
+<ul>
+<li><a href="https://www.w3schools.com/js/js_statements.asp">W3Schools JavaScript Statements</a></li>
+</ul>
+
+</body>
+</html>

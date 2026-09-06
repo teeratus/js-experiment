@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Map Methods</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Map.keys() and Map.values()</h4>
+<p id="demo"></p>
+
+<script>
+const fruits = new Map([
+  ["apple", 500],
+  ["banana", 300],
+  ["orange", 200]
+]);
+
+let text = "keys(): ";
+for (let key of fruits.keys()) {
+  text += key + " ";
+}
+text += "<br><br>";
+
+text += "values(): ";
+for (let value of fruits.values()) {
+  text += value + " ";
+}
+
+document.getElementById("demo").innerHTML = text;
+</script>
+
+</body>
+</html>

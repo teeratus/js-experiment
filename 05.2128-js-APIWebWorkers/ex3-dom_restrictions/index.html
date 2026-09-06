@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript API Web Workers</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Web Workers and the DOM</h4>
+<p id="demo3"></p>
+
+<script>
+let text = "Web Worker Restrictions:<br><br>";
+
+text += "Workers CANNOT access:<br>";
+text += "✗ The DOM (document object)<br>";
+text += "✗ The window object<br>";
+text += "✗ The parent object<br><br>";
+
+text += "Workers CAN access:<br>";
+text += "✓ navigator object<br>";
+text += "✓ location object (read-only)<br>";
+text += "✓ setTimeout()/setInterval()<br>";
+text += "✓ XMLHttpRequest (AJAX)<br><br>";
+
+text += "Communication happens via:<br>";
+text += "worker.postMessage() - send data to worker<br>";
+text += "worker.onmessage - receive data from worker<br>";
+text += "worker.terminate() - stop the worker";
+
+document.getElementById("demo3").innerHTML = text;
+</script>
+
+</body>
+</html>

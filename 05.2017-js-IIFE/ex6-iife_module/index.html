@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript IIFE</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>IIFE as a Module</h4>
+<p id="demo"></p>
+
+<script>
+const counterModule = (function() {
+  let count = 0;  // private variable
+
+  return {
+    increment: function() {
+      count++;
+      return count;
+    },
+    decrement: function() {
+      count--;
+      return count;
+    },
+    getCount: function() {
+      return count;
+    }
+  };
+})();
+
+document.getElementById("demo").innerHTML =
+  "Initial: " + counterModule.getCount() + "<br>" +
+  "After increment: " + counterModule.increment() + "<br>" +
+  "After increment: " + counterModule.increment() + "<br>" +
+  "After decrement: " + counterModule.decrement();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>js-localstoragecounter</title>
+  <style>
+    body {
+      box-sizing: border-box;
+      min-width: 200px;
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 45px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+      font-size: 16px;
+      line-height: 1.5;
+      color: #24292e;
+      background-color: #ffffff;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 24px;
+      margin-bottom: 16px;
+      font-weight: 600;
+      line-height: 1.25;
+      border-bottom: 1px solid #eaecef;
+      padding-bottom: .3em;
+    }
+    h1 { font-size: 2em; }
+    h2 { font-size: 1.5em; }
+    h3 { font-size: 1.25em; }
+    code {
+      padding: .2em .4em;
+      margin: 0;
+      font-size: 85%;
+      background-color: rgba(27,31,35,.05);
+      border-radius: 3px;
+      font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
+    }
+    pre {
+      padding: 16px;
+      overflow: auto;
+      font-size: 85%;
+      line-height: 1.45;
+      background-color: #f6f8fa;
+      border-radius: 3px;
+      word-wrap: normal;
+    }
+    pre code {
+      background-color: transparent;
+      padding: 0;
+    }
+    blockquote {
+      padding: 0 1em;
+      color: #6a737d;
+      border-left: .25em solid #dfe2e5;
+      margin: 0 0 16px 0;
+    }
+    table {
+      border-spacing: 0;
+      border-collapse: collapse;
+      margin-top: 0;
+      margin-bottom: 16px;
+      width: 100%;
+    }
+    table th, table td {
+      padding: 6px 13px;
+      border: 1px solid #dfe2e5;
+    }
+    table tr:nth-child(2n) {
+      background-color: #f6f8fa;
+    }
+    img {
+      max-width: 100%;
+      box-sizing: content-box;
+    }
+    @media print {
+      body {
+        max-width: 100%;
+        padding: 0;
+      }
+      pre, blockquote, table, tr, img {
+        page-break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+<body>
+<h1>JavaScript localStorage Counter</h1>
+<p><a href="../acp-js.php">Back to JS page</a></p>
+<p>Table of Contents</p>
+<ul>
+<li><a href="#javascript-localstorage-counter">JavaScript localStorage Counter</a><ul>
+<li><a href="#project-overview">Project Overview</a></li>
+<li><a href="#1-create-the-html">1. Create the HTML</a><ul>
+<li><a href="#example-1">Example 1</a></li>
+</ul>
+</li>
+<li><a href="#2-create-a-script">2. Create a Script</a><ul>
+<li><a href="#example-2">Example 2</a></li>
+</ul>
+</li>
+<li><a href="#3-add-an-increase-counter-function">3. Add an Increase Counter Function</a><ul>
+<li><a href="#example-3">Example 3</a></li>
+</ul>
+</li>
+<li><a href="#4-add-a-decrease-counter-function">4. Add a Decrease Counter Function</a><ul>
+<li><a href="#example-4">Example 4</a></li>
+</ul>
+</li>
+<li><a href="#5-add-a-reset-counter-function">5. Add a Reset Counter Function</a><ul>
+<li><a href="#example-5">Example 5</a></li>
+</ul>
+</li>
+<li><a href="#6-create-a-save-counter-function">6. Create a Save Counter Function</a><ul>
+<li><a href="#example-6">Example 6</a></li>
+</ul>
+</li>
+<li><a href="#7-create-a-load-counter-function">7. Create a Load Counter Function</a><ul>
+<li><a href="#example-7">Example 7</a></li>
+</ul>
+</li>
+<li><a href="#exercises--solutions">Exercises &amp; Solutions</a><ul>
+<li><a href="#example-8">Example 8</a></li>
+</ul>
+</li>
+<li><a href="#document">Document</a></li>
+<li><a href="#reference">Reference</a></li>
+</ul>
+</li>
+</ul>
+<h2>Project Overview</h2>
+<p>In this project, you will build a counter with buttons to:</p>
+<ul>
+<li><strong>Increase</strong> the counter</li>
+<li><strong>Decrease</strong> the counter</li>
+<li><strong>Reset</strong> the counter</li>
+<li><strong>Save</strong> the counter to local storage</li>
+<li><strong>Load</strong> the counter from local storage</li>
+</ul>
+<h3>Project Skills Required:</h3>
+<ul>
+<li>JavaScript Variables</li>
+<li>JavaScript Functions</li>
+<li>JavaScript HTML DOM</li>
+<li>JavaScript Events (<code>onclick</code> attributes)</li>
+<li>JavaScript <code>localStorage</code> (to Save and Restore the counter)</li>
+</ul>
+<h2>1. Create the HTML</h2>
+<p>Create the basic HTML layout containing the counter display and buttons:</p>
+<ul>
+<li>Add a <code>&lt;h2&gt;</code> header element.</li>
+<li>Add a <code>&lt;p&gt;</code> element displaying a number.</li>
+<li>Add 5 <code>&lt;button&gt;</code> elements.</li>
+<li>Add an <code>onclick</code> attribute to each button to trigger JavaScript functions.</li>
+</ul>
+<pre><code class="language-html">&lt;h2&gt;Counter&lt;/h2&gt;
+
+&lt;p id=&quot;count&quot; style=&quot;font-size:40px;&quot;&gt;0&lt;/p&gt;
+
+&lt;button onclick=&quot;increaseCount()&quot;&gt;+&lt;/button&gt;
+&lt;button onclick=&quot;decreaseCount()&quot;&gt;-&lt;/button&gt;
+&lt;button onclick=&quot;resetCount()&quot;&gt;Reset&lt;/button&gt;
+&lt;button onclick=&quot;saveCount()&quot;&gt;Save&lt;/button&gt;
+&lt;button onclick=&quot;loadCount()&quot;&gt;Load&lt;/button&gt;
+</code></pre>
+<p><img src="images/p1.png" alt=""></p>
+<h3>Example 1</h3>
+<p><strong>Result</strong> <a href="ex1-create_html/index.html">View Example</a></p>
+<h2>2. Create a Script</h2>
+<p>Create a script that:</p>
+<ul>
+<li>Declares a counter variable: <code>let count = 0</code></li>
+<li>Creates a function <code>updateCount()</code> to update the display</li>
+<li>Uses <code>document.getElementById().innerHTML</code> to display the counter value</li>
+</ul>
+<pre><code class="language-html">&lt;script&gt;
+// Declare a counter
+let count = 0;
+
+// Function to display the counter
+function updateCount() {
+  document.getElementById(&quot;count&quot;).innerHTML = count;
+}
+&lt;/script&gt;
+</code></pre>
+<p><img src="images/p2.png" alt=""></p>
+<h3>Example 2</h3>
+<p><strong>Result</strong> <a href="ex2-create_script/index.html">View Example</a></p>
+<h2>3. Add an Increase Counter Function</h2>
+<ul>
+<li>Create <code>increaseCount()</code> to handle incrementing.</li>
+<li>Use <code>count++</code> to increase the counter.</li>
+<li>Call <code>updateCount()</code> to refresh the display.</li>
+</ul>
+<pre><code class="language-javascript">// Function to increase the counter
+function increaseCount() {
+  count++;
+  updateCount();
+}
+</code></pre>
+<p><img src="images/p3.png" alt=""></p>
+<h3>Example 3</h3>
+<p><strong>Result</strong> <a href="ex3-increase_counter/index.html">View Example</a></p>
+<h2>4. Add a Decrease Counter Function</h2>
+<ul>
+<li>Create <code>decreaseCount()</code> to handle decrementing.</li>
+<li>Use <code>count--</code> to decrease the counter.</li>
+<li>Call <code>updateCount()</code> to refresh the display.</li>
+</ul>
+<pre><code class="language-javascript">// Function to decrease the counter
+function decreaseCount() {
+  count--;
+  updateCount();
+}
+</code></pre>
+<p><img src="images/p4.png" alt=""></p>
+<h3>Example 4</h3>
+<p><strong>Result</strong> <a href="ex4-decrease_counter/index.html">View Example</a></p>
+<h2>5. Add a Reset Counter Function</h2>
+<ul>
+<li>Create <code>resetCount()</code> to reset.</li>
+<li>Set <code>count = 0</code> to reset the counter value.</li>
+<li>Call <code>updateCount()</code> to refresh the display.</li>
+</ul>
+<pre><code class="language-javascript">// Function to reset the counter
+function resetCount() {
+  count = 0;
+  updateCount();
+}
+</code></pre>
+<p><img src="images/p5.png" alt=""></p>
+<h3>Example 5</h3>
+<p><strong>Result</strong> <a href="ex5-reset_counter/index.html">View Example</a></p>
+<h2>6. Create a Save Counter Function</h2>
+<ul>
+<li>Create <code>saveCount()</code> to save.</li>
+<li>Use <code>localStorage.setItem()</code> to store the current count value as text.</li>
+</ul>
+<pre><code class="language-javascript">// Function to save the counter
+function saveCount() {
+  localStorage.setItem(&quot;count&quot;, count);
+}
+</code></pre>
+<p><img src="images/p6.png" alt=""></p>
+<h3>Example 6</h3>
+<p><strong>Result</strong> <a href="ex6-save_counter/index.html">View Example</a></p>
+<h2>7. Create a Load Counter Function</h2>
+<ul>
+<li>Create <code>loadCount()</code> to load.</li>
+<li>Use <code>localStorage.getItem()</code> to get the saved value.</li>
+<li>Use <code>Number(saved)</code> to convert the saved text back into a number.</li>
+<li>Call <code>updateCount()</code> to refresh the display.</li>
+</ul>
+<pre><code class="language-javascript">// Function to load the counter
+function loadCount() {
+  let saved = localStorage.getItem(&quot;count&quot;);
+  if (saved !== null) {
+    count = Number(saved);
+  }
+  updateCount();
+}
+</code></pre>
+<blockquote>
+<p>[!NOTE]<br><code>localStorage</code> stores values as text, so we use <code>Number()</code> to convert the value back into a number.</p>
+</blockquote>
+<p><img src="images/p7.png" alt=""></p>
+<h3>Example 7</h3>
+<p><strong>Result</strong> <a href="ex7-load_counter/index.html">View Example</a></p>
+<h2>Exercises &amp; Solutions</h2>
+<h3>Exercise 1</h3>
+<p>Make the counter start at 10 instead of 0.</p>
+<h3>Exercise 2</h3>
+<p>Prevent the counter from going below 0.</p>
+<h3>Exercise 3</h3>
+<p>Automatically load the saved counter value when the page opens.</p>
+<h3>Solutions Code</h3>
+<pre><code class="language-html">&lt;h2&gt;Counter&lt;/h2&gt;
+
+&lt;p id=&quot;count&quot; style=&quot;font-size:40px;&quot;&gt;0&lt;/p&gt;
+
+&lt;button onclick=&quot;increaseCount()&quot;&gt;+&lt;/button&gt;
+&lt;button onclick=&quot;decreaseCount()&quot;&gt;-&lt;/button&gt;
+&lt;button onclick=&quot;resetCount()&quot;&gt;Reset&lt;/button&gt;
+&lt;button onclick=&quot;saveCount()&quot;&gt;Save&lt;/button&gt;
+&lt;button onclick=&quot;loadCount()&quot;&gt;Load&lt;/button&gt;
+
+&lt;script&gt;
+// Declare the counter (starts at 10)
+let count = 10;
+
+// Load the counter when the page opens
+loadCount();
+
+// Function to display the counter
+function updateCount() {
+  document.getElementById(&quot;count&quot;).innerHTML = count;
+}
+
+// Function to increase the counter
+function increaseCount() {
+  count++;
+  updateCount();
+}
+
+// Function to decrease the counter (prevent going below 0)
+function decreaseCount() {
+  if (count &gt; 0) {
+    count--;
+    updateCount();
+  }
+}
+
+// Function to reset the counter (resets to 10)
+function resetCount() {
+  count = 10;
+  updateCount();
+}
+
+// Function to save the counter
+function saveCount() {
+  localStorage.setItem(&quot;count&quot;, count);
+}
+
+// Function to load the counter
+function loadCount() {
+  let saved = localStorage.getItem(&quot;count&quot;);
+  if (saved !== null) {
+    count = Number(saved);
+  }
+  updateCount();
+}
+&lt;/script&gt;
+</code></pre>
+<p><img src="images/p8.png" alt=""></p>
+<h3>Example 8</h3>
+<p><strong>Result</strong> <a href="ex8-exercises_solutions/index.html">View Example</a></p>
+<h2>Document</h2>
+<p>Document in project</p>
+<p>You can <a href="js-localstoragecounter.pdf">Download PDF</a> file.</p>
+<h2>Reference</h2>
+<ul>
+<li><a href="https://www.w3schools.com/js/js_project_counter.asp">W3Schools JavaScript Counter Project</a></li>
+</ul>
+
+</body>
+</html>

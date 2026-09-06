@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Object this</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>this Alone</h4>
+<p id="demo"></p>
+
+<script>
+// In a browser, 'this' alone refers to the window object
+let text = "this (global): " + this + "<br>";
+text += "this === window: " + (this === window) + "<br>";
+text += "this.document === document: " + (this.document === document);
+
+document.getElementById("demo").innerHTML = text;
+</script>
+
+</body>
+</html>

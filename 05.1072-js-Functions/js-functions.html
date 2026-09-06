@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>js-functions</title>
+  <style>
+    body {
+      box-sizing: border-box;
+      min-width: 200px;
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 45px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+      font-size: 16px;
+      line-height: 1.5;
+      color: #24292e;
+      background-color: #ffffff;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 24px;
+      margin-bottom: 16px;
+      font-weight: 600;
+      line-height: 1.25;
+      border-bottom: 1px solid #eaecef;
+      padding-bottom: .3em;
+    }
+    h1 { font-size: 2em; }
+    h2 { font-size: 1.5em; }
+    h3 { font-size: 1.25em; }
+    code {
+      padding: .2em .4em;
+      margin: 0;
+      font-size: 85%;
+      background-color: rgba(27,31,35,.05);
+      border-radius: 3px;
+      font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
+    }
+    pre {
+      padding: 16px;
+      overflow: auto;
+      font-size: 85%;
+      line-height: 1.45;
+      background-color: #f6f8fa;
+      border-radius: 3px;
+      word-wrap: normal;
+    }
+    pre code {
+      background-color: transparent;
+      padding: 0;
+    }
+    blockquote {
+      padding: 0 1em;
+      color: #6a737d;
+      border-left: .25em solid #dfe2e5;
+      margin: 0 0 16px 0;
+    }
+    table {
+      border-spacing: 0;
+      border-collapse: collapse;
+      margin-top: 0;
+      margin-bottom: 16px;
+      width: 100%;
+    }
+    table th, table td {
+      padding: 6px 13px;
+      border: 1px solid #dfe2e5;
+    }
+    table tr:nth-child(2n) {
+      background-color: #f6f8fa;
+    }
+    img {
+      max-width: 100%;
+      box-sizing: content-box;
+    }
+    @media print {
+      body {
+        max-width: 100%;
+        padding: 0;
+      }
+      pre, blockquote, table, tr, img {
+        page-break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+<body>
+<h1>JavaScript Functions</h1>
+<p><a href="../acp-js.php">Back to JS page</a></p>
+<p>Table of Contents</p>
+<ul>
+<li><a href="#javascript-functions">JavaScript Functions</a><ul>
+<li><a href="#functions-are-code-blocks">Functions are Code Blocks</a><ul>
+<li><a href="#example-1">Example 1</a></li>
+</ul>
+</li>
+<li><a href="#functions-run-when-you-call-them">Functions Run When You Call Them</a><ul>
+<li><a href="#example-2">Example 2</a></li>
+</ul>
+</li>
+<li><a href="#javascript-function-syntax">JavaScript Function Syntax</a><ul>
+<li><a href="#example-3">Example 3</a></li>
+</ul>
+</li>
+<li><a href="#a-function-can-be-used-many-times">A Function Can Be Used Many Times</a><ul>
+<li><a href="#example-4">Example 4</a></li>
+</ul>
+</li>
+<li><a href="#local-variables">Local Variables</a><ul>
+<li><a href="#example-5">Example 5</a></li>
+</ul>
+</li>
+<li><a href="#functions-used-as-variables">Functions Used as Variables</a><ul>
+<li><a href="#example-6">Example 6</a></li>
+</ul>
+</li>
+<li><a href="#document">Document</a></li>
+<li><a href="#reference">Reference</a></li>
+</ul>
+</li>
+</ul>
+<h2>Functions are Code Blocks</h2>
+<p>A JavaScript function is a block of code designed to perform a particular task.</p>
+<p>A JavaScript function is executed when &quot;something&quot; invokes it (calls it).</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Functions&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Functions are Code Blocks&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+function myFunction() {
+  document.getElementById(&quot;demo&quot;).innerHTML = &quot;Hello World!&quot;;
+}
+myFunction();
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p1.png" alt=""></p>
+<h3>Example 1</h3>
+<p><strong>Result</strong> <a href="ex1-functions_intro/index.html">View Example</a></p>
+<h2>Functions Run When You Call Them</h2>
+<p>Functions run when you call them. You can call the function by its name:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Functions&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Functions Run When You Call Them&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+function myFunction(a, b) {
+  return a * b;
+}
+let result = myFunction(4, 3);
+document.getElementById(&quot;demo&quot;).innerHTML = &quot;4 * 3 = &quot; + result;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p2.png" alt=""></p>
+<h3>Example 2</h3>
+<p><strong>Result</strong> <a href="ex2-calling_function/index.html">View Example</a></p>
+<h2>JavaScript Function Syntax</h2>
+<p>A JavaScript function is defined with the <code>function</code> keyword, followed by a <strong>name</strong>, followed by parentheses <strong>()</strong>.</p>
+<p>Function names can contain letters, digits, underscores, and dollar signs (same rules as variables).</p>
+<p>The parentheses may include parameter names separated by commas:<br><code>(parameter1, parameter2, ...)</code></p>
+<p>The code to be executed, by the function, is placed inside curly brackets: <code>{}</code></p>
+<pre><code class="language-javascript">function name(parameter1, parameter2, parameter3) {
+  // code to be executed
+}
+</code></pre>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Functions&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;JavaScript Function Syntax&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+// Function is called, the return value will end up in x
+let x = myFunction(4, 3);
+document.getElementById(&quot;demo&quot;).innerHTML = x;
+
+function myFunction(a, b) {
+  // Function returns the product of a and b
+  return a * b;
+}
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p3.png" alt=""></p>
+<h3>Example 3</h3>
+<p><strong>Result</strong> <a href="ex3-function_syntax/index.html">View Example</a></p>
+<h2>A Function Can Be Used Many Times</h2>
+<p>Functions can be reused to perform the same task with different values:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Functions&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;A Function Can Be Used Many Times&lt;/h4&gt;
+&lt;p id=&quot;demo1&quot;&gt;&lt;/p&gt;
+&lt;p id=&quot;demo2&quot;&gt;&lt;/p&gt;
+&lt;p id=&quot;demo3&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+function toCelsius(fahrenheit) {
+  return (5/9) * (fahrenheit - 32);
+}
+
+document.getElementById(&quot;demo1&quot;).innerHTML = &quot;32°F = &quot; + toCelsius(32) + &quot;°C&quot;;
+document.getElementById(&quot;demo2&quot;).innerHTML = &quot;68°F = &quot; + toCelsius(68) + &quot;°C&quot;;
+document.getElementById(&quot;demo3&quot;).innerHTML = &quot;100°F = &quot; + toCelsius(100) + &quot;°C&quot;;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p4.png" alt=""></p>
+<h3>Example 4</h3>
+<p><strong>Result</strong> <a href="ex4-reuse_function/index.html">View Example</a></p>
+<h2>Local Variables</h2>
+<p>Variables declared within a JavaScript function become <strong>LOCAL</strong> to the function.</p>
+<p>Local variables can only be accessed from within the function:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Functions&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Local Variables&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+function myFunction() {
+  let carName = &quot;Volvo&quot;;
+  document.getElementById(&quot;demo&quot;).innerHTML = &quot;Inside function: &quot; + carName;
+}
+myFunction();
+// carName is NOT accessible outside the function
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p5.png" alt=""></p>
+<h3>Example 5</h3>
+<p><strong>Result</strong> <a href="ex5-local_variables/index.html">View Example</a></p>
+<h2>Functions Used as Variables</h2>
+<p>Functions can be used the same way as variables, in all types of formulas, assignments, and calculations:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Functions&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Functions Used as Variables&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+function myFunction(a, b) {
+  return a * b;
+}
+// Function result used directly as a variable
+document.getElementById(&quot;demo&quot;).innerHTML = &quot;5 * 3 = &quot; + myFunction(5, 3);
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p6.png" alt=""></p>
+<h3>Example 6</h3>
+<p><strong>Result</strong> <a href="ex6-function_as_variable/index.html">View Example</a></p>
+<h2>Document</h2>
+<p>Document in project</p>
+<p>You can <a href="js-functions.pdf">Download PDF</a> file.</p>
+<h2>Reference</h2>
+<ul>
+<li><a href="https://www.w3schools.com/js/js_function_intro.asp">W3Schools JavaScript Functions</a></li>
+</ul>
+
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Error Statements</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>The throw Statement</h4>
+<p id="demo"></p>
+
+<script>
+let text = "";
+
+try {
+  throw "Too big";    // throw a text
+}
+catch(err) {
+  text += "Error: " + err;
+}
+
+document.getElementById("demo").innerHTML = text;
+</script>
+
+</body>
+</html>

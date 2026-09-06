@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript typeof</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>The instanceof Operator</h4>
+<p id="demo"></p>
+
+<script>
+const arr = [1, 2, 3];
+const date = new Date();
+const person = {name: "John"};
+
+let text = "arr instanceof Array: " + (arr instanceof Array) + "<br>";
+text += "date instanceof Date: " + (date instanceof Date) + "<br>";
+text += "person instanceof Object: " + (person instanceof Object) + "<br><br>";
+
+text += "typeof arr: " + typeof arr + " (object)<br>";
+text += "instanceof is more specific: " + (arr instanceof Array);
+
+document.getElementById("demo").innerHTML = text;
+</script>
+
+</body>
+</html>

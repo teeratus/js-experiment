@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript WeakSet</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Weak References</h4>
+<p id="demo"></p>
+
+<script>
+const weakSet = new WeakSet();
+
+let john = { name: "John" };
+weakSet.add(john);
+
+let text = "Object added to WeakSet<br><br>";
+
+// Display object
+text += "Object in WeakSet: " + (weakSet.has(john)) + "<br><br>";
+
+// Remove all references to john
+john = null;
+
+text += "After setting john = null:<br>";
+text += "The object can now be garbage collected<br>";
+text += "It will be automatically removed from the WeakSet<br><br>";
+text += "This is why WeakSet is useful for<br>";
+text += "managing memory efficiently";
+
+document.getElementById("demo").innerHTML = text;
+</script>
+
+</body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Module Namespace</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>The Module Namespace Object</h4>
+<p id="demo"></p>
+
+<script type="module">
+import * as Shapes from './shapes.js';
+
+document.getElementById("demo").innerHTML =
+  "Circle area (r=5): " + Shapes.circle(5).toFixed(2) + "<br>" +
+  "Square area (s=4): " + Shapes.square(4) + "<br>" +
+  "Rectangle area (4x3): " + Shapes.rectangle(4, 3) + "<br>" +
+  "Triangle area (6x2): " + Shapes.triangle(6, 2) + "<br>" +
+  "PI: " + Shapes.PI.toFixed(4);
+</script>
+
+</body>
+</html>

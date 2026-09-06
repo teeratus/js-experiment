@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>js-typeof</title>
+  <style>
+    body {
+      box-sizing: border-box;
+      min-width: 200px;
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 45px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+      font-size: 16px;
+      line-height: 1.5;
+      color: #24292e;
+      background-color: #ffffff;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 24px;
+      margin-bottom: 16px;
+      font-weight: 600;
+      line-height: 1.25;
+      border-bottom: 1px solid #eaecef;
+      padding-bottom: .3em;
+    }
+    h1 { font-size: 2em; }
+    h2 { font-size: 1.5em; }
+    h3 { font-size: 1.25em; }
+    code {
+      padding: .2em .4em;
+      margin: 0;
+      font-size: 85%;
+      background-color: rgba(27,31,35,.05);
+      border-radius: 3px;
+      font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
+    }
+    pre {
+      padding: 16px;
+      overflow: auto;
+      font-size: 85%;
+      line-height: 1.45;
+      background-color: #f6f8fa;
+      border-radius: 3px;
+      word-wrap: normal;
+    }
+    pre code {
+      background-color: transparent;
+      padding: 0;
+    }
+    blockquote {
+      padding: 0 1em;
+      color: #6a737d;
+      border-left: .25em solid #dfe2e5;
+      margin: 0 0 16px 0;
+    }
+    table {
+      border-spacing: 0;
+      border-collapse: collapse;
+      margin-top: 0;
+      margin-bottom: 16px;
+      width: 100%;
+    }
+    table th, table td {
+      padding: 6px 13px;
+      border: 1px solid #dfe2e5;
+    }
+    table tr:nth-child(2n) {
+      background-color: #f6f8fa;
+    }
+    img {
+      max-width: 100%;
+      box-sizing: content-box;
+    }
+    @media print {
+      body {
+        max-width: 100%;
+        padding: 0;
+      }
+      pre, blockquote, table, tr, img {
+        page-break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+<body>
+<h1>JavaScript typeof</h1>
+<p><a href="../acp-js.php">Back to JS page</a></p>
+<p>Table of Contents</p>
+<ul>
+<li><a href="#javascript-typeof">JavaScript typeof</a><ul>
+<li><a href="#the-typeof-operator">The typeof Operator</a><ul>
+<li><a href="#example-1">Example 1</a></li>
+</ul>
+</li>
+<li><a href="#how-to-recognize-an-array">How to Recognize an Array</a><ul>
+<li><a href="#example-2">Example 2</a></li>
+</ul>
+</li>
+<li><a href="#the-instanceof-operator">The instanceof Operator</a><ul>
+<li><a href="#example-3">Example 3</a></li>
+</ul>
+</li>
+<li><a href="#difference-between-undefined-and-null">Difference Between Undefined and Null</a><ul>
+<li><a href="#example-4">Example 4</a></li>
+</ul>
+</li>
+<li><a href="#document">Document</a></li>
+<li><a href="#reference">Reference</a></li>
+</ul>
+</li>
+</ul>
+<h2>The typeof Operator</h2>
+<p>The <code>typeof</code> operator returns the type of a variable or value:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript typeof&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;The typeof Operator&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+// Primitive data types
+let text = &quot;&quot;;
+
+text += &quot;typeof &#39;John&#39;: &quot; + typeof &quot;John&quot; + &quot;&lt;br&gt;&quot;;
+text += &quot;typeof 3.14: &quot; + typeof 3.14 + &quot;&lt;br&gt;&quot;;
+text += &quot;typeof true: &quot; + typeof true + &quot;&lt;br&gt;&quot;;
+text += &quot;typeof 123n: &quot; + typeof 123n + &quot;&lt;br&gt;&quot;;
+text += &quot;typeof undefined: &quot; + typeof undefined + &quot;&lt;br&gt;&quot;;
+text += &quot;typeof Symbol(): &quot; + typeof Symbol() + &quot;&lt;br&gt;&lt;br&gt;&quot;;
+
+// Complex data types
+text += &quot;typeof [1,2,3]: &quot; + typeof [1,2,3] + &quot;&lt;br&gt;&quot;;
+text += &quot;typeof {name:&#39;x&#39;}: &quot; + typeof {name:&quot;x&quot;} + &quot;&lt;br&gt;&quot;;
+text += &quot;typeof new Date(): &quot; + typeof new Date() + &quot;&lt;br&gt;&quot;;
+text += &quot;typeof function(){}: &quot; + typeof function(){} + &quot;&lt;br&gt;&quot;;
+text += &quot;typeof null: &quot; + typeof null;
+
+document.getElementById(&quot;demo&quot;).innerHTML = text;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p1.png" alt=""></p>
+<h3>Example 1</h3>
+<p><strong>Result</strong> <a href="ex1-typeof/index.html">View Example</a></p>
+<h2>How to Recognize an Array</h2>
+<p><code>typeof</code> returns &quot;object&quot; for arrays. Use <code>Array.isArray()</code> to identify arrays:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript typeof&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;How to Recognize an Array&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+const fruits = [&quot;Apple&quot;, &quot;Banana&quot;, &quot;Orange&quot;];
+
+let text = &quot;typeof fruits: &quot; + typeof fruits + &quot;&lt;br&gt;&quot;;
+text += &quot;Array.isArray(fruits): &quot; + Array.isArray(fruits) + &quot;&lt;br&gt;&lt;br&gt;&quot;;
+
+// Check with constructor
+text += &quot;fruits.constructor === Array: &quot; + (fruits.constructor === Array);
+
+document.getElementById(&quot;demo&quot;).innerHTML = text;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p2.png" alt=""></p>
+<h3>Example 2</h3>
+<p><strong>Result</strong> <a href="ex2-array_check/index.html">View Example</a></p>
+<h2>The instanceof Operator</h2>
+<p><code>instanceof</code> checks if an object is an instance of a specific constructor:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript typeof&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;The instanceof Operator&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+const arr = [1, 2, 3];
+const date = new Date();
+const person = {name: &quot;John&quot;};
+
+let text = &quot;arr instanceof Array: &quot; + (arr instanceof Array) + &quot;&lt;br&gt;&quot;;
+text += &quot;date instanceof Date: &quot; + (date instanceof Date) + &quot;&lt;br&gt;&quot;;
+text += &quot;person instanceof Object: &quot; + (person instanceof Object) + &quot;&lt;br&gt;&lt;br&gt;&quot;;
+
+text += &quot;typeof arr: &quot; + typeof arr + &quot; (object)&lt;br&gt;&quot;;
+text += &quot;instanceof is more specific: &quot; + (arr instanceof Array);
+
+document.getElementById(&quot;demo&quot;).innerHTML = text;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p3.png" alt=""></p>
+<h3>Example 3</h3>
+<p><strong>Result</strong> <a href="ex3-instanceof/index.html">View Example</a></p>
+<h2>Difference Between Undefined and Null</h2>
+<p><code>undefined</code> and <code>null</code> are different: <code>undefined</code> is a type, <code>null</code> is an object:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript typeof&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Difference Between Undefined and Null&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+// undefined - variable not assigned
+let car;
+
+// null - explicitly declared empty
+let person = null;
+
+// empty - empty string
+let fruit = &quot;&quot;;
+
+let text = &quot;let car; → typeof: &quot; + typeof car + &quot;&lt;br&gt;&quot;;
+text += &quot;let person = null; → typeof: &quot; + typeof person + &quot;&lt;br&gt;&quot;;
+text += &quot;let fruit = &#39;&#39;; → typeof: &quot; + typeof fruit + &quot;&lt;br&gt;&lt;br&gt;&quot;;
+
+text += &quot;car === undefined: &quot; + (car === undefined) + &quot;&lt;br&gt;&quot;;
+text += &quot;person === null: &quot; + (person === null) + &quot;&lt;br&gt;&quot;;
+text += &quot;undefined == null: &quot; + (undefined == null) + &quot; (loose equal)&lt;br&gt;&quot;;
+text += &quot;undefined === null: &quot; + (undefined === null) + &quot; (strict equal)&quot;;
+
+document.getElementById(&quot;demo&quot;).innerHTML = text;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p4.png" alt=""></p>
+<h3>Example 4</h3>
+<p><strong>Result</strong> <a href="ex4-undefined_null/index.html">View Example</a></p>
+<h2>Document</h2>
+<p>Document in project</p>
+<p>You can <a href="js-typeof.pdf">Download PDF</a> file.</p>
+<h2>Reference</h2>
+<ul>
+<li><a href="https://www.w3schools.com/js/js_typeof.asp">W3Schools JavaScript typeof</a></li>
+</ul>
+
+</body>
+</html>

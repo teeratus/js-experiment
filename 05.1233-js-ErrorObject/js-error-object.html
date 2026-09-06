@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>js-error-object</title>
+  <style>
+    body {
+      box-sizing: border-box;
+      min-width: 200px;
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 45px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+      font-size: 16px;
+      line-height: 1.5;
+      color: #24292e;
+      background-color: #ffffff;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 24px;
+      margin-bottom: 16px;
+      font-weight: 600;
+      line-height: 1.25;
+      border-bottom: 1px solid #eaecef;
+      padding-bottom: .3em;
+    }
+    h1 { font-size: 2em; }
+    h2 { font-size: 1.5em; }
+    h3 { font-size: 1.25em; }
+    code {
+      padding: .2em .4em;
+      margin: 0;
+      font-size: 85%;
+      background-color: rgba(27,31,35,.05);
+      border-radius: 3px;
+      font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
+    }
+    pre {
+      padding: 16px;
+      overflow: auto;
+      font-size: 85%;
+      line-height: 1.45;
+      background-color: #f6f8fa;
+      border-radius: 3px;
+      word-wrap: normal;
+    }
+    pre code {
+      background-color: transparent;
+      padding: 0;
+    }
+    blockquote {
+      padding: 0 1em;
+      color: #6a737d;
+      border-left: .25em solid #dfe2e5;
+      margin: 0 0 16px 0;
+    }
+    table {
+      border-spacing: 0;
+      border-collapse: collapse;
+      margin-top: 0;
+      margin-bottom: 16px;
+      width: 100%;
+    }
+    table th, table td {
+      padding: 6px 13px;
+      border: 1px solid #dfe2e5;
+    }
+    table tr:nth-child(2n) {
+      background-color: #f6f8fa;
+    }
+    img {
+      max-width: 100%;
+      box-sizing: content-box;
+    }
+    @media print {
+      body {
+        max-width: 100%;
+        padding: 0;
+      }
+      pre, blockquote, table, tr, img {
+        page-break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+<body>
+<h1>JavaScript Error Reference</h1>
+<p><a href="../acp-js.php">Back to JS page</a></p>
+<p>Table of Contents</p>
+<ul>
+<li><a href="#javascript-error-reference">JavaScript Error Reference</a><ul>
+<li><a href="#the-error-object">The Error Object</a><ul>
+<li><a href="#example-1">Example 1</a></li>
+</ul>
+</li>
+<li><a href="#error-object-properties--methods">Error Object Properties &amp; Methods</a><ul>
+<li><a href="#example-2">Example 2</a></li>
+</ul>
+</li>
+<li><a href="#evalerror">EvalError</a><ul>
+<li><a href="#example-3">Example 3</a></li>
+</ul>
+</li>
+<li><a href="#rangeerror">RangeError</a><ul>
+<li><a href="#example-4">Example 4</a></li>
+</ul>
+</li>
+<li><a href="#referenceerror">ReferenceError</a><ul>
+<li><a href="#example-5">Example 5</a></li>
+</ul>
+</li>
+<li><a href="#typeerror">TypeError</a><ul>
+<li><a href="#example-6">Example 6</a></li>
+</ul>
+</li>
+<li><a href="#document">Document</a></li>
+<li><a href="#reference">Reference</a></li>
+</ul>
+</li>
+</ul>
+<h2>The Error Object</h2>
+<p>The <strong>Error Object</strong> provides error information when an error occurs. JavaScript has a built-in error object that provides error information when an error occurs. The error object provides two useful properties: <code>name</code> and <code>message</code>.</p>
+<p>You can also create a new Error object with the <code>new Error()</code> constructor.</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Error Reference&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;The Error Object&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+// Create a new Error object
+const err = new Error(&quot;Something went wrong!&quot;);
+
+document.getElementById(&quot;demo&quot;).innerHTML =
+  &quot;Error Name: &quot; + err.name + &quot;&lt;br&gt;&quot; +
+  &quot;Error Message: &quot; + err.message;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p1.png" alt=""></p>
+<h3>Example 1</h3>
+<p><strong>Result</strong> <a href="ex1-error_object/index.html">View Example</a></p>
+<h2>Error Object Properties &amp; Methods</h2>
+<p>The Error object has the following important <strong>properties</strong>:</p>
+<ul>
+<li><strong>name:</strong> Returns or sets the error name</li>
+<li><strong>message:</strong> Returns or sets an error message (a string)</li>
+</ul>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Error Reference&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Error Object Properties &amp; Methods&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+let text = &quot;&quot;;
+
+try {
+  adddlert(&quot;Welcome guest!&quot;);
+}
+catch(err) {
+  text += &quot;Error Name: &quot; + err.name + &quot;&lt;br&gt;&quot;;
+  text += &quot;Error Message: &quot; + err.message + &quot;&lt;br&gt;&lt;br&gt;&quot;;
+  text += &quot;typeof err: &quot; + typeof err;
+}
+
+document.getElementById(&quot;demo&quot;).innerHTML = text;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p2.png" alt=""></p>
+<h3>Example 2</h3>
+<p><strong>Result</strong> <a href="ex2-error_properties_methods/index.html">View Example</a></p>
+<h2>EvalError</h2>
+<p>An <code>EvalError</code> indicates an error regarding the global <code>eval()</code> function. These errors are no longer thrown by JavaScript, but the <code>EvalError</code> object remains for compatibility.</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Error Reference&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;EvalError&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+let text = &quot;&quot;;
+
+try {
+  throw new EvalError(&quot;Hello&quot;, &quot;someFile.js&quot;, 10);
+}
+catch(err) {
+  text += &quot;Error Name: &quot; + err.name + &quot;&lt;br&gt;&quot;;
+  text += &quot;Error Message: &quot; + err.message;
+}
+
+document.getElementById(&quot;demo&quot;).innerHTML = text;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p3.png" alt=""></p>
+<h3>Example 3</h3>
+<p><strong>Result</strong> <a href="ex3-eval_error/index.html">View Example</a></p>
+<h2>RangeError</h2>
+<p>A <code>RangeError</code> is thrown when a value is not in the set or range of allowed values.</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Error Reference&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;RangeError&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+let text = &quot;&quot;;
+let num = 1;
+
+try {
+  num.toPrecision(500);   // A number cannot have 500 significant digits
+}
+catch(err) {
+  text += &quot;Error Name: &quot; + err.name + &quot;&lt;br&gt;&quot;;
+  text += &quot;Error Message: &quot; + err.message;
+}
+
+document.getElementById(&quot;demo&quot;).innerHTML = text;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p4.png" alt=""></p>
+<h3>Example 4</h3>
+<p><strong>Result</strong> <a href="ex4-range_error/index.html">View Example</a></p>
+<h2>ReferenceError</h2>
+<p>A <code>ReferenceError</code> is thrown when a variable that doesn&#39;t exist (hasn&#39;t been declared) is referenced.</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Error Reference&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;ReferenceError&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+let text = &quot;&quot;;
+
+try {
+  x = y + 1;   // y is not defined
+}
+catch(err) {
+  text += &quot;Error Name: &quot; + err.name + &quot;&lt;br&gt;&quot;;
+  text += &quot;Error Message: &quot; + err.message;
+}
+
+document.getElementById(&quot;demo&quot;).innerHTML = text;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p5.png" alt=""></p>
+<h3>Example 5</h3>
+<p><strong>Result</strong> <a href="ex5-reference_error/index.html">View Example</a></p>
+<h2>TypeError</h2>
+<p>A <code>TypeError</code> is thrown when an operation cannot be performed, typically when a value is not of the expected type.</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Error Reference&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;TypeError&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+let text = &quot;&quot;;
+
+try {
+  let num = 1;
+  num.toUpperCase();   // Numbers don&#39;t have toUpperCase()
+}
+catch(err) {
+  text += &quot;Error Name: &quot; + err.name + &quot;&lt;br&gt;&quot;;
+  text += &quot;Error Message: &quot; + err.message;
+}
+
+document.getElementById(&quot;demo&quot;).innerHTML = text;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p6.png" alt=""></p>
+<h3>Example 6</h3>
+<p><strong>Result</strong> <a href="ex6-type_error/index.html">View Example</a></p>
+<h2>Document</h2>
+<p>Document in project</p>
+<p>You can <a href="js-error-object.pdf">Download PDF</a> file.</p>
+<h2>Reference</h2>
+<ul>
+<li><a href="https://www.w3schools.com/js/js_error_object.asp">W3Schools JavaScript Error Reference</a></li>
+</ul>
+
+</body>
+</html>

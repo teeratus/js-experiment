@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Async Callbacks</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Asynchronous Callbacks</h4>
+<p id="demo1"></p>
+<p id="demo2"></p>
+
+<script>
+function myDisplayer(something) {
+  document.getElementById("demo2").innerHTML = "Result: " + something;
+}
+
+function myCalculator(num1, num2, myCallback) {
+  let sum = num1 + num2;
+  myCallback(sum);
+}
+
+document.getElementById("demo1").innerHTML = "Calculating...";
+myCalculator(5, 5, myDisplayer);
+</script>
+
+</body>
+</html>

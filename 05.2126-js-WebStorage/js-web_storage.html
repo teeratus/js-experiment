@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>js-web_storage</title>
+  <style>
+    body {
+      box-sizing: border-box;
+      min-width: 200px;
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 45px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+      font-size: 16px;
+      line-height: 1.5;
+      color: #24292e;
+      background-color: #ffffff;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 24px;
+      margin-bottom: 16px;
+      font-weight: 600;
+      line-height: 1.25;
+      border-bottom: 1px solid #eaecef;
+      padding-bottom: .3em;
+    }
+    h1 { font-size: 2em; }
+    h2 { font-size: 1.5em; }
+    h3 { font-size: 1.25em; }
+    code {
+      padding: .2em .4em;
+      margin: 0;
+      font-size: 85%;
+      background-color: rgba(27,31,35,.05);
+      border-radius: 3px;
+      font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
+    }
+    pre {
+      padding: 16px;
+      overflow: auto;
+      font-size: 85%;
+      line-height: 1.45;
+      background-color: #f6f8fa;
+      border-radius: 3px;
+      word-wrap: normal;
+    }
+    pre code {
+      background-color: transparent;
+      padding: 0;
+    }
+    blockquote {
+      padding: 0 1em;
+      color: #6a737d;
+      border-left: .25em solid #dfe2e5;
+      margin: 0 0 16px 0;
+    }
+    table {
+      border-spacing: 0;
+      border-collapse: collapse;
+      margin-top: 0;
+      margin-bottom: 16px;
+      width: 100%;
+    }
+    table th, table td {
+      padding: 6px 13px;
+      border: 1px solid #dfe2e5;
+    }
+    table tr:nth-child(2n) {
+      background-color: #f6f8fa;
+    }
+    img {
+      max-width: 100%;
+      box-sizing: content-box;
+    }
+    @media print {
+      body {
+        max-width: 100%;
+        padding: 0;
+      }
+      pre, blockquote, table, tr, img {
+        page-break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+<body>
+<h1>JavaScript Web Storage API</h1>
+<p><a href="../acp-js.php">Back to JS page</a></p>
+<p>Table of Contents</p>
+<ul>
+<li><a href="#javascript-web-storage-api">JavaScript Web Storage API</a><ul>
+<li><a href="#the-localstorage-object">The localStorage Object</a><ul>
+<li><a href="#example-1">Example 1</a></li>
+</ul>
+</li>
+<li><a href="#the-setitem-and-getitem-methods">The setItem() and getItem() Methods</a><ul>
+<li><a href="#example-2">Example 2</a></li>
+</ul>
+</li>
+<li><a href="#the-sessionstorage-object">The sessionStorage Object</a><ul>
+<li><a href="#example-3">Example 3</a></li>
+</ul>
+</li>
+<li><a href="#storage-object-properties-and-methods">Storage Object Properties and Methods</a><ul>
+<li><a href="#example-4">Example 4</a></li>
+</ul>
+</li>
+<li><a href="#practical-example---visitor-counter">Practical Example - Visitor Counter</a><ul>
+<li><a href="#example-5">Example 5</a></li>
+</ul>
+</li>
+<li><a href="#document">Document</a></li>
+<li><a href="#reference">Reference</a></li>
+</ul>
+</li>
+</ul>
+<h2>The localStorage Object</h2>
+<p>The <code>localStorage</code> object stores data with no expiration date. The data is NOT deleted when the browser is closed, and will be available the next day, week, or year.</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Web Storage API&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;The localStorage Object&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+// Store data
+localStorage.setItem(&quot;name&quot;, &quot;John Doe&quot;);
+localStorage.setItem(&quot;age&quot;, &quot;30&quot;);
+localStorage.setItem(&quot;city&quot;, &quot;New York&quot;);
+
+// Retrieve data
+document.getElementById(&quot;demo&quot;).innerHTML =
+  &quot;Stored in localStorage:&lt;br&gt;&lt;br&gt;&quot; +
+  &quot;name: &quot; + localStorage.getItem(&quot;name&quot;) + &quot;&lt;br&gt;&quot; +
+  &quot;age: &quot; + localStorage.getItem(&quot;age&quot;) + &quot;&lt;br&gt;&quot; +
+  &quot;city: &quot; + localStorage.getItem(&quot;city&quot;);
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p1.png" alt=""></p>
+<h3>Example 1</h3>
+<p><strong>Result</strong> <a href="ex1-localstorage/index.html">View Example</a></p>
+<h2>The setItem() and getItem() Methods</h2>
+<p><code>setItem(key, value)</code> stores data. <code>getItem(key)</code> retrieves data. Values are stored as strings:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Web Storage API&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;The setItem() and getItem() Methods&lt;/h4&gt;
+
+&lt;input type=&quot;text&quot; id=&quot;keyInput&quot; placeholder=&quot;Key&quot; value=&quot;color&quot;&gt;
+&lt;input type=&quot;text&quot; id=&quot;valueInput&quot; placeholder=&quot;Value&quot; value=&quot;blue&quot;&gt;
+&lt;br&gt;&lt;br&gt;
+&lt;button onclick=&quot;saveItem()&quot;&gt;Save Item&lt;/button&gt;
+&lt;button onclick=&quot;loadItem()&quot;&gt;Load Item&lt;/button&gt;
+&lt;button onclick=&quot;removeItem()&quot;&gt;Remove Item&lt;/button&gt;
+&lt;p id=&quot;demo2&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+function saveItem() {
+  const key = document.getElementById(&quot;keyInput&quot;).value;
+  const value = document.getElementById(&quot;valueInput&quot;).value;
+  localStorage.setItem(key, value);
+  document.getElementById(&quot;demo2&quot;).innerHTML =
+    &quot;Saved: &quot; + key + &quot; = &quot; + value;
+}
+
+function loadItem() {
+  const key = document.getElementById(&quot;keyInput&quot;).value;
+  const value = localStorage.getItem(key);
+  if (value !== null) {
+    document.getElementById(&quot;demo2&quot;).innerHTML =
+      &quot;Loaded: &quot; + key + &quot; = &quot; + value;
+  } else {
+    document.getElementById(&quot;demo2&quot;).innerHTML =
+      &quot;Key &#39;&quot; + key + &quot;&#39; not found!&quot;;
+  }
+}
+
+function removeItem() {
+  const key = document.getElementById(&quot;keyInput&quot;).value;
+  localStorage.removeItem(key);
+  document.getElementById(&quot;demo2&quot;).innerHTML =
+    &quot;Removed: &quot; + key;
+}
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p2.png" alt=""></p>
+<h3>Example 2</h3>
+<p><strong>Result</strong> <a href="ex2-set_get_item/index.html">View Example</a></p>
+<h2>The sessionStorage Object</h2>
+<p>The <code>sessionStorage</code> object stores data for one session only. The data is deleted when the browser tab is closed:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Web Storage API&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;The sessionStorage Object&lt;/h4&gt;
+&lt;p id=&quot;demo3&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+// Store session data
+sessionStorage.setItem(&quot;sessionId&quot;, &quot;abc123&quot;);
+sessionStorage.setItem(&quot;startTime&quot;, new Date().toLocaleTimeString());
+
+// Retrieve session data
+document.getElementById(&quot;demo3&quot;).innerHTML =
+  &quot;sessionStorage data (will be deleted when tab closes):&lt;br&gt;&lt;br&gt;&quot; +
+  &quot;sessionId: &quot; + sessionStorage.getItem(&quot;sessionId&quot;) + &quot;&lt;br&gt;&quot; +
+  &quot;startTime: &quot; + sessionStorage.getItem(&quot;startTime&quot;);
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p3.png" alt=""></p>
+<h3>Example 3</h3>
+<p><strong>Result</strong> <a href="ex3-sessionstorage/index.html">View Example</a></p>
+<h2>Storage Object Properties and Methods</h2>
+<p>The Storage object provides these properties and methods:</p>
+<table>
+<thead>
+<tr>
+<th>Method/Property</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>setItem(key, value)</code></td>
+<td>Stores a key/value pair</td>
+</tr>
+<tr>
+<td><code>getItem(key)</code></td>
+<td>Retrieves a value by key</td>
+</tr>
+<tr>
+<td><code>removeItem(key)</code></td>
+<td>Removes a key/value pair</td>
+</tr>
+<tr>
+<td><code>clear()</code></td>
+<td>Removes all key/value pairs</td>
+</tr>
+<tr>
+<td><code>key(index)</code></td>
+<td>Gets the key at a specific index</td>
+</tr>
+<tr>
+<td><code>length</code></td>
+<td>Returns the number of stored items</td>
+</tr>
+</tbody></table>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Web Storage API&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Storage Object Properties and Methods&lt;/h4&gt;
+&lt;p id=&quot;demo4&quot;&gt;&lt;/p&gt;
+
+&lt;button onclick=&quot;showAll()&quot;&gt;Show All Items&lt;/button&gt;
+&lt;button onclick=&quot;clearAll()&quot;&gt;Clear All&lt;/button&gt;
+
+&lt;script&gt;
+function showAll() {
+  let text = &quot;Number of items: &quot; + localStorage.length + &quot;&lt;br&gt;&lt;br&gt;&quot;;
+  
+  for (let i = 0; i &lt; localStorage.length; i++) {
+    const key = localStorage.key(i);
+    const value = localStorage.getItem(key);
+    text += &quot;[&quot; + i + &quot;] &quot; + key + &quot;: &quot; + value + &quot;&lt;br&gt;&quot;;
+  }
+  
+  if (localStorage.length === 0) {
+    text += &quot;(empty)&quot;;
+  }
+  
+  document.getElementById(&quot;demo4&quot;).innerHTML = text;
+}
+
+function clearAll() {
+  localStorage.clear();
+  document.getElementById(&quot;demo4&quot;).innerHTML = &quot;All items cleared! (&quot; + localStorage.length + &quot; items)&quot;;
+}
+
+// Add some demo items if empty
+if (localStorage.length === 0) {
+  localStorage.setItem(&quot;demo1&quot;, &quot;value1&quot;);
+  localStorage.setItem(&quot;demo2&quot;, &quot;value2&quot;);
+  localStorage.setItem(&quot;demo3&quot;, &quot;value3&quot;);
+}
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p4.png" alt=""></p>
+<h3>Example 4</h3>
+<p><strong>Result</strong> <a href="ex4-storage_properties/index.html">View Example</a></p>
+<h2>Practical Example - Visitor Counter</h2>
+<p>A practical example using localStorage to count and remember visitors:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Web Storage API&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Practical Example - Visitor Counter&lt;/h4&gt;
+&lt;p id=&quot;counter&quot;&gt;&lt;/p&gt;
+&lt;p id=&quot;firstVisit&quot;&gt;&lt;/p&gt;
+&lt;p id=&quot;lastVisit&quot;&gt;&lt;/p&gt;
+
+&lt;button onclick=&quot;resetCounter()&quot;&gt;Reset Counter&lt;/button&gt;
+
+&lt;script&gt;
+function updateCounter() {
+  let count = localStorage.getItem(&quot;visitCount&quot;);
+  
+  if (count === null) {
+    count = 0;
+    localStorage.setItem(&quot;firstVisit&quot;, new Date().toLocaleString());
+  } else {
+    count = parseInt(count);
+  }
+  
+  count++;
+  localStorage.setItem(&quot;visitCount&quot;, count);
+  localStorage.setItem(&quot;lastVisit&quot;, new Date().toLocaleString());
+  
+  document.getElementById(&quot;counter&quot;).innerHTML = 
+    &quot;You have visited this page &quot; + count + &quot; time(s).&quot;;
+  
+  document.getElementById(&quot;firstVisit&quot;).innerHTML = 
+    &quot;First visit: &quot; + localStorage.getItem(&quot;firstVisit&quot;);
+    
+  document.getElementById(&quot;lastVisit&quot;).innerHTML = 
+    &quot;Last visit: &quot; + localStorage.getItem(&quot;lastVisit&quot;);
+}
+
+function resetCounter() {
+  localStorage.removeItem(&quot;visitCount&quot;);
+  localStorage.removeItem(&quot;firstVisit&quot;);
+  localStorage.removeItem(&quot;lastVisit&quot;);
+  updateCounter();
+}
+
+updateCounter();
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p5.png" alt=""></p>
+<h3>Example 5</h3>
+<p><strong>Result</strong> <a href="ex5-visitor_counter/index.html">View Example</a></p>
+<h2>Document</h2>
+<p>Document in project</p>
+<p>You can <a href="js-web_storage.pdf">Download PDF</a> file.</p>
+<h2>Reference</h2>
+<ul>
+<li><a href="https://www.w3schools.com/js/js_api_web_storage.asp">W3Schools JavaScript Web Storage API</a></li>
+</ul>
+
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Geolocation API</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Handling Errors and Rejections</h4>
+<button onclick="getLocation()">Get My Position</button>
+<p id="demo"></p>
+
+<script>
+function getLocation() {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(showPosition, showError);
+  } else {
+    document.getElementById("demo").innerHTML = "Geolocation is not supported.";
+  }
+}
+
+function showPosition(position) {
+  document.getElementById("demo").innerHTML =
+    "Latitude: " + position.coords.latitude + "<br>" +
+    "Longitude: " + position.coords.longitude;
+}
+
+function showError(error) {
+  let msg = "";
+  switch(error.code) {
+    case error.PERMISSION_DENIED:
+      msg = "User denied the request for Geolocation.";
+      break;
+    case error.POSITION_UNAVAILABLE:
+      msg = "Location information is unavailable.";
+      break;
+    case error.TIMEOUT:
+      msg = "The request to get user location timed out.";
+      break;
+    case error.UNKNOWN_ERROR:
+      msg = "An unknown error occurred.";
+      break;
+  }
+  document.getElementById("demo").innerHTML = "Error: " + msg;
+}
+</script>
+
+</body>
+</html>

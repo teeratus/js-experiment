@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Object Methods</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Adding a Method to an Object</h4>
+<p id="demo"></p>
+
+<script>
+const person = {
+  firstName: "John",
+  lastName: "Doe"
+};
+
+// Add a method
+person.fullName = function() {
+  return this.firstName + " " + this.lastName;
+};
+
+// Add another method
+person.greet = function(name) {
+  return "Hello " + name + ", I'm " + this.firstName;
+};
+
+document.getElementById("demo").innerHTML =
+  person.fullName() + "<br>" +
+  person.greet("Jane");
+</script>
+
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Datatypes Objects</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Primitive vs Object Types</h4>
+<p id="demo"></p>
+
+<script>
+// Primitive types
+const str = "Hello";
+const num = 42;
+const bool = true;
+
+// Object types
+const arr = [1, 2, 3];
+const obj = {name: "John"};
+const date = new Date();
+
+let text = "<b>Primitive types:</b><br>";
+text += "typeof 'Hello': " + typeof str + "<br>";
+text += "typeof 42: " + typeof num + "<br>";
+text += "typeof true: " + typeof bool + "<br><br>";
+
+text += "<b>Object types:</b><br>";
+text += "typeof [1,2,3]: " + typeof arr + "<br>";
+text += "typeof {name}: " + typeof obj + "<br>";
+text += "typeof Date: " + typeof date + "<br><br>";
+
+text += "Primitives can temporarily use methods:<br>";
+text += "'Hello'.toUpperCase(): " + str.toUpperCase() + "<br>";
+text += "(42).toString(): " + num.toString();
+
+document.getElementById("demo").innerHTML = text;
+</script>
+
+</body>
+</html>

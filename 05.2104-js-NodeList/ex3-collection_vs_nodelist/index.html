@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript NodeList</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>HTMLCollection vs NodeList</h4>
+
+<div id="container">
+  <p class="test">Item 1</p>
+  <p class="test">Item 2</p>
+</div>
+
+<button onclick="addItem()">Add Item</button>
+<p id="demo1"></p>
+<p id="demo2"></p>
+
+<script>
+function addItem() {
+  const para = document.createElement("p");
+  para.className = "test";
+  para.innerHTML = "Item " + (document.querySelectorAll(".test").length + 1);
+  document.getElementById("container").appendChild(para);
+
+  // HTMLCollection is LIVE - automatically updated
+  const liveCollection = document.getElementsByClassName("test");
+  document.getElementById("demo1").innerHTML =
+    "HTMLCollection (live) count: " + liveCollection.length;
+
+  // NodeList is STATIC - shows original count
+  const staticList = document.querySelectorAll(".test");
+  document.getElementById("demo2").innerHTML =
+    "NodeList (static) count: " + staticList.length;
+}
+</script>
+
+</body>
+</html>

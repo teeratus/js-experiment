@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>js-random</title>
+  <style>
+    body {
+      box-sizing: border-box;
+      min-width: 200px;
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 45px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+      font-size: 16px;
+      line-height: 1.5;
+      color: #24292e;
+      background-color: #ffffff;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 24px;
+      margin-bottom: 16px;
+      font-weight: 600;
+      line-height: 1.25;
+      border-bottom: 1px solid #eaecef;
+      padding-bottom: .3em;
+    }
+    h1 { font-size: 2em; }
+    h2 { font-size: 1.5em; }
+    h3 { font-size: 1.25em; }
+    code {
+      padding: .2em .4em;
+      margin: 0;
+      font-size: 85%;
+      background-color: rgba(27,31,35,.05);
+      border-radius: 3px;
+      font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
+    }
+    pre {
+      padding: 16px;
+      overflow: auto;
+      font-size: 85%;
+      line-height: 1.45;
+      background-color: #f6f8fa;
+      border-radius: 3px;
+      word-wrap: normal;
+    }
+    pre code {
+      background-color: transparent;
+      padding: 0;
+    }
+    blockquote {
+      padding: 0 1em;
+      color: #6a737d;
+      border-left: .25em solid #dfe2e5;
+      margin: 0 0 16px 0;
+    }
+    table {
+      border-spacing: 0;
+      border-collapse: collapse;
+      margin-top: 0;
+      margin-bottom: 16px;
+      width: 100%;
+    }
+    table th, table td {
+      padding: 6px 13px;
+      border: 1px solid #dfe2e5;
+    }
+    table tr:nth-child(2n) {
+      background-color: #f6f8fa;
+    }
+    img {
+      max-width: 100%;
+      box-sizing: content-box;
+    }
+    @media print {
+      body {
+        max-width: 100%;
+        padding: 0;
+      }
+      pre, blockquote, table, tr, img {
+        page-break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+<body>
+<h1>JavaScript Random</h1>
+<p><a href="../acp-js.php">Back to JS page</a></p>
+<p>Table of Contents</p>
+<ul>
+<li><a href="#javascript-random">JavaScript Random</a><ul>
+<li><a href="#mathrandom">Math.random()</a><ul>
+<li><a href="#example-1">Example 1</a></li>
+</ul>
+</li>
+<li><a href="#javascript-random-integers">JavaScript Random Integers</a><ul>
+<li><a href="#example-2">Example 2</a></li>
+</ul>
+</li>
+<li><a href="#random-integers-in-a-range">Random Integers in a Range</a><ul>
+<li><a href="#example-3">Example 3</a></li>
+</ul>
+</li>
+<li><a href="#a-proper-random-function">A Proper Random Function</a><ul>
+<li><a href="#example-4">Example 4</a></li>
+</ul>
+</li>
+<li><a href="#document">Document</a></li>
+<li><a href="#reference">Reference</a></li>
+</ul>
+</li>
+</ul>
+<h2>Math.random()</h2>
+<p><code>Math.random()</code> returns a random number between 0 (inclusive) and 1 (exclusive):</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Random&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Math.random()&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+let text = &quot;Random numbers between 0 and 1:&lt;br&gt;&lt;br&gt;&quot;;
+
+for (let i = 0; i &lt; 5; i++) {
+  text += Math.random() + &quot;&lt;br&gt;&quot;;
+}
+
+document.getElementById(&quot;demo&quot;).innerHTML = text;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p1.png" alt=""></p>
+<h3>Example 1</h3>
+<p><strong>Result</strong> <a href="ex1-math_random/index.html">View Example</a></p>
+<h2>JavaScript Random Integers</h2>
+<p><code>Math.random()</code> used with <code>Math.floor()</code> generates random integers:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Random&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;JavaScript Random Integers&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+let text = &quot;Random integers:&lt;br&gt;&lt;br&gt;&quot;;
+
+// 0 to 9
+text += &quot;Math.floor(Math.random() * 10): &quot;;
+for (let i = 0; i &lt; 3; i++) {
+  text += Math.floor(Math.random() * 10) + &quot; &quot;;
+}
+text += &quot;&lt;br&gt;&quot;;
+
+// 1 to 10
+text += &quot;Math.floor(Math.random() * 10) + 1: &quot;;
+for (let i = 0; i &lt; 3; i++) {
+  text += Math.floor(Math.random() * 10) + 1 + &quot; &quot;;
+}
+text += &quot;&lt;br&gt;&quot;;
+
+// 0 to 100
+text += &quot;Math.floor(Math.random() * 100): &quot;;
+for (let i = 0; i &lt; 3; i++) {
+  text += Math.floor(Math.random() * 100) + &quot; &quot;;
+}
+
+document.getElementById(&quot;demo&quot;).innerHTML = text;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p2.png" alt=""></p>
+<h3>Example 2</h3>
+<p><strong>Result</strong> <a href="ex2-random_integers/index.html">View Example</a></p>
+<h2>Random Integers in a Range</h2>
+<p>You can generate random integers in a specific range (min to max):</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Random&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Random Integers in a Range&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+// Random integer between min (inclusive) and max (inclusive)
+function getRndInteger(min, max) {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+let text = &quot;Random integers between 1 and 6 (dice):&lt;br&gt;&quot;;
+for (let i = 0; i &lt; 6; i++) {
+  text += getRndInteger(1, 6) + &quot; &quot;;
+}
+text += &quot;&lt;br&gt;&lt;br&gt;&quot;;
+
+text += &quot;Random integers between 10 and 20:&lt;br&gt;&quot;;
+for (let i = 0; i &lt; 6; i++) {
+  text += getRndInteger(10, 20) + &quot; &quot;;
+}
+
+document.getElementById(&quot;demo&quot;).innerHTML = text;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p3.png" alt=""></p>
+<h3>Example 3</h3>
+<p><strong>Result</strong> <a href="ex3-random_range/index.html">View Example</a></p>
+<h2>A Proper Random Function</h2>
+<p>A reusable function for generating random integers between any two values:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Random&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;A Proper Random Function&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;button onclick=&quot;rollDice()&quot;&gt;Roll Dice&lt;/button&gt;
+&lt;p id=&quot;diceResult&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+// Proper random function: min (inclusive) to max (inclusive)
+function getRndInteger(min, max) {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+function rollDice() {
+  const dice1 = getRndInteger(1, 6);
+  const dice2 = getRndInteger(1, 6);
+  document.getElementById(&quot;diceResult&quot;).innerHTML = 
+    &quot;Dice 1: &quot; + dice1 + &quot; | Dice 2: &quot; + dice2 + &quot; | Total: &quot; + (dice1 + dice2);
+}
+
+document.getElementById(&quot;demo&quot;).innerHTML =
+  &quot;This function returns a random integer:&lt;br&gt;&quot; +
+  &quot;from min (inclusive) to max (inclusive):&lt;br&gt;&lt;br&gt;&quot; +
+  &quot;function getRndInteger(min, max) {&lt;br&gt;&quot; +
+  &quot;&amp;nbsp;&amp;nbsp;return Math.floor(Math.random() * (max - min + 1)) + min;&lt;br&gt;&quot; +
+  &quot;}&quot;;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p4.png" alt=""></p>
+<h3>Example 4</h3>
+<p><strong>Result</strong> <a href="ex4-proper_random/index.html">View Example</a></p>
+<h2>Document</h2>
+<p>Document in project</p>
+<p>You can <a href="js-random.pdf">Download PDF</a> file.</p>
+<h2>Reference</h2>
+<ul>
+<li><a href="https://www.w3schools.com/js/js_random.asp">W3Schools JavaScript Random</a></li>
+</ul>
+
+</body>
+</html>

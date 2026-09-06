@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Module Export</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Named Exports</h4>
+<p id="demo"></p>
+
+<script type="module">
+import { square, cube, double } from './math.js';
+
+document.getElementById("demo").innerHTML =
+  "square(5) = " + square(5) + "<br>" +
+  "cube(3) = " + cube(3) + "<br>" +
+  "double(10) = " + double(10);
+</script>
+
+</body>
+</html>

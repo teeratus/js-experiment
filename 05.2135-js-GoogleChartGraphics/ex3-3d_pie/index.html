@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Google Chart Graphics</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>3D Pie</h4>
+
+<div id="pie3dChart"></div>
+<p id="demo3"></p>
+
+<script src="https://www.gstatic.com/charts/loader.js"></script>
+
+<script>
+google.charts.load("current", {packages: ["corechart"]});
+google.charts.setOnLoadCallback(draw3DPieChart);
+
+function draw3DPieChart() {
+  const data = google.visualization.arrayToDataTable([
+    ["Category", "Value"],
+    ["North", 35],
+    ["South", 25],
+    ["East", 20],
+    ["West", 20]
+  ]);
+
+  const options = {
+    title: "Regional Sales (3D Pie Chart)",
+    is3D: true,
+    colors: ["#4CAF50", "#2196F3", "#FF9800", "#F44336"]
+  };
+
+  const chart = new google.visualization.PieChart(document.getElementById("pie3dChart"));
+  chart.draw(data, options);
+  document.getElementById("demo3").innerHTML = "Google 3D Pie Chart created!";
+}
+</script>
+
+</body>
+</html>

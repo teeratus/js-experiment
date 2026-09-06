@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>js-module_import</title>
+  <style>
+    body {
+      box-sizing: border-box;
+      min-width: 200px;
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 45px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+      font-size: 16px;
+      line-height: 1.5;
+      color: #24292e;
+      background-color: #ffffff;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 24px;
+      margin-bottom: 16px;
+      font-weight: 600;
+      line-height: 1.25;
+      border-bottom: 1px solid #eaecef;
+      padding-bottom: .3em;
+    }
+    h1 { font-size: 2em; }
+    h2 { font-size: 1.5em; }
+    h3 { font-size: 1.25em; }
+    code {
+      padding: .2em .4em;
+      margin: 0;
+      font-size: 85%;
+      background-color: rgba(27,31,35,.05);
+      border-radius: 3px;
+      font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
+    }
+    pre {
+      padding: 16px;
+      overflow: auto;
+      font-size: 85%;
+      line-height: 1.45;
+      background-color: #f6f8fa;
+      border-radius: 3px;
+      word-wrap: normal;
+    }
+    pre code {
+      background-color: transparent;
+      padding: 0;
+    }
+    blockquote {
+      padding: 0 1em;
+      color: #6a737d;
+      border-left: .25em solid #dfe2e5;
+      margin: 0 0 16px 0;
+    }
+    table {
+      border-spacing: 0;
+      border-collapse: collapse;
+      margin-top: 0;
+      margin-bottom: 16px;
+      width: 100%;
+    }
+    table th, table td {
+      padding: 6px 13px;
+      border: 1px solid #dfe2e5;
+    }
+    table tr:nth-child(2n) {
+      background-color: #f6f8fa;
+    }
+    img {
+      max-width: 100%;
+      box-sizing: content-box;
+    }
+    @media print {
+      body {
+        max-width: 100%;
+        padding: 0;
+      }
+      pre, blockquote, table, tr, img {
+        page-break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+<body>
+<h1>JavaScript Module Import</h1>
+<p><a href="../acp-js.php">Back to JS page</a></p>
+<p>Table of Contents</p>
+<ul>
+<li><a href="#javascript-module-import">JavaScript Module Import</a><ul>
+<li><a href="#named-imports">Named Imports</a><ul>
+<li><a href="#example-1">Example 1</a></li>
+</ul>
+</li>
+<li><a href="#default-import">Default Import</a><ul>
+<li><a href="#example-2">Example 2</a></li>
+</ul>
+</li>
+<li><a href="#default--named-import">Default + Named Import</a><ul>
+<li><a href="#example-3">Example 3</a></li>
+</ul>
+</li>
+<li><a href="#importing-all">Importing All</a><ul>
+<li><a href="#example-4">Example 4</a></li>
+</ul>
+</li>
+<li><a href="#document">Document</a></li>
+<li><a href="#reference">Reference</a></li>
+</ul>
+</li>
+</ul>
+<h2>Named Imports</h2>
+<p>Named imports use curly braces <code>{}</code> and must match the exported name exactly. You can import multiple items:</p>
+<p><strong>utils.js</strong> - Module file:</p>
+<pre><code class="language-javascript">export const add = (a, b) =&gt; a + b;
+export const subtract = (a, b) =&gt; a - b;
+export const multiply = (a, b) =&gt; a * b;
+export const divide = (a, b) =&gt; a / b;
+export const PI = 3.14159;
+</code></pre>
+<p><strong>Main HTML file:</strong></p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Module Import&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Named Imports&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script type=&quot;module&quot;&gt;
+import { add, multiply, PI } from &#39;./utils.js&#39;;
+
+document.getElementById(&quot;demo&quot;).innerHTML =
+  &quot;add(10, 5) = &quot; + add(10, 5) + &quot;&lt;br&gt;&quot; +
+  &quot;multiply(10, 5) = &quot; + multiply(10, 5) + &quot;&lt;br&gt;&quot; +
+  &quot;PI = &quot; + PI;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p1.png" alt=""></p>
+<h3>Example 1</h3>
+<p><strong>Result</strong> <a href="ex1-named_imports/index.html">View Example</a></p>
+<h2>Default Import</h2>
+<p>Default imports don&#39;t need curly braces. You can name the import anything you want:</p>
+<p><strong>greet.js</strong> - Module file:</p>
+<pre><code class="language-javascript">export default function(name) {
+  return &quot;Hello &quot; + name + &quot;!&quot;;
+}
+</code></pre>
+<p><strong>Main HTML file:</strong></p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Module Import&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Default Import&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script type=&quot;module&quot;&gt;
+import sayHello from &#39;./greet.js&#39;;
+
+document.getElementById(&quot;demo&quot;).innerHTML =
+  sayHello(&quot;John&quot;) + &quot;&lt;br&gt;&quot; +
+  sayHello(&quot;Jane&quot;);
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p2.png" alt=""></p>
+<h3>Example 2</h3>
+<p><strong>Result</strong> <a href="ex2-default_import/index.html">View Example</a></p>
+<h2>Default + Named Import</h2>
+<p>You can import both default and named exports in a single statement:</p>
+<p><strong>calc.js</strong> - Module file:</p>
+<pre><code class="language-javascript">export default function(a, b) {
+  return a + b;
+}
+
+export const square = (x) =&gt; x * x;
+export const cube = (x) =&gt; x * x * x;
+</code></pre>
+<p><strong>Main HTML file:</strong></p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Module Import&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Default + Named Import&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script type=&quot;module&quot;&gt;
+import myAdd, { square, cube } from &#39;./calc.js&#39;;
+
+document.getElementById(&quot;demo&quot;).innerHTML =
+  &quot;Default (add): 10 + 5 = &quot; + myAdd(10, 5) + &quot;&lt;br&gt;&quot; +
+  &quot;square(5) = &quot; + square(5) + &quot;&lt;br&gt;&quot; +
+  &quot;cube(3) = &quot; + cube(3);
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p3.png" alt=""></p>
+<h3>Example 3</h3>
+<p><strong>Result</strong> <a href="ex3-default_named/index.html">View Example</a></p>
+<h2>Importing All</h2>
+<p>Use <code>*</code> to import everything from a module as a namespace object:</p>
+<p><strong>colors.js</strong> - Module file:</p>
+<pre><code class="language-javascript">export const red = &quot;#FF0000&quot;;
+export const green = &quot;#00FF00&quot;;
+export const blue = &quot;#0000FF&quot;;
+export const white = &quot;#FFFFFF&quot;;
+export const black = &quot;#000000&quot;;
+</code></pre>
+<p><strong>Main HTML file:</strong></p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Module Import&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Importing All&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script type=&quot;module&quot;&gt;
+import * as Colors from &#39;./colors.js&#39;;
+
+document.getElementById(&quot;demo&quot;).innerHTML =
+  &quot;Red: &quot; + Colors.red + &quot;&lt;br&gt;&quot; +
+  &quot;Green: &quot; + Colors.green + &quot;&lt;br&gt;&quot; +
+  &quot;Blue: &quot; + Colors.blue + &quot;&lt;br&gt;&quot; +
+  &quot;White: &quot; + Colors.white + &quot;&lt;br&gt;&quot; +
+  &quot;Black: &quot; + Colors.black;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p4.png" alt=""></p>
+<h3>Example 4</h3>
+<p><strong>Result</strong> <a href="ex4-import_all/index.html">View Example</a></p>
+<h2>Document</h2>
+<p>Document in project</p>
+<p>You can <a href="js-module_import.pdf">Download PDF</a> file.</p>
+<h2>Reference</h2>
+<ul>
+<li><a href="https://www.w3schools.com/js/js_modules_import.asp">W3Schools JavaScript Module Import</a></li>
+</ul>
+
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Array Iteration</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>map()</h4>
+<p id="demo"></p>
+
+<script>
+const numbers = [1, 2, 3, 4, 5];
+
+// Create a new array with each value multiplied by 2
+const doubled = numbers.map(function(value) {
+  return value * 2;
+});
+
+// Create a new array with string labels
+const labels = numbers.map(function(value) {
+  return "Number: " + value;
+});
+
+document.getElementById("demo").innerHTML =
+  "Original: " + numbers + "<br>" +
+  "map(x * 2): " + doubled + "<br>" +
+  "map(labels): " + labels;
+</script>
+
+</body>
+</html>

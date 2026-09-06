@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Scopes</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>The Lifetime of JavaScript Variables</h4>
+<p id="demo"></p>
+
+<script>
+// Global variable - lives until page is closed
+let globalVar = "I live as long as the page";
+
+function counterExample() {
+  // Local variable - created each time function runs
+  // Deleted when function completes
+  let localVar = "I only live inside the function";
+  return localVar;
+}
+
+// Call the function to see local variable
+let result = counterExample();
+
+let text = "Global variable: " + globalVar + "<br>";
+text += "Local variable (from function): " + result + "<br><br>";
+text += "Global variables: live until page is closed<br>";
+text += "Local variables: deleted after function completes<br>";
+text += "Each function call creates new local variables";
+
+document.getElementById("demo").innerHTML = text;
+</script>
+
+</body>
+</html>

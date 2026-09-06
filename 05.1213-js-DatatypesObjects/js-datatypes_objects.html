@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>js-datatypes_objects</title>
+  <style>
+    body {
+      box-sizing: border-box;
+      min-width: 200px;
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 45px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+      font-size: 16px;
+      line-height: 1.5;
+      color: #24292e;
+      background-color: #ffffff;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 24px;
+      margin-bottom: 16px;
+      font-weight: 600;
+      line-height: 1.25;
+      border-bottom: 1px solid #eaecef;
+      padding-bottom: .3em;
+    }
+    h1 { font-size: 2em; }
+    h2 { font-size: 1.5em; }
+    h3 { font-size: 1.25em; }
+    code {
+      padding: .2em .4em;
+      margin: 0;
+      font-size: 85%;
+      background-color: rgba(27,31,35,.05);
+      border-radius: 3px;
+      font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
+    }
+    pre {
+      padding: 16px;
+      overflow: auto;
+      font-size: 85%;
+      line-height: 1.45;
+      background-color: #f6f8fa;
+      border-radius: 3px;
+      word-wrap: normal;
+    }
+    pre code {
+      background-color: transparent;
+      padding: 0;
+    }
+    blockquote {
+      padding: 0 1em;
+      color: #6a737d;
+      border-left: .25em solid #dfe2e5;
+      margin: 0 0 16px 0;
+    }
+    table {
+      border-spacing: 0;
+      border-collapse: collapse;
+      margin-top: 0;
+      margin-bottom: 16px;
+      width: 100%;
+    }
+    table th, table td {
+      padding: 6px 13px;
+      border: 1px solid #dfe2e5;
+    }
+    table tr:nth-child(2n) {
+      background-color: #f6f8fa;
+    }
+    img {
+      max-width: 100%;
+      box-sizing: content-box;
+    }
+    @media print {
+      body {
+        max-width: 100%;
+        padding: 0;
+      }
+      pre, blockquote, table, tr, img {
+        page-break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+<body>
+<h1>JavaScript Datatypes Objects</h1>
+<p><a href="../acp-js.php">Back to JS page</a></p>
+<p>Table of Contents</p>
+<ul>
+<li><a href="#javascript-datatypes-objects">JavaScript Datatypes Objects</a><ul>
+<li><a href="#primitive-vs-object-types">Primitive vs Object Types</a><ul>
+<li><a href="#example-1">Example 1</a></li>
+</ul>
+</li>
+<li><a href="#object-methods">Object Methods</a><ul>
+<li><a href="#example-2">Example 2</a></li>
+</ul>
+</li>
+<li><a href="#document">Document</a></li>
+<li><a href="#reference">Reference</a></li>
+</ul>
+</li>
+</ul>
+<h2>JavaScript Datatypes Objects</h2>
+<p>In JavaScript, objects are the most important data types. Everything that is not a primitive (string, number, boolean, bigint, undefined, symbol) is an object.</p>
+<h2>Primitive vs Object Types</h2>
+<p>Primitive values vs object types - sometimes primitives behave like objects when using methods:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Datatypes Objects&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Primitive vs Object Types&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+// Primitive types
+const str = &quot;Hello&quot;;
+const num = 42;
+const bool = true;
+
+// Object types
+const arr = [1, 2, 3];
+const obj = {name: &quot;John&quot;};
+const date = new Date();
+
+let text = &quot;&lt;b&gt;Primitive types:&lt;/b&gt;&lt;br&gt;&quot;;
+text += &quot;typeof &#39;Hello&#39;: &quot; + typeof str + &quot;&lt;br&gt;&quot;;
+text += &quot;typeof 42: &quot; + typeof num + &quot;&lt;br&gt;&quot;;
+text += &quot;typeof true: &quot; + typeof bool + &quot;&lt;br&gt;&lt;br&gt;&quot;;
+
+text += &quot;&lt;b&gt;Object types:&lt;/b&gt;&lt;br&gt;&quot;;
+text += &quot;typeof [1,2,3]: &quot; + typeof arr + &quot;&lt;br&gt;&quot;;
+text += &quot;typeof {name}: &quot; + typeof obj + &quot;&lt;br&gt;&quot;;
+text += &quot;typeof Date: &quot; + typeof date + &quot;&lt;br&gt;&lt;br&gt;&quot;;
+
+text += &quot;Primitives can temporarily use methods:&lt;br&gt;&quot;;
+text += &quot;&#39;Hello&#39;.toUpperCase(): &quot; + str.toUpperCase() + &quot;&lt;br&gt;&quot;;
+text += &quot;(42).toString(): &quot; + num.toString();
+
+document.getElementById(&quot;demo&quot;).innerHTML = text;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p1.png" alt=""></p>
+<h3>Example 1</h3>
+<p><strong>Result</strong> <a href="ex1-primitive_vs_object/index.html">View Example</a></p>
+<h2>Object Methods</h2>
+<p>Objects and other complex data types can contain methods. Common built-in objects include:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Datatypes Objects&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Object Methods&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+// Complex data types
+const car = {
+  brand: &quot;Toyota&quot;,
+  model: &quot;Corolla&quot;,
+  start: function() {
+    return this.brand + &quot; &quot; + this.model + &quot; started!&quot;;
+  }
+};
+
+let text = &quot;Array methods:&lt;br&gt;&quot;;
+const fruits = [&quot;Apple&quot;, &quot;Banana&quot;];
+fruits.push(&quot;Orange&quot;);
+text += &quot;fruits.push(&#39;Orange&#39;): &quot; + fruits + &quot;&lt;br&gt;&quot;;
+text += &quot;fruits.length: &quot; + fruits.length + &quot;&lt;br&gt;&lt;br&gt;&quot;;
+
+text += &quot;Date methods:&lt;br&gt;&quot;;
+text += &quot;new Date().getFullYear(): &quot; + new Date().getFullYear() + &quot;&lt;br&gt;&lt;br&gt;&quot;;
+
+text += &quot;Custom object method:&lt;br&gt;&quot;;
+text += &quot;car.start(): &quot; + car.start();
+
+document.getElementById(&quot;demo&quot;).innerHTML = text;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p2.png" alt=""></p>
+<h3>Example 2</h3>
+<p><strong>Result</strong> <a href="ex2-object_methods/index.html">View Example</a></p>
+<h2>Document</h2>
+<p>Document in project</p>
+<p>You can <a href="js-datatypes_objects.pdf">Download PDF</a> file.</p>
+<h2>Reference</h2>
+<ul>
+<li><a href="https://www.w3schools.com/js/js_datatypes_objects.asp">W3Schools JavaScript Datatypes Objects</a></li>
+</ul>
+
+</body>
+</html>

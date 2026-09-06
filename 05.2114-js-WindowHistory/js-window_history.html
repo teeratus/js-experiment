@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>js-window_history</title>
+  <style>
+    body {
+      box-sizing: border-box;
+      min-width: 200px;
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 45px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+      font-size: 16px;
+      line-height: 1.5;
+      color: #24292e;
+      background-color: #ffffff;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 24px;
+      margin-bottom: 16px;
+      font-weight: 600;
+      line-height: 1.25;
+      border-bottom: 1px solid #eaecef;
+      padding-bottom: .3em;
+    }
+    h1 { font-size: 2em; }
+    h2 { font-size: 1.5em; }
+    h3 { font-size: 1.25em; }
+    code {
+      padding: .2em .4em;
+      margin: 0;
+      font-size: 85%;
+      background-color: rgba(27,31,35,.05);
+      border-radius: 3px;
+      font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
+    }
+    pre {
+      padding: 16px;
+      overflow: auto;
+      font-size: 85%;
+      line-height: 1.45;
+      background-color: #f6f8fa;
+      border-radius: 3px;
+      word-wrap: normal;
+    }
+    pre code {
+      background-color: transparent;
+      padding: 0;
+    }
+    blockquote {
+      padding: 0 1em;
+      color: #6a737d;
+      border-left: .25em solid #dfe2e5;
+      margin: 0 0 16px 0;
+    }
+    table {
+      border-spacing: 0;
+      border-collapse: collapse;
+      margin-top: 0;
+      margin-bottom: 16px;
+      width: 100%;
+    }
+    table th, table td {
+      padding: 6px 13px;
+      border: 1px solid #dfe2e5;
+    }
+    table tr:nth-child(2n) {
+      background-color: #f6f8fa;
+    }
+    img {
+      max-width: 100%;
+      box-sizing: content-box;
+    }
+    @media print {
+      body {
+        max-width: 100%;
+        padding: 0;
+      }
+      pre, blockquote, table, tr, img {
+        page-break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+<body>
+<h1>JavaScript Window History</h1>
+<p><a href="../acp-js.php">Back to JS page</a></p>
+<p>Table of Contents</p>
+<ul>
+<li><a href="#javascript-window-history">JavaScript Window History</a><ul>
+<li><a href="#window-history-back">Window History Back</a><ul>
+<li><a href="#example-1">Example 1</a></li>
+</ul>
+</li>
+<li><a href="#window-history-forward">Window History Forward</a><ul>
+<li><a href="#example-2">Example 2</a></li>
+</ul>
+</li>
+<li><a href="#window-history-go">Window History Go</a><ul>
+<li><a href="#example-3">Example 3</a></li>
+</ul>
+</li>
+<li><a href="#document">Document</a></li>
+<li><a href="#reference">Reference</a></li>
+</ul>
+</li>
+</ul>
+<h2>Window History</h2>
+<p>The <code>window.history</code> object contains the browser&#39;s history.</p>
+<p>For security reasons, it does not allow reading the URLs in the history, but it does allow navigating through the history.</p>
+<h2>Window History Back</h2>
+<p>The <code>history.back()</code> method loads the previous URL in the history list. It is the same as clicking the Back button in the browser:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Window History&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Window History Back&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;button onclick=&quot;goBack()&quot;&gt;Go Back&lt;/button&gt;
+&lt;button onclick=&quot;showInfo()&quot;&gt;History Info&lt;/button&gt;
+
+&lt;script&gt;
+function goBack() {
+  window.history.back();
+}
+
+function showInfo() {
+  document.getElementById(&quot;demo&quot;).innerHTML =
+    &quot;History length: &quot; + window.history.length + &quot;&lt;br&gt;&quot; +
+    &quot;Click &#39;Go Back&#39; to navigate to the previous page&quot;;
+}
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p1.png" alt=""></p>
+<h3>Example 1</h3>
+<p><strong>Result</strong> <a href="ex1-history_back/index.html">View Example</a></p>
+<h2>Window History Forward</h2>
+<p>The <code>history.forward()</code> method loads the next URL in the history list. It is the same as clicking the Forward button in the browser:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Window History&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Window History Forward&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;button onclick=&quot;goBack()&quot;&gt;Go Back&lt;/button&gt;
+&lt;button onclick=&quot;goForward()&quot;&gt;Go Forward&lt;/button&gt;
+&lt;button onclick=&quot;showInfo()&quot;&gt;History Info&lt;/button&gt;
+
+&lt;script&gt;
+function goBack() {
+  window.history.back();
+}
+
+function goForward() {
+  window.history.forward();
+}
+
+function showInfo() {
+  document.getElementById(&quot;demo&quot;).innerHTML =
+    &quot;History length: &quot; + window.history.length + &quot;&lt;br&gt;&quot; +
+    &quot;Use Back/Forward buttons to navigate history&quot;;
+}
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p2.png" alt=""></p>
+<h3>Example 2</h3>
+<p><strong>Result</strong> <a href="ex2-history_forward/index.html">View Example</a></p>
+<h2>Window History Go</h2>
+<p>The <code>history.go()</code> method loads a specific URL from the history list. You can go backward or forward using positive or negative numbers:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Window History&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Window History Go&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;button onclick=&quot;goBack2()&quot;&gt;Go Back 2 Pages&lt;/button&gt;
+&lt;button onclick=&quot;goForward2()&quot;&gt;Go Forward 2 Pages&lt;/button&gt;
+&lt;button onclick=&quot;showInfo()&quot;&gt;History Info&lt;/button&gt;
+
+&lt;script&gt;
+function goBack2() {
+  window.history.go(-2);
+}
+
+function goForward2() {
+  window.history.go(2);
+}
+
+function showInfo() {
+  document.getElementById(&quot;demo&quot;).innerHTML =
+    &quot;History length: &quot; + window.history.length + &quot;&lt;br&gt;&lt;br&gt;&quot; +
+    &quot;history.go(-2): Go back 2 pages&lt;br&gt;&quot; +
+    &quot;history.go(2): Go forward 2 pages&lt;br&gt;&quot; +
+    &quot;history.go(0): Reload current page&lt;br&gt;&quot; +
+    &quot;history.go(-1): Go back 1 page (same as back())&lt;br&gt;&quot; +
+    &quot;history.go(1): Go forward 1 page (same as forward())&quot;;
+}
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p3.png" alt=""></p>
+<h3>Example 3</h3>
+<p><strong>Result</strong> <a href="ex3-history_go/index.html">View Example</a></p>
+<h2>Document</h2>
+<p>Document in project</p>
+<p>You can <a href="js-window_history.pdf">Download PDF</a> file.</p>
+<h2>Reference</h2>
+<ul>
+<li><a href="https://www.w3schools.com/js/js_window_history.asp">W3Schools JavaScript Window History</a></li>
+</ul>
+
+</body>
+</html>

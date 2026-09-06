@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>js-projectmodalpopup</title>
+  <style>
+    body {
+      box-sizing: border-box;
+      min-width: 200px;
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 45px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+      font-size: 16px;
+      line-height: 1.5;
+      color: #24292e;
+      background-color: #ffffff;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 24px;
+      margin-bottom: 16px;
+      font-weight: 600;
+      line-height: 1.25;
+      border-bottom: 1px solid #eaecef;
+      padding-bottom: .3em;
+    }
+    h1 { font-size: 2em; }
+    h2 { font-size: 1.5em; }
+    h3 { font-size: 1.25em; }
+    code {
+      padding: .2em .4em;
+      margin: 0;
+      font-size: 85%;
+      background-color: rgba(27,31,35,.05);
+      border-radius: 3px;
+      font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
+    }
+    pre {
+      padding: 16px;
+      overflow: auto;
+      font-size: 85%;
+      line-height: 1.45;
+      background-color: #f6f8fa;
+      border-radius: 3px;
+      word-wrap: normal;
+    }
+    pre code {
+      background-color: transparent;
+      padding: 0;
+    }
+    blockquote {
+      padding: 0 1em;
+      color: #6a737d;
+      border-left: .25em solid #dfe2e5;
+      margin: 0 0 16px 0;
+    }
+    table {
+      border-spacing: 0;
+      border-collapse: collapse;
+      margin-top: 0;
+      margin-bottom: 16px;
+      width: 100%;
+    }
+    table th, table td {
+      padding: 6px 13px;
+      border: 1px solid #dfe2e5;
+    }
+    table tr:nth-child(2n) {
+      background-color: #f6f8fa;
+    }
+    img {
+      max-width: 100%;
+      box-sizing: content-box;
+    }
+    @media print {
+      body {
+        max-width: 100%;
+        padding: 0;
+      }
+      pre, blockquote, table, tr, img {
+        page-break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+<body>
+<h1>JavaScript Project - Modal Popup</h1>
+<p><a href="../acp-js.php">Back to JS page</a></p>
+<p>Table of Contents</p>
+<ul>
+<li><a href="#javascript-project---modal-popup">JavaScript Project - Modal Popup</a><ul>
+<li><a href="#modal-popup-overview">Modal Popup Overview</a></li>
+<li><a href="#what-you-will-learn">What You Will Learn</a></li>
+<li><a href="#first-create-the-html">First: Create the HTML</a><ul>
+<li><a href="#example-1">Example 1</a></li>
+</ul>
+</li>
+<li><a href="#then-create-the-css">Then: Create the CSS</a><ul>
+<li><a href="#example-2">Example 2</a></li>
+</ul>
+</li>
+<li><a href="#css-explained">CSS Explained</a></li>
+<li><a href="#then-create-the-javascript">Then: Create the JavaScript</a><ul>
+<li><a href="#example-3">Example 3</a></li>
+</ul>
+</li>
+<li><a href="#javascript-explained">JavaScript Explained</a></li>
+<li><a href="#connect-functions-to-buttons">Connect Functions to Buttons</a></li>
+<li><a href="#connect-function-to-clicking-outside">Connect Function to Clicking Outside</a></li>
+<li><a href="#connect-function-to-escape-key">Connect Function to Escape Key</a></li>
+<li><a href="#common-mistakes">Common Mistakes</a></li>
+<li><a href="#bonus-challenges-level-up">Bonus Challenges (Level Up)</a><ul>
+<li><a href="#example-4">Example 4</a></li>
+</ul>
+</li>
+<li><a href="#document">Document</a></li>
+<li><a href="#reference">Reference</a></li>
+</ul>
+</li>
+</ul>
+<h2>Modal Popup Overview</h2>
+<p>A <strong>modal is a popup window</strong> that appears on top of the main webpage overlaying the current view.</p>
+<p>In this project, we will build a modal that can be closed in three ways:</p>
+<ol>
+<li>Clicking the close button (<code>x</code>)</li>
+<li>Clicking outside the modal container</li>
+<li>Pressing the Escape key</li>
+</ol>
+<h2>What You Will Learn</h2>
+<ul>
+<li>How to dynamically show and hide HTML elements</li>
+<li>How to add and remove CSS classes using JavaScript</li>
+<li>How to listen to click and keydown event targets</li>
+<li>How to detect clicks outside a bounding element box</li>
+</ul>
+<h2>First: Create the HTML</h2>
+<p>The modal layout consists of two main parts:</p>
+<ul>
+<li><strong>The overlay background:</strong> Dims the page context behind.</li>
+<li><strong>The modal content box:</strong> Displays the pop-up text and controls.</li>
+</ul>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;Modal Popup&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;button id=&quot;openBtn&quot;&gt;Open Modal&lt;/button&gt;
+
+&lt;div id=&quot;modal&quot; class=&quot;modal-overlay&quot;&gt;
+  &lt;div class=&quot;modal-box&quot;&gt;
+    &lt;button id=&quot;closeBtn&quot; class=&quot;modal-close&quot;&gt;&amp;times;&lt;/button&gt;
+    &lt;h3&gt;Hello!&lt;/h3&gt;
+    &lt;p&gt;This is a modal popup.&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p1.png" alt=""></p>
+<h3>Example 1</h3>
+<p><strong>Result</strong> <a href="ex1-html_structure/index.html">View Example</a></p>
+<h2>Then: Create the CSS</h2>
+<p>Define structural position attributes to overlay the window and control visual overlays:</p>
+<pre><code class="language-html">&lt;style&gt;
+/* The overlay (background) */
+.modal-overlay {
+  display: none;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+/* Show the modal */
+.modal-overlay.show {
+  display: block;
+}
+
+/* The modal box */
+.modal-box {
+  background: white;
+  width: 90%;
+  max-width: 400px;
+  margin: 100px auto;
+  padding: 20px;
+  border-radius: 10px;
+  position: relative;
+}
+
+/* Close button */
+.modal-close {
+  position: absolute;
+  right: 12px;
+  top: 8px;
+  font-size: 24px;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+&lt;/style&gt;
+</code></pre>
+<p><img src="images/p2.png" alt=""></p>
+<h3>Example 2</h3>
+<p><strong>Result</strong> <a href="ex2-styling/index.html">View Example</a></p>
+<h2>CSS Explained</h2>
+<ul>
+<li><strong>Hide modal by default:</strong> We use <code>display: none</code> on <code>.modal-overlay</code>.</li>
+<li><strong>Toggle visibility:</strong> We define a <code>.modal-overlay.show</code> selector specifying <code>display: block</code>. JavaScript will add and remove this helper class dynamically.</li>
+</ul>
+<h2>Then: Create the JavaScript</h2>
+<p>Select elements and implement toggle helpers mapping handlers to events:</p>
+<pre><code class="language-html">&lt;script&gt;
+const modal = document.getElementById(&quot;modal&quot;);
+const openBtn = document.getElementById(&quot;openBtn&quot;);
+const closeBtn = document.getElementById(&quot;closeBtn&quot;);
+
+function openModal() {
+  modal.classList.add(&quot;show&quot;);
+}
+
+function closeModal() {
+  modal.classList.remove(&quot;show&quot;);
+}
+
+openBtn.addEventListener(&quot;click&quot;, openModal);
+closeBtn.addEventListener(&quot;click&quot;, closeModal);
+
+/* Close when clicking outside the modal box */
+modal.addEventListener(&quot;click&quot;, function (event) {
+  if (event.target === modal) {
+    closeModal();
+  }
+});
+
+/* Close when pressing Escape */
+document.addEventListener(&quot;keydown&quot;, function (event) {
+  if (event.key === &quot;Escape&quot;) {
+    closeModal();
+  }
+});
+&lt;/script&gt;
+</code></pre>
+<p><img src="images/p3.png" alt=""></p>
+<h3>Example 3</h3>
+<p><strong>Result</strong> <a href="ex3-modal_js/index.html">View Example</a></p>
+<h2>JavaScript Explained</h2>
+<p>We use <code>classList.add(&quot;show&quot;)</code> and <code>classList.remove(&quot;show&quot;)</code> to adjust display states on triggers.</p>
+<h2>Connect Functions to Buttons</h2>
+<p>Register listeners to handle standard interaction click paths:</p>
+<pre><code class="language-javascript">openBtn.addEventListener(&quot;click&quot;, openModal);
+closeBtn.addEventListener(&quot;click&quot;, closeModal);
+</code></pre>
+<h2>Connect Function to Clicking Outside</h2>
+<p>Check whether the target element triggering click events is the overlay container node itself:</p>
+<pre><code class="language-javascript">modal.addEventListener(&quot;click&quot;, function (event) {
+  if (event.target === modal) {
+    closeModal();
+  }
+});
+</code></pre>
+<blockquote>
+<p>[!NOTE]<br><code>event.target === modal</code> checks if click bubbles up/originates on the overlay background surface (outside the white <code>.modal-box</code>).</p>
+</blockquote>
+<h2>Connect Function to Escape Key</h2>
+<p>Listen globally for Escape keystrokes to allow quick exits:</p>
+<pre><code class="language-javascript">document.addEventListener(&quot;keydown&quot;, function (event) {
+  if (event.key === &quot;Escape&quot;) {
+    closeModal();
+  }
+});
+</code></pre>
+<h2>Common Mistakes</h2>
+<ul>
+<li><strong>Modal overlay does not close when clicked:</strong> Check that you compare <code>event.target === modal</code> strictly.</li>
+<li><strong>Escape closes invisible modals:</strong> You can optionally check <code>modal.classList.contains(&quot;show&quot;)</code> before hiding.</li>
+<li><strong>Display none overrides animation:</strong> Animations require opacity transitions or fade keyframe steps rather than display swaps.</li>
+</ul>
+<h2>Bonus Challenges (Level Up)</h2>
+<p>Elevate the design with premium UX transitions and accessibility support:</p>
+<ul>
+<li>Add a fade-in and scale-up effect using CSS opacity and transform transition metrics.</li>
+<li>Move document focus inside the modal overlay dialog upon open.</li>
+<li>Lock/Trap tab key navigation focus cycles within active boundaries.</li>
+<li>Restore focus tracking state to previous active elements on exit.</li>
+</ul>
+<pre><code class="language-html">&lt;!-- Bonus Challenge Implementation --&gt;
+&lt;script&gt;
+const modal = document.getElementById(&quot;modal&quot;);
+const modalBox = modal.querySelector(&quot;.modal-box&quot;);
+const openBtn = document.getElementById(&quot;openBtn&quot;);
+const closeBtn = document.getElementById(&quot;closeBtn&quot;);
+
+let previousActiveElement = null;
+
+function openModal() {
+  previousActiveElement = document.activeElement;
+  modal.classList.add(&quot;show&quot;);
+  modalBox.focus();
+}
+
+function closeModal() {
+  modal.classList.remove(&quot;show&quot;);
+  if (previousActiveElement) {
+    previousActiveElement.focus();
+  }
+}
+
+// Focus Trap inside the modal
+modalBox.addEventListener(&quot;keydown&quot;, function (event) {
+  const focusable = modalBox.querySelectorAll(&#39;button, [href], input, [tabindex]:not([tabindex=&quot;-1&quot;])&#39;);
+  const first = focusable[0];
+  const last = focusable[focusable.length - 1];
+
+  if (event.key === &quot;Tab&quot;) {
+    if (event.shiftKey) {
+      if (document.activeElement === first) {
+        last.focus();
+        event.preventDefault();
+      }
+    } else {
+      if (document.activeElement === last) {
+        first.focus();
+        event.preventDefault();
+      }
+    }
+  }
+});
+&lt;/script&gt;
+</code></pre>
+<p><img src="images/p4.png" alt=""></p>
+<h3>Example 4</h3>
+<p><strong>Result</strong> <a href="ex4-bonus_challenges/index.html">View Example</a></p>
+<h2>Document</h2>
+<p>Document in project</p>
+<p>You can <a href="js-projectmodalpopup.pdf">Download PDF</a> file.</p>
+<h2>Reference</h2>
+<ul>
+<li><a href="https://www.w3schools.com/js/js_project_modal_popup.asp">W3Schools JavaScript Modal Popup Project</a></li>
+</ul>
+
+</body>
+</html>

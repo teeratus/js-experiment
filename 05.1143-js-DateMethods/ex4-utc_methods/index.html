@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Date Methods</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>UTC Date Get Methods</h4>
+<p id="demo"></p>
+
+<script>
+const d = new Date();
+
+document.getElementById("demo").innerHTML =
+  "Local vs UTC:<br><br>" +
+  "getHours(): " + d.getHours() + " (local)<br>" +
+  "getUTCHours(): " + d.getUTCHours() + " (UTC)<br><br>" +
+  "getFullYear(): " + d.getFullYear() + " (local)<br>" +
+  "getUTCFullYear(): " + d.getUTCFullYear() + " (UTC)<br><br>" +
+  "getMonth(): " + d.getMonth() + " (local)<br>" +
+  "getUTCMonth(): " + d.getUTCMonth() + " (UTC)<br><br>" +
+  "UTC methods use the universal time standard";
+</script>
+
+</body>
+</html>

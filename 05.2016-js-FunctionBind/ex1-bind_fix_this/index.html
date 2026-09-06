@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Function bind()</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Using bind() to Fix this</h4>
+<p id="demo"></p>
+
+<script>
+const person = {
+  firstName: "John",
+  lastName: "Doe",
+  fullName: function() {
+    return this.firstName + " " + this.lastName;
+  }
+};
+
+const member = {
+  firstName: "Jane",
+  lastName: "Smith"
+};
+
+// Bind person's method to member object
+let fullName = person.fullName.bind(member);
+document.getElementById("demo").innerHTML = fullName();
+</script>
+
+</body>
+</html>

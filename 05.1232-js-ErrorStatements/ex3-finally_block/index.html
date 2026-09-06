@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Error Statements</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>The finally Block</h4>
+<p id="demo"></p>
+
+<script>
+let text = "";
+
+try {
+  adddlert("Welcome guest!");
+}
+catch(err) {
+  text += "Error caught: " + err.message + "<br><br>";
+}
+finally {
+  text += "The 'finally' block always runs.";
+}
+
+document.getElementById("demo").innerHTML = text;
+</script>
+
+</body>
+</html>

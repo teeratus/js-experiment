@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>js-data_types</title>
+  <style>
+    body {
+      box-sizing: border-box;
+      min-width: 200px;
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 45px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+      font-size: 16px;
+      line-height: 1.5;
+      color: #24292e;
+      background-color: #ffffff;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 24px;
+      margin-bottom: 16px;
+      font-weight: 600;
+      line-height: 1.25;
+      border-bottom: 1px solid #eaecef;
+      padding-bottom: .3em;
+    }
+    h1 { font-size: 2em; }
+    h2 { font-size: 1.5em; }
+    h3 { font-size: 1.25em; }
+    code {
+      padding: .2em .4em;
+      margin: 0;
+      font-size: 85%;
+      background-color: rgba(27,31,35,.05);
+      border-radius: 3px;
+      font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
+    }
+    pre {
+      padding: 16px;
+      overflow: auto;
+      font-size: 85%;
+      line-height: 1.45;
+      background-color: #f6f8fa;
+      border-radius: 3px;
+      word-wrap: normal;
+    }
+    pre code {
+      background-color: transparent;
+      padding: 0;
+    }
+    blockquote {
+      padding: 0 1em;
+      color: #6a737d;
+      border-left: .25em solid #dfe2e5;
+      margin: 0 0 16px 0;
+    }
+    table {
+      border-spacing: 0;
+      border-collapse: collapse;
+      margin-top: 0;
+      margin-bottom: 16px;
+      width: 100%;
+    }
+    table th, table td {
+      padding: 6px 13px;
+      border: 1px solid #dfe2e5;
+    }
+    table tr:nth-child(2n) {
+      background-color: #f6f8fa;
+    }
+    img {
+      max-width: 100%;
+      box-sizing: content-box;
+    }
+    @media print {
+      body {
+        max-width: 100%;
+        padding: 0;
+      }
+      pre, blockquote, table, tr, img {
+        page-break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+<body>
+<h1>JavaScript Data Types</h1>
+<p><a href="../acp-js.php">Back to JS page</a></p>
+<p>Table of Contents</p>
+<ul>
+<li><a href="#javascript-data-types">JavaScript Data Types</a><ul>
+<li><a href="#the-concept-of-data-types">The Concept of Data Types</a><ul>
+<li><a href="#example-1">Example 1</a></li>
+</ul>
+</li>
+<li><a href="#javascript-types-are-dynamic">JavaScript Types are Dynamic</a><ul>
+<li><a href="#example-2">Example 2</a></li>
+</ul>
+</li>
+<li><a href="#built-in-object-types">Built-In Object Types</a><ul>
+<li><a href="#example-3">Example 3</a></li>
+</ul>
+</li>
+<li><a href="#the-typeof-operator">The typeof Operator</a><ul>
+<li><a href="#example-4">Example 4</a></li>
+</ul>
+</li>
+<li><a href="#document">Document</a></li>
+<li><a href="#reference">Reference</a></li>
+</ul>
+</li>
+</ul>
+<h2>The Concept of Data Types</h2>
+<p>JavaScript has dynamic types. Data types are the classification of data which tells the compiler how to use the data:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Data Types&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;The Concept of Data Types&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+// Different data types
+let name = &quot;John&quot;;        // String
+let age = 30;             // Number
+let isStudent = true;     // Boolean
+let score = 99.5;         // Number (float)
+let colors = [&quot;red&quot;, &quot;blue&quot;]; // Array (object)
+let person = {name: &quot;John&quot;}; // Object
+
+let text = &quot;name: &quot; + name + &quot; (&quot; + typeof name + &quot;)&lt;br&gt;&quot;;
+text += &quot;age: &quot; + age + &quot; (&quot; + typeof age + &quot;)&lt;br&gt;&quot;;
+text += &quot;isStudent: &quot; + isStudent + &quot; (&quot; + typeof isStudent + &quot;)&lt;br&gt;&quot;;
+text += &quot;score: &quot; + score + &quot; (&quot; + typeof score + &quot;)&lt;br&gt;&quot;;
+text += &quot;colors: array (&quot; + typeof colors + &quot;)&lt;br&gt;&quot;;
+text += &quot;person: object (&quot; + typeof person + &quot;)&quot;;
+
+document.getElementById(&quot;demo&quot;).innerHTML = text;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p1.png" alt=""></p>
+<h3>Example 1</h3>
+<p><strong>Result</strong> <a href="ex1-data_types/index.html">View Example</a></p>
+<h2>JavaScript Types are Dynamic</h2>
+<p>A variable can change its type when assigned a new value:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Data Types&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;JavaScript Types are Dynamic&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+let x = 5;            // x is a Number
+let type1 = typeof x;
+
+x = &quot;Hello&quot;;          // x is now a String
+let type2 = typeof x;
+
+x = true;             // x is now a Boolean
+let type3 = typeof x;
+
+x = {name: &quot;John&quot;};   // x is now an Object
+let type4 = typeof x;
+
+document.getElementById(&quot;demo&quot;).innerHTML =
+  &quot;let x = 5 → &quot; + type1 + &quot;&lt;br&gt;&quot; +
+  &quot;x = &#39;Hello&#39; → &quot; + type2 + &quot;&lt;br&gt;&quot; +
+  &quot;x = true → &quot; + type3 + &quot;&lt;br&gt;&quot; +
+  &quot;x = {name: &#39;John&#39;} → &quot; + type4 + &quot;&lt;br&gt;&lt;br&gt;&quot; +
+  &quot;JavaScript types are dynamic - variables can change type&quot;;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p2.png" alt=""></p>
+<h3>Example 2</h3>
+<p><strong>Result</strong> <a href="ex2-dynamic_types/index.html">View Example</a></p>
+<h2>Built-In Object Types</h2>
+<p>JavaScript has several built-in object types:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Data Types&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Built-In Object Types&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+let text = &quot;Built-in object types:&lt;br&gt;&lt;br&gt;&quot;;
+
+const obj = new Object();
+text += &quot;new Object() → &quot; + obj.constructor.name + &quot;&lt;br&gt;&quot;;
+
+const arr = new Array(1, 2);
+text += &quot;new Array(1, 2) → &quot; + arr.constructor.name + &quot;&lt;br&gt;&quot;;
+
+const date = new Date();
+text += &quot;new Date() → &quot; + date.constructor.name + &quot;&lt;br&gt;&quot;;
+
+const str = new String(&quot;hi&quot;);
+text += &quot;new String(&#39;hi&#39;) → &quot; + str.constructor.name + &quot;&lt;br&gt;&quot;;
+
+const num = new Number(42);
+text += &quot;new Number(42) → &quot; + num.constructor.name + &quot;&lt;br&gt;&quot;;
+
+const bool = new Boolean(true);
+text += &quot;new Boolean(true) → &quot; + bool.constructor.name;
+
+document.getElementById(&quot;demo&quot;).innerHTML = text;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p3.png" alt=""></p>
+<h3>Example 3</h3>
+<p><strong>Result</strong> <a href="ex3-builtin_types/index.html">View Example</a></p>
+<h2>The typeof Operator</h2>
+<p><code>typeof</code> returns the type of a variable:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Data Types&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;The typeof Operator&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+let text = &quot;&quot;;
+
+text += &quot;typeof &#39;Hello&#39;: &quot; + typeof &quot;Hello&quot; + &quot;&lt;br&gt;&quot;;
+text += &quot;typeof 42: &quot; + typeof 42 + &quot;&lt;br&gt;&quot;;
+text += &quot;typeof 3.14: &quot; + typeof 3.14 + &quot;&lt;br&gt;&quot;;
+text += &quot;typeof true: &quot; + typeof true + &quot;&lt;br&gt;&quot;;
+text += &quot;typeof [1,2]: &quot; + typeof [1,2] + &quot; (arrays are objects)&lt;br&gt;&quot;;
+text += &quot;typeof {}: &quot; + typeof {} + &quot;&lt;br&gt;&quot;;
+text += &quot;typeof null: &quot; + typeof null + &quot; (null is object)&lt;br&gt;&quot;;
+text += &quot;typeof undefined: &quot; + typeof undefined + &quot;&lt;br&gt;&quot;;
+text += &quot;typeof function(): &quot; + typeof function(){} + &quot;&lt;br&gt;&quot;;
+text += &quot;typeof NaN: &quot; + typeof NaN + &quot; (NaN is number)&quot;;
+
+document.getElementById(&quot;demo&quot;).innerHTML = text;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p4.png" alt=""></p>
+<h3>Example 4</h3>
+<p><strong>Result</strong> <a href="ex4-typeof/index.html">View Example</a></p>
+<h2>Document</h2>
+<p>Document in project</p>
+<p>You can <a href="js-data_types.pdf">Download PDF</a> file.</p>
+<h2>Reference</h2>
+<ul>
+<li><a href="https://www.w3schools.com/js/js_datatypes.asp">W3Schools JavaScript Data Types</a></li>
+</ul>
+
+</body>
+</html>

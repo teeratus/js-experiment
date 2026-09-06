@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>js-validation_api</title>
+  <style>
+    body {
+      box-sizing: border-box;
+      min-width: 200px;
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 45px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+      font-size: 16px;
+      line-height: 1.5;
+      color: #24292e;
+      background-color: #ffffff;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 24px;
+      margin-bottom: 16px;
+      font-weight: 600;
+      line-height: 1.25;
+      border-bottom: 1px solid #eaecef;
+      padding-bottom: .3em;
+    }
+    h1 { font-size: 2em; }
+    h2 { font-size: 1.5em; }
+    h3 { font-size: 1.25em; }
+    code {
+      padding: .2em .4em;
+      margin: 0;
+      font-size: 85%;
+      background-color: rgba(27,31,35,.05);
+      border-radius: 3px;
+      font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
+    }
+    pre {
+      padding: 16px;
+      overflow: auto;
+      font-size: 85%;
+      line-height: 1.45;
+      background-color: #f6f8fa;
+      border-radius: 3px;
+      word-wrap: normal;
+    }
+    pre code {
+      background-color: transparent;
+      padding: 0;
+    }
+    blockquote {
+      padding: 0 1em;
+      color: #6a737d;
+      border-left: .25em solid #dfe2e5;
+      margin: 0 0 16px 0;
+    }
+    table {
+      border-spacing: 0;
+      border-collapse: collapse;
+      margin-top: 0;
+      margin-bottom: 16px;
+      width: 100%;
+    }
+    table th, table td {
+      padding: 6px 13px;
+      border: 1px solid #dfe2e5;
+    }
+    table tr:nth-child(2n) {
+      background-color: #f6f8fa;
+    }
+    img {
+      max-width: 100%;
+      box-sizing: content-box;
+    }
+    @media print {
+      body {
+        max-width: 100%;
+        padding: 0;
+      }
+      pre, blockquote, table, tr, img {
+        page-break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+<body>
+<h1>JavaScript Validation API</h1>
+<p><a href="../acp-js.php">Back to JS page</a></p>
+<p>Table of Contents</p>
+<ul>
+<li><a href="#javascript-validation-api">JavaScript Validation API</a><ul>
+<li><a href="#constraint-validation-dom-methods">Constraint Validation DOM Methods</a><ul>
+<li><a href="#example-1">Example 1</a></li>
+</ul>
+</li>
+<li><a href="#constraint-validation-dom-properties">Constraint Validation DOM Properties</a><ul>
+<li><a href="#example-2">Example 2</a></li>
+</ul>
+</li>
+<li><a href="#validity-properties">Validity Properties</a><ul>
+<li><a href="#example-3">Example 3</a></li>
+</ul>
+</li>
+<li><a href="#the-rangeoverflow-property">The rangeOverflow Property</a><ul>
+<li><a href="#example-4">Example 4</a></li>
+</ul>
+</li>
+<li><a href="#the-rangeunderflow-property">The rangeUnderflow Property</a><ul>
+<li><a href="#example-5">Example 5</a></li>
+</ul>
+</li>
+<li><a href="#document">Document</a></li>
+<li><a href="#reference">Reference</a></li>
+</ul>
+</li>
+</ul>
+<h2>Constraint Validation DOM Methods</h2>
+<p>The Constraint Validation API provides methods for validating form elements:</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>checkValidity()</code></td>
+<td>Returns true if an element contains valid data</td>
+</tr>
+<tr>
+<td><code>setCustomValidity()</code></td>
+<td>Sets a custom validation message</td>
+</tr>
+</tbody></table>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Validation API&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Constraint Validation DOM Methods&lt;/h4&gt;
+
+&lt;input type=&quot;text&quot; id=&quot;id1&quot; required minlength=&quot;3&quot; placeholder=&quot;Enter at least 3 chars&quot;&gt;
+&lt;button onclick=&quot;validate()&quot;&gt;Check Validity&lt;/button&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+function validate() {
+  const input = document.getElementById(&quot;id1&quot;);
+  
+  if (input.checkValidity()) {
+    document.getElementById(&quot;demo&quot;).innerHTML = &quot;Input is valid!&quot;;
+  } else {
+    document.getElementById(&quot;demo&quot;).innerHTML = &quot;Input is invalid. &quot; + input.validationMessage;
+  }
+}
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p1.png" alt=""></p>
+<h3>Example 1</h3>
+<p><strong>Result</strong> <a href="ex1-check_validity/index.html">View Example</a></p>
+<h2>Constraint Validation DOM Properties</h2>
+<p>Form elements have these validation properties:</p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>validity</code></td>
+<td>Returns a ValidityState object</td>
+</tr>
+<tr>
+<td><code>validationMessage</code></td>
+<td>Returns the validation message</td>
+</tr>
+<tr>
+<td><code>willValidate</code></td>
+<td>Returns true if element will be validated</td>
+</tr>
+</tbody></table>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Validation API&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Constraint Validation DOM Properties&lt;/h4&gt;
+
+&lt;input type=&quot;email&quot; id=&quot;email&quot; placeholder=&quot;Enter email address&quot; required&gt;
+&lt;button onclick=&quot;checkEmail()&quot;&gt;Check Email&lt;/button&gt;
+&lt;p id=&quot;demo2&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+function checkEmail() {
+  const input = document.getElementById(&quot;email&quot;);
+  let text = &quot;Validation Properties:&lt;br&gt;&lt;br&gt;&quot;;
+  
+  text += &quot;willValidate: &quot; + input.willValidate + &quot;&lt;br&gt;&quot;;
+  text += &quot;validationMessage: &quot; + input.validationMessage + &quot;&lt;br&gt;&quot;;
+  
+  if (input.validity) {
+    text += &quot;validity.valid: &quot; + input.validity.valid + &quot;&lt;br&gt;&quot;;
+  }
+  
+  if (input.value === &quot;&quot;) {
+    text += &quot;&lt;br&gt;Please enter an email address.&quot;;
+  }
+  
+  document.getElementById(&quot;demo2&quot;).innerHTML = text;
+}
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p2.png" alt=""></p>
+<h3>Example 2</h3>
+<p><strong>Result</strong> <a href="ex2-validation_properties/index.html">View Example</a></p>
+<h2>Validity Properties</h2>
+<p>The <code>validity</code> object contains several boolean properties:</p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>valueMissing</code></td>
+<td>Element has no value (when required)</td>
+</tr>
+<tr>
+<td><code>typeMismatch</code></td>
+<td>Value doesn&#39;t match type (e.g., email)</td>
+</tr>
+<tr>
+<td><code>patternMismatch</code></td>
+<td>Value doesn&#39;t match pattern</td>
+</tr>
+<tr>
+<td><code>tooLong</code></td>
+<td>Value is too long</td>
+</tr>
+<tr>
+<td><code>tooShort</code></td>
+<td>Value is too short</td>
+</tr>
+<tr>
+<td><code>rangeUnderflow</code></td>
+<td>Value is below minimum</td>
+</tr>
+<tr>
+<td><code>rangeOverflow</code></td>
+<td>Value is above maximum</td>
+</tr>
+<tr>
+<td><code>stepMismatch</code></td>
+<td>Value doesn&#39;t match step</td>
+</tr>
+<tr>
+<td><code>badInput</code></td>
+<td>Value is invalid</td>
+</tr>
+<tr>
+<td><code>customError</code></td>
+<td>Custom validation error</td>
+</tr>
+<tr>
+<td><code>valid</code></td>
+<td>Element&#39;s value is valid</td>
+</tr>
+</tbody></table>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Validation API&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Validity Properties&lt;/h4&gt;
+
+&lt;form id=&quot;myForm&quot;&gt;
+  &lt;input type=&quot;text&quot; id=&quot;username&quot; required minlength=&quot;3&quot; maxlength=&quot;10&quot; placeholder=&quot;Username (3-10 chars)&quot;&gt;
+  &lt;br&gt;&lt;br&gt;
+  &lt;input type=&quot;number&quot; id=&quot;age&quot; min=&quot;18&quot; max=&quot;120&quot; placeholder=&quot;Age (18-120)&quot;&gt;
+  &lt;br&gt;&lt;br&gt;
+  &lt;input type=&quot;email&quot; id=&quot;email2&quot; placeholder=&quot;Email address&quot;&gt;
+  &lt;br&gt;&lt;br&gt;
+  &lt;button type=&quot;button&quot; onclick=&quot;showValidity()&quot;&gt;Check All Fields&lt;/button&gt;
+&lt;/form&gt;
+
+&lt;p id=&quot;demo3&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+function showValidity() {
+  const fields = [&quot;username&quot;, &quot;age&quot;, &quot;email2&quot;];
+  let text = &quot;&quot;;
+  
+  for (let id of fields) {
+    const input = document.getElementById(id);
+    const v = input.validity;
+    
+    text += &quot;&lt;b&gt;&quot; + id + &quot;&lt;/b&gt;: &quot;;
+    if (v.valid) {
+      text += &quot;✓ Valid&quot;;
+    } else {
+      text += &quot;✗ Invalid: &quot;;
+      if (v.valueMissing) text += &quot;Required, &quot;;
+      if (v.typeMismatch) text += &quot;Wrong type, &quot;;
+      if (v.patternMismatch) text += &quot;No pattern match, &quot;;
+      if (v.tooShort) text += &quot;Too short, &quot;;
+      if (v.tooLong) text += &quot;Too long, &quot;;
+      if (v.rangeUnderflow) text += &quot;Below minimum, &quot;;
+      if (v.rangeOverflow) text += &quot;Above maximum, &quot;;
+      if (v.stepMismatch) text += &quot;Wrong step, &quot;;
+      if (v.customError) text += &quot;Custom error, &quot;;
+    }
+    text += &quot;&lt;br&gt;&quot;;
+  }
+  
+  document.getElementById(&quot;demo3&quot;).innerHTML = text;
+}
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p3.png" alt=""></p>
+<h3>Example 3</h3>
+<p><strong>Result</strong> <a href="ex3-validity_properties/index.html">View Example</a></p>
+<h2>The rangeOverflow Property</h2>
+<p>The <code>rangeOverflow</code> property is true when a value exceeds the <code>max</code> attribute:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Validation API&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;The rangeOverflow Property&lt;/h4&gt;
+
+&lt;input type=&quot;number&quot; id=&quot;quantity&quot; max=&quot;100&quot; placeholder=&quot;Max: 100&quot;&gt;
+&lt;button onclick=&quot;checkRangeOverflow()&quot;&gt;Check&lt;/button&gt;
+&lt;p id=&quot;demo4&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+function checkRangeOverflow() {
+  const input = document.getElementById(&quot;quantity&quot;);
+  const value = input.value;
+  
+  if (value === &quot;&quot;) {
+    document.getElementById(&quot;demo4&quot;).innerHTML = &quot;Please enter a value.&quot;;
+    return;
+  }
+  
+  if (input.validity.rangeOverflow) {
+    document.getElementById(&quot;demo4&quot;).innerHTML = 
+      &quot;Value &quot; + value + &quot; is too high! Max is &quot; + input.max;
+  } else {
+    document.getElementById(&quot;demo4&quot;).innerHTML = 
+      &quot;Value &quot; + value + &quot; is within range. Valid!&quot;;
+  }
+}
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p4.png" alt=""></p>
+<h3>Example 4</h3>
+<p><strong>Result</strong> <a href="ex4-range_overflow/index.html">View Example</a></p>
+<h2>The rangeUnderflow Property</h2>
+<p>The <code>rangeUnderflow</code> property is true when a value is less than the <code>min</code> attribute:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Validation API&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;The rangeUnderflow Property&lt;/h4&gt;
+
+&lt;input type=&quot;number&quot; id=&quot;score&quot; min=&quot;50&quot; placeholder=&quot;Min: 50&quot;&gt;
+&lt;button onclick=&quot;checkRangeUnderflow()&quot;&gt;Check&lt;/button&gt;
+&lt;p id=&quot;demo5&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+function checkRangeUnderflow() {
+  const input = document.getElementById(&quot;score&quot;);
+  const value = input.value;
+  
+  if (value === &quot;&quot;) {
+    document.getElementById(&quot;demo5&quot;).innerHTML = &quot;Please enter a value.&quot;;
+    return;
+  }
+  
+  if (input.validity.rangeUnderflow) {
+    document.getElementById(&quot;demo5&quot;).innerHTML = 
+      &quot;Value &quot; + value + &quot; is too low! Min is &quot; + input.min;
+  } else {
+    document.getElementById(&quot;demo5&quot;).innerHTML = 
+      &quot;Value &quot; + value + &quot; is within range. Valid!&quot;;
+  }
+}
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p5.png" alt=""></p>
+<h3>Example 5</h3>
+<p><strong>Result</strong> <a href="ex5-range_underflow/index.html">View Example</a></p>
+<h2>Document</h2>
+<p>Document in project</p>
+<p>You can <a href="js-validation_api.pdf">Download PDF</a> file.</p>
+<h2>Reference</h2>
+<ul>
+<li><a href="https://www.w3schools.com/js/js_validation_api.asp">W3Schools JavaScript Validation API</a></li>
+</ul>
+
+</body>
+</html>

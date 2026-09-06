@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Temporal</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Temporal Arithmetic</h4>
+<p id="demo"></p>
+
+<script>
+if (typeof Temporal !== "undefined") {
+  const date = Temporal.PlainDate.from("2024-05-15");
+
+  // Add and subtract durations
+  const plusWeek = date.add({ days: 7 });
+  const minusMonth = date.subtract({ months: 1 });
+
+  // Compare dates
+  const date2 = Temporal.PlainDate.from("2024-06-01");
+  const isBefore = Temporal.PlainDate.compare(date, date2);
+
+  document.getElementById("demo").innerHTML =
+    "Date: " + date.toString() + "<br>" +
+    "Add 7 days: " + plusWeek.toString() + "<br>" +
+    "Subtract 1 month: " + minusMonth.toString() + "<br><br>" +
+    "Compare with 2024-06-01: " + isBefore + " (-1 = before, 0 = equal, 1 = after)";
+} else {
+  document.getElementById("demo").innerHTML =
+    "Temporal is not supported in this browser.";
+}
+</script>
+
+</body>
+</html>

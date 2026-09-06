@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Module Namespace</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Aggregator Scripts</h4>
+<p id="demo"></p>
+
+<script type="module">
+import { toUpper, reverse, isEven, factorial } from './index.js';
+
+document.getElementById("demo").innerHTML =
+  "toUpper('hello'): " + toUpper("hello") + "<br>" +
+  "reverse('world'): " + reverse("world") + "<br>" +
+  "isEven(7): " + isEven(7) + "<br>" +
+  "factorial(5): " + factorial(5);
+</script>
+
+</body>
+</html>

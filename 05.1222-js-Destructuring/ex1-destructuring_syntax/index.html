@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Destructuring</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Destructuring Assignment Syntax</h4>
+<p id="demo"></p>
+
+<script>
+// Create an Array
+const vehicles = ["mustang", "f-150", "expedition"];
+
+// Old way
+const car = vehicles[0];
+const truck = vehicles[1];
+const suv = vehicles[2];
+
+// New way - Destructuring
+const [car2, truck2, suv2] = vehicles;
+
+document.getElementById("demo").innerHTML =
+  "Destructured: " + car2 + ", " + truck2 + ", " + suv2;
+</script>
+
+</body>
+</html>

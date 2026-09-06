@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>js-dynamic_import</title>
+  <style>
+    body {
+      box-sizing: border-box;
+      min-width: 200px;
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 45px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+      font-size: 16px;
+      line-height: 1.5;
+      color: #24292e;
+      background-color: #ffffff;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 24px;
+      margin-bottom: 16px;
+      font-weight: 600;
+      line-height: 1.25;
+      border-bottom: 1px solid #eaecef;
+      padding-bottom: .3em;
+    }
+    h1 { font-size: 2em; }
+    h2 { font-size: 1.5em; }
+    h3 { font-size: 1.25em; }
+    code {
+      padding: .2em .4em;
+      margin: 0;
+      font-size: 85%;
+      background-color: rgba(27,31,35,.05);
+      border-radius: 3px;
+      font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
+    }
+    pre {
+      padding: 16px;
+      overflow: auto;
+      font-size: 85%;
+      line-height: 1.45;
+      background-color: #f6f8fa;
+      border-radius: 3px;
+      word-wrap: normal;
+    }
+    pre code {
+      background-color: transparent;
+      padding: 0;
+    }
+    blockquote {
+      padding: 0 1em;
+      color: #6a737d;
+      border-left: .25em solid #dfe2e5;
+      margin: 0 0 16px 0;
+    }
+    table {
+      border-spacing: 0;
+      border-collapse: collapse;
+      margin-top: 0;
+      margin-bottom: 16px;
+      width: 100%;
+    }
+    table th, table td {
+      padding: 6px 13px;
+      border: 1px solid #dfe2e5;
+    }
+    table tr:nth-child(2n) {
+      background-color: #f6f8fa;
+    }
+    img {
+      max-width: 100%;
+      box-sizing: content-box;
+    }
+    @media print {
+      body {
+        max-width: 100%;
+        padding: 0;
+      }
+      pre, blockquote, table, tr, img {
+        page-break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+<body>
+<h1>JavaScript Dynamic Import</h1>
+<p><a href="../acp-js.php">Back to JS page</a></p>
+<p>Table of Contents</p>
+<ul>
+<li><a href="#javascript-dynamic-import">JavaScript Dynamic Import</a><ul>
+<li><a href="#how-dynamic-import-works">How Dynamic Import Works</a><ul>
+<li><a href="#example-1">Example 1</a></li>
+</ul>
+</li>
+<li><a href="#another-example">Another Example</a><ul>
+<li><a href="#example-2">Example 2</a></li>
+</ul>
+</li>
+<li><a href="#conditional-loading">Conditional Loading</a><ul>
+<li><a href="#example-3">Example 3</a></li>
+</ul>
+</li>
+<li><a href="#document">Document</a></li>
+<li><a href="#reference">Reference</a></li>
+</ul>
+</li>
+</ul>
+<h2>JavaScript Dynamic Import</h2>
+<p>Dynamic import allows you to import modules on demand, at runtime, using the <code>import()</code> function.</p>
+<p>Unlike static imports (<code>import ... from ...</code>), dynamic imports:</p>
+<ul>
+<li>Can be used inside regular scripts (not just <code>&lt;script type=&quot;module&quot;&gt;</code>)</li>
+<li>Can be called conditionally</li>
+<li>Return a Promise that resolves to the module namespace object</li>
+<li>Can improve performance by loading code only when needed</li>
+</ul>
+<h2>How Dynamic Import Works</h2>
+<p>The <code>import()</code> function returns a Promise. The module is loaded when the <code>import()</code> call is executed:</p>
+<p><strong>math.js</strong> - Module file:</p>
+<pre><code class="language-javascript">export const add = (a, b) =&gt; a + b;
+export const subtract = (a, b) =&gt; a - b;
+export const multiply = (a, b) =&gt; a * b;
+export const divide = (a, b) =&gt; a / b;
+</code></pre>
+<p><strong>Main HTML file:</strong></p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Dynamic Import&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;How Dynamic Import Works&lt;/h4&gt;
+&lt;button onclick=&quot;loadMath()&quot;&gt;Load Math Module&lt;/button&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+function loadMath() {
+  import(&#39;./math.js&#39;)
+    .then(function(module) {
+      document.getElementById(&quot;demo&quot;).innerHTML =
+        &quot;Module loaded dynamically!&lt;br&gt;&quot; +
+        &quot;add(10, 5) = &quot; + module.add(10, 5) + &quot;&lt;br&gt;&quot; +
+        &quot;subtract(10, 5) = &quot; + module.subtract(10, 5) + &quot;&lt;br&gt;&quot; +
+        &quot;multiply(10, 5) = &quot; + module.multiply(10, 5) + &quot;&lt;br&gt;&quot; +
+        &quot;divide(10, 5) = &quot; + module.divide(10, 5);
+    })
+    .catch(function(err) {
+      document.getElementById(&quot;demo&quot;).innerHTML = &quot;Error: &quot; + err.message;
+    });
+}
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p1.png" alt=""></p>
+<h3>Example 1</h3>
+<p><strong>Result</strong> <a href="ex1-dynamic_import/index.html">View Example</a></p>
+<h2>Another Example</h2>
+<p>Dynamic import can load modules that contain data conversion functions:</p>
+<p><strong>temperatures.js</strong> - Module file:</p>
+<pre><code class="language-javascript">export const toCelsius = (f) =&gt; (f - 32) * 5 / 9;
+export const toFahrenheit = (c) =&gt; (c * 9 / 5) + 32;
+export const toKelvin = (c) =&gt; c + 273.15;
+</code></pre>
+<p><strong>Main HTML file:</strong></p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Dynamic Import&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Another Example&lt;/h4&gt;
+&lt;button onclick=&quot;loadTemp()&quot;&gt;Load Temperature Module&lt;/button&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+function loadTemp() {
+  import(&#39;./temperatures.js&#39;)
+    .then(function(module) {
+      document.getElementById(&quot;demo&quot;).innerHTML =
+        &quot;Temperature conversions:&lt;br&gt;&quot; +
+        &quot;32°F = &quot; + module.toCelsius(32).toFixed(1) + &quot;°C&lt;br&gt;&quot; +
+        &quot;100°F = &quot; + module.toCelsius(100).toFixed(1) + &quot;°C&lt;br&gt;&quot; +
+        &quot;0°C = &quot; + module.toFahrenheit(0).toFixed(1) + &quot;°F&lt;br&gt;&quot; +
+        &quot;100°C = &quot; + module.toKelvin(100).toFixed(1) + &quot;K&quot;;
+    })
+    .catch(function(err) {
+      document.getElementById(&quot;demo&quot;).innerHTML = &quot;Error: &quot; + err.message;
+    });
+}
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p2.png" alt=""></p>
+<h3>Example 2</h3>
+<p><strong>Result</strong> <a href="ex2-another_example/index.html">View Example</a></p>
+<h2>Conditional Loading</h2>
+<p>Dynamic import is useful for conditionally loading modules based on user interaction or other runtime conditions:</p>
+<p><strong>greetings.js</strong> - Module file:</p>
+<pre><code class="language-javascript">export const sayHello = (name) =&gt; &quot;Hello, &quot; + name + &quot;!&quot;;
+export const sayGoodbye = (name) =&gt; &quot;Goodbye, &quot; + name + &quot;!&quot;;
+export const sayThanks = (name) =&gt; &quot;Thank you, &quot; + name + &quot;!&quot;;
+</code></pre>
+<p><strong>Main HTML file:</strong></p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Dynamic Import&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Conditional Loading&lt;/h4&gt;
+&lt;p&gt;Select a greeting:&lt;/p&gt;
+&lt;select id=&quot;greetingSelect&quot;&gt;
+  &lt;option value=&quot;hello&quot;&gt;Hello&lt;/option&gt;
+  &lt;option value=&quot;goodbye&quot;&gt;Goodbye&lt;/option&gt;
+  &lt;option value=&quot;thanks&quot;&gt;Thanks&lt;/option&gt;
+&lt;/select&gt;
+&lt;br&gt;&lt;br&gt;
+&lt;label&gt;Name: &lt;input type=&quot;text&quot; id=&quot;nameInput&quot; value=&quot;John&quot;&gt;&lt;/label&gt;
+&lt;br&gt;&lt;br&gt;
+&lt;button onclick=&quot;showGreeting()&quot;&gt;Show Greeting&lt;/button&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+function showGreeting() {
+  const type = document.getElementById(&quot;greetingSelect&quot;).value;
+  const name = document.getElementById(&quot;nameInput&quot;).value || &quot;Guest&quot;;
+
+  import(&#39;./greetings.js&#39;)
+    .then(function(module) {
+      let message = &quot;&quot;;
+      if (type === &quot;hello&quot;) {
+        message = module.sayHello(name);
+      } else if (type === &quot;goodbye&quot;) {
+        message = module.sayGoodbye(name);
+      } else if (type === &quot;thanks&quot;) {
+        message = module.sayThanks(name);
+      }
+      document.getElementById(&quot;demo&quot;).innerHTML = message;
+    })
+    .catch(function(err) {
+      document.getElementById(&quot;demo&quot;).innerHTML = &quot;Error: &quot; + err.message;
+    });
+}
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p3.png" alt=""></p>
+<h3>Example 3</h3>
+<p><strong>Result</strong> <a href="ex3-conditional_loading/index.html">View Example</a></p>
+<h2>Document</h2>
+<p>Document in project</p>
+<p>You can <a href="js-dynamic_import.pdf">Download PDF</a> file.</p>
+<h2>Reference</h2>
+<ul>
+<li><a href="https://www.w3schools.com/js/js_modules_dynamic.asp">W3Schools JavaScript Dynamic Import</a></li>
+</ul>
+
+</body>
+</html>

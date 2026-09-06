@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Object Management</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Adding a New Property</h4>
+<p id="demo"></p>
+
+<script>
+const person = {
+  firstName: "John",
+  lastName: "Doe"
+};
+
+// Add a new property
+Object.defineProperty(person, "fullName", {
+  value: "John Doe",
+  writable: true
+});
+
+document.getElementById("demo").innerHTML = person.fullName;
+</script>
+
+</body>
+</html>

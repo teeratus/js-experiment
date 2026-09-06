@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>js-htmlfirst</title>
+  <style>
+    body {
+      box-sizing: border-box;
+      min-width: 200px;
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 45px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+      font-size: 16px;
+      line-height: 1.5;
+      color: #24292e;
+      background-color: #ffffff;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 24px;
+      margin-bottom: 16px;
+      font-weight: 600;
+      line-height: 1.25;
+      border-bottom: 1px solid #eaecef;
+      padding-bottom: .3em;
+    }
+    h1 { font-size: 2em; }
+    h2 { font-size: 1.5em; }
+    h3 { font-size: 1.25em; }
+    code {
+      padding: .2em .4em;
+      margin: 0;
+      font-size: 85%;
+      background-color: rgba(27,31,35,.05);
+      border-radius: 3px;
+      font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
+    }
+    pre {
+      padding: 16px;
+      overflow: auto;
+      font-size: 85%;
+      line-height: 1.45;
+      background-color: #f6f8fa;
+      border-radius: 3px;
+      word-wrap: normal;
+    }
+    pre code {
+      background-color: transparent;
+      padding: 0;
+    }
+    blockquote {
+      padding: 0 1em;
+      color: #6a737d;
+      border-left: .25em solid #dfe2e5;
+      margin: 0 0 16px 0;
+    }
+    table {
+      border-spacing: 0;
+      border-collapse: collapse;
+      margin-top: 0;
+      margin-bottom: 16px;
+      width: 100%;
+    }
+    table th, table td {
+      padding: 6px 13px;
+      border: 1px solid #dfe2e5;
+    }
+    table tr:nth-child(2n) {
+      background-color: #f6f8fa;
+    }
+    img {
+      max-width: 100%;
+      box-sizing: content-box;
+    }
+    @media print {
+      body {
+        max-width: 100%;
+        padding: 0;
+      }
+      pre, blockquote, table, tr, img {
+        page-break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+<body>
+<h1>JavaScript HTML-First</h1>
+<p><a href="../acp-js.php">Back to JS page</a></p>
+<p>Table of Contents</p>
+<ul>
+<li><a href="#javascript-html-first">JavaScript HTML-First</a><ul>
+<li><a href="#what-is-html-first">What Is HTML-First?</a><ul>
+<li><a href="#example-1">Example 1</a></li>
+</ul>
+</li>
+<li><a href="#progressive-enhancement">Progressive Enhancement</a><ul>
+<li><a href="#example-2">Example 2</a></li>
+</ul>
+</li>
+<li><a href="#browsers-are-already-powerful">Browsers Are Already Powerful</a><ul>
+<li><a href="#example-3">Example 3</a></li>
+</ul>
+</li>
+<li><a href="#semantic-html-improves-accessibility">Semantic HTML Improves Accessibility</a><ul>
+<li><a href="#example-4">Example 4</a></li>
+</ul>
+</li>
+<li><a href="#document">Document</a></li>
+<li><a href="#reference">Reference</a></li>
+</ul>
+</li>
+</ul>
+<h2>What Is HTML-First?</h2>
+<p>HTML-First is an approach to web development where you start with HTML to handle basic functionality before adding JavaScript.</p>
+<p>This means:</p>
+<ul>
+<li>Use HTML form validation before adding JavaScript validation</li>
+<li>Use CSS for styling before using JavaScript for animations</li>
+<li>Write semantic HTML that works without JavaScript</li>
+<li>Add JavaScript only when necessary to enhance the user experience</li>
+</ul>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript HTML-First&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;What Is HTML-First?&lt;/h4&gt;
+&lt;p&gt;HTML-first means starting with HTML before adding JavaScript.&lt;/p&gt;
+
+&lt;!-- HTML handles the form validation --&gt;
+&lt;form action=&quot;/action_page.php&quot; method=&quot;post&quot;&gt;
+  &lt;label for=&quot;fname&quot;&gt;First name (required):&lt;/label&gt;
+  &lt;input type=&quot;text&quot; id=&quot;fname&quot; name=&quot;fname&quot; required&gt;
+  &lt;input type=&quot;submit&quot; value=&quot;Submit&quot;&gt;
+&lt;/form&gt;
+&lt;p&gt;The required attribute is pure HTML validation - no JavaScript needed.&lt;/p&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p1.png" alt=""></p>
+<h3>Example 1</h3>
+<p><strong>Result</strong> <a href="ex1-what_is_htmlfirst/index.html">View Example</a></p>
+<h2>Progressive Enhancement</h2>
+<p>Progressive enhancement means starting with a basic HTML version that works everywhere, then adding JavaScript to enhance the experience for browsers that support it:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript HTML-First&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Progressive Enhancement&lt;/h4&gt;
+
+&lt;!-- Basic HTML structure works without JavaScript --&gt;
+&lt;details&gt;
+  &lt;summary&gt;Click to toggle content (HTML only)&lt;/summary&gt;
+  &lt;p&gt;This content can be shown/hidden without JavaScript using the HTML &lt;details&gt; element.&lt;/p&gt;
+&lt;/details&gt;
+
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+// JavaScript enhancement: Show a message if JavaScript is enabled
+document.getElementById(&quot;demo&quot;).innerHTML = &quot;JavaScript is enabled - page enhanced!&quot;;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p2.png" alt=""></p>
+<h3>Example 2</h3>
+<p><strong>Result</strong> <a href="ex2-progressive_enhancement/index.html">View Example</a></p>
+<h2>Browsers Are Already Powerful</h2>
+<p>Modern browsers have built-in HTML features that reduce the need for JavaScript:</p>
+<ul>
+<li><code>&lt;input type=&quot;date&quot;&gt;</code> - Date picker without JavaScript</li>
+<li><code>&lt;input type=&quot;range&quot;&gt;</code> - Slider without JavaScript</li>
+<li><code>&lt;input type=&quot;email&quot;&gt;</code> - Email validation without JavaScript</li>
+<li><code>&lt;details&gt;</code> - Expandable content without JavaScript</li>
+</ul>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript HTML-First&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Browsers Are Already Powerful&lt;/h4&gt;
+
+&lt;p&gt;HTML date picker (no JavaScript needed):&lt;/p&gt;
+&lt;input type=&quot;date&quot;&gt;
+
+&lt;p&gt;HTML range slider (no JavaScript needed):&lt;/p&gt;
+&lt;input type=&quot;range&quot; min=&quot;0&quot; max=&quot;100&quot;&gt;
+
+&lt;p&gt;HTML color picker (no JavaScript needed):&lt;/p&gt;
+&lt;input type=&quot;color&quot;&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p3.png" alt=""></p>
+<h3>Example 3</h3>
+<p><strong>Result</strong> <a href="ex3-browser_powerful/index.html">View Example</a></p>
+<h2>Semantic HTML Improves Accessibility</h2>
+<p>Semantic HTML elements help screen readers and assistive technologies understand the structure of your page. Using proper HTML elements is better than relying on JavaScript for accessibility:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript HTML-First&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Semantic HTML Improves Accessibility&lt;/h4&gt;
+
+&lt;!-- Using semantic HTML elements --&gt;
+&lt;nav&gt;
+  &lt;a href=&quot;#&quot;&gt;Home&lt;/a&gt; |
+  &lt;a href=&quot;#&quot;&gt;About&lt;/a&gt; |
+  &lt;a href=&quot;#&quot;&gt;Contact&lt;/a&gt;
+&lt;/nav&gt;
+
+&lt;main&gt;
+  &lt;article&gt;
+    &lt;h5&gt;Article Title&lt;/h5&gt;
+    &lt;p&gt;This article uses semantic HTML elements like &lt;article&gt;, &lt;nav&gt;, and &lt;main&gt;.&lt;/p&gt;
+  &lt;/article&gt;
+&lt;/main&gt;
+
+&lt;p id=&quot;demo&quot;&gt;Semantic HTML works without JavaScript and improves accessibility.&lt;/p&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p4.png" alt=""></p>
+<h3>Example 4</h3>
+<p><strong>Result</strong> <a href="ex4-semantic_html/index.html">View Example</a></p>
+<h2>Document</h2>
+<p>Document in project</p>
+<p>You can <a href="js-htmlfirst.pdf">Download PDF</a> file.</p>
+<h2>Reference</h2>
+<ul>
+<li><a href="https://www.w3schools.com/js/js_htmlfirst.asp">W3Schools JavaScript HTML-First</a></li>
+</ul>
+
+</body>
+</html>

@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>js-dataview</title>
+  <style>
+    body {
+      box-sizing: border-box;
+      min-width: 200px;
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 45px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+      font-size: 16px;
+      line-height: 1.5;
+      color: #24292e;
+      background-color: #ffffff;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 24px;
+      margin-bottom: 16px;
+      font-weight: 600;
+      line-height: 1.25;
+      border-bottom: 1px solid #eaecef;
+      padding-bottom: .3em;
+    }
+    h1 { font-size: 2em; }
+    h2 { font-size: 1.5em; }
+    h3 { font-size: 1.25em; }
+    code {
+      padding: .2em .4em;
+      margin: 0;
+      font-size: 85%;
+      background-color: rgba(27,31,35,.05);
+      border-radius: 3px;
+      font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
+    }
+    pre {
+      padding: 16px;
+      overflow: auto;
+      font-size: 85%;
+      line-height: 1.45;
+      background-color: #f6f8fa;
+      border-radius: 3px;
+      word-wrap: normal;
+    }
+    pre code {
+      background-color: transparent;
+      padding: 0;
+    }
+    blockquote {
+      padding: 0 1em;
+      color: #6a737d;
+      border-left: .25em solid #dfe2e5;
+      margin: 0 0 16px 0;
+    }
+    table {
+      border-spacing: 0;
+      border-collapse: collapse;
+      margin-top: 0;
+      margin-bottom: 16px;
+      width: 100%;
+    }
+    table th, table td {
+      padding: 6px 13px;
+      border: 1px solid #dfe2e5;
+    }
+    table tr:nth-child(2n) {
+      background-color: #f6f8fa;
+    }
+    img {
+      max-width: 100%;
+      box-sizing: content-box;
+    }
+    @media print {
+      body {
+        max-width: 100%;
+        padding: 0;
+      }
+      pre, blockquote, table, tr, img {
+        page-break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+<body>
+<h1>JavaScript DataView</h1>
+<p><a href="../acp-js.php">Back to JS page</a></p>
+<p>Table of Contents</p>
+<ul>
+<li><a href="#javascript-dataview">JavaScript DataView</a><ul>
+<li><a href="#creating-a-dataview">Creating a DataView</a><ul>
+<li><a href="#example-1">Example 1</a></li>
+</ul>
+</li>
+<li><a href="#reading-and-writing-values">Reading and Writing Values</a><ul>
+<li><a href="#example-2">Example 2</a></li>
+</ul>
+</li>
+<li><a href="#endianness-byte-order">Endianness (Byte Order)</a><ul>
+<li><a href="#example-3">Example 3</a></li>
+</ul>
+</li>
+<li><a href="#mixed-types">Mixed Types</a><ul>
+<li><a href="#example-4">Example 4</a></li>
+</ul>
+</li>
+<li><a href="#encoding-and-decoding-a-record">Encoding and Decoding a Record</a><ul>
+<li><a href="#example-5">Example 5</a></li>
+</ul>
+</li>
+<li><a href="#document">Document</a></li>
+<li><a href="#reference">Reference</a></li>
+</ul>
+</li>
+</ul>
+<h2>What Is a DataView?</h2>
+<p>A <code>DataView</code> provides a low-level interface for reading and writing multiple number types in an <code>ArrayBuffer</code>.</p>
+<p>Unlike typed arrays (like <code>Int32Array</code>), a <code>DataView</code>:</p>
+<ul>
+<li>Can read/write different data types in the same buffer</li>
+<li>Can start at any byte offset (not aligned to element size)</li>
+<li>Supports both big-endian and little-endian byte order</li>
+</ul>
+<h2>Creating a DataView</h2>
+<p>Create a <code>DataView</code> from an existing <code>ArrayBuffer</code>:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript DataView&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Creating a DataView&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+const buffer = new ArrayBuffer(16);
+const dataView = new DataView(buffer);
+
+let text = &quot;DataView created from ArrayBuffer(16)&lt;br&gt;&quot;;
+text += &quot;buffer: &quot; + dataView.buffer.byteLength + &quot; bytes&lt;br&gt;&quot;;
+text += &quot;byteOffset: &quot; + dataView.byteOffset + &quot;&lt;br&gt;&quot;;
+text += &quot;byteLength: &quot; + dataView.byteLength;
+
+document.getElementById(&quot;demo&quot;).innerHTML = text;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p1.png" alt=""></p>
+<h3>Example 1</h3>
+<p><strong>Result</strong> <a href="ex1-create_dataview/index.html">View Example</a></p>
+<h2>Reading and Writing Values</h2>
+<p>DataView provides methods like <code>setInt32()</code>, <code>getFloat32()</code>, etc. to read/write values at specific byte offsets:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript DataView&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Reading and Writing Values&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+const buffer = new ArrayBuffer(16);
+const dv = new DataView(buffer);
+
+// Write values at different offsets
+dv.setInt32(0, 42);        // 4 bytes at offset 0
+dv.setFloat64(4, 3.14159); // 8 bytes at offset 4
+dv.setInt16(12, 255);      // 2 bytes at offset 12
+
+// Read values back
+let text = &quot;Values written to DataView:&lt;br&gt;&lt;br&gt;&quot;;
+text += &quot;getInt32(0): &quot; + dv.getInt32(0) + &quot; (4 bytes)&lt;br&gt;&quot;;
+text += &quot;getFloat64(4): &quot; + dv.getFloat64(4) + &quot; (8 bytes)&lt;br&gt;&quot;;
+text += &quot;getInt16(12): &quot; + dv.getInt16(12) + &quot; (2 bytes)&lt;br&gt;&lt;br&gt;&quot;;
+
+// Total bytes used: 4 + 8 + 2 = 14 bytes
+text += &quot;Total bytes used: 14 of &quot; + buffer.byteLength;
+
+document.getElementById(&quot;demo&quot;).innerHTML = text;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p2.png" alt=""></p>
+<h3>Example 2</h3>
+<p><strong>Result</strong> <a href="ex2-read_write/index.html">View Example</a></p>
+<h2>Endianness (Byte Order)</h2>
+<p>Endianness refers to the byte order of multi-byte values. The <code>DataView</code> methods accept an optional <code>littleEndian</code> parameter:</p>
+<ul>
+<li><strong>Big-endian</strong>: Most significant byte first (default)</li>
+<li><strong>Little-endian</strong>: Least significant byte first</li>
+</ul>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript DataView&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Endianness (Byte Order)&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+const buffer = new ArrayBuffer(4);
+const dv = new DataView(buffer);
+
+// Write the same value with different endianness
+dv.setInt32(0, 0x12345678, false);  // Big-endian (default)
+const bigEndian = dv.getInt32(0, false);
+
+dv.setInt32(0, 0x12345678, true);   // Little-endian
+const littleEndian = dv.getInt32(0, true);
+
+// Inspect individual bytes
+const bytes = new Uint8Array(buffer);
+
+let text = &quot;Value: 0x12345678 (305419896)&lt;br&gt;&lt;br&gt;&quot;;
+
+text += &quot;Big-endian bytes: &quot;;
+for (let b of bytes) text += &quot;0x&quot; + b.toString(16).toUpperCase() + &quot; &quot;;
+text += &quot;&lt;br&gt;&quot;;
+
+dv.setInt32(0, 0x12345678, true);
+text += &quot;Little-endian bytes: &quot;;
+for (let b of bytes) text += &quot;0x&quot; + b.toString(16).toUpperCase() + &quot; &quot;;
+
+document.getElementById(&quot;demo&quot;).innerHTML = text;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p3.png" alt=""></p>
+<h3>Example 3</h3>
+<p><strong>Result</strong> <a href="ex3-endianness/index.html">View Example</a></p>
+<h2>Mixed Types</h2>
+<p>DataView allows mixing different data types in a single buffer:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript DataView&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Mixed Types&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+const buffer = new ArrayBuffer(20);
+const dv = new DataView(buffer);
+
+// Write mixed data types
+dv.setInt32(0, 2024);        // Year (4 bytes)
+dv.setInt16(4, 12);          // Month (2 bytes)
+dv.setInt16(6, 25);          // Day (2 bytes)
+dv.setFloat32(8, 36.5);      // Temperature (4 bytes)
+dv.setInt8(12, 72);          // Humidity % (1 byte)
+dv.setInt8(13, 1);           // Active flag (1 byte)
+
+// Read back
+let text = &quot;Mixed Data Types in DataView:&lt;br&gt;&lt;br&gt;&quot;;
+text += &quot;Year: &quot; + dv.getInt32(0) + &quot;&lt;br&gt;&quot;;
+text += &quot;Month: &quot; + dv.getInt16(4) + &quot;&lt;br&gt;&quot;;
+text += &quot;Day: &quot; + dv.getInt16(6) + &quot;&lt;br&gt;&quot;;
+text += &quot;Temperature: &quot; + dv.getFloat32(8) + &quot;°C&lt;br&gt;&quot;;
+text += &quot;Humidity: &quot; + dv.getInt8(12) + &quot;%&lt;br&gt;&quot;;
+text += &quot;Active: &quot; + (dv.getInt8(13) === 1);
+
+document.getElementById(&quot;demo&quot;).innerHTML = text;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p4.png" alt=""></p>
+<h3>Example 4</h3>
+<p><strong>Result</strong> <a href="ex4-mixed_types/index.html">View Example</a></p>
+<h2>Encoding and Decoding a Record</h2>
+<p>DataView is ideal for binary data formats like file headers or network packets:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript DataView&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Encoding and Decoding a Record&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+// Define a record structure
+function encodeRecord(id, score, name) {
+  const buf = new ArrayBuffer(16);
+  const dv = new DataView(buf);
+  dv.setInt32(0, id);               // ID (4 bytes)
+  dv.setFloat64(4, score);           // Score (8 bytes)
+  for (let i = 0; i &lt; name.length; i++) {
+    dv.setUint8(12 + i, name.charCodeAt(i)); // Name chars
+  }
+  dv.setUint8(15, 0);               // Null terminator
+  return buf;
+}
+
+function decodeRecord(buf) {
+  const dv = new DataView(buf);
+  const id = dv.getInt32(0);
+  const score = dv.getFloat64(4);
+  let name = &quot;&quot;;
+  for (let i = 12; i &lt; 16; i++) {
+    const ch = dv.getUint8(i);
+    if (ch === 0) break;
+    name += String.fromCharCode(ch);
+  }
+  return { id, score, name };
+}
+
+// Encode a record
+const buffer = encodeRecord(101, 95.5, &quot;Bob&quot;);
+const decoded = decodeRecord(buffer);
+
+let text = &quot;Binary Record (16 bytes):&lt;br&gt;&lt;br&gt;&quot;;
+text += &quot;Encoded:&lt;br&gt;&quot;;
+const view = new Uint8Array(buffer);
+for (let b of view) text += b.toString(16).padStart(2, &quot;0&quot;) + &quot; &quot;;
+text += &quot;&lt;br&gt;&lt;br&gt;&quot;;
+
+text += &quot;Decoded:&lt;br&gt;&quot;;
+text += &quot;ID: &quot; + decoded.id + &quot;&lt;br&gt;&quot;;
+text += &quot;Score: &quot; + decoded.score + &quot;&lt;br&gt;&quot;;
+text += &quot;Name: &quot; + decoded.name;
+
+document.getElementById(&quot;demo&quot;).innerHTML = text;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p5.png" alt=""></p>
+<h3>Example 5</h3>
+<p><strong>Result</strong> <a href="ex5-encode_decode/index.html">View Example</a></p>
+<h2>Document</h2>
+<p>Document in project</p>
+<p>You can <a href="js-dataview.pdf">Download PDF</a> file.</p>
+<h2>Reference</h2>
+<ul>
+<li><a href="https://www.w3schools.com/js/js_dataview.asp">W3Schools JavaScript DataView</a></li>
+</ul>
+
+</body>
+</html>

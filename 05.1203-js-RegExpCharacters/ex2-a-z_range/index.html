@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript RegExp Characters</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Character Range [A-Z]</h4>
+<p id="demo"></p>
+
+<script>
+const text = "Hello World 123";
+const matches = text.match(/[A-Z]/g);
+
+document.getElementById("demo").innerHTML =
+  "Text: " + text + "<br><br>" +
+  "match(/[A-Z]/g): " + matches + "<br>" +
+  "Matches any uppercase letter";
+</script>
+
+</body>
+</html>

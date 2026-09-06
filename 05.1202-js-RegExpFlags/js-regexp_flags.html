@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>js-regexp_flags</title>
+  <style>
+    body {
+      box-sizing: border-box;
+      min-width: 200px;
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 45px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+      font-size: 16px;
+      line-height: 1.5;
+      color: #24292e;
+      background-color: #ffffff;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 24px;
+      margin-bottom: 16px;
+      font-weight: 600;
+      line-height: 1.25;
+      border-bottom: 1px solid #eaecef;
+      padding-bottom: .3em;
+    }
+    h1 { font-size: 2em; }
+    h2 { font-size: 1.5em; }
+    h3 { font-size: 1.25em; }
+    code {
+      padding: .2em .4em;
+      margin: 0;
+      font-size: 85%;
+      background-color: rgba(27,31,35,.05);
+      border-radius: 3px;
+      font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
+    }
+    pre {
+      padding: 16px;
+      overflow: auto;
+      font-size: 85%;
+      line-height: 1.45;
+      background-color: #f6f8fa;
+      border-radius: 3px;
+      word-wrap: normal;
+    }
+    pre code {
+      background-color: transparent;
+      padding: 0;
+    }
+    blockquote {
+      padding: 0 1em;
+      color: #6a737d;
+      border-left: .25em solid #dfe2e5;
+      margin: 0 0 16px 0;
+    }
+    table {
+      border-spacing: 0;
+      border-collapse: collapse;
+      margin-top: 0;
+      margin-bottom: 16px;
+      width: 100%;
+    }
+    table th, table td {
+      padding: 6px 13px;
+      border: 1px solid #dfe2e5;
+    }
+    table tr:nth-child(2n) {
+      background-color: #f6f8fa;
+    }
+    img {
+      max-width: 100%;
+      box-sizing: content-box;
+    }
+    @media print {
+      body {
+        max-width: 100%;
+        padding: 0;
+      }
+      pre, blockquote, table, tr, img {
+        page-break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+<body>
+<h1>JavaScript RegExp Flags</h1>
+<p><a href="../acp-js.php">Back to JS page</a></p>
+<p>Table of Contents</p>
+<ul>
+<li><a href="#javascript-regexp-flags">JavaScript RegExp Flags</a><ul>
+<li><a href="#regexp-g-flag-global">RegExp /g Flag (Global)</a><ul>
+<li><a href="#example-1">Example 1</a></li>
+</ul>
+</li>
+<li><a href="#regexp-i-flag-insensitive">RegExp /i Flag (Insensitive)</a><ul>
+<li><a href="#example-2">Example 2</a></li>
+</ul>
+</li>
+<li><a href="#regexp-m-flag-multiline">RegExp /m Flag (Multiline)</a><ul>
+<li><a href="#example-3">Example 3</a></li>
+</ul>
+</li>
+<li><a href="#regexp-y-flag-sticky">RegExp /y Flag (Sticky)</a><ul>
+<li><a href="#example-4">Example 4</a></li>
+</ul>
+</li>
+<li><a href="#regexp-u-flag-unicode">RegExp /u Flag (Unicode)</a><ul>
+<li><a href="#example-5">Example 5</a></li>
+</ul>
+</li>
+<li><a href="#document">Document</a></li>
+<li><a href="#reference">Reference</a></li>
+</ul>
+</li>
+</ul>
+<h2>RegExp Modifier Flags</h2>
+<p>Flags modify how a regular expression searches for patterns. The syntax is <code>/pattern/flags</code>:</p>
+<table>
+<thead>
+<tr>
+<th>Flag</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>/g</code></td>
+<td>Global - matches all occurrences</td>
+</tr>
+<tr>
+<td><code>/i</code></td>
+<td>Insensitive - case insensitive</td>
+</tr>
+<tr>
+<td><code>/m</code></td>
+<td>Multiline - ^ and $ match line breaks</td>
+</tr>
+<tr>
+<td><code>/s</code></td>
+<td>DotAll - <code>.</code> matches newlines too</td>
+</tr>
+<tr>
+<td><code>/y</code></td>
+<td>Sticky - matches only from lastIndex</td>
+</tr>
+<tr>
+<td><code>/u</code></td>
+<td>Unicode - proper Unicode handling</td>
+</tr>
+</tbody></table>
+<h2>RegExp /g Flag (Global)</h2>
+<p>The <code>/g</code> flag searches for <strong>all</strong> occurrences, not just the first:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript RegExp Flags&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;RegExp /g Flag (Global)&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+const text = &quot;apple banana apple cherry apple&quot;;
+
+// Without /g - only first match
+const first = text.match(/apple/);
+
+// With /g - all matches
+const all = text.match(/apple/g);
+
+document.getElementById(&quot;demo&quot;).innerHTML =
+  &quot;Text: &quot; + text + &quot;&lt;br&gt;&lt;br&gt;&quot; +
+  &quot;without /g: &quot; + first + &quot;&lt;br&gt;&quot; +
+  &quot;with /g: &quot; + all + &quot; (all occurrences)&quot;;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p1.png" alt=""></p>
+<h3>Example 1</h3>
+<p><strong>Result</strong> <a href="ex1-global_flag/index.html">View Example</a></p>
+<h2>RegExp /i Flag (Insensitive)</h2>
+<p>The <code>/i</code> flag makes the search <strong>case insensitive</strong>:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript RegExp Flags&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;RegExp /i Flag (Insensitive)&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+const text = &quot;JavaScript is FUN!&quot;;
+
+// Case sensitive
+const sensitive = text.match(/fun/);
+
+// Case insensitive
+const insensitive = text.match(/fun/i);
+
+document.getElementById(&quot;demo&quot;).innerHTML =
+  &quot;Text: &quot; + text + &quot;&lt;br&gt;&lt;br&gt;&quot; +
+  &quot;match(/fun/): &quot; + sensitive + &quot; (no match)&lt;br&gt;&quot; +
+  &quot;match(/fun/i): &quot; + insensitive + &quot; (matched)&quot;;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p2.png" alt=""></p>
+<h3>Example 2</h3>
+<p><strong>Result</strong> <a href="ex2-insensitive_flag/index.html">View Example</a></p>
+<h2>RegExp /m Flag (Multiline)</h2>
+<p>The <code>/m</code> flag makes <code>^</code> and <code>$</code> match the beginning/end of each line:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript RegExp Flags&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;RegExp /m Flag (Multiline)&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+const text = &quot;line1\nline2\nline3&quot;;
+
+// Without /m - ^ only matches start of string
+const withoutM = text.match(/^line/g);
+
+// With /m - ^ matches start of each line
+const withM = text.match(/^line/gm);
+
+document.getElementById(&quot;demo&quot;).innerHTML =
+  &quot;Text:&lt;br&gt;&quot; + text + &quot;&lt;br&gt;&lt;br&gt;&quot; +
+  &quot;match(/^line/g): &quot; + withoutM + &quot;&lt;br&gt;&quot; +
+  &quot;match(/^line/gm): &quot; + withM + &quot; (each line)&quot;;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p3.png" alt=""></p>
+<h3>Example 3</h3>
+<p><strong>Result</strong> <a href="ex3-multiline_flag/index.html">View Example</a></p>
+<h2>RegExp /y Flag (Sticky)</h2>
+<p>The <code>/y</code> flag makes the search <strong>sticky</strong> - it only matches starting at <code>lastIndex</code>:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript RegExp Flags&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;RegExp /y Flag (Sticky)&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+const text = &quot;abcabc&quot;;
+const sticky = /abc/y;
+
+// First match at position 0
+const first = sticky.exec(text);
+
+// After lastIndex = 3, matches &quot;abc&quot; again at position 3
+const second = sticky.exec(text);
+
+document.getElementById(&quot;demo&quot;).innerHTML =
+  &quot;Text: &quot; + text + &quot;&lt;br&gt;&lt;br&gt;&quot; +
+  &quot;sticky = /abc/y&lt;br&gt;&quot; +
+  &quot;First exec: &quot; + first[0] + &quot; at index &quot; + first.index + &quot;&lt;br&gt;&quot; +
+  &quot;lastIndex after: &quot; + sticky.lastIndex + &quot;&lt;br&gt;&quot; +
+  &quot;Second exec: &quot; + second[0] + &quot; at index &quot; + second.index;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p4.png" alt=""></p>
+<h3>Example 4</h3>
+<p><strong>Result</strong> <a href="ex4-sticky_flag/index.html">View Example</a></p>
+<h2>RegExp /u Flag (Unicode)</h2>
+<p>The <code>/u</code> flag enables proper Unicode handling:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript RegExp Flags&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;RegExp /u Flag (Unicode)&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+const text = &quot;Café 100&quot;;
+
+// \d finds ASCII digits only
+const asciiDigits = text.match(/\d/g);
+
+document.getElementById(&quot;demo&quot;).innerHTML =
+  &quot;Text: &quot; + text + &quot;&lt;br&gt;&lt;br&gt;&quot; +
+  &quot;match(/\\d/g): &quot; + asciiDigits + &quot;&lt;br&gt;&lt;br&gt;&quot; +
+  &quot;&lt;b&gt;Other flag properties:&lt;/b&gt;&lt;br&gt;&quot; +
+  &quot;global: &quot; + /a/g.global + &quot;&lt;br&gt;&quot; +
+  &quot;ignoreCase: &quot; + /a/i.ignoreCase + &quot;&lt;br&gt;&quot; +
+  &quot;multiline: &quot; + /a/m.multiline + &quot;&lt;br&gt;&quot; +
+  &quot;sticky: &quot; + /a/y.sticky + &quot;&lt;br&gt;&quot; +
+  &quot;unicode: &quot; + /a/u.unicode;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p5.png" alt=""></p>
+<h3>Example 5</h3>
+<p><strong>Result</strong> <a href="ex5-unicode_flag/index.html">View Example</a></p>
+<h2>Document</h2>
+<p>Document in project</p>
+<p>You can <a href="js-regexp_flags.pdf">Download PDF</a> file.</p>
+<h2>Reference</h2>
+<ul>
+<li><a href="https://www.w3schools.com/js/js_regexp_flags.asp">W3Schools JavaScript RegExp Flags</a></li>
+</ul>
+
+</body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript JSON Data Types</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>JSON Number Values</h4>
+<p id="demo"></p>
+
+<script>
+// JSON with number values (integers and floating point)
+const jsonString = '{"age":30,"weight":75.5,"height":180}';
+const obj = JSON.parse(jsonString);
+
+document.getElementById("demo").innerHTML =
+  "Age: " + obj.age + " (integer)<br>" +
+  "Weight: " + obj.weight + " (float)<br>" +
+  "Height: " + obj.height + " cm";
+</script>
+
+</body>
+</html>

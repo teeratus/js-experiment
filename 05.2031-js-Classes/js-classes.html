@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>js-classes</title>
+  <style>
+    body {
+      box-sizing: border-box;
+      min-width: 200px;
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 45px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+      font-size: 16px;
+      line-height: 1.5;
+      color: #24292e;
+      background-color: #ffffff;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 24px;
+      margin-bottom: 16px;
+      font-weight: 600;
+      line-height: 1.25;
+      border-bottom: 1px solid #eaecef;
+      padding-bottom: .3em;
+    }
+    h1 { font-size: 2em; }
+    h2 { font-size: 1.5em; }
+    h3 { font-size: 1.25em; }
+    code {
+      padding: .2em .4em;
+      margin: 0;
+      font-size: 85%;
+      background-color: rgba(27,31,35,.05);
+      border-radius: 3px;
+      font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
+    }
+    pre {
+      padding: 16px;
+      overflow: auto;
+      font-size: 85%;
+      line-height: 1.45;
+      background-color: #f6f8fa;
+      border-radius: 3px;
+      word-wrap: normal;
+    }
+    pre code {
+      background-color: transparent;
+      padding: 0;
+    }
+    blockquote {
+      padding: 0 1em;
+      color: #6a737d;
+      border-left: .25em solid #dfe2e5;
+      margin: 0 0 16px 0;
+    }
+    table {
+      border-spacing: 0;
+      border-collapse: collapse;
+      margin-top: 0;
+      margin-bottom: 16px;
+      width: 100%;
+    }
+    table th, table td {
+      padding: 6px 13px;
+      border: 1px solid #dfe2e5;
+    }
+    table tr:nth-child(2n) {
+      background-color: #f6f8fa;
+    }
+    img {
+      max-width: 100%;
+      box-sizing: content-box;
+    }
+    @media print {
+      body {
+        max-width: 100%;
+        padding: 0;
+      }
+      pre, blockquote, table, tr, img {
+        page-break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+<body>
+<h1>JavaScript Classes</h1>
+<p><a href="../acp-js.php">Back to JS page</a></p>
+<p>Table of Contents</p>
+<ul>
+<li><a href="#javascript-classes">JavaScript Classes</a><ul>
+<li><a href="#javascript-class-syntax">JavaScript Class Syntax</a><ul>
+<li><a href="#example-1">Example 1</a></li>
+</ul>
+</li>
+<li><a href="#using-a-class">Using a Class</a><ul>
+<li><a href="#example-2">Example 2</a></li>
+</ul>
+</li>
+<li><a href="#the-constructor-method">The Constructor Method</a><ul>
+<li><a href="#example-3">Example 3</a></li>
+</ul>
+</li>
+<li><a href="#class-methods">Class Methods</a><ul>
+<li><a href="#example-4">Example 4</a></li>
+</ul>
+</li>
+<li><a href="#document">Document</a></li>
+<li><a href="#reference">Reference</a></li>
+</ul>
+</li>
+</ul>
+<h2>JavaScript Class Syntax</h2>
+<p>ECMAScript 2015 (ES6) introduced JavaScript <strong>Classes</strong>.</p>
+<p>JavaScript classes are templates for JavaScript objects.</p>
+<p>Use the keyword <code>class</code> to create a class, and always add the <code>constructor()</code> method:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Classes&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Class Syntax&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+class Car {
+  constructor(name, year) {
+    this.name = name;
+    this.year = year;
+  }
+}
+
+const myCar1 = new Car(&quot;Ford&quot;, 2014);
+const myCar2 = new Car(&quot;Audi&quot;, 2019);
+
+document.getElementById(&quot;demo&quot;).innerHTML =
+  myCar1.name + &quot; &quot; + myCar1.year + &quot;&lt;br&gt;&quot; +
+  myCar2.name + &quot; &quot; + myCar2.year;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p1.png" alt=""></p>
+<h3>Example 1</h3>
+<p><strong>Result</strong> <a href="ex1-class_syntax/index.html">View Example</a></p>
+<h2>Using a Class</h2>
+<p>When you have a class, you can use the class to create objects:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Classes&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Using a Class&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+class Person {
+  constructor(name) {
+    this.name = name;
+  }
+}
+
+const person1 = new Person(&quot;John&quot;);
+const person2 = new Person(&quot;Jane&quot;);
+
+document.getElementById(&quot;demo&quot;).innerHTML =
+  &quot;Person 1: &quot; + person1.name + &quot;&lt;br&gt;&quot; +
+  &quot;Person 2: &quot; + person2.name;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p2.png" alt=""></p>
+<h3>Example 2</h3>
+<p><strong>Result</strong> <a href="ex2-using_class/index.html">View Example</a></p>
+<h2>The Constructor Method</h2>
+<p>The constructor method is a special method:</p>
+<ul>
+<li>It has to have the exact name &quot;constructor&quot;</li>
+<li>It is executed automatically when a new object is created</li>
+<li>It is used to initialize object properties</li>
+<li>If you do not define a constructor method, JavaScript will add an empty constructor method</li>
+</ul>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Classes&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;The Constructor Method&lt;/h4&gt;
+&lt;p id=&quot;demo1&quot;&gt;&lt;/p&gt;
+&lt;p id=&quot;demo2&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+class Student {
+  constructor(name, grade) {
+    this.name = name;
+    this.grade = grade;
+    document.getElementById(&quot;demo1&quot;).innerHTML = &quot;Constructor called for &quot; + name;
+  }
+}
+
+const student1 = new Student(&quot;Alice&quot;, &quot;A&quot;);
+const student2 = new Student(&quot;Bob&quot;, &quot;B&quot;);
+
+document.getElementById(&quot;demo2&quot;).innerHTML =
+  student1.name + &quot; got &quot; + student1.grade + &quot;&lt;br&gt;&quot; +
+  student2.name + &quot; got &quot; + student2.grade;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p3.png" alt=""></p>
+<h3>Example 3</h3>
+<p><strong>Result</strong> <a href="ex3-constructor_method/index.html">View Example</a></p>
+<h2>Class Methods</h2>
+<p>Class methods are created with the same syntax as object methods.</p>
+<p>Use the keyword <code>class</code> to create a class, then add methods inside the class:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Classes&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Class Methods&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+class Car {
+  constructor(name, year) {
+    this.name = name;
+    this.year = year;
+  }
+  age() {
+    const date = new Date();
+    return date.getFullYear() - this.year;
+  }
+}
+
+const myCar = new Car(&quot;Ford&quot;, 2014);
+document.getElementById(&quot;demo&quot;).innerHTML =
+  &quot;My car is &quot; + myCar.age() + &quot; years old.&quot;;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p4.png" alt=""></p>
+<h3>Example 4</h3>
+<p><strong>Result</strong> <a href="ex4-class_methods/index.html">View Example</a></p>
+<h2>Document</h2>
+<p>Document in project</p>
+<p>You can <a href="js-classes.pdf">Download PDF</a> file.</p>
+<h2>Reference</h2>
+<ul>
+<li><a href="https://www.w3schools.com/js/js_classes.asp">W3Schools JavaScript Classes</a></li>
+</ul>
+
+</body>
+</html>

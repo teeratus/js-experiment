@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Window Location</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Window Location Assign</h4>
+<p id="demo"></p>
+
+<button onclick="showAllProperties()">Show All Location Properties</button>
+<p id="demo2"></p>
+
+<script>
+function showAllProperties() {
+  const loc = window.location;
+  document.getElementById("demo2").innerHTML =
+    "href: " + loc.href + "<br>" +
+    "hostname: " + loc.hostname + "<br>" +
+    "pathname: " + loc.pathname + "<br>" +
+    "protocol: " + loc.protocol + "<br>" +
+    "port: " + loc.port + "<br>" +
+    "host: " + loc.host + "<br>" +
+    "origin: " + loc.origin;
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript NodeList</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>HTML DOM Node List Length</h4>
+
+<div id="list">
+  <p>Apple</p>
+  <p>Banana</p>
+  <p>Orange</p>
+</div>
+
+<p id="demo"></p>
+
+<script>
+const nodeList = document.querySelectorAll("#list p");
+let text = "Items (" + nodeList.length + "):<br>";
+for (let i = 0; i < nodeList.length; i++) {
+  text += (i + 1) + ". " + nodeList[i].innerHTML + "<br>";
+}
+document.getElementById("demo").innerHTML = text;
+</script>
+
+</body>
+</html>

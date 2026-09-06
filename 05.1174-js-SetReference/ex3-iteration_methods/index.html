@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Set Reference</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Set Iteration Methods</h4>
+<p id="demo"></p>
+
+<script>
+const letters = new Set(["a", "b", "c"]);
+
+let text = "<b>forEach():</b> ";
+letters.forEach(v => text += v + " ");
+text += "<br>";
+
+text += "<b>values():</b> ";
+for (let v of letters.values()) text += v + " ";
+text += "<br>";
+
+text += "<b>keys():</b> ";
+for (let k of letters.keys()) text += k + " ";
+text += "<br>";
+
+text += "<b>entries():</b> ";
+for (let e of letters.entries()) text += "[" + e[0] + "," + e[1] + "] ";
+
+document.getElementById("demo").innerHTML = text;
+</script>
+
+</body>
+</html>

@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>js-set_reference</title>
+  <style>
+    body {
+      box-sizing: border-box;
+      min-width: 200px;
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 45px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+      font-size: 16px;
+      line-height: 1.5;
+      color: #24292e;
+      background-color: #ffffff;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 24px;
+      margin-bottom: 16px;
+      font-weight: 600;
+      line-height: 1.25;
+      border-bottom: 1px solid #eaecef;
+      padding-bottom: .3em;
+    }
+    h1 { font-size: 2em; }
+    h2 { font-size: 1.5em; }
+    h3 { font-size: 1.25em; }
+    code {
+      padding: .2em .4em;
+      margin: 0;
+      font-size: 85%;
+      background-color: rgba(27,31,35,.05);
+      border-radius: 3px;
+      font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
+    }
+    pre {
+      padding: 16px;
+      overflow: auto;
+      font-size: 85%;
+      line-height: 1.45;
+      background-color: #f6f8fa;
+      border-radius: 3px;
+      word-wrap: normal;
+    }
+    pre code {
+      background-color: transparent;
+      padding: 0;
+    }
+    blockquote {
+      padding: 0 1em;
+      color: #6a737d;
+      border-left: .25em solid #dfe2e5;
+      margin: 0 0 16px 0;
+    }
+    table {
+      border-spacing: 0;
+      border-collapse: collapse;
+      margin-top: 0;
+      margin-bottom: 16px;
+      width: 100%;
+    }
+    table th, table td {
+      padding: 6px 13px;
+      border: 1px solid #dfe2e5;
+    }
+    table tr:nth-child(2n) {
+      background-color: #f6f8fa;
+    }
+    img {
+      max-width: 100%;
+      box-sizing: content-box;
+    }
+    @media print {
+      body {
+        max-width: 100%;
+        padding: 0;
+      }
+      pre, blockquote, table, tr, img {
+        page-break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+<body>
+<h1>JavaScript Set Reference</h1>
+<p><a href="../acp-js.php">Back to JS page</a></p>
+<p>Table of Contents</p>
+<ul>
+<li><a href="#javascript-set-reference">JavaScript Set Reference</a><ul>
+<li><a href="#set-properties">Set Properties</a><ul>
+<li><a href="#example-1">Example 1</a></li>
+</ul>
+</li>
+<li><a href="#set-adddelete-methods">Set Add/Delete Methods</a><ul>
+<li><a href="#example-2">Example 2</a></li>
+</ul>
+</li>
+<li><a href="#set-iteration-methods">Set Iteration Methods</a><ul>
+<li><a href="#example-3">Example 3</a></li>
+</ul>
+</li>
+<li><a href="#set-logic-methods">Set Logic Methods</a><ul>
+<li><a href="#example-4">Example 4</a></li>
+</ul>
+</li>
+<li><a href="#document">Document</a></li>
+<li><a href="#reference">Reference</a></li>
+</ul>
+</li>
+</ul>
+<h2>Set Properties</h2>
+<p>The complete <code>Set</code> object reference:</p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>size</code></td>
+<td>Number of elements in the Set</td>
+</tr>
+<tr>
+<td><code>constructor</code></td>
+<td>The Set constructor function</td>
+</tr>
+</tbody></table>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Set Reference&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Set Properties&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+const letters = new Set([&quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;d&quot;]);
+
+document.getElementById(&quot;demo&quot;).innerHTML =
+  &quot;Set: &quot; + [...letters] + &quot;&lt;br&gt;&quot; +
+  &quot;size: &quot; + letters.size + &quot;&lt;br&gt;&quot; +
+  &quot;constructor: &quot; + letters.constructor;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p1.png" alt=""></p>
+<h3>Example 1</h3>
+<p><strong>Result</strong> <a href="ex1-properties/index.html">View Example</a></p>
+<h2>Set Add/Delete Methods</h2>
+<p>Methods for adding and removing elements:</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>add(value)</code></td>
+<td>Add a new element</td>
+</tr>
+<tr>
+<td><code>delete(value)</code></td>
+<td>Remove an element</td>
+</tr>
+<tr>
+<td><code>has(value)</code></td>
+<td>Check if element exists</td>
+</tr>
+<tr>
+<td><code>clear()</code></td>
+<td>Remove all elements</td>
+</tr>
+</tbody></table>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Set Reference&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Set Add/Delete Methods&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+const letters = new Set([&quot;a&quot;, &quot;b&quot;]);
+
+let text = &quot;Start: &quot; + [...letters] + &quot;&lt;br&gt;&lt;br&gt;&quot;;
+
+letters.add(&quot;c&quot;);
+text += &quot;add(&#39;c&#39;): &quot; + [...letters] + &quot;&lt;br&gt;&quot;;
+text += &quot;has(&#39;c&#39;): &quot; + letters.has(&quot;c&quot;) + &quot;&lt;br&gt;&lt;br&gt;&quot;;
+
+letters.delete(&quot;a&quot;);
+text += &quot;delete(&#39;a&#39;): &quot; + [...letters] + &quot;&lt;br&gt;&lt;br&gt;&quot;;
+
+letters.clear();
+text += &quot;clear(): &quot; + [...letters] + &quot; (empty)&lt;br&gt;&quot;;
+text += &quot;size: &quot; + letters.size;
+
+document.getElementById(&quot;demo&quot;).innerHTML = text;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p2.png" alt=""></p>
+<h3>Example 2</h3>
+<p><strong>Result</strong> <a href="ex2-add_delete/index.html">View Example</a></p>
+<h2>Set Iteration Methods</h2>
+<p>Methods for iterating over Set elements:</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>forEach(fn)</code></td>
+<td>Call function for each element</td>
+</tr>
+<tr>
+<td><code>values()</code></td>
+<td>Iterator of all values</td>
+</tr>
+<tr>
+<td><code>keys()</code></td>
+<td>Same as values() for Set</td>
+</tr>
+<tr>
+<td><code>entries()</code></td>
+<td>Iterator of [value, value] pairs</td>
+</tr>
+</tbody></table>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Set Reference&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Set Iteration Methods&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+const letters = new Set([&quot;a&quot;, &quot;b&quot;, &quot;c&quot;]);
+
+let text = &quot;&lt;b&gt;forEach():&lt;/b&gt; &quot;;
+letters.forEach(v =&gt; text += v + &quot; &quot;);
+text += &quot;&lt;br&gt;&quot;;
+
+text += &quot;&lt;b&gt;values():&lt;/b&gt; &quot;;
+for (let v of letters.values()) text += v + &quot; &quot;;
+text += &quot;&lt;br&gt;&quot;;
+
+text += &quot;&lt;b&gt;keys():&lt;/b&gt; &quot;;
+for (let k of letters.keys()) text += k + &quot; &quot;;
+text += &quot;&lt;br&gt;&quot;;
+
+text += &quot;&lt;b&gt;entries():&lt;/b&gt; &quot;;
+for (let e of letters.entries()) text += &quot;[&quot; + e[0] + &quot;,&quot; + e[1] + &quot;] &quot;;
+
+document.getElementById(&quot;demo&quot;).innerHTML = text;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p3.png" alt=""></p>
+<h3>Example 3</h3>
+<p><strong>Result</strong> <a href="ex3-iteration_methods/index.html">View Example</a></p>
+<h2>Set Logic Methods</h2>
+<p>Set logic methods (newer Set methods):</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>union(set)</code></td>
+<td>All elements from both Sets</td>
+</tr>
+<tr>
+<td><code>intersection(set)</code></td>
+<td>Elements in both Sets</td>
+</tr>
+<tr>
+<td><code>difference(set)</code></td>
+<td>Elements in this but not other</td>
+</tr>
+<tr>
+<td><code>symmetricDifference(set)</code></td>
+<td>Elements in either, not both</td>
+</tr>
+<tr>
+<td><code>isSubsetOf(set)</code></td>
+<td>Every element in this also in other</td>
+</tr>
+<tr>
+<td><code>isSupersetOf(set)</code></td>
+<td>Every element in other also in this</td>
+</tr>
+<tr>
+<td><code>isDisjointFrom(set)</code></td>
+<td>No common elements</td>
+</tr>
+</tbody></table>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Set Reference&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Set Logic Methods&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+const setA = new Set([&quot;a&quot;, &quot;b&quot;, &quot;c&quot;]);
+const setB = new Set([&quot;c&quot;, &quot;d&quot;]);
+
+let text = &quot;Set A: &quot; + [...setA] + &quot;&lt;br&gt;&quot;;
+text += &quot;Set B: &quot; + [...setB] + &quot;&lt;br&gt;&lt;br&gt;&quot;;
+
+if (setA.union) {
+  text += &quot;A.union(B): &quot; + [...setA.union(setB)] + &quot;&lt;br&gt;&quot;;
+  text += &quot;A.intersection(B): &quot; + [...setA.intersection(setB)] + &quot;&lt;br&gt;&quot;;
+  text += &quot;A.difference(B): &quot; + [...setA.difference(setB)] + &quot;&lt;br&gt;&quot;;
+  text += &quot;A.symmetricDifference(B): &quot; + [...setA.symmetricDifference(setB)] + &quot;&lt;br&gt;&quot;;
+  text += &quot;A.isSubsetOf(B): &quot; + setA.isSubsetOf(setB) + &quot;&lt;br&gt;&quot;;
+  text += &quot;A.isDisjointFrom(new Set([&#39;x&#39;])): &quot; + setA.isDisjointFrom(new Set([&quot;x&quot;]));
+} else {
+  text += &quot;Logic methods are not supported in this browser yet.&quot;;
+}
+
+document.getElementById(&quot;demo&quot;).innerHTML = text;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p4.png" alt=""></p>
+<h3>Example 4</h3>
+<p><strong>Result</strong> <a href="ex4-logic_methods/index.html">View Example</a></p>
+<h2>Document</h2>
+<p>Document in project</p>
+<p>You can <a href="js-set_reference.pdf">Download PDF</a> file.</p>
+<h2>Reference</h2>
+<ul>
+<li><a href="https://www.w3schools.com/js/js_set_reference.asp">W3Schools JavaScript Set Reference</a></li>
+</ul>
+
+</body>
+</html>

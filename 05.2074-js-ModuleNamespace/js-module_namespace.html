@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>js-module_namespace</title>
+  <style>
+    body {
+      box-sizing: border-box;
+      min-width: 200px;
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 45px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+      font-size: 16px;
+      line-height: 1.5;
+      color: #24292e;
+      background-color: #ffffff;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 24px;
+      margin-bottom: 16px;
+      font-weight: 600;
+      line-height: 1.25;
+      border-bottom: 1px solid #eaecef;
+      padding-bottom: .3em;
+    }
+    h1 { font-size: 2em; }
+    h2 { font-size: 1.5em; }
+    h3 { font-size: 1.25em; }
+    code {
+      padding: .2em .4em;
+      margin: 0;
+      font-size: 85%;
+      background-color: rgba(27,31,35,.05);
+      border-radius: 3px;
+      font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
+    }
+    pre {
+      padding: 16px;
+      overflow: auto;
+      font-size: 85%;
+      line-height: 1.45;
+      background-color: #f6f8fa;
+      border-radius: 3px;
+      word-wrap: normal;
+    }
+    pre code {
+      background-color: transparent;
+      padding: 0;
+    }
+    blockquote {
+      padding: 0 1em;
+      color: #6a737d;
+      border-left: .25em solid #dfe2e5;
+      margin: 0 0 16px 0;
+    }
+    table {
+      border-spacing: 0;
+      border-collapse: collapse;
+      margin-top: 0;
+      margin-bottom: 16px;
+      width: 100%;
+    }
+    table th, table td {
+      padding: 6px 13px;
+      border: 1px solid #dfe2e5;
+    }
+    table tr:nth-child(2n) {
+      background-color: #f6f8fa;
+    }
+    img {
+      max-width: 100%;
+      box-sizing: content-box;
+    }
+    @media print {
+      body {
+        max-width: 100%;
+        padding: 0;
+      }
+      pre, blockquote, table, tr, img {
+        page-break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+<body>
+<h1>JavaScript Module Namespace</h1>
+<p><a href="../acp-js.php">Back to JS page</a></p>
+<p>Table of Contents</p>
+<ul>
+<li><a href="#javascript-module-namespace">JavaScript Module Namespace</a><ul>
+<li><a href="#the-module-namespace-object">The Module Namespace Object</a><ul>
+<li><a href="#example-1">Example 1</a></li>
+</ul>
+</li>
+<li><a href="#module-namespace-export">Module Namespace Export</a><ul>
+<li><a href="#example-2">Example 2</a></li>
+</ul>
+</li>
+<li><a href="#aggregator-scripts">Aggregator Scripts</a><ul>
+<li><a href="#example-3">Example 3</a></li>
+</ul>
+</li>
+<li><a href="#document">Document</a></li>
+<li><a href="#reference">Reference</a></li>
+</ul>
+</li>
+</ul>
+<h2>The Module Namespace Object</h2>
+<p>A module namespace object is created when you import everything from a module using <code>import * as name</code>.</p>
+<p>The namespace object contains all the exports from the module as properties:</p>
+<p><strong>shapes.js</strong> - Module file:</p>
+<pre><code class="language-javascript">export const circle = (r) =&gt; Math.PI * r * r;
+export const square = (s) =&gt; s * s;
+export const rectangle = (w, h) =&gt; w * h;
+export const triangle = (b, h) =&gt; (b * h) / 2;
+export const PI = Math.PI;
+</code></pre>
+<p><strong>Main HTML file:</strong></p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Module Namespace&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;The Module Namespace Object&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script type=&quot;module&quot;&gt;
+import * as Shapes from &#39;./shapes.js&#39;;
+
+document.getElementById(&quot;demo&quot;).innerHTML =
+  &quot;Circle area (r=5): &quot; + Shapes.circle(5).toFixed(2) + &quot;&lt;br&gt;&quot; +
+  &quot;Square area (s=4): &quot; + Shapes.square(4) + &quot;&lt;br&gt;&quot; +
+  &quot;Rectangle area (4x3): &quot; + Shapes.rectangle(4, 3) + &quot;&lt;br&gt;&quot; +
+  &quot;Triangle area (6x2): &quot; + Shapes.triangle(6, 2) + &quot;&lt;br&gt;&quot; +
+  &quot;PI: &quot; + Shapes.PI.toFixed(4);
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p1.png" alt=""></p>
+<h3>Example 1</h3>
+<p><strong>Result</strong> <a href="ex1-namespace_object/index.html">View Example</a></p>
+<h2>Module Namespace Export</h2>
+<p>Namespace exports allow you to re-export everything from another module as a namespace:</p>
+<p><strong>math_ops.js</strong> - Individual math functions:</p>
+<pre><code class="language-javascript">export const add = (a, b) =&gt; a + b;
+export const subtract = (a, b) =&gt; a - b;
+export const multiply = (a, b) =&gt; a * b;
+export const divide = (a, b) =&gt; a / b;
+</code></pre>
+<p><strong>utilities.js</strong> - Aggregator that re-exports with namespace:</p>
+<pre><code class="language-javascript">export * as MathOps from &#39;./math_ops.js&#39;;
+</code></pre>
+<p><strong>Main HTML file:</strong></p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Module Namespace&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Module Namespace Export&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script type=&quot;module&quot;&gt;
+import { MathOps } from &#39;./utilities.js&#39;;
+
+document.getElementById(&quot;demo&quot;).innerHTML =
+  &quot;MathOps.add(10, 5): &quot; + MathOps.add(10, 5) + &quot;&lt;br&gt;&quot; +
+  &quot;MathOps.subtract(10, 5): &quot; + MathOps.subtract(10, 5) + &quot;&lt;br&gt;&quot; +
+  &quot;MathOps.multiply(10, 5): &quot; + MathOps.multiply(10, 5) + &quot;&lt;br&gt;&quot; +
+  &quot;MathOps.divide(10, 5): &quot; + MathOps.divide(10, 5);
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p2.png" alt=""></p>
+<h3>Example 2</h3>
+<p><strong>Result</strong> <a href="ex2-namespace_export/index.html">View Example</a></p>
+<h2>Aggregator Scripts</h2>
+<p>Aggregator scripts combine multiple modules into a single import point using re-exports:</p>
+<p><strong>string_utils.js</strong> - String utility functions:</p>
+<pre><code class="language-javascript">export const toUpper = (s) =&gt; s.toUpperCase();
+export const toLower = (s) =&gt; s.toLowerCase();
+export const reverse = (s) =&gt; s.split(&quot;&quot;).reverse().join(&quot;&quot;);
+</code></pre>
+<p><strong>number_utils.js</strong> - Number utility functions:</p>
+<pre><code class="language-javascript">export const isEven = (n) =&gt; n % 2 === 0;
+export const isOdd = (n) =&gt; n % 2 !== 0;
+export const factorial = (n) =&gt; n &lt;= 1 ? 1 : n * factorial(n - 1);
+</code></pre>
+<p><strong>index.js</strong> - Aggregator script that re-exports everything:</p>
+<pre><code class="language-javascript">export * from &#39;./string_utils.js&#39;;
+export * from &#39;./number_utils.js&#39;;
+</code></pre>
+<p><strong>Main HTML file:</strong></p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Module Namespace&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Aggregator Scripts&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script type=&quot;module&quot;&gt;
+import { toUpper, reverse, isEven, factorial } from &#39;./index.js&#39;;
+
+document.getElementById(&quot;demo&quot;).innerHTML =
+  &quot;toUpper(&#39;hello&#39;): &quot; + toUpper(&quot;hello&quot;) + &quot;&lt;br&gt;&quot; +
+  &quot;reverse(&#39;world&#39;): &quot; + reverse(&quot;world&quot;) + &quot;&lt;br&gt;&quot; +
+  &quot;isEven(7): &quot; + isEven(7) + &quot;&lt;br&gt;&quot; +
+  &quot;factorial(5): &quot; + factorial(5);
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p3.png" alt=""></p>
+<h3>Example 3</h3>
+<p><strong>Result</strong> <a href="ex3-aggregator/index.html">View Example</a></p>
+<h2>Document</h2>
+<p>Document in project</p>
+<p>You can <a href="js-module_namespace.pdf">Download PDF</a> file.</p>
+<h2>Reference</h2>
+<ul>
+<li><a href="https://www.w3schools.com/js/js_modules_namespace.asp">W3Schools JavaScript Module Namespace</a></li>
+</ul>
+
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Function call()</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>call() vs Normal Function Call</h4>
+<p id="demo1"></p>
+<p id="demo2"></p>
+
+<script>
+function greet(greeting) {
+  return greeting + ", " + this.name;
+}
+
+const user = {
+  name: "Alice"
+};
+
+// Normal function call - "this" refers to window/global
+// document.getElementById("demo1").innerHTML = greet("Hello"); // this.name would be undefined
+
+// Using call() - "this" refers to user
+document.getElementById("demo1").innerHTML = greet.call(user, "Hello");
+
+const user2 = {
+  name: "Bob"
+};
+
+document.getElementById("demo2").innerHTML = greet.call(user2, "Hi");
+</script>
+
+</body>
+</html>

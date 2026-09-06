@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript JSON Data Types</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>JSON Boolean Values</h4>
+<p id="demo"></p>
+
+<script>
+// JSON with boolean values
+const jsonString = '{"isStudent":false,"hasGraduated":true,"isEmployed":true}';
+const obj = JSON.parse(jsonString);
+
+document.getElementById("demo").innerHTML =
+  "Is student: " + obj.isStudent + "<br>" +
+  "Has graduated: " + obj.hasGraduated + "<br>" +
+  "Is employed: " + obj.isEmployed;
+</script>
+
+</body>
+</html>

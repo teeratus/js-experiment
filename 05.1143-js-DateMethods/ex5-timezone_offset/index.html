@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Date Methods</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>The getTimezoneOffset() Method</h4>
+<p id="demo"></p>
+
+<script>
+const d = new Date();
+const offset = d.getTimezoneOffset();
+const offsetHours = offset / 60;
+
+document.getElementById("demo").innerHTML =
+  "getTimezoneOffset(): " + offset + " minutes<br>" +
+  "Offset in hours: " + offsetHours + " hours<br><br>" +
+  "This is the difference between your local time and UTC. " +
+  "For example, Bangkok (UTC+7) has an offset of -420 minutes.";
+</script>
+
+</body>
+</html>

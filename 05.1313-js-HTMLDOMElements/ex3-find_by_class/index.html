@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript HTML DOM Elements</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Find Elements by Class Name</h4>
+<p class="intro">First paragraph with class 'intro'</p>
+<p>Second paragraph (no class)</p>
+<p class="intro">Third paragraph with class 'intro'</p>
+<p id="demo"></p>
+
+<script>
+const elements = document.getElementsByClassName("intro");
+document.getElementById("demo").innerHTML =
+  "Elements with class 'intro': " + elements.length +
+  "<br>First: " + elements[0].innerHTML;
+</script>
+
+</body>
+</html>

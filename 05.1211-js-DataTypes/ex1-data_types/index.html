@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Data Types</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>The Concept of Data Types</h4>
+<p id="demo"></p>
+
+<script>
+// Different data types
+let name = "John";        // String
+let age = 30;             // Number
+let isStudent = true;     // Boolean
+let score = 99.5;         // Number (float)
+let colors = ["red", "blue"]; // Array (object)
+let person = {name: "John"}; // Object
+
+let text = "name: " + name + " (" + typeof name + ")<br>";
+text += "age: " + age + " (" + typeof age + ")<br>";
+text += "isStudent: " + isStudent + " (" + typeof isStudent + ")<br>";
+text += "score: " + score + " (" + typeof score + ")<br>";
+text += "colors: array (" + typeof colors + ")<br>";
+text += "person: object (" + typeof person + ")";
+
+document.getElementById("demo").innerHTML = text;
+</script>
+
+</body>
+</html>

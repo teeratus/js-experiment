@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>js-scopes</title>
+  <style>
+    body {
+      box-sizing: border-box;
+      min-width: 200px;
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 45px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+      font-size: 16px;
+      line-height: 1.5;
+      color: #24292e;
+      background-color: #ffffff;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 24px;
+      margin-bottom: 16px;
+      font-weight: 600;
+      line-height: 1.25;
+      border-bottom: 1px solid #eaecef;
+      padding-bottom: .3em;
+    }
+    h1 { font-size: 2em; }
+    h2 { font-size: 1.5em; }
+    h3 { font-size: 1.25em; }
+    code {
+      padding: .2em .4em;
+      margin: 0;
+      font-size: 85%;
+      background-color: rgba(27,31,35,.05);
+      border-radius: 3px;
+      font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
+    }
+    pre {
+      padding: 16px;
+      overflow: auto;
+      font-size: 85%;
+      line-height: 1.45;
+      background-color: #f6f8fa;
+      border-radius: 3px;
+      word-wrap: normal;
+    }
+    pre code {
+      background-color: transparent;
+      padding: 0;
+    }
+    blockquote {
+      padding: 0 1em;
+      color: #6a737d;
+      border-left: .25em solid #dfe2e5;
+      margin: 0 0 16px 0;
+    }
+    table {
+      border-spacing: 0;
+      border-collapse: collapse;
+      margin-top: 0;
+      margin-bottom: 16px;
+      width: 100%;
+    }
+    table th, table td {
+      padding: 6px 13px;
+      border: 1px solid #dfe2e5;
+    }
+    table tr:nth-child(2n) {
+      background-color: #f6f8fa;
+    }
+    img {
+      max-width: 100%;
+      box-sizing: content-box;
+    }
+    @media print {
+      body {
+        max-width: 100%;
+        padding: 0;
+      }
+      pre, blockquote, table, tr, img {
+        page-break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+<body>
+<h1>JavaScript Scopes</h1>
+<p><a href="../acp-js.php">Back to JS page</a></p>
+<p>Table of Contents</p>
+<ul>
+<li><a href="#javascript-scopes">JavaScript Scopes</a><ul>
+<li><a href="#global-scope">Global Scope</a><ul>
+<li><a href="#example-1">Example 1</a></li>
+</ul>
+</li>
+<li><a href="#function-scope">Function Scope</a><ul>
+<li><a href="#example-2">Example 2</a></li>
+</ul>
+</li>
+<li><a href="#block-scope">Block Scope</a><ul>
+<li><a href="#example-3">Example 3</a></li>
+</ul>
+</li>
+<li><a href="#automatically-global">Automatically Global</a><ul>
+<li><a href="#example-4">Example 4</a></li>
+</ul>
+</li>
+<li><a href="#the-lifetime-of-javascript-variables">The Lifetime of JavaScript Variables</a><ul>
+<li><a href="#example-5">Example 5</a></li>
+</ul>
+</li>
+<li><a href="#document">Document</a></li>
+<li><a href="#reference">Reference</a></li>
+</ul>
+</li>
+</ul>
+<h2>Global Scope</h2>
+<p>JavaScript has <strong>function scope</strong>: each function creates a new scope.</p>
+<p><strong>Global scope</strong> means that variables declared outside any function are accessible from anywhere in the program:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Scopes&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Global Scope&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+// Global variable - accessible everywhere
+let carName = &quot;Volvo&quot;;
+
+function myFunction() {
+  // Can access global variable inside a function
+  return &quot;Inside function: &quot; + carName;
+}
+
+document.getElementById(&quot;demo&quot;).innerHTML =
+  &quot;Outside function: &quot; + carName + &quot;&lt;br&gt;&quot; +
+  myFunction();
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p1.png" alt=""></p>
+<h3>Example 1</h3>
+<p><strong>Result</strong> <a href="ex1-global_scope/index.html">View Example</a></p>
+<h2>Function Scope</h2>
+<p><strong>Function scope</strong> means that variables declared inside a function are only accessible within that function. They cannot be accessed outside:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Scopes&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Function Scope&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+function myFunction() {
+  // Local variable - only accessible inside this function
+  let carName = &quot;Volvo&quot;;
+  return &quot;Inside function: &quot; + carName;
+}
+
+document.getElementById(&quot;demo&quot;).innerHTML =
+  myFunction() + &quot;&lt;br&gt;&lt;br&gt;&quot; +
+  &quot;Trying to access carName outside would cause an error&quot;;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p2.png" alt=""></p>
+<h3>Example 2</h3>
+<p><strong>Result</strong> <a href="ex2-function_scope/index.html">View Example</a></p>
+<h2>Block Scope</h2>
+<p><strong>Block scope</strong> means that variables declared with <code>let</code> and <code>const</code> inside a block <code>{}</code> are only accessible within that block:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Scopes&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Block Scope&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+{
+  // Block scope - only accessible inside this block
+  let x = 2;
+  const y = 3;
+  var z = 5;  // var is NOT block scoped
+}
+
+// x and y are NOT accessible here
+// z IS accessible here because var is function scoped
+
+document.getElementById(&quot;demo&quot;).innerHTML =
+  &quot;z (var - accessible): &quot; + z + &quot;&lt;br&gt;&quot; +
+  &quot;x (let - NOT accessible outside block)&quot; + &quot;&lt;br&gt;&quot; +
+  &quot;y (const - NOT accessible outside block)&quot;;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p3.png" alt=""></p>
+<h3>Example 3</h3>
+<p><strong>Result</strong> <a href="ex3-block_scope/index.html">View Example</a></p>
+<h2>Automatically Global</h2>
+<p>If you assign a value to a variable that has not been declared, it will automatically become a <strong>global</strong> variable:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Scopes&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Automatically Global&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+function myFunction() {
+  // This becomes GLOBAL automatically (not recommended!)
+  carName = &quot;Volvo&quot;;
+}
+
+// Call the function first
+myFunction();
+
+// Now carName is global and accessible here
+document.getElementById(&quot;demo&quot;).innerHTML =
+  &quot;After running myFunction():&lt;br&gt;&quot; +
+  &quot;carName = &quot; + carName + &quot;&lt;br&gt;&lt;br&gt;&quot; +
+  &quot;Warning: This variable is now global!&lt;br&gt;&quot; +
+  &quot;Always declare variables with let/const/var&quot;;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p4.png" alt=""></p>
+<h3>Example 4</h3>
+<p><strong>Result</strong> <a href="ex4-automatically_global/index.html">View Example</a></p>
+<h2>The Lifetime of JavaScript Variables</h2>
+<p>The lifetime of a JavaScript variable starts when it is declared. Global variables live until the page is closed. Local variables are deleted when the function completes:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Scopes&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;The Lifetime of JavaScript Variables&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+// Global variable - lives until page is closed
+let globalVar = &quot;I live as long as the page&quot;;
+
+function counterExample() {
+  // Local variable - created each time function runs
+  // Deleted when function completes
+  let localVar = &quot;I only live inside the function&quot;;
+  return localVar;
+}
+
+// Call the function to see local variable
+let result = counterExample();
+
+let text = &quot;Global variable: &quot; + globalVar + &quot;&lt;br&gt;&quot;;
+text += &quot;Local variable (from function): &quot; + result + &quot;&lt;br&gt;&lt;br&gt;&quot;;
+text += &quot;Global variables: live until page is closed&lt;br&gt;&quot;;
+text += &quot;Local variables: deleted after function completes&lt;br&gt;&quot;;
+text += &quot;Each function call creates new local variables&quot;;
+
+document.getElementById(&quot;demo&quot;).innerHTML = text;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p5.png" alt=""></p>
+<h3>Example 5</h3>
+<p><strong>Result</strong> <a href="ex5-lifetime/index.html">View Example</a></p>
+<h2>Document</h2>
+<p>Document in project</p>
+<p>You can <a href="js-scopes.pdf">Download PDF</a> file.</p>
+<h2>Reference</h2>
+<ul>
+<li><a href="https://www.w3schools.com/js/js_scopes.asp">W3Schools JavaScript Scopes</a></li>
+</ul>
+
+</body>
+</html>

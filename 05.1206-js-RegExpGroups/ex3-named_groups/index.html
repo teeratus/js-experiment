@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript RegExp Groups</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Named Capturing Groups (?<n>)</h4>
+<p id="demo"></p>
+
+<script>
+const text = "Date: 2024-05-15";
+const matches = text.match(/(?<year>\d{4})-(?<month>\d{2})-(?<day>\d{2})/);
+
+document.getElementById("demo").innerHTML =
+  "Text: " + text + "<br><br>" +
+  "Named groups:<br>" +
+  "matches.groups.year: " + matches.groups.year + "<br>" +
+  "matches.groups.month: " + matches.groups.month + "<br>" +
+  "matches.groups.day: " + matches.groups.day;
+</script>
+
+</body>
+</html>

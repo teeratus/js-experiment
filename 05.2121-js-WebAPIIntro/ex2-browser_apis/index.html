@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Web API Intro</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Browser APIs</h4>
+<p id="demo"></p>
+
+<script>
+// Geolocation API example
+let text = "Geolocation API - Checking browser support...<br><br>";
+
+if (navigator.geolocation) {
+  text += "✓ Geolocation is supported in this browser<br>";
+  text += "✓ Fetch API is supported: " + ('fetch' in window) + "<br>";
+  text += "✓ Web Storage is supported: " + ('localStorage' in window) + "<br>";
+  text += "✓ History API is supported: " + ('history' in window) + "<br>";
+  text += "✓ Console API is supported: " + ('console' in window) + "<br>";
+} else {
+  text += "✗ Geolocation is NOT supported";
+}
+
+document.getElementById("demo").innerHTML = text;
+</script>
+
+</body>
+</html>

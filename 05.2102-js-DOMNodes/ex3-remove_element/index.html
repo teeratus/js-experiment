@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript DOM Nodes</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Removing Existing HTML Elements</h4>
+
+<div id="div3">
+  <p id="p5">Paragraph 1</p>
+  <p id="p6">Paragraph 2 - will be removed</p>
+  <p id="p7">Paragraph 3</p>
+</div>
+
+<button onclick="removeElement()">Remove Paragraph 2</button>
+
+<script>
+function removeElement() {
+  const element = document.getElementById("p6");
+  element.remove();
+}
+</script>
+
+</body>
+</html>

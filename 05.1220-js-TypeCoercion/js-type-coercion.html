@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>js-type-coercion</title>
+  <style>
+    body {
+      box-sizing: border-box;
+      min-width: 200px;
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 45px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+      font-size: 16px;
+      line-height: 1.5;
+      color: #24292e;
+      background-color: #ffffff;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 24px;
+      margin-bottom: 16px;
+      font-weight: 600;
+      line-height: 1.25;
+      border-bottom: 1px solid #eaecef;
+      padding-bottom: .3em;
+    }
+    h1 { font-size: 2em; }
+    h2 { font-size: 1.5em; }
+    h3 { font-size: 1.25em; }
+    code {
+      padding: .2em .4em;
+      margin: 0;
+      font-size: 85%;
+      background-color: rgba(27,31,35,.05);
+      border-radius: 3px;
+      font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
+    }
+    pre {
+      padding: 16px;
+      overflow: auto;
+      font-size: 85%;
+      line-height: 1.45;
+      background-color: #f6f8fa;
+      border-radius: 3px;
+      word-wrap: normal;
+    }
+    pre code {
+      background-color: transparent;
+      padding: 0;
+    }
+    blockquote {
+      padding: 0 1em;
+      color: #6a737d;
+      border-left: .25em solid #dfe2e5;
+      margin: 0 0 16px 0;
+    }
+    table {
+      border-spacing: 0;
+      border-collapse: collapse;
+      margin-top: 0;
+      margin-bottom: 16px;
+      width: 100%;
+    }
+    table th, table td {
+      padding: 6px 13px;
+      border: 1px solid #dfe2e5;
+    }
+    table tr:nth-child(2n) {
+      background-color: #f6f8fa;
+    }
+    img {
+      max-width: 100%;
+      box-sizing: content-box;
+    }
+    @media print {
+      body {
+        max-width: 100%;
+        padding: 0;
+      }
+      pre, blockquote, table, tr, img {
+        page-break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+<body>
+<h1>JavaScript Type Coercion</h1>
+<p><a href="../acp-js.php">Back to JS page</a></p>
+<p>Table of Contents</p>
+<ul>
+<li><a href="#javascript-type-coercion">JavaScript Type Coercion</a><ul>
+<li><a href="#type-coercion">Type Coercion</a><ul>
+<li><a href="#example-1">Example 1</a></li>
+</ul>
+</li>
+<li><a href="#string-coercion-">String Coercion (+)</a><ul>
+<li><a href="#example-2">Example 2</a></li>
+</ul>
+</li>
+<li><a href="#numeric-coercion">Numeric Coercion</a><ul>
+<li><a href="#example-3">Example 3</a></li>
+</ul>
+</li>
+<li><a href="#boolean-coercion">Boolean Coercion</a><ul>
+<li><a href="#example-4">Example 4</a></li>
+</ul>
+</li>
+<li><a href="#loose-equality-">Loose Equality (==)</a><ul>
+<li><a href="#example-5">Example 5</a></li>
+</ul>
+</li>
+<li><a href="#best-practices-to-avoid-bugs">Best Practices to Avoid Bugs</a><ul>
+<li><a href="#example-6">Example 6</a></li>
+</ul>
+</li>
+<li><a href="#document">Document</a></li>
+<li><a href="#reference">Reference</a></li>
+</ul>
+</li>
+</ul>
+<h2>Type Coercion</h2>
+<p><strong>Type coercion</strong> is the <strong>automatic conversion</strong> of values from one data type to another.</p>
+<p>Type coercion happens when you perform an operation on different data types, and the JavaScript engine tries to make them &quot;fit&quot; together.</p>
+<p>JavaScript coerces types differently per operator, so type coercion can hide bugs. The program continues according to the coercion rules, but these may differ from what the programmer wanted to achieve.</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Type Coercion&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Type Coercion&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+let result1 = (&#39;5&#39; + &#39;2&#39;); // = 52
+let result2 = (&#39;5&#39; - &#39;2&#39;); // = 3
+
+document.getElementById(&quot;demo&quot;).innerHTML =
+  &quot;(&#39;5&#39; + &#39;2&#39;) = &quot; + result1 + &quot;&lt;br&gt;&quot; +
+  &quot;(&#39;5&#39; - &#39;2&#39;) = &quot; + result2;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p>Coercion is <strong>implicit</strong> (handled automatically by the engine), while <strong>type conversion</strong> is explicit (you manually use functions like <code>Number()</code> or <code>String()</code>).</p>
+<p>Because JavaScript is <strong>weakly typed</strong>, it doesn&#39;t throw errors when types don&#39;t match; it just tries to coerce them.</p>
+<p><img src="images/p1.png" alt=""></p>
+<h3>Example 1</h3>
+<p><strong>Result</strong> <a href="ex1-type_coercion/index.html">View Example</a></p>
+<h2>String Coercion (+)</h2>
+<p>If any part of a <code>+</code> operation is a string, JavaScript converts everything to strings and concatenates them.</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Type Coercion&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;String Coercion (+)&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+let x = &quot;5&quot; + 2 // x = &quot;52&quot;
+
+document.getElementById(&quot;demo&quot;).innerHTML = x;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p2.png" alt=""></p>
+<h3>Example 2</h3>
+<p><strong>Result</strong> <a href="ex2-string_coercion/index.html">View Example</a></p>
+<h2>Numeric Coercion</h2>
+<p>Other arithmetic operators (<code>-</code>, <code>*</code>, <code>/</code>, <code>%</code>) and the unary plus (<code>+x</code>) force values into numbers.</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Type Coercion&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Numeric Coercion&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+let x = &quot;5&quot; - 2 // x = 3
+
+document.getElementById(&quot;demo&quot;).innerHTML = x;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p3.png" alt=""></p>
+<h3>Example 3</h3>
+<p><strong>Result</strong> <a href="ex3-numeric_coercion/index.html">View Example</a></p>
+<h2>Boolean Coercion</h2>
+<p>Values are coerced to booleans in logical contexts like <code>if</code> statements or using the double-NOT operator (<code>!!</code>).</p>
+<ul>
+<li><strong>Falsy values:</strong> <code>0</code>, <code>&quot;&quot;</code>, <code>null</code>, <code>undefined</code>, <code>NaN</code>, and <code>false</code></li>
+<li><strong>Truthy values:</strong> Everything else (including empty objects <code>{}</code> and arrays <code>[]</code>)</li>
+</ul>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Type Coercion&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Boolean Coercion&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+let text = &quot;&quot;;
+
+text += &quot;Boolean(0) = &quot; + Boolean(0) + &quot;&lt;br&gt;&quot;;
+text += &quot;Boolean(\&quot;\&quot;) = &quot; + Boolean(&quot;&quot;) + &quot;&lt;br&gt;&quot;;
+text += &quot;Boolean(null) = &quot; + Boolean(null) + &quot;&lt;br&gt;&quot;;
+text += &quot;Boolean(undefined) = &quot; + Boolean(undefined) + &quot;&lt;br&gt;&quot;;
+text += &quot;Boolean(NaN) = &quot; + Boolean(NaN) + &quot;&lt;br&gt;&quot;;
+text += &quot;Boolean(false) = &quot; + Boolean(false) + &quot;&lt;br&gt;&quot;;
+text += &quot;Boolean({}) = &quot; + Boolean({}) + &quot;&lt;br&gt;&quot;;
+text += &quot;Boolean([]) = &quot; + Boolean([]) + &quot;&lt;br&gt;&quot;;
+
+document.getElementById(&quot;demo&quot;).innerHTML = text;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p4.png" alt=""></p>
+<h3>Example 4</h3>
+<p><strong>Result</strong> <a href="ex4-boolean_coercion/index.html">View Example</a></p>
+<h2>Loose Equality (==)</h2>
+<p>This operator performs coercion to find a &quot;common type&quot; before comparing.</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Type Coercion&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Loose Equality (==)&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+let x = (5 == &quot;5&quot;) // x = true
+
+document.getElementById(&quot;demo&quot;).innerHTML = x;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p5.png" alt=""></p>
+<h3>Example 5</h3>
+<p><strong>Result</strong> <a href="ex5-loose_equality/index.html">View Example</a></p>
+<h2>Best Practices to Avoid Bugs</h2>
+<ul>
+<li><strong>Use <code>===</code> (Strict Equality):</strong> This checks both value and type without coercion, preventing weird results.</li>
+<li><strong>Be Explicit:</strong> Instead of relying on automatic behavior, use MDN&#39;s recommended conversion methods like <code>Number()</code> or <code>String()</code> to make your intent clear.</li>
+<li><strong>Watch for NaN:</strong> If a string cannot be converted to a valid number, like <code>&quot;abc&quot; - 1</code>, the result is <code>NaN</code> (Not-a-Number).</li>
+</ul>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Type Coercion&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Best Practices to Avoid Bugs&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+let text = &quot;&quot;;
+
+// Use === (Strict Equality)
+text += &quot;5 == \&quot;5\&quot; : &quot; + (5 == &quot;5&quot;) + &quot;&lt;br&gt;&quot;;
+text += &quot;5 === \&quot;5\&quot; : &quot; + (5 === &quot;5&quot;) + &quot;&lt;br&gt;&lt;br&gt;&quot;;
+
+// Be Explicit
+text += &quot;Number(\&quot;5\&quot;) + 2 : &quot; + (Number(&quot;5&quot;) + 2) + &quot;&lt;br&gt;&lt;br&gt;&quot;;
+
+// Watch for NaN
+let result = &quot;abc&quot; - 1;
+text += &quot;\&quot;abc\&quot; - 1 : &quot; + result;
+
+document.getElementById(&quot;demo&quot;).innerHTML = text;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p6.png" alt=""></p>
+<h3>Example 6</h3>
+<p><strong>Result</strong> <a href="ex6-best_practices/index.html">View Example</a></p>
+<h2>Document</h2>
+<p>Document in project</p>
+<p>You can <a href="js-type-coercion.pdf">Download PDF</a> file.</p>
+<h2>Reference</h2>
+<ul>
+<li><a href="https://www.w3schools.com/js/js_type_coercion.asp">W3Schools JavaScript Type Coercion</a></li>
+</ul>
+
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript IIFE</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Arrow Function IIFE</h4>
+<p id="demo1"></p>
+<p id="demo2"></p>
+
+<script>
+// Arrow function IIFE
+(() => {
+  document.getElementById("demo1").innerHTML = "Arrow IIFE executed!";
+})();
+
+// Arrow function IIFE with parameter
+((message) => {
+  document.getElementById("demo2").innerHTML = "Message: " + message;
+})("Hello from arrow IIFE!");
+</script>
+
+</body>
+</html>

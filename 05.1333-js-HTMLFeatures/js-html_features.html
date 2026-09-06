@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>js-html_features</title>
+  <style>
+    body {
+      box-sizing: border-box;
+      min-width: 200px;
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 45px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+      font-size: 16px;
+      line-height: 1.5;
+      color: #24292e;
+      background-color: #ffffff;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 24px;
+      margin-bottom: 16px;
+      font-weight: 600;
+      line-height: 1.25;
+      border-bottom: 1px solid #eaecef;
+      padding-bottom: .3em;
+    }
+    h1 { font-size: 2em; }
+    h2 { font-size: 1.5em; }
+    h3 { font-size: 1.25em; }
+    code {
+      padding: .2em .4em;
+      margin: 0;
+      font-size: 85%;
+      background-color: rgba(27,31,35,.05);
+      border-radius: 3px;
+      font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
+    }
+    pre {
+      padding: 16px;
+      overflow: auto;
+      font-size: 85%;
+      line-height: 1.45;
+      background-color: #f6f8fa;
+      border-radius: 3px;
+      word-wrap: normal;
+    }
+    pre code {
+      background-color: transparent;
+      padding: 0;
+    }
+    blockquote {
+      padding: 0 1em;
+      color: #6a737d;
+      border-left: .25em solid #dfe2e5;
+      margin: 0 0 16px 0;
+    }
+    table {
+      border-spacing: 0;
+      border-collapse: collapse;
+      margin-top: 0;
+      margin-bottom: 16px;
+      width: 100%;
+    }
+    table th, table td {
+      padding: 6px 13px;
+      border: 1px solid #dfe2e5;
+    }
+    table tr:nth-child(2n) {
+      background-color: #f6f8fa;
+    }
+    img {
+      max-width: 100%;
+      box-sizing: content-box;
+    }
+    @media print {
+      body {
+        max-width: 100%;
+        padding: 0;
+      }
+      pre, blockquote, table, tr, img {
+        page-break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+<body>
+<h1>JavaScript HTML Features</h1>
+<p><a href="../acp-js.php">Back to JS page</a></p>
+<p>Table of Contents</p>
+<ul>
+<li><a href="#javascript-html-features">JavaScript HTML Features</a><ul>
+<li><a href="#the-details-element">The details Element</a><ul>
+<li><a href="#example-1">Example 1</a></li>
+</ul>
+</li>
+<li><a href="#html-form-validation">HTML Form Validation</a><ul>
+<li><a href="#example-2">Example 2</a></li>
+</ul>
+</li>
+<li><a href="#input-types">Input Types</a><ul>
+<li><a href="#example-3">Example 3</a></li>
+</ul>
+</li>
+<li><a href="#the-datalist-element">The datalist Element</a><ul>
+<li><a href="#example-4">Example 4</a></li>
+</ul>
+</li>
+<li><a href="#the-dialog-element">The dialog Element</a><ul>
+<li><a href="#example-5">Example 5</a></li>
+</ul>
+</li>
+<li><a href="#lazy-loading-images">Lazy Loading Images</a><ul>
+<li><a href="#example-6">Example 6</a></li>
+</ul>
+</li>
+<li><a href="#document">Document</a></li>
+<li><a href="#reference">Reference</a></li>
+</ul>
+</li>
+</ul>
+<h2>The details Element</h2>
+<p>The <code>&lt;details&gt;</code> element creates a disclosure widget that can be opened and closed without JavaScript:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript HTML Features&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;The details Element&lt;/h4&gt;
+
+&lt;details&gt;
+  &lt;summary&gt;Click to open (HTML only)&lt;/summary&gt;
+  &lt;p&gt;This content is shown/hidden using the HTML &lt;details&gt; element. No JavaScript required!&lt;/p&gt;
+  &lt;ul&gt;
+    &lt;li&gt;Item 1&lt;/li&gt;
+    &lt;li&gt;Item 2&lt;/li&gt;
+    &lt;li&gt;Item 3&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/details&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p1.png" alt=""></p>
+<h3>Example 1</h3>
+<p><strong>Result</strong> <a href="ex1-details_element/index.html">View Example</a></p>
+<h2>HTML Form Validation</h2>
+<p>HTML5 provides built-in form validation using attributes like <code>required</code>, <code>min</code>, <code>max</code>, <code>pattern</code>, etc.:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript HTML Features&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;HTML Form Validation&lt;/h4&gt;
+
+&lt;form action=&quot;/action_page.php&quot;&gt;
+  &lt;label for=&quot;fname&quot;&gt;Name (required):&lt;/label&gt;
+  &lt;input type=&quot;text&quot; id=&quot;fname&quot; name=&quot;fname&quot; required&gt;
+  &lt;br&gt;&lt;br&gt;
+
+  &lt;label for=&quot;age&quot;&gt;Age (min=18, max=99):&lt;/label&gt;
+  &lt;input type=&quot;number&quot; id=&quot;age&quot; name=&quot;age&quot; min=&quot;18&quot; max=&quot;99&quot;&gt;
+  &lt;br&gt;&lt;br&gt;
+
+  &lt;label for=&quot;phone&quot;&gt;Phone (pattern 10 digits):&lt;/label&gt;
+  &lt;input type=&quot;tel&quot; id=&quot;phone&quot; name=&quot;phone&quot; pattern=&quot;[0-9]{10}&quot;&gt;
+  &lt;br&gt;&lt;br&gt;
+
+  &lt;input type=&quot;submit&quot; value=&quot;Submit&quot;&gt;
+&lt;/form&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p2.png" alt=""></p>
+<h3>Example 2</h3>
+<p><strong>Result</strong> <a href="ex2-form_validation/index.html">View Example</a></p>
+<h2>Input Types</h2>
+<p>HTML5 introduced many new input types that provide native UI controls and validation:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript HTML Features&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Input Types&lt;/h4&gt;
+
+&lt;form&gt;
+  &lt;label&gt;Color: &lt;input type=&quot;color&quot;&gt;&lt;/label&gt;&lt;br&gt;&lt;br&gt;
+  &lt;label&gt;Date: &lt;input type=&quot;date&quot;&gt;&lt;/label&gt;&lt;br&gt;&lt;br&gt;
+  &lt;label&gt;Range: &lt;input type=&quot;range&quot;&gt;&lt;/label&gt;&lt;br&gt;&lt;br&gt;
+  &lt;label&gt;Email: &lt;input type=&quot;email&quot;&gt;&lt;/label&gt;&lt;br&gt;&lt;br&gt;
+  &lt;label&gt;URL: &lt;input type=&quot;url&quot;&gt;&lt;/label&gt;&lt;br&gt;&lt;br&gt;
+  &lt;label&gt;Search: &lt;input type=&quot;search&quot;&gt;&lt;/label&gt;&lt;br&gt;&lt;br&gt;
+  &lt;label&gt;Tel: &lt;input type=&quot;tel&quot;&gt;&lt;/label&gt;&lt;br&gt;&lt;br&gt;
+  &lt;label&gt;Number: &lt;input type=&quot;number&quot;&gt;&lt;/label&gt;
+&lt;/form&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p3.png" alt=""></p>
+<h3>Example 3</h3>
+<p><strong>Result</strong> <a href="ex3-input_types/index.html">View Example</a></p>
+<h2>The datalist Element</h2>
+<p>The <code>&lt;datalist&gt;</code> element provides an autocomplete feature for input fields:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript HTML Features&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;The datalist Element&lt;/h4&gt;
+
+&lt;form&gt;
+  &lt;label for=&quot;browser&quot;&gt;Choose a browser:&lt;/label&gt;
+  &lt;input list=&quot;browsers&quot; id=&quot;browser&quot; name=&quot;browser&quot;&gt;
+  &lt;datalist id=&quot;browsers&quot;&gt;
+    &lt;option value=&quot;Chrome&quot;&gt;
+    &lt;option value=&quot;Firefox&quot;&gt;
+    &lt;option value=&quot;Edge&quot;&gt;
+    &lt;option value=&quot;Safari&quot;&gt;
+    &lt;option value=&quot;Opera&quot;&gt;
+  &lt;/datalist&gt;
+  &lt;input type=&quot;submit&quot;&gt;
+&lt;/form&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p4.png" alt=""></p>
+<h3>Example 4</h3>
+<p><strong>Result</strong> <a href="ex4-datalist_element/index.html">View Example</a></p>
+<h2>The dialog Element</h2>
+<p>The <code>&lt;dialog&gt;</code> element creates a native modal dialog without JavaScript:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript HTML Features&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;The dialog Element&lt;/h4&gt;
+
+&lt;dialog id=&quot;myDialog&quot;&gt;
+  &lt;p&gt;This is a native HTML dialog!&lt;/p&gt;
+  &lt;button onclick=&quot;document.getElementById(&#39;myDialog&#39;).close()&quot;&gt;Close&lt;/button&gt;
+&lt;/dialog&gt;
+
+&lt;button onclick=&quot;document.getElementById(&#39;myDialog&#39;).showModal()&quot;&gt;Open Dialog&lt;/button&gt;
+
+&lt;p&gt;The &lt;dialog&gt; element is a modern HTML feature for modal dialogs.&lt;/p&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p5.png" alt=""></p>
+<h3>Example 5</h3>
+<p><strong>Result</strong> <a href="ex5-dialog_element/index.html">View Example</a></p>
+<h2>Lazy Loading Images</h2>
+<p>The <code>loading=&quot;lazy&quot;</code> attribute tells the browser to defer loading of images until the user scrolls near them:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript HTML Features&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Lazy Loading Images&lt;/h4&gt;
+
+&lt;p&gt;The loading=&quot;lazy&quot; attribute defers image loading until the user scrolls near the image.&lt;/p&gt;
+
+&lt;img src=&quot;https://www.w3schools.com/js/pic_bulboff.gif&quot; alt=&quot;Bulb off&quot; loading=&quot;lazy&quot; width=&quot;100&quot; height=&quot;180&quot;&gt;
+
+&lt;p&gt;Scroll down to see the lazy-loaded image below (if viewing on a small screen):&lt;/p&gt;
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+
+&lt;img src=&quot;https://www.w3schools.com/images/w3schools_green.jpg&quot; alt=&quot;W3Schools&quot; loading=&quot;lazy&quot; width=&quot;200&quot; height=&quot;200&quot;&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p6.png" alt=""></p>
+<h3>Example 6</h3>
+<p><strong>Result</strong> <a href="ex6-lazy_loading/index.html">View Example</a></p>
+<h2>Document</h2>
+<p>Document in project</p>
+<p>You can <a href="js-html_features.pdf">Download PDF</a> file.</p>
+<h2>Reference</h2>
+<ul>
+<li><a href="https://www.w3schools.com/js/js_htmlfirst_features.asp">W3Schools JavaScript HTML Features</a></li>
+</ul>
+
+</body>
+</html>

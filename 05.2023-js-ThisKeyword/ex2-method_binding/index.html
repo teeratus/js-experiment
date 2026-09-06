@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript this Keyword</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Object Method Binding</h4>
+<p id="demo1"></p>
+<p id="demo2"></p>
+
+<script>
+const person = {
+  firstName: "John",
+  lastName: "Doe",
+  id: 5566,
+  fullName: function() {
+    return this.firstName + " " + this.lastName;
+  }
+};
+
+// Method called on the object - "this" refers to person
+document.getElementById("demo1").innerHTML = person.fullName();
+
+// When method is extracted, "this" is lost
+const myMethod = person.fullName;
+document.getElementById("demo2").innerHTML = "Lost this: " + myMethod();
+</script>
+
+</body>
+</html>

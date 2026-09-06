@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Web Workers</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Worker Errors</h4>
+<button onclick="startWorker4()">Start Worker (with error)</button>
+<p id="demo"></p>
+
+<script>
+let worker4;
+
+function startWorker4() {
+  if (typeof(Worker) !== "undefined") {
+    worker4 = new Worker("worker.js");
+    worker4.onmessage = function(event) {
+      document.getElementById("demo").innerHTML = event.data;
+    };
+    worker4.onerror = function(error) {
+      document.getElementById("demo").innerHTML =
+        "Error in worker: " + error.message + "<br>" +
+        "Line: " + error.lineno + "<br>" +
+        "File: " + error.filename;
+    };
+  } else {
+    document.getElementById("demo").innerHTML = "Web Workers not supported.";
+  }
+}
+</script>
+
+</body>
+</html>

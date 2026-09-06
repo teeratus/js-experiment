@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Map Reference</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Map Add/Remove Methods</h4>
+<p id="demo"></p>
+
+<script>
+const fruits = new Map();
+
+// set() adds entries
+fruits.set("apple", 500);
+fruits.set("banana", 300);
+
+// get() retrieves values
+let text = "get('apple'): " + fruits.get("apple") + "<br>";
+text += "has('banana'): " + fruits.has("banana") + "<br><br>";
+
+// delete() removes one entry
+fruits.delete("banana");
+text += "After delete('banana'): " + [...fruits] + "<br><br>";
+
+// clear() removes all
+fruits.clear();
+text += "After clear(): size = " + fruits.size;
+
+document.getElementById("demo").innerHTML = text;
+</script>
+
+</body>
+</html>

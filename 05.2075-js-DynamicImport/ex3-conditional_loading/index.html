@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Dynamic Import</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Conditional Loading</h4>
+<p>Select a greeting:</p>
+<select id="greetingSelect">
+  <option value="hello">Hello</option>
+  <option value="goodbye">Goodbye</option>
+  <option value="thanks">Thanks</option>
+</select>
+<br><br>
+<label>Name: <input type="text" id="nameInput" value="John"></label>
+<br><br>
+<button onclick="showGreeting()">Show Greeting</button>
+<p id="demo"></p>
+
+<script>
+function showGreeting() {
+  const type = document.getElementById("greetingSelect").value;
+  const name = document.getElementById("nameInput").value || "Guest";
+
+  import('./greetings.js')
+    .then(function(module) {
+      let message = "";
+      if (type === "hello") {
+        message = module.sayHello(name);
+      } else if (type === "goodbye") {
+        message = module.sayGoodbye(name);
+      } else if (type === "thanks") {
+        message = module.sayThanks(name);
+      }
+      document.getElementById("demo").innerHTML = message;
+    })
+    .catch(function(err) {
+      document.getElementById("demo").innerHTML = "Error: " + err.message;
+    });
+}
+</script>
+
+</body>
+</html>

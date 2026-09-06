@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Popup Boxes</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Prompt Box</h4>
+<p id="demo"></p>
+
+<button onclick="showPrompt()">Show Prompt</button>
+
+<script>
+function showPrompt() {
+  let person = prompt("Please enter your name:", "John Doe");
+  if (person != null && person != "") {
+    document.getElementById("demo").innerHTML =
+      "Hello " + person + "! How are you today?";
+  }
+}
+</script>
+
+</body>
+</html>

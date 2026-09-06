@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Array Methods</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Merging Arrays</h4>
+<p id="demo"></p>
+
+<script>
+const arr1 = ["Cecilie", "Lone"];
+const arr2 = ["Emil", "Tobias", "Linus"];
+const arr3 = ["Robin", "Morgan"];
+
+// Merge two arrays
+const merged2 = arr1.concat(arr2);
+
+// Merge three arrays
+const merged3 = arr1.concat(arr2, arr3);
+
+// Merge array with values
+const mergedValues = arr1.concat("Peter");
+
+document.getElementById("demo").innerHTML =
+  "Merged 2 arrays: " + merged2 + "<br>" +
+  "Merged 3 arrays: " + merged3 + "<br>" +
+  "Merged with values: " + mergedValues;
+</script>
+
+</body>
+</html>

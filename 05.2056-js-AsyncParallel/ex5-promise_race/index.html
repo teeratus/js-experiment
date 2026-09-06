@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Async Parallel</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Promise.race()</h4>
+<p id="demo"></p>
+
+<script>
+const promise1 = new Promise(function(resolve) {
+  setTimeout(function() { resolve("Fast Promise won!"); }, 1000);
+});
+
+const promise2 = new Promise(function(resolve) {
+  setTimeout(function() { resolve("Slow Promise"); }, 3000);
+});
+
+Promise.race([promise1, promise2]).then(function(value) {
+  document.getElementById("demo").innerHTML =
+    "Winner: " + value + "<br>" +
+    "Promise.race() returns the fastest result";
+});
+</script>
+
+</body>
+</html>

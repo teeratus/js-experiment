@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Metaprogramming</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Proxy Metaprogramming</h4>
+<p id="demo"></p>
+
+<script>
+const person = {
+  firstName: "John",
+  lastName: "Doe",
+  age: 30
+};
+
+const handler = {
+  get: function(target, property) {
+    if (property === "fullName") {
+      return target.firstName + " " + target.lastName;
+    }
+    return target[property];
+  },
+  set: function(target, property, value) {
+    if (property === "age" && (value < 0 || value > 120)) {
+      console.log("Invalid age: " + value);
+      return false;
+    }
+    target[property] = value;
+    return true;
+  }
+};
+
+const proxy = new Proxy(person, handler);
+
+// Use the proxy
+proxy.age = 25;  // Valid
+proxy.age = 200; // Invalid - will be rejected
+
+document.getElementById("demo").innerHTML =
+  "firstName: " + proxy.firstName + "<br>" +
+  "fullName: " + proxy.fullName + "<br>" +
+  "age: " + proxy.age;
+</script>
+
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript API History</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>History Object Methods</h4>
+<p id="demo"></p>
+
+<script>
+let text = "History Object Methods:<br><br>";
+
+text += "<b>history.back()</b><br>";
+text += "- Loads the previous URL<br>";
+text += "- Same as clicking the Back button<br><br>";
+
+text += "<b>history.forward()</b><br>";
+text += "- Loads the next URL<br>";
+text += "- Same as clicking the Forward button<br><br>";
+
+text += "<b>history.go(n)</b><br>";
+text += "- Loads a specific page from history<br>";
+text += "- Negative numbers go back<br>";
+text += "- Positive numbers go forward<br>";
+text += "- go(0) reloads the current page<br><br>";
+
+text += "Current history length: " + window.history.length;
+
+document.getElementById("demo").innerHTML = text;
+</script>
+
+</body>
+</html>

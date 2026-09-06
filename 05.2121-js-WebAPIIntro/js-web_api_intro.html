@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>js-web_api_intro</title>
+  <style>
+    body {
+      box-sizing: border-box;
+      min-width: 200px;
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 45px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+      font-size: 16px;
+      line-height: 1.5;
+      color: #24292e;
+      background-color: #ffffff;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 24px;
+      margin-bottom: 16px;
+      font-weight: 600;
+      line-height: 1.25;
+      border-bottom: 1px solid #eaecef;
+      padding-bottom: .3em;
+    }
+    h1 { font-size: 2em; }
+    h2 { font-size: 1.5em; }
+    h3 { font-size: 1.25em; }
+    code {
+      padding: .2em .4em;
+      margin: 0;
+      font-size: 85%;
+      background-color: rgba(27,31,35,.05);
+      border-radius: 3px;
+      font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
+    }
+    pre {
+      padding: 16px;
+      overflow: auto;
+      font-size: 85%;
+      line-height: 1.45;
+      background-color: #f6f8fa;
+      border-radius: 3px;
+      word-wrap: normal;
+    }
+    pre code {
+      background-color: transparent;
+      padding: 0;
+    }
+    blockquote {
+      padding: 0 1em;
+      color: #6a737d;
+      border-left: .25em solid #dfe2e5;
+      margin: 0 0 16px 0;
+    }
+    table {
+      border-spacing: 0;
+      border-collapse: collapse;
+      margin-top: 0;
+      margin-bottom: 16px;
+      width: 100%;
+    }
+    table th, table td {
+      padding: 6px 13px;
+      border: 1px solid #dfe2e5;
+    }
+    table tr:nth-child(2n) {
+      background-color: #f6f8fa;
+    }
+    img {
+      max-width: 100%;
+      box-sizing: content-box;
+    }
+    @media print {
+      body {
+        max-width: 100%;
+        padding: 0;
+      }
+      pre, blockquote, table, tr, img {
+        page-break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+<body>
+<h1>JavaScript Web API Intro</h1>
+<p><a href="../acp-js.php">Back to JS page</a></p>
+<p>Table of Contents</p>
+<ul>
+<li><a href="#javascript-web-api-intro">JavaScript Web API Intro</a><ul>
+<li><a href="#what-is-web-api">What is Web API?</a><ul>
+<li><a href="#example-1">Example 1</a></li>
+</ul>
+</li>
+<li><a href="#browser-apis">Browser APIs</a><ul>
+<li><a href="#example-2">Example 2</a></li>
+</ul>
+</li>
+<li><a href="#web-storage-api">Web Storage API</a><ul>
+<li><a href="#example-3">Example 3</a></li>
+</ul>
+</li>
+<li><a href="#third-party-apis">Third Party APIs</a><ul>
+<li><a href="#example-4">Example 4</a></li>
+</ul>
+</li>
+<li><a href="#document">Document</a></li>
+<li><a href="#reference">Reference</a></li>
+</ul>
+</li>
+</ul>
+<h2>What is Web API?</h2>
+<p>API stands for <strong>A</strong>pplication <strong>P</strong>rogramming <strong>I</strong>nterface.</p>
+<p>A Web API is an application programming interface for the web.</p>
+<p><strong>Browser APIs</strong> are built into your web browser. They extend the functionality of the browser.</p>
+<p><strong>Third Party APIs</strong> are not built into your browser. You need to download their code from the web.</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Web API Intro&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;What is Web API?&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+// The Browser API is built into the browser
+// It extends the browser&#39;s functionality
+
+let text = &quot;Browser APIs built into your browser:&lt;br&gt;&lt;br&gt;&quot;;
+text += &quot;1. DOM API - Manipulate HTML elements&lt;br&gt;&quot;;
+text += &quot;2. Fetch API - Make HTTP requests&lt;br&gt;&quot;;
+text += &quot;3. Web Storage API - Store data locally&lt;br&gt;&quot;;
+text += &quot;4. History API - Navigate browser history&lt;br&gt;&quot;;
+text += &quot;5. Geolocation API - Get user location&lt;br&gt;&quot;;
+text += &quot;6. Canvas API - Draw graphics&lt;br&gt;&quot;;
+text += &quot;7. Console API - Debug code&lt;br&gt;&quot;;
+text += &quot;8. Timer API - setTimeout/setInterval&lt;br&gt;&quot;;
+text += &quot;9. Screen API - Get screen info&lt;br&gt;&quot;;
+text += &quot;10. Navigator API - Get browser info&lt;br&gt;&quot;;
+
+document.getElementById(&quot;demo&quot;).innerHTML = text;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p1.png" alt=""></p>
+<h3>Example 1</h3>
+<p><strong>Result</strong> <a href="ex1-what_is_api/index.html">View Example</a></p>
+<h2>Browser APIs</h2>
+<p>All browsers have a set of built-in Web APIs. Here are some of the most important ones:</p>
+<table>
+<thead>
+<tr>
+<th>API</th>
+<th>Description</th>
+<th>Topic</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>DOM API</strong></td>
+<td>Access and modify HTML elements</td>
+<td><code>05.2101-05.2104</code></td>
+</tr>
+<tr>
+<td><strong>Fetch API</strong></td>
+<td>Make HTTP requests to servers</td>
+<td><code>05.2061</code></td>
+</tr>
+<tr>
+<td><strong>Web Storage API</strong></td>
+<td>Store data in the browser (localStorage/sessionStorage)</td>
+<td>This topic</td>
+</tr>
+<tr>
+<td><strong>History API</strong></td>
+<td>Navigate browser history</td>
+<td><code>05.2114</code></td>
+</tr>
+<tr>
+<td><strong>Geolocation API</strong></td>
+<td>Get user&#39;s geographic position</td>
+<td>This topic</td>
+</tr>
+<tr>
+<td><strong>Canvas API</strong></td>
+<td>Draw graphics on a web page</td>
+<td>External</td>
+</tr>
+<tr>
+<td><strong>Console API</strong></td>
+<td>Debug and log information</td>
+<td>Built-in</td>
+</tr>
+<tr>
+<td><strong>Screen API</strong></td>
+<td>Get screen information</td>
+<td><code>05.2112</code></td>
+</tr>
+<tr>
+<td><strong>Navigator API</strong></td>
+<td>Get browser/device info</td>
+<td><code>05.2115</code></td>
+</tr>
+</tbody></table>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Web API Intro&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Browser APIs&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+// Geolocation API example
+let text = &quot;Geolocation API - Checking browser support...&lt;br&gt;&lt;br&gt;&quot;;
+
+if (navigator.geolocation) {
+  text += &quot;✓ Geolocation is supported in this browser&lt;br&gt;&quot;;
+  text += &quot;✓ Fetch API is supported: &quot; + (&#39;fetch&#39; in window) + &quot;&lt;br&gt;&quot;;
+  text += &quot;✓ Web Storage is supported: &quot; + (&#39;localStorage&#39; in window) + &quot;&lt;br&gt;&quot;;
+  text += &quot;✓ History API is supported: &quot; + (&#39;history&#39; in window) + &quot;&lt;br&gt;&quot;;
+  text += &quot;✓ Console API is supported: &quot; + (&#39;console&#39; in window) + &quot;&lt;br&gt;&quot;;
+} else {
+  text += &quot;✗ Geolocation is NOT supported&quot;;
+}
+
+document.getElementById(&quot;demo&quot;).innerHTML = text;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p2.png" alt=""></p>
+<h3>Example 2</h3>
+<p><strong>Result</strong> <a href="ex2-browser_apis/index.html">View Example</a></p>
+<h2>Web Storage API</h2>
+<p>The Web Storage API provides mechanisms for browsers to store key/value pairs:</p>
+<ul>
+<li><code>localStorage</code> - stores data with no expiration date</li>
+<li><code>sessionStorage</code> - stores data for one session (data is lost when the browser tab is closed)</li>
+</ul>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Web API Intro&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Web Storage API&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+// Store data using localStorage
+localStorage.setItem(&quot;name&quot;, &quot;John Doe&quot;);
+localStorage.setItem(&quot;age&quot;, &quot;30&quot;);
+
+// Retrieve data
+let name = localStorage.getItem(&quot;name&quot;);
+let age = localStorage.getItem(&quot;age&quot;);
+
+let text = &quot;Web Storage API (localStorage):&lt;br&gt;&lt;br&gt;&quot;;
+text += &quot;Stored name: &quot; + name + &quot;&lt;br&gt;&quot;;
+text += &quot;Stored age: &quot; + age + &quot;&lt;br&gt;&lt;br&gt;&quot;;
+
+// Count stored items
+text += &quot;Number of items: &quot; + localStorage.length + &quot;&lt;br&gt;&lt;br&gt;&quot;;
+
+// Remove an item
+localStorage.removeItem(&quot;age&quot;);
+text += &quot;After removing &#39;age&#39;: &quot; + localStorage.getItem(&quot;age&quot;) + &quot; (null)&lt;br&gt;&lt;br&gt;&quot;;
+
+// Clear all storage
+localStorage.clear();
+text += &quot;After clearing all storage: &quot; + localStorage.length + &quot; items&quot;;
+
+document.getElementById(&quot;demo&quot;).innerHTML = text;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p3.png" alt=""></p>
+<h3>Example 3</h3>
+<p><strong>Result</strong> <a href="ex3-web_storage/index.html">View Example</a></p>
+<h2>Third Party APIs</h2>
+<p>Third Party APIs require you to download code from the web. Examples include:</p>
+<ul>
+<li><strong>Google Maps API</strong> - Display maps on web pages</li>
+<li><strong>YouTube API</strong> - Embed YouTube videos</li>
+<li><strong>Twitter API</strong> - Display tweets</li>
+<li><strong>Facebook API</strong> - Login with Facebook</li>
+<li><strong>Weather API</strong> - Get weather data</li>
+</ul>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Web API Intro&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Third Party APIs&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;button onclick=&quot;fetchUsers()&quot;&gt;Fetch Users (JSONPlaceholder API)&lt;/button&gt;
+&lt;p id=&quot;result&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+function fetchUsers() {
+  // Using the free JSONPlaceholder API (a third-party API)
+  fetch(&#39;https://jsonplaceholder.typicode.com/users&#39;)
+    .then(function(response) { return response.json(); })
+    .then(function(data) {
+      let text = &quot;Third Party API Result (JSONPlaceholder):&lt;br&gt;&lt;br&gt;&quot;;
+      for (let i = 0; i &lt; 3; i++) {
+        text += (i + 1) + &quot;. &quot; + data[i].name + &quot; - &quot; + data[i].email + &quot;&lt;br&gt;&quot;;
+      }
+      text += &quot;&lt;br&gt;... and &quot; + (data.length - 3) + &quot; more users&quot;;
+      document.getElementById(&quot;result&quot;).innerHTML = text;
+    })
+    .catch(function(error) {
+      document.getElementById(&quot;result&quot;).innerHTML = &quot;Error: &quot; + error.message;
+    });
+
+  document.getElementById(&quot;demo&quot;).innerHTML = &quot;Fetching data from JSONPlaceholder API...&quot;;
+}
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p4.png" alt=""></p>
+<h3>Example 4</h3>
+<p><strong>Result</strong> <a href="ex4-third_party_apis/index.html">View Example</a></p>
+<h2>Document</h2>
+<p>Document in project</p>
+<p>You can <a href="js-web_api_intro.pdf">Download PDF</a> file.</p>
+<h2>Reference</h2>
+<ul>
+<li><a href="https://www.w3schools.com/js/js_api_intro.asp">W3Schools JavaScript Web API Intro</a></li>
+</ul>
+
+</body>
+</html>

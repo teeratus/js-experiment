@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Primitive Types</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>JavaScript Strings</h4>
+<p id="demo"></p>
+
+<script>
+// Strings can be written in single or double quotes
+const name1 = "John Doe";
+const name2 = 'John Doe';
+
+// Numbers in quotes are still strings
+const num1 = "25";
+const num2 = "25.5";
+
+let text = "name1: " + name1 + "<br>";
+text += "name2: " + name2 + "<br>";
+text += "typeof '25': " + typeof num1 + "<br>";
+text += "typeof '25.5': " + typeof num2 + "<br><br>";
+
+text += "Strings can be concatenated:<br>";
+text += name1 + " is " + 25 + " years old";
+
+document.getElementById("demo").innerHTML = text;
+</script>
+
+</body>
+</html>

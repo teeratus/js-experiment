@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript DOM Nodes</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Removing a Child Node</h4>
+
+<div id="div4">
+  <p id="p8">Item A</p>
+  <p id="p9">Item B - will be removed via parent</p>
+  <p id="p10">Item C</p>
+</div>
+
+<button onclick="removeChildElement()">Remove Item B</button>
+
+<script>
+function removeChildElement() {
+  const parent = document.getElementById("div4");
+  const child = document.getElementById("p9");
+  parent.removeChild(child);
+}
+</script>
+
+</body>
+</html>

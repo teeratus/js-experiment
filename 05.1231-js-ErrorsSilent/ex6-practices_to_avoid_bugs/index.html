@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Silent Errors</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Practices to Avoid Bugs</h4>
+<p id="demo"></p>
+
+<script>
+let text = "";
+
+// Use === (Strict Equality)
+text += "5 == \"5\" : " + (5 == "5") + " (loose)<br>";
+text += "5 === \"5\" : " + (5 === "5") + " (strict)<br><br>";
+
+// Be Explicit
+text += "Number(\"5\") + 2 : " + (Number("5") + 2) + "<br><br>";
+
+// Watch for NaN
+let result = "abc" - 1;
+if (isNaN(result)) {
+  text += "\"abc\" - 1 is NaN, handle it gracefully.";
+}
+
+document.getElementById("demo").innerHTML = text;
+</script>
+
+</body>
+</html>

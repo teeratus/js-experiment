@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Iterators</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Iterator Helper Methods</h4>
+<p id="demo"></p>
+
+<script>
+let text = "";
+
+if (Iterator.from) {
+  const iterator = Iterator.from([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
+  
+  // Using helper methods
+  const doubled = iterator.map(v => v * 2);
+  
+  text += "Iterator helpers:<br><br>";
+  text += "map(v * 2): ";
+  let result = doubled.next();
+  while (!result.done) {
+    text += result.value + " ";
+    result = doubled.next();
+  }
+  text += "<br><br>";
+}
+
+text += "<b>Available helper methods:</b><br>";
+text += "map(), filter(), take(), drop()<br>";
+text += "every(), some(), find(), reduce()<br>";
+text += "forEach(), flatMap()";
+
+document.getElementById("demo").innerHTML = text;
+</script>
+
+</body>
+</html>

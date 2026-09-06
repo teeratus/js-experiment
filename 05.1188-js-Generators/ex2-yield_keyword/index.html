@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Generators</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>The yield Keyword</h4>
+<p id="demo"></p>
+
+<script>
+function* fruitGenerator() {
+  yield "Apple";
+  yield "Banana";
+  yield "Orange";
+}
+
+const gen = fruitGenerator();
+
+let text = "Using yield with next():<br><br>";
+text += gen.next().value + "<br>";
+text += gen.next().value + "<br>";
+text += gen.next().value + "<br>";
+text += "done: " + gen.next().done;
+
+document.getElementById("demo").innerHTML = text;
+</script>
+
+</body>
+</html>

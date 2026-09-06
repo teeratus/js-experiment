@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript WeakMap</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>WeakMap Secret Data</h4>
+<p id="demo"></p>
+
+<script>
+// Store secret data in a WeakMap
+const secrets = new WeakMap();
+
+function Person(name, age, secret) {
+  this.name = name;
+  this.age = age;
+  // Store secret data in WeakMap (not directly on object)
+  secrets.set(this, secret);
+}
+
+const person1 = new Person("John", 30, "secret code: 1234");
+const person2 = new Person("Jane", 25, "secret password: abc");
+
+let text = "Person 1: " + person1.name + ", " + person1.age + "<br>";
+text += "Person 2: " + person2.name + ", " + person2.age + "<br><br>";
+
+// Access secret data via WeakMap
+text += "Secret 1 (via WeakMap): " + secrets.get(person1) + "<br>";
+text += "Secret 2 (via WeakMap): " + secrets.get(person2) + "<br><br>";
+
+// Secrets are NOT visible directly on the object
+text += "person1.secret: " + person1.secret + " (undefined - private!)<br>";
+
+document.getElementById("demo").innerHTML = text;
+</script>
+
+</body>
+</html>

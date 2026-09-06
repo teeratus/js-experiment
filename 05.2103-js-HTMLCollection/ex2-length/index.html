@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript HTMLCollection</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>HTMLCollection Length</h4>
+
+<div id="list">
+  <p>Apple</p>
+  <p>Banana</p>
+  <p>Orange</p>
+  <p>Grape</p>
+  <p>Mango</p>
+</div>
+
+<p id="demo"></p>
+
+<script>
+const collection = document.getElementById("list").getElementsByTagName("p");
+let text = "Items (" + collection.length + "):<br>";
+for (let i = 0; i < collection.length; i++) {
+  text += (i + 1) + ". " + collection[i].innerHTML + "<br>";
+}
+document.getElementById("demo").innerHTML = text;
+</script>
+
+</body>
+</html>

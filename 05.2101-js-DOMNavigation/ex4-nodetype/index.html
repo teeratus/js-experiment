@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript DOM Navigation</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>The nodeType Property</h4>
+<p id="demo1"></p>
+<p id="demo2"></p>
+<p id="demo3"></p>
+<p id="demo4"></p>
+
+<script>
+document.getElementById("demo1").innerHTML =
+  "document.nodeType: " + document.nodeType + " (Document)";
+
+document.getElementById("demo2").innerHTML =
+  "document.body.nodeType: " + document.body.nodeType + " (Element)";
+
+const element = document.getElementById("demo1");
+document.getElementById("demo3").innerHTML =
+  "First child nodeType: " + element.childNodes[0].nodeType + " (Text)";
+
+const comments = [];
+for (let node of document.body.childNodes) {
+  if (node.nodeType === 8) {
+    comments.push(node);
+  }
+}
+document.getElementById("demo4").innerHTML =
+  "Number of comment nodes: " + comments.length + " (Comment)";
+</script>
+
+</body>
+</html>

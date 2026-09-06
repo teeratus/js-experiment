@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Set Logic</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>The intersection() Method</h4>
+<p id="demo"></p>
+
+<script>
+const setA = new Set(["a", "b", "c"]);
+const setB = new Set(["c", "d", "e"]);
+
+let text = "Set A: " + [...setA] + "<br>";
+text += "Set B: " + [...setB] + "<br><br>";
+
+if (setA.intersection) {
+  const result = setA.intersection(setB);
+  text += "intersection(): " + [...result] + "<br>";
+  text += "Only elements present in BOTH sets";
+} else {
+  text += "intersection() is not supported in this browser yet.";
+}
+
+document.getElementById("demo").innerHTML = text;
+</script>
+
+</body>
+</html>

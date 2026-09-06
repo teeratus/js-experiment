@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Timers</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Canceling a Timeout</h4>
+<button onclick="startTimer()">Start Timer</button>
+<button onclick="cancelTimer()">Cancel Timer</button>
+<p id="demo"></p>
+
+<script>
+let timeoutId;
+
+function startTimer() {
+  timeoutId = setTimeout(function() {
+    document.getElementById("demo").innerHTML = "Timer finished!";
+  }, 3000);
+  document.getElementById("demo").innerHTML = "Timer started...";
+}
+
+function cancelTimer() {
+  clearTimeout(timeoutId);
+  document.getElementById("demo").innerHTML = "Timer canceled!";
+}
+</script>
+
+</body>
+</html>

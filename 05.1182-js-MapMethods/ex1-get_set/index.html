@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Map Methods</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Map.get() and Map.set()</h4>
+<p id="demo"></p>
+
+<script>
+const fruits = new Map();
+
+// set() adds new entries
+fruits.set("apple", 500);
+fruits.set("banana", 300);
+
+// set() can update an existing entry
+fruits.set("apple", 600);
+
+document.getElementById("demo").innerHTML =
+  "get('apple'): " + fruits.get("apple") + "<br>" +
+  "get('banana'): " + fruits.get("banana") + "<br><br>" +
+  "set() both adds AND updates entries";
+</script>
+
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Arrays</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Accessing and Changing Array Elements</h4>
+<p id="demo1"></p>
+<p id="demo2"></p>
+
+<script>
+const cars = ["Volvo", "BMW", "Toyota"];
+
+// Access elements by index (0-based)
+const firstCar = cars[0];
+const lastCar = cars[2];
+
+// Change an element
+cars[1] = "Honda";
+
+document.getElementById("demo1").innerHTML =
+  "First car: " + firstCar + "<br>" +
+  "Last car: " + lastCar;
+
+document.getElementById("demo2").innerHTML =
+  "After cars[1] = 'Honda': " + cars;
+</script>
+
+</body>
+</html>

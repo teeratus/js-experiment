@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>js-callbacks</title>
+  <style>
+    body {
+      box-sizing: border-box;
+      min-width: 200px;
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 45px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+      font-size: 16px;
+      line-height: 1.5;
+      color: #24292e;
+      background-color: #ffffff;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 24px;
+      margin-bottom: 16px;
+      font-weight: 600;
+      line-height: 1.25;
+      border-bottom: 1px solid #eaecef;
+      padding-bottom: .3em;
+    }
+    h1 { font-size: 2em; }
+    h2 { font-size: 1.5em; }
+    h3 { font-size: 1.25em; }
+    code {
+      padding: .2em .4em;
+      margin: 0;
+      font-size: 85%;
+      background-color: rgba(27,31,35,.05);
+      border-radius: 3px;
+      font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
+    }
+    pre {
+      padding: 16px;
+      overflow: auto;
+      font-size: 85%;
+      line-height: 1.45;
+      background-color: #f6f8fa;
+      border-radius: 3px;
+      word-wrap: normal;
+    }
+    pre code {
+      background-color: transparent;
+      padding: 0;
+    }
+    blockquote {
+      padding: 0 1em;
+      color: #6a737d;
+      border-left: .25em solid #dfe2e5;
+      margin: 0 0 16px 0;
+    }
+    table {
+      border-spacing: 0;
+      border-collapse: collapse;
+      margin-top: 0;
+      margin-bottom: 16px;
+      width: 100%;
+    }
+    table th, table td {
+      padding: 6px 13px;
+      border: 1px solid #dfe2e5;
+    }
+    table tr:nth-child(2n) {
+      background-color: #f6f8fa;
+    }
+    img {
+      max-width: 100%;
+      box-sizing: content-box;
+    }
+    @media print {
+      body {
+        max-width: 100%;
+        padding: 0;
+      }
+      pre, blockquote, table, tr, img {
+        page-break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+<body>
+<h1>JavaScript Callbacks</h1>
+<p><a href="../acp-js.php">Back to JS page</a></p>
+<p>Table of Contents</p>
+<ul>
+<li><a href="#javascript-callbacks">JavaScript Callbacks</a><ul>
+<li><a href="#what-is-a-callback-function">What is a Callback Function?</a><ul>
+<li><a href="#example-1">Example 1</a></li>
+</ul>
+</li>
+<li><a href="#event-handling">Event Handling</a><ul>
+<li><a href="#example-2">Example 2</a></li>
+</ul>
+</li>
+<li><a href="#asynchronous-operations">Asynchronous Operations</a><ul>
+<li><a href="#example-3">Example 3</a></li>
+</ul>
+</li>
+<li><a href="#array-methods">Array Methods</a><ul>
+<li><a href="#example-4">Example 4</a></li>
+</ul>
+</li>
+<li><a href="#sequence-control">Sequence Control</a><ul>
+<li><a href="#example-5">Example 5</a></li>
+</ul>
+</li>
+<li><a href="#document">Document</a></li>
+<li><a href="#reference">Reference</a></li>
+</ul>
+</li>
+</ul>
+<h2>What is a Callback Function?</h2>
+<p>A <strong>callback</strong> is a function passed as an argument to another function.</p>
+<p>This technique allows a function to call another function after a task has been completed.</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Callbacks&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;What is a Callback Function?&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+function myCalculator(num, myCallback) {
+  let result = num * 2;
+  myCallback(result);
+}
+
+function displayResult(result) {
+  document.getElementById(&quot;demo&quot;).innerHTML = &quot;Result: &quot; + result;
+}
+
+myCalculator(5, displayResult);
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p1.png" alt=""></p>
+<h3>Example 1</h3>
+<p><strong>Result</strong> <a href="ex1-callback_intro/index.html">View Example</a></p>
+<h2>Event Handling</h2>
+<p>Callbacks are commonly used in event handlers. The <code>addEventListener()</code> method takes a callback function as its second parameter:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Callbacks&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Event Handling&lt;/h4&gt;
+&lt;button id=&quot;myBtn&quot;&gt;Click me&lt;/button&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+function handleClick() {
+  document.getElementById(&quot;demo&quot;).innerHTML = &quot;Button was clicked!&quot;;
+}
+
+document.getElementById(&quot;myBtn&quot;).addEventListener(&quot;click&quot;, handleClick);
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p2.png" alt=""></p>
+<h3>Example 2</h3>
+<p><strong>Result</strong> <a href="ex2-event_handling/index.html">View Example</a></p>
+<h2>Asynchronous Operations</h2>
+<p>Callbacks are essential for asynchronous operations. The <code>setTimeout()</code> function runs a callback after a delay:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Callbacks&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Asynchronous Operations&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+function showMessage() {
+  document.getElementById(&quot;demo&quot;).innerHTML = &quot;This message appears after 2 seconds!&quot;;
+}
+
+setTimeout(showMessage, 2000);
+document.getElementById(&quot;demo&quot;).innerHTML = &quot;Waiting...&quot;;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p3.png" alt=""></p>
+<h3>Example 3</h3>
+<p><strong>Result</strong> <a href="ex3-async_operations/index.html">View Example</a></p>
+<h2>Array Methods</h2>
+<p>Array methods like <code>forEach()</code> use callbacks to execute a function on each element:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Callbacks&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Array Methods (forEach)&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+const numbers = [1, 2, 3, 4, 5];
+let text = &quot;&quot;;
+
+numbers.forEach(function(value, index) {
+  text += &quot;Index &quot; + index + &quot;: &quot; + value + &quot;&lt;br&gt;&quot;;
+});
+
+document.getElementById(&quot;demo&quot;).innerHTML = text;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p4.png" alt=""></p>
+<h3>Example 4</h3>
+<p><strong>Result</strong> <a href="ex4-array_methods/index.html">View Example</a></p>
+<h2>Sequence Control</h2>
+<p>Callbacks can be used to control the sequence of function execution, ensuring one task completes before the next begins:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Callbacks&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Sequence Control&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+function step1(callback) {
+  setTimeout(function() {
+    document.getElementById(&quot;demo&quot;).innerHTML += &quot;Step 1 complete&lt;br&gt;&quot;;
+    callback();
+  }, 1000);
+}
+
+function step2(callback) {
+  setTimeout(function() {
+    document.getElementById(&quot;demo&quot;).innerHTML += &quot;Step 2 complete&lt;br&gt;&quot;;
+    callback();
+  }, 1000);
+}
+
+function step3() {
+  setTimeout(function() {
+    document.getElementById(&quot;demo&quot;).innerHTML += &quot;Step 3 complete&lt;br&gt;&quot;;
+    document.getElementById(&quot;demo&quot;).innerHTML += &quot;All steps finished!&quot;;
+  }, 1000);
+}
+
+// Chain the callbacks
+step1(function() {
+  step2(function() {
+    step3();
+  });
+});
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p5.png" alt=""></p>
+<h3>Example 5</h3>
+<p><strong>Result</strong> <a href="ex5-sequence_control/index.html">View Example</a></p>
+<h2>Document</h2>
+<p>Document in project</p>
+<p>You can <a href="js-callbacks.pdf">Download PDF</a> file.</p>
+<h2>Reference</h2>
+<ul>
+<li><a href="https://www.w3schools.com/js/js_callback.asp">W3Schools JavaScript Callbacks</a></li>
+</ul>
+
+</body>
+</html>

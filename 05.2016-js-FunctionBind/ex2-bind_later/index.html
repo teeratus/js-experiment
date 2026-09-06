@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Function bind()</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>bind() for Functions Called Later</h4>
+<p id="demo"></p>
+
+<script>
+const person = {
+  firstName: "John",
+  lastName: "Doe",
+  display: function() {
+    document.getElementById("demo").innerHTML = this.firstName + " " + this.lastName;
+  }
+};
+
+// Without bind - setTimeout would lose "this" context
+// setTimeout(person.display, 3000); // this would be window
+
+// With bind - "this" is properly preserved
+setTimeout(person.display.bind(person), 3000);
+document.getElementById("demo").innerHTML = "Waiting 3 seconds...";
+</script>
+
+</body>
+</html>

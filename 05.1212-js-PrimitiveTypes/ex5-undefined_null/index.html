@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Primitive Types</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Undefined, Empty Values, and null</h4>
+<p id="demo"></p>
+
+<script>
+// Undefined - variable without a value
+let car;   // undefined
+
+// null - explicitly empty value
+let person = null;
+
+// Empty string
+let text = "";
+
+let output = "let car; → " + car + " (" + typeof car + ")<br>";
+output += "let person = null; → " + person + " (" + typeof person + ")<br>";
+output += "let text = ''; → '" + text + "' (" + typeof text + ")<br><br>";
+
+// Setting to undefined
+let x = "Hello";
+x = undefined;
+output += "x = 'Hello'; x = undefined → " + x + " (" + typeof x + ")";
+
+document.getElementById("demo").innerHTML = output;
+</script>
+
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript typeof</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>The typeof Operator</h4>
+<p id="demo"></p>
+
+<script>
+// Primitive data types
+let text = "";
+
+text += "typeof 'John': " + typeof "John" + "<br>";
+text += "typeof 3.14: " + typeof 3.14 + "<br>";
+text += "typeof true: " + typeof true + "<br>";
+text += "typeof 123n: " + typeof 123n + "<br>";
+text += "typeof undefined: " + typeof undefined + "<br>";
+text += "typeof Symbol(): " + typeof Symbol() + "<br><br>";
+
+// Complex data types
+text += "typeof [1,2,3]: " + typeof [1,2,3] + "<br>";
+text += "typeof {name:'x'}: " + typeof {name:"x"} + "<br>";
+text += "typeof new Date(): " + typeof new Date() + "<br>";
+text += "typeof function(){}: " + typeof function(){} + "<br>";
+text += "typeof null: " + typeof null;
+
+document.getElementById("demo").innerHTML = text;
+</script>
+
+</body>
+</html>

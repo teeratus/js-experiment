@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript typeof</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Difference Between Undefined and Null</h4>
+<p id="demo"></p>
+
+<script>
+// undefined - variable not assigned
+let car;
+
+// null - explicitly declared empty
+let person = null;
+
+// empty - empty string
+let fruit = "";
+
+let text = "let car; → typeof: " + typeof car + "<br>";
+text += "let person = null; → typeof: " + typeof person + "<br>";
+text += "let fruit = ''; → typeof: " + typeof fruit + "<br><br>";
+
+text += "car === undefined: " + (car === undefined) + "<br>";
+text += "person === null: " + (person === null) + "<br>";
+text += "undefined == null: " + (undefined == null) + " (loose equal)<br>";
+text += "undefined === null: " + (undefined === null) + " (strict equal)";
+
+document.getElementById("demo").innerHTML = text;
+</script>
+
+</body>
+</html>

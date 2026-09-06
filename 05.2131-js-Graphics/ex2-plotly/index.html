@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Graphics</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Plotly.js</h4>
+
+<div id="plotlyChart"></div>
+<p id="demo2"></p>
+
+<script src="https://cdn.plot.ly/plotly-2.27.0.min.js"></script>
+
+<script>
+const xValues = [1, 2, 3, 4, 5, 6, 7];
+const yValues = [10, 15, 13, 17, 14, 20, 18];
+
+const data = [{
+  x: xValues,
+  y: yValues,
+  type: "bar",
+  marker: {
+    color: "#4CAF50"
+  }
+}];
+
+const layout = {
+  title: "Weekly Sales (Plotly.js)",
+  xaxis: {title: "Day"},
+  yaxis: {title: "Sales"}
+};
+
+Plotly.newPlot("plotlyChart", data, layout);
+document.getElementById("demo2").innerHTML = "Plotly.js bar chart created!";
+</script>
+
+</body>
+</html>

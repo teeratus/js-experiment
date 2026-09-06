@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Object Management</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>A Counter Example</h4>
+<p id="demo"></p>
+
+<script>
+const obj = { counter: 0 };
+
+Object.defineProperty(obj, "increment", {
+  get: function() {
+    this.counter++;
+    return this.counter;
+  }
+});
+
+Object.defineProperty(obj, "decrement", {
+  get: function() {
+    this.counter--;
+    return this.counter;
+  }
+});
+
+Object.defineProperty(obj, "reset", {
+  get: function() {
+    this.counter = 0;
+    return this.counter;
+  }
+});
+
+document.getElementById("demo").innerHTML =
+  "Initial: " + obj.reset + "<br>" +
+  "After increment: " + obj.increment + "<br>" +
+  "After increment: " + obj.increment + "<br>" +
+  "After decrement: " + obj.decrement + "<br>" +
+  "After reset: " + obj.reset;
+</script>
+
+</body>
+</html>

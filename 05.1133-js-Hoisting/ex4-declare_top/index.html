@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Hoisting</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Declare Your Variables At the Top</h4>
+<p id="demo"></p>
+
+<script>
+// Good practice: declare all variables at the top
+var firstName = "John";
+var lastName = "Doe";
+var age = 30;
+var city = "New York";
+
+// Then use them below
+document.getElementById("demo").innerHTML =
+  "Good practice - declarations at top:<br><br>" +
+  firstName + " " + lastName + "<br>" +
+  "Age: " + age + "<br>" +
+  "City: " + city + "<br><br>" +
+  "This makes code easier to read and understand";
+</script>
+
+</body>
+</html>

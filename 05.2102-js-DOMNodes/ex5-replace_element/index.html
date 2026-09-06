@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript DOM Nodes</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Replacing HTML Elements</h4>
+
+<div id="div5">
+  <p id="p11">Original paragraph</p>
+</div>
+
+<button onclick="replaceElement()">Replace Paragraph</button>
+
+<script>
+function replaceElement() {
+  const para = document.createElement("p");
+  const node = document.createTextNode("Replaced paragraph!");
+  para.appendChild(node);
+
+  const parent = document.getElementById("div5");
+  const child = document.getElementById("p11");
+  parent.replaceChild(para, child);
+}
+</script>
+
+</body>
+</html>

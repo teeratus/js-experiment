@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>js-var_let_const</title>
+  <style>
+    body {
+      box-sizing: border-box;
+      min-width: 200px;
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 45px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+      font-size: 16px;
+      line-height: 1.5;
+      color: #24292e;
+      background-color: #ffffff;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 24px;
+      margin-bottom: 16px;
+      font-weight: 600;
+      line-height: 1.25;
+      border-bottom: 1px solid #eaecef;
+      padding-bottom: .3em;
+    }
+    h1 { font-size: 2em; }
+    h2 { font-size: 1.5em; }
+    h3 { font-size: 1.25em; }
+    code {
+      padding: .2em .4em;
+      margin: 0;
+      font-size: 85%;
+      background-color: rgba(27,31,35,.05);
+      border-radius: 3px;
+      font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
+    }
+    pre {
+      padding: 16px;
+      overflow: auto;
+      font-size: 85%;
+      line-height: 1.45;
+      background-color: #f6f8fa;
+      border-radius: 3px;
+      word-wrap: normal;
+    }
+    pre code {
+      background-color: transparent;
+      padding: 0;
+    }
+    blockquote {
+      padding: 0 1em;
+      color: #6a737d;
+      border-left: .25em solid #dfe2e5;
+      margin: 0 0 16px 0;
+    }
+    table {
+      border-spacing: 0;
+      border-collapse: collapse;
+      margin-top: 0;
+      margin-bottom: 16px;
+      width: 100%;
+    }
+    table th, table td {
+      padding: 6px 13px;
+      border: 1px solid #dfe2e5;
+    }
+    table tr:nth-child(2n) {
+      background-color: #f6f8fa;
+    }
+    img {
+      max-width: 100%;
+      box-sizing: content-box;
+    }
+    @media print {
+      body {
+        max-width: 100%;
+        padding: 0;
+      }
+      pre, blockquote, table, tr, img {
+        page-break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+<body>
+<h1>JavaScript var, let, const</h1>
+<p><a href="../acp-js.php">Back to JS page</a></p>
+<p>Table of Contents</p>
+<ul>
+<li><a href="#javascript-var-let-const">JavaScript var, let, const</a><ul>
+<li><a href="#scope-rules">Scope Rules</a><ul>
+<li><a href="#example-1">Example 1</a></li>
+</ul>
+</li>
+<li><a href="#reassignment-vs-redeclaration">Reassignment vs. Redeclaration</a><ul>
+<li><a href="#example-2">Example 2</a></li>
+</ul>
+</li>
+<li><a href="#hoisting-and-the-temporal-dead-zone-tdz">Hoisting and the Temporal Dead Zone (TDZ)</a><ul>
+<li><a href="#example-3">Example 3</a></li>
+</ul>
+</li>
+<li><a href="#best-practice">Best Practice</a><ul>
+<li><a href="#example-4">Example 4</a></li>
+</ul>
+</li>
+<li><a href="#document">Document</a></li>
+<li><a href="#reference">Reference</a></li>
+</ul>
+</li>
+</ul>
+<h2>Difference Between var, let and const</h2>
+<p>The table below summarizes the differences:</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th><code>var</code></th>
+<th><code>let</code></th>
+<th><code>const</code></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Scope</td>
+<td>Function</td>
+<td>Block</td>
+<td>Block</td>
+</tr>
+<tr>
+<td>Redeclaration</td>
+<td>Yes</td>
+<td>No</td>
+<td>No</td>
+</tr>
+<tr>
+<td>Reassignment</td>
+<td>Yes</td>
+<td>Yes</td>
+<td>No</td>
+</tr>
+<tr>
+<td>Hoisted</td>
+<td>Yes</td>
+<td>No (TDZ)</td>
+<td>No (TDZ)</td>
+</tr>
+</tbody></table>
+<h2>Scope Rules</h2>
+<p><code>var</code> is function-scoped, while <code>let</code> and <code>const</code> are block-scoped:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript var, let, const&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Scope Rules&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+{
+  var varX = 1;      // Function scoped (accessible outside block)
+  let letX = 2;      // Block scoped
+  const constX = 3;  // Block scoped
+}
+
+document.getElementById(&quot;demo&quot;).innerHTML =
+  &quot;var (function scope): &quot; + varX + &quot; - accessible&lt;br&gt;&quot; +
+  &quot;let (block scope): not accessible outside&lt;br&gt;&quot; +
+  &quot;const (block scope): not accessible outside&quot;;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p1.png" alt=""></p>
+<h3>Example 1</h3>
+<p><strong>Result</strong> <a href="ex1-scope_rules/index.html">View Example</a></p>
+<h2>Reassignment vs. Redeclaration</h2>
+<p><code>var</code> can be redeclared and reassigned. <code>let</code> can be reassigned but NOT redeclared. <code>const</code> can be neither:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript var, let, const&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Reassignment vs. Redeclaration&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+// var - can be redeclared and reassigned
+var name = &quot;John&quot;;
+var name = &quot;Jane&quot;;     // Redeclaration OK
+name = &quot;Bob&quot;;          // Reassignment OK
+
+// let - can be reassigned but NOT redeclared
+let age = 30;
+age = 31;              // Reassignment OK
+// let age = 32;       // Redeclaration ERROR
+
+// const - cannot be reassigned or redeclared
+const city = &quot;New York&quot;;
+// city = &quot;London&quot;;    // Reassignment ERROR
+// const city = &quot;LA&quot;;  // Redeclaration ERROR
+
+document.getElementById(&quot;demo&quot;).innerHTML =
+  &quot;var name: &quot; + name + &quot; (redeclared + reassigned)&lt;br&gt;&quot; +
+  &quot;let age: &quot; + age + &quot; (reassigned)&lt;br&gt;&quot; +
+  &quot;const city: &quot; + city + &quot; (cannot change)&quot;;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p2.png" alt=""></p>
+<h3>Example 2</h3>
+<p><strong>Result</strong> <a href="ex2-reassignment/index.html">View Example</a></p>
+<h2>Hoisting and the Temporal Dead Zone (TDZ)</h2>
+<p><code>var</code> is hoisted and initialized with <code>undefined</code>. <code>let</code> and <code>const</code> are hoisted but NOT initialized (Temporal Dead Zone):</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript var, let, const&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Hoisting and the Temporal Dead Zone (TDZ)&lt;/h4&gt;
+&lt;p id=&quot;demo1&quot;&gt;&lt;/p&gt;
+&lt;p id=&quot;demo2&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+// var is hoisted and initialized with undefined
+document.getElementById(&quot;demo1&quot;).innerHTML =
+  &quot;var x: &quot; + x + &quot; (hoisted, initialized as undefined)&quot;;
+var x = 5;
+
+// let is NOT initialized before declaration (TDZ)
+try {
+  console.log(y); // Would throw ReferenceError
+  let y = 10;
+} catch(err) {
+  document.getElementById(&quot;demo2&quot;).innerHTML =
+    &quot;let y: Error - &quot; + err.message + &quot;&lt;br&gt;&quot; +
+    &quot;let is in Temporal Dead Zone before declaration&quot;;
+}
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p3.png" alt=""></p>
+<h3>Example 3</h3>
+<p><strong>Result</strong> <a href="ex3-hoisting_tdz/index.html">View Example</a></p>
+<h2>Best Practice</h2>
+<p>The best practice is to always use <code>const</code> unless you know the value will change. Use <code>let</code> if you plan to reassign. Avoid <code>var</code>:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript var, let, const&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Best Practice&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+// Best practice: use const by default
+const PI = 3.14159;
+const MAX_USERS = 100;
+
+// Use let when reassignment is needed
+let counter = 0;
+counter = counter + 1;
+counter++;
+
+// Avoid var in modern JavaScript
+// var oldStyle = &quot;not recommended&quot;;
+
+let text = &quot;Best practices:&lt;br&gt;&lt;br&gt;&quot;;
+text += &quot;1. Use &lt;b&gt;const&lt;/b&gt; by default:&lt;br&gt;&quot;;
+text += &quot;   const PI = &quot; + PI + &quot;&lt;br&gt;&quot;;
+text += &quot;   const MAX_USERS = &quot; + MAX_USERS + &quot;&lt;br&gt;&lt;br&gt;&quot;;
+text += &quot;2. Use &lt;b&gt;let&lt;/b&gt; when reassigning:&lt;br&gt;&quot;;
+text += &quot;   let counter = &quot; + counter + &quot;&lt;br&gt;&lt;br&gt;&quot;;
+text += &quot;3. Avoid &lt;b&gt;var&lt;/b&gt; in modern code&quot;;
+
+document.getElementById(&quot;demo&quot;).innerHTML = text;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p4.png" alt=""></p>
+<h3>Example 4</h3>
+<p><strong>Result</strong> <a href="ex4-best_practice/index.html">View Example</a></p>
+<h2>Document</h2>
+<p>Document in project</p>
+<p>You can <a href="js-var_let_const.pdf">Download PDF</a> file.</p>
+<h2>Reference</h2>
+<ul>
+<li><a href="https://www.w3schools.com/js/js_varletconst.asp">W3Schools JavaScript var, let, const</a></li>
+</ul>
+
+</body>
+</html>

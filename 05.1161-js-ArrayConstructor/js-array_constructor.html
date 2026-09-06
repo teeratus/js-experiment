@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>js-array_constructor</title>
+  <style>
+    body {
+      box-sizing: border-box;
+      min-width: 200px;
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 45px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+      font-size: 16px;
+      line-height: 1.5;
+      color: #24292e;
+      background-color: #ffffff;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 24px;
+      margin-bottom: 16px;
+      font-weight: 600;
+      line-height: 1.25;
+      border-bottom: 1px solid #eaecef;
+      padding-bottom: .3em;
+    }
+    h1 { font-size: 2em; }
+    h2 { font-size: 1.5em; }
+    h3 { font-size: 1.25em; }
+    code {
+      padding: .2em .4em;
+      margin: 0;
+      font-size: 85%;
+      background-color: rgba(27,31,35,.05);
+      border-radius: 3px;
+      font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
+    }
+    pre {
+      padding: 16px;
+      overflow: auto;
+      font-size: 85%;
+      line-height: 1.45;
+      background-color: #f6f8fa;
+      border-radius: 3px;
+      word-wrap: normal;
+    }
+    pre code {
+      background-color: transparent;
+      padding: 0;
+    }
+    blockquote {
+      padding: 0 1em;
+      color: #6a737d;
+      border-left: .25em solid #dfe2e5;
+      margin: 0 0 16px 0;
+    }
+    table {
+      border-spacing: 0;
+      border-collapse: collapse;
+      margin-top: 0;
+      margin-bottom: 16px;
+      width: 100%;
+    }
+    table th, table td {
+      padding: 6px 13px;
+      border: 1px solid #dfe2e5;
+    }
+    table tr:nth-child(2n) {
+      background-color: #f6f8fa;
+    }
+    img {
+      max-width: 100%;
+      box-sizing: content-box;
+    }
+    @media print {
+      body {
+        max-width: 100%;
+        padding: 0;
+      }
+      pre, blockquote, table, tr, img {
+        page-break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+<body>
+<h1>JavaScript Array Constructor</h1>
+<p><a href="../acp-js.php">Back to JS page</a></p>
+<p>Table of Contents</p>
+<ul>
+<li><a href="#javascript-array-constructor">JavaScript Array Constructor</a><ul>
+<li><a href="#new-array-vs-array">new Array() vs Array()</a><ul>
+<li><a href="#example-1">Example 1</a></li>
+</ul>
+</li>
+<li><a href="#a-common-error">A Common Error</a><ul>
+<li><a href="#example-2">Example 2</a></li>
+</ul>
+</li>
+<li><a href="#array-literal-preferred">Array Literal (Preferred)</a><ul>
+<li><a href="#example-3">Example 3</a></li>
+</ul>
+</li>
+<li><a href="#document">Document</a></li>
+<li><a href="#reference">Reference</a></li>
+</ul>
+</li>
+</ul>
+<h2>new Array() vs Array()</h2>
+<p>There is no difference between <code>new Array()</code> and <code>Array()</code>. Both create a new array:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Array Constructor&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;new Array() vs Array()&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+// new Array() - creates a new array
+const arr1 = new Array(&quot;Apple&quot;, &quot;Banana&quot;, &quot;Orange&quot;);
+
+// Array() - same result, no &#39;new&#39; needed
+const arr2 = Array(&quot;Apple&quot;, &quot;Banana&quot;, &quot;Orange&quot;);
+
+document.getElementById(&quot;demo&quot;).innerHTML =
+  &quot;new Array(...): &quot; + arr1 + &quot;&lt;br&gt;&quot; +
+  &quot;Array(...): &quot; + arr2 + &quot;&lt;br&gt;&lt;br&gt;&quot; +
+  &quot;Both give the same result!&quot;;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p1.png" alt=""></p>
+<h3>Example 1</h3>
+<p><strong>Result</strong> <a href="ex1-new_vs_array/index.html">View Example</a></p>
+<h2>A Common Error</h2>
+<p>A common error is using <code>new Array(number)</code> with a single numeric argument. It creates an array with that many undefined elements, NOT an array with one element:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Array Constructor&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;A Common Error&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+// WARNING: new Array(5) creates an array with 5 empty slots!
+const arr = new Array(5);
+
+let text = &quot;new Array(5):&lt;br&gt;&quot;;
+text += &quot;Length: &quot; + arr.length + &quot;&lt;br&gt;&quot;;
+text += &quot;Elements: &quot; + arr + &quot;&lt;br&gt;&lt;br&gt;&quot;;
+
+text += &quot;This creates 5 EMPTY slots, not an array with value 5!&lt;br&gt;&lt;br&gt;&quot;;
+
+// To create an array with one element use brackets
+const correct = [5];
+text += &quot;Correct way [5]: length = &quot; + correct.length + &quot;, value = &quot; + correct[0];
+
+document.getElementById(&quot;demo&quot;).innerHTML = text;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p2.png" alt=""></p>
+<h3>Example 2</h3>
+<p><strong>Result</strong> <a href="ex2-common_error/index.html">View Example</a></p>
+<h2>Array Literal (Preferred)</h2>
+<p>The array literal <code>[]</code> is the preferred way to create an array. It is simpler and safer:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Array Constructor&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Array Literal (Preferred)&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+// Preferred: array literal
+const fruits = [&quot;Apple&quot;, &quot;Banana&quot;, &quot;Orange&quot;];
+
+// Using new Array() with explicit elements (works but not preferred)
+const cars = new Array(&quot;Volvo&quot;, &quot;BMW&quot;, &quot;Toyota&quot;);
+
+let text = &quot;Array literal: &quot; + fruits + &quot;&lt;br&gt;&quot;;
+text += &quot;new Array(): &quot; + cars + &quot;&lt;br&gt;&lt;br&gt;&quot;;
+text += &quot;&lt;b&gt;Why use the array literal?&lt;/b&gt;&lt;br&gt;&quot;;
+text += &quot;1. Simpler to read and write&lt;br&gt;&quot;;
+text += &quot;2. Avoids the new Array(number) error&lt;br&gt;&quot;;
+text += &quot;3. Better performance&lt;br&gt;&quot;;
+text += &quot;4. Consistent behavior&quot;;
+
+document.getElementById(&quot;demo&quot;).innerHTML = text;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p3.png" alt=""></p>
+<h3>Example 3</h3>
+<p><strong>Result</strong> <a href="ex3-array_literal/index.html">View Example</a></p>
+<h2>Document</h2>
+<p>Document in project</p>
+<p>You can <a href="js-array_constructor.pdf">Download PDF</a> file.</p>
+<h2>Reference</h2>
+<ul>
+<li><a href="https://www.w3schools.com/js/js_array_constructor.asp">W3Schools JavaScript Array Constructor</a></li>
+</ul>
+
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Debugging</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Reading Error Messages</h4>
+<p id="demo"></p>
+
+<script>
+let text = "";
+
+try {
+  let result = undefinedVariable + 5;
+}
+catch(err) {
+  text += "Error Type: " + err.name + "<br>";
+  text += "Description: " + err.message + "<br><br>";
+  text += "Tip: The error message tells you what and where.<br>";
+  text += "Look in the console (F12) for line numbers.";
+}
+
+document.getElementById("demo").innerHTML = text;
+</script>
+
+</body>
+</html>

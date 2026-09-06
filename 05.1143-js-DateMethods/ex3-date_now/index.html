@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Date Methods</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>The Date.now() Method</h4>
+<p id="demo"></p>
+
+<script>
+const ms = Date.now();
+const date = new Date(ms);
+
+const d = new Date();
+const time = d.getTime();
+
+document.getElementById("demo").innerHTML =
+  "Date.now(): " + ms + " ms<br>" +
+  "new Date(Date.now()): " + date + "<br><br>" +
+  "d.getTime(): " + time + " ms<br>" +
+  "Date.now() === d.getTime(): " + (ms === time);
+</script>
+
+</body>
+</html>

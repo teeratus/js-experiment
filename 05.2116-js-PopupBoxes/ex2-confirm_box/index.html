@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Popup Boxes</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Confirm Box</h4>
+<p id="demo"></p>
+
+<button onclick="showConfirm()">Show Confirm</button>
+
+<script>
+function showConfirm() {
+  let text;
+  if (confirm("Do you want to continue?")) {
+    text = "You clicked OK!";
+  } else {
+    text = "You clicked Cancel!";
+  }
+  document.getElementById("demo").innerHTML = text;
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>js-plotly_graphics</title>
+  <style>
+    body {
+      box-sizing: border-box;
+      min-width: 200px;
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 45px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+      font-size: 16px;
+      line-height: 1.5;
+      color: #24292e;
+      background-color: #ffffff;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 24px;
+      margin-bottom: 16px;
+      font-weight: 600;
+      line-height: 1.25;
+      border-bottom: 1px solid #eaecef;
+      padding-bottom: .3em;
+    }
+    h1 { font-size: 2em; }
+    h2 { font-size: 1.5em; }
+    h3 { font-size: 1.25em; }
+    code {
+      padding: .2em .4em;
+      margin: 0;
+      font-size: 85%;
+      background-color: rgba(27,31,35,.05);
+      border-radius: 3px;
+      font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
+    }
+    pre {
+      padding: 16px;
+      overflow: auto;
+      font-size: 85%;
+      line-height: 1.45;
+      background-color: #f6f8fa;
+      border-radius: 3px;
+      word-wrap: normal;
+    }
+    pre code {
+      background-color: transparent;
+      padding: 0;
+    }
+    blockquote {
+      padding: 0 1em;
+      color: #6a737d;
+      border-left: .25em solid #dfe2e5;
+      margin: 0 0 16px 0;
+    }
+    table {
+      border-spacing: 0;
+      border-collapse: collapse;
+      margin-top: 0;
+      margin-bottom: 16px;
+      width: 100%;
+    }
+    table th, table td {
+      padding: 6px 13px;
+      border: 1px solid #dfe2e5;
+    }
+    table tr:nth-child(2n) {
+      background-color: #f6f8fa;
+    }
+    img {
+      max-width: 100%;
+      box-sizing: content-box;
+    }
+    @media print {
+      body {
+        max-width: 100%;
+        padding: 0;
+      }
+      pre, blockquote, table, tr, img {
+        page-break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+<body>
+<h1>JavaScript Plotly Graphics</h1>
+<p><a href="../acp-js.php">Back to JS page</a></p>
+<p>Table of Contents</p>
+<ul>
+<li><a href="#javascript-plotly-graphics">JavaScript Plotly Graphics</a><ul>
+<li><a href="#bar-charts">Bar Charts</a><ul>
+<li><a href="#example-1">Example 1</a></li>
+</ul>
+</li>
+<li><a href="#pie-charts">Pie Charts</a><ul>
+<li><a href="#example-2">Example 2</a></li>
+</ul>
+</li>
+<li><a href="#scatter-plots">Scatter Plots</a><ul>
+<li><a href="#example-3">Example 3</a></li>
+</ul>
+</li>
+<li><a href="#bubble-plots">Bubble Plots</a><ul>
+<li><a href="#example-4">Example 4</a></li>
+</ul>
+</li>
+<li><a href="#multiple-lines">Multiple Lines</a><ul>
+<li><a href="#example-5">Example 5</a></li>
+</ul>
+</li>
+<li><a href="#document">Document</a></li>
+<li><a href="#reference">Reference</a></li>
+</ul>
+</li>
+</ul>
+<h2>Bar Charts</h2>
+<p>Bar charts display data with rectangular bars with heights proportional to the values:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Plotly Graphics&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Bar Charts&lt;/h4&gt;
+
+&lt;div id=&quot;barChart&quot;&gt;&lt;/div&gt;
+
+&lt;script src=&quot;https://cdn.plot.ly/plotly-2.27.0.min.js&quot;&gt;&lt;/script&gt;
+
+&lt;script&gt;
+const data = [{
+  x: [&#39;Product A&#39;, &#39;Product B&#39;, &#39;Product C&#39;, &#39;Product D&#39;, &#39;Product E&#39;],
+  y: [25, 40, 30, 55, 20],
+  type: &#39;bar&#39;,
+  marker: {
+    color: [&#39;#4CAF50&#39;, &#39;#2196F3&#39;, &#39;#FF9800&#39;, &#39;#F44336&#39;, &#39;#9C27B0&#39;]
+  }
+}];
+
+const layout = {
+  title: &#39;Product Sales (Bar Chart)&#39;,
+  xaxis: {title: &#39;Product&#39;},
+  yaxis: {title: &#39;Sales ($)&#39;}
+};
+
+Plotly.newPlot(&#39;barChart&#39;, data, layout);
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p1.png" alt=""></p>
+<h3>Example 1</h3>
+<p><strong>Result</strong> <a href="ex1-bar_chart/index.html">View Example</a></p>
+<h2>Pie Charts</h2>
+<p>Pie charts show data as slices of a circle:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Plotly Graphics&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Pie Charts&lt;/h4&gt;
+
+&lt;div id=&quot;pieChart&quot;&gt;&lt;/div&gt;
+
+&lt;script src=&quot;https://cdn.plot.ly/plotly-2.27.0.min.js&quot;&gt;&lt;/script&gt;
+
+&lt;script&gt;
+const data = [{
+  labels: [&#39;Chrome&#39;, &#39;Firefox&#39;, &#39;Safari&#39;, &#39;Edge&#39;, &#39;Other&#39;],
+  values: [55, 20, 15, 8, 2],
+  type: &#39;pie&#39;,
+  marker: {
+    colors: [&#39;#4CAF50&#39;, &#39;#2196F3&#39;, &#39;#FF9800&#39;, &#39;#F44336&#39;, &#39;#9C27B0&#39;]
+  },
+  textinfo: &#39;label+percent&#39;
+}];
+
+const layout = {
+  title: &#39;Browser Market Share (Pie Chart)&#39;,
+  height: 400
+};
+
+Plotly.newPlot(&#39;pieChart&#39;, data, layout);
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p2.png" alt=""></p>
+<h3>Example 2</h3>
+<p><strong>Result</strong> <a href="ex2-pie_chart/index.html">View Example</a></p>
+<h2>Scatter Plots</h2>
+<p>Scatter plots display values for two variables using dots:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Plotly Graphics&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Scatter Plots&lt;/h4&gt;
+
+&lt;div id=&quot;scatterChart&quot;&gt;&lt;/div&gt;
+
+&lt;script src=&quot;https://cdn.plot.ly/plotly-2.27.0.min.js&quot;&gt;&lt;/script&gt;
+
+&lt;script&gt;
+const trace1 = {
+  x: [1, 3, 4, 6, 7, 9],
+  y: [2, 5, 4, 8, 7, 10],
+  mode: &#39;markers&#39;,
+  type: &#39;scatter&#39;,
+  name: &#39;Dataset 1&#39;,
+  marker: {color: &#39;#4CAF50&#39;, size: 10}
+};
+
+const trace2 = {
+  x: [2, 4, 5, 7, 8, 10],
+  y: [3, 6, 5, 9, 8, 11],
+  mode: &#39;markers&#39;,
+  type: &#39;scatter&#39;,
+  name: &#39;Dataset 2&#39;,
+  marker: {color: &#39;#F44336&#39;, size: 10, symbol: &#39;square&#39;}
+};
+
+const data = [trace1, trace2];
+
+const layout = {
+  title: &#39;Two Datasets (Scatter Plot)&#39;,
+  xaxis: {title: &#39;X Values&#39;},
+  yaxis: {title: &#39;Y Values&#39;}
+};
+
+Plotly.newPlot(&#39;scatterChart&#39;, data, layout);
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p3.png" alt=""></p>
+<h3>Example 3</h3>
+<p><strong>Result</strong> <a href="ex3-scatter_plot/index.html">View Example</a></p>
+<h2>Bubble Plots</h2>
+<p>Bubble plots are scatter plots where the size of markers represents a third dimension of data:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Plotly Graphics&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Bubble Plots&lt;/h4&gt;
+
+&lt;div id=&quot;bubbleChart&quot;&gt;&lt;/div&gt;
+
+&lt;script src=&quot;https://cdn.plot.ly/plotly-2.27.0.min.js&quot;&gt;&lt;/script&gt;
+
+&lt;script&gt;
+const trace = {
+  x: [1, 2, 3, 4, 5, 6, 7],
+  y: [10, 15, 13, 20, 18, 25, 22],
+  mode: &#39;markers&#39;,
+  type: &#39;scatter&#39;,
+  marker: {
+    size: [20, 30, 15, 45, 25, 50, 35],
+    color: [&#39;#4CAF50&#39;, &#39;#2196F3&#39;, &#39;#FF9800&#39;, &#39;#F44336&#39;, &#39;#9C27B0&#39;, &#39;#00BCD4&#39;, &#39;#E91E63&#39;],
+    sizeref: 2
+  },
+  name: &#39;Bubbles&#39;
+};
+
+const data = [trace];
+
+const layout = {
+  title: &#39;Bubble Plot (Size = Third Dimension)&#39;,
+  xaxis: {title: &#39;X Values&#39;},
+  yaxis: {title: &#39;Y Values&#39;},
+  showlegend: true
+};
+
+Plotly.newPlot(&#39;bubbleChart&#39;, data, layout);
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p4.png" alt=""></p>
+<h3>Example 4</h3>
+<p><strong>Result</strong> <a href="ex4-bubble_plot/index.html">View Example</a></p>
+<h2>Multiple Lines</h2>
+<p>Multiple line graphs display several data series as connected lines:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Plotly Graphics&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Multiple Lines&lt;/h4&gt;
+
+&lt;div id=&quot;multiLineChart&quot;&gt;&lt;/div&gt;
+
+&lt;script src=&quot;https://cdn.plot.ly/plotly-2.27.0.min.js&quot;&gt;&lt;/script&gt;
+
+&lt;script&gt;
+const trace1 = {
+  x: [1, 2, 3, 4, 5, 6, 7, 8],
+  y: [10, 12, 15, 14, 18, 20, 22, 25],
+  mode: &#39;lines+markers&#39;,
+  name: &#39;Series 1&#39;,
+  line: {color: &#39;#4CAF50&#39;, width: 3}
+};
+
+const trace2 = {
+  x: [1, 2, 3, 4, 5, 6, 7, 8],
+  y: [5, 8, 7, 11, 9, 13, 12, 16],
+  mode: &#39;lines+markers&#39;,
+  name: &#39;Series 2&#39;,
+  line: {color: &#39;#F44336&#39;, width: 3, dash: &#39;dash&#39;}
+};
+
+const trace3 = {
+  x: [1, 2, 3, 4, 5, 6, 7, 8],
+  y: [3, 5, 4, 7, 6, 9, 8, 11],
+  mode: &#39;lines+markers&#39;,
+  name: &#39;Series 3&#39;,
+  line: {color: &#39;#2196F3&#39;, width: 3, dash: &#39;dot&#39;}
+};
+
+const data = [trace1, trace2, trace3];
+
+const layout = {
+  title: &#39;Multiple Line Graphs&#39;,
+  xaxis: {title: &#39;Time&#39;},
+  yaxis: {title: &#39;Values&#39;}
+};
+
+Plotly.newPlot(&#39;multiLineChart&#39;, data, layout);
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p5.png" alt=""></p>
+<h3>Example 5</h3>
+<p><strong>Result</strong> <a href="ex5-multiple_lines/index.html">View Example</a></p>
+<h2>Document</h2>
+<p>Document in project</p>
+<p>You can <a href="js-plotly_graphics.pdf">Download PDF</a> file.</p>
+<h2>Reference</h2>
+<ul>
+<li><a href="https://www.w3schools.com/js/js_graphics_plotly.asp">W3Schools JavaScript Plotly Graphics</a></li>
+</ul>
+
+</body>
+</html>

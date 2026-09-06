@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Function apply()</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Simulate Array Methods with apply()</h4>
+<p id="demo1"></p>
+<p id="demo2"></p>
+<p id="demo3"></p>
+
+<script>
+const numbers = [4, 7, 1, 9, 3, 5];
+
+// Math.max normally cannot accept an array directly
+let max = Math.max.apply(null, numbers);
+
+// Math.min similarly
+let min = Math.min.apply(null, numbers);
+
+document.getElementById("demo1").innerHTML = "Numbers: " + numbers;
+document.getElementById("demo2").innerHTML = "Max value: " + max;
+document.getElementById("demo3").innerHTML = "Min value: " + min;
+</script>
+
+</body>
+</html>

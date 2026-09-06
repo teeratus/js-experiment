@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>js-syntax</title>
+  <style>
+    body {
+      box-sizing: border-box;
+      min-width: 200px;
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 45px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+      font-size: 16px;
+      line-height: 1.5;
+      color: #24292e;
+      background-color: #ffffff;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 24px;
+      margin-bottom: 16px;
+      font-weight: 600;
+      line-height: 1.25;
+      border-bottom: 1px solid #eaecef;
+      padding-bottom: .3em;
+    }
+    h1 { font-size: 2em; }
+    h2 { font-size: 1.5em; }
+    h3 { font-size: 1.25em; }
+    code {
+      padding: .2em .4em;
+      margin: 0;
+      font-size: 85%;
+      background-color: rgba(27,31,35,.05);
+      border-radius: 3px;
+      font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
+    }
+    pre {
+      padding: 16px;
+      overflow: auto;
+      font-size: 85%;
+      line-height: 1.45;
+      background-color: #f6f8fa;
+      border-radius: 3px;
+      word-wrap: normal;
+    }
+    pre code {
+      background-color: transparent;
+      padding: 0;
+    }
+    blockquote {
+      padding: 0 1em;
+      color: #6a737d;
+      border-left: .25em solid #dfe2e5;
+      margin: 0 0 16px 0;
+    }
+    table {
+      border-spacing: 0;
+      border-collapse: collapse;
+      margin-top: 0;
+      margin-bottom: 16px;
+      width: 100%;
+    }
+    table th, table td {
+      padding: 6px 13px;
+      border: 1px solid #dfe2e5;
+    }
+    table tr:nth-child(2n) {
+      background-color: #f6f8fa;
+    }
+    img {
+      max-width: 100%;
+      box-sizing: content-box;
+    }
+    @media print {
+      body {
+        max-width: 100%;
+        padding: 0;
+      }
+      pre, blockquote, table, tr, img {
+        page-break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+<body>
+<h1>JavaScript Syntax</h1>
+<p><a href="../acp-js.php">Back to JS page</a></p>
+<p>Table of Contents</p>
+<ul>
+<li><a href="#javascript-syntax">JavaScript Syntax</a><ul>
+<li><a href="#javascript-values">JavaScript Values</a></li>
+<li><a href="#javascript-literals">JavaScript Literals</a><ul>
+<li><a href="#example-1">Example 1</a></li>
+</ul>
+</li>
+<li><a href="#javascript-variables">JavaScript Variables</a><ul>
+<li><a href="#example-2">Example 2</a></li>
+</ul>
+</li>
+<li><a href="#javascript-identifiers">JavaScript Identifiers</a></li>
+<li><a href="#javascript-operators">JavaScript Operators</a><ul>
+<li><a href="#example-3">Example 3</a></li>
+</ul>
+</li>
+<li><a href="#javascript-expressions">JavaScript Expressions</a><ul>
+<li><a href="#example-4">Example 4</a></li>
+</ul>
+</li>
+<li><a href="#javascript-is-case-sensitive">JavaScript is Case Sensitive</a><ul>
+<li><a href="#example-5">Example 5</a></li>
+</ul>
+</li>
+<li><a href="#javascript-and-camel-case">JavaScript and Camel Case</a></li>
+<li><a href="#document">Document</a></li>
+<li><a href="#reference">Reference</a></li>
+</ul>
+</li>
+</ul>
+<h2>JavaScript Values</h2>
+<p>The JavaScript syntax defines two types of values:</p>
+<ul>
+<li><strong>Fixed values</strong> are called <strong>Literals</strong>.</li>
+<li><strong>Variable values</strong> are called <strong>Variables</strong>.</li>
+</ul>
+<h2>JavaScript Literals</h2>
+<p>The most important syntax rules for <strong>literals</strong> (fixed values) are:</p>
+<p><strong>Numbers</strong> are written with or without decimals:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Syntax&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;JavaScript Numbers&lt;/h4&gt;
+&lt;p&gt;Number can be written with or without decimals:&lt;/p&gt;
+&lt;p id=&quot;demo1&quot;&gt;&lt;/p&gt;
+&lt;p id=&quot;demo2&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+document.getElementById(&quot;demo1&quot;).innerHTML = 10.50;
+document.getElementById(&quot;demo2&quot;).innerHTML = 1001;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p1.png" alt=""></p>
+<p><strong>Strings</strong> are text, written within double or single quotes:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Syntax&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;JavaScript Strings&lt;/h4&gt;
+&lt;p&gt;Strings can be written with double or single quotes:&lt;/p&gt;
+&lt;p id=&quot;demo3&quot;&gt;&lt;/p&gt;
+&lt;p id=&quot;demo4&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+document.getElementById(&quot;demo3&quot;).innerHTML = &quot;John Doe&quot;;
+document.getElementById(&quot;demo4&quot;).innerHTML = &#39;John Doe&#39;;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p2.png" alt=""></p>
+<h3>Example 1</h3>
+<p><strong>Result</strong> <a href="ex1-literals/index.html">View Example</a></p>
+<h2>JavaScript Variables</h2>
+<p><strong>Variables</strong> are containers for <strong>storing data values</strong>.</p>
+<p>Variables must be <strong>identified</strong> with <strong>unique names</strong>.</p>
+<p>The <code>let</code> and <code>const</code> keywords create variables:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Syntax&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;JavaScript Variables&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+let x;
+x = 6;
+document.getElementById(&quot;demo&quot;).innerHTML = x;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p3.png" alt=""></p>
+<h3>Example 2</h3>
+<p><strong>Result</strong> <a href="ex2-variables/index.html">View Example</a></p>
+<h2>JavaScript Identifiers</h2>
+<p>An <strong>identifier</strong> is the <strong>name</strong> given to a variable.</p>
+<p>Rules for identifiers:</p>
+<ul>
+<li>Names can contain letters, digits, underscores, and dollar signs.</li>
+<li>Names must begin with a letter.</li>
+<li>Names can also begin with <code>$</code> and <code>_</code>.</li>
+<li>Names are case sensitive (y and Y are different variables).</li>
+<li>Reserved words (like JavaScript keywords) cannot be used as names.</li>
+</ul>
+<h2>JavaScript Operators</h2>
+<p>JavaScript <strong>assignment operators</strong> (<code>=</code>) assign values to variables:</p>
+<p>JavaScript uses <strong>arithmetic operators</strong> (<code>+</code> <code>-</code> <code>*</code> <code>/</code>) to <strong>compute</strong> values:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Syntax&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;JavaScript Operators&lt;/h4&gt;
+&lt;p id=&quot;demo1&quot;&gt;&lt;/p&gt;
+&lt;p id=&quot;demo2&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+let a, b, c;
+a = 5;
+b = 2;
+c = a + b;
+document.getElementById(&quot;demo1&quot;).innerHTML = &quot;Value of a + b = &quot; + c;
+document.getElementById(&quot;demo2&quot;).innerHTML = &quot;Value of a * b = &quot; + (a * b);
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p4.png" alt=""></p>
+<h3>Example 3</h3>
+<p><strong>Result</strong> <a href="ex3-operators/index.html">View Example</a></p>
+<h2>JavaScript Expressions</h2>
+<p>An expression is a combination of values, variables, and operators, which computes to a value:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Syntax&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;JavaScript Expressions&lt;/h4&gt;
+&lt;p id=&quot;demo1&quot;&gt;&lt;/p&gt;
+&lt;p id=&quot;demo2&quot;&gt;&lt;/p&gt;
+&lt;p id=&quot;demo3&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+document.getElementById(&quot;demo1&quot;).innerHTML = (5 + 6) * 10;
+let x = 5;
+document.getElementById(&quot;demo2&quot;).innerHTML = x * 10;
+document.getElementById(&quot;demo3&quot;).innerHTML = &quot;John&quot; + &quot; &quot; + &quot;Doe&quot;;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p5.png" alt=""></p>
+<h3>Example 4</h3>
+<p><strong>Result</strong> <a href="ex4-expressions/index.html">View Example</a></p>
+<h2>JavaScript is Case Sensitive</h2>
+<p>JavaScript identifiers are <strong>case sensitive</strong>.</p>
+<p>The variables <code>lastName</code> and <code>lastname</code>, are different variables:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Syntax&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;JavaScript is Case Sensitive&lt;/h4&gt;
+&lt;p id=&quot;demo1&quot;&gt;&lt;/p&gt;
+&lt;p id=&quot;demo2&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+let lastName = &quot;Doe&quot;;
+let lastname = &quot;Smith&quot;;
+document.getElementById(&quot;demo1&quot;).innerHTML = lastName;
+document.getElementById(&quot;demo2&quot;).innerHTML = lastname;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p6.png" alt=""></p>
+<h3>Example 5</h3>
+<p><strong>Result</strong> <a href="ex5-case_sensitive/index.html">View Example</a></p>
+<h2>JavaScript and Camel Case</h2>
+<p>Historically, programmers have used different ways of joining multiple words into one variable name:</p>
+<ul>
+<li><strong>Hyphens:</strong> first-name, last-name. Hyphens are <strong>not allowed</strong> in JavaScript. They are reserved for subtractions.</li>
+<li><strong>Underscore:</strong> first_name, last_name.</li>
+<li><strong>Upper Camel Case (Pascal Case):</strong> FirstName, LastName.</li>
+<li><strong>Lower Camel Case:</strong> firstName, lastName.</li>
+</ul>
+<p>JavaScript programmers tend to use <strong>lower camel case</strong>.</p>
+<h2>Document</h2>
+<p>Document in project</p>
+<p>You can <a href="js-syntax.pdf">Download PDF</a> file.</p>
+<h2>Reference</h2>
+<ul>
+<li><a href="https://www.w3schools.com/js/js_syntax.asp">W3Schools JavaScript Syntax</a></li>
+</ul>
+
+</body>
+</html>

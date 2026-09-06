@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript JSON Syntax</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>JSON Property Names</h4>
+<p id="demo"></p>
+
+<script>
+// Valid JSON - property names in double quotes
+const jsonString = '{"name":"John","age":30,"city":"New York"}';
+
+const obj = JSON.parse(jsonString);
+
+document.getElementById("demo").innerHTML =
+  "name: " + obj.name + "<br>" +
+  "age: " + obj.age + "<br>" +
+  "city: " + obj.city;
+</script>
+
+</body>
+</html>

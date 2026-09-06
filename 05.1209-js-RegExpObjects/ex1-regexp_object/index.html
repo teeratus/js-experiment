@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript RegExp Objects</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>The RegExp Object</h4>
+<p id="demo"></p>
+
+<script>
+// Literal syntax
+const pattern1 = /hello/;
+
+// Constructor syntax
+const pattern2 = new RegExp("hello");
+
+let text = "Literal pattern: " + pattern1 + "<br>";
+text += "Constructor pattern: " + pattern2 + "<br><br>";
+text += "Both are RegExp objects: " + (pattern1 instanceof RegExp) + "<br>";
+text += "with global flag: " + /hello/g.global;
+
+document.getElementById("demo").innerHTML = text;
+</script>
+
+</body>
+</html>

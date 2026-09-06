@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>js-arrays</title>
+  <style>
+    body {
+      box-sizing: border-box;
+      min-width: 200px;
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 45px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+      font-size: 16px;
+      line-height: 1.5;
+      color: #24292e;
+      background-color: #ffffff;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 24px;
+      margin-bottom: 16px;
+      font-weight: 600;
+      line-height: 1.25;
+      border-bottom: 1px solid #eaecef;
+      padding-bottom: .3em;
+    }
+    h1 { font-size: 2em; }
+    h2 { font-size: 1.5em; }
+    h3 { font-size: 1.25em; }
+    code {
+      padding: .2em .4em;
+      margin: 0;
+      font-size: 85%;
+      background-color: rgba(27,31,35,.05);
+      border-radius: 3px;
+      font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
+    }
+    pre {
+      padding: 16px;
+      overflow: auto;
+      font-size: 85%;
+      line-height: 1.45;
+      background-color: #f6f8fa;
+      border-radius: 3px;
+      word-wrap: normal;
+    }
+    pre code {
+      background-color: transparent;
+      padding: 0;
+    }
+    blockquote {
+      padding: 0 1em;
+      color: #6a737d;
+      border-left: .25em solid #dfe2e5;
+      margin: 0 0 16px 0;
+    }
+    table {
+      border-spacing: 0;
+      border-collapse: collapse;
+      margin-top: 0;
+      margin-bottom: 16px;
+      width: 100%;
+    }
+    table th, table td {
+      padding: 6px 13px;
+      border: 1px solid #dfe2e5;
+    }
+    table tr:nth-child(2n) {
+      background-color: #f6f8fa;
+    }
+    img {
+      max-width: 100%;
+      box-sizing: content-box;
+    }
+    @media print {
+      body {
+        max-width: 100%;
+        padding: 0;
+      }
+      pre, blockquote, table, tr, img {
+        page-break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+<body>
+<h1>JavaScript Arrays</h1>
+<p><a href="../acp-js.php">Back to JS page</a></p>
+<p>Table of Contents</p>
+<ul>
+<li><a href="#javascript-arrays">JavaScript Arrays</a><ul>
+<li><a href="#creating-an-array">Creating an Array</a><ul>
+<li><a href="#example-1">Example 1</a></li>
+</ul>
+</li>
+<li><a href="#accessing-and-changing-array-elements">Accessing and Changing Array Elements</a><ul>
+<li><a href="#example-2">Example 2</a></li>
+</ul>
+</li>
+<li><a href="#converting-an-array-to-a-string">Converting an Array to a String</a><ul>
+<li><a href="#example-3">Example 3</a></li>
+</ul>
+</li>
+<li><a href="#the-length-property">The length Property</a><ul>
+<li><a href="#example-4">Example 4</a></li>
+</ul>
+</li>
+<li><a href="#adding-array-elements">Adding Array Elements</a><ul>
+<li><a href="#example-5">Example 5</a></li>
+</ul>
+</li>
+<li><a href="#document">Document</a></li>
+<li><a href="#reference">Reference</a></li>
+</ul>
+</li>
+</ul>
+<h2>Creating an Array</h2>
+<p>An array is a special variable that can hold more than one value. There are two ways to create an array:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Arrays&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Creating an Array&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+// Array literal (preferred)
+const cars = [&quot;Volvo&quot;, &quot;BMW&quot;, &quot;Toyota&quot;];
+
+// Using the new keyword (not recommended)
+const fruits = new Array(&quot;Apple&quot;, &quot;Banana&quot;, &quot;Orange&quot;);
+
+document.getElementById(&quot;demo&quot;).innerHTML =
+  &quot;Cars: &quot; + cars + &quot;&lt;br&gt;&quot; +
+  &quot;Fruits: &quot; + fruits + &quot;&lt;br&gt;&lt;br&gt;&quot; +
+  &quot;Using the array literal is the recommended way&quot;;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p1.png" alt=""></p>
+<h3>Example 1</h3>
+<p><strong>Result</strong> <a href="ex1-create_array/index.html">View Example</a></p>
+<h2>Accessing and Changing Array Elements</h2>
+<p>Array elements are accessed by their index number (starting from 0) and can be changed:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Arrays&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Accessing and Changing Array Elements&lt;/h4&gt;
+&lt;p id=&quot;demo1&quot;&gt;&lt;/p&gt;
+&lt;p id=&quot;demo2&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+const cars = [&quot;Volvo&quot;, &quot;BMW&quot;, &quot;Toyota&quot;];
+
+// Access elements by index (0-based)
+const firstCar = cars[0];
+const lastCar = cars[2];
+
+// Change an element
+cars[1] = &quot;Honda&quot;;
+
+document.getElementById(&quot;demo1&quot;).innerHTML =
+  &quot;First car: &quot; + firstCar + &quot;&lt;br&gt;&quot; +
+  &quot;Last car: &quot; + lastCar;
+
+document.getElementById(&quot;demo2&quot;).innerHTML =
+  &quot;After cars[1] = &#39;Honda&#39;: &quot; + cars;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p2.png" alt=""></p>
+<h3>Example 2</h3>
+<p><strong>Result</strong> <a href="ex2-access_elements/index.html">View Example</a></p>
+<h2>Converting an Array to a String</h2>
+<p>The <code>toString()</code> method converts an array to a comma-separated string:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Arrays&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Converting an Array to a String&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+const fruits = [&quot;Banana&quot;, &quot;Orange&quot;, &quot;Apple&quot;, &quot;Mango&quot;];
+
+// toString() joins with commas
+const fruitString = fruits.toString();
+
+document.getElementById(&quot;demo&quot;).innerHTML =
+  &quot;Array: &quot; + fruits + &quot;&lt;br&gt;&quot; +
+  &quot;toString(): &quot; + fruitString + &quot;&lt;br&gt;&quot; +
+  &quot;Type: &quot; + typeof fruitString;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p3.png" alt=""></p>
+<h3>Example 3</h3>
+<p><strong>Result</strong> <a href="ex3-to_string/index.html">View Example</a></p>
+<h2>The length Property</h2>
+<p>The <code>length</code> property returns the number of array elements. It is always one more than the highest array index:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Arrays&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;The length Property&lt;/h4&gt;
+&lt;p id=&quot;demo1&quot;&gt;&lt;/p&gt;
+&lt;p id=&quot;demo2&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+const fruits = [&quot;Banana&quot;, &quot;Orange&quot;, &quot;Apple&quot;, &quot;Mango&quot;];
+
+document.getElementById(&quot;demo1&quot;).innerHTML =
+  &quot;Array: &quot; + fruits + &quot;&lt;br&gt;&quot; +
+  &quot;length: &quot; + fruits.length + &quot;&lt;br&gt;&lt;br&gt;&quot; +
+  &quot;First element: &quot; + fruits[0] + &quot;&lt;br&gt;&quot; +
+  &quot;Last element: &quot; + fruits[fruits.length - 1];
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p4.png" alt=""></p>
+<h3>Example 4</h3>
+<p><strong>Result</strong> <a href="ex4-length_property/index.html">View Example</a></p>
+<h2>Adding Array Elements</h2>
+<p>You can add new elements to an array using <code>push()</code> or the array&#39;s length property:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Arrays&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Adding Array Elements&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+const fruits = [&quot;Banana&quot;, &quot;Orange&quot;];
+
+// push() adds to the end
+fruits.push(&quot;Mango&quot;);
+
+// Using length adds to the end
+fruits[fruits.length] = &quot;Apple&quot;;
+
+// Adding at a higher index creates empty slots
+fruits[5] = &quot;Grape&quot;;
+
+let text = &quot;After adding elements: &quot; + fruits + &quot;&lt;br&gt;&lt;br&gt;&quot;;
+
+for (let i = 0; i &lt; fruits.length; i++) {
+  if (fruits[i] === undefined) {
+    text += &quot;Index &quot; + i + &quot;: (empty)&quot; + &quot;&lt;br&gt;&quot;;
+  } else {
+    text += &quot;Index &quot; + i + &quot;: &quot; + fruits[i] + &quot;&lt;br&gt;&quot;;
+  }
+}
+
+document.getElementById(&quot;demo&quot;).innerHTML = text;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p5.png" alt=""></p>
+<h3>Example 5</h3>
+<p><strong>Result</strong> <a href="ex5-add_elements/index.html">View Example</a></p>
+<h2>Document</h2>
+<p>Document in project</p>
+<p>You can <a href="js-arrays.pdf">Download PDF</a> file.</p>
+<h2>Reference</h2>
+<ul>
+<li><a href="https://www.w3schools.com/js/js_arrays.asp">W3Schools JavaScript Arrays</a></li>
+</ul>
+
+</body>
+</html>

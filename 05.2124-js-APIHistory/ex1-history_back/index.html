@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript API History</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>The History back() Method</h4>
+<button onclick="goBack()">Go Back</button>
+<p id="demo"></p>
+
+<script>
+function goBack() {
+  window.history.back();
+}
+
+// Show current history length
+document.getElementById("demo").innerHTML =
+  "History length: " + window.history.length;
+</script>
+
+</body>
+</html>

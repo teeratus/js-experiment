@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>js-api_history</title>
+  <style>
+    body {
+      box-sizing: border-box;
+      min-width: 200px;
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 45px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+      font-size: 16px;
+      line-height: 1.5;
+      color: #24292e;
+      background-color: #ffffff;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 24px;
+      margin-bottom: 16px;
+      font-weight: 600;
+      line-height: 1.25;
+      border-bottom: 1px solid #eaecef;
+      padding-bottom: .3em;
+    }
+    h1 { font-size: 2em; }
+    h2 { font-size: 1.5em; }
+    h3 { font-size: 1.25em; }
+    code {
+      padding: .2em .4em;
+      margin: 0;
+      font-size: 85%;
+      background-color: rgba(27,31,35,.05);
+      border-radius: 3px;
+      font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
+    }
+    pre {
+      padding: 16px;
+      overflow: auto;
+      font-size: 85%;
+      line-height: 1.45;
+      background-color: #f6f8fa;
+      border-radius: 3px;
+      word-wrap: normal;
+    }
+    pre code {
+      background-color: transparent;
+      padding: 0;
+    }
+    blockquote {
+      padding: 0 1em;
+      color: #6a737d;
+      border-left: .25em solid #dfe2e5;
+      margin: 0 0 16px 0;
+    }
+    table {
+      border-spacing: 0;
+      border-collapse: collapse;
+      margin-top: 0;
+      margin-bottom: 16px;
+      width: 100%;
+    }
+    table th, table td {
+      padding: 6px 13px;
+      border: 1px solid #dfe2e5;
+    }
+    table tr:nth-child(2n) {
+      background-color: #f6f8fa;
+    }
+    img {
+      max-width: 100%;
+      box-sizing: content-box;
+    }
+    @media print {
+      body {
+        max-width: 100%;
+        padding: 0;
+      }
+      pre, blockquote, table, tr, img {
+        page-break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+<body>
+<h1>JavaScript API History</h1>
+<p><a href="../acp-js.php">Back to JS page</a></p>
+<blockquote>
+<p><strong>Note:</strong> For the basic <code>window.history</code> object (back/forward/go), see <a href="../05.2114-js-WindowHistory/js-window_history.md">05.2114-js-WindowHistory</a>. This topic covers the History API from the Web API perspective.</p>
+</blockquote>
+<p>Table of Contents</p>
+<ul>
+<li><a href="#javascript-api-history">JavaScript API History</a><ul>
+<li><a href="#the-history-back-method">The History back() Method</a><ul>
+<li><a href="#example-1">Example 1</a></li>
+</ul>
+</li>
+<li><a href="#the-history-go-method">The History go() Method</a><ul>
+<li><a href="#example-2">Example 2</a></li>
+</ul>
+</li>
+<li><a href="#history-object-properties">History Object Properties</a><ul>
+<li><a href="#example-3">Example 3</a></li>
+</ul>
+</li>
+<li><a href="#history-object-methods">History Object Methods</a><ul>
+<li><a href="#example-4">Example 4</a></li>
+</ul>
+</li>
+<li><a href="#document">Document</a></li>
+<li><a href="#reference">Reference</a></li>
+</ul>
+</li>
+</ul>
+<h2>The History back() Method</h2>
+<p>The <code>history.back()</code> method loads the previous URL in the history list:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript API History&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;The History back() Method&lt;/h4&gt;
+&lt;button onclick=&quot;goBack()&quot;&gt;Go Back&lt;/button&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+function goBack() {
+  window.history.back();
+}
+
+// Show current history length
+document.getElementById(&quot;demo&quot;).innerHTML =
+  &quot;History length: &quot; + window.history.length;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p1.png" alt=""></p>
+<h3>Example 1</h3>
+<p><strong>Result</strong> <a href="ex1-history_back/index.html">View Example</a></p>
+<h2>The History go() Method</h2>
+<p>The <code>history.go()</code> method loads a specific URL from the history list:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript API History&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;The History go() Method&lt;/h4&gt;
+&lt;button onclick=&quot;goBack()&quot;&gt;Go Back 1 Page&lt;/button&gt;
+&lt;button onclick=&quot;goForward()&quot;&gt;Go Forward 1 Page&lt;/button&gt;
+&lt;button onclick=&quot;reloadPage()&quot;&gt;Reload (go 0)&lt;/button&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+function goBack() {
+  window.history.go(-1);
+}
+
+function goForward() {
+  window.history.go(1);
+}
+
+function reloadPage() {
+  window.history.go(0);
+}
+
+document.getElementById(&quot;demo&quot;).innerHTML =
+  &quot;History API provides navigation control&lt;br&gt;&quot; +
+  &quot;history.go(-1): back&lt;br&gt;&quot; +
+  &quot;history.go(1): forward&lt;br&gt;&quot; +
+  &quot;history.go(0): reload&lt;br&gt;&quot; +
+  &quot;Current history length: &quot; + window.history.length;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p2.png" alt=""></p>
+<h3>Example 2</h3>
+<p><strong>Result</strong> <a href="ex2-history_go/index.html">View Example</a></p>
+<h2>History Object Properties</h2>
+<p>The History object has a <code>length</code> property that returns the number of URLs in the history list:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript API History&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;History Object Properties&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+let text = &quot;History Object Properties:&lt;br&gt;&lt;br&gt;&quot;;
+text += &quot;history.length: &quot; + window.history.length + &quot;&lt;br&gt;&quot;;
+text += &quot;(Number of URLs in the history list)&lt;br&gt;&lt;br&gt;&quot;;
+
+text += &quot;Note: For security reasons,&lt;br&gt;&quot;;
+text += &quot;history does not allow reading&lt;br&gt;&quot;;
+text += &quot;the actual URLs in the history.&quot;;
+
+document.getElementById(&quot;demo&quot;).innerHTML = text;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p3.png" alt=""></p>
+<h3>Example 3</h3>
+<p><strong>Result</strong> <a href="ex3-history_properties/index.html">View Example</a></p>
+<h2>History Object Methods</h2>
+<p>The History object provides methods for navigating and manipulating the browser history:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript API History&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;History Object Methods&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+let text = &quot;History Object Methods:&lt;br&gt;&lt;br&gt;&quot;;
+
+text += &quot;&lt;b&gt;history.back()&lt;/b&gt;&lt;br&gt;&quot;;
+text += &quot;- Loads the previous URL&lt;br&gt;&quot;;
+text += &quot;- Same as clicking the Back button&lt;br&gt;&lt;br&gt;&quot;;
+
+text += &quot;&lt;b&gt;history.forward()&lt;/b&gt;&lt;br&gt;&quot;;
+text += &quot;- Loads the next URL&lt;br&gt;&quot;;
+text += &quot;- Same as clicking the Forward button&lt;br&gt;&lt;br&gt;&quot;;
+
+text += &quot;&lt;b&gt;history.go(n)&lt;/b&gt;&lt;br&gt;&quot;;
+text += &quot;- Loads a specific page from history&lt;br&gt;&quot;;
+text += &quot;- Negative numbers go back&lt;br&gt;&quot;;
+text += &quot;- Positive numbers go forward&lt;br&gt;&quot;;
+text += &quot;- go(0) reloads the current page&lt;br&gt;&lt;br&gt;&quot;;
+
+text += &quot;Current history length: &quot; + window.history.length;
+
+document.getElementById(&quot;demo&quot;).innerHTML = text;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p4.png" alt=""></p>
+<h3>Example 4</h3>
+<p><strong>Result</strong> <a href="ex4-history_methods/index.html">View Example</a></p>
+<h2>Document</h2>
+<p>Document in project</p>
+<p>You can <a href="js-api_history.pdf">Download PDF</a> file.</p>
+<h2>Reference</h2>
+<ul>
+<li><a href="https://www.w3schools.com/js/js_api_history.asp">W3Schools JavaScript API History</a></li>
+<li>See also: <a href="../05.2114-js-WindowHistory/js-window_history.md">05.2114-js-WindowHistory</a> for Window History basics</li>
+</ul>
+
+</body>
+</html>

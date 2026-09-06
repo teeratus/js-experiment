@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Async Common Mistakes</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Mistake 5: Sequential Independent Tasks</h4>
+<p id="demo"></p>
+
+<script>
+async function demonstrate() {
+  // WRONG: running independent tasks sequentially (2 seconds total)
+  let task1 = await new Promise(function(resolve) {
+    setTimeout(function() { resolve("Task 1 done"); }, 1000);
+  });
+  let task2 = await new Promise(function(resolve) {
+    setTimeout(function() { resolve("Task 2 done"); }, 1000);
+  });
+
+  document.getElementById("demo").innerHTML += "WRONG (sequential): ~2 seconds<br>";
+  document.getElementById("demo").innerHTML += task1 + "<br>" + task2 + "<br><br>";
+
+  // CORRECT: running independent tasks in parallel (~1 second)
+  let start = Date.now();
+  let [result1, result2] = await Promise.all([
+    new Promise(function(resolve) {
+      setTimeout(function() { resolve("Task 1 done"); }, 1000);
+    }),
+    new Promise(function(resolve) {
+      setTimeout(function() { resolve("Task 2 done"); }, 1000);
+    })
+  ]);
+
+  document.getElementById("demo").innerHTML += "CORRECT (parallel): ~1 second<br>";
+  document.getElementById("demo").innerHTML += result1 + "<br>" + result2;
+}
+
+demonstrate();
+</script>
+
+</body>
+</html>

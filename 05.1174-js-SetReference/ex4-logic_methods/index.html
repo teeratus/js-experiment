@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Set Reference</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Set Logic Methods</h4>
+<p id="demo"></p>
+
+<script>
+const setA = new Set(["a", "b", "c"]);
+const setB = new Set(["c", "d"]);
+
+let text = "Set A: " + [...setA] + "<br>";
+text += "Set B: " + [...setB] + "<br><br>";
+
+if (setA.union) {
+  text += "A.union(B): " + [...setA.union(setB)] + "<br>";
+  text += "A.intersection(B): " + [...setA.intersection(setB)] + "<br>";
+  text += "A.difference(B): " + [...setA.difference(setB)] + "<br>";
+  text += "A.symmetricDifference(B): " + [...setA.symmetricDifference(setB)] + "<br>";
+  text += "A.isSubsetOf(B): " + setA.isSubsetOf(setB) + "<br>";
+  text += "A.isDisjointFrom(new Set(['x'])): " + setA.isDisjointFrom(new Set(["x"]));
+} else {
+  text += "Logic methods are not supported in this browser yet.";
+}
+
+document.getElementById("demo").innerHTML = text;
+</script>
+
+</body>
+</html>

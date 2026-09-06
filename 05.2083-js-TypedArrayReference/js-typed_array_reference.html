@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>js-typed_array_reference</title>
+  <style>
+    body {
+      box-sizing: border-box;
+      min-width: 200px;
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 45px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+      font-size: 16px;
+      line-height: 1.5;
+      color: #24292e;
+      background-color: #ffffff;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 24px;
+      margin-bottom: 16px;
+      font-weight: 600;
+      line-height: 1.25;
+      border-bottom: 1px solid #eaecef;
+      padding-bottom: .3em;
+    }
+    h1 { font-size: 2em; }
+    h2 { font-size: 1.5em; }
+    h3 { font-size: 1.25em; }
+    code {
+      padding: .2em .4em;
+      margin: 0;
+      font-size: 85%;
+      background-color: rgba(27,31,35,.05);
+      border-radius: 3px;
+      font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
+    }
+    pre {
+      padding: 16px;
+      overflow: auto;
+      font-size: 85%;
+      line-height: 1.45;
+      background-color: #f6f8fa;
+      border-radius: 3px;
+      word-wrap: normal;
+    }
+    pre code {
+      background-color: transparent;
+      padding: 0;
+    }
+    blockquote {
+      padding: 0 1em;
+      color: #6a737d;
+      border-left: .25em solid #dfe2e5;
+      margin: 0 0 16px 0;
+    }
+    table {
+      border-spacing: 0;
+      border-collapse: collapse;
+      margin-top: 0;
+      margin-bottom: 16px;
+      width: 100%;
+    }
+    table th, table td {
+      padding: 6px 13px;
+      border: 1px solid #dfe2e5;
+    }
+    table tr:nth-child(2n) {
+      background-color: #f6f8fa;
+    }
+    img {
+      max-width: 100%;
+      box-sizing: content-box;
+    }
+    @media print {
+      body {
+        max-width: 100%;
+        padding: 0;
+      }
+      pre, blockquote, table, tr, img {
+        page-break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+<body>
+<h1>JavaScript Typed Array Reference</h1>
+<p><a href="../acp-js.php">Back to JS page</a></p>
+<p>Table of Contents</p>
+<ul>
+<li><a href="#javascript-typed-array-reference">JavaScript Typed Array Reference</a><ul>
+<li><a href="#typed-array-types-overview">Typed Array Types Overview</a><ul>
+<li><a href="#example-1">Example 1</a></li>
+</ul>
+</li>
+<li><a href="#common-methods-reference">Common Methods Reference</a><ul>
+<li><a href="#example-2">Example 2</a></li>
+</ul>
+</li>
+<li><a href="#working-with-buffers">Working with Buffers</a><ul>
+<li><a href="#example-3">Example 3</a></li>
+</ul>
+</li>
+<li><a href="#document">Document</a></li>
+<li><a href="#reference">Reference</a></li>
+</ul>
+</li>
+</ul>
+<h2>Typed Array Types Overview</h2>
+<p>JavaScript provides the following typed array types:</p>
+<table>
+<thead>
+<tr>
+<th>Constructor</th>
+<th>Type</th>
+<th>Range</th>
+<th>Size</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>Int8Array</code></td>
+<td>8-bit signed integer</td>
+<td>-128 to 127</td>
+<td>1 byte</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Uint8Array</code></td>
+<td>8-bit unsigned integer</td>
+<td>0 to 255</td>
+<td>1 byte</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Uint8ClampedArray</code></td>
+<td>8-bit unsigned integer (clamped)</td>
+<td>0 to 255</td>
+<td>1 byte</td>
+<td>Canvas data</td>
+</tr>
+<tr>
+<td><code>Int16Array</code></td>
+<td>16-bit signed integer</td>
+<td>-32768 to 32767</td>
+<td>2 bytes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Uint16Array</code></td>
+<td>16-bit unsigned integer</td>
+<td>0 to 65535</td>
+<td>2 bytes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Int32Array</code></td>
+<td>32-bit signed integer</td>
+<td>-2^31 to 2^31-1</td>
+<td>4 bytes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Uint32Array</code></td>
+<td>32-bit unsigned integer</td>
+<td>0 to 2^32-1</td>
+<td>4 bytes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>BigInt64Array</code></td>
+<td>64-bit signed integer</td>
+<td>-(2^63) to 2^63-1</td>
+<td>8 bytes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>BigUint64Array</code></td>
+<td>64-bit unsigned integer</td>
+<td>0 to 2^64-1</td>
+<td>8 bytes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Float32Array</code></td>
+<td>32-bit floating point</td>
+<td>~1.2E-38 to 3.4E38</td>
+<td>4 bytes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Float64Array</code></td>
+<td>64-bit floating point</td>
+<td>~5.0E-324 to 1.8E308</td>
+<td>8 bytes</td>
+<td></td>
+</tr>
+</tbody></table>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Typed Array Reference&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Typed Array Types Overview&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+// Demonstrate different typed array types
+const int8 = new Int8Array([-10, 0, 50, 100]);
+const uint8 = new Uint8Array([0, 100, 200, 255]);
+const int16 = new Int16Array([-1000, 0, 1000, 30000]);
+const int32 = new Int32Array([-100000, 0, 100000]);
+const float32 = new Float32Array([1.5, 3.14, 9.99]);
+const float64 = new Float64Array([0.123456789, 123456.789]);
+
+let text = &quot;&quot;;
+
+text += &quot;Int8Array: &quot; + Array.from(int8).join(&quot;, &quot;) + &quot;&lt;br&gt;&quot;;
+text += &quot;Uint8Array: &quot; + Array.from(uint8).join(&quot;, &quot;) + &quot;&lt;br&gt;&quot;;
+text += &quot;Int16Array: &quot; + Array.from(int16).join(&quot;, &quot;) + &quot;&lt;br&gt;&quot;;
+text += &quot;Int32Array: &quot; + Array.from(int32).join(&quot;, &quot;) + &quot;&lt;br&gt;&quot;;
+text += &quot;Float32Array: &quot; + Array.from(float32).join(&quot;, &quot;) + &quot;&lt;br&gt;&quot;;
+text += &quot;Float64Array: &quot; + Array.from(float64).join(&quot;, &quot;);
+
+document.getElementById(&quot;demo&quot;).innerHTML = text;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p1.png" alt=""></p>
+<h3>Example 1</h3>
+<p><strong>Result</strong> <a href="ex1-types_overview/index.html">View Example</a></p>
+<h2>Common Methods Reference</h2>
+<p>Typed arrays support many standard array methods. Here&#39;s a quick reference of commonly used methods:</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>from()</code></td>
+<td>Creates a typed array from an array-like object</td>
+</tr>
+<tr>
+<td><code>of()</code></td>
+<td>Creates a typed array from variable arguments</td>
+</tr>
+<tr>
+<td><code>fill()</code></td>
+<td>Fills elements with a static value</td>
+</tr>
+<tr>
+<td><code>find()</code></td>
+<td>Returns first element that passes a test</td>
+</tr>
+<tr>
+<td><code>some()</code></td>
+<td>Checks if any element passes a test</td>
+</tr>
+<tr>
+<td><code>every()</code></td>
+<td>Checks if all elements pass a test</td>
+</tr>
+<tr>
+<td><code>filter()</code></td>
+<td>Creates a new array with elements that pass a test</td>
+</tr>
+<tr>
+<td><code>map()</code></td>
+<td>Creates a new array by applying a function</td>
+</tr>
+<tr>
+<td><code>reduce()</code></td>
+<td>Reduces the array to a single value</td>
+</tr>
+<tr>
+<td><code>sort()</code></td>
+<td>Sorts the elements</td>
+</tr>
+<tr>
+<td><code>slice()</code></td>
+<td>Extracts a section of the array</td>
+</tr>
+<tr>
+<td><code>includes()</code></td>
+<td>Checks if an element is in the array</td>
+</tr>
+<tr>
+<td><code>indexOf()</code></td>
+<td>Returns the index of a specified element</td>
+</tr>
+<tr>
+<td><code>join()</code></td>
+<td>Joins all elements into a string</td>
+</tr>
+<tr>
+<td><code>reverse()</code></td>
+<td>Reverses the order of elements</td>
+</tr>
+<tr>
+<td><code>forEach()</code></td>
+<td>Executes a function for each element</td>
+</tr>
+</tbody></table>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Typed Array Reference&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Common Methods Reference&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+const numbers = new Int8Array([10, 5, 20, 15, 25, 30]);
+
+// Using various array methods on typed arrays
+let text = &quot;Original: &quot; + Array.from(numbers).join(&quot;, &quot;) + &quot;&lt;br&gt;&lt;br&gt;&quot;;
+
+// filter
+const filtered = numbers.filter(function(v) { return v &gt; 15; });
+text += &quot;filter(v &gt; 15): &quot; + Array.from(filtered).join(&quot;, &quot;) + &quot;&lt;br&gt;&quot;;
+
+// map
+const doubled = numbers.map(function(v) { return v * 2; });
+text += &quot;map(v * 2): &quot; + Array.from(doubled).join(&quot;, &quot;) + &quot;&lt;br&gt;&quot;;
+
+// includes
+text += &quot;includes(20): &quot; + numbers.includes(20) + &quot;&lt;br&gt;&quot;;
+
+// indexOf
+text += &quot;indexOf(15): &quot; + numbers.indexOf(15) + &quot;&lt;br&gt;&quot;;
+
+// every
+const allPositive = numbers.every(function(v) { return v &gt; 0; });
+text += &quot;every(v &gt; 0): &quot; + allPositive + &quot;&lt;br&gt;&quot;;
+
+// reduce
+const sum = numbers.reduce(function(acc, v) { return acc + v; }, 0);
+text += &quot;reduce(sum): &quot; + sum;
+
+document.getElementById(&quot;demo&quot;).innerHTML = text;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p2.png" alt=""></p>
+<h3>Example 2</h3>
+<p><strong>Result</strong> <a href="ex2-methods_reference/index.html">View Example</a></p>
+<h2>Working with Buffers</h2>
+<p>Typed arrays are built on top of <code>ArrayBuffer</code>. Multiple typed arrays can share the same buffer:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Typed Array Reference&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Working with Buffers&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+// Create a buffer of 16 bytes
+const buffer = new ArrayBuffer(16);
+
+// Create different views of the same buffer
+const int8View = new Int8Array(buffer);
+const uint16View = new Uint16Array(buffer);
+const int32View = new Int32Array(buffer);
+
+// Write data using one view
+int8View[0] = 10;
+int8View[1] = 20;
+int32View[2] = 100000;
+
+let text = &quot;Same buffer, different views:&lt;br&gt;&lt;br&gt;&quot;;
+text += &quot;Int8Array view: &quot;;
+for (let i = 0; i &lt; int8View.length; i++) text += int8View[i] + &quot; &quot;;
+text += &quot;&lt;br&gt;&lt;br&gt;&quot;;
+
+text += &quot;Buffer byteLength: &quot; + buffer.byteLength + &quot; bytes&lt;br&gt;&lt;br&gt;&quot;;
+
+text += &quot;Int8Array length: &quot; + int8View.length + &quot; (1 byte each)&lt;br&gt;&quot;;
+text += &quot;Uint16Array length: &quot; + uint16View.length + &quot; (2 bytes each)&lt;br&gt;&quot;;
+text += &quot;Int32Array length: &quot; + int32View.length + &quot; (4 bytes each)&quot;;
+
+document.getElementById(&quot;demo&quot;).innerHTML = text;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p3.png" alt=""></p>
+<h3>Example 3</h3>
+<p><strong>Result</strong> <a href="ex3-buffers/index.html">View Example</a></p>
+<h2>Document</h2>
+<p>Document in project</p>
+<p>You can <a href="js-typed_array_reference.pdf">Download PDF</a> file.</p>
+<h2>Reference</h2>
+<ul>
+<li><a href="https://www.w3schools.com/js/js_typed_reference.asp">W3Schools JavaScript Typed Array Reference</a></li>
+</ul>
+
+</body>
+</html>

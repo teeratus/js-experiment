@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript HTML DOM Elements</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Find Elements by Tag Name</h4>
+<p>First paragraph</p>
+<p>Second paragraph</p>
+<p>Third paragraph</p>
+<p id="demo"></p>
+
+<script>
+const elements = document.getElementsByTagName("p");
+document.getElementById("demo").innerHTML =
+  "Number of <p> elements: " + elements.length;
+</script>
+
+</body>
+</html>

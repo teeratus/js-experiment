@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>js-mouse_events</title>
+  <style>
+    body {
+      box-sizing: border-box;
+      min-width: 200px;
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 45px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+      font-size: 16px;
+      line-height: 1.5;
+      color: #24292e;
+      background-color: #ffffff;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 24px;
+      margin-bottom: 16px;
+      font-weight: 600;
+      line-height: 1.25;
+      border-bottom: 1px solid #eaecef;
+      padding-bottom: .3em;
+    }
+    h1 { font-size: 2em; }
+    h2 { font-size: 1.5em; }
+    h3 { font-size: 1.25em; }
+    code {
+      padding: .2em .4em;
+      margin: 0;
+      font-size: 85%;
+      background-color: rgba(27,31,35,.05);
+      border-radius: 3px;
+      font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
+    }
+    pre {
+      padding: 16px;
+      overflow: auto;
+      font-size: 85%;
+      line-height: 1.45;
+      background-color: #f6f8fa;
+      border-radius: 3px;
+      word-wrap: normal;
+    }
+    pre code {
+      background-color: transparent;
+      padding: 0;
+    }
+    blockquote {
+      padding: 0 1em;
+      color: #6a737d;
+      border-left: .25em solid #dfe2e5;
+      margin: 0 0 16px 0;
+    }
+    table {
+      border-spacing: 0;
+      border-collapse: collapse;
+      margin-top: 0;
+      margin-bottom: 16px;
+      width: 100%;
+    }
+    table th, table td {
+      padding: 6px 13px;
+      border: 1px solid #dfe2e5;
+    }
+    table tr:nth-child(2n) {
+      background-color: #f6f8fa;
+    }
+    img {
+      max-width: 100%;
+      box-sizing: content-box;
+    }
+    @media print {
+      body {
+        max-width: 100%;
+        padding: 0;
+      }
+      pre, blockquote, table, tr, img {
+        page-break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+<body>
+<h1>JavaScript Mouse Events</h1>
+<p><a href="../acp-js.php">Back to JS page</a></p>
+<p>Table of Contents</p>
+<ul>
+<li><a href="#javascript-mouse-events">JavaScript Mouse Events</a><ul>
+<li><a href="#mouseover-and-mouseout">Mouseover and Mouseout</a><ul>
+<li><a href="#example-1">Example 1</a></li>
+</ul>
+</li>
+<li><a href="#common-mouse-events">Common Mouse Events</a></li>
+<li><a href="#mouse-position">Mouse Position</a><ul>
+<li><a href="#example-2">Example 2</a></li>
+</ul>
+</li>
+<li><a href="#document">Document</a></li>
+<li><a href="#reference">Reference</a></li>
+</ul>
+</li>
+</ul>
+<h2>Mouseover and Mouseout</h2>
+<p>The <code>onmouseover</code> and <code>onmouseout</code> events can be used to trigger a function when the user hovers over or leaves an HTML element.</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Mouse Events&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Mouseover and Mouseout&lt;/h4&gt;
+&lt;div onmouseover=&quot;mOver(this)&quot; onmouseout=&quot;mOut(this)&quot; 
+style=&quot;background-color:#D94A38;width:200px;height:50px;padding:40px;color:white;text-align:center;font-size:20px&quot;&gt;
+Mouse Over Me
+&lt;/div&gt;
+
+&lt;script&gt;
+function mOver(obj) {
+  obj.innerHTML = &quot;Thank You&quot;
+}
+function mOut(obj) {
+  obj.innerHTML = &quot;Mouse Over Me&quot;
+}
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p1.png" alt=""></p>
+<h3>Example 1</h3>
+<p><strong>Result</strong> <a href="ex1-mouseover_mouseout/index.html">View Example</a></p>
+<h2>Common Mouse Events</h2>
+<p>Here is a list of common mouse events:</p>
+<table>
+<thead>
+<tr>
+<th>Event</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>onclick</code></td>
+<td>The user clicks an element</td>
+</tr>
+<tr>
+<td><code>ondblclick</code></td>
+<td>The user double-clicks an element</td>
+</tr>
+<tr>
+<td><code>onmousedown</code></td>
+<td>A mouse button is pressed over an element</td>
+</tr>
+<tr>
+<td><code>onmouseup</code></td>
+<td>A mouse button is released over an element</td>
+</tr>
+<tr>
+<td><code>onmouseover</code></td>
+<td>The mouse pointer moves onto an element</td>
+</tr>
+<tr>
+<td><code>onmouseout</code></td>
+<td>The mouse pointer moves out of an element</td>
+</tr>
+<tr>
+<td><code>onmousemove</code></td>
+<td>The mouse pointer moves over an element</td>
+</tr>
+<tr>
+<td><code>onmouseenter</code></td>
+<td>Similar to mouseover but does not bubble</td>
+</tr>
+</tbody></table>
+<h2>Mouse Position</h2>
+<p>You can get the mouse cursor position using <code>clientX</code> and <code>clientY</code> properties from the event object:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Mouse Events&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Mouse Position&lt;/h4&gt;
+&lt;div onmousemove=&quot;getPosition(event)&quot; 
+style=&quot;background-color:#D94A38;width:300px;height:150px;padding:20px;color:white;text-align:center;font-size:18px&quot;&gt;
+Move mouse over this box
+&lt;/div&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+function getPosition(event) {
+  let x = event.clientX;
+  let y = event.clientY;
+  document.getElementById(&quot;demo&quot;).innerHTML = &quot;Mouse position: X=&quot; + x + &quot;, Y=&quot; + y;
+}
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p2.png" alt=""></p>
+<h3>Example 2</h3>
+<p><strong>Result</strong> <a href="ex2-mouse_position/index.html">View Example</a></p>
+<h2>Document</h2>
+<p>Document in project</p>
+<p>You can <a href="js-mouse_events.pdf">Download PDF</a> file.</p>
+<h2>Reference</h2>
+<ul>
+<li><a href="https://www.w3schools.com/js/js_events_mouse.asp">W3Schools JavaScript Mouse Events</a></li>
+</ul>
+
+</body>
+</html>

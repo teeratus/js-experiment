@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Function Arguments</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Function Rest Parameter</h4>
+<p id="demo"></p>
+
+<script>
+function sum(...args) {
+  let total = 0;
+  for (let arg of args) {
+    total += arg;
+  }
+  return total;
+}
+document.getElementById("demo").innerHTML = "Sum of (1, 2, 3, 4, 5): " + sum(1, 2, 3, 4, 5);
+</script>
+
+</body>
+</html>

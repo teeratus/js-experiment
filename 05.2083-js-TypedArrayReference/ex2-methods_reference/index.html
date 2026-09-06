@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Typed Array Reference</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Common Methods Reference</h4>
+<p id="demo"></p>
+
+<script>
+const numbers = new Int8Array([10, 5, 20, 15, 25, 30]);
+
+// Using various array methods on typed arrays
+let text = "Original: " + Array.from(numbers).join(", ") + "<br><br>";
+
+// filter
+const filtered = numbers.filter(function(v) { return v > 15; });
+text += "filter(v > 15): " + Array.from(filtered).join(", ") + "<br>";
+
+// map
+const doubled = numbers.map(function(v) { return v * 2; });
+text += "map(v * 2): " + Array.from(doubled).join(", ") + "<br>";
+
+// includes
+text += "includes(20): " + numbers.includes(20) + "<br>";
+
+// indexOf
+text += "indexOf(15): " + numbers.indexOf(15) + "<br>";
+
+// every
+const allPositive = numbers.every(function(v) { return v > 0; });
+text += "every(v > 0): " + allPositive + "<br>";
+
+// reduce
+const sum = numbers.reduce(function(acc, v) { return acc + v; }, 0);
+text += "reduce(sum): " + sum;
+
+document.getElementById("demo").innerHTML = text;
+</script>
+
+</body>
+</html>

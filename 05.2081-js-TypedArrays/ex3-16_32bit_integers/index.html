@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Typed Arrays</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>16-Bit and 32-Bit Integers</h4>
+<p id="demo"></p>
+
+<script>
+// Int16Array - larger range
+const int16 = new Int16Array([1000, 20000, 30000]);
+
+// Int32Array - even larger range
+const int32 = new Int32Array([100000, 2000000]);
+
+let text = "Int16Array (16-bit):<br>";
+for (let num of int16) {
+  text += num + " ";
+}
+text += "<br>BYTES_PER_ELEMENT: " + int16.BYTES_PER_ELEMENT + "<br><br>";
+
+text += "Int32Array (32-bit):<br>";
+for (let num of int32) {
+  text += num + " ";
+}
+text += "<br>BYTES_PER_ELEMENT: " + int32.BYTES_PER_ELEMENT;
+
+document.getElementById("demo").innerHTML = text;
+</script>
+
+</body>
+</html>

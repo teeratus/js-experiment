@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript RegExp Methods</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>RegExp Object Methods</h4>
+<p id="demo"></p>
+
+<script>
+const text = "Hello World";
+
+// test() - returns boolean
+const testResult = /World/.test(text);
+
+// exec() - returns match object
+const execResult = /World/.exec(text);
+
+document.getElementById("demo").innerHTML =
+  "Text: " + text + "<br><br>" +
+  "test(/World/): " + testResult + "<br>" +
+  "exec(/World/)[0]: " + execResult[0] + "<br>" +
+  "exec() index: " + execResult.index;
+</script>
+
+</body>
+</html>

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Event Management</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Blocking Events</h4>
+<a id="myLink" href="https://www.w3schools.com">Go to W3Schools</a>
+<p id="demo"></p>
+
+<script>
+document.getElementById("myLink").addEventListener("click", function(event) {
+  event.preventDefault();
+  document.getElementById("demo").innerHTML = "Link click was prevented!";
+});
+</script>
+
+</body>
+</html>

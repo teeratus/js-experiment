@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>js-promises</title>
+  <style>
+    body {
+      box-sizing: border-box;
+      min-width: 200px;
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 45px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+      font-size: 16px;
+      line-height: 1.5;
+      color: #24292e;
+      background-color: #ffffff;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 24px;
+      margin-bottom: 16px;
+      font-weight: 600;
+      line-height: 1.25;
+      border-bottom: 1px solid #eaecef;
+      padding-bottom: .3em;
+    }
+    h1 { font-size: 2em; }
+    h2 { font-size: 1.5em; }
+    h3 { font-size: 1.25em; }
+    code {
+      padding: .2em .4em;
+      margin: 0;
+      font-size: 85%;
+      background-color: rgba(27,31,35,.05);
+      border-radius: 3px;
+      font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
+    }
+    pre {
+      padding: 16px;
+      overflow: auto;
+      font-size: 85%;
+      line-height: 1.45;
+      background-color: #f6f8fa;
+      border-radius: 3px;
+      word-wrap: normal;
+    }
+    pre code {
+      background-color: transparent;
+      padding: 0;
+    }
+    blockquote {
+      padding: 0 1em;
+      color: #6a737d;
+      border-left: .25em solid #dfe2e5;
+      margin: 0 0 16px 0;
+    }
+    table {
+      border-spacing: 0;
+      border-collapse: collapse;
+      margin-top: 0;
+      margin-bottom: 16px;
+      width: 100%;
+    }
+    table th, table td {
+      padding: 6px 13px;
+      border: 1px solid #dfe2e5;
+    }
+    table tr:nth-child(2n) {
+      background-color: #f6f8fa;
+    }
+    img {
+      max-width: 100%;
+      box-sizing: content-box;
+    }
+    @media print {
+      body {
+        max-width: 100%;
+        padding: 0;
+      }
+      pre, blockquote, table, tr, img {
+        page-break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+<body>
+<h1>JavaScript Promises</h1>
+<p><a href="../acp-js.php">Back to JS page</a></p>
+<p>Table of Contents</p>
+<ul>
+<li><a href="#javascript-promises">JavaScript Promises</a><ul>
+<li><a href="#creating-a-promise">Creating a Promise</a><ul>
+<li><a href="#example-1">Example 1</a></li>
+</ul>
+</li>
+<li><a href="#the-then-method">The then() Method</a><ul>
+<li><a href="#example-2">Example 2</a></li>
+</ul>
+</li>
+<li><a href="#the-catch-method">The catch() Method</a><ul>
+<li><a href="#example-3">Example 3</a></li>
+</ul>
+</li>
+<li><a href="#the-finally-method">The finally() Method</a><ul>
+<li><a href="#example-4">Example 4</a></li>
+</ul>
+</li>
+<li><a href="#promise-chaining">Promise Chaining</a><ul>
+<li><a href="#example-5">Example 5</a></li>
+</ul>
+</li>
+<li><a href="#document">Document</a></li>
+<li><a href="#reference">Reference</a></li>
+</ul>
+</li>
+</ul>
+<h2>Why Promises?</h2>
+<p>Promises provide a cleaner way to handle asynchronous operations compared to callbacks. A Promise is an object representing the eventual completion or failure of an asynchronous operation.</p>
+<p>Promise states:</p>
+<ul>
+<li><strong>pending</strong>: Initial state, neither fulfilled nor rejected</li>
+<li><strong>fulfilled</strong>: Operation completed successfully</li>
+<li><strong>rejected</strong>: Operation failed</li>
+</ul>
+<h2>Creating a Promise</h2>
+<p>A Promise is created using the <code>new Promise()</code> constructor which takes a function with <code>resolve</code> and <code>reject</code> parameters:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Promises&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Creating a Promise&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+const myPromise = new Promise(function(resolve, reject) {
+  let x = 0;
+  if (x === 0) {
+    resolve(&quot;OK&quot;);
+  } else {
+    reject(&quot;Error&quot;);
+  }
+});
+
+myPromise.then(function(value) {
+  document.getElementById(&quot;demo&quot;).innerHTML = &quot;Promise resolved: &quot; + value;
+});
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p1.png" alt=""></p>
+<h3>Example 1</h3>
+<p><strong>Result</strong> <a href="ex1-create_promise/index.html">View Example</a></p>
+<h2>The then() Method</h2>
+<p>The <code>then()</code> method takes two arguments: a callback for success and another for failure. It is the primary way to handle resolved promises:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Promises&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;The then() Method&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+function fetchData() {
+  return new Promise(function(resolve) {
+    setTimeout(function() {
+      resolve(&quot;Data loaded successfully!&quot;);
+    }, 2000);
+  });
+}
+
+fetchData().then(function(value) {
+  document.getElementById(&quot;demo&quot;).innerHTML = value;
+});
+
+document.getElementById(&quot;demo&quot;).innerHTML = &quot;Loading...&quot;;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p2.png" alt=""></p>
+<h3>Example 2</h3>
+<p><strong>Result</strong> <a href="ex2-then_method/index.html">View Example</a></p>
+<h2>The catch() Method</h2>
+<p>The <code>catch()</code> method provides a callback for when a promise is rejected:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Promises&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;The catch() Method&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+const myPromise = new Promise(function(resolve, reject) {
+  let success = false;
+  if (success) {
+    resolve(&quot;Operation succeeded&quot;);
+  } else {
+    reject(&quot;Operation failed&quot;);
+  }
+});
+
+myPromise
+  .then(function(value) {
+    document.getElementById(&quot;demo&quot;).innerHTML = value;
+  })
+  .catch(function(error) {
+    document.getElementById(&quot;demo&quot;).innerHTML = &quot;Error: &quot; + error;
+  });
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p3.png" alt=""></p>
+<h3>Example 3</h3>
+<p><strong>Result</strong> <a href="ex3-catch_method/index.html">View Example</a></p>
+<h2>The finally() Method</h2>
+<p>The <code>finally()</code> method executes regardless of whether the promise was fulfilled or rejected:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Promises&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;The finally() Method&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+const myPromise = new Promise(function(resolve) {
+  setTimeout(function() {
+    resolve(&quot;Promise completed&quot;);
+  }, 1500);
+});
+
+myPromise
+  .then(function(value) {
+    document.getElementById(&quot;demo&quot;).innerHTML = value + &quot;&lt;br&gt;&quot;;
+  })
+  .finally(function() {
+    document.getElementById(&quot;demo&quot;).innerHTML += &quot;Finally: cleanup done!&quot;;
+  });
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p4.png" alt=""></p>
+<h3>Example 4</h3>
+<p><strong>Result</strong> <a href="ex4-finally_method/index.html">View Example</a></p>
+<h2>Promise Chaining</h2>
+<p>Promises can be chained to handle sequential asynchronous operations:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Promises&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Promise Chaining&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+function step1() {
+  return new Promise(function(resolve) {
+    setTimeout(function() {
+      document.getElementById(&quot;demo&quot;).innerHTML += &quot;Step 1 complete&lt;br&gt;&quot;;
+      resolve(10);
+    }, 1000);
+  });
+}
+
+function step2(number) {
+  return new Promise(function(resolve) {
+    setTimeout(function() {
+      let result = number * 2;
+      document.getElementById(&quot;demo&quot;).innerHTML += &quot;Step 2: &quot; + number + &quot; * 2 = &quot; + result + &quot;&lt;br&gt;&quot;;
+      resolve(result);
+    }, 1000);
+  });
+}
+
+function step3(number) {
+  return new Promise(function(resolve) {
+    setTimeout(function() {
+      let result = number + 5;
+      document.getElementById(&quot;demo&quot;).innerHTML += &quot;Step 3: &quot; + number + &quot; + 5 = &quot; + result + &quot;&lt;br&gt;&quot;;
+      resolve(result);
+    }, 1000);
+  });
+}
+
+// Chain the promises
+step1()
+  .then(function(result1) { return step2(result1); })
+  .then(function(result2) { return step3(result2); })
+  .then(function(result3) {
+    document.getElementById(&quot;demo&quot;).innerHTML += &quot;Final result: &quot; + result3;
+  });
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p5.png" alt=""></p>
+<h3>Example 5</h3>
+<p><strong>Result</strong> <a href="ex5-promise_chaining/index.html">View Example</a></p>
+<h2>Document</h2>
+<p>Document in project</p>
+<p>You can <a href="js-promises.pdf">Download PDF</a> file.</p>
+<h2>Reference</h2>
+<ul>
+<li><a href="https://www.w3schools.com/js/js_async_promises.asp">W3Schools JavaScript Promises</a></li>
+</ul>
+
+</body>
+</html>

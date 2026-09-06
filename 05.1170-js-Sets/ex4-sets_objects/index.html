@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Sets</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Sets are Objects</h4>
+<p id="demo"></p>
+
+<script>
+const letters = new Set(["a", "b", "c"]);
+
+let text = "typeof Set: " + typeof letters + "<br>";
+text += "Instance of Set: " + (letters instanceof Set) + "<br><br>";
+
+// Other Useful Set properties
+text += "<b>Other Set methods:</b><br>";
+text += "has('b'): " + letters.has("b") + "<br>";
+text += "delete('c'): " + letters.delete("c") + "<br>";
+text += "After delete: " + [...letters] + "<br>";
+text += "entries: " + [...letters.entries()] + "<br>";
+
+document.getElementById("demo").innerHTML = text;
+</script>
+
+</body>
+</html>

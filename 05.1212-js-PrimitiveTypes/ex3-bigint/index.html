@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Primitive Types</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>JavaScript BigInt</h4>
+<p id="demo"></p>
+
+<script>
+// BigInt is for very large integers
+const big1 = 123456789012345678901234567890n;
+const big2 = BigInt("123456789012345678901234567890");
+
+// Normal number (limited precision)
+const normal = 123456789012345678901234567890;
+
+let text = "Normal number: " + normal + "<br>";
+text += "(loses precision for large values)<br><br>";
+text += "BigInt: " + big1 + "<br>";
+text += "big2: " + big2 + "<br><br>";
+text += "typeof BigInt: " + typeof big1 + "<br><br>";
+
+text += "BigInt supports arithmetic:<br>";
+text += "big1 + 1n: " + (big1 + 1n);
+
+document.getElementById("demo").innerHTML = text;
+</script>
+
+</body>
+</html>

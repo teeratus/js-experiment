@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Date Formats</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>JavaScript Long Dates</h4>
+<p id="demo"></p>
+
+<script>
+// Long date formats
+const longDate1 = new Date("Mar 15 2024");          // Month name short
+const longDate2 = new Date("March 15, 2024");       // Full month name
+const longDate3 = new Date("15 Mar 2024");          // Day first
+
+// With time
+const longDate4 = new Date("March 15, 2024 10:30:00");
+
+document.getElementById("demo").innerHTML =
+  "Mar 15 2024: " + longDate1 + "<br>" +
+  "March 15, 2024: " + longDate2 + "<br>" +
+  "15 Mar 2024: " + longDate3 + "<br>" +
+  "March 15, 2024 10:30:00: " + longDate4;
+</script>
+
+</body>
+</html>

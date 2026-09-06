@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript API Web Workers</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Terminate a Web Worker</h4>
+
+<p>Timer: <span id="timer">0</span> seconds</p>
+<button onclick="startTimer()">Start Timer</button>
+<button onclick="stopTimer()">Stop Timer</button>
+<p id="status2"></p>
+
+<script>
+let timerWorker;
+
+function startTimer() {
+  if (typeof(Worker) !== "undefined") {
+    if (typeof(timerWorker) === "undefined") {
+      timerWorker = new Worker("timer_worker.js");
+    }
+    timerWorker.onmessage = function(event) {
+      document.getElementById("timer").innerHTML = event.data;
+    };
+    document.getElementById("status2").innerHTML = "Timer running in worker...";
+  } else {
+    document.getElementById("status2").innerHTML = "Web Workers not supported.";
+  }
+}
+
+function stopTimer() {
+  if (timerWorker) {
+    timerWorker.terminate();
+    timerWorker = undefined;
+    document.getElementById("status2").innerHTML = "Timer stopped with terminate().";
+  }
+}
+</script>
+
+</body>
+</html>

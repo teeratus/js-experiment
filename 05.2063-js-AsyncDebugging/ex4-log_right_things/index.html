@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Async Debugging</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Rule 3: Log the Right Things</h4>
+<p id="demo"></p>
+
+<script>
+async function logCorrectly() {
+  const url = 'https://jsonplaceholder.typicode.com/users/1';
+
+  // Log the URL being fetched
+  console.log("Fetching:", url);
+
+  try {
+    const response = await fetch(url);
+
+    // Log response status
+    console.log("Response status:", response.status);
+
+    if (!response.ok) {
+      throw new Error("HTTP error " + response.status);
+    }
+
+    const data = await response.json();
+
+    // Log the received data structure
+    console.log("Data received:", data);
+    console.log("User name:", data.name);
+
+    document.getElementById("demo").innerHTML =
+      "Check the browser console (F12) for logs<br>" +
+      "User: " + data.name + "<br>" +
+      "Email: " + data.email;
+
+  } catch(error) {
+    console.error("Error:", error.message);
+    document.getElementById("demo").innerHTML = "Error: " + error.message;
+  }
+}
+
+logCorrectly();
+</script>
+
+</body>
+</html>

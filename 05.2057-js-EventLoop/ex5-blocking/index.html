@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Event Loop</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Long Tasks Block JavaScript</h4>
+<p id="demo"></p>
+
+<script>
+document.getElementById("demo").innerHTML += "1. Start<br>";
+
+// This timeout should fire after 0ms
+setTimeout(function() {
+  document.getElementById("demo").innerHTML += "4. setTimeout (delayed by blocking code)<br>";
+}, 0);
+
+// Blocking operation - simulates 3 seconds of work
+let start = Date.now();
+while (Date.now() < start + 3000) {
+  // Blocking loop
+}
+
+document.getElementById("demo").innerHTML += "2. After blocking loop (3 seconds later)<br>";
+
+document.getElementById("demo").innerHTML += "3. End of synchronous code<br>";
+</script>
+
+</body>
+</html>

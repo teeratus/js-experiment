@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Objects</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Objects are Mutable</h4>
+<p id="demo1"></p>
+<p id="demo2"></p>
+
+<script>
+const person = { firstName: "John", lastName: "Doe" };
+
+// Copy by reference
+const employee = person;
+employee.firstName = "Jane";
+
+document.getElementById("demo1").innerHTML =
+  "person.firstName: " + person.firstName;
+
+document.getElementById("demo2").innerHTML =
+  "employee.firstName: " + employee.firstName + "<br>" +
+  "(Both changed because they reference the same object)";
+</script>
+
+</body>
+</html>

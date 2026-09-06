@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>js-graphics</title>
+  <style>
+    body {
+      box-sizing: border-box;
+      min-width: 200px;
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 45px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+      font-size: 16px;
+      line-height: 1.5;
+      color: #24292e;
+      background-color: #ffffff;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 24px;
+      margin-bottom: 16px;
+      font-weight: 600;
+      line-height: 1.25;
+      border-bottom: 1px solid #eaecef;
+      padding-bottom: .3em;
+    }
+    h1 { font-size: 2em; }
+    h2 { font-size: 1.5em; }
+    h3 { font-size: 1.25em; }
+    code {
+      padding: .2em .4em;
+      margin: 0;
+      font-size: 85%;
+      background-color: rgba(27,31,35,.05);
+      border-radius: 3px;
+      font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
+    }
+    pre {
+      padding: 16px;
+      overflow: auto;
+      font-size: 85%;
+      line-height: 1.45;
+      background-color: #f6f8fa;
+      border-radius: 3px;
+      word-wrap: normal;
+    }
+    pre code {
+      background-color: transparent;
+      padding: 0;
+    }
+    blockquote {
+      padding: 0 1em;
+      color: #6a737d;
+      border-left: .25em solid #dfe2e5;
+      margin: 0 0 16px 0;
+    }
+    table {
+      border-spacing: 0;
+      border-collapse: collapse;
+      margin-top: 0;
+      margin-bottom: 16px;
+      width: 100%;
+    }
+    table th, table td {
+      padding: 6px 13px;
+      border: 1px solid #dfe2e5;
+    }
+    table tr:nth-child(2n) {
+      background-color: #f6f8fa;
+    }
+    img {
+      max-width: 100%;
+      box-sizing: content-box;
+    }
+    @media print {
+      body {
+        max-width: 100%;
+        padding: 0;
+      }
+      pre, blockquote, table, tr, img {
+        page-break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+<body>
+<h1>JavaScript Graphics</h1>
+<p><a href="../acp-js.php">Back to JS page</a></p>
+<p>Table of Contents</p>
+<ul>
+<li><a href="#javascript-graphics">JavaScript Graphics</a><ul>
+<li><a href="#graphic-libraries">Graphic Libraries</a><ul>
+<li><a href="#example-1">Example 1</a></li>
+</ul>
+</li>
+<li><a href="#plotlyjs">Plotly.js</a><ul>
+<li><a href="#example-2">Example 2</a></li>
+</ul>
+</li>
+<li><a href="#chartjs">Chart.js</a><ul>
+<li><a href="#example-3">Example 3</a></li>
+</ul>
+</li>
+<li><a href="#google-chart">Google Chart</a><ul>
+<li><a href="#example-4">Example 4</a></li>
+</ul>
+</li>
+<li><a href="#document">Document</a></li>
+<li><a href="#reference">Reference</a></li>
+</ul>
+</li>
+</ul>
+<h2>Graphic Libraries</h2>
+<p>There are many JavaScript graphic libraries available for creating charts, graphs, and visualizations on web pages:</p>
+<table>
+<thead>
+<tr>
+<th>Library</th>
+<th>Description</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Plotly.js</strong></td>
+<td>High-level charting library (scatter, bar, pie, 3D charts)</td>
+<td>Open source</td>
+</tr>
+<tr>
+<td><strong>Chart.js</strong></td>
+<td>Simple yet flexible charting (responsive, canvas-based)</td>
+<td>Open source</td>
+</tr>
+<tr>
+<td><strong>Google Chart</strong></td>
+<td>Google&#39;s charting library (wide variety of chart types)</td>
+<td>Free</td>
+</tr>
+<tr>
+<td><strong>D3.js</strong></td>
+<td>Data-driven documents (low-level, highly customizable)</td>
+<td>Open source</td>
+</tr>
+<tr>
+<td><strong>Highcharts</strong></td>
+<td>Feature-rich charting library</td>
+<td>Commercial</td>
+</tr>
+<tr>
+<td><strong>Three.js</strong></td>
+<td>3D graphics and animations</td>
+<td>Open source</td>
+</tr>
+</tbody></table>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Graphics&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Graphic Libraries&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+let text = &quot;JavaScript Graphics Libraries:&lt;br&gt;&lt;br&gt;&quot;;
+
+text += &quot;1. &lt;b&gt;Plotly.js&lt;/b&gt; - Interactive charts (scatter, bar, 3D)&lt;br&gt;&quot;;
+text += &quot;2. &lt;b&gt;Chart.js&lt;/b&gt; - Simple, responsive canvas charts&lt;br&gt;&quot;;
+text += &quot;3. &lt;b&gt;Google Chart&lt;/b&gt; - Google&#39;s charting service&lt;br&gt;&quot;;
+text += &quot;4. &lt;b&gt;D3.js&lt;/b&gt; - Data-driven document manipulation&lt;br&gt;&quot;;
+text += &quot;5. &lt;b&gt;Three.js&lt;/b&gt; - 3D graphics in the browser&lt;br&gt;&quot;;
+text += &quot;6. &lt;b&gt;Canvas API&lt;/b&gt; - Built-in 2D drawing&lt;br&gt;&quot;;
+text += &quot;7. &lt;b&gt;SVG&lt;/b&gt; - Scalable Vector Graphics&lt;br&gt;&lt;br&gt;&quot;;
+
+text += &quot;To use a library, include its CDN link:&quot;;
+
+document.getElementById(&quot;demo&quot;).innerHTML = text;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p1.png" alt=""></p>
+<h3>Example 1</h3>
+<p><strong>Result</strong> <a href="ex1-graphic_libraries/index.html">View Example</a></p>
+<h2>Plotly.js</h2>
+<p>Plotly.js is a high-level, declarative charting library. It supports over 40 chart types including scatter plots, bar charts, pie charts, and 3D charts:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Graphics&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Plotly.js&lt;/h4&gt;
+
+&lt;div id=&quot;plotlyChart&quot;&gt;&lt;/div&gt;
+&lt;p id=&quot;demo2&quot;&gt;&lt;/p&gt;
+
+&lt;!-- Plotly.js CDN --&gt;
+&lt;script src=&quot;https://cdn.plot.ly/plotly-2.27.0.min.js&quot;&gt;&lt;/script&gt;
+
+&lt;script&gt;
+// Sample data
+const xValues = [1, 2, 3, 4, 5, 6, 7];
+const yValues = [10, 15, 13, 17, 14, 20, 18];
+
+// Create a bar chart
+const data = [{
+  x: xValues,
+  y: yValues,
+  type: &quot;bar&quot;,
+  marker: {
+    color: &quot;#4CAF50&quot;
+  }
+}];
+
+const layout = {
+  title: &quot;Weekly Sales (Plotly.js)&quot;,
+  xaxis: {title: &quot;Day&quot;},
+  yaxis: {title: &quot;Sales&quot;}
+};
+
+Plotly.newPlot(&quot;plotlyChart&quot;, data, layout);
+document.getElementById(&quot;demo2&quot;).innerHTML = &quot;Plotly.js bar chart created!&quot;;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p2.png" alt=""></p>
+<h3>Example 2</h3>
+<p><strong>Result</strong> <a href="ex2-plotly/index.html">View Example</a></p>
+<h2>Chart.js</h2>
+<p>Chart.js is a simple yet flexible JavaScript charting library for designers and developers. It creates responsive, canvas-based charts:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Graphics&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Chart.js&lt;/h4&gt;
+
+&lt;canvas id=&quot;chartjsChart&quot; style=&quot;width:100%;max-width:600px;&quot;&gt;&lt;/canvas&gt;
+&lt;p id=&quot;demo3&quot;&gt;&lt;/p&gt;
+
+&lt;!-- Chart.js CDN --&gt;
+&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js&quot;&gt;&lt;/script&gt;
+
+&lt;script&gt;
+const xValues2 = [&quot;Jan&quot;, &quot;Feb&quot;, &quot;Mar&quot;, &quot;Apr&quot;, &quot;May&quot;, &quot;Jun&quot;];
+const yValues2 = [55, 49, 80, 70, 65, 90];
+const barColors = [&quot;red&quot;, &quot;green&quot;, &quot;blue&quot;, &quot;orange&quot;, &quot;brown&quot;, &quot;purple&quot;];
+
+new Chart(&quot;chartjsChart&quot;, {
+  type: &quot;bar&quot;,
+  data: {
+    labels: xValues2,
+    datasets: [{
+      backgroundColor: barColors,
+      data: yValues2
+    }]
+  },
+  options: {
+    title: {
+      display: true,
+      text: &quot;Monthly Revenue (Chart.js)&quot;
+    },
+    legend: {display: false}
+  }
+});
+
+document.getElementById(&quot;demo3&quot;).innerHTML = &quot;Chart.js bar chart created!&quot;;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p3.png" alt=""></p>
+<h3>Example 3</h3>
+<p><strong>Result</strong> <a href="ex3-chartjs/index.html">View Example</a></p>
+<h2>Google Chart</h2>
+<p>Google Chart provides a wide variety of chart types powered by Google. Charts are rendered using HTML5/SVG technology:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Graphics&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Google Chart&lt;/h4&gt;
+
+&lt;div id=&quot;googleChart&quot;&gt;&lt;/div&gt;
+&lt;p id=&quot;demo4&quot;&gt;&lt;/p&gt;
+
+&lt;!-- Google Chart CDN --&gt;
+&lt;script src=&quot;https://www.gstatic.com/charts/loader.js&quot;&gt;&lt;/script&gt;
+
+&lt;script&gt;
+google.charts.load(&quot;current&quot;, {packages: [&quot;corechart&quot;]});
+google.charts.setOnLoadCallback(drawChart);
+
+function drawChart() {
+  const data = google.visualization.arrayToDataTable([
+    [&quot;Category&quot;, &quot;Value&quot;],
+    [&quot;Product A&quot;, 45],
+    [&quot;Product B&quot;, 25],
+    [&quot;Product C&quot;, 15],
+    [&quot;Product D&quot;, 10],
+    [&quot;Product E&quot;, 5]
+  ]);
+
+  const options = {
+    title: &quot;Market Share (Google Chart)&quot;,
+    is3D: true,
+    pieHole: 0.4
+  };
+
+  const chart = new google.visualization.PieChart(document.getElementById(&quot;googleChart&quot;));
+  chart.draw(data, options);
+  
+  document.getElementById(&quot;demo4&quot;).innerHTML = &quot;Google Chart pie chart created!&quot;;
+}
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p4.png" alt=""></p>
+<h3>Example 4</h3>
+<p><strong>Result</strong> <a href="ex4-google_chart/index.html">View Example</a></p>
+<h2>Document</h2>
+<p>Document in project</p>
+<p>You can <a href="js-graphics.pdf">Download PDF</a> file.</p>
+<h2>Reference</h2>
+<ul>
+<li><a href="https://www.w3schools.com/js/js_graphics.asp">W3Schools JavaScript Graphics</a></li>
+</ul>
+
+</body>
+</html>

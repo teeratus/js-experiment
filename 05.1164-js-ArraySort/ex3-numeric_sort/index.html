@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Array Sort</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Numeric Sort</h4>
+<p id="demo"></p>
+
+<script>
+const points = [40, 100, 1, 5, 25, 10];
+
+// Without compare function: sorts as strings (WRONG for numbers)
+const wrong = points.slice();
+wrong.sort();
+
+// With compare function: sorts as numbers
+const right = points.slice();
+right.sort(function(a, b) { return a - b; });
+
+document.getElementById("demo").innerHTML =
+  "Original: " + points + "<br><br>" +
+  "Without compare function: " + wrong + " (wrong for numbers)<br>" +
+  "With compare function: " + right + " (correct)";
+</script>
+
+</body>
+</html>

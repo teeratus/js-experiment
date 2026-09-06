@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Iterables</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Iterating Over a Map</h4>
+<p id="demo"></p>
+
+<script>
+const fruits = new Map([
+  ["apple", 500],
+  ["banana", 300]
+]);
+let text = "";
+
+for (let entry of fruits) {
+  text += entry[0] + " = " + entry[1] + "<br>";
+}
+
+document.getElementById("demo").innerHTML = text;
+</script>
+
+</body>
+</html>

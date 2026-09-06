@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>js-css_features</title>
+  <style>
+    body {
+      box-sizing: border-box;
+      min-width: 200px;
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 45px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+      font-size: 16px;
+      line-height: 1.5;
+      color: #24292e;
+      background-color: #ffffff;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 24px;
+      margin-bottom: 16px;
+      font-weight: 600;
+      line-height: 1.25;
+      border-bottom: 1px solid #eaecef;
+      padding-bottom: .3em;
+    }
+    h1 { font-size: 2em; }
+    h2 { font-size: 1.5em; }
+    h3 { font-size: 1.25em; }
+    code {
+      padding: .2em .4em;
+      margin: 0;
+      font-size: 85%;
+      background-color: rgba(27,31,35,.05);
+      border-radius: 3px;
+      font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
+    }
+    pre {
+      padding: 16px;
+      overflow: auto;
+      font-size: 85%;
+      line-height: 1.45;
+      background-color: #f6f8fa;
+      border-radius: 3px;
+      word-wrap: normal;
+    }
+    pre code {
+      background-color: transparent;
+      padding: 0;
+    }
+    blockquote {
+      padding: 0 1em;
+      color: #6a737d;
+      border-left: .25em solid #dfe2e5;
+      margin: 0 0 16px 0;
+    }
+    table {
+      border-spacing: 0;
+      border-collapse: collapse;
+      margin-top: 0;
+      margin-bottom: 16px;
+      width: 100%;
+    }
+    table th, table td {
+      padding: 6px 13px;
+      border: 1px solid #dfe2e5;
+    }
+    table tr:nth-child(2n) {
+      background-color: #f6f8fa;
+    }
+    img {
+      max-width: 100%;
+      box-sizing: content-box;
+    }
+    @media print {
+      body {
+        max-width: 100%;
+        padding: 0;
+      }
+      pre, blockquote, table, tr, img {
+        page-break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+<body>
+<h1>JavaScript CSS Features</h1>
+<p><a href="../acp-js.php">Back to JS page</a></p>
+<p>Table of Contents</p>
+<ul>
+<li><a href="#javascript-css-features">JavaScript CSS Features</a><ul>
+<li><a href="#hover-effects">Hover Effects</a><ul>
+<li><a href="#example-1">Example 1</a></li>
+</ul>
+</li>
+<li><a href="#transitions">Transitions</a><ul>
+<li><a href="#example-2">Example 2</a></li>
+</ul>
+</li>
+<li><a href="#show-and-hide-content">Show and Hide Content</a><ul>
+<li><a href="#example-3">Example 3</a></li>
+</ul>
+</li>
+<li><a href="#responsive-layouts">Responsive Layouts</a><ul>
+<li><a href="#example-4">Example 4</a></li>
+</ul>
+</li>
+<li><a href="#css-animations">CSS Animations</a><ul>
+<li><a href="#example-5">Example 5</a></li>
+</ul>
+</li>
+<li><a href="#document">Document</a></li>
+<li><a href="#reference">Reference</a></li>
+</ul>
+</li>
+</ul>
+<h2>Hover Effects</h2>
+<p>Many interactive effects that previously required JavaScript can now be achieved with CSS alone using the <code>:hover</code> pseudo-class:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;style&gt;
+.btn {
+  background-color: #04AA6D;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+.btn:hover {
+  background-color: #028a56;
+}
+.card {
+  width: 200px;
+  height: 100px;
+  background-color: #f1f1f1;
+  padding: 20px;
+  transition: transform 0.3s;
+}
+.card:hover {
+  transform: scale(1.1);
+  box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+}
+&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript CSS Features&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Hover Effects (CSS only)&lt;/h4&gt;
+&lt;button class=&quot;btn&quot;&gt;Hover over me&lt;/button&gt;
+&lt;br&gt;&lt;br&gt;
+&lt;div class=&quot;card&quot;&gt;Hover over this card&lt;/div&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p1.png" alt=""></p>
+<h3>Example 1</h3>
+<p><strong>Result</strong> <a href="ex1-hover_effects/index.html">View Example</a></p>
+<h2>Transitions</h2>
+<p>CSS transitions allow you to change property values smoothly over a given duration, without JavaScript:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;style&gt;
+.box {
+  width: 100px;
+  height: 100px;
+  background-color: #04AA6D;
+  transition: width 2s, height 2s, transform 2s;
+}
+.box:hover {
+  width: 200px;
+  height: 200px;
+  transform: rotate(180deg);
+}
+&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript CSS Features&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Transitions (CSS only)&lt;/h4&gt;
+&lt;div class=&quot;box&quot;&gt;&lt;/div&gt;
+&lt;p&gt;Hover over the box to see the transition effect.&lt;/p&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p2.png" alt=""></p>
+<h3>Example 2</h3>
+<p><strong>Result</strong> <a href="ex2-transitions/index.html">View Example</a></p>
+<h2>Show and Hide Content</h2>
+<p>CSS can show and hide content using pseudo-classes like <code>:hover</code>, <code>:focus</code>, or <code>:target</code>, without JavaScript:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;style&gt;
+.tooltip {
+  position: relative;
+  display: inline-block;
+  border-bottom: 1px dotted black;
+}
+.tooltip .tooltip-text {
+  visibility: hidden;
+  width: 200px;
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  padding: 5px;
+  border-radius: 6px;
+  position: absolute;
+  z-index: 1;
+  bottom: 125%;
+  left: 50%;
+  margin-left: -100px;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+.tooltip:hover .tooltip-text {
+  visibility: visible;
+  opacity: 1;
+}
+.show-hide {
+  display: none;
+}
+.toggle-btn:focus + .show-hide {
+  display: block;
+}
+&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript CSS Features&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Show and Hide Content (CSS only)&lt;/h4&gt;
+
+&lt;p&gt;Tooltip example (CSS only):&lt;/p&gt;
+&lt;div class=&quot;tooltip&quot;&gt;Hover over me
+  &lt;span class=&quot;tooltip-text&quot;&gt;This is a CSS tooltip! No JavaScript needed.&lt;/span&gt;
+&lt;/div&gt;
+
+&lt;br&gt;&lt;br&gt;
+&lt;p&gt;Click the button to show content (CSS only):&lt;/p&gt;
+&lt;button class=&quot;toggle-btn&quot;&gt;Click to toggle&lt;/button&gt;
+&lt;div class=&quot;show-hide&quot;&gt;This content is shown using CSS :focus pseudo-class!&lt;/div&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p3.png" alt=""></p>
+<h3>Example 3</h3>
+<p><strong>Result</strong> <a href="ex3-show_hide/index.html">View Example</a></p>
+<h2>Responsive Layouts</h2>
+<p>CSS provides powerful layout tools like Flexbox and Grid that create responsive designs without JavaScript:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;style&gt;
+.flex-container {
+  display: flex;
+  flex-wrap: wrap;
+  background-color: #f1f1f1;
+  gap: 10px;
+  padding: 10px;
+}
+.flex-container &gt; div {
+  background-color: #04AA6D;
+  color: white;
+  width: 150px;
+  text-align: center;
+  line-height: 75px;
+  font-size: 30px;
+  flex: 1 1 auto;
+}
+@media (max-width: 600px) {
+  .flex-container &gt; div {
+    width: 100%;
+  }
+}
+&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript CSS Features&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Responsive Layouts (CSS only)&lt;/h4&gt;
+&lt;p&gt;Resize the browser window to see the responsive effect.&lt;/p&gt;
+
+&lt;div class=&quot;flex-container&quot;&gt;
+  &lt;div&gt;1&lt;/div&gt;
+  &lt;div&gt;2&lt;/div&gt;
+  &lt;div&gt;3&lt;/div&gt;
+  &lt;div&gt;4&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p4.png" alt=""></p>
+<h3>Example 4</h3>
+<p><strong>Result</strong> <a href="ex4-responsive_layouts/index.html">View Example</a></p>
+<h2>CSS Animations</h2>
+<p>CSS animations allow you to animate HTML elements without JavaScript:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;style&gt;
+@keyframes example {
+  0%   {background-color: red; left: 0px; top: 0px;}
+  25%  {background-color: yellow; left: 200px; top: 0px;}
+  50%  {background-color: blue; left: 200px; top: 200px;}
+  75%  {background-color: green; left: 0px; top: 200px;}
+  100% {background-color: red; left: 0px; top: 0px;}
+}
+.animated-box {
+  width: 100px;
+  height: 100px;
+  background-color: red;
+  position: relative;
+  animation-name: example;
+  animation-duration: 4s;
+  animation-iteration-count: infinite;
+}
+.bouncing-ball {
+  width: 50px;
+  height: 50px;
+  background-color: #04AA6D;
+  border-radius: 50%;
+  position: relative;
+  animation: bounce 2s infinite;
+}
+@keyframes bounce {
+  0%, 100% { top: 0; }
+  50% { top: 100px; }
+}
+&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript CSS Features&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;CSS Animations&lt;/h4&gt;
+&lt;p&gt;Moving box animation:&lt;/p&gt;
+&lt;div class=&quot;animated-box&quot;&gt;&lt;/div&gt;
+&lt;br&gt;
+&lt;p&gt;Bouncing ball animation:&lt;/p&gt;
+&lt;div class=&quot;bouncing-ball&quot;&gt;&lt;/div&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p5.png" alt=""></p>
+<h3>Example 5</h3>
+<p><strong>Result</strong> <a href="ex5-css_animations/index.html">View Example</a></p>
+<h2>Document</h2>
+<p>Document in project</p>
+<p>You can <a href="js-css_features.pdf">Download PDF</a> file.</p>
+<h2>Reference</h2>
+<ul>
+<li><a href="https://www.w3schools.com/js/js_htmlfirst_css.asp">W3Schools JavaScript CSS Features</a></li>
+</ul>
+
+</body>
+</html>

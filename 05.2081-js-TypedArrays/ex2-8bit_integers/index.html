@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Typed Arrays</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>8 Bit Integers</h4>
+<p id="demo"></p>
+
+<script>
+// Int8Array - signed (-128 to 127)
+const signed = new Int8Array([-10, 0, 50, 127, -128]);
+
+// Uint8Array - unsigned (0 to 255)
+const unsigned = new Uint8Array([0, 100, 200, 255]);
+
+let text = "Int8Array (signed -128 to 127):<br>";
+for (let num of signed) {
+  text += num + " ";
+}
+text += "<br><br>";
+
+text += "Uint8Array (unsigned 0 to 255):<br>";
+for (let num of unsigned) {
+  text += num + " ";
+}
+
+document.getElementById("demo").innerHTML = text;
+</script>
+
+</body>
+</html>

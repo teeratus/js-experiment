@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Silent Errors</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Numeric Coercion</h4>
+<p id="demo"></p>
+
+<script>
+let text = "";
+
+let x = "5" - 2;       // x = 3 (string converted to number)
+let y = "abc" - 1;     // y = NaN (cannot convert)
+
+text += "\"5\" - 2 = " + x + "<br>";
+text += "\"abc\" - 1 = " + y + "<br>";
+text += "No errors thrown, just NaN.";
+
+document.getElementById("demo").innerHTML = text;
+</script>
+
+</body>
+</html>

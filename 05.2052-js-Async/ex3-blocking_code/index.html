@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Async</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Blocking Code</h4>
+<p id="demo1"></p>
+<p id="demo2"></p>
+
+<script>
+document.getElementById("demo1").innerHTML = "Start of script";
+
+// Simulate a blocking operation
+function blockingOperation() {
+  let start = Date.now();
+  let end = start;
+  while (end < start + 2000) {
+    end = Date.now();
+  }
+  return "Blocking operation finished after 2 seconds";
+}
+
+let result = blockingOperation();
+document.getElementById("demo2").innerHTML = result;
+</script>
+
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript HTML DOM Events</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>The onchange Event</h4>
+<p>Select a car:</p>
+<select id="mySelect" onchange="myFunction()">
+  <option value="Volvo">Volvo</option>
+  <option value="BMW">BMW</option>
+  <option value="Audi">Audi</option>
+</select>
+<p id="demo"></p>
+
+<script>
+function myFunction() {
+  let x = document.getElementById("mySelect").value;
+  document.getElementById("demo").innerHTML = "You selected: " + x;
+}
+</script>
+
+</body>
+</html>

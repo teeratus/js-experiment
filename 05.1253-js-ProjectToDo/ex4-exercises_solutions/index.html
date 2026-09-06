@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>To-Do List</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<!-- Exercise 2: Added keydown listener on input to allow Enter key to trigger addTask -->
+<input id="task" placeholder="New task" onkeydown="handleKey(event)">
+<button onclick="addTask()">Add</button>
+<ul id="list"></ul>
+<button onclick="clearAll()">Clear All</button>
+
+<!-- Exercise 3: Element to display the status messages -->
+<p id="status" style="color: green; font-weight: bold;"></p>
+
+<script>
+let tasks = [];
+
+function displayTasks() {
+  let html = "";
+  for (let i = 0; i < tasks.length; i++) {
+    html += "<li>" + tasks[i] +
+    " <button onclick='removeTask(" + i + ")'>x</button></li>";
+  }
+  document.getElementById("list").innerHTML = html;
+}
+
+// Exercise 1: Show alert if user tries to add empty task
+function addTask() {
+  let taskInput = document.getElementById("task");
+  let text = taskInput.value.trim();
+  if (text === "") {
+    alert("Please enter a task! Task cannot be empty.");
+    return;
+  }
+  tasks.push(text);
+  taskInput.value = "";
+  saveTasks();
+  displayTasks();
+}
+
+function removeTask(i) {
+  tasks.splice(i, 1);
+  saveTasks();
+  displayTasks();
+}
+
+function clearAll() {
+  tasks = [];
+  saveTasks();
+  displayTasks();
+}
+
+// Exercise 3: Add a "Saved!" message to show when saving
+function saveTasks() {
+  localStorage.setItem("tasks", JSON.stringify(tasks));
+  showStatus("Saved!");
+}
+
+function showStatus(msg) {
+  let statusEl = document.getElementById("status");
+  statusEl.innerHTML = msg;
+  setTimeout(function () {
+    statusEl.innerHTML = "";
+  }, 2000);
+}
+
+function loadTasks() {
+  let saved = localStorage.getItem("tasks");
+  if (saved !== null) {
+    tasks = JSON.parse(saved);
+  }
+}
+
+// Exercise 2: Allow pressing Enter to add task
+function handleKey(event) {
+  if (event.key === "Enter") {
+    addTask();
+  }
+}
+
+loadTasks();
+displayTasks();
+</script>
+
+</body>
+</html>

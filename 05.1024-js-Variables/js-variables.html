@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>js-variables</title>
+  <style>
+    body {
+      box-sizing: border-box;
+      min-width: 200px;
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 45px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+      font-size: 16px;
+      line-height: 1.5;
+      color: #24292e;
+      background-color: #ffffff;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 24px;
+      margin-bottom: 16px;
+      font-weight: 600;
+      line-height: 1.25;
+      border-bottom: 1px solid #eaecef;
+      padding-bottom: .3em;
+    }
+    h1 { font-size: 2em; }
+    h2 { font-size: 1.5em; }
+    h3 { font-size: 1.25em; }
+    code {
+      padding: .2em .4em;
+      margin: 0;
+      font-size: 85%;
+      background-color: rgba(27,31,35,.05);
+      border-radius: 3px;
+      font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
+    }
+    pre {
+      padding: 16px;
+      overflow: auto;
+      font-size: 85%;
+      line-height: 1.45;
+      background-color: #f6f8fa;
+      border-radius: 3px;
+      word-wrap: normal;
+    }
+    pre code {
+      background-color: transparent;
+      padding: 0;
+    }
+    blockquote {
+      padding: 0 1em;
+      color: #6a737d;
+      border-left: .25em solid #dfe2e5;
+      margin: 0 0 16px 0;
+    }
+    table {
+      border-spacing: 0;
+      border-collapse: collapse;
+      margin-top: 0;
+      margin-bottom: 16px;
+      width: 100%;
+    }
+    table th, table td {
+      padding: 6px 13px;
+      border: 1px solid #dfe2e5;
+    }
+    table tr:nth-child(2n) {
+      background-color: #f6f8fa;
+    }
+    img {
+      max-width: 100%;
+      box-sizing: content-box;
+    }
+    @media print {
+      body {
+        max-width: 100%;
+        padding: 0;
+      }
+      pre, blockquote, table, tr, img {
+        page-break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+<body>
+<h1>JavaScript Variables</h1>
+<p><a href="../acp-js.php">Back to JS page</a></p>
+<p>Table of Contents</p>
+<ul>
+<li><a href="#javascript-variables">JavaScript Variables</a><ul>
+<li><a href="#variables-are-data-containers">Variables are Data Containers</a><ul>
+<li><a href="#example-1">Example 1</a></li>
+</ul>
+</li>
+<li><a href="#javascript-identifiers">JavaScript Identifiers</a></li>
+<li><a href="#javascript-underscore-_">JavaScript Underscore (_)</a><ul>
+<li><a href="#example-2">Example 2</a></li>
+</ul>
+</li>
+<li><a href="#javascript-dollar-sign-">JavaScript Dollar Sign ($)</a><ul>
+<li><a href="#example-3">Example 3</a></li>
+</ul>
+</li>
+<li><a href="#declare-a-variable-using-let">Declare a Variable Using let</a><ul>
+<li><a href="#example-4">Example 4</a></li>
+</ul>
+</li>
+<li><a href="#declare-a-variable-using-const">Declare a Variable Using const</a><ul>
+<li><a href="#example-5">Example 5</a></li>
+</ul>
+</li>
+<li><a href="#one-statement-many-variables">One Statement, Many Variables</a><ul>
+<li><a href="#example-6">Example 6</a></li>
+</ul>
+</li>
+<li><a href="#javascript-data-types">JavaScript Data Types</a><ul>
+<li><a href="#example-7">Example 7</a></li>
+</ul>
+</li>
+<li><a href="#the-assignment-operator">The Assignment Operator</a><ul>
+<li><a href="#example-8">Example 8</a></li>
+</ul>
+</li>
+<li><a href="#document">Document</a></li>
+<li><a href="#reference">Reference</a></li>
+</ul>
+</li>
+</ul>
+<h2>Variables are Data Containers</h2>
+<p><strong>JavaScript variables</strong> are containers for data.</p>
+<p>JavaScript variables can be <strong>declared</strong> in 4 ways: <code>let</code>, <code>const</code>, <code>var</code> (older), or automatically.</p>
+<p>Variables are <strong>labels</strong> for data values and <strong>containers</strong> for storing data.</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Variables&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Variables are Data Containers&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+let carName = &quot;Volvo&quot;;
+document.getElementById(&quot;demo&quot;).innerHTML = carName;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p1.png" alt=""></p>
+<h3>Example 1</h3>
+<p><strong>Result</strong> <a href="ex1-data_containers/index.html">View Example</a></p>
+<h2>JavaScript Identifiers</h2>
+<p>Variables are identified with <strong>names</strong> called <strong>identifiers</strong>.</p>
+<p>Names can be short like x, y, z or descriptive like age, sum, carName.</p>
+<p>Rules for constructing names (identifiers):</p>
+<ul>
+<li>Names can contain letters, digits, underscores, and dollar signs.</li>
+<li>Names must begin with a letter.</li>
+<li>Names can also begin with <code>$</code> and <code>_</code>.</li>
+<li>Numbers are not allowed as the first character in names.</li>
+<li>Names are case sensitive (y and Y are different variables).</li>
+<li>Reserved words (like JavaScript keywords) cannot be used as names.</li>
+</ul>
+<h2>JavaScript Underscore (_)</h2>
+<p>JavaScript treats underscore as a letter. Identifiers containing <code>_</code> are valid variable names.</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Variables&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;JavaScript Underscore (_)&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+let _firstName = &quot;John&quot;;
+let _lastName = &quot;Doe&quot;;
+let _age = 30;
+document.getElementById(&quot;demo&quot;).innerHTML = _firstName + &quot; &quot; + _lastName + &quot; is &quot; + _age;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p2.png" alt=""></p>
+<h3>Example 2</h3>
+<p><strong>Result</strong> <a href="ex2-underscore/index.html">View Example</a></p>
+<h2>JavaScript Dollar Sign ($)</h2>
+<p>JavaScript also treats a dollar sign as a letter. Identifiers containing <code>$</code> are valid variable names.</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Variables&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;JavaScript Dollar Sign ($)&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+let $ = &quot;Hello World&quot;;
+let $$$ = 2;
+let $myMoney = 5;
+document.getElementById(&quot;demo&quot;).innerHTML = $ + &quot; &quot; + ($ + $$$ + $myMoney);
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p3.png" alt=""></p>
+<h3>Example 3</h3>
+<p><strong>Result</strong> <a href="ex3-dollar_sign/index.html">View Example</a></p>
+<h2>Declare a Variable Using let</h2>
+<p>Creating a variable in JavaScript is called <strong>declaring</strong> a variable.</p>
+<p>You declare a JavaScript variable with the <code>let</code> keyword.</p>
+<p>After the declaration, the variable has no value (technically it is <code>undefined</code>).</p>
+<p>To <strong>assign</strong> a value to the variable, use the equal sign:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Variables&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Declare a Variable Using let&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+let carName = &quot;Volvo&quot;;
+document.getElementById(&quot;demo&quot;).innerHTML = carName;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p4.png" alt=""></p>
+<h3>Example 4</h3>
+<p><strong>Result</strong> <a href="ex4-let_variable/index.html">View Example</a></p>
+<h2>Declare a Variable Using const</h2>
+<p>Always use <code>const</code> if the value should not be changed.</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Variables&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Declare a Variable Using const&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+const price1 = 5;
+const price2 = 6;
+let total = price1 + price2;
+document.getElementById(&quot;demo&quot;).innerHTML = &quot;Total: &quot; + total;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p5.png" alt=""></p>
+<h3>Example 5</h3>
+<p><strong>Result</strong> <a href="ex5-const_variable/index.html">View Example</a></p>
+<h2>One Statement, Many Variables</h2>
+<p>You can declare many variables in one statement.</p>
+<p>Start the statement with <code>let</code> or <code>const</code> and separate the variables by <strong>comma</strong>:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Variables&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;One Statement, Many Variables&lt;/h4&gt;
+&lt;p id=&quot;demo1&quot;&gt;&lt;/p&gt;
+&lt;p id=&quot;demo2&quot;&gt;&lt;/p&gt;
+&lt;p id=&quot;demo3&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+let person = &quot;John Doe&quot;, carName = &quot;Volvo&quot;, price = 200;
+document.getElementById(&quot;demo1&quot;).innerHTML = person;
+document.getElementById(&quot;demo2&quot;).innerHTML = carName;
+document.getElementById(&quot;demo3&quot;).innerHTML = price;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p6.png" alt=""></p>
+<h3>Example 6</h3>
+<p><strong>Result</strong> <a href="ex6-many_variables/index.html">View Example</a></p>
+<h2>JavaScript Data Types</h2>
+<p>JavaScript variables can hold many <strong>data types</strong>: numbers, strings, objects and more.</p>
+<p><strong>Strings</strong> are text written <strong>inside quotes</strong>.</p>
+<p><strong>Numbers</strong> are written <strong>without quotes</strong>.</p>
+<p>If you put a number in quotes, it will be treated as a text string.</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Variables&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;JavaScript Data Types&lt;/h4&gt;
+&lt;p id=&quot;demo1&quot;&gt;&lt;/p&gt;
+&lt;p id=&quot;demo2&quot;&gt;&lt;/p&gt;
+&lt;p id=&quot;demo3&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+let pi = 3.14;
+let person = &quot;John Doe&quot;;
+let answer = &#39;Yes I am!&#39;;
+document.getElementById(&quot;demo1&quot;).innerHTML = pi;
+document.getElementById(&quot;demo2&quot;).innerHTML = person;
+document.getElementById(&quot;demo3&quot;).innerHTML = answer;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p7.png" alt=""></p>
+<h3>Example 7</h3>
+<p><strong>Result</strong> <a href="ex7-data_types/index.html">View Example</a></p>
+<h2>The Assignment Operator</h2>
+<p>In JavaScript, the equal sign (<code>=</code>) is an <strong>assignment</strong> operator, not an <strong>equal to</strong> operator.</p>
+<p>In JavaScript, <code>x = x + 5</code> makes perfect sense: it assigns the value of x + 5 to x.</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Variables&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;The Assignment Operator&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+let x = 10;
+x = x + 5;
+document.getElementById(&quot;demo&quot;).innerHTML = &quot;Value of x = x + 5 is &quot; + x;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p8.png" alt=""></p>
+<h3>Example 8</h3>
+<p><strong>Result</strong> <a href="ex8-assignment_operator/index.html">View Example</a></p>
+<h2>Document</h2>
+<p>Document in project</p>
+<p>You can <a href="js-variables.pdf">Download PDF</a> file.</p>
+<h2>Reference</h2>
+<ul>
+<li><a href="https://www.w3schools.com/js/js_variables.asp">W3Schools JavaScript Variables</a></li>
+</ul>
+
+</body>
+</html>

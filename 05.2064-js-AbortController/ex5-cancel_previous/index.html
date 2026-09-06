@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript AbortController</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Cancel the Previous Request</h4>
+<p>Type in the input field:</p>
+<input type="text" id="searchInput" placeholder="Search users...">
+<p id="demo"></p>
+
+<script>
+let currentController = null;
+
+document.getElementById("searchInput").addEventListener("input", function() {
+  const query = this.value;
+  if (query.length < 2) {
+    document.getElementById("demo").innerHTML = "";
+    return;
+  }
+
+  // Cancel the previous request
+  if (currentController) {
+    currentController.abort();
+  }
+
+  currentController = new AbortController();
+  const signal = currentController.signal;
+
+  document.getElementById("demo").innerHTML = "Searching for: " + query + "...";
+
+  fetch('https://jsonplaceholder.typicode.com/users', { signal })
+    .then(function(response) { return response.json(); })
+    .then(function(users) {
+      const results = users.filter(function(u) {
+        return u.name.toLowerCase().includes(query.toLowerCase());
+      });
+      let text = "Found " + results.length + " users:<br>";
+      for (let user of results) {
+        text += user.name + "<br>";
+      }
+      document.getElementById("demo").innerHTML = text;
+    })
+    .catch(function(error) {
+      if (error.name !== "AbortError") {
+        document.getElementById("demo").innerHTML = "Error: " + error.message;
+      }
+    });
+});
+</script>
+
+</body>
+</html>

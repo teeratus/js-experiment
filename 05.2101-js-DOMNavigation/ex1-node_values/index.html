@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript DOM Navigation</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Child Nodes and Node Values</h4>
+
+<p id="demo1">Hello World!</p>
+<p id="demo2"></p>
+<p id="demo3"></p>
+
+<script>
+const element = document.getElementById("demo1");
+
+// Access node value via childNodes
+document.getElementById("demo2").innerHTML =
+  "Text via childNodes[0].nodeValue: " + element.childNodes[0].nodeValue;
+
+// Access node value via innerHTML
+document.getElementById("demo3").innerHTML =
+  "Text via innerHTML: " + element.innerHTML;
+</script>
+
+</body>
+</html>

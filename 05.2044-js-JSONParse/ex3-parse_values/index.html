@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript JSON parse()</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Parsing Other JSON Values</h4>
+<p id="demo"></p>
+
+<script>
+const jsonString = '{"string":"Hello","number":42,"float":3.14,"boolean":true,"nullValue":null}';
+const obj = JSON.parse(jsonString);
+
+document.getElementById("demo").innerHTML =
+  "String: " + obj.string + "<br>" +
+  "Number: " + obj.number + "<br>" +
+  "Float: " + obj.float + "<br>" +
+  "Boolean: " + obj.boolean + "<br>" +
+  "Null: " + obj.nullValue;
+</script>
+
+</body>
+</html>

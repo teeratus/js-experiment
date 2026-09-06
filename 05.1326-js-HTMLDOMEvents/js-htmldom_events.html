@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>js-htmldom_events</title>
+  <style>
+    body {
+      box-sizing: border-box;
+      min-width: 200px;
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 45px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+      font-size: 16px;
+      line-height: 1.5;
+      color: #24292e;
+      background-color: #ffffff;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 24px;
+      margin-bottom: 16px;
+      font-weight: 600;
+      line-height: 1.25;
+      border-bottom: 1px solid #eaecef;
+      padding-bottom: .3em;
+    }
+    h1 { font-size: 2em; }
+    h2 { font-size: 1.5em; }
+    h3 { font-size: 1.25em; }
+    code {
+      padding: .2em .4em;
+      margin: 0;
+      font-size: 85%;
+      background-color: rgba(27,31,35,.05);
+      border-radius: 3px;
+      font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
+    }
+    pre {
+      padding: 16px;
+      overflow: auto;
+      font-size: 85%;
+      line-height: 1.45;
+      background-color: #f6f8fa;
+      border-radius: 3px;
+      word-wrap: normal;
+    }
+    pre code {
+      background-color: transparent;
+      padding: 0;
+    }
+    blockquote {
+      padding: 0 1em;
+      color: #6a737d;
+      border-left: .25em solid #dfe2e5;
+      margin: 0 0 16px 0;
+    }
+    table {
+      border-spacing: 0;
+      border-collapse: collapse;
+      margin-top: 0;
+      margin-bottom: 16px;
+      width: 100%;
+    }
+    table th, table td {
+      padding: 6px 13px;
+      border: 1px solid #dfe2e5;
+    }
+    table tr:nth-child(2n) {
+      background-color: #f6f8fa;
+    }
+    img {
+      max-width: 100%;
+      box-sizing: content-box;
+    }
+    @media print {
+      body {
+        max-width: 100%;
+        padding: 0;
+      }
+      pre, blockquote, table, tr, img {
+        page-break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+<body>
+<h1>JavaScript HTML DOM Events</h1>
+<p><a href="../acp-js.php">Back to JS page</a></p>
+<p>Table of Contents</p>
+<ul>
+<li><a href="#javascript-html-dom-events">JavaScript HTML DOM Events</a><ul>
+<li><a href="#reacting-to-events">Reacting to Events</a><ul>
+<li><a href="#example-1">Example 1</a></li>
+</ul>
+</li>
+<li><a href="#html-event-attributes">HTML Event Attributes</a><ul>
+<li><a href="#example-2">Example 2</a></li>
+</ul>
+</li>
+<li><a href="#assign-events-using-the-html-dom">Assign Events Using the HTML DOM</a><ul>
+<li><a href="#example-3">Example 3</a></li>
+</ul>
+</li>
+<li><a href="#the-onload-event">The onload Event</a><ul>
+<li><a href="#example-4">Example 4</a></li>
+</ul>
+</li>
+<li><a href="#the-oninput-event">The oninput Event</a><ul>
+<li><a href="#example-5">Example 5</a></li>
+</ul>
+</li>
+<li><a href="#the-onchange-event">The onchange Event</a><ul>
+<li><a href="#example-6">Example 6</a></li>
+</ul>
+</li>
+<li><a href="#document">Document</a></li>
+<li><a href="#reference">Reference</a></li>
+</ul>
+</li>
+</ul>
+<h2>Reacting to Events</h2>
+<p>A JavaScript can be executed when an event occurs, like when a user clicks on an HTML element.</p>
+<p>To execute code when a user clicks on an element, add JavaScript code to an HTML event attribute:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript HTML DOM Events&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Reacting to Events&lt;/h4&gt;
+&lt;button onclick=&quot;document.getElementById(&#39;demo&#39;).innerHTML=Date()&quot;&gt;The time is?&lt;/button&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p1.png" alt=""></p>
+<h3>Example 1</h3>
+<p><strong>Result</strong> <a href="ex1-reacting_events/index.html">View Example</a></p>
+<h2>HTML Event Attributes</h2>
+<p>To assign events to HTML elements you can use event attributes like <code>onclick</code>, <code>onmouseover</code>, etc.</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript HTML DOM Events&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;HTML Event Attributes&lt;/h4&gt;
+&lt;p&gt;Click the button to display a message.&lt;/p&gt;
+&lt;button onclick=&quot;displayDate()&quot;&gt;Click me&lt;/button&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+function displayDate() {
+  document.getElementById(&quot;demo&quot;).innerHTML = Date();
+}
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p2.png" alt=""></p>
+<h3>Example 2</h3>
+<p><strong>Result</strong> <a href="ex2-event_attributes/index.html">View Example</a></p>
+<h2>Assign Events Using the HTML DOM</h2>
+<p>The HTML DOM allows you to assign events to HTML elements using JavaScript:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript HTML DOM Events&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Assign Events Using the HTML DOM&lt;/h4&gt;
+&lt;button id=&quot;myBtn&quot;&gt;Click me&lt;/button&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+document.getElementById(&quot;myBtn&quot;).onclick = function() {
+  document.getElementById(&quot;demo&quot;).innerHTML = &quot;Button clicked!&quot;;
+};
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p3.png" alt=""></p>
+<h3>Example 3</h3>
+<p><strong>Result</strong> <a href="ex3-assign_events_dom/index.html">View Example</a></p>
+<h2>The onload Event</h2>
+<p>The <code>onload</code> event is often used to check the visitor&#39;s browser type and cookie version.</p>
+<p>The <code>onload</code> event can be used to deal with cookies:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript HTML DOM Events&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;The onload Event&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+window.onload = function() {
+  document.getElementById(&quot;demo&quot;).innerHTML = &quot;Page fully loaded!&quot;;
+};
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p4.png" alt=""></p>
+<h3>Example 4</h3>
+<p><strong>Result</strong> <a href="ex4-onload_event/index.html">View Example</a></p>
+<h2>The oninput Event</h2>
+<p>The <code>oninput</code> event fires when a user writes something in an input field:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript HTML DOM Events&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;The oninput Event&lt;/h4&gt;
+&lt;p&gt;Write something in the input field:&lt;/p&gt;
+&lt;input type=&quot;text&quot; id=&quot;myInput&quot; oninput=&quot;myFunction()&quot;&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+function myFunction() {
+  let x = document.getElementById(&quot;myInput&quot;).value;
+  document.getElementById(&quot;demo&quot;).innerHTML = &quot;You wrote: &quot; + x;
+}
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p5.png" alt=""></p>
+<h3>Example 5</h3>
+<p><strong>Result</strong> <a href="ex5-oninput_event/index.html">View Example</a></p>
+<h2>The onchange Event</h2>
+<p>The <code>onchange</code> event fires when a user changes the value of an input element:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript HTML DOM Events&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;The onchange Event&lt;/h4&gt;
+&lt;p&gt;Select a car:&lt;/p&gt;
+&lt;select id=&quot;mySelect&quot; onchange=&quot;myFunction()&quot;&gt;
+  &lt;option value=&quot;Volvo&quot;&gt;Volvo&lt;/option&gt;
+  &lt;option value=&quot;BMW&quot;&gt;BMW&lt;/option&gt;
+  &lt;option value=&quot;Audi&quot;&gt;Audi&lt;/option&gt;
+&lt;/select&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+function myFunction() {
+  let x = document.getElementById(&quot;mySelect&quot;).value;
+  document.getElementById(&quot;demo&quot;).innerHTML = &quot;You selected: &quot; + x;
+}
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p6.png" alt=""></p>
+<h3>Example 6</h3>
+<p><strong>Result</strong> <a href="ex6-onchange_event/index.html">View Example</a></p>
+<h2>Document</h2>
+<p>Document in project</p>
+<p>You can <a href="js-htmldom_events.pdf">Download PDF</a> file.</p>
+<h2>Reference</h2>
+<ul>
+<li><a href="https://www.w3schools.com/js/js_htmldom_events.asp">W3Schools JavaScript HTML DOM Events</a></li>
+</ul>
+
+</body>
+</html>

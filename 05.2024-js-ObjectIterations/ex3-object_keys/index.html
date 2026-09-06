@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Object Iterations</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Object.keys()</h4>
+<p id="demo"></p>
+
+<script>
+const person = {
+  firstName: "John",
+  lastName: "Doe",
+  age: 30
+};
+
+const keys = Object.keys(person);
+let text = "";
+for (let key of keys) {
+  text += key + "<br>";
+}
+document.getElementById("demo").innerHTML = "Keys:<br>" + text;
+</script>
+
+</body>
+</html>

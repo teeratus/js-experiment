@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript RegExp</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>JavaScript Regex Flags</h4>
+<p id="demo"></p>
+
+<script>
+const text = "The rain in Spain";
+
+// Without /g - only first match
+const noG = text.match(/ain/);
+
+// With /g - all matches
+const withG = text.match(/ain/g);
+
+// With /i - case insensitive
+const withI = text.match(/THE/i);
+
+document.getElementById("demo").innerHTML =
+  "Text: " + text + "<br><br>" +
+  "match(/ain/): " + noG + " (first only)<br>" +
+  "match(/ain/g): " + withG + " (all occurrences)<br>" +
+  "match(/THE/i): " + withI + " (case insensitive)";
+</script>
+
+</body>
+</html>

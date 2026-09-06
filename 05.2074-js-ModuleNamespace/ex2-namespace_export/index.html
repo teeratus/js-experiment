@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Module Namespace</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Module Namespace Export</h4>
+<p id="demo"></p>
+
+<script type="module">
+import { MathOps } from './utilities.js';
+
+document.getElementById("demo").innerHTML =
+  "MathOps.add(10, 5): " + MathOps.add(10, 5) + "<br>" +
+  "MathOps.subtract(10, 5): " + MathOps.subtract(10, 5) + "<br>" +
+  "MathOps.multiply(10, 5): " + MathOps.multiply(10, 5) + "<br>" +
+  "MathOps.divide(10, 5): " + MathOps.divide(10, 5);
+</script>
+
+</body>
+</html>

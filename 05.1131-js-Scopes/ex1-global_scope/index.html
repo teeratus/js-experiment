@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Scopes</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Global Scope</h4>
+<p id="demo"></p>
+
+<script>
+// Global variable - accessible everywhere
+let carName = "Volvo";
+
+function myFunction() {
+  // Can access global variable inside a function
+  return "Inside function: " + carName;
+}
+
+document.getElementById("demo").innerHTML =
+  "Outside function: " + carName + "<br>" +
+  myFunction();
+</script>
+
+</body>
+</html>

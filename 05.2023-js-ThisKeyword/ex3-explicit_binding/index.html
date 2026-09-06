@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript this Keyword</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Explicit Function Binding</h4>
+<p id="demo"></p>
+
+<script>
+const person1 = {
+  fullName: function() {
+    return this.firstName + " " + this.lastName;
+  }
+};
+
+const person2 = {
+  firstName: "Jane",
+  lastName: "Smith"
+};
+
+const person3 = {
+  firstName: "Bob",
+  lastName: "Johnson"
+};
+
+// Using call() to explicitly set "this"
+document.getElementById("demo").innerHTML =
+  "call() person2: " + person1.fullName.call(person2) + "<br>" +
+  "call() person3: " + person1.fullName.call(person3);
+</script>
+
+</body>
+</html>

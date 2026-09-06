@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>js-debugging</title>
+  <style>
+    body {
+      box-sizing: border-box;
+      min-width: 200px;
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 45px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+      font-size: 16px;
+      line-height: 1.5;
+      color: #24292e;
+      background-color: #ffffff;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 24px;
+      margin-bottom: 16px;
+      font-weight: 600;
+      line-height: 1.25;
+      border-bottom: 1px solid #eaecef;
+      padding-bottom: .3em;
+    }
+    h1 { font-size: 2em; }
+    h2 { font-size: 1.5em; }
+    h3 { font-size: 1.25em; }
+    code {
+      padding: .2em .4em;
+      margin: 0;
+      font-size: 85%;
+      background-color: rgba(27,31,35,.05);
+      border-radius: 3px;
+      font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
+    }
+    pre {
+      padding: 16px;
+      overflow: auto;
+      font-size: 85%;
+      line-height: 1.45;
+      background-color: #f6f8fa;
+      border-radius: 3px;
+      word-wrap: normal;
+    }
+    pre code {
+      background-color: transparent;
+      padding: 0;
+    }
+    blockquote {
+      padding: 0 1em;
+      color: #6a737d;
+      border-left: .25em solid #dfe2e5;
+      margin: 0 0 16px 0;
+    }
+    table {
+      border-spacing: 0;
+      border-collapse: collapse;
+      margin-top: 0;
+      margin-bottom: 16px;
+      width: 100%;
+    }
+    table th, table td {
+      padding: 6px 13px;
+      border: 1px solid #dfe2e5;
+    }
+    table tr:nth-child(2n) {
+      background-color: #f6f8fa;
+    }
+    img {
+      max-width: 100%;
+      box-sizing: content-box;
+    }
+    @media print {
+      body {
+        max-width: 100%;
+        padding: 0;
+      }
+      pre, blockquote, table, tr, img {
+        page-break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+<body>
+<h1>JavaScript Debugging</h1>
+<p><a href="../acp-js.php">Back to JS page</a></p>
+<p>Table of Contents</p>
+<ul>
+<li><a href="#javascript-debugging">JavaScript Debugging</a><ul>
+<li><a href="#using-consolelog">Using console.log()</a><ul>
+<li><a href="#example-1">Example 1</a></li>
+</ul>
+</li>
+<li><a href="#the-debugger-statement">The debugger Statement</a><ul>
+<li><a href="#example-2">Example 2</a></li>
+</ul>
+</li>
+<li><a href="#try-catch-for-debugging">Try Catch for Debugging</a><ul>
+<li><a href="#example-3">Example 3</a></li>
+</ul>
+</li>
+<li><a href="#reading-error-messages">Reading Error Messages</a><ul>
+<li><a href="#example-4">Example 4</a></li>
+</ul>
+</li>
+<li><a href="#common-beginner-mistakes">Common Beginner Mistakes</a><ul>
+<li><a href="#example-5">Example 5</a></li>
+</ul>
+</li>
+<li><a href="#a-simple-debugging-checklist">A Simple Debugging Checklist</a><ul>
+<li><a href="#example-6">Example 6</a></li>
+</ul>
+</li>
+<li><a href="#document">Document</a></li>
+<li><a href="#reference">Reference</a></li>
+</ul>
+</li>
+</ul>
+<h2>Using console.log()</h2>
+<p>The <code>console.log()</code> method is the simplest way to debug JavaScript code. It writes messages to the browser&#39;s console, allowing you to inspect variable values and track program flow without interrupting execution.</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Debugging&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Using console.log()&lt;/h4&gt;
+&lt;p&gt;Open the browser console (F12) to see the debug output.&lt;/p&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+let a = 5;
+let b = 6;
+let c = a + b;
+
+console.log(&quot;Value of a: &quot; + a);
+console.log(&quot;Value of b: &quot; + b);
+console.log(&quot;Value of c: &quot; + c);
+
+document.getElementById(&quot;demo&quot;).innerHTML = &quot;Result: &quot; + c;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p1.png" alt=""></p>
+<h3>Example 1</h3>
+<p><strong>Result</strong> <a href="ex1-console_log/index.html">View Example</a></p>
+<h2>The debugger Statement</h2>
+<p>The <code>debugger</code> statement stops the execution of JavaScript and calls the debugging function (if available). It acts like a breakpoint in the code. If no debugging is available, the debugger statement has no effect.</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Debugging&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;The debugger Statement&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+let x = 15 * 5;
+
+// debugger; will pause execution here if DevTools is open
+console.log(&quot;x = &quot; + x);
+
+document.getElementById(&quot;demo&quot;).innerHTML =
+  &quot;x = &quot; + x + &quot; (check console)&quot;;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p2.png" alt=""></p>
+<h3>Example 2</h3>
+<p><strong>Result</strong> <a href="ex2-debugger_statement/index.html">View Example</a></p>
+<h2>Try Catch for Debugging</h2>
+<p>Using <code>try...catch</code> is a powerful debugging technique. It allows you to catch errors gracefully, display meaningful messages, and continue execution instead of crashing. This is essential for identifying and fixing problems.</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Debugging&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Try Catch for Debugging&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+let text = &quot;&quot;;
+
+try {
+  // Intentionally calling an undefined function
+  myFunction();
+  text += &quot;This line is skipped.&quot;;
+}
+catch(err) {
+  text += &quot;Debug Info:&lt;br&gt;&quot;;
+  text += &quot;Error Name: &quot; + err.name + &quot;&lt;br&gt;&quot;;
+  text += &quot;Error Message: &quot; + err.message + &quot;&lt;br&gt;&quot;;
+  text += &quot;Check your code for the error above.&quot;;
+}
+
+document.getElementById(&quot;demo&quot;).innerHTML = text;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p3.png" alt=""></p>
+<h3>Example 3</h3>
+<p><strong>Result</strong> <a href="ex3-try_catch_debugging/index.html">View Example</a></p>
+<h2>Reading Error Messages</h2>
+<p>Error messages in the console are your best debugging tool. They tell you exactly what went wrong and where. Learning to read and understand error messages is an essential debugging skill.</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Debugging&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Reading Error Messages&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+let text = &quot;&quot;;
+
+try {
+  let result = undefinedVariable + 5;
+}
+catch(err) {
+  text += &quot;Error Type: &quot; + err.name + &quot;&lt;br&gt;&quot;;
+  text += &quot;Description: &quot; + err.message + &quot;&lt;br&gt;&lt;br&gt;&quot;;
+  text += &quot;Tip: The error message tells you what and where.&lt;br&gt;&quot;;
+  text += &quot;Look in the console (F12) for line numbers.&quot;;
+}
+
+document.getElementById(&quot;demo&quot;).innerHTML = text;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p4.png" alt=""></p>
+<h3>Example 4</h3>
+<p><strong>Result</strong> <a href="ex4-reading_error_messages/index.html">View Example</a></p>
+<h2>Common Beginner Mistakes</h2>
+<p>Some of the most common debugging challenges for beginners include misspelled variable names, using <code>=</code> instead of <code>==</code> or <code>===</code>, and forgetting to close brackets or quotes.</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Debugging&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Common Beginner Mistakes&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+let text = &quot;&quot;;
+
+// Mistake 1: Assignment (=) instead of comparison (==)
+let x = 10;
+if (x = 5) {   // This assigns 5 to x, always true!
+  text += &quot;Mistake: &#39;=&#39; instead of &#39;==&#39;. &quot;;
+  text += &quot;x is now: &quot; + x + &quot;&lt;br&gt;&lt;br&gt;&quot;;
+}
+
+// Mistake 2: Misspelled variable name
+let total = 100;
+try {
+  text += &quot;total: &quot; + total + &quot;&lt;br&gt;&quot;;
+  // text += tota1;  // This would cause a ReferenceError
+  text += &quot;(Misspelled variables cause ReferenceErrors)&lt;br&gt;&lt;br&gt;&quot;;
+}
+catch(err) {
+  text += err.name + &quot;: &quot; + err.message + &quot;&lt;br&gt;&quot;;
+}
+
+// Mistake 3: Case sensitivity
+let myVar = &quot;Hello&quot;;
+text += &quot;myVar: &quot; + myVar + &quot;&lt;br&gt;&quot;;
+text += &quot;(JavaScript is case-sensitive: myvar !== myVar)&quot;;
+
+document.getElementById(&quot;demo&quot;).innerHTML = text;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p5.png" alt=""></p>
+<h3>Example 5</h3>
+<p><strong>Result</strong> <a href="ex5-common_mistakes/index.html">View Example</a></p>
+<h2>A Simple Debugging Checklist</h2>
+<p>When your code doesn&#39;t work, follow this simple debugging checklist:</p>
+<ol>
+<li><strong>Check the console</strong> for error messages</li>
+<li><strong>Use <code>console.log()</code></strong> to inspect variable values</li>
+<li><strong>Check spelling</strong> of variable and function names</li>
+<li><strong>Check data types</strong> — is it a string or a number?</li>
+<li><strong>Use <code>try...catch</code></strong> to handle unexpected errors</li>
+</ol>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Debugging&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;A Simple Debugging Checklist&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+let text = &quot;&quot;;
+
+// Step 1: Check browser console (F12)
+console.log(&quot;Debugging Checklist Demo&quot;);
+
+// Step 2 &amp; 3 &amp; 4: Inspect variables, check spelling and types
+let num1 = &quot;5&quot;;
+let num2 = 10;
+
+console.log(&quot;num1 type:&quot;, typeof num1);  // string
+console.log(&quot;num2 type:&quot;, typeof num2);  // number
+
+text += &quot;num1 = \&quot;&quot; + num1 + &quot;\&quot; (type: &quot; + typeof num1 + &quot;)&lt;br&gt;&quot;;
+text += &quot;num2 = &quot; + num2 + &quot; (type: &quot; + typeof num2 + &quot;)&lt;br&gt;&lt;br&gt;&quot;;
+
+// Step 5: Try-catch for safety
+try {
+  let result = Number(num1) + num2;  // Explicit conversion
+  text += &quot;Number(num1) + num2 = &quot; + result;
+}
+catch(err) {
+  text += &quot;Error: &quot; + err.message;
+}
+
+document.getElementById(&quot;demo&quot;).innerHTML = text;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p6.png" alt=""></p>
+<h3>Example 6</h3>
+<p><strong>Result</strong> <a href="ex6-debugging_checklist/index.html">View Example</a></p>
+<h2>Document</h2>
+<p>Document in project</p>
+<p>You can <a href="js-debugging.pdf">Download PDF</a> file.</p>
+<h2>Reference</h2>
+<ul>
+<li><a href="https://www.w3schools.com/js/js_debugging.asp">W3Schools JavaScript Debugging</a></li>
+</ul>
+
+</body>
+</html>

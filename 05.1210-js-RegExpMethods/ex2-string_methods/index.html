@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript RegExp Methods</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>String Methods with RegExp</h4>
+<p id="demo"></p>
+
+<script>
+const text = "JavaScript is awesome, JavaScript!";
+
+let output = "Text: " + text + "<br><br>";
+output += "match(/JavaScript/g): " + text.match(/JavaScript/g) + "<br>";
+output += "search(/awesome/): " + text.search(/awesome/) + "<br>";
+
+// matchAll returns iterator
+const iterator = text.matchAll(/JavaScript/g);
+output += "matchAll: ";
+for (let m of iterator) output += m[0] + " ";
+
+document.getElementById("demo").innerHTML = output;
+</script>
+
+</body>
+</html>

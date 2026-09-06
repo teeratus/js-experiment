@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript RegExp Patterns</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Full Metacharacter Reference</h4>
+<p id="demo"></p>
+
+<script>
+const text = "Test 123";
+
+let output = "Text: " + text + "<br><br>";
+output += "\\d digits: " + text.match(/\d/g) + "<br>";
+output += "\\D non-digits: " + text.match(/\D/g) + "<br>";
+output += "\\w+ words: " + text.match(/\w+/g) + "<br>";
+output += "\\s spaces: " + text.match(/\s/g).length + "<br>";
+output += ". any chars: " + text.match(/./g).length;
+
+document.getElementById("demo").innerHTML = output;
+</script>
+
+</body>
+</html>

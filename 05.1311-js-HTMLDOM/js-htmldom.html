@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>js-htmldom</title>
+  <style>
+    body {
+      box-sizing: border-box;
+      min-width: 200px;
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 45px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+      font-size: 16px;
+      line-height: 1.5;
+      color: #24292e;
+      background-color: #ffffff;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 24px;
+      margin-bottom: 16px;
+      font-weight: 600;
+      line-height: 1.25;
+      border-bottom: 1px solid #eaecef;
+      padding-bottom: .3em;
+    }
+    h1 { font-size: 2em; }
+    h2 { font-size: 1.5em; }
+    h3 { font-size: 1.25em; }
+    code {
+      padding: .2em .4em;
+      margin: 0;
+      font-size: 85%;
+      background-color: rgba(27,31,35,.05);
+      border-radius: 3px;
+      font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
+    }
+    pre {
+      padding: 16px;
+      overflow: auto;
+      font-size: 85%;
+      line-height: 1.45;
+      background-color: #f6f8fa;
+      border-radius: 3px;
+      word-wrap: normal;
+    }
+    pre code {
+      background-color: transparent;
+      padding: 0;
+    }
+    blockquote {
+      padding: 0 1em;
+      color: #6a737d;
+      border-left: .25em solid #dfe2e5;
+      margin: 0 0 16px 0;
+    }
+    table {
+      border-spacing: 0;
+      border-collapse: collapse;
+      margin-top: 0;
+      margin-bottom: 16px;
+      width: 100%;
+    }
+    table th, table td {
+      padding: 6px 13px;
+      border: 1px solid #dfe2e5;
+    }
+    table tr:nth-child(2n) {
+      background-color: #f6f8fa;
+    }
+    img {
+      max-width: 100%;
+      box-sizing: content-box;
+    }
+    @media print {
+      body {
+        max-width: 100%;
+        padding: 0;
+      }
+      pre, blockquote, table, tr, img {
+        page-break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+<body>
+<h1>JavaScript HTML DOM</h1>
+<p><a href="../acp-js.php">Back to JS page</a></p>
+<p>Table of Contents</p>
+<ul>
+<li><a href="#javascript-html-dom">JavaScript HTML DOM</a><ul>
+<li><a href="#html-document-object-model">HTML Document Object Model</a><ul>
+<li><a href="#example-1">Example 1</a></li>
+</ul>
+</li>
+<li><a href="#the-dom-tree">The DOM Tree</a></li>
+<li><a href="#accessing-html-elements">Accessing HTML Elements</a><ul>
+<li><a href="#example-2">Example 2</a></li>
+</ul>
+</li>
+<li><a href="#document">Document</a></li>
+<li><a href="#reference">Reference</a></li>
+</ul>
+</li>
+</ul>
+<h2>HTML Document Object Model</h2>
+<p>The <strong>HTML DOM</strong> is a standard object model and programming interface for HTML. It defines:</p>
+<ul>
+<li>The HTML elements as <strong>objects</strong></li>
+<li>The <strong>properties</strong> of all HTML elements</li>
+<li>The <strong>methods</strong> to access all HTML elements</li>
+<li>The <strong>events</strong> for all HTML elements</li>
+</ul>
+<p>In other words: The HTML DOM is a standard for how to get, change, add, or delete HTML elements.</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript HTML DOM&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;HTML DOM&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+document.getElementById(&quot;demo&quot;).innerHTML = &quot;Hello World!&quot;;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p1.png" alt=""></p>
+<h3>Example 1</h3>
+<p><strong>Result</strong> <a href="ex1-htmldom_intro/index.html">View Example</a></p>
+<h2>The DOM Tree</h2>
+<p>The HTML DOM model is constructed as a tree of objects:</p>
+<ul>
+<li><strong>Document:</strong> The root of the tree</li>
+<li><strong>HTML element:</strong> <code>&lt;html&gt;</code></li>
+<li><strong>Head element:</strong> <code>&lt;head&gt;</code></li>
+<li><strong>Body element:</strong> <code>&lt;body&gt;</code></li>
+<li><strong>Text nodes:</strong> Content within elements</li>
+</ul>
+<p>With the object model, JavaScript gets all the power it needs to create dynamic HTML:</p>
+<ul>
+<li>JavaScript can change all the HTML elements in the page</li>
+<li>JavaScript can change all the HTML attributes in the page</li>
+<li>JavaScript can change all the CSS styles in the page</li>
+<li>JavaScript can remove existing HTML elements and attributes</li>
+<li>JavaScript can add new HTML elements and attributes</li>
+<li>JavaScript can react to all existing HTML events in the page</li>
+<li>JavaScript can create new HTML events in the page</li>
+</ul>
+<h2>Accessing HTML Elements</h2>
+<p>JavaScript can access HTML elements using different methods:</p>
+<ul>
+<li><code>document.getElementById(id)</code> - Find an element by id</li>
+<li><code>document.getElementsByTagName(name)</code> - Find elements by tag name</li>
+<li><code>document.getElementsByClassName(name)</code> - Find elements by class name</li>
+</ul>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript HTML DOM&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Accessing HTML Elements&lt;/h4&gt;
+&lt;p id=&quot;intro&quot;&gt;Finding HTML Elements by Id&lt;/p&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+const element = document.getElementById(&quot;intro&quot;);
+document.getElementById(&quot;demo&quot;).innerHTML =
+  &quot;Text from intro paragraph: &quot; + element.innerHTML;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p2.png" alt=""></p>
+<h3>Example 2</h3>
+<p><strong>Result</strong> <a href="ex2-accessing_elements/index.html">View Example</a></p>
+<h2>Document</h2>
+<p>Document in project</p>
+<p>You can <a href="js-htmldom.pdf">Download PDF</a> file.</p>
+<h2>Reference</h2>
+<ul>
+<li><a href="https://www.w3schools.com/js/js_htmldom.asp">W3Schools JavaScript HTML DOM</a></li>
+</ul>
+
+</body>
+</html>

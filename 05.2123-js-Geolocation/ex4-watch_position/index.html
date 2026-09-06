@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Geolocation API</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Watch Position</h4>
+<button onclick="startWatch()">Start Watching</button>
+<button onclick="stopWatch()">Stop Watching</button>
+<p id="demo"></p>
+<p id="watchStatus"></p>
+
+<script>
+let watchId = null;
+
+function startWatch() {
+  if (navigator.geolocation) {
+    document.getElementById("watchStatus").innerHTML = "Watching position...";
+    watchId = navigator.geolocation.watchPosition(showPosition, showError);
+  } else {
+    document.getElementById("demo").innerHTML = "Geolocation is not supported.";
+  }
+}
+
+function stopWatch() {
+  if (watchId !== null) {
+    navigator.geolocation.clearWatch(watchId);
+    watchId = null;
+    document.getElementById("watchStatus").innerHTML = "Watching stopped.";
+  }
+}
+
+function showPosition(position) {
+  document.getElementById("demo").innerHTML =
+    "Updated position:<br>" +
+    "Latitude: " + position.coords.latitude + "<br>" +
+    "Longitude: " + position.coords.longitude + "<br>" +
+    "Accuracy: " + position.coords.accuracy + " meters<br>" +
+    "Time: " + new Date(position.timestamp).toLocaleTimeString();
+}
+
+function showError(error) {
+  document.getElementById("demo").innerHTML = "Error: " + error.message;
+}
+</script>
+
+</body>
+</html>

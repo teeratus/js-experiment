@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Dates</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>JavaScript Stores Dates as Milliseconds</h4>
+<p id="demo"></p>
+
+<script>
+// Zero time is January 1, 1970
+const zeroTime = new Date(0);
+
+// One day in milliseconds: 24 * 60 * 60 * 1000
+const oneDay = 24 * 60 * 60 * 1000;
+const oneDayAfter = new Date(oneDay);
+
+// Current time in milliseconds
+const nowMs = Date.now();
+
+document.getElementById("demo").innerHTML =
+  "new Date(0): " + zeroTime + " (Jan 1, 1970)<br>" +
+  "new Date(86400000): " + oneDayAfter + " (Jan 2, 1970)<br>" +
+  "Date.now(): " + nowMs + " ms<br><br>" +
+  "Dates are stored as milliseconds since Jan 1, 1970";
+</script>
+
+</body>
+</html>

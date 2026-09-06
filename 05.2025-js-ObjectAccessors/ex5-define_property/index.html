@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Object Accessors</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Object.defineProperty()</h4>
+<p id="demo"></p>
+
+<script>
+const person = {
+  firstName: "John",
+  lastName: "Doe"
+};
+
+Object.defineProperty(person, "fullName", {
+  get: function() {
+    return this.firstName + " " + this.lastName;
+  },
+  set: function(value) {
+    const parts = value.split(" ");
+    this.firstName = parts[0];
+    this.lastName = parts[1];
+  }
+});
+
+// Use the getter
+document.getElementById("demo").innerHTML = "Before: " + person.fullName + "<br>";
+
+// Use the setter
+person.fullName = "Jane Smith";
+document.getElementById("demo").innerHTML += "After: " + person.fullName;
+</script>
+
+</body>
+</html>

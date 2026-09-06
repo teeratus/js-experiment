@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>js-html_collection</title>
+  <style>
+    body {
+      box-sizing: border-box;
+      min-width: 200px;
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 45px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+      font-size: 16px;
+      line-height: 1.5;
+      color: #24292e;
+      background-color: #ffffff;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 24px;
+      margin-bottom: 16px;
+      font-weight: 600;
+      line-height: 1.25;
+      border-bottom: 1px solid #eaecef;
+      padding-bottom: .3em;
+    }
+    h1 { font-size: 2em; }
+    h2 { font-size: 1.5em; }
+    h3 { font-size: 1.25em; }
+    code {
+      padding: .2em .4em;
+      margin: 0;
+      font-size: 85%;
+      background-color: rgba(27,31,35,.05);
+      border-radius: 3px;
+      font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
+    }
+    pre {
+      padding: 16px;
+      overflow: auto;
+      font-size: 85%;
+      line-height: 1.45;
+      background-color: #f6f8fa;
+      border-radius: 3px;
+      word-wrap: normal;
+    }
+    pre code {
+      background-color: transparent;
+      padding: 0;
+    }
+    blockquote {
+      padding: 0 1em;
+      color: #6a737d;
+      border-left: .25em solid #dfe2e5;
+      margin: 0 0 16px 0;
+    }
+    table {
+      border-spacing: 0;
+      border-collapse: collapse;
+      margin-top: 0;
+      margin-bottom: 16px;
+      width: 100%;
+    }
+    table th, table td {
+      padding: 6px 13px;
+      border: 1px solid #dfe2e5;
+    }
+    table tr:nth-child(2n) {
+      background-color: #f6f8fa;
+    }
+    img {
+      max-width: 100%;
+      box-sizing: content-box;
+    }
+    @media print {
+      body {
+        max-width: 100%;
+        padding: 0;
+      }
+      pre, blockquote, table, tr, img {
+        page-break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+<body>
+<h1>JavaScript HTMLCollection</h1>
+<p><a href="../acp-js.php">Back to JS page</a></p>
+<p>Table of Contents</p>
+<ul>
+<li><a href="#javascript-htmlcollection">JavaScript HTMLCollection</a><ul>
+<li><a href="#the-htmlcollection-object">The HTMLCollection Object</a><ul>
+<li><a href="#example-1">Example 1</a></li>
+</ul>
+</li>
+<li><a href="#htmlcollection-length">HTMLCollection Length</a><ul>
+<li><a href="#example-2">Example 2</a></li>
+</ul>
+</li>
+<li><a href="#looping-through-an-htmlcollection">Looping Through an HTMLCollection</a><ul>
+<li><a href="#example-3">Example 3</a></li>
+</ul>
+</li>
+<li><a href="#document">Document</a></li>
+<li><a href="#reference">Reference</a></li>
+</ul>
+</li>
+</ul>
+<h2>The HTMLCollection Object</h2>
+<p>An <code>HTMLCollection</code> is an array-like list of HTML elements.</p>
+<p>Methods like <code>getElementsByTagName()</code> return an <code>HTMLCollection</code>.</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript HTMLCollection&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;The HTMLCollection Object&lt;/h4&gt;
+
+&lt;p&gt;First paragraph&lt;/p&gt;
+&lt;p&gt;Second paragraph&lt;/p&gt;
+&lt;p&gt;Third paragraph&lt;/p&gt;
+
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+const myCollection = document.getElementsByTagName(&quot;p&quot;);
+
+document.getElementById(&quot;demo&quot;).innerHTML =
+  &quot;Number of &lt;p&gt; elements: &quot; + myCollection.length + &quot;&lt;br&gt;&quot; +
+  &quot;First paragraph text: &quot; + myCollection[0].innerHTML + &quot;&lt;br&gt;&quot; +
+  &quot;Second paragraph text: &quot; + myCollection[1].innerHTML;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p1.png" alt=""></p>
+<h3>Example 1</h3>
+<p><strong>Result</strong> <a href="ex1-htmlcollection/index.html">View Example</a></p>
+<h2>HTMLCollection Length</h2>
+<p>The <code>length</code> property defines the number of elements in the HTMLCollection. You can use it to loop through the collection:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript HTMLCollection&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;HTMLCollection Length&lt;/h4&gt;
+
+&lt;div id=&quot;list&quot;&gt;
+  &lt;p&gt;Apple&lt;/p&gt;
+  &lt;p&gt;Banana&lt;/p&gt;
+  &lt;p&gt;Orange&lt;/p&gt;
+  &lt;p&gt;Grape&lt;/p&gt;
+  &lt;p&gt;Mango&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+const collection = document.getElementById(&quot;list&quot;).getElementsByTagName(&quot;p&quot;);
+let text = &quot;Items (&quot; + collection.length + &quot;):&lt;br&gt;&quot;;
+for (let i = 0; i &lt; collection.length; i++) {
+  text += (i + 1) + &quot;. &quot; + collection[i].innerHTML + &quot;&lt;br&gt;&quot;;
+}
+document.getElementById(&quot;demo&quot;).innerHTML = text;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p2.png" alt=""></p>
+<h3>Example 2</h3>
+<p><strong>Result</strong> <a href="ex2-length/index.html">View Example</a></p>
+<h2>Looping Through an HTMLCollection</h2>
+<p>You cannot use <code>forEach()</code> on an HTMLCollection directly. You must convert it to an array first, or use a <code>for</code> loop:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript HTMLCollection&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Looping Through an HTMLCollection&lt;/h4&gt;
+
+&lt;div id=&quot;colors&quot;&gt;
+  &lt;p class=&quot;item&quot;&gt;Red&lt;/p&gt;
+  &lt;p class=&quot;item&quot;&gt;Green&lt;/p&gt;
+  &lt;p class=&quot;item&quot;&gt;Blue&lt;/p&gt;
+  &lt;p class=&quot;item&quot;&gt;Yellow&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;button onclick=&quot;changeColors()&quot;&gt;Change Colors&lt;/button&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+function changeColors() {
+  const items = document.getElementById(&quot;colors&quot;).getElementsByClassName(&quot;item&quot;);
+
+  // Convert HTMLCollection to Array for using forEach
+  const arr = Array.from(items);
+  arr.forEach(function(item, index) {
+    item.innerHTML += &quot; (&quot; + (index + 1) + &quot;)&quot;;
+  });
+
+  document.getElementById(&quot;demo&quot;).innerHTML =
+    &quot;Modified &quot; + items.length + &quot; items using Array.from() + forEach()&quot;;
+}
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p3.png" alt=""></p>
+<h3>Example 3</h3>
+<p><strong>Result</strong> <a href="ex3-looping/index.html">View Example</a></p>
+<h2>Document</h2>
+<p>Document in project</p>
+<p>You can <a href="js-html_collection.pdf">Download PDF</a> file.</p>
+<h2>Reference</h2>
+<ul>
+<li><a href="https://www.w3schools.com/js/js_htmldom_collections.asp">W3Schools JavaScript HTMLCollection</a></li>
+</ul>
+
+</body>
+</html>

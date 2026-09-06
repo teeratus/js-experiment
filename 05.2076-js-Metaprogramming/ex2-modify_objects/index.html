@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Metaprogramming</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Modify Objects</h4>
+<p id="demo"></p>
+
+<script>
+const person = {
+  firstName: "John",
+  lastName: "Doe"
+};
+
+// Add a new property
+Object.defineProperty(person, "age", {
+  value: 30,
+  writable: true,
+  enumerable: true
+});
+
+// Modify an existing property
+Object.defineProperty(person, "firstName", {
+  value: "Jane"
+});
+
+let text = "Modified object:<br>";
+const keys = Object.keys(person);
+for (let key of keys) {
+  text += key + ": " + person[key] + "<br>";
+}
+
+document.getElementById("demo").innerHTML = text;
+</script>
+
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Object Constructors</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Constructor Function Methods</h4>
+<p id="demo"></p>
+
+<script>
+function Person(first, last, age) {
+  this.firstName = first;
+  this.lastName = last;
+  this.age = age;
+  this.fullName = function() {
+    return this.firstName + " " + this.lastName;
+  };
+  this.getAge = function() {
+    return this.age;
+  };
+}
+
+const myFather = new Person("John", "Doe", 50);
+const myMother = new Person("Jane", "Doe", 48);
+
+document.getElementById("demo").innerHTML =
+  "Father: " + myFather.fullName() + " (" + myFather.getAge() + ")<br>" +
+  "Mother: " + myMother.fullName() + " (" + myMother.getAge() + ")";
+</script>
+
+</body>
+</html>

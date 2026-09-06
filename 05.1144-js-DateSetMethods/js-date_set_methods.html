@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>js-date_set_methods</title>
+  <style>
+    body {
+      box-sizing: border-box;
+      min-width: 200px;
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 45px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+      font-size: 16px;
+      line-height: 1.5;
+      color: #24292e;
+      background-color: #ffffff;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 24px;
+      margin-bottom: 16px;
+      font-weight: 600;
+      line-height: 1.25;
+      border-bottom: 1px solid #eaecef;
+      padding-bottom: .3em;
+    }
+    h1 { font-size: 2em; }
+    h2 { font-size: 1.5em; }
+    h3 { font-size: 1.25em; }
+    code {
+      padding: .2em .4em;
+      margin: 0;
+      font-size: 85%;
+      background-color: rgba(27,31,35,.05);
+      border-radius: 3px;
+      font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
+    }
+    pre {
+      padding: 16px;
+      overflow: auto;
+      font-size: 85%;
+      line-height: 1.45;
+      background-color: #f6f8fa;
+      border-radius: 3px;
+      word-wrap: normal;
+    }
+    pre code {
+      background-color: transparent;
+      padding: 0;
+    }
+    blockquote {
+      padding: 0 1em;
+      color: #6a737d;
+      border-left: .25em solid #dfe2e5;
+      margin: 0 0 16px 0;
+    }
+    table {
+      border-spacing: 0;
+      border-collapse: collapse;
+      margin-top: 0;
+      margin-bottom: 16px;
+      width: 100%;
+    }
+    table th, table td {
+      padding: 6px 13px;
+      border: 1px solid #dfe2e5;
+    }
+    table tr:nth-child(2n) {
+      background-color: #f6f8fa;
+    }
+    img {
+      max-width: 100%;
+      box-sizing: content-box;
+    }
+    @media print {
+      body {
+        max-width: 100%;
+        padding: 0;
+      }
+      pre, blockquote, table, tr, img {
+        page-break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+<body>
+<h1>JavaScript Date Set Methods</h1>
+<p><a href="../acp-js.php">Back to JS page</a></p>
+<p>Table of Contents</p>
+<ul>
+<li><a href="#javascript-date-set-methods">JavaScript Date Set Methods</a><ul>
+<li><a href="#the-setfullyear-method">The setFullYear() Method</a><ul>
+<li><a href="#example-1">Example 1</a></li>
+</ul>
+</li>
+<li><a href="#the-setmonth-and-setdate-methods">The setMonth() and setDate() Methods</a><ul>
+<li><a href="#example-2">Example 2</a></li>
+</ul>
+</li>
+<li><a href="#the-sethours-and-setminutes-methods">The setHours() and setMinutes() Methods</a><ul>
+<li><a href="#example-3">Example 3</a></li>
+</ul>
+</li>
+<li><a href="#compare-dates">Compare Dates</a><ul>
+<li><a href="#example-4">Example 4</a></li>
+</ul>
+</li>
+<li><a href="#document">Document</a></li>
+<li><a href="#reference">Reference</a></li>
+</ul>
+</li>
+</ul>
+<h2>Set Date Methods</h2>
+<p>Set methods allow you to set date values (years, months, days, hours, minutes, seconds, milliseconds) for a Date Object.</p>
+<h2>The setFullYear() Method</h2>
+<p><code>setFullYear()</code> sets the year of a date object:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Date Set Methods&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;The setFullYear() Method&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+const d = new Date();
+d.setFullYear(2020);
+
+document.getElementById(&quot;demo&quot;).innerHTML =
+  &quot;After setFullYear(2020):&lt;br&gt;&quot; + d;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p1.png" alt=""></p>
+<h3>Example 1</h3>
+<p><strong>Result</strong> <a href="ex1-set_full_year/index.html">View Example</a></p>
+<h2>The setMonth() and setDate() Methods</h2>
+<p><code>setMonth()</code> sets the month (0-11). <code>setDate()</code> sets the day of month (1-31):</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Date Set Methods&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;The setMonth() and setDate() Methods&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+// Set to March (month 2)
+const d1 = new Date();
+d1.setMonth(2);
+
+// Set to day 15
+const d2 = new Date();
+d2.setDate(15);
+
+document.getElementById(&quot;demo&quot;).innerHTML =
+  &quot;setMonth(2) - March: &quot; + d1 + &quot;&lt;br&gt;&quot; +
+  &quot;setDate(15): &quot; + d2;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p2.png" alt=""></p>
+<h3>Example 2</h3>
+<p><strong>Result</strong> <a href="ex2-set_month_date/index.html">View Example</a></p>
+<h2>The setHours() and setMinutes() Methods</h2>
+<p><code>setHours()</code> sets the hours (0-23). <code>setMinutes()</code> sets the minutes (0-59):</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Date Set Methods&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;The setHours() and setMinutes() Methods&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+// Set hours to 14 (2 PM)
+const d1 = new Date();
+d1.setHours(14);
+
+// Set minutes to 45
+const d2 = new Date();
+d2.setMinutes(45);
+
+document.getElementById(&quot;demo&quot;).innerHTML =
+  &quot;setHours(14) - 2 PM: &quot; + d1 + &quot;&lt;br&gt;&quot; +
+  &quot;setMinutes(45): &quot; + d2;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p3.png" alt=""></p>
+<h3>Example 3</h3>
+<p><strong>Result</strong> <a href="ex3-set_hours_minutes/index.html">View Example</a></p>
+<h2>Compare Dates</h2>
+<p>Dates can easily be compared using comparison operators (<code>&lt;</code>, <code>&gt;</code>, <code>==</code>, <code>!=</code>):</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Date Set Methods&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Compare Dates&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+let text = &quot;&quot;;
+
+const today = new Date();
+const someday = new Date();
+someday.setFullYear(2100);
+
+if (someday &gt; today) {
+  text = &quot;Today is before 2100.&quot;;
+} else {
+  text = &quot;Today is after 2100.&quot;;
+}
+
+// Also compare with getTime()
+const d1 = new Date(2024, 0, 1);
+const d2 = new Date(2024, 0, 15);
+text += &quot;&lt;br&gt;&lt;br&gt;d1 (Jan 1) &lt; d2 (Jan 15): &quot; + (d1.getTime() &lt; d2.getTime());
+
+document.getElementById(&quot;demo&quot;).innerHTML = text;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p4.png" alt=""></p>
+<h3>Example 4</h3>
+<p><strong>Result</strong> <a href="ex4-compare_dates/index.html">View Example</a></p>
+<h2>Document</h2>
+<p>Document in project</p>
+<p>You can <a href="js-date_set_methods.pdf">Download PDF</a> file.</p>
+<h2>Reference</h2>
+<ul>
+<li><a href="https://www.w3schools.com/js/js_date_methods_set.asp">W3Schools JavaScript Date Set Methods</a></li>
+</ul>
+
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Reflect</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Reflect.construct()</h4>
+<p id="demo"></p>
+
+<script>
+class Car {
+  constructor(make, model, year) {
+    this.make = make;
+    this.model = model;
+    this.year = year;
+  }
+  getInfo() {
+    return this.year + " " + this.make + " " + this.model;
+  }
+}
+
+// Using Reflect.construct() instead of 'new Car()'
+const myCar = Reflect.construct(Car, ["Toyota", "Corolla", 2020]);
+const yourCar = Reflect.construct(Car, ["Honda", "Civic", 2022]);
+
+document.getElementById("demo").innerHTML =
+  "Reflect.construct(Car, [...]) :<br>" +
+  "My car: " + myCar.getInfo() + "<br>" +
+  "Your car: " + yourCar.getInfo() + "<br><br>" +
+  "Instanceof check: " + (myCar instanceof Car);
+</script>
+
+</body>
+</html>

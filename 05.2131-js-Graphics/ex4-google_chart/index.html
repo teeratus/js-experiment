@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Graphics</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Google Chart</h4>
+
+<div id="googleChart"></div>
+<p id="demo4"></p>
+
+<script src="https://www.gstatic.com/charts/loader.js"></script>
+
+<script>
+google.charts.load("current", {packages: ["corechart"]});
+google.charts.setOnLoadCallback(drawChart);
+
+function drawChart() {
+  const data = google.visualization.arrayToDataTable([
+    ["Category", "Value"],
+    ["Product A", 45],
+    ["Product B", 25],
+    ["Product C", 15],
+    ["Product D", 10],
+    ["Product E", 5]
+  ]);
+
+  const options = {
+    title: "Market Share (Google Chart)",
+    is3D: true,
+    pieHole: 0.4
+  };
+
+  const chart = new google.visualization.PieChart(document.getElementById("googleChart"));
+  chart.draw(data, options);
+  
+  document.getElementById("demo4").innerHTML = "Google Chart pie chart created!";
+}
+</script>
+
+</body>
+</html>

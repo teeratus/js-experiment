@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript RegExp Flags</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>RegExp /u Flag (Unicode)</h4>
+<p id="demo"></p>
+
+<script>
+const text = "Café 100";
+
+// \d finds ASCII digits only
+const asciiDigits = text.match(/\d/g);
+
+document.getElementById("demo").innerHTML =
+  "Text: " + text + "<br><br>" +
+  "match(/\\d/g): " + asciiDigits + "<br><br>" +
+  "<b>Other flag properties:</b><br>" +
+  "global: " + /a/g.global + "<br>" +
+  "ignoreCase: " + /a/i.ignoreCase + "<br>" +
+  "multiline: " + /a/m.multiline + "<br>" +
+  "sticky: " + /a/y.sticky + "<br>" +
+  "unicode: " + /a/u.unicode;
+</script>
+
+</body>
+</html>

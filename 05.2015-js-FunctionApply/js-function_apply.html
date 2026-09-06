@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>js-function_apply</title>
+  <style>
+    body {
+      box-sizing: border-box;
+      min-width: 200px;
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 45px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+      font-size: 16px;
+      line-height: 1.5;
+      color: #24292e;
+      background-color: #ffffff;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 24px;
+      margin-bottom: 16px;
+      font-weight: 600;
+      line-height: 1.25;
+      border-bottom: 1px solid #eaecef;
+      padding-bottom: .3em;
+    }
+    h1 { font-size: 2em; }
+    h2 { font-size: 1.5em; }
+    h3 { font-size: 1.25em; }
+    code {
+      padding: .2em .4em;
+      margin: 0;
+      font-size: 85%;
+      background-color: rgba(27,31,35,.05);
+      border-radius: 3px;
+      font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
+    }
+    pre {
+      padding: 16px;
+      overflow: auto;
+      font-size: 85%;
+      line-height: 1.45;
+      background-color: #f6f8fa;
+      border-radius: 3px;
+      word-wrap: normal;
+    }
+    pre code {
+      background-color: transparent;
+      padding: 0;
+    }
+    blockquote {
+      padding: 0 1em;
+      color: #6a737d;
+      border-left: .25em solid #dfe2e5;
+      margin: 0 0 16px 0;
+    }
+    table {
+      border-spacing: 0;
+      border-collapse: collapse;
+      margin-top: 0;
+      margin-bottom: 16px;
+      width: 100%;
+    }
+    table th, table td {
+      padding: 6px 13px;
+      border: 1px solid #dfe2e5;
+    }
+    table tr:nth-child(2n) {
+      background-color: #f6f8fa;
+    }
+    img {
+      max-width: 100%;
+      box-sizing: content-box;
+    }
+    @media print {
+      body {
+        max-width: 100%;
+        padding: 0;
+      }
+      pre, blockquote, table, tr, img {
+        page-break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+<body>
+<h1>JavaScript Function apply()</h1>
+<p><a href="../acp-js.php">Back to JS page</a></p>
+<p>Table of Contents</p>
+<ul>
+<li><a href="#javascript-function-apply">JavaScript Function apply()</a><ul>
+<li><a href="#using-apply-to-set-this">Using apply() to Set this</a><ul>
+<li><a href="#example-1">Example 1</a></li>
+</ul>
+</li>
+<li><a href="#the-difference-between-call-and-apply">The Difference Between call() and apply()</a><ul>
+<li><a href="#example-2">Example 2</a></li>
+</ul>
+</li>
+<li><a href="#the-apply-method-with-arguments">The apply() Method with Arguments</a><ul>
+<li><a href="#example-3">Example 3</a></li>
+</ul>
+</li>
+<li><a href="#simulate-array-methods-with-apply">Simulate Array Methods with apply()</a><ul>
+<li><a href="#example-4">Example 4</a></li>
+</ul>
+</li>
+<li><a href="#document">Document</a></li>
+<li><a href="#reference">Reference</a></li>
+</ul>
+</li>
+</ul>
+<h2>Using apply() to Set this</h2>
+<p>The <code>apply()</code> method is similar to <code>call()</code>. The difference is:</p>
+<ul>
+<li><code>call()</code> expects arguments passed <strong>separately</strong></li>
+<li><code>apply()</code> expects arguments passed as an <strong>array</strong></li>
+</ul>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Function apply()&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Using apply() to Set this&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+const person = {
+  fullName: function() {
+    return this.firstName + &quot; &quot; + this.lastName;
+  }
+};
+
+const person1 = {
+  firstName: &quot;John&quot;,
+  lastName: &quot;Doe&quot;
+};
+
+const person2 = {
+  firstName: &quot;Mary&quot;,
+  lastName: &quot;Smith&quot;
+};
+
+document.getElementById(&quot;demo&quot;).innerHTML = 
+  person.fullName.apply(person1) + &quot;&lt;br&gt;&quot; + 
+  person.fullName.apply(person2);
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p1.png" alt=""></p>
+<h3>Example 1</h3>
+<p><strong>Result</strong> <a href="ex1-apply_set_this/index.html">View Example</a></p>
+<h2>The Difference Between call() and apply()</h2>
+<p>The difference between <code>call()</code> and <code>apply()</code> is how arguments are passed:</p>
+<ul>
+<li><code>call()</code>: arguments are passed <strong>individually</strong> (comma separated)</li>
+<li><code>apply()</code>: arguments are passed as an <strong>array</strong></li>
+</ul>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Function apply()&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;The Difference Between call() and apply()&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+const person = {
+  fullName: function(city, country) {
+    return this.firstName + &quot; &quot; + this.lastName + &quot;, &quot; + city + &quot;, &quot; + country;
+  }
+};
+
+const person1 = {
+  firstName: &quot;John&quot;,
+  lastName: &quot;Doe&quot;
+};
+
+// call() - arguments passed individually
+let result1 = person.fullName.call(person1, &quot;Oslo&quot;, &quot;Norway&quot;);
+
+// apply() - arguments passed as an array
+let result2 = person.fullName.apply(person1, [&quot;Oslo&quot;, &quot;Norway&quot;]);
+
+document.getElementById(&quot;demo&quot;).innerHTML = 
+  &quot;call(): &quot; + result1 + &quot;&lt;br&gt;&quot; + 
+  &quot;apply(): &quot; + result2;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p2.png" alt=""></p>
+<h3>Example 2</h3>
+<p><strong>Result</strong> <a href="ex2-call_vs_apply/index.html">View Example</a></p>
+<h2>The apply() Method with Arguments</h2>
+<p>The <code>apply()</code> method accepts an array of arguments. This is useful when you have an array of data and want to pass it to a function:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Function apply()&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;The apply() Method with Arguments&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+function greet(greeting, punctuation) {
+  return greeting + &quot;, &quot; + this.name + punctuation;
+}
+
+const person = {
+  name: &quot;Alice&quot;
+};
+
+const args = [&quot;Hello&quot;, &quot;!&quot;];
+
+document.getElementById(&quot;demo&quot;).innerHTML = greet.apply(person, args);
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p3.png" alt=""></p>
+<h3>Example 3</h3>
+<p><strong>Result</strong> <a href="ex3-apply_arguments/index.html">View Example</a></p>
+<h2>Simulate Array Methods with apply()</h2>
+<p>You can use <code>apply()</code> to simulate array methods like <code>Math.max()</code> and <code>Math.min()</code> on arrays:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Function apply()&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Simulate Array Methods with apply()&lt;/h4&gt;
+&lt;p id=&quot;demo1&quot;&gt;&lt;/p&gt;
+&lt;p id=&quot;demo2&quot;&gt;&lt;/p&gt;
+&lt;p id=&quot;demo3&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+const numbers = [4, 7, 1, 9, 3, 5];
+
+// Math.max normally cannot accept an array directly
+let max = Math.max.apply(null, numbers);
+
+// Math.min similarly
+let min = Math.min.apply(null, numbers);
+
+document.getElementById(&quot;demo1&quot;).innerHTML = &quot;Numbers: &quot; + numbers;
+document.getElementById(&quot;demo2&quot;).innerHTML = &quot;Max value: &quot; + max;
+document.getElementById(&quot;demo3&quot;).innerHTML = &quot;Min value: &quot; + min;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p4.png" alt=""></p>
+<h3>Example 4</h3>
+<p><strong>Result</strong> <a href="ex4-array_methods/index.html">View Example</a></p>
+<h2>Document</h2>
+<p>Document in project</p>
+<p>You can <a href="js-function_apply.pdf">Download PDF</a> file.</p>
+<h2>Reference</h2>
+<ul>
+<li><a href="https://www.w3schools.com/js/js_function_apply.asp">W3Schools JavaScript Function apply()</a></li>
+</ul>
+
+</body>
+</html>

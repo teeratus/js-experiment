@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript RegExp</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Using String Methods</h4>
+<p id="demo"></p>
+
+<script>
+const text = "Visit W3Schools";
+
+// match() - returns matches
+const matchResult = text.match(/W3Schools/);
+
+// replace() - replaces matches
+const replaceResult = text.replace(/Visit/, "Welcome to");
+
+// search() - returns position
+const searchResult = text.search(/W3Schools/);
+
+document.getElementById("demo").innerHTML =
+  "Text: " + text + "<br><br>" +
+  "match(/W3Schools/): " + matchResult + "<br>" +
+  "replace(/Visit/, 'Welcome to'): " + replaceResult + "<br>" +
+  "search(/W3Schools/): " + searchResult + " (position)";
+</script>
+
+</body>
+</html>

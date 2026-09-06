@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Pointer Events API</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>CSS pointer-events Property</h4>
+<p id="demo4"></p>
+
+<div id="parent" style="position:relative;width:300px;height:100px;background:#ddd;">
+  <div id="blocked" style="width:100px;height:100px;background:red;opacity:0.5;">
+    Clickable (default)
+  </div>
+  <div id="clickable" style="position:absolute;top:0;left:150px;width:100px;height:100px;background:green;opacity:0.5;">
+    <span id="child" style="pointer-events:none;">Not clickable</span>
+  </div>
+</div>
+
+<button onclick="togglePointerEvents()">Toggle pointer-events</button>
+<p id="status"></p>
+
+<script>
+const child = document.getElementById("child");
+let enabled = true;
+
+function togglePointerEvents() {
+  enabled = !enabled;
+  child.style.pointerEvents = enabled ? "none" : "auto";
+  document.getElementById("status").innerHTML =
+    "pointer-events: " + (enabled ? "none" : "auto") + 
+    " (element " + (enabled ? "cannot" : "can") + " receive events)";
+}
+
+document.getElementById("parent").addEventListener("click", function() {
+  document.getElementById("demo4").innerHTML = "Parent div clicked!";
+});
+
+document.getElementById("status").innerHTML = 
+  "pointer-events: none (green area child cannot receive events)";
+</script>
+
+</body>
+</html>

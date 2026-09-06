@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>js-window_object</title>
+  <style>
+    body {
+      box-sizing: border-box;
+      min-width: 200px;
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 45px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+      font-size: 16px;
+      line-height: 1.5;
+      color: #24292e;
+      background-color: #ffffff;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 24px;
+      margin-bottom: 16px;
+      font-weight: 600;
+      line-height: 1.25;
+      border-bottom: 1px solid #eaecef;
+      padding-bottom: .3em;
+    }
+    h1 { font-size: 2em; }
+    h2 { font-size: 1.5em; }
+    h3 { font-size: 1.25em; }
+    code {
+      padding: .2em .4em;
+      margin: 0;
+      font-size: 85%;
+      background-color: rgba(27,31,35,.05);
+      border-radius: 3px;
+      font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
+    }
+    pre {
+      padding: 16px;
+      overflow: auto;
+      font-size: 85%;
+      line-height: 1.45;
+      background-color: #f6f8fa;
+      border-radius: 3px;
+      word-wrap: normal;
+    }
+    pre code {
+      background-color: transparent;
+      padding: 0;
+    }
+    blockquote {
+      padding: 0 1em;
+      color: #6a737d;
+      border-left: .25em solid #dfe2e5;
+      margin: 0 0 16px 0;
+    }
+    table {
+      border-spacing: 0;
+      border-collapse: collapse;
+      margin-top: 0;
+      margin-bottom: 16px;
+      width: 100%;
+    }
+    table th, table td {
+      padding: 6px 13px;
+      border: 1px solid #dfe2e5;
+    }
+    table tr:nth-child(2n) {
+      background-color: #f6f8fa;
+    }
+    img {
+      max-width: 100%;
+      box-sizing: content-box;
+    }
+    @media print {
+      body {
+        max-width: 100%;
+        padding: 0;
+      }
+      pre, blockquote, table, tr, img {
+        page-break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+<body>
+<h1>JavaScript Window Object</h1>
+<p><a href="../acp-js.php">Back to JS page</a></p>
+<p>Table of Contents</p>
+<ul>
+<li><a href="#javascript-window-object">JavaScript Window Object</a><ul>
+<li><a href="#the-browser-object-model-bom">The Browser Object Model (BOM)</a></li>
+<li><a href="#the-window-object">The Window Object</a><ul>
+<li><a href="#example-1">Example 1</a></li>
+</ul>
+</li>
+<li><a href="#window-size">Window Size</a><ul>
+<li><a href="#example-2">Example 2</a></li>
+</ul>
+</li>
+<li><a href="#window-methods">Window Methods</a><ul>
+<li><a href="#example-3">Example 3</a></li>
+</ul>
+</li>
+<li><a href="#other-window-properties">Other Window Properties</a><ul>
+<li><a href="#example-4">Example 4</a></li>
+</ul>
+</li>
+<li><a href="#document">Document</a></li>
+<li><a href="#reference">Reference</a></li>
+</ul>
+</li>
+</ul>
+<h2>The Browser Object Model (BOM)</h2>
+<p>The Browser Object Model (BOM) allows JavaScript to &quot;talk to&quot; the browser. The <code>window</code> object is the global object in the browser and represents the browser window.</p>
+<p>All global JavaScript objects, functions, and variables automatically become members of the <code>window</code> object.</p>
+<h2>The Window Object</h2>
+<p>The <code>window</code> object is the browser&#39;s global object. It contains properties and methods for interacting with the browser window:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Window Object&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;The Window Object&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+let text = &quot;Window properties:&lt;br&gt;&lt;br&gt;&quot;;
+text += &quot;window.innerWidth: &quot; + window.innerWidth + &quot;px&lt;br&gt;&quot;;
+text += &quot;window.innerHeight: &quot; + window.innerHeight + &quot;px&lt;br&gt;&quot;;
+text += &quot;window.outerWidth: &quot; + window.outerWidth + &quot;px&lt;br&gt;&quot;;
+text += &quot;window.outerHeight: &quot; + window.outerHeight + &quot;px&lt;br&gt;&quot;;
+text += &quot;window.name: &quot; + window.name + &quot;&lt;br&gt;&quot;;
+text += &quot;window.closed: &quot; + window.closed + &quot;&lt;br&gt;&quot;;
+text += &quot;window.opener: &quot; + window.opener;
+
+document.getElementById(&quot;demo&quot;).innerHTML = text;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p1.png" alt=""></p>
+<h3>Example 1</h3>
+<p><strong>Result</strong> <a href="ex1-window_object/index.html">View Example</a></p>
+<h2>Window Size</h2>
+<p>The <code>window.innerWidth</code> and <code>window.innerHeight</code> properties get the browser window&#39;s size (excluding toolbars and scrollbars):</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Window Object&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Window Size&lt;/h4&gt;
+
+&lt;button onclick=&quot;showSize()&quot;&gt;Show Window Size&lt;/button&gt;
+&lt;button onclick=&quot;resizeWindow()&quot;&gt;Resize to 800x600&lt;/button&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+function showSize() {
+  document.getElementById(&quot;demo&quot;).innerHTML =
+    &quot;Inner window size:&lt;br&gt;&quot; +
+    &quot;Width: &quot; + window.innerWidth + &quot;px&lt;br&gt;&quot; +
+    &quot;Height: &quot; + window.innerHeight + &quot;px&lt;br&gt;&lt;br&gt;&quot; +
+    &quot;Outer window size:&lt;br&gt;&quot; +
+    &quot;Width: &quot; + window.outerWidth + &quot;px&lt;br&gt;&quot; +
+    &quot;Height: &quot; + window.outerHeight + &quot;px&quot;;
+}
+
+function resizeWindow() {
+  window.resizeTo(800, 600);
+  showSize();
+}
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p2.png" alt=""></p>
+<h3>Example 2</h3>
+<p><strong>Result</strong> <a href="ex2-window_size/index.html">View Example</a></p>
+<h2>Window Methods</h2>
+<p>The <code>window</code> object provides methods to open, close, and control browser windows:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Window Object&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Window Methods&lt;/h4&gt;
+
+&lt;button onclick=&quot;openWindow()&quot;&gt;Open New Window&lt;/button&gt;
+&lt;button onclick=&quot;moveWindow()&quot;&gt;Move Window&lt;/button&gt;
+&lt;button onclick=&quot;closeWindow()&quot;&gt;Close Window&lt;/button&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+let myWindow;
+
+function openWindow() {
+  myWindow = window.open(&quot;&quot;, &quot;&quot;, &quot;width=300,height=200&quot;);
+  myWindow.document.write(&quot;&lt;p&gt;This is a new window.&lt;/p&gt;&quot;);
+  document.getElementById(&quot;demo&quot;).innerHTML = &quot;New window opened!&quot;;
+}
+
+function moveWindow() {
+  if (myWindow &amp;&amp; !myWindow.closed) {
+    myWindow.moveTo(500, 100);
+    myWindow.resizeTo(400, 300);
+    document.getElementById(&quot;demo&quot;).innerHTML = &quot;Window moved and resized!&quot;;
+  } else {
+    document.getElementById(&quot;demo&quot;).innerHTML = &quot;No open window to move!&quot;;
+  }
+}
+
+function closeWindow() {
+  if (myWindow &amp;&amp; !myWindow.closed) {
+    myWindow.close();
+    document.getElementById(&quot;demo&quot;).innerHTML = &quot;Window closed!&quot;;
+  } else {
+    document.getElementById(&quot;demo&quot;).innerHTML = &quot;No open window to close!&quot;;
+  }
+}
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p3.png" alt=""></p>
+<h3>Example 3</h3>
+<p><strong>Result</strong> <a href="ex3-window_methods/index.html">View Example</a></p>
+<h2>Other Window Properties</h2>
+<p>The <code>window</code> object also provides methods like <code>focus()</code>, <code>blur()</code>, <code>scrollBy()</code>, <code>scrollTo()</code>, and <code>print()</code>:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Window Object&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Other Window Properties&lt;/h4&gt;
+
+&lt;button onclick=&quot;scrollDown()&quot;&gt;Scroll Down&lt;/button&gt;
+&lt;button onclick=&quot;scrollToTop()&quot;&gt;Scroll to Top&lt;/button&gt;
+&lt;button onclick=&quot;printPage()&quot;&gt;Print&lt;/button&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;div style=&quot;height: 1000px; background: linear-gradient(to bottom, #f0f0f0, #ddd);&quot;&gt;
+  &lt;p&gt;Scroll down to see the scroll effect.&lt;/p&gt;
+  &lt;p style=&quot;margin-top: 800px;&quot;&gt;You are at the bottom!&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;script&gt;
+function scrollDown() {
+  window.scrollBy(0, 300);
+  document.getElementById(&quot;demo&quot;).innerHTML =
+    &quot;Scrolled down! pageYOffset: &quot; + window.pageYOffset;
+}
+
+function scrollToTop() {
+  window.scrollTo(0, 0);
+  document.getElementById(&quot;demo&quot;).innerHTML =
+    &quot;Scrolled to top! pageYOffset: &quot; + window.pageYOffset;
+}
+
+function printPage() {
+  window.print();
+}
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p4.png" alt=""></p>
+<h3>Example 4</h3>
+<p><strong>Result</strong> <a href="ex4-other_properties/index.html">View Example</a></p>
+<h2>Document</h2>
+<p>Document in project</p>
+<p>You can <a href="js-window_object.pdf">Download PDF</a> file.</p>
+<h2>Reference</h2>
+<ul>
+<li><a href="https://www.w3schools.com/js/js_window.asp">W3Schools JavaScript Window Object</a></li>
+</ul>
+
+</body>
+</html>

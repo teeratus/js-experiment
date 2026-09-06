@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Event Loop</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Example: Promise</h4>
+<p id="demo"></p>
+
+<script>
+document.getElementById("demo").innerHTML += "1. Start<br>";
+
+// Promise goes to Microtask Queue
+Promise.resolve().then(function() {
+  document.getElementById("demo").innerHTML += "3. Promise callback<br>";
+});
+
+// setTimeout goes to Task Queue
+setTimeout(function() {
+  document.getElementById("demo").innerHTML += "4. setTimeout callback<br>";
+}, 0);
+
+document.getElementById("demo").innerHTML += "2. End<br>";
+</script>
+
+</body>
+</html>

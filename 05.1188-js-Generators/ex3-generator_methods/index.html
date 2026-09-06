@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Generators</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Generator Object Methods</h4>
+<p id="demo"></p>
+
+<script>
+function* counter() {
+  let i = 0;
+  while (true) {
+    yield i++;
+  }
+}
+
+const gen = counter();
+
+let text = "Counter generator:<br><br>";
+text += "next(): " + gen.next().value + "<br>";
+text += "next(): " + gen.next().value + "<br>";
+text += "next(): " + gen.next().value + "<br><br>";
+
+// Other generator methods
+text += "typeof gen.next: " + typeof gen.next + "<br>";
+text += "typeof gen.return: " + typeof gen.return + "<br>";
+
+// return() stops the generator
+gen.return("stopped");
+text += "After return(): " + gen.next().done + " (done)";
+
+document.getElementById("demo").innerHTML = text;
+</script>
+
+</body>
+</html>

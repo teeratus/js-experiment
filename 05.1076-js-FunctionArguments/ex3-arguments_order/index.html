@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Function Arguments</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>The Order of Arguments Matters</h4>
+<p id="demo1"></p>
+<p id="demo2"></p>
+
+<script>
+function carInfo(brand, model, year) {
+  return brand + " " + model + " (" + year + ")";
+}
+// Correct order
+document.getElementById("demo1").innerHTML = "Correct: " + carInfo("Toyota", "Corolla", 2020);
+// Wrong order - produces different result
+document.getElementById("demo2").innerHTML = "Wrong: " + carInfo(2020, "Toyota", "Corolla");
+</script>
+
+</body>
+</html>

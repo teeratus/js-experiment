@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Function call()</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Borrowing a Method from Another Object</h4>
+<p id="demo"></p>
+
+<script>
+const person = {
+  firstName: "John",
+  lastName: "Doe",
+  fullName: function() {
+    return this.firstName + " " + this.lastName;
+  }
+};
+
+const member = {
+  firstName: "Jane",
+  lastName: "Smith"
+};
+
+// Borrow the fullName method from person
+document.getElementById("demo").innerHTML = person.fullName.call(member);
+</script>
+
+</body>
+</html>

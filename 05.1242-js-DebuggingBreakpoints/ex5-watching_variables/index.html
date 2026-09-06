@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Debugging Breakpoints</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Watching Variables</h4>
+<p>Open DevTools (F12), go to Sources tab. Set a breakpoint at the start of the loop to watch counter and total.</p>
+<p id="demo"></p>
+
+<script>
+function calculateSum(count) {
+  let total = 0;
+  for (let i = 1; i <= count; i++) {
+    total += i;  // Set breakpoint here and watch 'i' and 'total'
+    console.log("i =", i, "total =", total);
+  }
+  return total;
+}
+
+let result = calculateSum(5);
+document.getElementById("demo").innerHTML =
+  "Sum of 1 to 5 = " + result + " (check console to see each step)";
+</script>
+
+</body>
+</html>

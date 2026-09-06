@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Object Display</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Displaying Object Properties</h4>
+<p id="demo1"></p>
+<p id="demo2"></p>
+
+<script>
+const person = {
+  name: "John",
+  age: 30,
+  city: "New York"
+};
+
+// Direct display shows [object Object]
+document.getElementById("demo1").innerHTML =
+  "Direct display: " + person;
+
+// Display individual properties
+document.getElementById("demo2").innerHTML =
+  "Properties: " + person.name + ", " + person.age + ", " + person.city;
+</script>
+
+</body>
+</html>

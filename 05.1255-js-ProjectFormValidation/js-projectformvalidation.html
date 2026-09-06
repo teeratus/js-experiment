@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>js-projectformvalidation</title>
+  <style>
+    body {
+      box-sizing: border-box;
+      min-width: 200px;
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 45px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+      font-size: 16px;
+      line-height: 1.5;
+      color: #24292e;
+      background-color: #ffffff;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 24px;
+      margin-bottom: 16px;
+      font-weight: 600;
+      line-height: 1.25;
+      border-bottom: 1px solid #eaecef;
+      padding-bottom: .3em;
+    }
+    h1 { font-size: 2em; }
+    h2 { font-size: 1.5em; }
+    h3 { font-size: 1.25em; }
+    code {
+      padding: .2em .4em;
+      margin: 0;
+      font-size: 85%;
+      background-color: rgba(27,31,35,.05);
+      border-radius: 3px;
+      font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
+    }
+    pre {
+      padding: 16px;
+      overflow: auto;
+      font-size: 85%;
+      line-height: 1.45;
+      background-color: #f6f8fa;
+      border-radius: 3px;
+      word-wrap: normal;
+    }
+    pre code {
+      background-color: transparent;
+      padding: 0;
+    }
+    blockquote {
+      padding: 0 1em;
+      color: #6a737d;
+      border-left: .25em solid #dfe2e5;
+      margin: 0 0 16px 0;
+    }
+    table {
+      border-spacing: 0;
+      border-collapse: collapse;
+      margin-top: 0;
+      margin-bottom: 16px;
+      width: 100%;
+    }
+    table th, table td {
+      padding: 6px 13px;
+      border: 1px solid #dfe2e5;
+    }
+    table tr:nth-child(2n) {
+      background-color: #f6f8fa;
+    }
+    img {
+      max-width: 100%;
+      box-sizing: content-box;
+    }
+    @media print {
+      body {
+        max-width: 100%;
+        padding: 0;
+      }
+      pre, blockquote, table, tr, img {
+        page-break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+<body>
+<h1>JavaScript Project - Form Validation</h1>
+<p><a href="../acp-js.php">Back to JS page</a></p>
+<p>Table of Contents</p>
+<ul>
+<li><a href="#javascript-project---form-validation">JavaScript Project - Form Validation</a><ul>
+<li><a href="#form-validation-overview">Form Validation Overview</a></li>
+<li><a href="#what-you-will-learn">What You Will Learn</a></li>
+<li><a href="#step-1---create-the-html">Step 1 - Create the HTML</a><ul>
+<li><a href="#example-1">Example 1</a></li>
+</ul>
+</li>
+<li><a href="#step-2---add-the-css">Step 2 - Add the CSS</a><ul>
+<li><a href="#example-2">Example 2</a></li>
+</ul>
+</li>
+<li><a href="#step-3---add-javascript">Step 3 - Add JavaScript</a><ul>
+<li><a href="#example-3">Example 3</a></li>
+</ul>
+</li>
+<li><a href="#step-4---validate-fields">Step 4 - Validate Fields</a><ul>
+<li><a href="#example-4">Example 4</a></li>
+</ul>
+</li>
+<li><a href="#exercises--solutions">Exercises &amp; Solutions</a><ul>
+<li><a href="#example-5">Example 5</a></li>
+</ul>
+</li>
+<li><a href="#bonus-challenges-level-up">Bonus Challenges (Level Up)</a><ul>
+<li><a href="#example-6">Example 6</a></li>
+</ul>
+</li>
+<li><a href="#document">Document</a></li>
+<li><a href="#reference">Reference</a></li>
+</ul>
+</li>
+</ul>
+<h2>Form Validation Overview</h2>
+<p>In this project, you will build a sign-up form with input validation. </p>
+<p>The form shows inline error messages under each field and prevents submission until all fields are filled and valid.</p>
+<h2>What You Will Learn</h2>
+<ul>
+<li>How to validate user input against custom rules using JavaScript</li>
+<li>How to prevent forms from reloading the page during submit events</li>
+<li>How to write validation check helper functions</li>
+<li>How to check email formats using Regular Expressions (regex)</li>
+</ul>
+<h2>Step 1 - Create the HTML</h2>
+<p>Start by creating the basic structure containing four text fields (Name, Email, Password, Confirm Password), associated error message paragraphs, and a submit button.</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;Sign Up&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;form id=&quot;signupForm&quot;&gt;
+
+&lt;div class=&quot;field&quot;&gt;
+  &lt;label&gt;Name:&lt;/label&gt;&lt;br&gt;
+  &lt;input id=&quot;name&quot; type=&quot;text&quot; placeholder=&quot;Your name&quot;&gt;
+  &lt;p id=&quot;nameError&quot; class=&quot;error&quot;&gt;&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;field&quot;&gt;
+  &lt;label&gt;Email:&lt;/label&gt;&lt;br&gt;
+  &lt;input id=&quot;email&quot; type=&quot;text&quot; placeholder=&quot;name@example.com&quot;&gt;
+  &lt;p id=&quot;emailError&quot; class=&quot;error&quot;&gt;&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;field&quot;&gt;
+  &lt;label&gt;Password:&lt;/label&gt;&lt;br&gt;
+  &lt;input id=&quot;password&quot; type=&quot;password&quot; placeholder=&quot;Min 8 characters&quot;&gt;
+  &lt;p id=&quot;passwordError&quot; class=&quot;error&quot;&gt;&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;field&quot;&gt;
+  &lt;label&gt;Confirm Password:&lt;/label&gt;&lt;br&gt;
+  &lt;input id=&quot;confirm&quot; type=&quot;password&quot; placeholder=&quot;Repeat password&quot;&gt;
+  &lt;p id=&quot;confirmError&quot; class=&quot;error&quot;&gt;&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;p&gt;&lt;button type=&quot;submit&quot;&gt;Create Account&lt;/button&gt;&lt;/p&gt;
+
+&lt;/form&gt;
+
+&lt;p id=&quot;result&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+// Create a task Array
+let tasks = [];
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p1.png" alt=""></p>
+<h3>Example 1</h3>
+<p><strong>Result</strong> <a href="ex1-html_structure/index.html">View Example</a></p>
+<h2>Step 2 - Add the CSS</h2>
+<p>Add styling to distinguish input boxes, error layout styles, and valid confirmation elements:</p>
+<pre><code class="language-html">&lt;style&gt;
+input {
+  padding: 8px;
+  width: 260px;
+  margin-bottom: 4px;
+}
+.error {
+  color: red;
+  margin: 0;
+}
+.ok {
+  color: green;
+  margin: 0;
+}
+.field {
+  margin-bottom: 12px;
+}
+&lt;/style&gt;
+</code></pre>
+<p><img src="images/p2.png" alt=""></p>
+<h3>Example 2</h3>
+<p><strong>Result</strong> <a href="ex2-styling/index.html">View Example</a></p>
+<h2>Step 3 - Add JavaScript</h2>
+<p>Cache inputs and build common error layout handlers:</p>
+<ul>
+<li><strong>Create variables for each element:</strong></li>
+</ul>
+<pre><code class="language-javascript">const form = document.getElementById(&quot;signupForm&quot;);
+const nameInput = document.getElementById(&quot;name&quot;);
+const emailInput = document.getElementById(&quot;email&quot;);
+const passInput = document.getElementById(&quot;password&quot;);
+const confirmInput = document.getElementById(&quot;confirm&quot;);
+const nameError = document.getElementById(&quot;nameError&quot;);
+const emailError = document.getElementById(&quot;emailError&quot;);
+const passError = document.getElementById(&quot;passwordError&quot;);
+const confirmError = document.getElementById(&quot;confirmError&quot;);
+const result = document.getElementById(&quot;result&quot;);
+</code></pre>
+<ul>
+<li><strong>Define message display and clear helpers:</strong></li>
+</ul>
+<pre><code class="language-javascript">function showError(el, message) {
+  el.innerHTML = message;
+}
+
+function clearError(el) {
+  el.innerHTML = &quot;&quot;;
+}
+</code></pre>
+<ul>
+<li><strong>Intercept submits to prevent page reloading:</strong></li>
+</ul>
+<pre><code class="language-javascript">form.addEventListener(&quot;submit&quot;, function (event) {
+  event.preventDefault();
+  result.innerHTML = &quot;&quot;;
+
+  if (validateForm()) {
+    result.innerHTML = &quot;Form is valid!&quot;;
+    result.className = &quot;ok&quot;;
+  } else {
+    result.innerHTML = &quot;Please fix the errors.&quot;;
+    result.className = &quot;error&quot;;
+  }
+});
+</code></pre>
+<p><img src="images/p3.png" alt=""></p>
+<h3>Example 3</h3>
+<p><strong>Result</strong> <a href="ex3-validation_basics/index.html">View Example</a></p>
+<h2>Step 4 - Validate Fields</h2>
+<p>Implement individual validation checks:</p>
+<ul>
+<li><strong>Name field:</strong> Must contain at least 2 characters.</li>
+</ul>
+<pre><code class="language-javascript">function validateName() {
+  let value = nameInput.value.trim();
+  if (value.length &lt; 2) {
+    showError(nameError, &quot;Name must be at least 2 characters.&quot;);
+    return false;
+  }
+  clearError(nameError);
+  return true;
+}
+</code></pre>
+<ul>
+<li><strong>Email field:</strong> Verified using a simple regex pattern.</li>
+</ul>
+<pre><code class="language-javascript">function validateEmail() {
+  let value = emailInput.value.trim();
+  if (!(/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value))) {
+    showError(emailError, &quot;Enter a valid email address.&quot;);
+    return false;
+  }
+  clearError(emailError);
+  return true;
+}
+</code></pre>
+<ul>
+<li><strong>Password field:</strong> Must contain at least 8 characters.</li>
+</ul>
+<pre><code class="language-javascript">function validatePassword() {
+  let value = passInput.value;
+  if (value.length &lt; 8) {
+    showError(passError, &quot;Password must be at least 8 characters.&quot;);
+    return false;
+  }
+  clearError(passError);
+  return true;
+}
+</code></pre>
+<ul>
+<li><strong>Confirm Password:</strong> Matches the password input.</li>
+</ul>
+<pre><code class="language-javascript">function validateConfirm() {
+  let pass = passInput.value;
+  let confirm = confirmInput.value;
+  if (confirm === &quot;&quot;) {
+    showError(confirmError, &quot;Please confirm your password.&quot;);
+    return false;
+  }
+  if (confirm !== pass) {
+    showError(confirmError, &quot;Passwords do not match.&quot;);
+    return false;
+  }
+  clearError(confirmError);
+  return true;
+}
+</code></pre>
+<ul>
+<li><strong>Final Form validator:</strong></li>
+</ul>
+<pre><code class="language-javascript">function validateForm() {
+  let okName = validateName();
+  let okEmail = validateEmail();
+  let okPass = validatePassword();
+  let okConfirm = validateConfirm();
+  return okName &amp;&amp; okEmail &amp;&amp; okPass &amp;&amp; okConfirm;
+}
+</code></pre>
+<p><img src="images/p4.png" alt=""></p>
+<h3>Example 4</h3>
+<p><strong>Result</strong> <a href="ex4-full_validation/index.html">View Example</a></p>
+<h2>Exercises &amp; Solutions</h2>
+<h3>Exercise 1</h3>
+<p>Show an alert or custom styling if something is wrong.</p>
+<h3>Exercise 2</h3>
+<p>Check email format using regex (already covered in Step 4).</p>
+<h3>Exercise 3</h3>
+<p>Show a green success message next to fields that validate successfully.</p>
+<h3>Solutions Code</h3>
+<p>Update display functions to show success styles when parameters match successfully:</p>
+<pre><code class="language-javascript">function showError(el, message) {
+  el.innerHTML = message;
+  el.className = &quot;error&quot;;
+}
+
+function showSuccess(el, message) {
+  el.innerHTML = message;
+  el.className = &quot;ok&quot;;
+}
+
+function validateName() {
+  let value = nameInput.value.trim();
+  if (value.length &lt; 2) {
+    showError(nameError, &quot;Name must be at least 2 characters.&quot;);
+    return false;
+  }
+  showSuccess(nameError, &quot;Name is valid.&quot;);
+  return true;
+}
+</code></pre>
+<p><img src="images/p5.png" alt=""></p>
+<h3>Example 5</h3>
+<p><strong>Result</strong> <a href="ex5-exercises_solutions/index.html">View Example</a></p>
+<h2>Bonus Challenges (Level Up)</h2>
+<p>Elevate the interface with advanced real-world features:</p>
+<ul>
+<li><strong>Real-time inline validation:</strong> Bind validators directly to <code>input</code> and <code>blur</code> events so users receive instant feedback.</li>
+<li><strong>Complex password rules checklist:</strong> Test and display active checks for length, numbers, and uppercase letters.</li>
+<li><strong>Password visibility toggler:</strong> Show or hide password inputs dynamically.</li>
+</ul>
+<p><img src="images/p6.png" alt=""></p>
+<h3>Example 6</h3>
+<p><strong>Result</strong> <a href="ex6-bonus_challenges/index.html">View Example</a></p>
+<h2>Document</h2>
+<p>Document in project</p>
+<p>You can <a href="js-projectformvalidation.pdf">Download PDF</a> file.</p>
+<h2>Reference</h2>
+<ul>
+<li><a href="https://www.w3schools.com/js/js_project_form_validation.asp">W3Schools JavaScript Form Validation Project</a></li>
+</ul>
+
+</body>
+</html>

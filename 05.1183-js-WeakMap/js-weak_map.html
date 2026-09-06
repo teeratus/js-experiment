@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>js-weak_map</title>
+  <style>
+    body {
+      box-sizing: border-box;
+      min-width: 200px;
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 45px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+      font-size: 16px;
+      line-height: 1.5;
+      color: #24292e;
+      background-color: #ffffff;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 24px;
+      margin-bottom: 16px;
+      font-weight: 600;
+      line-height: 1.25;
+      border-bottom: 1px solid #eaecef;
+      padding-bottom: .3em;
+    }
+    h1 { font-size: 2em; }
+    h2 { font-size: 1.5em; }
+    h3 { font-size: 1.25em; }
+    code {
+      padding: .2em .4em;
+      margin: 0;
+      font-size: 85%;
+      background-color: rgba(27,31,35,.05);
+      border-radius: 3px;
+      font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
+    }
+    pre {
+      padding: 16px;
+      overflow: auto;
+      font-size: 85%;
+      line-height: 1.45;
+      background-color: #f6f8fa;
+      border-radius: 3px;
+      word-wrap: normal;
+    }
+    pre code {
+      background-color: transparent;
+      padding: 0;
+    }
+    blockquote {
+      padding: 0 1em;
+      color: #6a737d;
+      border-left: .25em solid #dfe2e5;
+      margin: 0 0 16px 0;
+    }
+    table {
+      border-spacing: 0;
+      border-collapse: collapse;
+      margin-top: 0;
+      margin-bottom: 16px;
+      width: 100%;
+    }
+    table th, table td {
+      padding: 6px 13px;
+      border: 1px solid #dfe2e5;
+    }
+    table tr:nth-child(2n) {
+      background-color: #f6f8fa;
+    }
+    img {
+      max-width: 100%;
+      box-sizing: content-box;
+    }
+    @media print {
+      body {
+        max-width: 100%;
+        padding: 0;
+      }
+      pre, blockquote, table, tr, img {
+        page-break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+<body>
+<h1>JavaScript WeakMap</h1>
+<p><a href="../acp-js.php">Back to JS page</a></p>
+<p>Table of Contents</p>
+<ul>
+<li><a href="#javascript-weakmap">JavaScript WeakMap</a><ul>
+<li><a href="#the-weakmap-object">The WeakMap Object</a><ul>
+<li><a href="#example-1">Example 1</a></li>
+</ul>
+</li>
+<li><a href="#keys-must-be-objects">Keys Must Be Objects</a><ul>
+<li><a href="#example-2">Example 2</a></li>
+</ul>
+</li>
+<li><a href="#weak-references">Weak References</a><ul>
+<li><a href="#example-3">Example 3</a></li>
+</ul>
+</li>
+<li><a href="#not-iterable-and-limited-methods">Not Iterable and Limited Methods</a><ul>
+<li><a href="#example-4">Example 4</a></li>
+</ul>
+</li>
+<li><a href="#weakmap-secret-data">WeakMap Secret Data</a><ul>
+<li><a href="#example-5">Example 5</a></li>
+</ul>
+</li>
+<li><a href="#document">Document</a></li>
+<li><a href="#reference">Reference</a></li>
+</ul>
+</li>
+</ul>
+<h2>The WeakMap Object</h2>
+<p>A <code>WeakMap</code> is a collection of key/value pairs where the keys must be <strong>objects</strong> (not primitives). Values can be any type:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript WeakMap&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;The WeakMap Object&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+// WeakMap keys must be objects
+const obj1 = { name: &quot;John&quot; };
+const obj2 = { name: &quot;Jane&quot; };
+
+const weakMap = new WeakMap();
+weakMap.set(obj1, &quot;Engineer&quot;);
+weakMap.set(obj2, &quot;Doctor&quot;);
+
+document.getElementById(&quot;demo&quot;).innerHTML =
+  &quot;WeakMap size (no size property)&lt;br&gt;&quot; +
+  &quot;get(obj1): &quot; + weakMap.get(obj1) + &quot;&lt;br&gt;&quot; +
+  &quot;get(obj2): &quot; + weakMap.get(obj2) + &quot;&lt;br&gt;&lt;br&gt;&quot; +
+  &quot;WeakMap keys must be objects&quot;;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p1.png" alt=""></p>
+<h3>Example 1</h3>
+<p><strong>Result</strong> <a href="ex1-weakmap_object/index.html">View Example</a></p>
+<h2>Keys Must Be Objects</h2>
+<p>If you try to use a primitive value (string, number, etc.) as a key in a WeakMap, it causes an error:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript WeakMap&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Keys Must Be Objects&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+const weakMap = new WeakMap();
+
+// Keys must be objects
+const obj = { id: 1 };
+weakMap.set(obj, &quot;Valid&quot;);
+
+let text = &quot;set(obj, &#39;Valid&#39;): OK (object key)&lt;br&gt;&lt;br&gt;&quot;;
+
+// This would cause an error: Invalid value used as weak map key
+try {
+  weakMap.set(&quot;name&quot;, &quot;John&quot;);  // TypeError!
+  text += &quot;set(&#39;name&#39;, &#39;John&#39;): OK?&quot;;
+} catch(err) {
+  text += &quot;set(&#39;name&#39;, &#39;John&#39;): ERROR - &quot; + err.message + &quot;&lt;br&gt;&lt;br&gt;&quot;;
+  text += &quot;WeakMap keys MUST be objects&quot;;
+}
+
+document.getElementById(&quot;demo&quot;).innerHTML = text;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p2.png" alt=""></p>
+<h3>Example 2</h3>
+<p><strong>Result</strong> <a href="ex2-keys_objects/index.html">View Example</a></p>
+<h2>Weak References</h2>
+<p>WeakMap holds keys by <strong>weak references</strong>. When a key object is no longer referenced elsewhere, it can be garbage collected:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript WeakMap&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Weak References&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+const weakMap = new WeakMap();
+
+let person = { name: &quot;John&quot; };
+weakMap.set(person, &quot;Engineer&quot;);
+
+let text = &quot;Person object added to WeakMap&lt;br&gt;&quot;;
+text += &quot;get(person): &quot; + weakMap.get(person) + &quot;&lt;br&gt;&lt;br&gt;&quot;;
+
+// Remove all references to the object
+person = null;
+
+text += &quot;After person = null:&lt;br&gt;&quot;;
+text += &quot;The object can be garbage collected&lt;br&gt;&quot;;
+text += &quot;It will be automatically removed from WeakMap&lt;br&gt;&lt;br&gt;&quot;;
+text += &quot;This automatic cleanup is the key benefit&lt;br&gt;&quot;;
+text += &quot;of WeakMap for memory management&quot;;
+
+document.getElementById(&quot;demo&quot;).innerHTML = text;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p3.png" alt=""></p>
+<h3>Example 3</h3>
+<p><strong>Result</strong> <a href="ex3-weak_references/index.html">View Example</a></p>
+<h2>Not Iterable and Limited Methods</h2>
+<p>A WeakMap is <strong>not iterable</strong>. It only has four methods: <code>set()</code>, <code>get()</code>, <code>delete()</code>, and <code>has()</code>:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript WeakMap&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Not Iterable and Limited Methods&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+const weakMap = new WeakMap();
+const obj = { id: 1 };
+
+// The 4 available methods
+weakMap.set(obj, &quot;value&quot;);
+let text = &quot;After set(obj, &#39;value&#39;):&lt;br&gt;&quot;;
+text += &quot;get(obj): &quot; + weakMap.get(obj) + &quot;&lt;br&gt;&quot;;
+text += &quot;has(obj): &quot; + weakMap.has(obj) + &quot;&lt;br&gt;&lt;br&gt;&quot;;
+
+weakMap.delete(obj);
+text += &quot;After delete(obj):&lt;br&gt;&quot;;
+text += &quot;has(obj): &quot; + weakMap.has(obj) + &quot;&lt;br&gt;&lt;br&gt;&quot;;
+
+text += &quot;&lt;b&gt;WeakMap limitations:&lt;/b&gt;&lt;br&gt;&quot;;
+text += &quot;1. NOT iterable (no forEach, keys, values)&lt;br&gt;&quot;;
+text += &quot;2. NO size property&lt;br&gt;&quot;;
+text += &quot;3. Only 4 methods: set(), get(), delete(), has()&quot;;
+
+document.getElementById(&quot;demo&quot;).innerHTML = text;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p4.png" alt=""></p>
+<h3>Example 4</h3>
+<p><strong>Result</strong> <a href="ex4-limited_methods/index.html">View Example</a></p>
+<h2>WeakMap Secret Data</h2>
+<p>WeakMap can store private data associated with objects without exposing it:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript WeakMap&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;WeakMap Secret Data&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+// Store secret data in a WeakMap
+const secrets = new WeakMap();
+
+function Person(name, age, secret) {
+  this.name = name;
+  this.age = age;
+  // Store secret data in WeakMap (not directly on object)
+  secrets.set(this, secret);
+}
+
+const person1 = new Person(&quot;John&quot;, 30, &quot;secret code: 1234&quot;);
+const person2 = new Person(&quot;Jane&quot;, 25, &quot;secret password: abc&quot;);
+
+let text = &quot;Person 1: &quot; + person1.name + &quot;, &quot; + person1.age + &quot;&lt;br&gt;&quot;;
+text += &quot;Person 2: &quot; + person2.name + &quot;, &quot; + person2.age + &quot;&lt;br&gt;&lt;br&gt;&quot;;
+
+// Access secret data via WeakMap
+text += &quot;Secret 1 (via WeakMap): &quot; + secrets.get(person1) + &quot;&lt;br&gt;&quot;;
+text += &quot;Secret 2 (via WeakMap): &quot; + secrets.get(person2) + &quot;&lt;br&gt;&lt;br&gt;&quot;;
+
+// Secrets are NOT visible directly on the object
+text += &quot;person1.secret: &quot; + person1.secret + &quot; (undefined - private!)&lt;br&gt;&quot;;
+
+document.getElementById(&quot;demo&quot;).innerHTML = text;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p5.png" alt=""></p>
+<h3>Example 5</h3>
+<p><strong>Result</strong> <a href="ex5-secret_data/index.html">View Example</a></p>
+<h2>Document</h2>
+<p>Document in project</p>
+<p>You can <a href="js-weak_map.pdf">Download PDF</a> file.</p>
+<h2>Reference</h2>
+<ul>
+<li><a href="https://www.w3schools.com/js/js_maps_weak.asp">W3Schools JavaScript WeakMap</a></li>
+</ul>
+
+</body>
+</html>

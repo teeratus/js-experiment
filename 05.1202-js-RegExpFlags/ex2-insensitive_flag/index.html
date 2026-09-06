@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript RegExp Flags</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>RegExp /i Flag (Insensitive)</h4>
+<p id="demo"></p>
+
+<script>
+const text = "JavaScript is FUN!";
+
+// Case sensitive
+const sensitive = text.match(/fun/);
+
+// Case insensitive
+const insensitive = text.match(/fun/i);
+
+document.getElementById("demo").innerHTML =
+  "Text: " + text + "<br><br>" +
+  "match(/fun/): " + sensitive + " (no match)<br>" +
+  "match(/fun/i): " + insensitive + " (matched)";
+</script>
+
+</body>
+</html>

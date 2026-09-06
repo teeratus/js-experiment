@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript JSON parse()</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Handling Parse Errors</h4>
+<p id="demo1"></p>
+<p id="demo2"></p>
+
+<script>
+// Valid JSON
+const validJSON = '{"name":"John","age":30}';
+try {
+  const obj = JSON.parse(validJSON);
+  document.getElementById("demo1").innerHTML = "Valid: " + obj.name;
+} catch(err) {
+  document.getElementById("demo1").innerHTML = "Error: " + err.message;
+}
+
+// Invalid JSON (single quotes)
+const invalidJSON = "{'name':'John','age':30}";
+try {
+  const obj = JSON.parse(invalidJSON);
+  document.getElementById("demo2").innerHTML = "Valid: " + obj.name;
+} catch(err) {
+  document.getElementById("demo2").innerHTML = "Invalid JSON error: " + err.message;
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Object Accessors</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Data Quality</h4>
+<p id="demo"></p>
+
+<script>
+const person = {
+  firstName: "John",
+  lastName: "Doe",
+  age: 0,
+  set setAge(a) {
+    if (a > 0 && a < 120) {
+      this.age = a;
+    } else {
+      console.log("Invalid age");
+    }
+  }
+};
+
+person.setAge = 25;
+document.getElementById("demo").innerHTML = "Age: " + person.age;
+</script>
+
+</body>
+</html>

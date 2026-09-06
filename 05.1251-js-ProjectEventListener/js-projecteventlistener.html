@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>js-projecteventlistener</title>
+  <style>
+    body {
+      box-sizing: border-box;
+      min-width: 200px;
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 45px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+      font-size: 16px;
+      line-height: 1.5;
+      color: #24292e;
+      background-color: #ffffff;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 24px;
+      margin-bottom: 16px;
+      font-weight: 600;
+      line-height: 1.25;
+      border-bottom: 1px solid #eaecef;
+      padding-bottom: .3em;
+    }
+    h1 { font-size: 2em; }
+    h2 { font-size: 1.5em; }
+    h3 { font-size: 1.25em; }
+    code {
+      padding: .2em .4em;
+      margin: 0;
+      font-size: 85%;
+      background-color: rgba(27,31,35,.05);
+      border-radius: 3px;
+      font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
+    }
+    pre {
+      padding: 16px;
+      overflow: auto;
+      font-size: 85%;
+      line-height: 1.45;
+      background-color: #f6f8fa;
+      border-radius: 3px;
+      word-wrap: normal;
+    }
+    pre code {
+      background-color: transparent;
+      padding: 0;
+    }
+    blockquote {
+      padding: 0 1em;
+      color: #6a737d;
+      border-left: .25em solid #dfe2e5;
+      margin: 0 0 16px 0;
+    }
+    table {
+      border-spacing: 0;
+      border-collapse: collapse;
+      margin-top: 0;
+      margin-bottom: 16px;
+      width: 100%;
+    }
+    table th, table td {
+      padding: 6px 13px;
+      border: 1px solid #dfe2e5;
+    }
+    table tr:nth-child(2n) {
+      background-color: #f6f8fa;
+    }
+    img {
+      max-width: 100%;
+      box-sizing: content-box;
+    }
+    @media print {
+      body {
+        max-width: 100%;
+        padding: 0;
+      }
+      pre, blockquote, table, tr, img {
+        page-break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+<body>
+<h1>JavaScript Project - Event Listener</h1>
+<p><a href="../acp-js.php">Back to JS page</a></p>
+<p>Table of Contents</p>
+<ul>
+<li><a href="#javascript-project---event-listener">JavaScript Project - Event Listener</a><ul>
+<li><a href="#using-event-listeners">Using Event Listeners</a><ul>
+<li><a href="#example-1">Example 1</a></li>
+</ul>
+</li>
+<li><a href="#improvements">Improvements</a><ul>
+<li><a href="#example-2">Example 2</a></li>
+</ul>
+</li>
+<li><a href="#javascript-in-external-file">JavaScript in External File</a></li>
+<li><a href="#domcontentloaded">DOMContentLoaded</a></li>
+<li><a href="#document">Document</a></li>
+<li><a href="#reference">Reference</a></li>
+</ul>
+</li>
+</ul>
+<h2>Using Event Listeners</h2>
+<p>Using <code>addEventListener()</code> makes it easier to:</p>
+<ul>
+<li>Keep HTML and JavaScript separated</li>
+<li>Add multiple events to the same element</li>
+<li>Write cleaner code in bigger projects</li>
+</ul>
+<p>Here is the basic implementation using event listeners:</p>
+<h3>HTML Code</h3>
+<pre><code class="language-html">&lt;h2&gt;Counter&lt;/h2&gt;
+
+&lt;p id=&quot;count&quot; style=&quot;font-size:40px;&quot;&gt;0&lt;/p&gt;
+
+&lt;button id=&quot;btnPlus&quot;&gt;+&lt;/button&gt;
+&lt;button id=&quot;btnMinus&quot;&gt;-&lt;/button&gt;
+&lt;button id=&quot;btnReset&quot;&gt;Reset&lt;/button&gt;
+&lt;button id=&quot;btnSave&quot;&gt;Save&lt;/button&gt;
+&lt;button id=&quot;btnLoad&quot;&gt;Load&lt;/button&gt;
+
+&lt;script&gt;
+// Add event listeners
+document.getElementById(&quot;btnPlus&quot;).addEventListener(&quot;click&quot;, increaseCount);
+document.getElementById(&quot;btnMinus&quot;).addEventListener(&quot;click&quot;, decreaseCount);
+document.getElementById(&quot;btnReset&quot;).addEventListener(&quot;click&quot;, resetCount);
+document.getElementById(&quot;btnSave&quot;).addEventListener(&quot;click&quot;, saveCount);
+document.getElementById(&quot;btnLoad&quot;).addEventListener(&quot;click&quot;, loadCount);
+
+// Declare the counter
+let count = 0;
+
+// Load counter when the page opens
+loadCount();
+
+// Function to display the counter
+function updateCount() {
+  document.getElementById(&quot;count&quot;).innerHTML = count;
+}
+
+// Function to increase the counter
+function increaseCount() {
+  count++;
+  updateCount();
+}
+
+// Function to decrease the counter
+function decreaseCount() {
+  if (count &gt; 0) {
+    count--;
+    updateCount();
+  }
+}
+
+// Function to reset the counter
+function resetCount() {
+  count = 0;
+  updateCount();
+}
+
+// Function to save the counter
+function saveCount() {
+  localStorage.setItem(&quot;count&quot;, count);
+}
+
+// Function to load the counter
+function loadCount() {
+  let saved = localStorage.getItem(&quot;count&quot;);
+  if (saved !== null) {
+    count = Number(saved);
+  }
+  updateCount();
+}
+&lt;/script&gt;
+</code></pre>
+<p><img src="images/p1.png" alt=""></p>
+<h3>Example 1</h3>
+<p><strong>Result</strong> <a href="ex1-using_eventlistener/index.html">View Example</a></p>
+<h2>Improvements</h2>
+<p>Here are the key improvements:</p>
+<ul>
+<li>JavaScript is moved to an external file (<code>counter.js</code>)</li>
+<li>Uses <code>DOMContentLoaded</code> so JavaScript runs only after the HTML is ready</li>
+<li>Cleaner structure using element variables</li>
+<li>Shows a temporary <strong>Saved!</strong> or <strong>Loaded!</strong> message</li>
+</ul>
+<h3>HTML Code</h3>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;Counter&lt;/h2&gt;
+
+&lt;p id=&quot;count&quot; style=&quot;font-size:40px;&quot;&gt;0&lt;/p&gt;
+
+&lt;button id=&quot;btnPlus&quot;&gt;+&lt;/button&gt;
+&lt;button id=&quot;btnMinus&quot;&gt;-&lt;/button&gt;
+&lt;button id=&quot;btnReset&quot;&gt;Reset&lt;/button&gt;
+&lt;button id=&quot;btnSave&quot;&gt;Save&lt;/button&gt;
+&lt;button id=&quot;btnLoad&quot;&gt;Load&lt;/button&gt;
+
+&lt;!-- Message display paragraph --&gt;
+&lt;p id=&quot;message&quot;&gt;&lt;/p&gt;
+
+&lt;script src=&quot;counter.js&quot;&gt;&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<h3>counter.js</h3>
+<pre><code class="language-javascript">document.addEventListener(&quot;DOMContentLoaded&quot;, function () {
+
+// Declare the counter
+let count = 0;
+
+// Use element variables
+const countEl = document.getElementById(&quot;count&quot;);
+const msgEl = document.getElementById(&quot;message&quot;);
+const btnPlus = document.getElementById(&quot;btnPlus&quot;);
+const btnMinus = document.getElementById(&quot;btnMinus&quot;);
+const btnReset = document.getElementById(&quot;btnReset&quot;);
+const btnSave = document.getElementById(&quot;btnSave&quot;);
+const btnLoad = document.getElementById(&quot;btnLoad&quot;);
+
+// Add event listeners
+btnPlus.addEventListener(&quot;click&quot;, increaseCount);
+btnMinus.addEventListener(&quot;click&quot;, decreaseCount);
+btnReset.addEventListener(&quot;click&quot;, resetCount);
+btnSave.addEventListener(&quot;click&quot;, saveCount);
+btnLoad.addEventListener(&quot;click&quot;, loadCount);
+
+// Function to display the counter
+function updateCount() {
+  countEl.innerHTML = count;
+}
+
+// Function to display message
+function showMessage(text) {
+  msgEl.innerHTML = text;
+  setTimeout(function () {
+    msgEl.innerHTML = &quot;&quot;;
+  }, 3000);
+}
+
+// Function to increase the counter
+function increaseCount() {
+  count++;
+  updateCount();
+}
+
+// Function to decrease the counter
+function decreaseCount() {
+  count--;
+  updateCount();
+}
+
+// Function to reset the counter
+function resetCount() {
+  count = 0;
+  updateCount();
+}
+
+// Function to save the counter
+function saveCount() {
+  localStorage.setItem(&quot;count&quot;, count);
+  showMessage(&quot;Saved!&quot;);
+}
+
+// Function to load the counter
+function loadCount() {
+  let saved = localStorage.getItem(&quot;count&quot;);
+  if (saved !== null) {
+    count = Number(saved);
+    showMessage(&quot;Loaded!&quot;);
+  }
+  updateCount();
+}
+
+});
+</code></pre>
+<p><img src="images/p2.png" alt=""></p>
+<h3>Example 2</h3>
+<p><strong>Result</strong> <a href="ex2-improvements/index.html">View Example</a></p>
+<h2>JavaScript in External File</h2>
+<p>Using <code>counter.js</code> makes your project:</p>
+<ul>
+<li>More Organized</li>
+<li>Keeps HTML and JavaScript separated</li>
+<li>Easier to read and to reuse</li>
+<li>More like real-world projects</li>
+</ul>
+<h2>DOMContentLoaded</h2>
+<p>Why use <code>DOMContentLoaded</code>?</p>
+<p>When you use an external JavaScript file, the browser may load the script before the HTML is ready. So we wrap the initialization code inside:</p>
+<pre><code class="language-javascript">document.addEventListener(&quot;DOMContentLoaded&quot;, function() {
+  // JavaScript code
+});
+</code></pre>
+<p>This guarantees that the JavaScript code runs only after the page has finished parsing the HTML.</p>
+<h2>Document</h2>
+<p>Document in project</p>
+<p>You can <a href="js-projecteventlistener.pdf">Download PDF</a> file.</p>
+<h2>Reference</h2>
+<ul>
+<li><a href="https://www.w3schools.com/js/js_project_eventlistener.asp">W3Schools JavaScript Event Listener Project</a></li>
+</ul>
+
+</body>
+</html>

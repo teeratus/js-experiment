@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Array const</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Redeclaring Arrays</h4>
+<p id="demo"></p>
+
+<script>
+const cars = ["Volvo", "BMW"];
+
+// This is OK - different block scope
+{
+  const cars = ["Toyota", "Honda"];
+  document.getElementById("demo").innerHTML +=
+    "Inside block: " + cars + "<br>";
+}
+
+// This is OK - different block scope again
+{
+  const cars = ["Audi", "Ford"];
+  document.getElementById("demo").innerHTML +=
+    "Second block: " + cars + "<br>";
+}
+
+// cars still refers to the original array
+document.getElementById("demo").innerHTML +=
+  "Outer scope: " + cars;
+</script>
+
+</body>
+</html>

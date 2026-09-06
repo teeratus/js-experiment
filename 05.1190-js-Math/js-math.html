@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>js-math</title>
+  <style>
+    body {
+      box-sizing: border-box;
+      min-width: 200px;
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 45px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+      font-size: 16px;
+      line-height: 1.5;
+      color: #24292e;
+      background-color: #ffffff;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 24px;
+      margin-bottom: 16px;
+      font-weight: 600;
+      line-height: 1.25;
+      border-bottom: 1px solid #eaecef;
+      padding-bottom: .3em;
+    }
+    h1 { font-size: 2em; }
+    h2 { font-size: 1.5em; }
+    h3 { font-size: 1.25em; }
+    code {
+      padding: .2em .4em;
+      margin: 0;
+      font-size: 85%;
+      background-color: rgba(27,31,35,.05);
+      border-radius: 3px;
+      font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
+    }
+    pre {
+      padding: 16px;
+      overflow: auto;
+      font-size: 85%;
+      line-height: 1.45;
+      background-color: #f6f8fa;
+      border-radius: 3px;
+      word-wrap: normal;
+    }
+    pre code {
+      background-color: transparent;
+      padding: 0;
+    }
+    blockquote {
+      padding: 0 1em;
+      color: #6a737d;
+      border-left: .25em solid #dfe2e5;
+      margin: 0 0 16px 0;
+    }
+    table {
+      border-spacing: 0;
+      border-collapse: collapse;
+      margin-top: 0;
+      margin-bottom: 16px;
+      width: 100%;
+    }
+    table th, table td {
+      padding: 6px 13px;
+      border: 1px solid #dfe2e5;
+    }
+    table tr:nth-child(2n) {
+      background-color: #f6f8fa;
+    }
+    img {
+      max-width: 100%;
+      box-sizing: content-box;
+    }
+    @media print {
+      body {
+        max-width: 100%;
+        padding: 0;
+      }
+      pre, blockquote, table, tr, img {
+        page-break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+<body>
+<h1>JavaScript Math</h1>
+<p><a href="../acp-js.php">Back to JS page</a></p>
+<p>Table of Contents</p>
+<ul>
+<li><a href="#javascript-math">JavaScript Math</a><ul>
+<li><a href="#math-properties-constants">Math Properties (Constants)</a><ul>
+<li><a href="#example-1">Example 1</a></li>
+</ul>
+</li>
+<li><a href="#number-to-integer">Number to Integer</a><ul>
+<li><a href="#example-2">Example 2</a></li>
+</ul>
+</li>
+<li><a href="#mathpow-and-mathsqrt">Math.pow() and Math.sqrt()</a><ul>
+<li><a href="#example-3">Example 3</a></li>
+</ul>
+</li>
+<li><a href="#mathmin-and-mathmax">Math.min() and Math.max()</a><ul>
+<li><a href="#example-4">Example 4</a></li>
+</ul>
+</li>
+<li><a href="#mathrandom">Math.random()</a><ul>
+<li><a href="#example-5">Example 5</a></li>
+</ul>
+</li>
+<li><a href="#document">Document</a></li>
+<li><a href="#reference">Reference</a></li>
+</ul>
+</li>
+</ul>
+<h2>Math Properties (Constants)</h2>
+<p>The <code>Math</code> object provides mathematical constants as properties:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Math&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Math Properties (Constants)&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+document.getElementById(&quot;demo&quot;).innerHTML =
+  &quot;Math.E: &quot; + Math.E + &quot;&lt;br&gt;&quot; +
+  &quot;Math.PI: &quot; + Math.PI + &quot;&lt;br&gt;&quot; +
+  &quot;Math.SQRT2: &quot; + Math.SQRT2 + &quot;&lt;br&gt;&quot; +
+  &quot;Math.SQRT1_2: &quot; + Math.SQRT1_2 + &quot;&lt;br&gt;&quot; +
+  &quot;Math.LN2: &quot; + Math.LN2 + &quot;&lt;br&gt;&quot; +
+  &quot;Math.LN10: &quot; + Math.LN10 + &quot;&lt;br&gt;&quot; +
+  &quot;Math.LOG2E: &quot; + Math.LOG2E + &quot;&lt;br&gt;&quot; +
+  &quot;Math.LOG10E: &quot; + Math.LOG10E;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p1.png" alt=""></p>
+<h3>Example 1</h3>
+<p><strong>Result</strong> <a href="ex1-math_constants/index.html">View Example</a></p>
+<h2>Number to Integer</h2>
+<p>Methods to convert numbers to integers:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Math&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Number to Integer&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+document.getElementById(&quot;demo&quot;).innerHTML =
+  &quot;Math.round(4.6): &quot; + Math.round(4.6) + &quot; (nearest)&lt;br&gt;&quot; +
+  &quot;Math.ceil(4.2): &quot; + Math.ceil(4.2) + &quot; (up)&lt;br&gt;&quot; +
+  &quot;Math.floor(4.8): &quot; + Math.floor(4.8) + &quot; (down)&lt;br&gt;&quot; +
+  &quot;Math.trunc(4.7): &quot; + Math.trunc(4.7) + &quot; (remove decimals)&lt;br&gt;&quot; +
+  &quot;Math.sign(-5): &quot; + Math.sign(-5) + &quot; (-1, 0, or 1)&lt;br&gt;&quot; +
+  &quot;Math.abs(-7.5): &quot; + Math.abs(-7.5) + &quot; (absolute value)&quot;;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p2.png" alt=""></p>
+<h3>Example 2</h3>
+<p><strong>Result</strong> <a href="ex2-integer_methods/index.html">View Example</a></p>
+<h2>Math.pow() and Math.sqrt()</h2>
+<p>Power and square root functions:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Math&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Math.pow() and Math.sqrt()&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+document.getElementById(&quot;demo&quot;).innerHTML =
+  &quot;Math.pow(2, 3): &quot; + Math.pow(2, 3) + &quot; (2³)&lt;br&gt;&quot; +
+  &quot;Math.pow(5, 2): &quot; + Math.pow(5, 2) + &quot; (5²)&lt;br&gt;&quot; +
+  &quot;Math.pow(3, 4): &quot; + Math.pow(3, 4) + &quot; (3⁴)&lt;br&gt;&lt;br&gt;&quot; +
+  &quot;Math.sqrt(16): &quot; + Math.sqrt(16) + &quot;&lt;br&gt;&quot; +
+  &quot;Math.sqrt(81): &quot; + Math.sqrt(81) + &quot;&lt;br&gt;&quot; +
+  &quot;Math.sqrt(2): &quot; + Math.sqrt(2).toFixed(4);
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p3.png" alt=""></p>
+<h3>Example 3</h3>
+<p><strong>Result</strong> <a href="ex3-pow_sqrt/index.html">View Example</a></p>
+<h2>Math.min() and Math.max()</h2>
+<p>Find the lowest and highest values:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Math&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Math.min() and Math.max()&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+document.getElementById(&quot;demo&quot;).innerHTML =
+  &quot;Math.min(5, 10, 3, 8): &quot; + Math.min(5, 10, 3, 8) + &quot;&lt;br&gt;&quot; +
+  &quot;Math.max(5, 10, 3, 8): &quot; + Math.max(5, 10, 3, 8) + &quot;&lt;br&gt;&lt;br&gt;&quot; +
+  &quot;Math.min(-5, 0, -10): &quot; + Math.min(-5, 0, -10) + &quot;&lt;br&gt;&quot; +
+  &quot;Math.max(-5, 0, -10): &quot; + Math.max(-5, 0, -10);
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p4.png" alt=""></p>
+<h3>Example 4</h3>
+<p><strong>Result</strong> <a href="ex4-min_max/index.html">View Example</a></p>
+<h2>Math.random()</h2>
+<p><code>Math.random()</code> returns a random number between 0 (inclusive) and 1 (exclusive):</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Math&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Math.random()&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+let text = &quot;Random numbers:&lt;br&gt;&lt;br&gt;&quot;;
+
+for (let i = 0; i &lt; 3; i++) {
+  text += Math.random() + &quot;&lt;br&gt;&quot;;
+}
+
+text += &quot;&lt;br&gt;Random integer 1-10: &quot; + 
+  Math.floor(Math.random() * 10) + 1;
+
+document.getElementById(&quot;demo&quot;).innerHTML = text;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p5.png" alt=""></p>
+<h3>Example 5</h3>
+<p><strong>Result</strong> <a href="ex5-random/index.html">View Example</a></p>
+<h2>Document</h2>
+<p>Document in project</p>
+<p>You can <a href="js-math.pdf">Download PDF</a> file.</p>
+<h2>Reference</h2>
+<ul>
+<li><a href="https://www.w3schools.com/js/js_math.asp">W3Schools JavaScript Math</a></li>
+</ul>
+
+</body>
+</html>

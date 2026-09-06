@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>js-object_definition</title>
+  <style>
+    body {
+      box-sizing: border-box;
+      min-width: 200px;
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 45px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+      font-size: 16px;
+      line-height: 1.5;
+      color: #24292e;
+      background-color: #ffffff;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 24px;
+      margin-bottom: 16px;
+      font-weight: 600;
+      line-height: 1.25;
+      border-bottom: 1px solid #eaecef;
+      padding-bottom: .3em;
+    }
+    h1 { font-size: 2em; }
+    h2 { font-size: 1.5em; }
+    h3 { font-size: 1.25em; }
+    code {
+      padding: .2em .4em;
+      margin: 0;
+      font-size: 85%;
+      background-color: rgba(27,31,35,.05);
+      border-radius: 3px;
+      font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
+    }
+    pre {
+      padding: 16px;
+      overflow: auto;
+      font-size: 85%;
+      line-height: 1.45;
+      background-color: #f6f8fa;
+      border-radius: 3px;
+      word-wrap: normal;
+    }
+    pre code {
+      background-color: transparent;
+      padding: 0;
+    }
+    blockquote {
+      padding: 0 1em;
+      color: #6a737d;
+      border-left: .25em solid #dfe2e5;
+      margin: 0 0 16px 0;
+    }
+    table {
+      border-spacing: 0;
+      border-collapse: collapse;
+      margin-top: 0;
+      margin-bottom: 16px;
+      width: 100%;
+    }
+    table th, table td {
+      padding: 6px 13px;
+      border: 1px solid #dfe2e5;
+    }
+    table tr:nth-child(2n) {
+      background-color: #f6f8fa;
+    }
+    img {
+      max-width: 100%;
+      box-sizing: content-box;
+    }
+    @media print {
+      body {
+        max-width: 100%;
+        padding: 0;
+      }
+      pre, blockquote, table, tr, img {
+        page-break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+<body>
+<h1>JavaScript Object Definition</h1>
+<p><a href="../acp-js.php">Back to JS page</a></p>
+<p>Table of Contents</p>
+<ul>
+<li><a href="#javascript-object-definition">JavaScript Object Definition</a><ul>
+<li><a href="#using-an-object-literal">Using an Object Literal</a><ul>
+<li><a href="#example-1">Example 1</a></li>
+</ul>
+</li>
+<li><a href="#using-the-new-keyword">Using the new Keyword</a><ul>
+<li><a href="#example-2">Example 2</a></li>
+</ul>
+</li>
+<li><a href="#javascript-objectcreate">JavaScript Object.create()</a><ul>
+<li><a href="#example-3">Example 3</a></li>
+</ul>
+</li>
+<li><a href="#javascript-objectassign">JavaScript Object.assign()</a><ul>
+<li><a href="#example-4">Example 4</a></li>
+</ul>
+</li>
+<li><a href="#javascript-objects-are-mutable">JavaScript Objects are Mutable</a><ul>
+<li><a href="#example-5">Example 5</a></li>
+</ul>
+</li>
+<li><a href="#document">Document</a></li>
+<li><a href="#reference">Reference</a></li>
+</ul>
+</li>
+</ul>
+<h2>Using an Object Literal</h2>
+<p>The easiest way to create a JavaScript object is using an <strong>object literal</strong>:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Object Definition&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Using an Object Literal&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+const person = {
+  firstName: &quot;John&quot;,
+  lastName: &quot;Doe&quot;,
+  age: 30,
+  eyeColor: &quot;blue&quot;
+};
+
+document.getElementById(&quot;demo&quot;).innerHTML =
+  person.firstName + &quot; &quot; + person.lastName + &quot;, age &quot; + person.age;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p1.png" alt=""></p>
+<h3>Example 1</h3>
+<p><strong>Result</strong> <a href="ex1-object_literal/index.html">View Example</a></p>
+<h2>Using the new Keyword</h2>
+<p>You can create an object using the <code>new Object()</code> constructor:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Object Definition&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Using the new Keyword&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+const person = new Object();
+person.firstName = &quot;John&quot;;
+person.lastName = &quot;Doe&quot;;
+person.age = 30;
+
+document.getElementById(&quot;demo&quot;).innerHTML =
+  person.firstName + &quot; &quot; + person.lastName + &quot;, age &quot; + person.age;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p2.png" alt=""></p>
+<h3>Example 2</h3>
+<p><strong>Result</strong> <a href="ex2-new_keyword/index.html">View Example</a></p>
+<h2>JavaScript Object.create()</h2>
+<p>The <code>Object.create()</code> method creates a new object using an existing object as a prototype:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Object Definition&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;JavaScript Object.create()&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+// Define prototype object
+const personProto = {
+  greet: function() {
+    return &quot;Hello, I&#39;m &quot; + this.firstName;
+  }
+};
+
+// Create new object based on prototype
+const person = Object.create(personProto);
+person.firstName = &quot;John&quot;;
+person.lastName = &quot;Doe&quot;;
+
+document.getElementById(&quot;demo&quot;).innerHTML = person.greet();
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p3.png" alt=""></p>
+<h3>Example 3</h3>
+<p><strong>Result</strong> <a href="ex3-object_create/index.html">View Example</a></p>
+<h2>JavaScript Object.assign()</h2>
+<p>The <code>Object.assign()</code> method copies properties from one or more source objects to a target object:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Object Definition&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;JavaScript Object.assign()&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+const person = { firstName: &quot;John&quot;, lastName: &quot;Doe&quot; };
+const address = { city: &quot;New York&quot;, country: &quot;USA&quot; };
+const contact = { email: &quot;john@example.com&quot; };
+
+// Merge objects into a new object
+const merged = Object.assign({}, person, address, contact);
+
+document.getElementById(&quot;demo&quot;).innerHTML =
+  merged.firstName + &quot; &quot; + merged.lastName +
+  &quot;, &quot; + merged.city + &quot;, &quot; + merged.country +
+  &quot;&lt;br&gt;Email: &quot; + merged.email;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p4.png" alt=""></p>
+<h3>Example 4</h3>
+<p><strong>Result</strong> <a href="ex4-object_assign/index.html">View Example</a></p>
+<h2>JavaScript Objects are Mutable</h2>
+<p>Objects are mutable: they are accessed by reference, not by value.</p>
+<p>If you change a property of a copied object, the original object is also changed:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Object Definition&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;JavaScript Objects are Mutable&lt;/h4&gt;
+&lt;p id=&quot;demo1&quot;&gt;&lt;/p&gt;
+&lt;p id=&quot;demo2&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+const person = { firstName: &quot;John&quot;, lastName: &quot;Doe&quot; };
+
+// Copy by reference (not by value)
+const employee = person;
+employee.firstName = &quot;Jane&quot;;
+
+document.getElementById(&quot;demo1&quot;).innerHTML = &quot;person: &quot; + person.firstName;
+document.getElementById(&quot;demo2&quot;).innerHTML = &quot;employee: &quot; + employee.firstName;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p5.png" alt=""></p>
+<h3>Example 5</h3>
+<p><strong>Result</strong> <a href="ex5-objects_mutable/index.html">View Example</a></p>
+<h2>Document</h2>
+<p>Document in project</p>
+<p>You can <a href="js-object_definition.pdf">Download PDF</a> file.</p>
+<h2>Reference</h2>
+<ul>
+<li><a href="https://www.w3schools.com/js/js_object_definition.asp">W3Schools JavaScript Object Definition</a></li>
+</ul>
+
+</body>
+</html>

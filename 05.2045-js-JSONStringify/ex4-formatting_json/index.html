@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript JSON stringify()</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Formatting JSON</h4>
+<pre id="demo"></pre>
+
+<script>
+const obj = {name: "John", age: 30, city: "New York", hobbies: ["reading", "music"]};
+const jsonString = JSON.stringify(obj, null, 2);
+
+document.getElementById("demo").innerHTML = jsonString;
+</script>
+
+</body>
+</html>

@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>js-event_loop</title>
+  <style>
+    body {
+      box-sizing: border-box;
+      min-width: 200px;
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 45px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+      font-size: 16px;
+      line-height: 1.5;
+      color: #24292e;
+      background-color: #ffffff;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 24px;
+      margin-bottom: 16px;
+      font-weight: 600;
+      line-height: 1.25;
+      border-bottom: 1px solid #eaecef;
+      padding-bottom: .3em;
+    }
+    h1 { font-size: 2em; }
+    h2 { font-size: 1.5em; }
+    h3 { font-size: 1.25em; }
+    code {
+      padding: .2em .4em;
+      margin: 0;
+      font-size: 85%;
+      background-color: rgba(27,31,35,.05);
+      border-radius: 3px;
+      font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
+    }
+    pre {
+      padding: 16px;
+      overflow: auto;
+      font-size: 85%;
+      line-height: 1.45;
+      background-color: #f6f8fa;
+      border-radius: 3px;
+      word-wrap: normal;
+    }
+    pre code {
+      background-color: transparent;
+      padding: 0;
+    }
+    blockquote {
+      padding: 0 1em;
+      color: #6a737d;
+      border-left: .25em solid #dfe2e5;
+      margin: 0 0 16px 0;
+    }
+    table {
+      border-spacing: 0;
+      border-collapse: collapse;
+      margin-top: 0;
+      margin-bottom: 16px;
+      width: 100%;
+    }
+    table th, table td {
+      padding: 6px 13px;
+      border: 1px solid #dfe2e5;
+    }
+    table tr:nth-child(2n) {
+      background-color: #f6f8fa;
+    }
+    img {
+      max-width: 100%;
+      box-sizing: content-box;
+    }
+    @media print {
+      body {
+        max-width: 100%;
+        padding: 0;
+      }
+      pre, blockquote, table, tr, img {
+        page-break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+<body>
+<h1>JavaScript Event Loop</h1>
+<p><a href="../acp-js.php">Back to JS page</a></p>
+<p>Table of Contents</p>
+<ul>
+<li><a href="#javascript-event-loop">JavaScript Event Loop</a><ul>
+<li><a href="#javascript-executes-one-task-at-a-time">JavaScript Executes One Task at a Time</a><ul>
+<li><a href="#example-1">Example 1</a></li>
+</ul>
+</li>
+<li><a href="#example-settimeout">Example: setTimeout()</a><ul>
+<li><a href="#example-2">Example 2</a></li>
+</ul>
+</li>
+<li><a href="#example-promise">Example: Promise</a><ul>
+<li><a href="#example-3">Example 3</a></li>
+</ul>
+</li>
+<li><a href="#task-queue-and-microtask-queue">Task Queue and Microtask Queue</a><ul>
+<li><a href="#example-4">Example 4</a></li>
+</ul>
+</li>
+<li><a href="#long-tasks-block-javascript">Long Tasks Block JavaScript</a><ul>
+<li><a href="#example-5">Example 5</a></li>
+</ul>
+</li>
+<li><a href="#document">Document</a></li>
+<li><a href="#reference">Reference</a></li>
+</ul>
+</li>
+</ul>
+<h2>JavaScript Executes One Task at a Time</h2>
+<p>JavaScript is single-threaded. It can only execute one task at a time.</p>
+<p>However, the browser has Web APIs (like setTimeout, fetch, DOM events) that run in the background.</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Event Loop&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;JavaScript Executes One Task at a Time&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+function first() {
+  document.getElementById(&quot;demo&quot;).innerHTML += &quot;1. First function&lt;br&gt;&quot;;
+}
+
+function second() {
+  document.getElementById(&quot;demo&quot;).innerHTML += &quot;2. Second function&lt;br&gt;&quot;;
+}
+
+function third() {
+  document.getElementById(&quot;demo&quot;).innerHTML += &quot;3. Third function&lt;br&gt;&quot;;
+}
+
+// Functions execute in order, one at a time
+first();
+second();
+third();
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p1.png" alt=""></p>
+<h3>Example 1</h3>
+<p><strong>Result</strong> <a href="ex1-one_task/index.html">View Example</a></p>
+<h2>Example: setTimeout()</h2>
+<p>When <code>setTimeout()</code> is called, the browser handles the timer. When the timer expires, the callback is moved to the <strong>Task Queue</strong>. The Event Loop picks it up when the call stack is empty:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Event Loop&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Example: setTimeout()&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+document.getElementById(&quot;demo&quot;).innerHTML += &quot;1. Start&lt;br&gt;&quot;;
+
+setTimeout(function() {
+  document.getElementById(&quot;demo&quot;).innerHTML += &quot;3. setTimeout callback&lt;br&gt;&quot;;
+}, 0);
+
+document.getElementById(&quot;demo&quot;).innerHTML += &quot;2. End&lt;br&gt;&quot;;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p2.png" alt=""></p>
+<h3>Example 2</h3>
+<p><strong>Result</strong> <a href="ex2-set_timeout/index.html">View Example</a></p>
+<h2>Example: Promise</h2>
+<p>Promises use the <strong>Microtask Queue</strong> which has higher priority than the Task Queue. Microtasks execute before the next task:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Event Loop&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Example: Promise&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+document.getElementById(&quot;demo&quot;).innerHTML += &quot;1. Start&lt;br&gt;&quot;;
+
+// Promise goes to Microtask Queue
+Promise.resolve().then(function() {
+  document.getElementById(&quot;demo&quot;).innerHTML += &quot;3. Promise callback&lt;br&gt;&quot;;
+});
+
+// setTimeout goes to Task Queue
+setTimeout(function() {
+  document.getElementById(&quot;demo&quot;).innerHTML += &quot;4. setTimeout callback&lt;br&gt;&quot;;
+}, 0);
+
+document.getElementById(&quot;demo&quot;).innerHTML += &quot;2. End&lt;br&gt;&quot;;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p3.png" alt=""></p>
+<h3>Example 3</h3>
+<p><strong>Result</strong> <a href="ex3-promise/index.html">View Example</a></p>
+<h2>Task Queue and Microtask Queue</h2>
+<p>The Event Loop processes all microtasks before moving to the next task. This means Promise callbacks execute before setTimeout callbacks:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Event Loop&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Task Queue and Microtask Queue&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+document.getElementById(&quot;demo&quot;).innerHTML += &quot;1. Synchronous code&lt;br&gt;&quot;;
+
+// Promise (Microtask Queue)
+Promise.resolve().then(function() {
+  document.getElementById(&quot;demo&quot;).innerHTML += &quot;3. Promise (microtask)&lt;br&gt;&quot;;
+});
+
+// Promise (Microtask Queue)
+Promise.resolve().then(function() {
+  document.getElementById(&quot;demo&quot;).innerHTML += &quot;4. Another promise (microtask)&lt;br&gt;&quot;;
+});
+
+// setTimeout (Task Queue)
+setTimeout(function() {
+  document.getElementById(&quot;demo&quot;).innerHTML += &quot;5. setTimeout (task)&lt;br&gt;&quot;;
+}, 0);
+
+document.getElementById(&quot;demo&quot;).innerHTML += &quot;2. End of synchronous code&lt;br&gt;&quot;;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p4.png" alt=""></p>
+<h3>Example 4</h3>
+<p><strong>Result</strong> <a href="ex4-task_queues/index.html">View Example</a></p>
+<h2>Long Tasks Block JavaScript</h2>
+<p>Long-running synchronous operations block the Event Loop. Async operations can&#39;t run until the call stack is empty:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Event Loop&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Long Tasks Block JavaScript&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+document.getElementById(&quot;demo&quot;).innerHTML += &quot;1. Start&lt;br&gt;&quot;;
+
+// This timeout should fire after 0ms
+setTimeout(function() {
+  document.getElementById(&quot;demo&quot;).innerHTML += &quot;4. setTimeout (delayed by blocking code)&lt;br&gt;&quot;;
+}, 0);
+
+// Blocking operation - simulates 3 seconds of work
+let start = Date.now();
+while (Date.now() &lt; start + 3000) {
+  // Blocking loop
+}
+
+document.getElementById(&quot;demo&quot;).innerHTML += &quot;2. After blocking loop (3 seconds later)&lt;br&gt;&quot;;
+
+document.getElementById(&quot;demo&quot;).innerHTML += &quot;3. End of synchronous code&lt;br&gt;&quot;;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p5.png" alt=""></p>
+<h3>Example 5</h3>
+<p><strong>Result</strong> <a href="ex5-blocking/index.html">View Example</a></p>
+<h2>Document</h2>
+<p>Document in project</p>
+<p>You can <a href="js-event_loop.pdf">Download PDF</a> file.</p>
+<h2>Reference</h2>
+<ul>
+<li><a href="https://www.w3schools.com/js/js_async_event_loop.asp">W3Schools JavaScript Event Loop</a></li>
+</ul>
+
+</body>
+</html>

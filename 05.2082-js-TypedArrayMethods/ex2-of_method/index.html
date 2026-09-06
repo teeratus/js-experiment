@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Typed Array Methods</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>The of() Method</h4>
+<p id="demo"></p>
+
+<script>
+// Create typed array from individual values
+const values = Int16Array.of(100, 200, 300, 400, 500);
+
+let text = "Int16Array.of(100, 200, 300, 400, 500):<br>";
+for (let num of values) {
+  text += num + " ";
+}
+text += "<br><br>";
+text += "Length: " + values.length + "<br>";
+text += "Constructor: " + values.constructor.name;
+
+document.getElementById("demo").innerHTML = text;
+</script>
+
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Map Reference</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Map Properties</h4>
+<p id="demo"></p>
+
+<script>
+const fruits = new Map([
+  ["apple", 500],
+  ["banana", 300],
+  ["orange", 200]
+]);
+
+document.getElementById("demo").innerHTML =
+  "Map: " + [...fruits] + "<br>" +
+  "size: " + fruits.size + "<br>" +
+  "constructor: " + fruits.constructor;
+</script>
+
+</body>
+</html>

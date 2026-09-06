@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>js-temporal</title>
+  <style>
+    body {
+      box-sizing: border-box;
+      min-width: 200px;
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 45px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+      font-size: 16px;
+      line-height: 1.5;
+      color: #24292e;
+      background-color: #ffffff;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 24px;
+      margin-bottom: 16px;
+      font-weight: 600;
+      line-height: 1.25;
+      border-bottom: 1px solid #eaecef;
+      padding-bottom: .3em;
+    }
+    h1 { font-size: 2em; }
+    h2 { font-size: 1.5em; }
+    h3 { font-size: 1.25em; }
+    code {
+      padding: .2em .4em;
+      margin: 0;
+      font-size: 85%;
+      background-color: rgba(27,31,35,.05);
+      border-radius: 3px;
+      font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
+    }
+    pre {
+      padding: 16px;
+      overflow: auto;
+      font-size: 85%;
+      line-height: 1.45;
+      background-color: #f6f8fa;
+      border-radius: 3px;
+      word-wrap: normal;
+    }
+    pre code {
+      background-color: transparent;
+      padding: 0;
+    }
+    blockquote {
+      padding: 0 1em;
+      color: #6a737d;
+      border-left: .25em solid #dfe2e5;
+      margin: 0 0 16px 0;
+    }
+    table {
+      border-spacing: 0;
+      border-collapse: collapse;
+      margin-top: 0;
+      margin-bottom: 16px;
+      width: 100%;
+    }
+    table th, table td {
+      padding: 6px 13px;
+      border: 1px solid #dfe2e5;
+    }
+    table tr:nth-child(2n) {
+      background-color: #f6f8fa;
+    }
+    img {
+      max-width: 100%;
+      box-sizing: content-box;
+    }
+    @media print {
+      body {
+        max-width: 100%;
+        padding: 0;
+      }
+      pre, blockquote, table, tr, img {
+        page-break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+<body>
+<h1>JavaScript Temporal</h1>
+<p><a href="../acp-js.php">Back to JS page</a></p>
+<p>Table of Contents</p>
+<ul>
+<li><a href="#javascript-temporal">JavaScript Temporal</a><ul>
+<li><a href="#what-is-javascript-temporal">What is JavaScript Temporal?</a><ul>
+<li><a href="#example-1">Example 1</a></li>
+</ul>
+</li>
+<li><a href="#temporalinstant">Temporal.Instant</a><ul>
+<li><a href="#example-2">Example 2</a></li>
+</ul>
+</li>
+<li><a href="#temporalplaindate">Temporal.PlainDate</a><ul>
+<li><a href="#example-3">Example 3</a></li>
+</ul>
+</li>
+<li><a href="#temporalnow">Temporal.Now</a><ul>
+<li><a href="#example-4">Example 4</a></li>
+</ul>
+</li>
+<li><a href="#temporal-arithmetic">Temporal Arithmetic</a><ul>
+<li><a href="#example-5">Example 5</a></li>
+</ul>
+</li>
+<li><a href="#document">Document</a></li>
+<li><a href="#reference">Reference</a></li>
+</ul>
+</li>
+</ul>
+<h2>What is JavaScript Temporal?</h2>
+<p><strong>Temporal</strong> is a new JavaScript API for date and time. It solves the problems of the old <code>Date</code> object.</p>
+<p>Temporal provides separate objects for different use cases:</p>
+<table>
+<thead>
+<tr>
+<th>Object</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>Temporal.Instant</code></td>
+<td>A point in time (UTC)</td>
+</tr>
+<tr>
+<td><code>Temporal.PlainDate</code></td>
+<td>A date without time</td>
+</tr>
+<tr>
+<td><code>Temporal.PlainTime</code></td>
+<td>A time without date</td>
+</tr>
+<tr>
+<td><code>Temporal.PlainDateTime</code></td>
+<td>Date and time without timezone</td>
+</tr>
+<tr>
+<td><code>Temporal.Duration</code></td>
+<td>A duration of time</td>
+</tr>
+<tr>
+<td><code>Temporal.ZonedDateTime</code></td>
+<td>Date and time with timezone</td>
+</tr>
+</tbody></table>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Temporal&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;What is JavaScript Temporal?&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+let text = &quot;Temporal vs Date:&lt;br&gt;&lt;br&gt;&quot;;
+text += &quot;&lt;b&gt;Temporal provides:&lt;/b&gt;&lt;br&gt;&quot;;
+text += &quot;1. Separate objects for different date/time needs&lt;br&gt;&quot;;
+text += &quot;2. Immutable objects (safer)&lt;br&gt;&quot;;
+text += &quot;3. Better timezone support&lt;br&gt;&quot;;
+text += &quot;4. Simple arithmetic operations&lt;br&gt;&quot;;
+text += &quot;5. Clearer API names&lt;br&gt;&lt;br&gt;&quot;;
+
+// Check browser support
+if (typeof Temporal !== &quot;undefined&quot;) {
+  text += &quot;✓ Temporal is supported in this browser&quot;;
+} else {
+  text += &quot;✗ Temporal needs a polyfill in this browser&quot;;
+}
+
+document.getElementById(&quot;demo&quot;).innerHTML = text;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p1.png" alt=""></p>
+<h3>Example 1</h3>
+<p><strong>Result</strong> <a href="ex1-what_is_temporal/index.html">View Example</a></p>
+<h2>Temporal.Instant</h2>
+<p>A <code>Temporal.Instant</code> represents a single point in time, always in UTC:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Temporal&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Temporal.Instant&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+// Get the current instant (if available)
+if (typeof Temporal !== &quot;undefined&quot;) {
+  const now = Temporal.Now.instant();
+  document.getElementById(&quot;demo&quot;).innerHTML =
+    &quot;Temporal.Now.instant(): &quot; + now.toString() + &quot;&lt;br&gt;&quot; +
+    &quot;Epoch milliseconds: &quot; + now.epochMilliseconds + &quot;&lt;br&gt;&quot; +
+    &quot;Epoch seconds: &quot; + now.epochSeconds;
+} else {
+  document.getElementById(&quot;demo&quot;).innerHTML =
+    &quot;Temporal is not supported in this browser.&lt;br&gt;&quot; +
+    &quot;Use Date.now() instead: &quot; + Date.now() + &quot; ms&quot;;
+}
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p2.png" alt=""></p>
+<h3>Example 2</h3>
+<p><strong>Result</strong> <a href="ex2-instant/index.html">View Example</a></p>
+<h2>Temporal.PlainDate</h2>
+<p>A <code>Temporal.PlainDate</code> represents a date without time or timezone:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Temporal&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Temporal.PlainDate&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+if (typeof Temporal !== &quot;undefined&quot;) {
+  // Create a plain date
+  const date = Temporal.PlainDate.from(&quot;2024-05-15&quot;);
+
+  document.getElementById(&quot;demo&quot;).innerHTML =
+    &quot;Temporal.PlainDate.from(&#39;2024-05-15&#39;): &quot; + date.toString() + &quot;&lt;br&gt;&quot; +
+    &quot;Year: &quot; + date.year + &quot;&lt;br&gt;&quot; +
+    &quot;Month: &quot; + date.month + &quot;&lt;br&gt;&quot; +
+    &quot;Day: &quot; + date.day + &quot;&lt;br&gt;&quot; +
+    &quot;Day of week: &quot; + date.dayOfWeek;
+} else {
+  document.getElementById(&quot;demo&quot;).innerHTML =
+    &quot;Temporal is not supported in this browser.&quot;;
+}
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p3.png" alt=""></p>
+<h3>Example 3</h3>
+<p><strong>Result</strong> <a href="ex3-plain_date/index.html">View Example</a></p>
+<h2>Temporal.Now</h2>
+<p><code>Temporal.Now</code> provides easy access to the current date and time in different forms:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Temporal&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Temporal.Now&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+if (typeof Temporal !== &quot;undefined&quot;) {
+  document.getElementById(&quot;demo&quot;).innerHTML =
+    &quot;Temporal.Now.instant(): &quot; + Temporal.Now.instant().toString() + &quot;&lt;br&gt;&quot; +
+    &quot;Temporal.Now.zonedDateTimeISO(): &quot; + Temporal.Now.zonedDateTimeISO().toString() + &quot;&lt;br&gt;&quot; +
+    &quot;Temporal.Now.plainDateTimeISO(): &quot; + Temporal.Now.plainDateTimeISO().toString() + &quot;&lt;br&gt;&quot; +
+    &quot;Temporal.Now.plainDateISO(): &quot; + Temporal.Now.plainDateISO().toString() + &quot;&lt;br&gt;&quot; +
+    &quot;Temporal.Now.plainTimeISO(): &quot; + Temporal.Now.plainTimeISO().toString();
+} else {
+  document.getElementById(&quot;demo&quot;).innerHTML =
+    &quot;Temporal is not supported in this browser.&lt;br&gt;&quot; +
+    &quot;Equivalent Date.now(): &quot; + new Date().toLocaleString();
+}
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p4.png" alt=""></p>
+<h3>Example 4</h3>
+<p><strong>Result</strong> <a href="ex4-now/index.html">View Example</a></p>
+<h2>Temporal Arithmetic</h2>
+<p>Temporal makes date arithmetic simple and intuitive:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Temporal&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Temporal Arithmetic&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+if (typeof Temporal !== &quot;undefined&quot;) {
+  const date = Temporal.PlainDate.from(&quot;2024-05-15&quot;);
+
+  // Add and subtract durations
+  const plusWeek = date.add({ days: 7 });
+  const minusMonth = date.subtract({ months: 1 });
+
+  // Compare dates
+  const date2 = Temporal.PlainDate.from(&quot;2024-06-01&quot;);
+  const isBefore = Temporal.PlainDate.compare(date, date2);
+
+  document.getElementById(&quot;demo&quot;).innerHTML =
+    &quot;Date: &quot; + date.toString() + &quot;&lt;br&gt;&quot; +
+    &quot;Add 7 days: &quot; + plusWeek.toString() + &quot;&lt;br&gt;&quot; +
+    &quot;Subtract 1 month: &quot; + minusMonth.toString() + &quot;&lt;br&gt;&lt;br&gt;&quot; +
+    &quot;Compare with 2024-06-01: &quot; + isBefore + &quot; (-1 = before, 0 = equal, 1 = after)&quot;;
+} else {
+  document.getElementById(&quot;demo&quot;).innerHTML =
+    &quot;Temporal is not supported in this browser.&quot;;
+}
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p5.png" alt=""></p>
+<h3>Example 5</h3>
+<p><strong>Result</strong> <a href="ex5-arithmetic/index.html">View Example</a></p>
+<h2>Document</h2>
+<p>Document in project</p>
+<p>You can <a href="js-temporal.pdf">Download PDF</a> file.</p>
+<h2>Reference</h2>
+<ul>
+<li><a href="https://www.w3schools.com/js/js_temporal.asp">W3Schools JavaScript Temporal</a></li>
+</ul>
+
+</body>
+</html>

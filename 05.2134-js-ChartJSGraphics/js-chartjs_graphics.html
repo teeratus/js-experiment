@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>js-chartjs_graphics</title>
+  <style>
+    body {
+      box-sizing: border-box;
+      min-width: 200px;
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 45px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+      font-size: 16px;
+      line-height: 1.5;
+      color: #24292e;
+      background-color: #ffffff;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 24px;
+      margin-bottom: 16px;
+      font-weight: 600;
+      line-height: 1.25;
+      border-bottom: 1px solid #eaecef;
+      padding-bottom: .3em;
+    }
+    h1 { font-size: 2em; }
+    h2 { font-size: 1.5em; }
+    h3 { font-size: 1.25em; }
+    code {
+      padding: .2em .4em;
+      margin: 0;
+      font-size: 85%;
+      background-color: rgba(27,31,35,.05);
+      border-radius: 3px;
+      font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
+    }
+    pre {
+      padding: 16px;
+      overflow: auto;
+      font-size: 85%;
+      line-height: 1.45;
+      background-color: #f6f8fa;
+      border-radius: 3px;
+      word-wrap: normal;
+    }
+    pre code {
+      background-color: transparent;
+      padding: 0;
+    }
+    blockquote {
+      padding: 0 1em;
+      color: #6a737d;
+      border-left: .25em solid #dfe2e5;
+      margin: 0 0 16px 0;
+    }
+    table {
+      border-spacing: 0;
+      border-collapse: collapse;
+      margin-top: 0;
+      margin-bottom: 16px;
+      width: 100%;
+    }
+    table th, table td {
+      padding: 6px 13px;
+      border: 1px solid #dfe2e5;
+    }
+    table tr:nth-child(2n) {
+      background-color: #f6f8fa;
+    }
+    img {
+      max-width: 100%;
+      box-sizing: content-box;
+    }
+    @media print {
+      body {
+        max-width: 100%;
+        padding: 0;
+      }
+      pre, blockquote, table, tr, img {
+        page-break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+<body>
+<h1>JavaScript Chart.js Graphics</h1>
+<p><a href="../acp-js.php">Back to JS page</a></p>
+<p>Table of Contents</p>
+<ul>
+<li><a href="#javascript-chartjs-graphics">JavaScript Chart.js Graphics</a><ul>
+<li><a href="#bar-charts">Bar Charts</a><ul>
+<li><a href="#example-1">Example 1</a></li>
+</ul>
+</li>
+<li><a href="#horizontal-bars">Horizontal Bars</a><ul>
+<li><a href="#example-2">Example 2</a></li>
+</ul>
+</li>
+<li><a href="#pie-charts">Pie Charts</a><ul>
+<li><a href="#example-3">Example 3</a></li>
+</ul>
+</li>
+<li><a href="#doughnut-charts">Doughnut Charts</a><ul>
+<li><a href="#example-4">Example 4</a></li>
+</ul>
+</li>
+<li><a href="#multiple-lines">Multiple Lines</a><ul>
+<li><a href="#example-5">Example 5</a></li>
+</ul>
+</li>
+<li><a href="#document">Document</a></li>
+<li><a href="#reference">Reference</a></li>
+</ul>
+</li>
+</ul>
+<h2>Bar Charts</h2>
+<p>Bar charts display data with rectangular bars with heights proportional to the values. Chart.js creates responsive, canvas-based charts:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Chart.js Graphics&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Bar Charts&lt;/h4&gt;
+
+&lt;canvas id=&quot;barChart&quot; style=&quot;width:100%;max-width:600px;&quot;&gt;&lt;/canvas&gt;
+&lt;p id=&quot;demo1&quot;&gt;&lt;/p&gt;
+
+&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js&quot;&gt;&lt;/script&gt;
+
+&lt;script&gt;
+const xValues = [&quot;Product A&quot;, &quot;Product B&quot;, &quot;Product C&quot;, &quot;Product D&quot;, &quot;Product E&quot;];
+const yValues = [25, 40, 30, 55, 20];
+const barColors = [&quot;#4CAF50&quot;, &quot;#2196F3&quot;, &quot;#FF9800&quot;, &quot;#F44336&quot;, &quot;#9C27B0&quot;];
+
+new Chart(&quot;barChart&quot;, {
+  type: &quot;bar&quot;,
+  data: {
+    labels: xValues,
+    datasets: [{
+      backgroundColor: barColors,
+      data: yValues
+    }]
+  },
+  options: {
+    title: {
+      display: true,
+      text: &quot;Product Sales (Bar Chart)&quot;
+    },
+    legend: {display: false},
+    scales: {
+      yAxes: [{ticks: {beginAtZero: true}}]
+    }
+  }
+});
+
+document.getElementById(&quot;demo1&quot;).innerHTML = &quot;Chart.js bar chart created!&quot;;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p1.png" alt=""></p>
+<h3>Example 1</h3>
+<p><strong>Result</strong> <a href="ex1-bar_chart/index.html">View Example</a></p>
+<h2>Horizontal Bars</h2>
+<p>Horizontal bar charts display bars horizontally instead of vertically:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Chart.js Graphics&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Horizontal Bars&lt;/h4&gt;
+
+&lt;canvas id=&quot;hBarChart&quot; style=&quot;width:100%;max-width:600px;&quot;&gt;&lt;/canvas&gt;
+&lt;p id=&quot;demo2&quot;&gt;&lt;/p&gt;
+
+&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js&quot;&gt;&lt;/script&gt;
+
+&lt;script&gt;
+const xValues = [&quot;Item A&quot;, &quot;Item B&quot;, &quot;Item C&quot;, &quot;Item D&quot;, &quot;Item E&quot;];
+const yValues = [30, 45, 25, 60, 35];
+
+new Chart(&quot;hBarChart&quot;, {
+  type: &quot;horizontalBar&quot;,
+  data: {
+    labels: xValues,
+    datasets: [{
+      backgroundColor: [&quot;#4CAF50&quot;, &quot;#2196F3&quot;, &quot;#FF9800&quot;, &quot;#F44336&quot;, &quot;#9C27B0&quot;],
+      data: yValues
+    }]
+  },
+  options: {
+    title: {
+      display: true,
+      text: &quot;Horizontal Bar Chart&quot;
+    },
+    legend: {display: false},
+    scales: {
+      xAxes: [{ticks: {beginAtZero: true}}]
+    }
+  }
+});
+
+document.getElementById(&quot;demo2&quot;).innerHTML = &quot;Chart.js horizontal bar chart created!&quot;;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p2.png" alt=""></p>
+<h3>Example 2</h3>
+<p><strong>Result</strong> <a href="ex2-horizontal_bars/index.html">View Example</a></p>
+<h2>Pie Charts</h2>
+<p>Pie charts show data as slices of a circle:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Chart.js Graphics&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Pie Charts&lt;/h4&gt;
+
+&lt;canvas id=&quot;pieChart&quot; style=&quot;width:100%;max-width:500px;&quot;&gt;&lt;/canvas&gt;
+&lt;p id=&quot;demo3&quot;&gt;&lt;/p&gt;
+
+&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js&quot;&gt;&lt;/script&gt;
+
+&lt;script&gt;
+const xValues = [&quot;Chrome&quot;, &quot;Firefox&quot;, &quot;Safari&quot;, &quot;Edge&quot;, &quot;Other&quot;];
+const yValues = [55, 20, 15, 8, 2];
+const colors = [&quot;#4CAF50&quot;, &quot;#2196F3&quot;, &quot;#FF9800&quot;, &quot;#F44336&quot;, &quot;#9C27B0&quot;];
+
+new Chart(&quot;pieChart&quot;, {
+  type: &quot;pie&quot;,
+  data: {
+    labels: xValues,
+    datasets: [{
+      backgroundColor: colors,
+      data: yValues
+    }]
+  },
+  options: {
+    title: {
+      display: true,
+      text: &quot;Browser Market Share (Pie Chart)&quot;
+    }
+  }
+});
+
+document.getElementById(&quot;demo3&quot;).innerHTML = &quot;Chart.js pie chart created!&quot;;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p3.png" alt=""></p>
+<h3>Example 3</h3>
+<p><strong>Result</strong> <a href="ex3-pie_chart/index.html">View Example</a></p>
+<h2>Doughnut Charts</h2>
+<p>Doughnut charts are similar to pie charts but with a hollow center:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Chart.js Graphics&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Doughnut Charts&lt;/h4&gt;
+
+&lt;canvas id=&quot;doughnutChart&quot; style=&quot;width:100%;max-width:500px;&quot;&gt;&lt;/canvas&gt;
+&lt;p id=&quot;demo4&quot;&gt;&lt;/p&gt;
+
+&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js&quot;&gt;&lt;/script&gt;
+
+&lt;script&gt;
+const xValues = [&quot;North&quot;, &quot;South&quot;, &quot;East&quot;, &quot;West&quot;];
+const yValues = [35, 25, 20, 20];
+const colors = [&quot;#4CAF50&quot;, &quot;#2196F3&quot;, &quot;#FF9800&quot;, &quot;#F44336&quot;];
+
+new Chart(&quot;doughnutChart&quot;, {
+  type: &quot;doughnut&quot;,
+  data: {
+    labels: xValues,
+    datasets: [{
+      backgroundColor: colors,
+      data: yValues
+    }]
+  },
+  options: {
+    title: {
+      display: true,
+      text: &quot;Regional Sales (Doughnut Chart)&quot;
+    }
+  }
+});
+
+document.getElementById(&quot;demo4&quot;).innerHTML = &quot;Chart.js doughnut chart created!&quot;;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p4.png" alt=""></p>
+<h3>Example 4</h3>
+<p><strong>Result</strong> <a href="ex4-doughnut_chart/index.html">View Example</a></p>
+<h2>Multiple Lines</h2>
+<p>Multiple line graphs display several data series as connected lines:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Chart.js Graphics&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Multiple Lines&lt;/h4&gt;
+
+&lt;canvas id=&quot;multiLineChart&quot; style=&quot;width:100%;max-width:600px;&quot;&gt;&lt;/canvas&gt;
+&lt;p id=&quot;demo5&quot;&gt;&lt;/p&gt;
+
+&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js&quot;&gt;&lt;/script&gt;
+
+&lt;script&gt;
+new Chart(&quot;multiLineChart&quot;, {
+  type: &quot;line&quot;,
+  data: {
+    labels: [1, 2, 3, 4, 5, 6, 7, 8],
+    datasets: [{
+      label: &quot;Series 1&quot;,
+      data: [10, 12, 15, 14, 18, 20, 22, 25],
+      borderColor: &quot;#4CAF50&quot;,
+      fill: false
+    }, {
+      label: &quot;Series 2&quot;,
+      data: [5, 8, 7, 11, 9, 13, 12, 16],
+      borderColor: &quot;#F44336&quot;,
+      fill: false,
+      borderDash: [5, 5]
+    }, {
+      label: &quot;Series 3&quot;,
+      data: [3, 5, 4, 7, 6, 9, 8, 11],
+      borderColor: &quot;#2196F3&quot;,
+      fill: false,
+      borderDash: [2, 2]
+    }]
+  },
+  options: {
+    title: {
+      display: true,
+      text: &quot;Multiple Line Graphs&quot;
+    },
+    legend: {display: true}
+  }
+});
+
+document.getElementById(&quot;demo5&quot;).innerHTML = &quot;Chart.js multiple line chart created!&quot;;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p5.png" alt=""></p>
+<h3>Example 5</h3>
+<p><strong>Result</strong> <a href="ex5-multiple_lines/index.html">View Example</a></p>
+<h2>Document</h2>
+<p>Document in project</p>
+<p>You can <a href="js-chartjs_graphics.pdf">Download PDF</a> file.</p>
+<h2>Reference</h2>
+<ul>
+<li><a href="https://www.w3schools.com/js/js_graphics_chartjs.asp">W3Schools JavaScript Chart.js Graphics</a></li>
+</ul>
+
+</body>
+</html>

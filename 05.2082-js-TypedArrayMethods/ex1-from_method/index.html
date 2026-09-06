@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Typed Array Methods</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>The from() Method</h4>
+<p id="demo"></p>
+
+<script>
+// Create Int8Array from a regular array
+const regularArray = [10, 20, 30, 40, 50];
+const typedArray = Int8Array.from(regularArray);
+
+let text = "Original array: " + regularArray.join(", ") + "<br>";
+text += "Typed array: ";
+for (let num of typedArray) {
+  text += num + " ";
+}
+text += "<br>Constructor: " + typedArray.constructor.name;
+
+document.getElementById("demo").innerHTML = text;
+</script>
+
+</body>
+</html>

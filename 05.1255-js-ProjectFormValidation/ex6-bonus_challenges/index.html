@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+:root {
+  --primary: #4f46e5;
+  --primary-hover: #4338ca;
+  --bg: #f8fafc;
+  --card: #ffffff;
+  --text: #1e293b;
+  --text-secondary: #64748b;
+  --border: #cbd5e1;
+  --error: #ef4444;
+  --success: #22c55e;
+  --shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -2px rgba(0,0,0,0.1);
+  --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -4px rgba(0,0,0,0.1);
+}
+
+body {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  background-color: var(--bg);
+  color: var(--text);
+  margin: 0;
+  padding: 40px 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.container {
+  background-color: var(--card);
+  padding: 32px;
+  border-radius: 16px;
+  box-shadow: var(--shadow-lg);
+  width: 100%;
+  max-width: 440px;
+}
+
+h2 {
+  margin-top: 0;
+  font-size: 24px;
+  font-weight: 700;
+  color: #1e1b4b;
+  text-align: center;
+  margin-bottom: 8px;
+}
+
+.subtitle {
+  color: var(--text-secondary);
+  font-size: 14px;
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.field {
+  margin-bottom: 20px;
+  position: relative;
+}
+
+label {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: #334155;
+}
+
+.input-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+input {
+  width: 100%;
+  padding: 12px 40px 12px 16px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-size: 14px;
+  transition: all 0.2s;
+  outline: none;
+  box-sizing: border-box;
+}
+
+input:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+}
+
+/* Valid / Invalid states border */
+input.is-invalid {
+  border-color: var(--error);
+}
+
+input.is-invalid:focus {
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+}
+
+input.is-valid {
+  border-color: var(--success);
+}
+
+input.is-valid:focus {
+  box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.1);
+}
+
+/* Eye icon toggle for password */
+.toggle-password {
+  position: absolute;
+  right: 12px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--text-secondary);
+  padding: 4px;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+}
+
+.status-icon {
+  position: absolute;
+  right: 36px;
+  pointer-events: none;
+  font-size: 16px;
+  display: none;
+}
+
+input.is-valid + .status-icon {
+  display: block;
+  color: var(--success);
+}
+
+input.is-invalid + .status-icon {
+  display: block;
+  color: var(--error);
+}
+
+.error-msg {
+  color: var(--error);
+  font-size: 12px;
+  margin: 4px 0 0 0;
+  display: none;
+}
+
+.success-msg {
+  color: var(--success);
+  font-size: 12px;
+  margin: 4px 0 0 0;
+  display: none;
+}
+
+/* Password rules checklist */
+.checklist {
+  list-style: none;
+  padding: 0;
+  margin: 8px 0 0 0;
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+
+.checklist li {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 4px;
+}
+
+.checklist li::before {
+  content: "•";
+  font-weight: bold;
+}
+
+.checklist li.valid {
+  color: var(--success);
+}
+
+.checklist li.valid::before {
+  content: "✓";
+}
+
+.checklist li.invalid {
+  color: var(--error);
+}
+
+.checklist li.invalid::before {
+  content: "✗";
+}
+
+button[type="submit"] {
+  width: 100%;
+  background-color: var(--primary);
+  color: white;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  margin-top: 12px;
+}
+
+button[type="submit"]:hover {
+  background-color: var(--primary-hover);
+}
+
+#result {
+  text-align: center;
+  font-size: 14px;
+  font-weight: 600;
+  margin-top: 16px;
+  padding: 10px;
+  border-radius: 8px;
+  display: none;
+}
+
+#result.ok {
+  background-color: #ecfdf5;
+  color: #065f46;
+  display: block;
+}
+
+#result.error {
+  background-color: #fef2f2;
+  color: #991b1b;
+  display: block;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+  <h2>Sign Up</h2>
+  <p class="subtitle">From w3schools.com, Experiment by Teeratus_R</p>
+
+  <form id="signupForm" novalidate>
+    <div class="field">
+      <label for="name">Name:</label>
+      <div class="input-container">
+        <input id="name" type="text" placeholder="Your name">
+        <span class="status-icon"></span>
+      </div>
+      <p id="nameError" class="error-msg"></p>
+      <p id="nameSuccess" class="success-msg"></p>
+    </div>
+
+    <div class="field">
+      <label for="email">Email:</label>
+      <div class="input-container">
+        <input id="email" type="email" placeholder="name@example.com">
+        <span class="status-icon"></span>
+      </div>
+      <p id="emailError" class="error-msg"></p>
+      <p id="emailSuccess" class="success-msg"></p>
+    </div>
+
+    <div class="field">
+      <label for="password">Password:</label>
+      <div class="input-container">
+        <input id="password" type="password" placeholder="Min 8 characters">
+        <span class="status-icon"></span>
+        <button type="button" class="toggle-password" onclick="togglePassVisibility('password')">Show</button>
+      </div>
+      <ul class="checklist" id="pwChecklist">
+        <li id="ruleLength">At least 8 characters</li>
+        <li id="ruleNumber">At least one number (0-9)</li>
+        <li id="ruleUpper">At least one uppercase letter</li>
+      </ul>
+      <p id="passwordError" class="error-msg"></p>
+      <p id="passwordSuccess" class="success-msg"></p>
+    </div>
+
+    <div class="field">
+      <label for="confirm">Confirm Password:</label>
+      <div class="input-container">
+        <input id="confirm" type="password" placeholder="Repeat password">
+        <span class="status-icon"></span>
+        <button type="button" class="toggle-password" onclick="togglePassVisibility('confirm')">Show</button>
+      </div>
+      <p id="confirmError" class="error-msg"></p>
+      <p id="confirmSuccess" class="success-msg"></p>
+    </div>
+
+    <button type="submit">Create Account</button>
+  </form>
+
+  <p id="result"></p>
+</div>
+
+<script>
+const form = document.getElementById("signupForm");
+const nameInput = document.getElementById("name");
+const emailInput = document.getElementById("email");
+const passInput = document.getElementById("password");
+const confirmInput = document.getElementById("confirm");
+
+const nameError = document.getElementById("nameError");
+const emailError = document.getElementById("emailError");
+const passError = document.getElementById("passwordError");
+const confirmError = document.getElementById("confirmError");
+
+const nameSuccess = document.getElementById("nameSuccess");
+const emailSuccess = document.getElementById("emailSuccess");
+const passSuccess = document.getElementById("passwordSuccess");
+const confirmSuccess = document.getElementById("confirmSuccess");
+
+const result = document.getElementById("result");
+
+// Error/Success Helpers
+function showFieldError(input, errorEl, successEl, message) {
+  input.classList.remove("is-valid");
+  input.classList.add("is-invalid");
+  errorEl.innerHTML = message;
+  errorEl.style.display = "block";
+  successEl.style.display = "none";
+}
+
+function showFieldValid(input, errorEl, successEl, message) {
+  input.classList.remove("is-invalid");
+  input.classList.add("is-valid");
+  errorEl.style.display = "none";
+  successEl.innerHTML = message;
+  successEl.style.display = "block";
+}
+
+// Field Validators
+function validateName() {
+  let value = nameInput.value.trim();
+  if (value.length < 2) {
+    showFieldError(nameInput, nameError, nameSuccess, "Name must be at least 2 characters.");
+    return false;
+  }
+  showFieldValid(nameInput, nameError, nameSuccess, "Name looks good!");
+  return true;
+}
+
+// Simple email check
+function validateEmail() {
+  let value = emailInput.value.trim();
+  if (!(/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value))) {
+    showFieldError(emailInput, emailError, emailSuccess, "Enter a valid email address.");
+    return false;
+  }
+  showFieldValid(emailInput, emailError, emailSuccess, "Email is valid!");
+  return true;
+}
+
+function validatePassword() {
+  let value = passInput.value;
+  
+  // Real-time Checklist checks
+  let lenValid = value.length >= 8;
+  let numValid = /[0-9]/.test(value);
+  let upperValid = /[A-Z]/.test(value);
+
+  updateChecklistItem("ruleLength", lenValid);
+  updateChecklistItem("ruleNumber", numValid);
+  updateChecklistItem("ruleUpper", upperValid);
+
+  if (!lenValid || !numValid || !upperValid) {
+    showFieldError(passInput, passError, passSuccess, "Password does not meet all requirements.");
+    return false;
+  }
+  showFieldValid(passInput, passError, passSuccess, "Strong password!");
+  return true;
+}
+
+function updateChecklistItem(id, isValid) {
+  let el = document.getElementById(id);
+  if (isValid) {
+    el.className = "valid";
+  } else {
+    el.className = "invalid";
+  }
+}
+
+function validateConfirm() {
+  let pass = passInput.value;
+  let confirm = confirmInput.value;
+  if (confirm === "") {
+    showFieldError(confirmInput, confirmError, confirmSuccess, "Please confirm your password.");
+    return false;
+  }
+  if (confirm !== pass) {
+    showFieldError(confirmInput, confirmError, confirmSuccess, "Passwords do not match.");
+    return false;
+  }
+  showFieldValid(confirmInput, confirmError, confirmSuccess, "Passwords match!");
+  return true;
+}
+
+function togglePassVisibility(id) {
+  let input = document.getElementById(id);
+  let btn = input.nextElementSibling.nextElementSibling; // toggle-password button
+  if (input.type === "password") {
+    input.type = "text";
+    btn.textContent = "Hide";
+  } else {
+    input.type = "password";
+    btn.textContent = "Show";
+  }
+}
+
+// Attach Real-Time Dynamic Validators (keyup and blur)
+nameInput.addEventListener("input", validateName);
+nameInput.addEventListener("blur", validateName);
+
+emailInput.addEventListener("input", validateEmail);
+emailInput.addEventListener("blur", validateEmail);
+
+passInput.addEventListener("input", () => {
+  validatePassword();
+  if (confirmInput.value !== "") {
+    validateConfirm();
+  }
+});
+passInput.addEventListener("blur", validatePassword);
+
+confirmInput.addEventListener("input", validateConfirm);
+confirmInput.addEventListener("blur", validateConfirm);
+
+// Submit Validation
+form.addEventListener("submit", function (event) {
+  event.preventDefault();
+  result.style.display = "none";
+  result.className = "";
+
+  let isNameOk = validateName();
+  let isEmailOk = validateEmail();
+  let isPassOk = validatePassword();
+  let isConfirmOk = validateConfirm();
+
+  if (isNameOk && isEmailOk && isPassOk && isConfirmOk) {
+    result.innerHTML = "Success! Account created.";
+    result.className = "ok";
+  } else {
+    result.innerHTML = "Please fix the errors above.";
+    result.className = "error";
+  }
+});
+</script>
+
+</body>
+</html>

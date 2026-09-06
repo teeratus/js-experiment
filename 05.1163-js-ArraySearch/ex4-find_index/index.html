@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Array Search</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>findIndex()</h4>
+<p id="demo"></p>
+
+<script>
+const numbers = [4, 9, 16, 25, 29];
+
+// Find the index of the first element > 18
+let index = numbers.findIndex(function(value) {
+  return value > 18;
+});
+
+document.getElementById("demo").innerHTML =
+  "Array: " + numbers + "<br><br>" +
+  "findIndex(v > 18): " + index + " (element is " + numbers[index] + ")";
+</script>
+
+</body>
+</html>

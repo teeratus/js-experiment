@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>js-errors-silent</title>
+  <style>
+    body {
+      box-sizing: border-box;
+      min-width: 200px;
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 45px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+      font-size: 16px;
+      line-height: 1.5;
+      color: #24292e;
+      background-color: #ffffff;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 24px;
+      margin-bottom: 16px;
+      font-weight: 600;
+      line-height: 1.25;
+      border-bottom: 1px solid #eaecef;
+      padding-bottom: .3em;
+    }
+    h1 { font-size: 2em; }
+    h2 { font-size: 1.5em; }
+    h3 { font-size: 1.25em; }
+    code {
+      padding: .2em .4em;
+      margin: 0;
+      font-size: 85%;
+      background-color: rgba(27,31,35,.05);
+      border-radius: 3px;
+      font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
+    }
+    pre {
+      padding: 16px;
+      overflow: auto;
+      font-size: 85%;
+      line-height: 1.45;
+      background-color: #f6f8fa;
+      border-radius: 3px;
+      word-wrap: normal;
+    }
+    pre code {
+      background-color: transparent;
+      padding: 0;
+    }
+    blockquote {
+      padding: 0 1em;
+      color: #6a737d;
+      border-left: .25em solid #dfe2e5;
+      margin: 0 0 16px 0;
+    }
+    table {
+      border-spacing: 0;
+      border-collapse: collapse;
+      margin-top: 0;
+      margin-bottom: 16px;
+      width: 100%;
+    }
+    table th, table td {
+      padding: 6px 13px;
+      border: 1px solid #dfe2e5;
+    }
+    table tr:nth-child(2n) {
+      background-color: #f6f8fa;
+    }
+    img {
+      max-width: 100%;
+      box-sizing: content-box;
+    }
+    @media print {
+      body {
+        max-width: 100%;
+        padding: 0;
+      }
+      pre, blockquote, table, tr, img {
+        page-break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+<body>
+<h1>JavaScript Silent Errors</h1>
+<p><a href="../acp-js.php">Back to JS page</a></p>
+<p>Table of Contents</p>
+<ul>
+<li><a href="#javascript-silent-errors">JavaScript Silent Errors</a><ul>
+<li><a href="#silent-errors">Silent Errors</a><ul>
+<li><a href="#example-1">Example 1</a></li>
+</ul>
+</li>
+<li><a href="#type-coercion">Type Coercion</a><ul>
+<li><a href="#example-2">Example 2</a></li>
+</ul>
+</li>
+<li><a href="#string-coercion-">String Coercion (+)</a><ul>
+<li><a href="#example-3">Example 3</a></li>
+</ul>
+</li>
+<li><a href="#numeric-coercion">Numeric Coercion</a><ul>
+<li><a href="#example-4">Example 4</a></li>
+</ul>
+</li>
+<li><a href="#loose-equality-">Loose Equality (==)</a><ul>
+<li><a href="#example-5">Example 5</a></li>
+</ul>
+</li>
+<li><a href="#practices-to-avoid-bugs">Practices to Avoid Bugs</a><ul>
+<li><a href="#example-6">Example 6</a></li>
+</ul>
+</li>
+<li><a href="#document">Document</a></li>
+<li><a href="#reference">Reference</a></li>
+</ul>
+</li>
+</ul>
+<h2>Silent Errors</h2>
+<p><strong>Silent errors</strong> happen when JavaScript fails silently instead of throwing an error. Unlike runtime errors that stop execution, silent errors let the program continue but produce unexpected results.</p>
+<p>Silent errors often occur due to type coercion, where JavaScript automatically converts between types without warning.</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Silent Errors&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Silent Errors&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+let text = &quot;&quot;;
+
+// These do NOT throw errors but produce unexpected results
+let result1 = 5 + null;        // silent: null becomes 0
+let result2 = &quot;5&quot; - 2;         // silent: string &quot;5&quot; becomes number 5
+let result3 = &quot;5&quot; + 2;         // silent: number 2 becomes string &quot;2&quot;
+
+text += &quot;5 + null = &quot; + result1 + &quot;&lt;br&gt;&quot;;
+text += &quot;\&quot;5\&quot; - 2 = &quot; + result2 + &quot;&lt;br&gt;&quot;;
+text += &quot;\&quot;5\&quot; + 2 = \&quot;&quot; + result3 + &quot;\&quot;&lt;br&gt;&lt;br&gt;&quot;;
+text += &quot;No errors were thrown!&quot;;
+
+document.getElementById(&quot;demo&quot;).innerHTML = text;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p1.png" alt=""></p>
+<h3>Example 1</h3>
+<p><strong>Result</strong> <a href="ex1-silent_errors/index.html">View Example</a></p>
+<h2>Type Coercion</h2>
+<p><strong>Type coercion</strong> is the automatic conversion of values from one data type to another. It happens silently when you perform operations on different data types, and JavaScript tries to make them &quot;fit&quot; together.</p>
+<p>Because JavaScript is <strong>weakly typed</strong>, it doesn&#39;t throw errors when types don&#39;t match — it just coerces them. This can hide bugs.</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Silent Errors&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Type Coercion&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+let result1 = (&#39;5&#39; + &#39;2&#39;); // = 52 (concatenation)
+let result2 = (&#39;5&#39; - &#39;2&#39;); // = 3  (numeric subtraction)
+
+document.getElementById(&quot;demo&quot;).innerHTML =
+  &quot;(&#39;5&#39; + &#39;2&#39;) = &quot; + result1 + &quot;&lt;br&gt;&quot; +
+  &quot;(&#39;5&#39; - &#39;2&#39;) = &quot; + result2;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p2.png" alt=""></p>
+<h3>Example 2</h3>
+<p><strong>Result</strong> <a href="ex2-type_coercion/index.html">View Example</a></p>
+<h2>String Coercion (+)</h2>
+<p>If any part of a <code>+</code> operation is a string, JavaScript converts everything to strings and concatenates them. This is a common source of silent errors.</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Silent Errors&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;String Coercion (+)&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+let x = &quot;5&quot; + 2; // x = &quot;52&quot; (number converted to string)
+
+document.getElementById(&quot;demo&quot;).innerHTML =
+  &quot;\&quot;5\&quot; + 2 = \&quot;&quot; + x + &quot;\&quot;&quot;;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p3.png" alt=""></p>
+<h3>Example 3</h3>
+<p><strong>Result</strong> <a href="ex3-string_coercion/index.html">View Example</a></p>
+<h2>Numeric Coercion</h2>
+<p>Other arithmetic operators (<code>-</code>, <code>*</code>, <code>/</code>, <code>%</code>) and the unary plus (<code>+x</code>) force values into numbers. If a value cannot be converted, the result is <code>NaN</code>.</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Silent Errors&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Numeric Coercion&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+let text = &quot;&quot;;
+
+let x = &quot;5&quot; - 2;       // x = 3 (string converted to number)
+let y = &quot;abc&quot; - 1;     // y = NaN (cannot convert)
+
+text += &quot;\&quot;5\&quot; - 2 = &quot; + x + &quot;&lt;br&gt;&quot;;
+text += &quot;\&quot;abc\&quot; - 1 = &quot; + y + &quot;&lt;br&gt;&quot;;
+text += &quot;No errors thrown, just NaN.&quot;;
+
+document.getElementById(&quot;demo&quot;).innerHTML = text;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p4.png" alt=""></p>
+<h3>Example 4</h3>
+<p><strong>Result</strong> <a href="ex4-numeric_coercion/index.html">View Example</a></p>
+<h2>Loose Equality (==)</h2>
+<p>The <code>==</code> operator performs coercion to find a &quot;common type&quot; before comparing. This can lead to unexpected results — a classic source of silent bugs.</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Silent Errors&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Loose Equality (==)&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+let text = &quot;&quot;;
+
+text += &quot;5 == \&quot;5\&quot; : &quot; + (5 == &quot;5&quot;) + &quot;&lt;br&gt;&quot;;
+text += &quot;0 == false : &quot; + (0 == false) + &quot;&lt;br&gt;&quot;;
+text += &quot;\&quot;\&quot; == false : &quot; + (&quot;&quot; == false) + &quot;&lt;br&gt;&quot;;
+text += &quot;null == undefined : &quot; + (null == undefined);
+
+document.getElementById(&quot;demo&quot;).innerHTML = text;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p5.png" alt=""></p>
+<h3>Example 5</h3>
+<p><strong>Result</strong> <a href="ex5-loose_equality/index.html">View Example</a></p>
+<h2>Practices to Avoid Bugs</h2>
+<p>To avoid silent errors caused by type coercion:</p>
+<ul>
+<li><strong>Use <code>===</code> (Strict Equality):</strong> This checks both value and type without coercion.</li>
+<li><strong>Be Explicit:</strong> Use <code>Number()</code>, <code>String()</code>, or <code>Boolean()</code> to make your intent clear.</li>
+<li><strong>Watch for NaN:</strong> If a conversion fails, check for <code>NaN</code> before using the result.</li>
+</ul>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Silent Errors&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Practices to Avoid Bugs&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+let text = &quot;&quot;;
+
+// Use === (Strict Equality)
+text += &quot;5 == \&quot;5\&quot; : &quot; + (5 == &quot;5&quot;) + &quot; (loose)&lt;br&gt;&quot;;
+text += &quot;5 === \&quot;5\&quot; : &quot; + (5 === &quot;5&quot;) + &quot; (strict)&lt;br&gt;&lt;br&gt;&quot;;
+
+// Be Explicit
+text += &quot;Number(\&quot;5\&quot;) + 2 : &quot; + (Number(&quot;5&quot;) + 2) + &quot;&lt;br&gt;&lt;br&gt;&quot;;
+
+// Watch for NaN
+let result = &quot;abc&quot; - 1;
+if (isNaN(result)) {
+  text += &quot;\&quot;abc\&quot; - 1 is NaN, handle it gracefully.&quot;;
+}
+
+document.getElementById(&quot;demo&quot;).innerHTML = text;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p6.png" alt=""></p>
+<h3>Example 6</h3>
+<p><strong>Result</strong> <a href="ex6-practices_to_avoid_bugs/index.html">View Example</a></p>
+<h2>Document</h2>
+<p>Document in project</p>
+<p>You can <a href="js-errors-silent.pdf">Download PDF</a> file.</p>
+<h2>Reference</h2>
+<ul>
+<li><a href="https://www.w3schools.com/js/js_errors_silent.asp">W3Schools JavaScript Silent Errors</a></li>
+</ul>
+
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Destructuring</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Destructuring Maps</h4>
+<p id="demo"></p>
+
+<script>
+// Create a Map
+const fruits = new Map([
+  ["apples", 500],
+  ["bananas", 300],
+  ["oranges", 200]
+]);
+
+let text = "";
+
+// Destructuring Maps
+for (const [key, value] of fruits) {
+  text += key + " is " + value + "<br>";
+}
+
+document.getElementById("demo").innerHTML = text;
+</script>
+
+</body>
+</html>

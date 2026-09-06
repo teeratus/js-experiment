@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Set Reference</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Set Add/Delete Methods</h4>
+<p id="demo"></p>
+
+<script>
+const letters = new Set(["a", "b"]);
+
+let text = "Start: " + [...letters] + "<br><br>";
+
+letters.add("c");
+text += "add('c'): " + [...letters] + "<br>";
+text += "has('c'): " + letters.has("c") + "<br><br>";
+
+letters.delete("a");
+text += "delete('a'): " + [...letters] + "<br><br>";
+
+letters.clear();
+text += "clear(): " + [...letters] + " (empty)<br>";
+text += "size: " + letters.size;
+
+document.getElementById("demo").innerHTML = text;
+</script>
+
+</body>
+</html>

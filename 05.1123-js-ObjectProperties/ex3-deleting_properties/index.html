@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Object Properties</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Deleting Properties</h4>
+<p id="demo"></p>
+
+<script>
+const car = {
+  brand: "Toyota",
+  model: "Corolla",
+  year: 2020,
+  color: "blue",
+  price: 25000
+};
+
+let text = "Before delete:<br>";
+for (let key in car) {
+  text += key + ": " + car[key] + "<br>";
+}
+
+// Delete the price property
+delete car.price;
+// Delete using bracket notation
+delete car["color"];
+
+text += "<br>After delete (price, color):<br>";
+for (let key in car) {
+  text += key + ": " + car[key] + "<br>";
+}
+
+document.getElementById("demo").innerHTML = text;
+</script>
+
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Plotly Graphics</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Pie Charts</h4>
+
+<div id="pieChart"></div>
+
+<script src="https://cdn.plot.ly/plotly-2.27.0.min.js"></script>
+
+<script>
+const data = [{
+  labels: ['Chrome', 'Firefox', 'Safari', 'Edge', 'Other'],
+  values: [55, 20, 15, 8, 2],
+  type: 'pie',
+  marker: {
+    colors: ['#4CAF50', '#2196F3', '#FF9800', '#F44336', '#9C27B0']
+  },
+  textinfo: 'label+percent'
+}];
+
+const layout = {
+  title: 'Browser Market Share (Pie Chart)',
+  height: 400
+};
+
+Plotly.newPlot('pieChart', data, layout);
+</script>
+
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Silent Errors</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Silent Errors</h4>
+<p id="demo"></p>
+
+<script>
+let text = "";
+
+// These do NOT throw errors but produce unexpected results
+let result1 = 5 + null;        // silent: null becomes 0
+let result2 = "5" - 2;         // silent: string "5" becomes number 5
+let result3 = "5" + 2;         // silent: number 2 becomes string "2"
+
+text += "5 + null = " + result1 + "<br>";
+text += "\"5\" - 2 = " + result2 + "<br>";
+text += "\"5\" + 2 = \"" + result3 + "\"<br><br>";
+text += "No errors were thrown!";
+
+document.getElementById("demo").innerHTML = text;
+</script>
+
+</body>
+</html>

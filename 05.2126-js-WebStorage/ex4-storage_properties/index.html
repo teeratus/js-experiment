@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Web Storage API</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Storage Object Properties and Methods</h4>
+<p id="demo4"></p>
+
+<button onclick="showAll()">Show All Items</button>
+<button onclick="clearAll()">Clear All</button>
+
+<script>
+function showAll() {
+  let text = "Number of items: " + localStorage.length + "<br><br>";
+  
+  for (let i = 0; i < localStorage.length; i++) {
+    const key = localStorage.key(i);
+    const value = localStorage.getItem(key);
+    text += "[" + i + "] " + key + ": " + value + "<br>";
+  }
+  
+  if (localStorage.length === 0) {
+    text += "(empty)";
+  }
+  
+  document.getElementById("demo4").innerHTML = text;
+}
+
+function clearAll() {
+  localStorage.clear();
+  document.getElementById("demo4").innerHTML = "All items cleared! (" + localStorage.length + " items)";
+}
+
+// Add some demo items if empty
+if (localStorage.length === 0) {
+  localStorage.setItem("demo1", "value1");
+  localStorage.setItem("demo2", "value2");
+  localStorage.setItem("demo3", "value3");
+}
+</script>
+
+</body>
+</html>

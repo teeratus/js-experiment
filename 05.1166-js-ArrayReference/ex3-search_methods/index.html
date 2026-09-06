@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Array Reference</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Search Methods</h4>
+<p id="demo"></p>
+
+<script>
+const numbers = [10, 20, 30, 20, 40];
+
+document.getElementById("demo").innerHTML =
+  "Array: " + numbers + "<br><br>" +
+  "indexOf(20): " + numbers.indexOf(20) + "<br>" +
+  "lastIndexOf(20): " + numbers.lastIndexOf(20) + "<br>" +
+  "includes(30): " + numbers.includes(30) + "<br>" +
+  "find(v > 25): " + numbers.find(v => v > 25) + "<br>" +
+  "findIndex(v > 25): " + numbers.findIndex(v => v > 25);
+</script>
+
+</body>
+</html>

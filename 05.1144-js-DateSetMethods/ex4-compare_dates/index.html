@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Date Set Methods</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Compare Dates</h4>
+<p id="demo"></p>
+
+<script>
+let text = "";
+
+const today = new Date();
+const someday = new Date();
+someday.setFullYear(2100);
+
+if (someday > today) {
+  text = "Today is before 2100.";
+} else {
+  text = "Today is after 2100.";
+}
+
+// Also compare with getTime()
+const d1 = new Date(2024, 0, 1);
+const d2 = new Date(2024, 0, 15);
+text += "<br><br>d1 (Jan 1) < d2 (Jan 15): " + (d1.getTime() < d2.getTime());
+
+document.getElementById("demo").innerHTML = text;
+</script>
+
+</body>
+</html>

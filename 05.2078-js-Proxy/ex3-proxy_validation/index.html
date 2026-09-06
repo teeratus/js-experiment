@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Proxy</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Proxy Validation</h4>
+<p id="demo"></p>
+
+<script>
+const person = {
+  name: "John",
+  age: 25
+};
+
+const validator = {
+  set: function(target, property, value) {
+    if (property === "age") {
+      if (typeof value !== "number") {
+        throw new Error("Age must be a number");
+      }
+      if (value < 0 || value > 120) {
+        throw new Error("Age must be between 0 and 120");
+      }
+    }
+    if (property === "name") {
+      if (typeof value !== "string") {
+        throw new Error("Name must be a string");
+      }
+      if (value.length < 2) {
+        throw new Error("Name must be at least 2 characters");
+      }
+    }
+    target[property] = value;
+    return true;
+  }
+};
+
+const proxy = new Proxy(person, validator);
+
+try {
+  proxy.age = 30;   // Valid
+  proxy.name = "Jane";  // Valid
+  // proxy.age = 200;  // Would throw error
+  // proxy.name = "J"; // Would throw error
+
+  document.getElementById("demo").innerHTML =
+    "Validated proxy:<br>" +
+    "name: " + proxy.name + "<br>" +
+    "age: " + proxy.age + "<br><br>" +
+    "Age and name validation is active - invalid values are rejected!";
+} catch(err) {
+  document.getElementById("demo").innerHTML = "Error: " + err.message;
+}
+</script>
+
+</body>
+</html>

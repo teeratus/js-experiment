@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Array const</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Elements Can be Reassigned</h4>
+<p id="demo"></p>
+
+<script>
+const fruits = ["Banana", "Orange"];
+
+// Element reassignment is allowed
+fruits[0] = "Mango";
+fruits[1] = "Apple";
+
+// push() and pop() are also allowed
+fruits.push("Kiwi");
+fruits.pop();
+
+// Const only protects the variable, not the array contents
+document.getElementById("demo").innerHTML =
+  "fruits after changes: " + fruits;
+</script>
+
+</body>
+</html>

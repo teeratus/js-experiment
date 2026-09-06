@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Array Methods</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Shifting Elements</h4>
+<p id="demo"></p>
+
+<script>
+const fruits = ["Banana", "Orange", "Apple"];
+
+// shift() removes the first element
+let shifted = fruits.shift();
+let text = "Shifted: " + shifted + "<br>";
+text += "After shift(): " + fruits + "<br><br>";
+
+// unshift() adds to the beginning
+let newLength = fruits.unshift("Lemon");
+text += "Unshifted 'Lemon', new length: " + newLength + "<br>";
+text += "After unshift(): " + fruits;
+
+document.getElementById("demo").innerHTML = text;
+</script>
+
+</body>
+</html>

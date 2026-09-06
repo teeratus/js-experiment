@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Iterables</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Home Made Iterable</h4>
+<p id="demo"></p>
+
+<script>
+// Create a home made iterable
+function myIterable() {
+  let i = 0;
+  return {
+    [Symbol.iterator]: function() {
+      return {
+        next: function() {
+          i++;
+          return i <= 5 ? {value: i, done: false} : {done: true};
+        }
+      };
+    }
+  };
+}
+
+let text = "";
+for (let num of myIterable()) {
+  text += num + " ";
+}
+
+document.getElementById("demo").innerHTML =
+  "Home made iterable: " + text + "<br><br>" +
+  "Custom iterable using Symbol.iterator and next()";
+</script>
+
+</body>
+</html>

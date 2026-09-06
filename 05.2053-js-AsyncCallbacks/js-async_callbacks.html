@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>js-async_callbacks</title>
+  <style>
+    body {
+      box-sizing: border-box;
+      min-width: 200px;
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 45px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+      font-size: 16px;
+      line-height: 1.5;
+      color: #24292e;
+      background-color: #ffffff;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 24px;
+      margin-bottom: 16px;
+      font-weight: 600;
+      line-height: 1.25;
+      border-bottom: 1px solid #eaecef;
+      padding-bottom: .3em;
+    }
+    h1 { font-size: 2em; }
+    h2 { font-size: 1.5em; }
+    h3 { font-size: 1.25em; }
+    code {
+      padding: .2em .4em;
+      margin: 0;
+      font-size: 85%;
+      background-color: rgba(27,31,35,.05);
+      border-radius: 3px;
+      font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
+    }
+    pre {
+      padding: 16px;
+      overflow: auto;
+      font-size: 85%;
+      line-height: 1.45;
+      background-color: #f6f8fa;
+      border-radius: 3px;
+      word-wrap: normal;
+    }
+    pre code {
+      background-color: transparent;
+      padding: 0;
+    }
+    blockquote {
+      padding: 0 1em;
+      color: #6a737d;
+      border-left: .25em solid #dfe2e5;
+      margin: 0 0 16px 0;
+    }
+    table {
+      border-spacing: 0;
+      border-collapse: collapse;
+      margin-top: 0;
+      margin-bottom: 16px;
+      width: 100%;
+    }
+    table th, table td {
+      padding: 6px 13px;
+      border: 1px solid #dfe2e5;
+    }
+    table tr:nth-child(2n) {
+      background-color: #f6f8fa;
+    }
+    img {
+      max-width: 100%;
+      box-sizing: content-box;
+    }
+    @media print {
+      body {
+        max-width: 100%;
+        padding: 0;
+      }
+      pre, blockquote, table, tr, img {
+        page-break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+<body>
+<h1>JavaScript Async Callbacks</h1>
+<p><a href="../acp-js.php">Back to JS page</a></p>
+<blockquote>
+<p><strong>Note:</strong> This topic builds on the Callbacks fundamentals covered in <a href="../05.2012-js-Callbacks/js-callbacks.md">05.2012-js-Callbacks</a>.</p>
+</blockquote>
+<p>Table of Contents</p>
+<ul>
+<li><a href="#javascript-async-callbacks">JavaScript Async Callbacks</a><ul>
+<li><a href="#synchronous-callbacks">Synchronous Callbacks</a><ul>
+<li><a href="#example-1">Example 1</a></li>
+</ul>
+</li>
+<li><a href="#asynchronous-callbacks">Asynchronous Callbacks</a><ul>
+<li><a href="#example-2">Example 2</a></li>
+</ul>
+</li>
+<li><a href="#callback-chains">Callback Chains</a><ul>
+<li><a href="#example-3">Example 3</a></li>
+</ul>
+</li>
+<li><a href="#document">Document</a></li>
+<li><a href="#reference">Reference</a></li>
+</ul>
+</li>
+</ul>
+<h2>Synchronous Callbacks</h2>
+<p>A synchronous callback is executed during the execution of the higher-order function. Array methods like <code>forEach()</code> use synchronous callbacks:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Async Callbacks&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Synchronous Callbacks&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+const numbers = [1, 2, 3, 4, 5];
+let text = &quot;&quot;;
+
+// forEach uses a synchronous callback
+numbers.forEach(function(value) {
+  text += value * 2 + &quot; &quot;;
+});
+
+document.getElementById(&quot;demo&quot;).innerHTML = &quot;Doubled values: &quot; + text;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p1.png" alt=""></p>
+<h3>Example 1</h3>
+<p><strong>Result</strong> <a href="ex1-sync_callback/index.html">View Example</a></p>
+<h2>Asynchronous Callbacks</h2>
+<p>An asynchronous callback is executed after the higher-order function has completed. <code>setTimeout()</code> is a classic example:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Async Callbacks&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Asynchronous Callbacks&lt;/h4&gt;
+&lt;p id=&quot;demo1&quot;&gt;&lt;/p&gt;
+&lt;p id=&quot;demo2&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+function myDisplayer(something) {
+  document.getElementById(&quot;demo2&quot;).innerHTML = &quot;Result: &quot; + something;
+}
+
+function myCalculator(num1, num2, myCallback) {
+  let sum = num1 + num2;
+  myCallback(sum);
+}
+
+document.getElementById(&quot;demo1&quot;).innerHTML = &quot;Calculating...&quot;;
+myCalculator(5, 5, myDisplayer);
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p2.png" alt=""></p>
+<h3>Example 2</h3>
+<p><strong>Result</strong> <a href="ex2-async_callback/index.html">View Example</a></p>
+<h2>Callback Chains</h2>
+<p>When one callback depends on the result of another, you get callback chains (sometimes called &quot;callback hell&quot;):</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Async Callbacks&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Callback Chains&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+function step1(callback) {
+  setTimeout(function() {
+    document.getElementById(&quot;demo&quot;).innerHTML += &quot;Step 1: Data loaded&lt;br&gt;&quot;;
+    callback(&quot;Data from step 1&quot;);
+  }, 1000);
+}
+
+function step2(data, callback) {
+  setTimeout(function() {
+    document.getElementById(&quot;demo&quot;).innerHTML += &quot;Step 2: Processing &quot; + data + &quot;&lt;br&gt;&quot;;
+    callback(&quot;Processed data&quot;);
+  }, 1000);
+}
+
+function step3(data) {
+  setTimeout(function() {
+    document.getElementById(&quot;demo&quot;).innerHTML += &quot;Step 3: Displaying &quot; + data + &quot;&lt;br&gt;&quot;;
+    document.getElementById(&quot;demo&quot;).innerHTML += &quot;All steps complete!&quot;;
+  }, 1000);
+}
+
+// Callback chain
+step1(function(result1) {
+  step2(result1, function(result2) {
+    step3(result2);
+  });
+});
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p3.png" alt=""></p>
+<h3>Example 3</h3>
+<p><strong>Result</strong> <a href="ex3-callback_chains/index.html">View Example</a></p>
+<h2>Document</h2>
+<p>Document in project</p>
+<p>You can <a href="js-async_callbacks.pdf">Download PDF</a> file.</p>
+<h2>Reference</h2>
+<ul>
+<li><a href="https://www.w3schools.com/js/js_async_callbacks.asp">W3Schools JavaScript Async Callbacks</a></li>
+</ul>
+
+</body>
+</html>

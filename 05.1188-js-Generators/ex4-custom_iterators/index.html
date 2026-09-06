@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Generators</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Custom Iterators with Generators</h4>
+<p id="demo"></p>
+
+<script>
+// Create a custom iterable using a generator
+const myIterable = {
+  *[Symbol.iterator]() {
+    yield "One";
+    yield "Two";
+    yield "Three";
+  }
+};
+
+let text = "Custom iterable with generator:<br><br>";
+for (let value of myIterable) {
+  text += value + "<br>";
+}
+
+document.getElementById("demo").innerHTML = text;
+</script>
+
+</body>
+</html>

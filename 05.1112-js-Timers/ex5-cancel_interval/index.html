@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Timers</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Canceling an Interval</h4>
+<p id="demo"></p>
+<button onclick="stopTimer()">Stop</button>
+
+<script>
+let counter = 0;
+let intervalId = setInterval(function() {
+  counter++;
+  document.getElementById("demo").innerHTML = "Counter: " + counter;
+}, 1000);
+
+function stopTimer() {
+  clearInterval(intervalId);
+  document.getElementById("demo").innerHTML += " (stopped)";
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Destructuring</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Object Destructuring</h4>
+<p id="demo"></p>
+
+<script>
+// Create an Object
+const person = {
+  firstName: "John",
+  lastName: "Doe",
+  age: 50
+};
+
+// Destructuring
+let {firstName, lastName} = person;
+
+// Default values
+const {firstName: fName, country = "US"} = person;
+
+// Property alias
+const {lastName: lName} = person;
+
+document.getElementById("demo").innerHTML =
+  firstName + " " + lastName + "<br>" +
+  "Alias: " + fName + " " + lName + "<br>" +
+  "Country (default): " + country;
+</script>
+
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Atomics</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Atomics.exchange()</h4>
+<p id="demo"></p>
+
+<script>
+const sharedBuffer = new SharedArrayBuffer(8);
+const sharedArray = new Int32Array(sharedBuffer);
+
+sharedArray[0] = 99;
+
+// Exchange the value atomically
+let oldValue = Atomics.exchange(sharedArray, 0, 200);
+
+let text = "Atomics.exchange(sharedArray, 0, 200):<br><br>";
+text += "Old value: " + oldValue + "<br>";
+text += "New value: " + Atomics.load(sharedArray, 0) + "<br><br>";
+
+text += "This is useful for safely swapping values in shared memory.";
+
+document.getElementById("demo").innerHTML = text;
+</script>
+
+</body>
+</html>

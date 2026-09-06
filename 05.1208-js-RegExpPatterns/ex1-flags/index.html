@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript RegExp Patterns</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Full RegExp Flag Reference</h4>
+<p id="demo"></p>
+
+<script>
+const text = "JavaScript JAVASCRIPT javascript";
+
+let output = "Text: " + text + "<br><br>";
+output += "flags: " + /javascript/gi.flags + "<br>";
+output += "match(/javascript/gi): " + text.match(/javascript/gi) + "<br><br>";
+
+output += "<b>All flags:</b><br>";
+output += "/g global<br>/i insensitive<br>/m multiline<br>";
+output += "/s dotAll<br>/y sticky<br>/u unicode<br>/v unicodeSets";
+
+document.getElementById("demo").innerHTML = output;
+</script>
+
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Chart.js Graphics</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Multiple Lines</h4>
+
+<canvas id="multiLineChart" style="width:100%;max-width:600px;"></canvas>
+<p id="demo5"></p>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+
+<script>
+new Chart("multiLineChart", {
+  type: "line",
+  data: {
+    labels: [1, 2, 3, 4, 5, 6, 7, 8],
+    datasets: [{
+      label: "Series 1",
+      data: [10, 12, 15, 14, 18, 20, 22, 25],
+      borderColor: "#4CAF50",
+      fill: false
+    }, {
+      label: "Series 2",
+      data: [5, 8, 7, 11, 9, 13, 12, 16],
+      borderColor: "#F44336",
+      fill: false,
+      borderDash: [5, 5]
+    }, {
+      label: "Series 3",
+      data: [3, 5, 4, 7, 6, 9, 8, 11],
+      borderColor: "#2196F3",
+      fill: false,
+      borderDash: [2, 2]
+    }]
+  },
+  options: {
+    title: {
+      display: true,
+      text: "Multiple Line Graphs"
+    },
+    legend: {display: true}
+  }
+});
+
+document.getElementById("demo5").innerHTML = "Chart.js multiple line chart created!";
+</script>
+
+</body>
+</html>

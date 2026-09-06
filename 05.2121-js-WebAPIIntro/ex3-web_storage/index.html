@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Web API Intro</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Web Storage API</h4>
+<p id="demo"></p>
+
+<script>
+// Store data using localStorage
+localStorage.setItem("name", "John Doe");
+localStorage.setItem("age", "30");
+
+// Retrieve data
+let name = localStorage.getItem("name");
+let age = localStorage.getItem("age");
+
+let text = "Web Storage API (localStorage):<br><br>";
+text += "Stored name: " + name + "<br>";
+text += "Stored age: " + age + "<br><br>";
+
+// Count stored items
+text += "Number of items: " + localStorage.length + "<br><br>";
+
+// Remove an item
+localStorage.removeItem("age");
+text += "After removing 'age': " + localStorage.getItem("age") + " (null)<br><br>";
+
+// Clear all storage
+localStorage.clear();
+text += "After clearing all storage: " + localStorage.length + " items";
+
+document.getElementById("demo").innerHTML = text;
+</script>
+
+</body>
+</html>

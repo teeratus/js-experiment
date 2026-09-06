@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript JSON HTML</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Displaying JSON in a Table</h4>
+<table id="demo" border="1"></table>
+
+<script>
+// JSON array of objects
+const jsonString = '[{"name":"John","age":30,"city":"New York"},{"name":"Jane","age":25,"city":"London"},{"name":"Bob","age":35,"city":"Paris"}]';
+const data = JSON.parse(jsonString);
+
+let table = "<tr><th>Name</th><th>Age</th><th>City</th></tr>";
+for (let person of data) {
+  table += "<tr><td>" + person.name + "</td><td>" + person.age + "</td><td>" + person.city + "</td></tr>";
+}
+document.getElementById("demo").innerHTML = table;
+</script>
+
+</body>
+</html>

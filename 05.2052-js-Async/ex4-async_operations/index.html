@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Async</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Common Asynchronous Operations</h4>
+<p id="demo1"></p>
+<p id="demo2"></p>
+<p id="demo3"></p>
+
+<script>
+// This runs first
+document.getElementById("demo1").innerHTML = "1. Start of script";
+
+// setTimeout is asynchronous - it doesn't block
+setTimeout(function() {
+  document.getElementById("demo2").innerHTML = "3. Timeout finished (after 1 second)";
+}, 1000);
+
+// This runs second (not blocked by setTimeout)
+document.getElementById("demo3").innerHTML = "2. End of script (not blocked)";
+</script>
+
+</body>
+</html>

@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>js-htmldom_methods</title>
+  <style>
+    body {
+      box-sizing: border-box;
+      min-width: 200px;
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 45px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+      font-size: 16px;
+      line-height: 1.5;
+      color: #24292e;
+      background-color: #ffffff;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 24px;
+      margin-bottom: 16px;
+      font-weight: 600;
+      line-height: 1.25;
+      border-bottom: 1px solid #eaecef;
+      padding-bottom: .3em;
+    }
+    h1 { font-size: 2em; }
+    h2 { font-size: 1.5em; }
+    h3 { font-size: 1.25em; }
+    code {
+      padding: .2em .4em;
+      margin: 0;
+      font-size: 85%;
+      background-color: rgba(27,31,35,.05);
+      border-radius: 3px;
+      font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
+    }
+    pre {
+      padding: 16px;
+      overflow: auto;
+      font-size: 85%;
+      line-height: 1.45;
+      background-color: #f6f8fa;
+      border-radius: 3px;
+      word-wrap: normal;
+    }
+    pre code {
+      background-color: transparent;
+      padding: 0;
+    }
+    blockquote {
+      padding: 0 1em;
+      color: #6a737d;
+      border-left: .25em solid #dfe2e5;
+      margin: 0 0 16px 0;
+    }
+    table {
+      border-spacing: 0;
+      border-collapse: collapse;
+      margin-top: 0;
+      margin-bottom: 16px;
+      width: 100%;
+    }
+    table th, table td {
+      padding: 6px 13px;
+      border: 1px solid #dfe2e5;
+    }
+    table tr:nth-child(2n) {
+      background-color: #f6f8fa;
+    }
+    img {
+      max-width: 100%;
+      box-sizing: content-box;
+    }
+    @media print {
+      body {
+        max-width: 100%;
+        padding: 0;
+      }
+      pre, blockquote, table, tr, img {
+        page-break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+<body>
+<h1>JavaScript HTML DOM Methods</h1>
+<p><a href="../acp-js.php">Back to JS page</a></p>
+<p>Table of Contents</p>
+<ul>
+<li><a href="#javascript-html-dom-methods">JavaScript HTML DOM Methods</a><ul>
+<li><a href="#application-programming-interface">Application Programming Interface</a><ul>
+<li><a href="#example-1">Example 1</a></li>
+</ul>
+</li>
+<li><a href="#selecting-html-elements">Selecting HTML Elements</a><ul>
+<li><a href="#example-2">Example 2</a></li>
+</ul>
+</li>
+<li><a href="#accessing-element-content">Accessing Element Content</a><ul>
+<li><a href="#example-3">Example 3</a></li>
+</ul>
+</li>
+<li><a href="#changing-element-attributes">Changing Element Attributes</a><ul>
+<li><a href="#example-4">Example 4</a></li>
+</ul>
+</li>
+<li><a href="#document">Document</a></li>
+<li><a href="#reference">Reference</a></li>
+</ul>
+</li>
+</ul>
+<h2>Application Programming Interface</h2>
+<p>The HTML DOM can be accessed with JavaScript (and with other programming languages).</p>
+<p>In the DOM, all HTML elements are defined as <strong>objects</strong>.</p>
+<p>The programming interface is the properties and methods of each object.</p>
+<p>A <strong>property</strong> is a value that you can get or set (like changing the content of an HTML element).</p>
+<p>A <strong>method</strong> is an action you can do (like add or deleting an HTML element).</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript HTML DOM Methods&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;DOM API&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;Original content&lt;/p&gt;
+
+&lt;script&gt;
+document.getElementById(&quot;demo&quot;).innerHTML = &quot;Content changed by getElementById!&quot;;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p1.png" alt=""></p>
+<h3>Example 1</h3>
+<p><strong>Result</strong> <a href="ex1-dom_api/index.html">View Example</a></p>
+<h2>Selecting HTML Elements</h2>
+<p>Common methods for selecting HTML elements:</p>
+<ul>
+<li><code>document.getElementById(id)</code> - Get element by id</li>
+<li><code>document.getElementsByTagName(name)</code> - Get elements by tag name</li>
+<li><code>document.getElementsByClassName(name)</code> - Get elements by class name</li>
+<li><code>document.querySelector(selector)</code> - Get first element matching CSS selector</li>
+<li><code>document.querySelectorAll(selector)</code> - Get all elements matching CSS selector</li>
+</ul>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript HTML DOM Methods&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Selecting HTML Elements&lt;/h4&gt;
+&lt;p class=&quot;myClass&quot;&gt;First paragraph with class=&quot;myClass&quot;&lt;/p&gt;
+&lt;p class=&quot;myClass&quot;&gt;Second paragraph with class=&quot;myClass&quot;&lt;/p&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+const elements = document.getElementsByClassName(&quot;myClass&quot;);
+document.getElementById(&quot;demo&quot;).innerHTML =
+  &quot;Number of elements with class &#39;myClass&#39;: &quot; + elements.length;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p2.png" alt=""></p>
+<h3>Example 2</h3>
+<p><strong>Result</strong> <a href="ex2-selecting_elements/index.html">View Example</a></p>
+<h2>Accessing Element Content</h2>
+<p>The <code>innerHTML</code> property is the easiest way to get or change the content of an element.</p>
+<p>Other ways to access content include:</p>
+<ul>
+<li><code>element.innerHTML</code> - Get or set HTML content</li>
+<li><code>element.textContent</code> - Get or set text content</li>
+<li><code>element.innerText</code> - Get or set visible text content</li>
+</ul>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript HTML DOM Methods&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Accessing Element Content&lt;/h4&gt;
+&lt;p id=&quot;intro&quot;&gt;Hello &lt;b&gt;World&lt;/b&gt;!&lt;/p&gt;
+&lt;p id=&quot;demo1&quot;&gt;&lt;/p&gt;
+&lt;p id=&quot;demo2&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+const element = document.getElementById(&quot;intro&quot;);
+document.getElementById(&quot;demo1&quot;).innerHTML = &quot;innerHTML: &quot; + element.innerHTML;
+document.getElementById(&quot;demo2&quot;).innerHTML = &quot;textContent: &quot; + element.textContent;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p3.png" alt=""></p>
+<h3>Example 3</h3>
+<p><strong>Result</strong> <a href="ex3-accessing_content/index.html">View Example</a></p>
+<h2>Changing Element Attributes</h2>
+<p>You can change HTML attributes using the DOM:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript HTML DOM Methods&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Changing Element Attributes&lt;/h4&gt;
+&lt;a id=&quot;myLink&quot; href=&quot;https://www.w3schools.com&quot;&gt;Visit W3Schools&lt;/a&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+const link = document.getElementById(&quot;myLink&quot;);
+document.getElementById(&quot;demo&quot;).innerHTML = &quot;Original href: &quot; + link.getAttribute(&quot;href&quot;);
+// Change the href attribute
+link.setAttribute(&quot;href&quot;, &quot;https://www.google.com&quot;);
+document.getElementById(&quot;demo&quot;).innerHTML += &quot;&lt;br&gt;New href: &quot; + link.getAttribute(&quot;href&quot;);
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p4.png" alt=""></p>
+<h3>Example 4</h3>
+<p><strong>Result</strong> <a href="ex4-changing_attributes/index.html">View Example</a></p>
+<h2>Document</h2>
+<p>Document in project</p>
+<p>You can <a href="js-htmldom_methods.pdf">Download PDF</a> file.</p>
+<h2>Reference</h2>
+<ul>
+<li><a href="https://www.w3schools.com/js/js_htmldom_methods.asp">W3Schools JavaScript HTML DOM Methods</a></li>
+</ul>
+
+</body>
+</html>

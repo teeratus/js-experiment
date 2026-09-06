@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Function bind()</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Using bind() for Preserving this</h4>
+<button id="myBtn">Click me</button>
+<p id="demo"></p>
+
+<script>
+const person = {
+  firstName: "John",
+  lastName: "Doe",
+  display: function() {
+    document.getElementById("demo").innerHTML = this.firstName + " " + this.lastName;
+  }
+};
+
+// Without bind, "this" in the callback would refer to the button element
+// document.getElementById("myBtn").addEventListener("click", person.display); // Would show "undefined undefined"
+
+// With bind, "this" correctly refers to person
+document.getElementById("myBtn").addEventListener("click", person.display.bind(person));
+</script>
+
+</body>
+</html>

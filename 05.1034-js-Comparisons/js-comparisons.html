@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>js-comparisons</title>
+  <style>
+    body {
+      box-sizing: border-box;
+      min-width: 200px;
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 45px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+      font-size: 16px;
+      line-height: 1.5;
+      color: #24292e;
+      background-color: #ffffff;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 24px;
+      margin-bottom: 16px;
+      font-weight: 600;
+      line-height: 1.25;
+      border-bottom: 1px solid #eaecef;
+      padding-bottom: .3em;
+    }
+    h1 { font-size: 2em; }
+    h2 { font-size: 1.5em; }
+    h3 { font-size: 1.25em; }
+    code {
+      padding: .2em .4em;
+      margin: 0;
+      font-size: 85%;
+      background-color: rgba(27,31,35,.05);
+      border-radius: 3px;
+      font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
+    }
+    pre {
+      padding: 16px;
+      overflow: auto;
+      font-size: 85%;
+      line-height: 1.45;
+      background-color: #f6f8fa;
+      border-radius: 3px;
+      word-wrap: normal;
+    }
+    pre code {
+      background-color: transparent;
+      padding: 0;
+    }
+    blockquote {
+      padding: 0 1em;
+      color: #6a737d;
+      border-left: .25em solid #dfe2e5;
+      margin: 0 0 16px 0;
+    }
+    table {
+      border-spacing: 0;
+      border-collapse: collapse;
+      margin-top: 0;
+      margin-bottom: 16px;
+      width: 100%;
+    }
+    table th, table td {
+      padding: 6px 13px;
+      border: 1px solid #dfe2e5;
+    }
+    table tr:nth-child(2n) {
+      background-color: #f6f8fa;
+    }
+    img {
+      max-width: 100%;
+      box-sizing: content-box;
+    }
+    @media print {
+      body {
+        max-width: 100%;
+        padding: 0;
+      }
+      pre, blockquote, table, tr, img {
+        page-break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+<body>
+<h1>JavaScript Comparisons</h1>
+<p><a href="../acp-js.php">Back to JS page</a></p>
+<p>Table of Contents</p>
+<ul>
+<li><a href="#javascript-comparisons">JavaScript Comparisons</a><ul>
+<li><a href="#comparison-operators">Comparison Operators</a><ul>
+<li><a href="#example-1">Example 1</a></li>
+</ul>
+</li>
+<li><a href="#javascript-string-comparison">JavaScript String Comparison</a><ul>
+<li><a href="#example-2">Example 2</a></li>
+</ul>
+</li>
+<li><a href="#comparing-different-types">Comparing Different Types</a><ul>
+<li><a href="#example-3">Example 3</a></li>
+</ul>
+</li>
+<li><a href="#document">Document</a></li>
+<li><a href="#reference">Reference</a></li>
+</ul>
+</li>
+</ul>
+<h2>Comparison Operators</h2>
+<p>Comparison operators are used to <strong>compare two values</strong> and always return <code>true</code> or <code>false</code>.</p>
+<p>Given that <code>x = 5</code>, the table below explains the comparison operators:</p>
+<table>
+<thead>
+<tr>
+<th>Operator</th>
+<th>Description</th>
+<th>Comparing</th>
+<th>Returns</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>==</code></td>
+<td>equal to</td>
+<td><code>x == 8</code></td>
+<td><code>false</code></td>
+</tr>
+<tr>
+<td><code>==</code></td>
+<td>equal to</td>
+<td><code>x == 5</code></td>
+<td><code>true</code></td>
+</tr>
+<tr>
+<td><code>==</code></td>
+<td>equal to</td>
+<td><code>x == &quot;5&quot;</code></td>
+<td><code>true</code></td>
+</tr>
+<tr>
+<td><code>===</code></td>
+<td>equal value and type</td>
+<td><code>x === 5</code></td>
+<td><code>true</code></td>
+</tr>
+<tr>
+<td><code>===</code></td>
+<td>equal value and type</td>
+<td><code>x === &quot;5&quot;</code></td>
+<td><code>false</code></td>
+</tr>
+<tr>
+<td><code>!=</code></td>
+<td>not equal</td>
+<td><code>x != 8</code></td>
+<td><code>true</code></td>
+</tr>
+<tr>
+<td><code>!==</code></td>
+<td>not equal value or type</td>
+<td><code>x !== 5</code></td>
+<td><code>false</code></td>
+</tr>
+<tr>
+<td><code>!==</code></td>
+<td>not equal value or type</td>
+<td><code>x !== &quot;5&quot;</code></td>
+<td><code>true</code></td>
+</tr>
+<tr>
+<td><code>&gt;</code></td>
+<td>greater than</td>
+<td><code>x &gt; 8</code></td>
+<td><code>false</code></td>
+</tr>
+<tr>
+<td><code>&lt;</code></td>
+<td>less than</td>
+<td><code>x &lt; 8</code></td>
+<td><code>true</code></td>
+</tr>
+<tr>
+<td><code>&gt;=</code></td>
+<td>greater than or equal to</td>
+<td><code>x &gt;= 8</code></td>
+<td><code>false</code></td>
+</tr>
+<tr>
+<td><code>&lt;=</code></td>
+<td>less than or equal to</td>
+<td><code>x &lt;= 8</code></td>
+<td><code>true</code></td>
+</tr>
+</tbody></table>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Comparisons&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Comparison Operators&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+let x = 5;
+document.getElementById(&quot;demo&quot;).innerHTML =
+  &quot;x = &quot; + x + &quot;&lt;br&gt;&lt;br&gt;&quot; +
+  &quot;x == 8 : &quot; + (x == 8) + &quot;&lt;br&gt;&quot; +
+  &quot;x == 5 : &quot; + (x == 5) + &quot;&lt;br&gt;&quot; +
+  &quot;x == &#39;5&#39; : &quot; + (x == &quot;5&quot;) + &quot;&lt;br&gt;&quot; +
+  &quot;x === 5 : &quot; + (x === 5) + &quot;&lt;br&gt;&quot; +
+  &quot;x === &#39;5&#39; : &quot; + (x === &quot;5&quot;) + &quot;&lt;br&gt;&quot; +
+  &quot;x != 8 : &quot; + (x != 8) + &quot;&lt;br&gt;&quot; +
+  &quot;x &gt; 8 : &quot; + (x &gt; 8) + &quot;&lt;br&gt;&quot; +
+  &quot;x &lt; 8 : &quot; + (x &lt; 8) + &quot;&lt;br&gt;&quot; +
+  &quot;x &gt;= 8 : &quot; + (x &gt;= 8) + &quot;&lt;br&gt;&quot; +
+  &quot;x &lt;= 8 : &quot; + (x &lt;= 8);
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p1.png" alt=""></p>
+<h3>Example 1</h3>
+<p><strong>Result</strong> <a href="ex1-comparison_operators/index.html">View Example</a></p>
+<h2>JavaScript String Comparison</h2>
+<p>All the comparison operators can also be used on strings. Note that strings are compared alphabetically:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Comparisons&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;String Comparison&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+let text1 = &quot;A&quot;;
+let text2 = &quot;B&quot;;
+let result = text1 &lt; text2;
+document.getElementById(&quot;demo&quot;).innerHTML =
+  &quot;A &lt; B : &quot; + result + &quot;&lt;br&gt;&lt;br&gt;&quot; +
+  &quot;\&quot;Apple\&quot; &lt; \&quot;Banana\&quot; : &quot; + (&quot;Apple&quot; &lt; &quot;Banana&quot;) + &quot;&lt;br&gt;&quot; +
+  &quot;\&quot;John\&quot; &gt; \&quot;Jane\&quot; : &quot; + (&quot;John&quot; &gt; &quot;Jane&quot;);
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p2.png" alt=""></p>
+<h3>Example 2</h3>
+<p><strong>Result</strong> <a href="ex2-string_comparison/index.html">View Example</a></p>
+<h2>Comparing Different Types</h2>
+<p>Comparing data of different types may give unexpected results.</p>
+<p>When comparing a string with a number, JavaScript will convert the string to a number when doing the comparison.</p>
+<p>An empty string converts to 0. A non-numeric string converts to <code>NaN</code> which is always <code>false</code>:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Comparisons&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Comparing Different Types&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+document.getElementById(&quot;demo&quot;).innerHTML =
+  &quot;2 &lt; 12 : &quot; + (2 &lt; 12) + &quot;&lt;br&gt;&quot; +
+  &quot;\&quot;2\&quot; &lt; \&quot;12\&quot; : &quot; + (&quot;2&quot; &lt; &quot;12&quot;) + &quot;&lt;br&gt;&quot; +
+  &quot;\&quot;2\&quot; &lt; 12 : &quot; + (&quot;2&quot; &lt; 12) + &quot;&lt;br&gt;&quot; +
+  &quot;\&quot;\&quot; == 0 : &quot; + (&quot;&quot; == 0) + &quot;&lt;br&gt;&quot; +
+  &quot;\&quot;\&quot; === 0 : &quot; + (&quot;&quot; === 0);
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p3.png" alt=""></p>
+<h3>Example 3</h3>
+<p><strong>Result</strong> <a href="ex3-different_types/index.html">View Example</a></p>
+<h2>Document</h2>
+<p>Document in project</p>
+<p>You can <a href="js-comparisons.pdf">Download PDF</a> file.</p>
+<h2>Reference</h2>
+<ul>
+<li><a href="https://www.w3schools.com/js/js_comparisons.asp">W3Schools JavaScript Comparisons</a></li>
+</ul>
+
+</body>
+</html>

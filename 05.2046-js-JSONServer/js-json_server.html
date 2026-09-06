@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>js-json_server</title>
+  <style>
+    body {
+      box-sizing: border-box;
+      min-width: 200px;
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 45px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+      font-size: 16px;
+      line-height: 1.5;
+      color: #24292e;
+      background-color: #ffffff;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 24px;
+      margin-bottom: 16px;
+      font-weight: 600;
+      line-height: 1.25;
+      border-bottom: 1px solid #eaecef;
+      padding-bottom: .3em;
+    }
+    h1 { font-size: 2em; }
+    h2 { font-size: 1.5em; }
+    h3 { font-size: 1.25em; }
+    code {
+      padding: .2em .4em;
+      margin: 0;
+      font-size: 85%;
+      background-color: rgba(27,31,35,.05);
+      border-radius: 3px;
+      font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
+    }
+    pre {
+      padding: 16px;
+      overflow: auto;
+      font-size: 85%;
+      line-height: 1.45;
+      background-color: #f6f8fa;
+      border-radius: 3px;
+      word-wrap: normal;
+    }
+    pre code {
+      background-color: transparent;
+      padding: 0;
+    }
+    blockquote {
+      padding: 0 1em;
+      color: #6a737d;
+      border-left: .25em solid #dfe2e5;
+      margin: 0 0 16px 0;
+    }
+    table {
+      border-spacing: 0;
+      border-collapse: collapse;
+      margin-top: 0;
+      margin-bottom: 16px;
+      width: 100%;
+    }
+    table th, table td {
+      padding: 6px 13px;
+      border: 1px solid #dfe2e5;
+    }
+    table tr:nth-child(2n) {
+      background-color: #f6f8fa;
+    }
+    img {
+      max-width: 100%;
+      box-sizing: content-box;
+    }
+    @media print {
+      body {
+        max-width: 100%;
+        padding: 0;
+      }
+      pre, blockquote, table, tr, img {
+        page-break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+<body>
+<h1>JavaScript JSON Server</h1>
+<p><a href="../acp-js.php">Back to JS page</a></p>
+<p>Table of Contents</p>
+<ul>
+<li><a href="#javascript-json-server">JavaScript JSON Server</a><ul>
+<li><a href="#loading-json-from-a-server">Loading JSON from a Server</a><ul>
+<li><a href="#example-1">Example 1</a></li>
+</ul>
+</li>
+<li><a href="#loading-a-json-array">Loading a JSON Array</a><ul>
+<li><a href="#example-2">Example 2</a></li>
+</ul>
+</li>
+<li><a href="#handling-errors">Handling Errors</a><ul>
+<li><a href="#example-3">Example 3</a></li>
+</ul>
+</li>
+<li><a href="#sending-json">Sending JSON</a><ul>
+<li><a href="#example-4">Example 4</a></li>
+</ul>
+</li>
+<li><a href="#document">Document</a></li>
+<li><a href="#reference">Reference</a></li>
+</ul>
+</li>
+</ul>
+<h2>The fetch() Method</h2>
+<p>The <code>fetch()</code> method is used to send and receive data from a server.</p>
+<p>It returns a Promise that resolves to a Response object.</p>
+<p>The <code>response.json()</code> method parses the response body as JSON.</p>
+<h2>Loading JSON from a Server</h2>
+<p>Use <code>fetch()</code> to load a JSON file from a server, then use <code>response.json()</code> to parse it:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript JSON Server&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Loading JSON from a Server&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+fetch(&#39;https://jsonplaceholder.typicode.com/users/1&#39;)
+  .then(response =&gt; response.json())
+  .then(data =&gt; {
+    document.getElementById(&quot;demo&quot;).innerHTML =
+      &quot;Name: &quot; + data.name + &quot;&lt;br&gt;&quot; +
+      &quot;Email: &quot; + data.email + &quot;&lt;br&gt;&quot; +
+      &quot;City: &quot; + data.address.city;
+  })
+  .catch(error =&gt; {
+    document.getElementById(&quot;demo&quot;).innerHTML = &quot;Error: &quot; + error.message;
+  });
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p1.png" alt=""></p>
+<h3>Example 1</h3>
+<p><strong>Result</strong> <a href="ex1-load_json/index.html">View Example</a></p>
+<h2>Loading a JSON Array</h2>
+<p>You can also load a JSON array from a server:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript JSON Server&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Loading a JSON Array&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+fetch(&#39;https://jsonplaceholder.typicode.com/users&#39;)
+  .then(response =&gt; response.json())
+  .then(data =&gt; {
+    let text = &quot;&lt;ul&gt;&quot;;
+    for (let user of data) {
+      text += &quot;&lt;li&gt;&quot; + user.name + &quot; - &quot; + user.email + &quot;&lt;/li&gt;&quot;;
+    }
+    text += &quot;&lt;/ul&gt;&quot;;
+    document.getElementById(&quot;demo&quot;).innerHTML = text;
+  })
+  .catch(error =&gt; {
+    document.getElementById(&quot;demo&quot;).innerHTML = &quot;Error: &quot; + error.message;
+  });
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p2.png" alt=""></p>
+<h3>Example 2</h3>
+<p><strong>Result</strong> <a href="ex2-load_array/index.html">View Example</a></p>
+<h2>Handling Errors</h2>
+<p>Always handle errors when loading JSON from a server. Check the response status:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript JSON Server&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Handling Errors&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+fetch(&#39;https://jsonplaceholder.typicode.com/users/nonexistent&#39;)
+  .then(response =&gt; {
+    if (!response.ok) {
+      throw new Error(&quot;HTTP error! Status: &quot; + response.status);
+    }
+    return response.json();
+  })
+  .then(data =&gt; {
+    document.getElementById(&quot;demo&quot;).innerHTML = &quot;Name: &quot; + data.name;
+  })
+  .catch(error =&gt; {
+    document.getElementById(&quot;demo&quot;).innerHTML = &quot;Error: &quot; + error.message;
+  });
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p3.png" alt=""></p>
+<h3>Example 3</h3>
+<p><strong>Result</strong> <a href="ex3-error_handling/index.html">View Example</a></p>
+<h2>Sending JSON</h2>
+<p>You can use <code>fetch()</code> with the <code>POST</code> method to send JSON data to a server:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript JSON Server&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Sending JSON&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+const userData = {
+  name: &quot;John Doe&quot;,
+  email: &quot;john@example.com&quot;,
+  username: &quot;johndoe&quot;
+};
+
+fetch(&#39;https://jsonplaceholder.typicode.com/users&#39;, {
+  method: &#39;POST&#39;,
+  headers: {
+    &#39;Content-Type&#39;: &#39;application/json&#39;
+  },
+  body: JSON.stringify(userData)
+})
+  .then(response =&gt; response.json())
+  .then(data =&gt; {
+    document.getElementById(&quot;demo&quot;).innerHTML =
+      &quot;User created!&lt;br&gt;&quot; +
+      &quot;ID: &quot; + data.id + &quot;&lt;br&gt;&quot; +
+      &quot;Name: &quot; + data.name + &quot;&lt;br&gt;&quot; +
+      &quot;Email: &quot; + data.email;
+  })
+  .catch(error =&gt; {
+    document.getElementById(&quot;demo&quot;).innerHTML = &quot;Error: &quot; + error.message;
+  });
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p4.png" alt=""></p>
+<h3>Example 4</h3>
+<p><strong>Result</strong> <a href="ex4-send_json/index.html">View Example</a></p>
+<h2>Document</h2>
+<p>Document in project</p>
+<p>You can <a href="js-json_server.pdf">Download PDF</a> file.</p>
+<h2>Reference</h2>
+<ul>
+<li><a href="https://www.w3schools.com/js/js_json_server.asp">W3Schools JavaScript JSON Server</a></li>
+</ul>
+
+</body>
+</html>

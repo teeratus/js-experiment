@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Atomics</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Atomics.add() and Atomics.sub()</h4>
+<p id="demo"></p>
+
+<script>
+const sharedBuffer = new SharedArrayBuffer(8);
+const sharedArray = new Int32Array(sharedBuffer);
+
+sharedArray[0] = 50;
+sharedArray[1] = 100;
+
+// Add and subtract atomically
+let old1 = Atomics.add(sharedArray, 0, 25);   // 50 + 25 = 75
+let old2 = Atomics.sub(sharedArray, 1, 30);   // 100 - 30 = 70
+
+let text = "Atomics.add() and Atomics.sub():<br><br>";
+text += "Atomics.add(sharedArray, 0, 25):<br>";
+text += "  Old value: " + old1 + "<br>";
+text += "  New value: " + Atomics.load(sharedArray, 0) + "<br><br>";
+
+text += "Atomics.sub(sharedArray, 1, 30):<br>";
+text += "  Old value: " + old2 + "<br>";
+text += "  New value: " + Atomics.load(sharedArray, 1) + "<br><br>";
+
+text += "Final values: " + Atomics.load(sharedArray, 0) + ", " + Atomics.load(sharedArray, 1);
+
+document.getElementById("demo").innerHTML = text;
+</script>
+
+</body>
+</html>

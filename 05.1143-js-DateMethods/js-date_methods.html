@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>js-date_methods</title>
+  <style>
+    body {
+      box-sizing: border-box;
+      min-width: 200px;
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 45px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+      font-size: 16px;
+      line-height: 1.5;
+      color: #24292e;
+      background-color: #ffffff;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 24px;
+      margin-bottom: 16px;
+      font-weight: 600;
+      line-height: 1.25;
+      border-bottom: 1px solid #eaecef;
+      padding-bottom: .3em;
+    }
+    h1 { font-size: 2em; }
+    h2 { font-size: 1.5em; }
+    h3 { font-size: 1.25em; }
+    code {
+      padding: .2em .4em;
+      margin: 0;
+      font-size: 85%;
+      background-color: rgba(27,31,35,.05);
+      border-radius: 3px;
+      font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
+    }
+    pre {
+      padding: 16px;
+      overflow: auto;
+      font-size: 85%;
+      line-height: 1.45;
+      background-color: #f6f8fa;
+      border-radius: 3px;
+      word-wrap: normal;
+    }
+    pre code {
+      background-color: transparent;
+      padding: 0;
+    }
+    blockquote {
+      padding: 0 1em;
+      color: #6a737d;
+      border-left: .25em solid #dfe2e5;
+      margin: 0 0 16px 0;
+    }
+    table {
+      border-spacing: 0;
+      border-collapse: collapse;
+      margin-top: 0;
+      margin-bottom: 16px;
+      width: 100%;
+    }
+    table th, table td {
+      padding: 6px 13px;
+      border: 1px solid #dfe2e5;
+    }
+    table tr:nth-child(2n) {
+      background-color: #f6f8fa;
+    }
+    img {
+      max-width: 100%;
+      box-sizing: content-box;
+    }
+    @media print {
+      body {
+        max-width: 100%;
+        padding: 0;
+      }
+      pre, blockquote, table, tr, img {
+        page-break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+<body>
+<h1>JavaScript Date Methods</h1>
+<p><a href="../acp-js.php">Back to JS page</a></p>
+<p>Table of Contents</p>
+<ul>
+<li><a href="#javascript-date-methods">JavaScript Date Methods</a><ul>
+<li><a href="#get-the-current-time">Get the Current Time</a><ul>
+<li><a href="#example-1">Example 1</a></li>
+</ul>
+</li>
+<li><a href="#date-get-methods">Date Get Methods</a><ul>
+<li><a href="#example-2">Example 2</a></li>
+</ul>
+</li>
+<li><a href="#the-datenow-method">The Date.now() Method</a><ul>
+<li><a href="#example-3">Example 3</a></li>
+</ul>
+</li>
+<li><a href="#utc-date-get-methods">UTC Date Get Methods</a><ul>
+<li><a href="#example-4">Example 4</a></li>
+</ul>
+</li>
+<li><a href="#the-gettimezoneoffset-method">The getTimezoneOffset() Method</a><ul>
+<li><a href="#example-5">Example 5</a></li>
+</ul>
+</li>
+<li><a href="#document">Document</a></li>
+<li><a href="#reference">Reference</a></li>
+</ul>
+</li>
+</ul>
+<h2>Get the Current Time</h2>
+<p>The <code>new Date()</code> constructor creates a date object with the current date and time:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Date Methods&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Get the Current Time&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+const d = new Date();
+document.getElementById(&quot;demo&quot;).innerHTML = &quot;Current date and time: &quot; + d;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p1.png" alt=""></p>
+<h3>Example 1</h3>
+<p><strong>Result</strong> <a href="ex1-current_time/index.html">View Example</a></p>
+<h2>Date Get Methods</h2>
+<p>Date get methods return parts of a date. The most common methods:</p>
+<ul>
+<li><code>getFullYear()</code> - year (4 digits)</li>
+<li><code>getMonth()</code> - month (0-11)</li>
+<li><code>getDate()</code> - day of month (1-31)</li>
+<li><code>getDay()</code> - day of week (0=Sunday)</li>
+<li><code>getHours()</code> - hours (0-23)</li>
+<li><code>getMinutes()</code> - minutes (0-59)</li>
+<li><code>getSeconds()</code> - seconds (0-59)</li>
+</ul>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Date Methods&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Date Get Methods&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+const d = new Date(2024, 5, 15, 14, 30, 45);
+
+document.getElementById(&quot;demo&quot;).innerHTML =
+  &quot;getFullYear(): &quot; + d.getFullYear() + &quot;&lt;br&gt;&quot; +
+  &quot;getMonth(): &quot; + d.getMonth() + &quot; (June = 5)&lt;br&gt;&quot; +
+  &quot;getDate(): &quot; + d.getDate() + &quot;&lt;br&gt;&quot; +
+  &quot;getDay(): &quot; + d.getDay() + &quot; (Saturday = 6)&lt;br&gt;&quot; +
+  &quot;getHours(): &quot; + d.getHours() + &quot;&lt;br&gt;&quot; +
+  &quot;getMinutes(): &quot; + d.getMinutes() + &quot;&lt;br&gt;&quot; +
+  &quot;getSeconds(): &quot; + d.getSeconds();
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p2.png" alt=""></p>
+<h3>Example 2</h3>
+<p><strong>Result</strong> <a href="ex2-get_methods/index.html">View Example</a></p>
+<h2>The Date.now() Method</h2>
+<p><code>Date.now()</code> returns the number of milliseconds since January 1, 1970:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Date Methods&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;The Date.now() Method&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+// Date.now() returns milliseconds since Jan 1, 1970
+const ms = Date.now();
+const date = new Date(ms);
+
+// Also getTime() returns the same
+const d = new Date();
+const time = d.getTime();
+
+document.getElementById(&quot;demo&quot;).innerHTML =
+  &quot;Date.now(): &quot; + ms + &quot; ms&lt;br&gt;&quot; +
+  &quot;new Date(Date.now()): &quot; + date + &quot;&lt;br&gt;&lt;br&gt;&quot; +
+  &quot;d.getTime(): &quot; + time + &quot; ms&lt;br&gt;&quot; +
+  &quot;Date.now() === d.getTime(): &quot; + (ms === time);
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p3.png" alt=""></p>
+<h3>Example 3</h3>
+<p><strong>Result</strong> <a href="ex3-date_now/index.html">View Example</a></p>
+<h2>UTC Date Get Methods</h2>
+<p>UTC methods return date parts according to UTC (Coordinated Universal Time):</p>
+<ul>
+<li><code>getUTCFullYear()</code> - year in UTC</li>
+<li><code>getUTCMonth()</code> - month in UTC</li>
+<li><code>getUTCDate()</code> - day in UTC</li>
+<li><code>getUTCDay()</code> - weekday in UTC</li>
+<li><code>getUTCHours()</code> - hours in UTC</li>
+</ul>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Date Methods&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;UTC Date Get Methods&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+const d = new Date();
+
+document.getElementById(&quot;demo&quot;).innerHTML =
+  &quot;Local vs UTC:&lt;br&gt;&lt;br&gt;&quot; +
+  &quot;getHours(): &quot; + d.getHours() + &quot; (local)&lt;br&gt;&quot; +
+  &quot;getUTCHours(): &quot; + d.getUTCHours() + &quot; (UTC)&lt;br&gt;&lt;br&gt;&quot; +
+  &quot;getFullYear(): &quot; + d.getFullYear() + &quot; (local)&lt;br&gt;&quot; +
+  &quot;getUTCFullYear(): &quot; + d.getUTCFullYear() + &quot; (UTC)&lt;br&gt;&lt;br&gt;&quot; +
+  &quot;getMonth(): &quot; + d.getMonth() + &quot; (local)&lt;br&gt;&quot; +
+  &quot;getUTCMonth(): &quot; + d.getUTCMonth() + &quot; (UTC)&lt;br&gt;&lt;br&gt;&quot; +
+  &quot;UTC methods use the universal time standard&quot;;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p4.png" alt=""></p>
+<h3>Example 4</h3>
+<p><strong>Result</strong> <a href="ex4-utc_methods/index.html">View Example</a></p>
+<h2>The getTimezoneOffset() Method</h2>
+<p><code>getTimezoneOffset()</code> returns the difference (in minutes) between local time and UTC time:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Date Methods&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;The getTimezoneOffset() Method&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+const d = new Date();
+
+// Returns the timezone offset in minutes
+const offset = d.getTimezoneOffset();
+
+// Convert to hours
+const offsetHours = offset / 60;
+
+document.getElementById(&quot;demo&quot;).innerHTML =
+  &quot;getTimezoneOffset(): &quot; + offset + &quot; minutes&lt;br&gt;&quot; +
+  &quot;Offset in hours: &quot; + offsetHours + &quot; hours&lt;br&gt;&lt;br&gt;&quot; +
+  &quot;This is the difference between your local time and UTC. &quot; +
+  &quot;For example, Bangkok (UTC+7) has an offset of -420 minutes.&quot;;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p5.png" alt=""></p>
+<h3>Example 5</h3>
+<p><strong>Result</strong> <a href="ex5-timezone_offset/index.html">View Example</a></p>
+<h2>Document</h2>
+<p>Document in project</p>
+<p>You can <a href="js-date_methods.pdf">Download PDF</a> file.</p>
+<h2>Reference</h2>
+<ul>
+<li><a href="https://www.w3schools.com/js/js_date_methods.asp">W3Schools JavaScript Date Methods</a></li>
+</ul>
+
+</body>
+</html>

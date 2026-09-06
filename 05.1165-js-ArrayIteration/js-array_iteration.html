@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>js-array_iteration</title>
+  <style>
+    body {
+      box-sizing: border-box;
+      min-width: 200px;
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 45px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+      font-size: 16px;
+      line-height: 1.5;
+      color: #24292e;
+      background-color: #ffffff;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 24px;
+      margin-bottom: 16px;
+      font-weight: 600;
+      line-height: 1.25;
+      border-bottom: 1px solid #eaecef;
+      padding-bottom: .3em;
+    }
+    h1 { font-size: 2em; }
+    h2 { font-size: 1.5em; }
+    h3 { font-size: 1.25em; }
+    code {
+      padding: .2em .4em;
+      margin: 0;
+      font-size: 85%;
+      background-color: rgba(27,31,35,.05);
+      border-radius: 3px;
+      font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
+    }
+    pre {
+      padding: 16px;
+      overflow: auto;
+      font-size: 85%;
+      line-height: 1.45;
+      background-color: #f6f8fa;
+      border-radius: 3px;
+      word-wrap: normal;
+    }
+    pre code {
+      background-color: transparent;
+      padding: 0;
+    }
+    blockquote {
+      padding: 0 1em;
+      color: #6a737d;
+      border-left: .25em solid #dfe2e5;
+      margin: 0 0 16px 0;
+    }
+    table {
+      border-spacing: 0;
+      border-collapse: collapse;
+      margin-top: 0;
+      margin-bottom: 16px;
+      width: 100%;
+    }
+    table th, table td {
+      padding: 6px 13px;
+      border: 1px solid #dfe2e5;
+    }
+    table tr:nth-child(2n) {
+      background-color: #f6f8fa;
+    }
+    img {
+      max-width: 100%;
+      box-sizing: content-box;
+    }
+    @media print {
+      body {
+        max-width: 100%;
+        padding: 0;
+      }
+      pre, blockquote, table, tr, img {
+        page-break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+<body>
+<h1>JavaScript Array Iteration</h1>
+<p><a href="../acp-js.php">Back to JS page</a></p>
+<p>Table of Contents</p>
+<ul>
+<li><a href="#javascript-array-iteration">JavaScript Array Iteration</a><ul>
+<li><a href="#looping-array-values">Looping Array Values</a><ul>
+<li><a href="#example-1">Example 1</a></li>
+</ul>
+</li>
+<li><a href="#foreach">forEach()</a><ul>
+<li><a href="#example-2">Example 2</a></li>
+</ul>
+</li>
+<li><a href="#map">map()</a><ul>
+<li><a href="#example-3">Example 3</a></li>
+</ul>
+</li>
+<li><a href="#filter-and-reduce">filter() and reduce()</a><ul>
+<li><a href="#example-4">Example 4</a></li>
+</ul>
+</li>
+<li><a href="#every-and-some">every() and some()</a><ul>
+<li><a href="#example-5">Example 5</a></li>
+</ul>
+</li>
+<li><a href="#document">Document</a></li>
+<li><a href="#reference">Reference</a></li>
+</ul>
+</li>
+</ul>
+<h2>Looping Array Values</h2>
+<p>The <code>for...of</code> loop iterates over array values. The <code>for...in</code> loop iterates over array indexes (not recommended):</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Array Iteration&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Looping Array Values&lt;/h4&gt;
+&lt;p id=&quot;demo1&quot;&gt;&lt;/p&gt;
+&lt;p id=&quot;demo2&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+const fruits = [&quot;Banana&quot;, &quot;Orange&quot;, &quot;Apple&quot;, &quot;Mango&quot;];
+
+// for...of loop (recommended) - iterates values
+let text1 = &quot;for...of: &quot;;
+for (let fruit of fruits) {
+  text1 += fruit + &quot; &quot;;
+}
+document.getElementById(&quot;demo1&quot;).innerHTML = text1;
+
+// for...in loop (not recommended) - iterates indexes
+let text2 = &quot;for...in: &quot;;
+for (let index in fruits) {
+  text2 += index + &quot; &quot;;
+}
+document.getElementById(&quot;demo2&quot;).innerHTML = text2;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p1.png" alt=""></p>
+<h3>Example 1</h3>
+<p><strong>Result</strong> <a href="ex1-looping/index.html">View Example</a></p>
+<h2>forEach()</h2>
+<p>The <code>forEach()</code> method calls a function once for each array element:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Array Iteration&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;forEach()&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+const numbers = [1, 2, 3, 4, 5];
+let text = &quot;&quot;;
+
+numbers.forEach(function(value, index) {
+  text += &quot;Index &quot; + index + &quot;: &quot; + value + &quot;&lt;br&gt;&quot;;
+});
+
+document.getElementById(&quot;demo&quot;).innerHTML = text;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p2.png" alt=""></p>
+<h3>Example 2</h3>
+<p><strong>Result</strong> <a href="ex2-foreach/index.html">View Example</a></p>
+<h2>map()</h2>
+<p>The <code>map()</code> method creates a new array by performing a function on each element:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Array Iteration&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;map()&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+const numbers = [1, 2, 3, 4, 5];
+
+// Create a new array with each value multiplied by 2
+const doubled = numbers.map(function(value) {
+  return value * 2;
+});
+
+// Create a new array with string labels
+const labels = numbers.map(function(value) {
+  return &quot;Number: &quot; + value;
+});
+
+document.getElementById(&quot;demo&quot;).innerHTML =
+  &quot;Original: &quot; + numbers + &quot;&lt;br&gt;&quot; +
+  &quot;map(x * 2): &quot; + doubled + &quot;&lt;br&gt;&quot; +
+  &quot;map(labels): &quot; + labels;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p3.png" alt=""></p>
+<h3>Example 3</h3>
+<p><strong>Result</strong> <a href="ex3-map/index.html">View Example</a></p>
+<h2>filter() and reduce()</h2>
+<p><code>filter()</code> creates a new array with elements that pass a test. <code>reduce()</code> reduces the array to a single value:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Array Iteration&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;filter() and reduce()&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+
+// filter - keep values &gt; 5
+const filtered = numbers.filter(function(value) {
+  return value &gt; 5;
+});
+
+// reduce - sum all values
+const sum = numbers.reduce(function(total, value) {
+  return total + value;
+}, 0);
+
+// reduce - find max value
+const max = numbers.reduce(function(acc, value) {
+  return Math.max(acc, value);
+});
+
+document.getElementById(&quot;demo&quot;).innerHTML =
+  &quot;Original: &quot; + numbers + &quot;&lt;br&gt;&lt;br&gt;&quot; +
+  &quot;filter(v &gt; 5): &quot; + filtered + &quot;&lt;br&gt;&quot; +
+  &quot;reduce(sum): &quot; + sum + &quot;&lt;br&gt;&quot; +
+  &quot;reduce(max): &quot; + max;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p4.png" alt=""></p>
+<h3>Example 4</h3>
+<p><strong>Result</strong> <a href="ex4-filter_reduce/index.html">View Example</a></p>
+<h2>every() and some()</h2>
+<p><code>every()</code> returns true if ALL elements pass a test. <code>some()</code> returns true if ANY element passes:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Array Iteration&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;every() and some()&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+const numbers = [2, 4, 6, 8, 10];
+
+// every() - all values &gt; 1?
+const allGreater = numbers.every(function(value) {
+  return value &gt; 1;
+});
+
+// every() - all even?
+const allEven = numbers.every(function(value) {
+  return value % 2 === 0;
+});
+
+// some() - any value &gt; 6?
+const anyGreater = numbers.some(function(value) {
+  return value &gt; 6;
+});
+
+// some() - any value &gt; 10?
+const anyOver10 = numbers.some(function(value) {
+  return value &gt; 10;
+});
+
+document.getElementById(&quot;demo&quot;).innerHTML =
+  &quot;Array: &quot; + numbers + &quot;&lt;br&gt;&lt;br&gt;&quot; +
+  &quot;every(v &gt; 1): &quot; + allGreater + &quot;&lt;br&gt;&quot; +
+  &quot;every(v even): &quot; + allEven + &quot;&lt;br&gt;&quot; +
+  &quot;some(v &gt; 6): &quot; + anyGreater + &quot;&lt;br&gt;&quot; +
+  &quot;some(v &gt; 10): &quot; + anyOver10;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p5.png" alt=""></p>
+<h3>Example 5</h3>
+<p><strong>Result</strong> <a href="ex5-every_some/index.html">View Example</a></p>
+<h2>Document</h2>
+<p>Document in project</p>
+<p>You can <a href="js-array_iteration.pdf">Download PDF</a> file.</p>
+<h2>Reference</h2>
+<ul>
+<li><a href="https://www.w3schools.com/js/js_array_iteration.asp">W3Schools JavaScript Array Iteration</a></li>
+</ul>
+
+</body>
+</html>

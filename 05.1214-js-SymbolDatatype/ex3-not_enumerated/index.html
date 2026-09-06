@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Symbol Datatype</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Symbols are Not Included in for...in</h4>
+<p id="demo"></p>
+
+<script>
+const secretKey = Symbol("secret");
+
+const person = {
+  name: "John",
+  age: 30,
+  [secretKey]: "Hidden"
+};
+
+// for...in does NOT show symbol keys
+let text = "for...in loop:<br>";
+for (let key in person) {
+  text += key + ": " + person[key] + "<br>";
+}
+
+text += "<br>";
+
+// JSON.stringify does NOT show symbols
+text += "JSON.stringify(person):<br>";
+text += JSON.stringify(person);
+
+document.getElementById("demo").innerHTML = text;
+</script>
+
+</body>
+</html>

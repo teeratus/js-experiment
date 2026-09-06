@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Debugging Breakpoints</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Common Beginner Mistakes</h4>
+<p>Open DevTools (F12). Try setting a breakpoint inside the loop to see it trigger multiple times.</p>
+<p id="demo"></p>
+
+<script>
+let text = "";
+
+// Mistake: Breakpoint inside loop triggers many times
+for (let i = 0; i < 5; i++) {
+  text += "Iteration " + i + "<br>";  // Set breakpoint here - triggers 5 times!
+}
+
+// Mistake: Variables change unexpectedly
+let value = 10;
+value = value * 2;
+value = value + 5;
+value = value - 3;  // What is the value now? Don't guess - check the console!
+
+console.log("Final value:", value);
+text += "<br>Final value: " + value + " (check console)";
+
+document.getElementById("demo").innerHTML = text;
+</script>
+
+</body>
+</html>

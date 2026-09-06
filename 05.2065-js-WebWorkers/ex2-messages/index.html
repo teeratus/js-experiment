@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Web Workers</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Sending and Receiving Messages</h4>
+<button onclick="sendMessage()">Send Message to Worker</button>
+<p id="demo"></p>
+
+<script>
+let worker2;
+
+function sendMessage() {
+  if (typeof(Worker) !== "undefined") {
+    if (typeof(worker2) == "undefined") {
+      worker2 = new Worker("worker.js");
+    }
+    worker2.onmessage = function(event) {
+      document.getElementById("demo").innerHTML = event.data;
+    };
+    worker2.postMessage("Hello Worker!");
+  } else {
+    document.getElementById("demo").innerHTML = "Web Workers not supported.";
+  }
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Data Types</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Built-In Object Types</h4>
+<p id="demo"></p>
+
+<script>
+let text = "Built-in object types:<br><br>";
+
+const obj = new Object();
+text += "new Object() → " + obj.constructor.name + "<br>";
+
+const arr = new Array(1, 2);
+text += "new Array(1, 2) → " + arr.constructor.name + "<br>";
+
+const date = new Date();
+text += "new Date() → " + date.constructor.name + "<br>";
+
+const str = new String("hi");
+text += "new String('hi') → " + str.constructor.name + "<br>";
+
+const num = new Number(42);
+text += "new Number(42) → " + num.constructor.name + "<br>";
+
+const bool = new Boolean(true);
+text += "new Boolean(true) → " + bool.constructor.name;
+
+document.getElementById("demo").innerHTML = text;
+</script>
+
+</body>
+</html>

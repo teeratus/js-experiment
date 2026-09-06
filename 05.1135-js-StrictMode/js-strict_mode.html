@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>js-strict_mode</title>
+  <style>
+    body {
+      box-sizing: border-box;
+      min-width: 200px;
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 45px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+      font-size: 16px;
+      line-height: 1.5;
+      color: #24292e;
+      background-color: #ffffff;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 24px;
+      margin-bottom: 16px;
+      font-weight: 600;
+      line-height: 1.25;
+      border-bottom: 1px solid #eaecef;
+      padding-bottom: .3em;
+    }
+    h1 { font-size: 2em; }
+    h2 { font-size: 1.5em; }
+    h3 { font-size: 1.25em; }
+    code {
+      padding: .2em .4em;
+      margin: 0;
+      font-size: 85%;
+      background-color: rgba(27,31,35,.05);
+      border-radius: 3px;
+      font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
+    }
+    pre {
+      padding: 16px;
+      overflow: auto;
+      font-size: 85%;
+      line-height: 1.45;
+      background-color: #f6f8fa;
+      border-radius: 3px;
+      word-wrap: normal;
+    }
+    pre code {
+      background-color: transparent;
+      padding: 0;
+    }
+    blockquote {
+      padding: 0 1em;
+      color: #6a737d;
+      border-left: .25em solid #dfe2e5;
+      margin: 0 0 16px 0;
+    }
+    table {
+      border-spacing: 0;
+      border-collapse: collapse;
+      margin-top: 0;
+      margin-bottom: 16px;
+      width: 100%;
+    }
+    table th, table td {
+      padding: 6px 13px;
+      border: 1px solid #dfe2e5;
+    }
+    table tr:nth-child(2n) {
+      background-color: #f6f8fa;
+    }
+    img {
+      max-width: 100%;
+      box-sizing: content-box;
+    }
+    @media print {
+      body {
+        max-width: 100%;
+        padding: 0;
+      }
+      pre, blockquote, table, tr, img {
+        page-break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+<body>
+<h1>JavaScript Strict Mode</h1>
+<p><a href="../acp-js.php">Back to JS page</a></p>
+<p>Table of Contents</p>
+<ul>
+<li><a href="#javascript-strict-mode">JavaScript Strict Mode</a><ul>
+<li><a href="#declaring-strict-mode">Declaring Strict Mode</a><ul>
+<li><a href="#example-1">Example 1</a></li>
+</ul>
+</li>
+<li><a href="#why-strict-mode">Why Strict Mode?</a><ul>
+<li><a href="#example-2">Example 2</a></li>
+</ul>
+</li>
+<li><a href="#not-allowed-in-strict-mode">Not Allowed in Strict Mode</a><ul>
+<li><a href="#example-3">Example 3</a></li>
+</ul>
+</li>
+<li><a href="#watch-out">Watch Out!</a><ul>
+<li><a href="#example-4">Example 4</a></li>
+</ul>
+</li>
+<li><a href="#document">Document</a></li>
+<li><a href="#reference">Reference</a></li>
+</ul>
+</li>
+</ul>
+<h2>The &quot;use strict&quot; Directive</h2>
+<p>The <code>&quot;use strict&quot;</code> directive was introduced in ECMAScript 5. It is <strong>not a statement</strong>, but a literal expression, ignored by earlier versions of JavaScript.</p>
+<p>The purpose of <code>&quot;use strict&quot;</code> is to indicate that the code should be executed in <strong>strict mode</strong>. With strict mode, you cannot, for example, use undeclared variables.</p>
+<h2>Declaring Strict Mode</h2>
+<p>Strict mode is declared by adding <code>&quot;use strict&quot;;</code> to the beginning of a script or a function:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Strict Mode&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Declaring Strict Mode&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+// Declare strict mode at the top of the script
+&quot;use strict&quot;;
+
+// This works fine in strict mode (declared variable)
+let carName = &quot;Volvo&quot;;
+document.getElementById(&quot;demo&quot;).innerHTML =
+  &quot;carName: &quot; + carName + &quot;&lt;br&gt;&quot; +
+  &quot;Strict mode is active at script level&quot;;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p1.png" alt=""></p>
+<h3>Example 1</h3>
+<p><strong>Result</strong> <a href="ex1-declare_strict/index.html">View Example</a></p>
+<h2>Why Strict Mode?</h2>
+<p>Strict mode helps you write cleaner code by catching common coding mistakes and &quot;unsafe&quot; actions:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Strict Mode&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Why Strict Mode?&lt;/h4&gt;
+&lt;p id=&quot;demo1&quot;&gt;&lt;/p&gt;
+&lt;p id=&quot;demo2&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+// Without strict mode - undeclared variable is silently created
+function nonStrict() {
+  undeclaredVar = 42;  // No error (bad!)
+}
+nonStrict();
+document.getElementById(&quot;demo1&quot;).innerHTML =
+  &quot;Non-strict: undeclaredVar = &quot; + undeclaredVar + &quot; (silently created)&quot;;
+
+// With strict mode - undeclared variable causes an error
+function strictFunction() {
+  &quot;use strict&quot;;
+  try {
+    undeclaredVar2 = 99;  // Throws ReferenceError in strict mode
+  } catch(err) {
+    document.getElementById(&quot;demo2&quot;).innerHTML =
+      &quot;Strict mode error: &quot; + err.message;
+  }
+}
+strictFunction();
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p2.png" alt=""></p>
+<h3>Example 2</h3>
+<p><strong>Result</strong> <a href="ex2-why_strict/index.html">View Example</a></p>
+<h2>Not Allowed in Strict Mode</h2>
+<p>Strict mode prevents several unsafe actions:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Strict Mode&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Not Allowed in Strict Mode&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+&quot;use strict&quot;;
+
+let text = &quot;&lt;b&gt;Not allowed in strict mode:&lt;/b&gt;&lt;br&gt;&lt;br&gt;&quot;;
+text += &quot;1. Using undeclared variables (ReferenceError)&lt;br&gt;&quot;;
+text += &quot;2. Deleting variables (SyntaxError)&lt;br&gt;&quot;;
+text += &quot;3. Duplicating parameters (SyntaxError)&lt;br&gt;&quot;;
+text += &quot;4. Using reserved words as names&lt;br&gt;&quot;;
+text += &quot;5. Octal numeric literals&lt;br&gt;&quot;;
+text += &quot;6. Writing to read-only properties&lt;br&gt;&lt;br&gt;&quot;;
+
+// Example: writing to read-only property
+try {
+  const obj = {};
+  Object.defineProperty(obj, &quot;readonly&quot;, {value: 10, writable: false});
+  obj.readonly = 20;  // TypeError in strict mode
+  text += &quot;Read-only property write: no error (non-strict behavior)&quot;;
+} catch(err) {
+  text += &quot;Read-only property error: &quot; + err.message;
+}
+
+document.getElementById(&quot;demo&quot;).innerHTML = text;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p3.png" alt=""></p>
+<h3>Example 3</h3>
+<p><strong>Result</strong> <a href="ex3-not_allowed/index.html">View Example</a></p>
+<h2>Watch Out!</h2>
+<p>Strict mode only applies to the code where it is declared. If you declare it inside a function, it only applies to that function:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Strict Mode&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Watch Out!&lt;/h4&gt;
+&lt;p id=&quot;demo1&quot;&gt;&lt;/p&gt;
+&lt;p id=&quot;demo2&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+// Strict mode is NOT active here (global scope without directive)
+
+// Function with strict mode - only affects this function
+function strictFunction() {
+  &quot;use strict&quot;;
+  try {
+    undeclaredVar = 100; // Error in strict mode
+  } catch(err) {
+    document.getElementById(&quot;demo1&quot;).innerHTML =
+      &quot;Inside strict function: &quot; + err.message;
+  }
+}
+
+// Function WITHOUT strict mode - affected by global non-strict
+function nonStrictFunction() {
+  undeclaredVar2 = 200; // No error (non-strict)
+  document.getElementById(&quot;demo2&quot;).innerHTML =
+    &quot;Outside strict function (global): undeclaredVar2 = &quot; + undeclaredVar2 + &quot;&lt;br&gt;&quot; +
+    &quot;Strict mode only applies where it is declared&quot;;
+}
+
+strictFunction();
+nonStrictFunction();
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p4.png" alt=""></p>
+<h3>Example 4</h3>
+<p><strong>Result</strong> <a href="ex4-watch_out/index.html">View Example</a></p>
+<h2>Document</h2>
+<p>Document in project</p>
+<p>You can <a href="js-strict_mode.pdf">Download PDF</a> file.</p>
+<h2>Reference</h2>
+<ul>
+<li><a href="https://www.w3schools.com/js/js_strict.asp">W3Schools JavaScript Strict Mode</a></li>
+</ul>
+
+</body>
+</html>

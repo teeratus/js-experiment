@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Module Import</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Default + Named Import</h4>
+<p id="demo"></p>
+
+<script type="module">
+import myAdd, { square, cube } from './calc.js';
+
+document.getElementById("demo").innerHTML =
+  "Default (add): 10 + 5 = " + myAdd(10, 5) + "<br>" +
+  "square(5) = " + square(5) + "<br>" +
+  "cube(3) = " + cube(3);
+</script>
+
+</body>
+</html>

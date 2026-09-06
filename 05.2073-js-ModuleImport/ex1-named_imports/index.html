@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Module Import</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Named Imports</h4>
+<p id="demo"></p>
+
+<script type="module">
+import { add, multiply, PI } from './utils.js';
+
+document.getElementById("demo").innerHTML =
+  "add(10, 5) = " + add(10, 5) + "<br>" +
+  "multiply(10, 5) = " + multiply(10, 5) + "<br>" +
+  "PI = " + PI;
+</script>
+
+</body>
+</html>

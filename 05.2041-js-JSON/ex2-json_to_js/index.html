@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript JSON</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Converting JSON to JavaScript</h4>
+<p id="demo"></p>
+
+<script>
+// JSON text received from a server
+const jsonText = '{"name":"John","age":30,"city":"New York"}';
+
+// Convert JSON string to JavaScript object
+const obj = JSON.parse(jsonText);
+
+document.getElementById("demo").innerHTML =
+  "Name: " + obj.name + "<br>" +
+  "Age: " + obj.age + "<br>" +
+  "City: " + obj.city;
+</script>
+
+</body>
+</html>

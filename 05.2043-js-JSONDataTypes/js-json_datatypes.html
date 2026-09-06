@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>js-json_datatypes</title>
+  <style>
+    body {
+      box-sizing: border-box;
+      min-width: 200px;
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 45px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+      font-size: 16px;
+      line-height: 1.5;
+      color: #24292e;
+      background-color: #ffffff;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 24px;
+      margin-bottom: 16px;
+      font-weight: 600;
+      line-height: 1.25;
+      border-bottom: 1px solid #eaecef;
+      padding-bottom: .3em;
+    }
+    h1 { font-size: 2em; }
+    h2 { font-size: 1.5em; }
+    h3 { font-size: 1.25em; }
+    code {
+      padding: .2em .4em;
+      margin: 0;
+      font-size: 85%;
+      background-color: rgba(27,31,35,.05);
+      border-radius: 3px;
+      font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
+    }
+    pre {
+      padding: 16px;
+      overflow: auto;
+      font-size: 85%;
+      line-height: 1.45;
+      background-color: #f6f8fa;
+      border-radius: 3px;
+      word-wrap: normal;
+    }
+    pre code {
+      background-color: transparent;
+      padding: 0;
+    }
+    blockquote {
+      padding: 0 1em;
+      color: #6a737d;
+      border-left: .25em solid #dfe2e5;
+      margin: 0 0 16px 0;
+    }
+    table {
+      border-spacing: 0;
+      border-collapse: collapse;
+      margin-top: 0;
+      margin-bottom: 16px;
+      width: 100%;
+    }
+    table th, table td {
+      padding: 6px 13px;
+      border: 1px solid #dfe2e5;
+    }
+    table tr:nth-child(2n) {
+      background-color: #f6f8fa;
+    }
+    img {
+      max-width: 100%;
+      box-sizing: content-box;
+    }
+    @media print {
+      body {
+        max-width: 100%;
+        padding: 0;
+      }
+      pre, blockquote, table, tr, img {
+        page-break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+<body>
+<h1>JavaScript JSON Data Types</h1>
+<p><a href="../acp-js.php">Back to JS page</a></p>
+<p>Table of Contents</p>
+<ul>
+<li><a href="#javascript-json-data-types">JavaScript JSON Data Types</a><ul>
+<li><a href="#json-value-types">JSON Value Types</a><ul>
+<li><a href="#example-1">Example 1</a></li>
+</ul>
+</li>
+<li><a href="#json-string-values">JSON String Values</a><ul>
+<li><a href="#example-2">Example 2</a></li>
+</ul>
+</li>
+<li><a href="#json-number-values">JSON Number Values</a><ul>
+<li><a href="#example-3">Example 3</a></li>
+</ul>
+</li>
+<li><a href="#json-boolean-values">JSON Boolean Values</a><ul>
+<li><a href="#example-4">Example 4</a></li>
+</ul>
+</li>
+<li><a href="#json-null">JSON Null</a><ul>
+<li><a href="#example-5">Example 5</a></li>
+</ul>
+</li>
+<li><a href="#document">Document</a></li>
+<li><a href="#reference">Reference</a></li>
+</ul>
+</li>
+</ul>
+<h2>JSON Value Types</h2>
+<p>In JSON, values must be one of the following data types:</p>
+<ul>
+<li>a <strong>string</strong></li>
+<li>a <strong>number</strong></li>
+<li>an <strong>object</strong> (JSON object)</li>
+<li>an <strong>array</strong></li>
+<li>a <strong>boolean</strong></li>
+<li><strong>null</strong></li>
+</ul>
+<p>JSON values <strong>cannot</strong> be one of the following data types:</p>
+<ul>
+<li>a <strong>function</strong></li>
+<li>a <strong>date</strong></li>
+<li><strong>undefined</strong></li>
+</ul>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript JSON Data Types&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;JSON Value Types&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+// JSON with different value types
+const jsonString = &#39;{&quot;name&quot;:&quot;John&quot;,&quot;age&quot;:30,&quot;isStudent&quot;:false,&quot;car&quot;:null,&quot;hobbies&quot;:[&quot;reading&quot;,&quot;music&quot;]}&#39;;
+const obj = JSON.parse(jsonString);
+
+document.getElementById(&quot;demo&quot;).innerHTML =
+  &quot;String: &quot; + obj.name + &quot;&lt;br&gt;&quot; +
+  &quot;Number: &quot; + obj.age + &quot;&lt;br&gt;&quot; +
+  &quot;Boolean: &quot; + obj.isStudent + &quot;&lt;br&gt;&quot; +
+  &quot;Null: &quot; + obj.car + &quot;&lt;br&gt;&quot; +
+  &quot;Array: &quot; + obj.hobbies;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p1.png" alt=""></p>
+<h3>Example 1</h3>
+<p><strong>Result</strong> <a href="ex1-value_types/index.html">View Example</a></p>
+<h2>JSON String Values</h2>
+<p>In JSON, string values must be written with double quotes:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript JSON Data Types&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;JSON String Values&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+// JSON with string values
+const jsonString = &#39;{&quot;firstName&quot;:&quot;John&quot;,&quot;lastName&quot;:&quot;Doe&quot;,&quot;city&quot;:&quot;New York&quot;}&#39;;
+const obj = JSON.parse(jsonString);
+
+document.getElementById(&quot;demo&quot;).innerHTML =
+  &quot;First name: &quot; + obj.firstName + &quot;&lt;br&gt;&quot; +
+  &quot;Last name: &quot; + obj.lastName + &quot;&lt;br&gt;&quot; +
+  &quot;City: &quot; + obj.city;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p2.png" alt=""></p>
+<h3>Example 2</h3>
+<p><strong>Result</strong> <a href="ex2-string_values/index.html">View Example</a></p>
+<h2>JSON Number Values</h2>
+<p>In JSON, number values must be an integer or a floating point. They must not be written in quotes:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript JSON Data Types&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;JSON Number Values&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+// JSON with number values (integers and floating point)
+const jsonString = &#39;{&quot;age&quot;:30,&quot;weight&quot;:75.5,&quot;height&quot;:180}&#39;;
+const obj = JSON.parse(jsonString);
+
+document.getElementById(&quot;demo&quot;).innerHTML =
+  &quot;Age: &quot; + obj.age + &quot; (integer)&lt;br&gt;&quot; +
+  &quot;Weight: &quot; + obj.weight + &quot; (float)&lt;br&gt;&quot; +
+  &quot;Height: &quot; + obj.height + &quot; cm&quot;;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p3.png" alt=""></p>
+<h3>Example 3</h3>
+<p><strong>Result</strong> <a href="ex3-number_values/index.html">View Example</a></p>
+<h2>JSON Boolean Values</h2>
+<p>In JSON, boolean values must be either <code>true</code> or <code>false</code> (without quotes):</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript JSON Data Types&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;JSON Boolean Values&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+// JSON with boolean values
+const jsonString = &#39;{&quot;isStudent&quot;:false,&quot;hasGraduated&quot;:true,&quot;isEmployed&quot;:true}&#39;;
+const obj = JSON.parse(jsonString);
+
+document.getElementById(&quot;demo&quot;).innerHTML =
+  &quot;Is student: &quot; + obj.isStudent + &quot;&lt;br&gt;&quot; +
+  &quot;Has graduated: &quot; + obj.hasGraduated + &quot;&lt;br&gt;&quot; +
+  &quot;Is employed: &quot; + obj.isEmployed;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p4.png" alt=""></p>
+<h3>Example 4</h3>
+<p><strong>Result</strong> <a href="ex4-boolean_values/index.html">View Example</a></p>
+<h2>JSON Null</h2>
+<p>In JSON, <code>null</code> represents an empty or non-existent value:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript JSON Data Types&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;JSON Null&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+// JSON with null values
+const jsonString = &#39;{&quot;firstName&quot;:&quot;John&quot;,&quot;middleName&quot;:null,&quot;lastName&quot;:&quot;Doe&quot;}&#39;;
+const obj = JSON.parse(jsonString);
+
+document.getElementById(&quot;demo&quot;).innerHTML =
+  &quot;First name: &quot; + obj.firstName + &quot;&lt;br&gt;&quot; +
+  &quot;Middle name: &quot; + obj.middleName + &quot; (null)&lt;br&gt;&quot; +
+  &quot;Last name: &quot; + obj.lastName;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p5.png" alt=""></p>
+<h3>Example 5</h3>
+<p><strong>Result</strong> <a href="ex5-null_value/index.html">View Example</a></p>
+<h2>Document</h2>
+<p>Document in project</p>
+<p>You can <a href="js-json_datatypes.pdf">Download PDF</a> file.</p>
+<h2>Reference</h2>
+<ul>
+<li><a href="https://www.w3schools.com/js/js_json_datatypes.asp">W3Schools JavaScript JSON Data Types</a></li>
+</ul>
+
+</body>
+</html>

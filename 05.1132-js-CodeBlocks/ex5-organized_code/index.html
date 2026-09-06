@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Code Blocks</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Organized Code</h4>
+<p id="demo"></p>
+
+<script>
+// Section 1: Calculate area
+{
+  const radius = 5;
+  let area = Math.PI * radius * radius;
+  document.getElementById("demo").innerHTML +=
+    "Circle area: " + area.toFixed(2) + "<br>";
+}
+
+// Section 2: Calculate perimeter
+{
+  const width = 10;
+  const height = 6;
+  let perimeter = 2 * (width + height);
+  document.getElementById("demo").innerHTML +=
+    "Rectangle perimeter: " + perimeter + "<br>";
+}
+
+// Section 3: Display summary
+{
+  let summary = "Code organized into logical sections";
+  document.getElementById("demo").innerHTML += "<br>" + summary;
+}
+</script>
+
+</body>
+</html>

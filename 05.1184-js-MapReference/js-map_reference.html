@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>js-map_reference</title>
+  <style>
+    body {
+      box-sizing: border-box;
+      min-width: 200px;
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 45px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+      font-size: 16px;
+      line-height: 1.5;
+      color: #24292e;
+      background-color: #ffffff;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 24px;
+      margin-bottom: 16px;
+      font-weight: 600;
+      line-height: 1.25;
+      border-bottom: 1px solid #eaecef;
+      padding-bottom: .3em;
+    }
+    h1 { font-size: 2em; }
+    h2 { font-size: 1.5em; }
+    h3 { font-size: 1.25em; }
+    code {
+      padding: .2em .4em;
+      margin: 0;
+      font-size: 85%;
+      background-color: rgba(27,31,35,.05);
+      border-radius: 3px;
+      font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
+    }
+    pre {
+      padding: 16px;
+      overflow: auto;
+      font-size: 85%;
+      line-height: 1.45;
+      background-color: #f6f8fa;
+      border-radius: 3px;
+      word-wrap: normal;
+    }
+    pre code {
+      background-color: transparent;
+      padding: 0;
+    }
+    blockquote {
+      padding: 0 1em;
+      color: #6a737d;
+      border-left: .25em solid #dfe2e5;
+      margin: 0 0 16px 0;
+    }
+    table {
+      border-spacing: 0;
+      border-collapse: collapse;
+      margin-top: 0;
+      margin-bottom: 16px;
+      width: 100%;
+    }
+    table th, table td {
+      padding: 6px 13px;
+      border: 1px solid #dfe2e5;
+    }
+    table tr:nth-child(2n) {
+      background-color: #f6f8fa;
+    }
+    img {
+      max-width: 100%;
+      box-sizing: content-box;
+    }
+    @media print {
+      body {
+        max-width: 100%;
+        padding: 0;
+      }
+      pre, blockquote, table, tr, img {
+        page-break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+<body>
+<h1>JavaScript Map Reference</h1>
+<p><a href="../acp-js.php">Back to JS page</a></p>
+<p>Table of Contents</p>
+<ul>
+<li><a href="#javascript-map-reference">JavaScript Map Reference</a><ul>
+<li><a href="#map-properties">Map Properties</a><ul>
+<li><a href="#example-1">Example 1</a></li>
+</ul>
+</li>
+<li><a href="#map-addremove-methods">Map Add/Remove Methods</a><ul>
+<li><a href="#example-2">Example 2</a></li>
+</ul>
+</li>
+<li><a href="#map-iteration-methods">Map Iteration Methods</a><ul>
+<li><a href="#example-3">Example 3</a></li>
+</ul>
+</li>
+<li><a href="#document">Document</a></li>
+<li><a href="#reference">Reference</a></li>
+</ul>
+</li>
+</ul>
+<h2>Map Properties</h2>
+<p>The complete <code>Map</code> object reference:</p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>size</code></td>
+<td>Number of entries in the Map</td>
+</tr>
+<tr>
+<td><code>constructor</code></td>
+<td>The Map constructor function</td>
+</tr>
+</tbody></table>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Map Reference&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Map Properties&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+const fruits = new Map([
+  [&quot;apple&quot;, 500],
+  [&quot;banana&quot;, 300],
+  [&quot;orange&quot;, 200]
+]);
+
+document.getElementById(&quot;demo&quot;).innerHTML =
+  &quot;Map: &quot; + [...fruits] + &quot;&lt;br&gt;&quot; +
+  &quot;size: &quot; + fruits.size + &quot;&lt;br&gt;&quot; +
+  &quot;constructor: &quot; + fruits.constructor;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p1.png" alt=""></p>
+<h3>Example 1</h3>
+<p><strong>Result</strong> <a href="ex1-properties/index.html">View Example</a></p>
+<h2>Map Add/Remove Methods</h2>
+<p>Methods for adding and removing entries:</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>set(key, value)</code></td>
+<td>Add or update an entry</td>
+</tr>
+<tr>
+<td><code>get(key)</code></td>
+<td>Get the value of a key</td>
+</tr>
+<tr>
+<td><code>delete(key)</code></td>
+<td>Remove an entry</td>
+</tr>
+<tr>
+<td><code>has(key)</code></td>
+<td>Check if a key exists</td>
+</tr>
+<tr>
+<td><code>clear()</code></td>
+<td>Remove all entries</td>
+</tr>
+</tbody></table>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Map Reference&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Map Add/Remove Methods&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+const fruits = new Map();
+
+// set() adds entries
+fruits.set(&quot;apple&quot;, 500);
+fruits.set(&quot;banana&quot;, 300);
+
+// get() retrieves values
+let text = &quot;get(&#39;apple&#39;): &quot; + fruits.get(&quot;apple&quot;) + &quot;&lt;br&gt;&quot;;
+text += &quot;has(&#39;banana&#39;): &quot; + fruits.has(&quot;banana&quot;) + &quot;&lt;br&gt;&lt;br&gt;&quot;;
+
+// delete() removes one entry
+fruits.delete(&quot;banana&quot;);
+text += &quot;After delete(&#39;banana&#39;): &quot; + [...fruits] + &quot;&lt;br&gt;&lt;br&gt;&quot;;
+
+// clear() removes all
+fruits.clear();
+text += &quot;After clear(): size = &quot; + fruits.size;
+
+document.getElementById(&quot;demo&quot;).innerHTML = text;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p2.png" alt=""></p>
+<h3>Example 2</h3>
+<p><strong>Result</strong> <a href="ex2-add_remove/index.html">View Example</a></p>
+<h2>Map Iteration Methods</h2>
+<p>Methods for iterating over Map entries:</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>forEach(fn)</code></td>
+<td>Call function for each entry</td>
+</tr>
+<tr>
+<td><code>keys()</code></td>
+<td>Iterator of all keys</td>
+</tr>
+<tr>
+<td><code>values()</code></td>
+<td>Iterator of all values</td>
+</tr>
+<tr>
+<td><code>entries()</code></td>
+<td>Iterator of [key, value] pairs</td>
+</tr>
+</tbody></table>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Map Reference&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Map Iteration Methods&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+const fruits = new Map([
+  [&quot;apple&quot;, 500],
+  [&quot;banana&quot;, 300]
+]);
+
+let text = &quot;&lt;b&gt;forEach():&lt;/b&gt;&lt;br&gt;&quot;;
+fruits.forEach((value, key) =&gt; text += key + &quot; = &quot; + value + &quot;&lt;br&gt;&quot;);
+text += &quot;&lt;br&gt;&quot;;
+
+text += &quot;&lt;b&gt;keys():&lt;/b&gt; &quot;;
+for (let k of fruits.keys()) text += k + &quot; &quot;;
+text += &quot;&lt;br&gt;&lt;br&gt;&quot;;
+
+text += &quot;&lt;b&gt;values():&lt;/b&gt; &quot;;
+for (let v of fruits.values()) text += v + &quot; &quot;;
+text += &quot;&lt;br&gt;&lt;br&gt;&quot;;
+
+text += &quot;&lt;b&gt;entries():&lt;/b&gt; &quot;;
+for (let e of fruits.entries()) text += &quot;[&quot; + e[0] + &quot;,&quot; + e[1] + &quot;] &quot;;
+
+document.getElementById(&quot;demo&quot;).innerHTML = text;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p3.png" alt=""></p>
+<h3>Example 3</h3>
+<p><strong>Result</strong> <a href="ex3-iteration_methods/index.html">View Example</a></p>
+<h2>Document</h2>
+<p>Document in project</p>
+<p>You can <a href="js-map_reference.pdf">Download PDF</a> file.</p>
+<h2>Reference</h2>
+<ul>
+<li><a href="https://www.w3schools.com/js/js_map_reference.asp">W3Schools JavaScript Map Reference</a></li>
+</ul>
+
+</body>
+</html>

@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>js-regexp_methods</title>
+  <style>
+    body {
+      box-sizing: border-box;
+      min-width: 200px;
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 45px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+      font-size: 16px;
+      line-height: 1.5;
+      color: #24292e;
+      background-color: #ffffff;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 24px;
+      margin-bottom: 16px;
+      font-weight: 600;
+      line-height: 1.25;
+      border-bottom: 1px solid #eaecef;
+      padding-bottom: .3em;
+    }
+    h1 { font-size: 2em; }
+    h2 { font-size: 1.5em; }
+    h3 { font-size: 1.25em; }
+    code {
+      padding: .2em .4em;
+      margin: 0;
+      font-size: 85%;
+      background-color: rgba(27,31,35,.05);
+      border-radius: 3px;
+      font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
+    }
+    pre {
+      padding: 16px;
+      overflow: auto;
+      font-size: 85%;
+      line-height: 1.45;
+      background-color: #f6f8fa;
+      border-radius: 3px;
+      word-wrap: normal;
+    }
+    pre code {
+      background-color: transparent;
+      padding: 0;
+    }
+    blockquote {
+      padding: 0 1em;
+      color: #6a737d;
+      border-left: .25em solid #dfe2e5;
+      margin: 0 0 16px 0;
+    }
+    table {
+      border-spacing: 0;
+      border-collapse: collapse;
+      margin-top: 0;
+      margin-bottom: 16px;
+      width: 100%;
+    }
+    table th, table td {
+      padding: 6px 13px;
+      border: 1px solid #dfe2e5;
+    }
+    table tr:nth-child(2n) {
+      background-color: #f6f8fa;
+    }
+    img {
+      max-width: 100%;
+      box-sizing: content-box;
+    }
+    @media print {
+      body {
+        max-width: 100%;
+        padding: 0;
+      }
+      pre, blockquote, table, tr, img {
+        page-break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+<body>
+<h1>JavaScript RegExp Methods</h1>
+<p><a href="../acp-js.php">Back to JS page</a></p>
+<p>Table of Contents</p>
+<ul>
+<li><a href="#javascript-regexp-methods">JavaScript RegExp Methods</a><ul>
+<li><a href="#regexp-object-methods">RegExp Object Methods</a><ul>
+<li><a href="#example-1">Example 1</a></li>
+</ul>
+</li>
+<li><a href="#string-methods-with-regexp">String Methods with RegExp</a><ul>
+<li><a href="#example-2">Example 2</a></li>
+</ul>
+</li>
+<li><a href="#stringreplace-and-split">String.replace() and split()</a><ul>
+<li><a href="#example-3">Example 3</a></li>
+</ul>
+</li>
+<li><a href="#pattern-based-validation">Pattern-Based Validation</a><ul>
+<li><a href="#example-4">Example 4</a></li>
+</ul>
+</li>
+<li><a href="#document">Document</a></li>
+<li><a href="#reference">Reference</a></li>
+</ul>
+</li>
+</ul>
+<h2>Complete RexExp Reference</h2>
+<p>The complete RegExp reference includes:</p>
+<p><strong>RegExp Methods:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>test()</code></td>
+<td>Tests for a match - returns true/false</td>
+</tr>
+<tr>
+<td><code>exec()</code></td>
+<td>Returns match details or null</td>
+</tr>
+</tbody></table>
+<p><strong>String Methods using RegExp:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>match(pattern)</code></td>
+<td>Returns array of matches</td>
+</tr>
+<tr>
+<td><code>matchAll(pattern)</code></td>
+<td>Returns iterator of matches</td>
+</tr>
+<tr>
+<td><code>replace(pattern, repl)</code></td>
+<td>Replaces matches</td>
+</tr>
+<tr>
+<td><code>search(pattern)</code></td>
+<td>Returns position of match</td>
+</tr>
+<tr>
+<td><code>split(pattern)</code></td>
+<td>Splits by pattern</td>
+</tr>
+</tbody></table>
+<h2>RegExp Object Methods</h2>
+<p><code>test()</code> and <code>exec()</code> are the two RegExp object methods:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript RegExp Methods&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;RegExp Object Methods&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+const text = &quot;Hello World&quot;;
+
+// test() - returns boolean
+const testResult = /World/.test(text);
+
+// exec() - returns match object
+const execResult = /World/.exec(text);
+
+document.getElementById(&quot;demo&quot;).innerHTML =
+  &quot;Text: &quot; + text + &quot;&lt;br&gt;&lt;br&gt;&quot; +
+  &quot;test(/World/): &quot; + testResult + &quot;&lt;br&gt;&quot; +
+  &quot;exec(/World/)[0]: &quot; + execResult[0] + &quot;&lt;br&gt;&quot; +
+  &quot;exec() index: &quot; + execResult.index;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p1.png" alt=""></p>
+<h3>Example 1</h3>
+<p><strong>Result</strong> <a href="ex1-regexp_methods/index.html">View Example</a></p>
+<h2>String Methods with RegExp</h2>
+<p>String methods that work with RegExp patterns:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript RegExp Methods&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;String Methods with RegExp&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+const text = &quot;JavaScript is awesome, JavaScript!&quot;;
+
+let output = &quot;Text: &quot; + text + &quot;&lt;br&gt;&lt;br&gt;&quot;;
+output += &quot;match(/JavaScript/g): &quot; + text.match(/JavaScript/g) + &quot;&lt;br&gt;&quot;;
+output += &quot;search(/awesome/): &quot; + text.search(/awesome/) + &quot;&lt;br&gt;&quot;;
+
+// matchAll returns iterator
+const iterator = text.matchAll(/JavaScript/g);
+output += &quot;matchAll: &quot;;
+for (let m of iterator) output += m[0] + &quot; &quot;;
+
+document.getElementById(&quot;demo&quot;).innerHTML = output;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p2.png" alt=""></p>
+<h3>Example 2</h3>
+<p><strong>Result</strong> <a href="ex2-string_methods/index.html">View Example</a></p>
+<h2>String.replace() and split()</h2>
+<p><code>replace()</code> replaces matches. <code>split()</code> splits strings by a pattern:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript RegExp Methods&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;String.replace() and split()&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+const text = &quot;Hello 123 World&quot;;
+
+// replace() with RegExp
+const replaced = text.replace(/\d+/, &quot;NUMBERS&quot;);
+
+// split() with RegExp
+const parts = text.split(/\s+/);
+
+document.getElementById(&quot;demo&quot;).innerHTML =
+  &quot;Text: &quot; + text + &quot;&lt;br&gt;&lt;br&gt;&quot; +
+  &quot;replace(/\\d+/, &#39;NUMBERS&#39;): &quot; + replaced + &quot;&lt;br&gt;&quot; +
+  &quot;split(/\\s+/): &quot; + parts;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p3.png" alt=""></p>
+<h3>Example 3</h3>
+<p><strong>Result</strong> <a href="ex3-replace_split/index.html">View Example</a></p>
+<h2>Pattern-Based Validation</h2>
+<p>Combine RegExp methods for practical form validation:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript RegExp Methods&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Pattern-Based Validation&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+// Email validation pattern
+const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+// Phone validation pattern
+const phonePattern = /^\d{3}-\d{3}-\d{4}$/;
+
+let output = &quot;Email: john@example.com → &quot;;
+output += emailPattern.test(&quot;john@example.com&quot;) ? &quot;✓ Valid&quot; : &quot;✗ Invalid&quot;;
+output += &quot;&lt;br&gt;&quot;;
+
+output += &quot;Email: invalid → &quot;;
+output += emailPattern.test(&quot;invalid&quot;) ? &quot;✓ Valid&quot; : &quot;✗ Invalid&quot;;
+output += &quot;&lt;br&gt;&lt;br&gt;&quot;;
+
+output += &quot;Phone: 555-123-4567 → &quot;;
+output += phonePattern.test(&quot;555-123-4567&quot;) ? &quot;✓ Valid&quot; : &quot;✗ Invalid&quot;;
+output += &quot;&lt;br&gt;&quot;;
+
+output += &quot;Phone: 5551234567 → &quot;;
+output += phonePattern.test(&quot;5551234567&quot;) ? &quot;✓ Valid&quot; : &quot;✗ Invalid&quot;;
+
+document.getElementById(&quot;demo&quot;).innerHTML = output;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p4.png" alt=""></p>
+<h3>Example 4</h3>
+<p><strong>Result</strong> <a href="ex4-validation/index.html">View Example</a></p>
+<h2>Document</h2>
+<p>Document in project</p>
+<p>You can <a href="js-regexp_methods.pdf">Download PDF</a> file.</p>
+<h2>Reference</h2>
+<ul>
+<li><a href="https://www.w3schools.com/js/js_regexp_methods.asp">W3Schools JavaScript RegExp Methods</a></li>
+</ul>
+
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript DataView</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Endianness (Byte Order)</h4>
+<p id="demo"></p>
+
+<script>
+const buffer = new ArrayBuffer(4);
+const dv = new DataView(buffer);
+
+// Write the same value with different endianness
+dv.setInt32(0, 0x12345678, false);  // Big-endian (default)
+const bigEndian = dv.getInt32(0, false);
+
+dv.setInt32(0, 0x12345678, true);   // Little-endian
+const littleEndian = dv.getInt32(0, true);
+
+// Inspect individual bytes
+const bytes = new Uint8Array(buffer);
+
+let text = "Value: 0x12345678 (305419896)<br><br>";
+
+text += "Big-endian bytes: ";
+for (let b of bytes) text += "0x" + b.toString(16).toUpperCase() + " ";
+text += "<br>";
+
+dv.setInt32(0, 0x12345678, true);
+text += "Little-endian bytes: ";
+for (let b of bytes) text += "0x" + b.toString(16).toUpperCase() + " ";
+
+document.getElementById("demo").innerHTML = text;
+</script>
+
+</body>
+</html>

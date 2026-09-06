@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript HTMLCollection</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>The HTMLCollection Object</h4>
+
+<p>First paragraph</p>
+<p>Second paragraph</p>
+<p>Third paragraph</p>
+
+<p id="demo"></p>
+
+<script>
+const myCollection = document.getElementsByTagName("p");
+
+document.getElementById("demo").innerHTML =
+  "Number of <p> elements: " + myCollection.length + "<br>" +
+  "First paragraph text: " + myCollection[0].innerHTML + "<br>" +
+  "Second paragraph text: " + myCollection[1].innerHTML;
+</script>
+
+</body>
+</html>

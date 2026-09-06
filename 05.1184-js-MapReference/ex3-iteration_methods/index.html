@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Map Reference</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Map Iteration Methods</h4>
+<p id="demo"></p>
+
+<script>
+const fruits = new Map([
+  ["apple", 500],
+  ["banana", 300]
+]);
+
+let text = "<b>forEach():</b><br>";
+fruits.forEach((value, key) => text += key + " = " + value + "<br>");
+text += "<br>";
+
+text += "<b>keys():</b> ";
+for (let k of fruits.keys()) text += k + " ";
+text += "<br><br>";
+
+text += "<b>values():</b> ";
+for (let v of fruits.values()) text += v + " ";
+text += "<br><br>";
+
+text += "<b>entries():</b> ";
+for (let e of fruits.entries()) text += "[" + e[0] + "," + e[1] + "] ";
+
+document.getElementById("demo").innerHTML = text;
+</script>
+
+</body>
+</html>

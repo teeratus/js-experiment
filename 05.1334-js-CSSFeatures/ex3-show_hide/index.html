@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+.tooltip {
+  position: relative;
+  display: inline-block;
+  border-bottom: 1px dotted black;
+}
+.tooltip .tooltip-text {
+  visibility: hidden;
+  width: 200px;
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  padding: 5px;
+  border-radius: 6px;
+  position: absolute;
+  z-index: 1;
+  bottom: 125%;
+  left: 50%;
+  margin-left: -100px;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+.tooltip:hover .tooltip-text {
+  visibility: visible;
+  opacity: 1;
+}
+.show-hide {
+  display: none;
+}
+.toggle-btn:focus + .show-hide {
+  display: block;
+}
+</style>
+</head>
+<body>
+
+<h2>JavaScript CSS Features</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Show and Hide Content (CSS only)</h4>
+
+<p>Tooltip example (CSS only):</p>
+<div class="tooltip">Hover over me
+  <span class="tooltip-text">This is a CSS tooltip! No JavaScript needed.</span>
+</div>
+
+<br><br>
+<p>Click the button to show content (CSS only):</p>
+<button class="toggle-btn">Click to toggle</button>
+<div class="show-hide">This content is shown using CSS :focus pseudo-class!</div>
+
+</body>
+</html>

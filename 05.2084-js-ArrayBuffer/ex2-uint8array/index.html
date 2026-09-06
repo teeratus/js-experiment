@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript ArrayBuffer</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Using an Uint8Array with ArrayBuffer</h4>
+<p id="demo"></p>
+
+<script>
+// Create buffer and view
+const buffer = new ArrayBuffer(8);
+const view = new Uint8Array(buffer);
+
+// Write values
+view[0] = 65;   // 'A'
+view[1] = 66;   // 'B'
+view[2] = 67;   // 'C'
+view[3] = 97;   // 'a'
+view[4] = 98;   // 'b'
+
+// Read values
+let text = "Uint8Array view of ArrayBuffer(8):<br>";
+for (let i = 0; i < view.length; i++) {
+  text += "view[" + i + "] = " + view[i];
+  if (view[i] >= 65 && view[i] <= 90) {
+    text += " (char: " + String.fromCharCode(view[i]) + ")";
+  }
+  text += "<br>";
+}
+text += "<br>byteLength: " + buffer.byteLength;
+
+document.getElementById("demo").innerHTML = text;
+</script>
+
+</body>
+</html>

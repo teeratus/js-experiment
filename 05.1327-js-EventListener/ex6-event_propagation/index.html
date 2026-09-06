@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Event Listener</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Event Capturing</h4>
+<div id="myDiv" style="background-color: coral; padding: 40px;">
+  <button id="myBtn">Click me</button>
+</div>
+<p id="demo"></p>
+
+<script>
+document.getElementById("myDiv").addEventListener("click", function() {
+  document.getElementById("demo").innerHTML += "DIV clicked (capturing)<br>";
+}, true);
+
+document.getElementById("myBtn").addEventListener("click", function() {
+  document.getElementById("demo").innerHTML += "BUTTON clicked<br>";
+}, true);
+</script>
+
+</body>
+</html>

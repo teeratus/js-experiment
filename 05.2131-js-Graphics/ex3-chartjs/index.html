@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Graphics</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Chart.js</h4>
+
+<canvas id="chartjsChart" style="width:100%;max-width:600px;"></canvas>
+<p id="demo3"></p>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+
+<script>
+const xValues = ["Jan", "Feb", "Mar", "Apr", "May", "Jun"];
+const yValues = [55, 49, 80, 70, 65, 90];
+const barColors = ["red", "green", "blue", "orange", "brown", "purple"];
+
+new Chart("chartjsChart", {
+  type: "bar",
+  data: {
+    labels: xValues,
+    datasets: [{
+      backgroundColor: barColors,
+      data: yValues
+    }]
+  },
+  options: {
+    title: {
+      display: true,
+      text: "Monthly Revenue (Chart.js)"
+    },
+    legend: {display: false}
+  }
+});
+
+document.getElementById("demo3").innerHTML = "Chart.js bar chart created!";
+</script>
+
+</body>
+</html>

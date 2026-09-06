@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript toLocaleString()</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Controlling Decimal Digits</h4>
+<p id="demo"></p>
+
+<script>
+let num = 3.14159;
+
+let text = num.toLocaleString("en-US", {
+  minimumFractionDigits: 2,
+  maximumFractionDigits: 2
+});
+
+document.getElementById("demo").innerHTML = text;
+</script>
+
+</body>
+</html>

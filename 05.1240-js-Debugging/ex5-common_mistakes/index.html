@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Debugging</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Common Beginner Mistakes</h4>
+<p id="demo"></p>
+
+<script>
+let text = "";
+
+// Mistake 1: Assignment (=) instead of comparison (==)
+let x = 10;
+if (x = 5) {   // This assigns 5 to x, always true!
+  text += "Mistake: '=' instead of '=='. ";
+  text += "x is now: " + x + "<br><br>";
+}
+
+// Mistake 2: Misspelled variable name
+let total = 100;
+try {
+  text += "total: " + total + "<br>";
+  // text += tota1;  // This would cause a ReferenceError
+  text += "(Misspelled variables cause ReferenceErrors)<br><br>";
+}
+catch(err) {
+  text += err.name + ": " + err.message + "<br>";
+}
+
+// Mistake 3: Case sensitivity
+let myVar = "Hello";
+text += "myVar: " + myVar + "<br>";
+text += "(JavaScript is case-sensitive: myvar !== myVar)";
+
+document.getElementById("demo").innerHTML = text;
+</script>
+
+</body>
+</html>

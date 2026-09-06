@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Reflect</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Reflect.get() and Reflect.set()</h4>
+<p id="demo"></p>
+
+<script>
+const person = {
+  firstName: "John",
+  lastName: "Doe",
+  age: 30
+};
+
+// Get a property using Reflect.get()
+let name = Reflect.get(person, "firstName");
+
+// Set a property using Reflect.set()
+Reflect.set(person, "age", 35);
+Reflect.set(person, "email", "john@example.com");
+
+document.getElementById("demo").innerHTML =
+  "Reflect.get(person, 'firstName'): " + name + "<br>" +
+  "Reflect.set(person, 'age', 35): " + Reflect.get(person, "age") + "<br>" +
+  "Reflect.set(person, 'email', 'john@example.com'): " + Reflect.get(person, "email") + "<br>" +
+  "All properties: " + Object.keys(person).join(", ");
+</script>
+
+</body>
+</html>

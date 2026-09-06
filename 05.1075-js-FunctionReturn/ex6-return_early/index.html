@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Function Return</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Returning Values Early</h4>
+<p id="demo1"></p>
+<p id="demo2"></p>
+
+<script>
+function checkAge(age) {
+  if (age < 18) {
+    return "Too young!";
+  }
+  return "Access granted";
+}
+document.getElementById("demo1").innerHTML = "Age 15: " + checkAge(15);
+document.getElementById("demo2").innerHTML = "Age 21: " + checkAge(21);
+</script>
+
+</body>
+</html>

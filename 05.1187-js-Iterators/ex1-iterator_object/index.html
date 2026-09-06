@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Iterators</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>The Iterator Object</h4>
+<p id="demo"></p>
+
+<script>
+// An iterator is an object with a next() method
+// It defines a sequence of values
+
+// Arrays are iterables (have Symbol.iterator)
+const arr = [10, 20, 30];
+const iterator = arr[Symbol.iterator]();
+
+let text = "Array iterator for [10, 20, 30]:<br><br>";
+text += "typeof arr[Symbol.iterator]: " + typeof arr[Symbol.iterator] + "<br>";
+text += "Iterator has next(): " + (typeof iterator.next === "function");
+
+document.getElementById("demo").innerHTML = text;
+</script>
+
+</body>
+</html>

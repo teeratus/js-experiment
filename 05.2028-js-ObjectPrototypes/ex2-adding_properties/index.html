@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Object Prototypes</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Adding Properties to Objects</h4>
+<p id="demo"></p>
+
+<script>
+function Person(first, last) {
+  this.firstName = first;
+  this.lastName = last;
+}
+
+const person1 = new Person("John", "Doe");
+const person2 = new Person("Jane", "Smith");
+
+// Add a property to person1 only
+person1.nationality = "American";
+
+document.getElementById("demo").innerHTML =
+  "person1 nationality: " + person1.nationality + "<br>" +
+  "person2 nationality: " + person2.nationality + " (undefined)";
+</script>
+
+</body>
+</html>

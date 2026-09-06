@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Array Iteration</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>forEach()</h4>
+<p id="demo"></p>
+
+<script>
+const numbers = [1, 2, 3, 4, 5];
+let text = "";
+
+numbers.forEach(function(value, index) {
+  text += "Index " + index + ": " + value + "<br>";
+});
+
+document.getElementById("demo").innerHTML = text;
+</script>
+
+</body>
+</html>

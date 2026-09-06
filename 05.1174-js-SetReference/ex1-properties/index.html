@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Set Reference</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Set Properties</h4>
+<p id="demo"></p>
+
+<script>
+const letters = new Set(["a", "b", "c", "d"]);
+
+document.getElementById("demo").innerHTML =
+  "Set: " + [...letters] + "<br>" +
+  "size: " + letters.size + "<br>" +
+  "constructor: " + letters.constructor;
+</script>
+
+</body>
+</html>

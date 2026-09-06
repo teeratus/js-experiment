@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>js-tolocalestring</title>
+  <style>
+    body {
+      box-sizing: border-box;
+      min-width: 200px;
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 45px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+      font-size: 16px;
+      line-height: 1.5;
+      color: #24292e;
+      background-color: #ffffff;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 24px;
+      margin-bottom: 16px;
+      font-weight: 600;
+      line-height: 1.25;
+      border-bottom: 1px solid #eaecef;
+      padding-bottom: .3em;
+    }
+    h1 { font-size: 2em; }
+    h2 { font-size: 1.5em; }
+    h3 { font-size: 1.25em; }
+    code {
+      padding: .2em .4em;
+      margin: 0;
+      font-size: 85%;
+      background-color: rgba(27,31,35,.05);
+      border-radius: 3px;
+      font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
+    }
+    pre {
+      padding: 16px;
+      overflow: auto;
+      font-size: 85%;
+      line-height: 1.45;
+      background-color: #f6f8fa;
+      border-radius: 3px;
+      word-wrap: normal;
+    }
+    pre code {
+      background-color: transparent;
+      padding: 0;
+    }
+    blockquote {
+      padding: 0 1em;
+      color: #6a737d;
+      border-left: .25em solid #dfe2e5;
+      margin: 0 0 16px 0;
+    }
+    table {
+      border-spacing: 0;
+      border-collapse: collapse;
+      margin-top: 0;
+      margin-bottom: 16px;
+      width: 100%;
+    }
+    table th, table td {
+      padding: 6px 13px;
+      border: 1px solid #dfe2e5;
+    }
+    table tr:nth-child(2n) {
+      background-color: #f6f8fa;
+    }
+    img {
+      max-width: 100%;
+      box-sizing: content-box;
+    }
+    @media print {
+      body {
+        max-width: 100%;
+        padding: 0;
+      }
+      pre, blockquote, table, tr, img {
+        page-break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+<body>
+<h1>JavaScript toLocaleString()</h1>
+<p><a href="../acp-js.php">Back to JS page</a></p>
+<p>Table of Contents</p>
+<ul>
+<li><a href="#javascript-tolocalestring">JavaScript toLocaleString()</a><ul>
+<li><a href="#the-tolocalestring-method">The toLocaleString() Method</a><ul>
+<li><a href="#example-1">Example 1</a></li>
+</ul>
+</li>
+<li><a href="#using-locales">Using Locales</a><ul>
+<li><a href="#example-2">Example 2</a></li>
+</ul>
+</li>
+<li><a href="#formatting-currency">Formatting Currency</a><ul>
+<li><a href="#example-3">Example 3</a></li>
+</ul>
+</li>
+<li><a href="#formatting-percentages">Formatting Percentages</a><ul>
+<li><a href="#example-4">Example 4</a></li>
+</ul>
+</li>
+<li><a href="#controlling-decimal-digits">Controlling Decimal Digits</a><ul>
+<li><a href="#example-5">Example 5</a></li>
+</ul>
+</li>
+<li><a href="#formatting-dates">Formatting Dates</a><ul>
+<li><a href="#example-6">Example 6</a></li>
+</ul>
+</li>
+<li><a href="#date-formatting-options">Date Formatting Options</a><ul>
+<li><a href="#example-7">Example 7</a></li>
+</ul>
+</li>
+<li><a href="#a-clever-use-readable-file-sizes">A Clever Use: Readable File Sizes</a><ul>
+<li><a href="#example-8">Example 8</a></li>
+</ul>
+</li>
+<li><a href="#arrays-and-tolocalestring">Arrays and toLocaleString()</a><ul>
+<li><a href="#example-9">Example 9</a></li>
+</ul>
+</li>
+<li><a href="#document">Document</a></li>
+<li><a href="#reference">Reference</a></li>
+</ul>
+</li>
+</ul>
+<p>The <code>toLocaleString()</code> method converts a value to a string, using local formatting rules. The <code>toLocaleString()</code> method is especially useful for formatting numbers, dates, arrays, currencies, and percentages for different countries.</p>
+<h2>The toLocaleString() Method</h2>
+<p>The <code>toLocaleString()</code> method is available for many JavaScript datatypes / objects:</p>
+<ul>
+<li>Numbers</li>
+<li>Dates</li>
+<li>Arrays</li>
+<li>BigInts</li>
+</ul>
+<p>In this example it is used on a Number (<code>num</code>):</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript toLocaleString()&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;The toLocaleString() Method&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+let num = 1234567.89;
+
+let text = num.toLocaleString();
+
+document.getElementById(&quot;demo&quot;).innerHTML = text;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p1.png" alt=""></p>
+<h3>Example 1</h3>
+<p><strong>Result</strong> <a href="ex1-tolocalestring_method/index.html">View Example</a></p>
+<h2>Using Locales</h2>
+<p>You can specify a language and country code to format a value for a specific locale.</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript toLocaleString()&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Using Locales&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+let num = 1234567.89;
+
+let us = num.toLocaleString(&quot;en-US&quot;);
+let de = num.toLocaleString(&quot;de-DE&quot;);
+let no = num.toLocaleString(&quot;no-NO&quot;);
+
+document.getElementById(&quot;demo&quot;).innerHTML =
+  &quot;en-US: &quot; + us + &quot;&lt;br&gt;&quot; +
+  &quot;de-DE: &quot; + de + &quot;&lt;br&gt;&quot; +
+  &quot;no-NO: &quot; + no;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p2.png" alt=""></p>
+<h3>Example 2</h3>
+<p><strong>Result</strong> <a href="ex2-using_locales/index.html">View Example</a></p>
+<h2>Formatting Currency</h2>
+<p>With options, <code>toLocaleString()</code> can format numbers as currency.</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript toLocaleString()&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Formatting Currency&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+let price = 1299.95;
+
+let dollars = price.toLocaleString(&quot;en-US&quot;,
+{style:&quot;currency&quot;, currency:&quot;USD&quot;});
+
+let euros = price.toLocaleString(&quot;de-DE&quot;,
+{style:&quot;currency&quot;, currency:&quot;EUR&quot;});
+
+let kroner = price.toLocaleString(&quot;no-NO&quot;,
+{style:&quot;currency&quot;, currency:&quot;NOK&quot;});
+
+document.getElementById(&quot;demo&quot;).innerHTML =
+  dollars + &quot;&lt;br&gt;&quot; + euros + &quot;&lt;br&gt;&quot; + kroner;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p3.png" alt=""></p>
+<h3>Example 3</h3>
+<p><strong>Result</strong> <a href="ex3-formatting_currency/index.html">View Example</a></p>
+<h2>Formatting Percentages</h2>
+<p>The <code>style:&quot;percent&quot;</code> option formats a number as a percentage.</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript toLocaleString()&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Formatting Percentages&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+let score = 0.875;
+
+let result = score.toLocaleString(&quot;en-US&quot;, {style:&quot;percent&quot;});
+
+document.getElementById(&quot;demo&quot;).innerHTML = result;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p4.png" alt=""></p>
+<h3>Example 4</h3>
+<p><strong>Result</strong> <a href="ex4-formatting_percentages/index.html">View Example</a></p>
+<h2>Controlling Decimal Digits</h2>
+<p>You can control the number of decimal digits with <code>minimumFractionDigits</code> and <code>maximumFractionDigits</code>.</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript toLocaleString()&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Controlling Decimal Digits&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+let num = 3.14159;
+
+let text = num.toLocaleString(&quot;en-US&quot;, {
+  minimumFractionDigits: 2,
+  maximumFractionDigits: 2
+});
+
+document.getElementById(&quot;demo&quot;).innerHTML = text;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p5.png" alt=""></p>
+<h3>Example 5</h3>
+<p><strong>Result</strong> <a href="ex5-decimal_digits/index.html">View Example</a></p>
+<h2>Formatting Dates</h2>
+<p>Dates can also be formatted with <code>toLocaleString()</code>.</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript toLocaleString()&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Formatting Dates&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+let date = new Date();
+
+let text = date.toLocaleString(&quot;en-US&quot;);
+
+document.getElementById(&quot;demo&quot;).innerHTML = text;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p6.png" alt=""></p>
+<h3>Example 6</h3>
+<p><strong>Result</strong> <a href="ex6-formatting_dates/index.html">View Example</a></p>
+<h2>Date Formatting Options</h2>
+<p>Many options can be used to control how dates are displayed.</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript toLocaleString()&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Date Formatting Options&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+let date = new Date();
+
+let text = date.toLocaleString(&quot;en-US&quot;, {
+  weekday: &quot;long&quot;,
+  year: &quot;numeric&quot;,
+  month: &quot;long&quot;,
+  day: &quot;numeric&quot;
+});
+
+document.getElementById(&quot;demo&quot;).innerHTML = text;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p7.png" alt=""></p>
+<h3>Example 7</h3>
+<p><strong>Result</strong> <a href="ex7-date_formatting_options/index.html">View Example</a></p>
+<h2>A Clever Use: Readable File Sizes</h2>
+<p>A clever use of <code>toLocaleString()</code> is to make file sizes easier to read.</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript toLocaleString()&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;A Clever Use: Readable File Sizes&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+function fileSize(bytes) {
+  if (bytes &lt; 1024) return bytes + &quot; bytes&quot;;
+  if (bytes &lt; 1024 * 1024) return (bytes / 1024).toLocaleString(&quot;en-US&quot;, {maximumFractionDigits: 1}) + &quot; KB&quot;;
+  return (bytes / 1024 / 1024).toLocaleString(&quot;en-US&quot;, {maximumFractionDigits: 1}) + &quot; MB&quot;;
+}
+
+let size = 1536000;
+let text = fileSize(size);
+
+document.getElementById(&quot;demo&quot;).innerHTML = text;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p8.png" alt=""></p>
+<h3>Example 8</h3>
+<p><strong>Result</strong> <a href="ex8-readable_file_sizes/index.html">View Example</a></p>
+<h2>Arrays and toLocaleString()</h2>
+<p>For arrays, the <code>toLocaleString()</code> methods converts each array element.</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript toLocaleString()&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Arrays and toLocaleString()&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+const dates = [
+  new Date(&quot;2026-01-01&quot;),
+  new Date(&quot;2026-12-24&quot;)
+];
+
+let text = dates.toLocaleString(&quot;en-US&quot;);
+
+document.getElementById(&quot;demo&quot;).innerHTML = text;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p9.png" alt=""></p>
+<h3>Example 9</h3>
+<p><strong>Result</strong> <a href="ex9-arrays_tolocalestring/index.html">View Example</a></p>
+<h2>Document</h2>
+<p>Document in project</p>
+<p>You can <a href="js-tolocalestring.pdf">Download PDF</a> file.</p>
+<h2>Reference</h2>
+<ul>
+<li><a href="https://www.w3schools.com/js/js_tolocalestring.asp">W3Schools JavaScript toLocaleString()</a></li>
+</ul>
+
+</body>
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Function Return</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Return Statements Stop Execution</h4>
+<p id="demo"></p>
+
+<script>
+function myFunction() {
+  return "This is returned";
+  // Code after return will NOT execute
+  let x = 5; // This line is ignored
+}
+document.getElementById("demo").innerHTML = myFunction();
+</script>
+
+</body>
+</html>

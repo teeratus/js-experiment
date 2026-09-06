@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript RegExp Patterns</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>RexExp Quantifiers</h4>
+<p id="demo"></p>
+
+<script>
+const text = "100 1000 10000";
+
+let output = "Text: " + text + "<br><br>";
+output += "\\d+ 1+ digits: " + text.match(/\d+/g) + "<br>";
+output += "1\\d? optional: " + text.match(/1\d?/g) + "<br>";
+output += "\\d{4} exactly 4: " + text.match(/\d{4}/g) + "<br>";
+output += "\\d{3,} 3+ digits: " + text.match(/\d{3,}/g);
+
+document.getElementById("demo").innerHTML = output;
+</script>
+
+</body>
+</html>

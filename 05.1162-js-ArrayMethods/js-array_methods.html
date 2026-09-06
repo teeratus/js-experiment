@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>js-array_methods</title>
+  <style>
+    body {
+      box-sizing: border-box;
+      min-width: 200px;
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 45px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+      font-size: 16px;
+      line-height: 1.5;
+      color: #24292e;
+      background-color: #ffffff;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 24px;
+      margin-bottom: 16px;
+      font-weight: 600;
+      line-height: 1.25;
+      border-bottom: 1px solid #eaecef;
+      padding-bottom: .3em;
+    }
+    h1 { font-size: 2em; }
+    h2 { font-size: 1.5em; }
+    h3 { font-size: 1.25em; }
+    code {
+      padding: .2em .4em;
+      margin: 0;
+      font-size: 85%;
+      background-color: rgba(27,31,35,.05);
+      border-radius: 3px;
+      font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
+    }
+    pre {
+      padding: 16px;
+      overflow: auto;
+      font-size: 85%;
+      line-height: 1.45;
+      background-color: #f6f8fa;
+      border-radius: 3px;
+      word-wrap: normal;
+    }
+    pre code {
+      background-color: transparent;
+      padding: 0;
+    }
+    blockquote {
+      padding: 0 1em;
+      color: #6a737d;
+      border-left: .25em solid #dfe2e5;
+      margin: 0 0 16px 0;
+    }
+    table {
+      border-spacing: 0;
+      border-collapse: collapse;
+      margin-top: 0;
+      margin-bottom: 16px;
+      width: 100%;
+    }
+    table th, table td {
+      padding: 6px 13px;
+      border: 1px solid #dfe2e5;
+    }
+    table tr:nth-child(2n) {
+      background-color: #f6f8fa;
+    }
+    img {
+      max-width: 100%;
+      box-sizing: content-box;
+    }
+    @media print {
+      body {
+        max-width: 100%;
+        padding: 0;
+      }
+      pre, blockquote, table, tr, img {
+        page-break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+<body>
+<h1>JavaScript Array Methods</h1>
+<p><a href="../acp-js.php">Back to JS page</a></p>
+<p>Table of Contents</p>
+<ul>
+<li><a href="#javascript-array-methods">JavaScript Array Methods</a><ul>
+<li><a href="#basic-array-methods">Basic Array Methods</a><ul>
+<li><a href="#example-1">Example 1</a></li>
+</ul>
+</li>
+<li><a href="#popping-and-pushing">Popping and Pushing</a><ul>
+<li><a href="#example-2">Example 2</a></li>
+</ul>
+</li>
+<li><a href="#shifting-elements">Shifting Elements</a><ul>
+<li><a href="#example-3">Example 3</a></li>
+</ul>
+</li>
+<li><a href="#merging-arrays">Merging Arrays</a><ul>
+<li><a href="#example-4">Example 4</a></li>
+</ul>
+</li>
+<li><a href="#splicing-and-slicing">Splicing and Slicing</a><ul>
+<li><a href="#example-5">Example 5</a></li>
+</ul>
+</li>
+<li><a href="#document">Document</a></li>
+<li><a href="#reference">Reference</a></li>
+</ul>
+</li>
+</ul>
+<h2>Basic Array Methods</h2>
+<p>The <code>length</code> property returns the number of elements. <code>toString()</code> converts the array to a string. <code>join()</code> joins elements with a separator. <code>at()</code> accesses elements by index:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Array Methods&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Basic Array Methods&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+const fruits = [&quot;Banana&quot;, &quot;Orange&quot;, &quot;Apple&quot;, &quot;Mango&quot;];
+
+let text = &quot;length: &quot; + fruits.length + &quot;&lt;br&gt;&quot;;
+text += &quot;toString(): &quot; + fruits.toString() + &quot;&lt;br&gt;&quot;;
+text += &quot;join(&#39; - &#39;): &quot; + fruits.join(&quot; - &quot;) + &quot;&lt;br&gt;&quot;;
+text += &quot;at(0): &quot; + fruits.at(0) + &quot;&lt;br&gt;&quot;;
+text += &quot;at(-1): &quot; + fruits.at(-1) + &quot; (last element)&lt;br&gt;&quot;;
+
+document.getElementById(&quot;demo&quot;).innerHTML = text;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p1.png" alt=""></p>
+<h3>Example 1</h3>
+<p><strong>Result</strong> <a href="ex1-basic_methods/index.html">View Example</a></p>
+<h2>Popping and Pushing</h2>
+<p><code>pop()</code> removes the last element and returns it. <code>push()</code> adds a new element to the end:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Array Methods&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Popping and Pushing&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+const fruits = [&quot;Banana&quot;, &quot;Orange&quot;, &quot;Apple&quot;];
+
+// pop() removes the last element
+let popped = fruits.pop();
+let text = &quot;Popped: &quot; + popped + &quot;&lt;br&gt;&quot;;
+text += &quot;After pop(): &quot; + fruits + &quot;&lt;br&gt;&lt;br&gt;&quot;;
+
+// push() adds to the end
+let newLength = fruits.push(&quot;Kiwi&quot;);
+text += &quot;Pushed &#39;Kiwi&#39;, new length: &quot; + newLength + &quot;&lt;br&gt;&quot;;
+text += &quot;After push(): &quot; + fruits;
+
+document.getElementById(&quot;demo&quot;).innerHTML = text;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p2.png" alt=""></p>
+<h3>Example 2</h3>
+<p><strong>Result</strong> <a href="ex2-pop_push/index.html">View Example</a></p>
+<h2>Shifting Elements</h2>
+<p><code>shift()</code> removes the first element. <code>unshift()</code> adds a new element to the beginning:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Array Methods&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Shifting Elements&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+const fruits = [&quot;Banana&quot;, &quot;Orange&quot;, &quot;Apple&quot;];
+
+// shift() removes the first element
+let shifted = fruits.shift();
+let text = &quot;Shifted: &quot; + shifted + &quot;&lt;br&gt;&quot;;
+text += &quot;After shift(): &quot; + fruits + &quot;&lt;br&gt;&lt;br&gt;&quot;;
+
+// unshift() adds to the beginning
+let newLength = fruits.unshift(&quot;Lemon&quot;);
+text += &quot;Unshifted &#39;Lemon&#39;, new length: &quot; + newLength + &quot;&lt;br&gt;&quot;;
+text += &quot;After unshift(): &quot; + fruits;
+
+document.getElementById(&quot;demo&quot;).innerHTML = text;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p3.png" alt=""></p>
+<h3>Example 3</h3>
+<p><strong>Result</strong> <a href="ex3-shift_unshift/index.html">View Example</a></p>
+<h2>Merging Arrays</h2>
+<p><code>concat()</code> merges two or more arrays:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Array Methods&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Merging Arrays&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+const arr1 = [&quot;Cecilie&quot;, &quot;Lone&quot;];
+const arr2 = [&quot;Emil&quot;, &quot;Tobias&quot;, &quot;Linus&quot;];
+const arr3 = [&quot;Robin&quot;, &quot;Morgan&quot;];
+
+// Merge two arrays
+const merged2 = arr1.concat(arr2);
+
+// Merge three arrays
+const merged3 = arr1.concat(arr2, arr3);
+
+// Merge array with values
+const mergedValues = arr1.concat(&quot;Peter&quot;);
+
+document.getElementById(&quot;demo&quot;).innerHTML =
+  &quot;Merged 2 arrays: &quot; + merged2 + &quot;&lt;br&gt;&quot; +
+  &quot;Merged 3 arrays: &quot; + merged3 + &quot;&lt;br&gt;&quot; +
+  &quot;Merged with values: &quot; + mergedValues;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p4.png" alt=""></p>
+<h3>Example 4</h3>
+<p><strong>Result</strong> <a href="ex4-concat/index.html">View Example</a></p>
+<h2>Splicing and Slicing</h2>
+<p><code>splice()</code> adds/removes elements in the middle. <code>slice()</code> extracts a section without modifying the original:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Array Methods&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Splicing and Slicing&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+const fruits = [&quot;Banana&quot;, &quot;Orange&quot;, &quot;Apple&quot;, &quot;Mango&quot;];
+
+// splice(position, count, items...) - adds/removes in middle
+fruits.splice(2, 0, &quot;Lemon&quot;, &quot;Kiwi&quot;);
+let text = &quot;After splice(2, 0, &#39;Lemon&#39;, &#39;Kiwi&#39;): &quot; + fruits + &quot;&lt;br&gt;&lt;br&gt;&quot;;
+
+// splice to remove elements
+fruits.splice(2, 2);
+text += &quot;After splice(2, 2): &quot; + fruits + &quot;&lt;br&gt;&lt;br&gt;&quot;;
+
+// slice(start, end) - extracts without modifying
+const citrus = fruits.slice(1, 3);
+text += &quot;slice(1, 3): &quot; + citrus + &quot;&lt;br&gt;&quot;;
+text += &quot;Original: &quot; + fruits + &quot; (unchanged)&quot;;
+
+document.getElementById(&quot;demo&quot;).innerHTML = text;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p5.png" alt=""></p>
+<h3>Example 5</h3>
+<p><strong>Result</strong> <a href="ex5-splice_slice/index.html">View Example</a></p>
+<h2>Document</h2>
+<p>Document in project</p>
+<p>You can <a href="js-array_methods.pdf">Download PDF</a> file.</p>
+<h2>Reference</h2>
+<ul>
+<li><a href="https://www.w3schools.com/js/js_array_methods.asp">W3Schools JavaScript Array Methods</a></li>
+</ul>
+
+</body>
+</html>

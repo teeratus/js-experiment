@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Array Reference</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Iteration Methods</h4>
+<p id="demo"></p>
+
+<script>
+const numbers = [1, 2, 3, 4, 5];
+
+let text = "Array: " + numbers + "<br><br>";
+
+// forEach
+let sum = 0;
+numbers.forEach(v => sum += v);
+text += "forEach (sum): " + sum + "<br>";
+
+// map
+text += "map(v * 10): " + numbers.map(v => v * 10) + "<br>";
+
+// filter
+text += "filter(v % 2 == 0): " + numbers.filter(v => v % 2 === 0) + "<br>";
+
+// reduce
+text += "reduce(sum): " + numbers.reduce((acc, v) => acc + v, 0) + "<br>";
+
+// every/some
+text += "every(v > 0): " + numbers.every(v => v > 0) + "<br>";
+text += "some(v > 4): " + numbers.some(v => v > 4);
+
+document.getElementById("demo").innerHTML = text;
+</script>
+
+</body>
+</html>

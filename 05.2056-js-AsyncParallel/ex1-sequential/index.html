@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Async Parallel</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Sequential Operations</h4>
+<p id="demo"></p>
+
+<script>
+async function sequential() {
+  let result1 = await new Promise(function(resolve) {
+    setTimeout(function() {
+      resolve("First result");
+    }, 1000);
+  });
+
+  let result2 = await new Promise(function(resolve) {
+    setTimeout(function() {
+      resolve("Second result");
+    }, 1000);
+  });
+
+  document.getElementById("demo").innerHTML = result1 + "<br>" + result2 + "<br>Total: ~2 seconds";
+}
+
+sequential();
+</script>
+
+</body>
+</html>

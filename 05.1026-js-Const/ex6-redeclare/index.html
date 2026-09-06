@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Const</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Redeclaring</h4>
+<p id="demo1"></p>
+<p id="demo2"></p>
+
+<script>
+const x = 2;
+// const x = 3; // Not allowed in same scope (commented out)
+document.getElementById("demo1").innerHTML = "Outer x: " + x;
+{
+  const x = 3; // Allowed in another block scope
+  document.getElementById("demo2").innerHTML = "Inner x: " + x;
+}
+</script>
+
+</body>
+</html>

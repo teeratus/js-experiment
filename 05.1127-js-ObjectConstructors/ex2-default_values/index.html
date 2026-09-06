@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Object Constructors</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Property Default Values</h4>
+<p id="demo"></p>
+
+<script>
+function Person(first, last, age, eye) {
+  this.firstName = first;
+  this.lastName = last;
+  this.age = age;
+  this.eyeColor = eye;
+  this.nationality = "American";  // Default value
+}
+
+const myFather = new Person("John", "Doe", 50, "blue");
+const mySister = new Person("Emily", "Doe", 25, "blue");
+
+document.getElementById("demo").innerHTML =
+  "Father: " + myFather.nationality + "<br>" +
+  "Sister: " + mySister.nationality + "<br><br>" +
+  "Both share the default nationality property";
+</script>
+
+</body>
+</html>

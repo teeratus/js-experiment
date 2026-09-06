@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Promises</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>The then() Method</h4>
+<p id="demo"></p>
+
+<script>
+function fetchData() {
+  return new Promise(function(resolve) {
+    setTimeout(function() {
+      resolve("Data loaded successfully!");
+    }, 2000);
+  });
+}
+
+fetchData().then(function(value) {
+  document.getElementById("demo").innerHTML = value;
+});
+
+document.getElementById("demo").innerHTML = "Loading...";
+</script>
+
+</body>
+</html>

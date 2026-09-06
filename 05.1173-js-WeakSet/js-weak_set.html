@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>js-weak_set</title>
+  <style>
+    body {
+      box-sizing: border-box;
+      min-width: 200px;
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 45px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+      font-size: 16px;
+      line-height: 1.5;
+      color: #24292e;
+      background-color: #ffffff;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 24px;
+      margin-bottom: 16px;
+      font-weight: 600;
+      line-height: 1.25;
+      border-bottom: 1px solid #eaecef;
+      padding-bottom: .3em;
+    }
+    h1 { font-size: 2em; }
+    h2 { font-size: 1.5em; }
+    h3 { font-size: 1.25em; }
+    code {
+      padding: .2em .4em;
+      margin: 0;
+      font-size: 85%;
+      background-color: rgba(27,31,35,.05);
+      border-radius: 3px;
+      font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
+    }
+    pre {
+      padding: 16px;
+      overflow: auto;
+      font-size: 85%;
+      line-height: 1.45;
+      background-color: #f6f8fa;
+      border-radius: 3px;
+      word-wrap: normal;
+    }
+    pre code {
+      background-color: transparent;
+      padding: 0;
+    }
+    blockquote {
+      padding: 0 1em;
+      color: #6a737d;
+      border-left: .25em solid #dfe2e5;
+      margin: 0 0 16px 0;
+    }
+    table {
+      border-spacing: 0;
+      border-collapse: collapse;
+      margin-top: 0;
+      margin-bottom: 16px;
+      width: 100%;
+    }
+    table th, table td {
+      padding: 6px 13px;
+      border: 1px solid #dfe2e5;
+    }
+    table tr:nth-child(2n) {
+      background-color: #f6f8fa;
+    }
+    img {
+      max-width: 100%;
+      box-sizing: content-box;
+    }
+    @media print {
+      body {
+        max-width: 100%;
+        padding: 0;
+      }
+      pre, blockquote, table, tr, img {
+        page-break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+<body>
+<h1>JavaScript WeakSet</h1>
+<p><a href="../acp-js.php">Back to JS page</a></p>
+<p>Table of Contents</p>
+<ul>
+<li><a href="#javascript-weakset">JavaScript WeakSet</a><ul>
+<li><a href="#creating-a-weakset">Creating a WeakSet</a><ul>
+<li><a href="#example-1">Example 1</a></li>
+</ul>
+</li>
+<li><a href="#weakset-methods">WeakSet Methods</a><ul>
+<li><a href="#example-2">Example 2</a></li>
+</ul>
+</li>
+<li><a href="#weakset-vs-set">WeakSet vs Set</a><ul>
+<li><a href="#example-3">Example 3</a></li>
+</ul>
+</li>
+<li><a href="#weak-references">Weak References</a><ul>
+<li><a href="#example-4">Example 4</a></li>
+</ul>
+</li>
+<li><a href="#document">Document</a></li>
+<li><a href="#reference">Reference</a></li>
+</ul>
+</li>
+</ul>
+<h2>Creating a WeakSet</h2>
+<p>A <code>WeakSet</code> is a collection of objects. Unlike a Set, a WeakSet can only contain <strong>objects</strong> (not primitive values like strings or numbers):</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript WeakSet&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Creating a WeakSet&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+// Create a WeakSet with objects
+const obj1 = { name: &quot;John&quot; };
+const obj2 = { name: &quot;Jane&quot; };
+const obj3 = { name: &quot;Bob&quot; };
+
+const weakSet = new WeakSet([obj1, obj2, obj3]);
+
+// Add another object
+const obj4 = { name: &quot;Alice&quot; };
+weakSet.add(obj4);
+
+document.getElementById(&quot;demo&quot;).innerHTML =
+  &quot;WeakSet created with objects&lt;br&gt;&quot; +
+  &quot;has(obj1): &quot; + weakSet.has(obj1) + &quot;&lt;br&gt;&quot; +
+  &quot;has(obj4): &quot; + weakSet.has(obj4) + &quot;&lt;br&gt;&lt;br&gt;&quot; +
+  &quot;Note: WeakSet can only hold objects,&lt;br&gt;&quot; +
+  &quot;not strings, numbers, or other primitives&quot;;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p1.png" alt=""></p>
+<h3>Example 1</h3>
+<p><strong>Result</strong> <a href="ex1-create_weakset/index.html">View Example</a></p>
+<h2>WeakSet Methods</h2>
+<p>A WeakSet supports only three methods: <code>add()</code>, <code>delete()</code>, and <code>has()</code>:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript WeakSet&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;WeakSet Methods&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+const weakSet = new WeakSet();
+
+const obj1 = { id: 1 };
+const obj2 = { id: 2 };
+
+// add() - add an object
+weakSet.add(obj1);
+weakSet.add(obj2);
+
+let text = &quot;After adding 2 objects:&lt;br&gt;&quot;;
+text += &quot;has(obj1): &quot; + weakSet.has(obj1) + &quot;&lt;br&gt;&quot;;
+text += &quot;has(obj2): &quot; + weakSet.has(obj2) + &quot;&lt;br&gt;&lt;br&gt;&quot;;
+
+// delete() - remove an object
+weakSet.delete(obj1);
+text += &quot;After delete(obj1):&lt;br&gt;&quot;;
+text += &quot;has(obj1): &quot; + weakSet.has(obj1) + &quot;&lt;br&gt;&lt;br&gt;&quot;;
+
+text += &quot;&lt;b&gt;Methods available:&lt;/b&gt;&lt;br&gt;&quot;;
+text += &quot;add(obj) - add an object&lt;br&gt;&quot;;
+text += &quot;delete(obj) - remove an object&lt;br&gt;&quot;;
+text += &quot;has(obj) - check if object exists&lt;br&gt;&lt;br&gt;&quot;;
+
+text += &quot;WeakSet has NO size property and NO iteration methods&quot;;
+
+document.getElementById(&quot;demo&quot;).innerHTML = text;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p2.png" alt=""></p>
+<h3>Example 2</h3>
+<p><strong>Result</strong> <a href="ex2-methods/index.html">View Example</a></p>
+<h2>WeakSet vs Set</h2>
+<p>The main differences between WeakSet and Set:</p>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>Set</th>
+<th>WeakSet</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Values</td>
+<td>Any type (objects + primitives)</td>
+<td>Objects only</td>
+</tr>
+<tr>
+<td><code>size</code> property</td>
+<td>Yes</td>
+<td>No</td>
+</tr>
+<tr>
+<td>Iteration</td>
+<td>Yes (forEach, values, etc.)</td>
+<td>No</td>
+</tr>
+<tr>
+<td>Weak references</td>
+<td>No</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Garbage collection</td>
+<td>Not automatic</td>
+<td>Automatic</td>
+</tr>
+</tbody></table>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript WeakSet&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;WeakSet vs Set&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+// Set can hold any type
+const set = new Set([&quot;string&quot;, 42, true, {obj: true}]);
+
+// WeakSet can only hold objects
+const obj = {name: &quot;John&quot;};
+const weakSet = new WeakSet([obj]);
+
+let text = &quot;&lt;b&gt;Set can hold:&lt;/b&gt;&lt;br&gt;&quot;;
+text += &quot;- Strings: ✓&lt;br&gt;&quot;;
+text += &quot;- Numbers: ✓&lt;br&gt;&quot;;
+text += &quot;- Booleans: ✓&lt;br&gt;&quot;;
+text += &quot;- Objects: ✓&lt;br&gt;&lt;br&gt;&quot;;
+
+text += &quot;&lt;b&gt;WeakSet can only hold:&lt;/b&gt;&lt;br&gt;&quot;;
+text += &quot;- Objects: ✓ (only types allowed)&lt;br&gt;&lt;br&gt;&quot;;
+
+text += &quot;&lt;b&gt;Set has:&lt;/b&gt; size, forEach(), values(), keys()&lt;br&gt;&quot;;
+text += &quot;&lt;b&gt;WeakSet has:&lt;/b&gt; add(), delete(), has() only&lt;br&gt;&lt;br&gt;&quot;;
+
+document.getElementById(&quot;demo&quot;).innerHTML = text;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p3.png" alt=""></p>
+<h3>Example 3</h3>
+<p><strong>Result</strong> <a href="ex3-weakset_vs_set/index.html">View Example</a></p>
+<h2>Weak References</h2>
+<p>WeakSet holds objects by <strong>weak references</strong>. When an object is no longer referenced elsewhere, it can be garbage collected:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript WeakSet&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Weak References&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+const weakSet = new WeakSet();
+
+let john = { name: &quot;John&quot; };
+weakSet.add(john);
+
+let text = &quot;Object added to WeakSet&lt;br&gt;&lt;br&gt;&quot;;
+
+// Display object
+text += &quot;Object in WeakSet: &quot; + (weakSet.has(john)) + &quot;&lt;br&gt;&lt;br&gt;&quot;;
+
+// Remove all references to john
+john = null;
+
+text += &quot;After setting john = null:&lt;br&gt;&quot;;
+text += &quot;The object can now be garbage collected&lt;br&gt;&quot;;
+text += &quot;It will be automatically removed from the WeakSet&lt;br&gt;&lt;br&gt;&quot;;
+text += &quot;This is why WeakSet is useful for&lt;br&gt;&quot;;
+text += &quot;managing memory efficiently&quot;;
+
+document.getElementById(&quot;demo&quot;).innerHTML = text;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p4.png" alt=""></p>
+<h3>Example 4</h3>
+<p><strong>Result</strong> <a href="ex4-weak_references/index.html">View Example</a></p>
+<h2>Document</h2>
+<p>Document in project</p>
+<p>You can <a href="js-weak_set.pdf">Download PDF</a> file.</p>
+<h2>Reference</h2>
+<ul>
+<li><a href="https://www.w3schools.com/js/js_sets.asp">W3Schools JavaScript WeakSet</a></li>
+</ul>
+
+</body>
+</html>

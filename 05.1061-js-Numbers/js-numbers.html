@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>js-numbers</title>
+  <style>
+    body {
+      box-sizing: border-box;
+      min-width: 200px;
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 45px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+      font-size: 16px;
+      line-height: 1.5;
+      color: #24292e;
+      background-color: #ffffff;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 24px;
+      margin-bottom: 16px;
+      font-weight: 600;
+      line-height: 1.25;
+      border-bottom: 1px solid #eaecef;
+      padding-bottom: .3em;
+    }
+    h1 { font-size: 2em; }
+    h2 { font-size: 1.5em; }
+    h3 { font-size: 1.25em; }
+    code {
+      padding: .2em .4em;
+      margin: 0;
+      font-size: 85%;
+      background-color: rgba(27,31,35,.05);
+      border-radius: 3px;
+      font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
+    }
+    pre {
+      padding: 16px;
+      overflow: auto;
+      font-size: 85%;
+      line-height: 1.45;
+      background-color: #f6f8fa;
+      border-radius: 3px;
+      word-wrap: normal;
+    }
+    pre code {
+      background-color: transparent;
+      padding: 0;
+    }
+    blockquote {
+      padding: 0 1em;
+      color: #6a737d;
+      border-left: .25em solid #dfe2e5;
+      margin: 0 0 16px 0;
+    }
+    table {
+      border-spacing: 0;
+      border-collapse: collapse;
+      margin-top: 0;
+      margin-bottom: 16px;
+      width: 100%;
+    }
+    table th, table td {
+      padding: 6px 13px;
+      border: 1px solid #dfe2e5;
+    }
+    table tr:nth-child(2n) {
+      background-color: #f6f8fa;
+    }
+    img {
+      max-width: 100%;
+      box-sizing: content-box;
+    }
+    @media print {
+      body {
+        max-width: 100%;
+        padding: 0;
+      }
+      pre, blockquote, table, tr, img {
+        page-break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+<body>
+<h1>JavaScript Numbers</h1>
+<p><a href="../acp-js.php">Back to JS page</a></p>
+<p>Table of Contents</p>
+<ul>
+<li><a href="#javascript-numbers">JavaScript Numbers</a><ul>
+<li><a href="#number-types">Number Types</a><ul>
+<li><a href="#example-1">Example 1</a></li>
+</ul>
+</li>
+<li><a href="#integer-precision">Integer Precision</a><ul>
+<li><a href="#example-2">Example 2</a></li>
+</ul>
+</li>
+<li><a href="#adding-numbers-and-strings">Adding Numbers and Strings</a><ul>
+<li><a href="#example-3">Example 3</a></li>
+</ul>
+</li>
+<li><a href="#numeric-strings">Numeric Strings</a><ul>
+<li><a href="#example-4">Example 4</a></li>
+</ul>
+</li>
+<li><a href="#nan---not-a-number">NaN - Not a Number</a><ul>
+<li><a href="#example-5">Example 5</a></li>
+</ul>
+</li>
+<li><a href="#infinity">Infinity</a><ul>
+<li><a href="#example-6">Example 6</a></li>
+</ul>
+</li>
+<li><a href="#hexadecimal">Hexadecimal</a><ul>
+<li><a href="#example-7">Example 7</a></li>
+</ul>
+</li>
+<li><a href="#javascript-numbers-as-objects">JavaScript Numbers as Objects</a><ul>
+<li><a href="#example-8">Example 8</a></li>
+</ul>
+</li>
+<li><a href="#document">Document</a></li>
+<li><a href="#reference">Reference</a></li>
+</ul>
+</li>
+</ul>
+<h2>Number Types</h2>
+<p>JavaScript has only one type of number. Numbers can be written with or without decimals:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Numbers&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Number Types&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+let x = 3.14;    // A number with decimals
+let y = 3;       // A number without decimals
+let z = 123e5;   // Exponential notation
+document.getElementById(&quot;demo&quot;).innerHTML =
+  x + &quot;&lt;br&gt;&quot; + y + &quot;&lt;br&gt;&quot; + z;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p1.png" alt=""></p>
+<h3>Example 1</h3>
+<p><strong>Result</strong> <a href="ex1-number_types/index.html">View Example</a></p>
+<h2>Integer Precision</h2>
+<p>Integers (numbers without a period or exponent notation) are accurate up to 15 digits:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Numbers&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Integer Precision&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+let x = 999999999999999;   // 15 digits
+let y = 9999999999999999;  // 16 digits
+document.getElementById(&quot;demo&quot;).innerHTML =
+  &quot;15 digits: &quot; + x + &quot;&lt;br&gt;&quot; +
+  &quot;16 digits: &quot; + y;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p2.png" alt=""></p>
+<h3>Example 2</h3>
+<p><strong>Result</strong> <a href="ex2-integer_precision/index.html">View Example</a></p>
+<h2>Adding Numbers and Strings</h2>
+<p>When adding numbers and strings, JavaScript treats numbers as strings when a string is present:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Numbers&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Adding Numbers and Strings&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+let x = 10;
+let y = 20;
+let z = &quot;The result is: &quot; + x + y;
+document.getElementById(&quot;demo&quot;).innerHTML = z;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p3.png" alt=""></p>
+<h3>Example 3</h3>
+<p><strong>Result</strong> <a href="ex3-adding_numbers_strings/index.html">View Example</a></p>
+<h2>Numeric Strings</h2>
+<p>JavaScript strings can have numeric content. JavaScript will try to convert strings to numbers in some operations:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Numbers&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Numeric Strings&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+let x = &quot;100&quot;;
+let y = &quot;10&quot;;
+let z = x / y;
+document.getElementById(&quot;demo&quot;).innerHTML = &quot;100 / 10 = &quot; + z;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p4.png" alt=""></p>
+<h3>Example 4</h3>
+<p><strong>Result</strong> <a href="ex4-numeric_strings/index.html">View Example</a></p>
+<h2>NaN - Not a Number</h2>
+<p><code>NaN</code> is a JavaScript reserved word indicating that a number is not a legal number:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Numbers&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;NaN - Not a Number&lt;/h4&gt;
+&lt;p id=&quot;demo1&quot;&gt;&lt;/p&gt;
+&lt;p id=&quot;demo2&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+let x = 100 / &quot;Apple&quot;;
+document.getElementById(&quot;demo1&quot;).innerHTML = &quot;100 / &#39;Apple&#39; = &quot; + x;
+document.getElementById(&quot;demo2&quot;).innerHTML = &quot;isNaN(100 / &#39;Apple&#39;): &quot; + isNaN(x);
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p5.png" alt=""></p>
+<h3>Example 5</h3>
+<p><strong>Result</strong> <a href="ex5-nan/index.html">View Example</a></p>
+<h2>Infinity</h2>
+<p><code>Infinity</code> (or <code>-Infinity</code>) is the value JavaScript will return if you calculate a number outside the largest possible number:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Numbers&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Infinity&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+let x = 2 / 0;
+let y = -2 / 0;
+document.getElementById(&quot;demo&quot;).innerHTML =
+  &quot;2 / 0 = &quot; + x + &quot;&lt;br&gt;&quot; +
+  &quot;-2 / 0 = &quot; + y + &quot;&lt;br&gt;&quot; +
+  &quot;typeof Infinity: &quot; + typeof x;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p6.png" alt=""></p>
+<h3>Example 6</h3>
+<p><strong>Result</strong> <a href="ex6-infinity/index.html">View Example</a></p>
+<h2>Hexadecimal</h2>
+<p>JavaScript interprets numeric constants as hexadecimal if they are preceded by <code>0x</code>:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Numbers&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Hexadecimal&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+let x = 0xFF;
+document.getElementById(&quot;demo&quot;).innerHTML = &quot;0xFF = &quot; + x;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p7.png" alt=""></p>
+<h3>Example 7</h3>
+<p><strong>Result</strong> <a href="ex7-hexadecimal/index.html">View Example</a></p>
+<h2>JavaScript Numbers as Objects</h2>
+<p>Normally, JavaScript numbers are primitive values created from literals.</p>
+<p>But numbers can also be defined as objects with the keyword <code>new</code>:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Numbers&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Numbers as Objects&lt;/h4&gt;
+&lt;p id=&quot;demo1&quot;&gt;&lt;/p&gt;
+&lt;p id=&quot;demo2&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+let x = 123;
+let y = new Number(123);
+document.getElementById(&quot;demo1&quot;).innerHTML = typeof x + &quot;&lt;br&gt;&quot; + typeof y;
+document.getElementById(&quot;demo2&quot;).innerHTML = &quot;x === y is &quot; + (x === y);
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p8.png" alt=""></p>
+<h3>Example 8</h3>
+<p><strong>Result</strong> <a href="ex8-numbers_objects/index.html">View Example</a></p>
+<h2>Document</h2>
+<p>Document in project</p>
+<p>You can <a href="js-numbers.pdf">Download PDF</a> file.</p>
+<h2>Reference</h2>
+<ul>
+<li><a href="https://www.w3schools.com/js/js_numbers.asp">W3Schools JavaScript Numbers</a></li>
+</ul>
+
+</body>
+</html>

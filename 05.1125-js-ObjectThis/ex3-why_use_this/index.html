@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Object this</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Why Use this?</h4>
+<p id="demo"></p>
+
+<script>
+function introduce() {
+  return "Hi, I'm " + this.firstName + " " + this.lastName;
+}
+
+const person1 = {
+  firstName: "John",
+  lastName: "Doe",
+  introduce: introduce
+};
+
+const person2 = {
+  firstName: "Jane",
+  lastName: "Smith",
+  introduce: introduce
+};
+
+document.getElementById("demo").innerHTML =
+  person1.introduce() + "<br>" +
+  person2.introduce();
+</script>
+
+</body>
+</html>

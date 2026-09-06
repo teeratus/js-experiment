@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Error Reference</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>TypeError</h4>
+<p id="demo"></p>
+
+<script>
+let text = "";
+
+try {
+  let num = 1;
+  num.toUpperCase();   // Numbers don't have toUpperCase()
+}
+catch(err) {
+  text += "Error Name: " + err.name + "<br>";
+  text += "Error Message: " + err.message;
+}
+
+document.getElementById("demo").innerHTML = text;
+</script>
+
+</body>
+</html>

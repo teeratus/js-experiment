@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>js-regexp_objects</title>
+  <style>
+    body {
+      box-sizing: border-box;
+      min-width: 200px;
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 45px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+      font-size: 16px;
+      line-height: 1.5;
+      color: #24292e;
+      background-color: #ffffff;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 24px;
+      margin-bottom: 16px;
+      font-weight: 600;
+      line-height: 1.25;
+      border-bottom: 1px solid #eaecef;
+      padding-bottom: .3em;
+    }
+    h1 { font-size: 2em; }
+    h2 { font-size: 1.5em; }
+    h3 { font-size: 1.25em; }
+    code {
+      padding: .2em .4em;
+      margin: 0;
+      font-size: 85%;
+      background-color: rgba(27,31,35,.05);
+      border-radius: 3px;
+      font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
+    }
+    pre {
+      padding: 16px;
+      overflow: auto;
+      font-size: 85%;
+      line-height: 1.45;
+      background-color: #f6f8fa;
+      border-radius: 3px;
+      word-wrap: normal;
+    }
+    pre code {
+      background-color: transparent;
+      padding: 0;
+    }
+    blockquote {
+      padding: 0 1em;
+      color: #6a737d;
+      border-left: .25em solid #dfe2e5;
+      margin: 0 0 16px 0;
+    }
+    table {
+      border-spacing: 0;
+      border-collapse: collapse;
+      margin-top: 0;
+      margin-bottom: 16px;
+      width: 100%;
+    }
+    table th, table td {
+      padding: 6px 13px;
+      border: 1px solid #dfe2e5;
+    }
+    table tr:nth-child(2n) {
+      background-color: #f6f8fa;
+    }
+    img {
+      max-width: 100%;
+      box-sizing: content-box;
+    }
+    @media print {
+      body {
+        max-width: 100%;
+        padding: 0;
+      }
+      pre, blockquote, table, tr, img {
+        page-break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+<body>
+<h1>JavaScript RegExp Objects</h1>
+<p><a href="../acp-js.php">Back to JS page</a></p>
+<p>Table of Contents</p>
+<ul>
+<li><a href="#javascript-regexp-objects">JavaScript RegExp Objects</a><ul>
+<li><a href="#the-regexp-object">The RegExp Object</a><ul>
+<li><a href="#example-1">Example 1</a></li>
+</ul>
+</li>
+<li><a href="#using-test">Using test()</a><ul>
+<li><a href="#example-2">Example 2</a></li>
+</ul>
+</li>
+<li><a href="#using-exec">Using exec()</a><ul>
+<li><a href="#example-3">Example 3</a></li>
+</ul>
+</li>
+<li><a href="#the-regexpescape-method">The RegExp.escape() Method</a><ul>
+<li><a href="#example-4">Example 4</a></li>
+</ul>
+</li>
+<li><a href="#document">Document</a></li>
+<li><a href="#reference">Reference</a></li>
+</ul>
+</li>
+</ul>
+<h2>The RegExp Object</h2>
+<p>The <code>RegExp</code> object is used to search for patterns in strings. It can be created with literal syntax <code>/pattern/</code> or <code>new RegExp()</code>:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript RegExp Objects&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;The RegExp Object&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+// Literal syntax
+const pattern1 = /hello/;
+
+// Constructor syntax
+const pattern2 = new RegExp(&quot;hello&quot;);
+
+let text = &quot;Literal pattern: &quot; + pattern1 + &quot;&lt;br&gt;&quot;;
+text += &quot;Constructor pattern: &quot; + pattern2 + &quot;&lt;br&gt;&lt;br&gt;&quot;;
+text += &quot;Both are RegExp objects: &quot; + (pattern1 instanceof RegExp) + &quot;&lt;br&gt;&quot;;
+text += &quot;with global flag: &quot; + /hello/g.global;
+
+document.getElementById(&quot;demo&quot;).innerHTML = text;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p1.png" alt=""></p>
+<h3>Example 1</h3>
+<p><strong>Result</strong> <a href="ex1-regexp_object/index.html">View Example</a></p>
+<h2>Using test()</h2>
+<p>The <code>test()</code> method searches a string for a pattern match. It returns <code>true</code> or <code>false</code>:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript RegExp Objects&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Using test()&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+const text = &quot;The rain in Spain&quot;;
+
+// test() returns boolean
+const result1 = /ain/.test(text);
+const result2 = /xyz/.test(text);
+
+document.getElementById(&quot;demo&quot;).innerHTML =
+  &quot;Text: &quot; + text + &quot;&lt;br&gt;&lt;br&gt;&quot; +
+  &quot;test(/ain/): &quot; + result1 + &quot; (found)&lt;br&gt;&quot; +
+  &quot;test(/xyz/): &quot; + result2 + &quot; (not found)&lt;br&gt;&lt;br&gt;&quot; +
+  &quot;test() returns true or false&quot;;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p2.png" alt=""></p>
+<h3>Example 2</h3>
+<p><strong>Result</strong> <a href="ex2-test/index.html">View Example</a></p>
+<h2>Using exec()</h2>
+<p>The <code>exec()</code> method searches for a match and returns the match details (or <code>null</code>):</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript RegExp Objects&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Using exec()&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+const text = &quot;The rain in Spain&quot;;
+
+// exec() returns match details
+const result = /ain/.exec(text);
+
+document.getElementById(&quot;demo&quot;).innerHTML =
+  &quot;Text: &quot; + text + &quot;&lt;br&gt;&lt;br&gt;&quot; +
+  &quot;exec(/ain/):&lt;br&gt;&quot; +
+  &quot;match[0]: &quot; + result[0] + &quot;&lt;br&gt;&quot; +
+  &quot;index: &quot; + result.index + &quot;&lt;br&gt;&quot; +
+  &quot;input: &quot; + result.input;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p3.png" alt=""></p>
+<h3>Example 3</h3>
+<p><strong>Result</strong> <a href="ex3-exec/index.html">View Example</a></p>
+<h2>The RegExp.escape() Method</h2>
+<p><code>RegExp.escape()</code> escapes special characters in a string so it can be used as a literal pattern:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript RegExp Objects&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;The RegExp.escape() Method&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+let text = &quot;&quot;;
+
+if (RegExp.escape) {
+  // Escape special characters
+  const escaped = RegExp.escape(&quot;a.b*c&quot;);
+  text += &quot;RegExp.escape(&#39;a.b*c&#39;): &quot; + escaped + &quot;&lt;br&gt;&lt;br&gt;&quot;;
+  
+  // Use escaped pattern to match literal dots and stars
+  const result = &quot;a.b*c&quot;.match(new RegExp(escaped));
+  text += &quot;Matching literal &#39;a.b*c&#39;: &quot; + result[0];
+} else {
+  text += &quot;RegExp.escape() is not supported in this browser yet.&quot;;
+}
+
+document.getElementById(&quot;demo&quot;).innerHTML = text;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p4.png" alt=""></p>
+<h3>Example 4</h3>
+<p><strong>Result</strong> <a href="ex4-escape/index.html">View Example</a></p>
+<h2>Document</h2>
+<p>Document in project</p>
+<p>You can <a href="js-regexp_objects.pdf">Download PDF</a> file.</p>
+<h2>Reference</h2>
+<ul>
+<li><a href="https://www.w3schools.com/js/js_regexp_objects.asp">W3Schools JavaScript RegExp Objects</a></li>
+</ul>
+
+</body>
+</html>

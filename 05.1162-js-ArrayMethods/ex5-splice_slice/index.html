@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Array Methods</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Splicing and Slicing</h4>
+<p id="demo"></p>
+
+<script>
+const fruits = ["Banana", "Orange", "Apple", "Mango"];
+
+// splice(position, count, items...) - adds/removes in middle
+fruits.splice(2, 0, "Lemon", "Kiwi");
+let text = "After splice(2, 0, 'Lemon', 'Kiwi'): " + fruits + "<br><br>";
+
+// splice to remove elements
+fruits.splice(2, 2);
+text += "After splice(2, 2): " + fruits + "<br><br>";
+
+// slice(start, end) - extracts without modifying
+const citrus = fruits.slice(1, 3);
+text += "slice(1, 3): " + citrus + "<br>";
+text += "Original: " + fruits + " (unchanged)";
+
+document.getElementById("demo").innerHTML = text;
+</script>
+
+</body>
+</html>

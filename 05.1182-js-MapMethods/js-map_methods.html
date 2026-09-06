@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>js-map_methods</title>
+  <style>
+    body {
+      box-sizing: border-box;
+      min-width: 200px;
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 45px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+      font-size: 16px;
+      line-height: 1.5;
+      color: #24292e;
+      background-color: #ffffff;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 24px;
+      margin-bottom: 16px;
+      font-weight: 600;
+      line-height: 1.25;
+      border-bottom: 1px solid #eaecef;
+      padding-bottom: .3em;
+    }
+    h1 { font-size: 2em; }
+    h2 { font-size: 1.5em; }
+    h3 { font-size: 1.25em; }
+    code {
+      padding: .2em .4em;
+      margin: 0;
+      font-size: 85%;
+      background-color: rgba(27,31,35,.05);
+      border-radius: 3px;
+      font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
+    }
+    pre {
+      padding: 16px;
+      overflow: auto;
+      font-size: 85%;
+      line-height: 1.45;
+      background-color: #f6f8fa;
+      border-radius: 3px;
+      word-wrap: normal;
+    }
+    pre code {
+      background-color: transparent;
+      padding: 0;
+    }
+    blockquote {
+      padding: 0 1em;
+      color: #6a737d;
+      border-left: .25em solid #dfe2e5;
+      margin: 0 0 16px 0;
+    }
+    table {
+      border-spacing: 0;
+      border-collapse: collapse;
+      margin-top: 0;
+      margin-bottom: 16px;
+      width: 100%;
+    }
+    table th, table td {
+      padding: 6px 13px;
+      border: 1px solid #dfe2e5;
+    }
+    table tr:nth-child(2n) {
+      background-color: #f6f8fa;
+    }
+    img {
+      max-width: 100%;
+      box-sizing: content-box;
+    }
+    @media print {
+      body {
+        max-width: 100%;
+        padding: 0;
+      }
+      pre, blockquote, table, tr, img {
+        page-break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+<body>
+<h1>JavaScript Map Methods</h1>
+<p><a href="../acp-js.php">Back to JS page</a></p>
+<p>Table of Contents</p>
+<ul>
+<li><a href="#javascript-map-methods">JavaScript Map Methods</a><ul>
+<li><a href="#mapget-and-mapset">Map.get() and Map.set()</a><ul>
+<li><a href="#example-1">Example 1</a></li>
+</ul>
+</li>
+<li><a href="#mapdelete-and-mapclear">Map.delete() and Map.clear()</a><ul>
+<li><a href="#example-2">Example 2</a></li>
+</ul>
+</li>
+<li><a href="#maphas-and-mapsize">Map.has() and Map.size</a><ul>
+<li><a href="#example-3">Example 3</a></li>
+</ul>
+</li>
+<li><a href="#mapforeach-and-mapentries">Map.forEach() and Map.entries()</a><ul>
+<li><a href="#example-4">Example 4</a></li>
+</ul>
+</li>
+<li><a href="#mapkeys-and-mapvalues">Map.keys() and Map.values()</a><ul>
+<li><a href="#example-5">Example 5</a></li>
+</ul>
+</li>
+<li><a href="#document">Document</a></li>
+<li><a href="#reference">Reference</a></li>
+</ul>
+</li>
+</ul>
+<h2>Map Methods</h2>
+<p>Map has the following methods and properties:</p>
+<table>
+<thead>
+<tr>
+<th>Method/Property</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>new Map()</code></td>
+<td>Create a new Map</td>
+</tr>
+<tr>
+<td><code>set(key, value)</code></td>
+<td>Set the value for a key</td>
+</tr>
+<tr>
+<td><code>get(key)</code></td>
+<td>Get the value for a key</td>
+</tr>
+<tr>
+<td><code>delete(key)</code></td>
+<td>Remove an entry</td>
+</tr>
+<tr>
+<td><code>has(key)</code></td>
+<td>Check if a key exists</td>
+</tr>
+<tr>
+<td><code>clear()</code></td>
+<td>Remove all entries</td>
+</tr>
+<tr>
+<td><code>forEach(fn)</code></td>
+<td>Call function for each entry</td>
+</tr>
+<tr>
+<td><code>keys()</code></td>
+<td>Iterator of keys</td>
+</tr>
+<tr>
+<td><code>values()</code></td>
+<td>Iterator of values</td>
+</tr>
+<tr>
+<td><code>entries()</code></td>
+<td>Iterator of [key, value] pairs</td>
+</tr>
+<tr>
+<td><code>size</code></td>
+<td>Number of entries</td>
+</tr>
+</tbody></table>
+<h2>Map.get() and Map.set()</h2>
+<p><code>set()</code> adds or updates a key-value pair. <code>get()</code> retrieves the value:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Map Methods&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Map.get() and Map.set()&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+const fruits = new Map();
+
+// set() adds new entries
+fruits.set(&quot;apple&quot;, 500);
+fruits.set(&quot;banana&quot;, 300);
+
+// set() can update an existing entry
+fruits.set(&quot;apple&quot;, 600);
+
+document.getElementById(&quot;demo&quot;).innerHTML =
+  &quot;get(&#39;apple&#39;): &quot; + fruits.get(&quot;apple&quot;) + &quot;&lt;br&gt;&quot; +
+  &quot;get(&#39;banana&#39;): &quot; + fruits.get(&quot;banana&quot;) + &quot;&lt;br&gt;&lt;br&gt;&quot; +
+  &quot;set() both adds AND updates entries&quot;;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p1.png" alt=""></p>
+<h3>Example 1</h3>
+<p><strong>Result</strong> <a href="ex1-get_set/index.html">View Example</a></p>
+<h2>Map.delete() and Map.clear()</h2>
+<p><code>delete()</code> removes one entry. <code>clear()</code> removes all entries:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Map Methods&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Map.delete() and Map.clear()&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+const fruits = new Map([
+  [&quot;apple&quot;, 500],
+  [&quot;banana&quot;, 300],
+  [&quot;orange&quot;, 200]
+]);
+
+// delete() removes one entry
+fruits.delete(&quot;banana&quot;);
+
+let text = &quot;After delete(&#39;banana&#39;): &quot; + [...fruits] + &quot;&lt;br&gt;&lt;br&gt;&quot;;
+
+// clear() removes all entries
+fruits.clear();
+text += &quot;After clear(): size = &quot; + fruits.size + &quot; (empty)&quot;;
+
+document.getElementById(&quot;demo&quot;).innerHTML = text;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p2.png" alt=""></p>
+<h3>Example 2</h3>
+<p><strong>Result</strong> <a href="ex2-delete_clear/index.html">View Example</a></p>
+<h2>Map.has() and Map.size</h2>
+<p><code>has()</code> returns true if a key exists. <code>size</code> returns the number of entries:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Map Methods&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Map.has() and Map.size&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+const fruits = new Map([
+  [&quot;apple&quot;, 500],
+  [&quot;banana&quot;, 300]
+]);
+
+document.getElementById(&quot;demo&quot;).innerHTML =
+  &quot;Map: &quot; + [...fruits] + &quot;&lt;br&gt;&quot; +
+  &quot;size: &quot; + fruits.size + &quot;&lt;br&gt;&lt;br&gt;&quot; +
+  &quot;has(&#39;apple&#39;): &quot; + fruits.has(&quot;apple&quot;) + &quot;&lt;br&gt;&quot; +
+  &quot;has(&#39;orange&#39;): &quot; + fruits.has(&quot;orange&quot;) + &quot;&lt;br&gt;&lt;br&gt;&quot; +
+  &quot;has() checks if a key exists in the Map&quot;;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p3.png" alt=""></p>
+<h3>Example 3</h3>
+<p><strong>Result</strong> <a href="ex3-has_size/index.html">View Example</a></p>
+<h2>Map.forEach() and Map.entries()</h2>
+<p><code>forEach()</code> calls a function for each entry. <code>entries()</code> returns an iterator of [key, value] pairs:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Map Methods&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Map.forEach() and Map.entries()&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+const fruits = new Map([
+  [&quot;apple&quot;, 500],
+  [&quot;banana&quot;, 300]
+]);
+
+let text = &quot;forEach():&lt;br&gt;&quot;;
+fruits.forEach(function(value, key) {
+  text += key + &quot; = &quot; + value + &quot;&lt;br&gt;&quot;;
+});
+
+text += &quot;&lt;br&gt;entries():&lt;br&gt;&quot;;
+for (let entry of fruits.entries()) {
+  text += &quot;[&quot; + entry[0] + &quot;, &quot; + entry[1] + &quot;]&lt;br&gt;&quot;;
+}
+
+document.getElementById(&quot;demo&quot;).innerHTML = text;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p4.png" alt=""></p>
+<h3>Example 4</h3>
+<p><strong>Result</strong> <a href="ex4-foreach_entries/index.html">View Example</a></p>
+<h2>Map.keys() and Map.values()</h2>
+<p><code>keys()</code> returns an iterator of all keys. <code>values()</code> returns an iterator of all values:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Map Methods&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Map.keys() and Map.values()&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+const fruits = new Map([
+  [&quot;apple&quot;, 500],
+  [&quot;banana&quot;, 300],
+  [&quot;orange&quot;, 200]
+]);
+
+let text = &quot;keys(): &quot;;
+for (let key of fruits.keys()) {
+  text += key + &quot; &quot;;
+}
+text += &quot;&lt;br&gt;&lt;br&gt;&quot;;
+
+text += &quot;values(): &quot;;
+for (let value of fruits.values()) {
+  text += value + &quot; &quot;;
+}
+
+document.getElementById(&quot;demo&quot;).innerHTML = text;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p5.png" alt=""></p>
+<h3>Example 5</h3>
+<p><strong>Result</strong> <a href="ex5-keys_values/index.html">View Example</a></p>
+<h2>Document</h2>
+<p>Document in project</p>
+<p>You can <a href="js-map_methods.pdf">Download PDF</a> file.</p>
+<h2>Reference</h2>
+<ul>
+<li><a href="https://www.w3schools.com/js/js_map_methods.asp">W3Schools JavaScript Map Methods</a></li>
+</ul>
+
+</body>
+</html>

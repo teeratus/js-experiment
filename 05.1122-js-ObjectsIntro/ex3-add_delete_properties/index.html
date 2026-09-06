@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Object Introduction</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Adding and Deleting Properties</h4>
+<p id="demo"></p>
+
+<script>
+const book = {
+  title: "JavaScript Guide",
+  author: "John Doe",
+  pages: 500
+};
+
+let text = "Original properties:<br>";
+for (let key in book) {
+  text += key + ": " + book[key] + "<br>";
+}
+
+// Add a new property
+book.publisher = "Tech Books Inc.";
+book.year = 2024;
+
+text += "<br>After adding properties:<br>";
+for (let key in book) {
+  text += key + ": " + book[key] + "<br>";
+}
+
+// Delete a property
+delete book.pages;
+
+text += "<br>After deleting 'pages':<br>";
+for (let key in book) {
+  text += key + ": " + book[key] + "<br>";
+}
+
+document.getElementById("demo").innerHTML = text;
+</script>
+
+</body>
+</html>

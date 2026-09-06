@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Set Methods</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>The has() Method</h4>
+<p id="demo"></p>
+
+<script>
+const letters = new Set(["a", "b", "c"]);
+
+let text = "Set: " + [...letters] + "<br><br>";
+text += "has('a'): " + letters.has("a") + "<br>";
+text += "has('x'): " + letters.has("x") + "<br><br>";
+
+// delete() removes an element
+letters.delete("b");
+text += "After delete('b'): " + [...letters] + "<br>";
+text += "has('b') after delete: " + letters.has("b");
+
+document.getElementById("demo").innerHTML = text;
+</script>
+
+</body>
+</html>

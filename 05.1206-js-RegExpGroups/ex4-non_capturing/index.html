@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript RegExp Groups</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Non-Capturing Groups (?:...)</h4>
+<p id="demo"></p>
+
+<script>
+const text = "apple orange apple orange";
+const matches = text.match(/(?:apple|orange)/g);
+
+document.getElementById("demo").innerHTML =
+  "Text: " + text + "<br><br>" +
+  "match(/(?:apple|orange)/g): " + matches + "<br><br>" +
+  "Non-capturing groups don't save to result array:<br>" +
+  "matches.length: " + matches.length;
+</script>
+
+</body>
+</html>

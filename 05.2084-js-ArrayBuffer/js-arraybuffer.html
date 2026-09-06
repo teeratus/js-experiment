@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>js-arraybuffer</title>
+  <style>
+    body {
+      box-sizing: border-box;
+      min-width: 200px;
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 45px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+      font-size: 16px;
+      line-height: 1.5;
+      color: #24292e;
+      background-color: #ffffff;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 24px;
+      margin-bottom: 16px;
+      font-weight: 600;
+      line-height: 1.25;
+      border-bottom: 1px solid #eaecef;
+      padding-bottom: .3em;
+    }
+    h1 { font-size: 2em; }
+    h2 { font-size: 1.5em; }
+    h3 { font-size: 1.25em; }
+    code {
+      padding: .2em .4em;
+      margin: 0;
+      font-size: 85%;
+      background-color: rgba(27,31,35,.05);
+      border-radius: 3px;
+      font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
+    }
+    pre {
+      padding: 16px;
+      overflow: auto;
+      font-size: 85%;
+      line-height: 1.45;
+      background-color: #f6f8fa;
+      border-radius: 3px;
+      word-wrap: normal;
+    }
+    pre code {
+      background-color: transparent;
+      padding: 0;
+    }
+    blockquote {
+      padding: 0 1em;
+      color: #6a737d;
+      border-left: .25em solid #dfe2e5;
+      margin: 0 0 16px 0;
+    }
+    table {
+      border-spacing: 0;
+      border-collapse: collapse;
+      margin-top: 0;
+      margin-bottom: 16px;
+      width: 100%;
+    }
+    table th, table td {
+      padding: 6px 13px;
+      border: 1px solid #dfe2e5;
+    }
+    table tr:nth-child(2n) {
+      background-color: #f6f8fa;
+    }
+    img {
+      max-width: 100%;
+      box-sizing: content-box;
+    }
+    @media print {
+      body {
+        max-width: 100%;
+        padding: 0;
+      }
+      pre, blockquote, table, tr, img {
+        page-break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+<body>
+<h1>JavaScript ArrayBuffer</h1>
+<p><a href="../acp-js.php">Back to JS page</a></p>
+<p>Table of Contents</p>
+<ul>
+<li><a href="#javascript-arraybuffer">JavaScript ArrayBuffer</a><ul>
+<li><a href="#creating-an-arraybuffer">Creating an ArrayBuffer</a><ul>
+<li><a href="#example-1">Example 1</a></li>
+</ul>
+</li>
+<li><a href="#using-an-uint8array-with-arraybuffer">Using an Uint8Array with ArrayBuffer</a><ul>
+<li><a href="#example-2">Example 2</a></li>
+</ul>
+</li>
+<li><a href="#using-a-dataview">Using a DataView</a><ul>
+<li><a href="#example-3">Example 3</a></li>
+</ul>
+</li>
+<li><a href="#arraybufferslice">ArrayBuffer.slice()</a><ul>
+<li><a href="#example-4">Example 4</a></li>
+</ul>
+</li>
+<li><a href="#sharedarraybuffer">SharedArrayBuffer</a><ul>
+<li><a href="#example-5">Example 5</a></li>
+</ul>
+</li>
+<li><a href="#document">Document</a></li>
+<li><a href="#reference">Reference</a></li>
+</ul>
+</li>
+</ul>
+<h2>ArrayBuffer</h2>
+<p>An <code>ArrayBuffer</code> is a fixed-length, raw binary data buffer in memory. It cannot be read or written directly. Instead, you create a <strong>typed array view</strong> or a <strong>DataView</strong> to read/write the buffer.</p>
+<h2>Creating an ArrayBuffer</h2>
+<p>You create an <code>ArrayBuffer</code> by specifying its size in bytes:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript ArrayBuffer&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Creating an ArrayBuffer&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+// Create an ArrayBuffer with 16 bytes
+const buffer = new ArrayBuffer(16);
+
+let text = &quot;ArrayBuffer created with 16 bytes&lt;br&gt;&quot;;
+text += &quot;byteLength: &quot; + buffer.byteLength + &quot;&lt;br&gt;&quot;;
+text += &quot;Max byteLength: &quot; + ArrayBuffer.maxByteLength + &quot;&lt;br&gt;&quot;;
+text += &quot;byteLength is read-only? &quot; + (buffer.byteLength === 16);
+
+document.getElementById(&quot;demo&quot;).innerHTML = text;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p1.png" alt=""></p>
+<h3>Example 1</h3>
+<p><strong>Result</strong> <a href="ex1-create_buffer/index.html">View Example</a></p>
+<h2>Using an Uint8Array with ArrayBuffer</h2>
+<p>To access an <code>ArrayBuffer</code>, you need a typed array view. <code>Uint8Array</code> treats each byte as an unsigned 8-bit integer:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript ArrayBuffer&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Using an Uint8Array with ArrayBuffer&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+// Create buffer and view
+const buffer = new ArrayBuffer(8);
+const view = new Uint8Array(buffer);
+
+// Write values
+view[0] = 65;   // &#39;A&#39;
+view[1] = 66;   // &#39;B&#39;
+view[2] = 67;   // &#39;C&#39;
+view[3] = 97;   // &#39;a&#39;
+view[4] = 98;   // &#39;b&#39;
+
+// Read values
+let text = &quot;Uint8Array view of ArrayBuffer(8):&lt;br&gt;&quot;;
+for (let i = 0; i &lt; view.length; i++) {
+  text += &quot;view[&quot; + i + &quot;] = &quot; + view[i];
+  if (view[i] &gt;= 65 &amp;&amp; view[i] &lt;= 90) {
+    text += &quot; (char: &quot; + String.fromCharCode(view[i]) + &quot;)&quot;;
+  }
+  text += &quot;&lt;br&gt;&quot;;
+}
+text += &quot;&lt;br&gt;byteLength: &quot; + buffer.byteLength;
+
+document.getElementById(&quot;demo&quot;).innerHTML = text;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p2.png" alt=""></p>
+<h3>Example 2</h3>
+<p><strong>Result</strong> <a href="ex2-uint8array/index.html">View Example</a></p>
+<h2>Using a DataView</h2>
+<p>A <code>DataView</code> provides a flexible interface to read/write different data types at any byte offset:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript ArrayBuffer&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Using a DataView&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+const buffer = new ArrayBuffer(16);
+const dataView = new DataView(buffer);
+
+// Write different data types
+dataView.setInt32(0, 42);        // 4 bytes at offset 0
+dataView.setFloat32(4, 3.14);    // 4 bytes at offset 4
+dataView.setInt16(8, 255);       // 2 bytes at offset 8
+
+// Read back
+let text = &quot;DataView on ArrayBuffer(16):&lt;br&gt;&quot;;
+text += &quot;getInt32(0): &quot; + dataView.getInt32(0) + &quot;&lt;br&gt;&quot;;
+text += &quot;getFloat32(4): &quot; + dataView.getFloat32(4) + &quot;&lt;br&gt;&quot;;
+text += &quot;getInt16(8): &quot; + dataView.getInt16(8) + &quot;&lt;br&gt;&lt;br&gt;&quot;;
+
+// Check byte order (endianness)
+const testBuffer = new ArrayBuffer(2);
+const testView = new DataView(testBuffer);
+testView.setInt16(0, 256);
+text += &quot;Endianness test: &quot;;
+if (testView.getUint8(0) === 1) {
+  text += &quot;Big-endian&quot;;
+} else {
+  text += &quot;Little-endian&quot;;
+}
+
+document.getElementById(&quot;demo&quot;).innerHTML = text;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p3.png" alt=""></p>
+<h3>Example 3</h3>
+<p><strong>Result</strong> <a href="ex3-dataview/index.html">View Example</a></p>
+<h2>ArrayBuffer.slice()</h2>
+<p>You can create a new <code>ArrayBuffer</code> from a portion of an existing buffer using <code>slice()</code>:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript ArrayBuffer&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;ArrayBuffer.slice()&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+const buffer = new ArrayBuffer(16);
+const view = new Uint8Array(buffer);
+
+// Fill with values
+for (let i = 0; i &lt; view.length; i++) {
+  view[i] = i * 10;
+}
+
+// Slice a portion
+const sliced = buffer.slice(4, 12);
+const slicedView = new Uint8Array(sliced);
+
+let text = &quot;Original buffer: &quot;;
+for (let i = 0; i &lt; view.length; i++) text += view[i] + &quot; &quot;;
+text += &quot;&lt;br&gt;&quot;;
+
+text += &quot;Sliced buffer (bytes 4-12): &quot;;
+for (let i = 0; i &lt; slicedView.length; i++) text += slicedView[i] + &quot; &quot;;
+text += &quot;&lt;br&gt;&lt;br&gt;&quot;;
+
+text += &quot;Original byteLength: &quot; + buffer.byteLength + &quot;&lt;br&gt;&quot;;
+text += &quot;Sliced byteLength: &quot; + sliced.byteLength;
+
+document.getElementById(&quot;demo&quot;).innerHTML = text;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p4.png" alt=""></p>
+<h3>Example 4</h3>
+<p><strong>Result</strong> <a href="ex4-slice/index.html">View Example</a></p>
+<h2>SharedArrayBuffer</h2>
+<p>A <code>SharedArrayBuffer</code> is similar to <code>ArrayBuffer</code> but can be shared between workers (threads):</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript ArrayBuffer&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;SharedArrayBuffer&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+// Create a SharedArrayBuffer
+const sharedBuffer = new SharedArrayBuffer(16);
+const sharedView = new Int32Array(sharedBuffer);
+
+// Write values
+for (let i = 0; i &lt; sharedView.length; i++) {
+  sharedView[i] = i * 100;
+}
+
+let text = &quot;SharedArrayBuffer created with 16 bytes&lt;br&gt;&quot;;
+text += &quot;byteLength: &quot; + sharedBuffer.byteLength + &quot;&lt;br&gt;&quot;;
+text += &quot;Int32Array length: &quot; + sharedView.length + &quot; (4 bytes each)&lt;br&gt;&lt;br&gt;&quot;;
+
+text += &quot;Values: &quot;;
+for (let i = 0; i &lt; sharedView.length; i++) {
+  text += sharedView[i] + &quot; &quot;;
+}
+text += &quot;&lt;br&gt;&lt;br&gt;&quot;;
+
+text += &quot;SharedArrayBuffer can be used with:&lt;br&gt;&quot;;
+text += &quot;- Atomics.add()&lt;br&gt;&quot;;
+text += &quot;- Atomics.load()&lt;br&gt;&quot;;
+text += &quot;- Atomics.store()&lt;br&gt;&quot;;
+text += &quot;- Web Workers for multi-threading&quot;;
+
+document.getElementById(&quot;demo&quot;).innerHTML = text;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p5.png" alt=""></p>
+<h3>Example 5</h3>
+<p><strong>Result</strong> <a href="ex5-shared_buffer/index.html">View Example</a></p>
+<h2>Document</h2>
+<p>Document in project</p>
+<p>You can <a href="js-arraybuffer.pdf">Download PDF</a> file.</p>
+<h2>Reference</h2>
+<ul>
+<li><a href="https://www.w3schools.com/js/js_arraybuffers.asp">W3Schools JavaScript ArrayBuffer</a></li>
+</ul>
+
+</body>
+</html>

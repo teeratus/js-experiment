@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Maps</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Adding and Changing Map Values</h4>
+<p id="demo"></p>
+
+<script>
+const fruits = new Map([
+  ["apple", 500]
+]);
+
+// Add new entries with set()
+fruits.set("banana", 300);
+fruits.set("orange", 200);
+
+// Change an existing value
+fruits.set("apple", 600);
+
+// set() can be chained
+fruits.set("mango", 150).set("grape", 100);
+
+document.getElementById("demo").innerHTML =
+  "apple: " + fruits.get("apple") + " (changed to 600)<br>" +
+  "banana: " + fruits.get("banana") + "<br>" +
+  "orange: " + fruits.get("orange") + "<br>" +
+  "mango: " + fruits.get("mango") + "<br>" +
+  "grape: " + fruits.get("grape") + "<br><br>" +
+  "Map size: " + fruits.size;
+</script>
+
+</body>
+</html>

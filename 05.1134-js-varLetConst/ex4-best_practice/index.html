@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript var, let, const</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Best Practice</h4>
+<p id="demo"></p>
+
+<script>
+// Best practice: use const by default
+const PI = 3.14159;
+const MAX_USERS = 100;
+
+// Use let when reassignment is needed
+let counter = 0;
+counter = counter + 1;
+counter++;
+
+// Avoid var in modern JavaScript
+// var oldStyle = "not recommended";
+
+let text = "Best practices:<br><br>";
+text += "1. Use <b>const</b> by default:<br>";
+text += "   const PI = " + PI + "<br>";
+text += "   const MAX_USERS = " + MAX_USERS + "<br><br>";
+text += "2. Use <b>let</b> when reassigning:<br>";
+text += "   let counter = " + counter + "<br><br>";
+text += "3. Avoid <b>var</b> in modern code";
+
+document.getElementById("demo").innerHTML = text;
+</script>
+
+</body>
+</html>

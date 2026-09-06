@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>js-geolocation</title>
+  <style>
+    body {
+      box-sizing: border-box;
+      min-width: 200px;
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 45px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+      font-size: 16px;
+      line-height: 1.5;
+      color: #24292e;
+      background-color: #ffffff;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 24px;
+      margin-bottom: 16px;
+      font-weight: 600;
+      line-height: 1.25;
+      border-bottom: 1px solid #eaecef;
+      padding-bottom: .3em;
+    }
+    h1 { font-size: 2em; }
+    h2 { font-size: 1.5em; }
+    h3 { font-size: 1.25em; }
+    code {
+      padding: .2em .4em;
+      margin: 0;
+      font-size: 85%;
+      background-color: rgba(27,31,35,.05);
+      border-radius: 3px;
+      font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
+    }
+    pre {
+      padding: 16px;
+      overflow: auto;
+      font-size: 85%;
+      line-height: 1.45;
+      background-color: #f6f8fa;
+      border-radius: 3px;
+      word-wrap: normal;
+    }
+    pre code {
+      background-color: transparent;
+      padding: 0;
+    }
+    blockquote {
+      padding: 0 1em;
+      color: #6a737d;
+      border-left: .25em solid #dfe2e5;
+      margin: 0 0 16px 0;
+    }
+    table {
+      border-spacing: 0;
+      border-collapse: collapse;
+      margin-top: 0;
+      margin-bottom: 16px;
+      width: 100%;
+    }
+    table th, table td {
+      padding: 6px 13px;
+      border: 1px solid #dfe2e5;
+    }
+    table tr:nth-child(2n) {
+      background-color: #f6f8fa;
+    }
+    img {
+      max-width: 100%;
+      box-sizing: content-box;
+    }
+    @media print {
+      body {
+        max-width: 100%;
+        padding: 0;
+      }
+      pre, blockquote, table, tr, img {
+        page-break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+<body>
+<h1>JavaScript Geolocation API</h1>
+<p><a href="../acp-js.php">Back to JS page</a></p>
+<p>Table of Contents</p>
+<ul>
+<li><a href="#javascript-geolocation-api">JavaScript Geolocation API</a><ul>
+<li><a href="#locate-the-users-position">Locate the User&#39;s Position</a><ul>
+<li><a href="#example-1">Example 1</a></li>
+</ul>
+</li>
+<li><a href="#handling-errors-and-rejections">Handling Errors and Rejections</a><ul>
+<li><a href="#example-2">Example 2</a></li>
+</ul>
+</li>
+<li><a href="#geolocation-object---return-data">Geolocation Object - Return Data</a><ul>
+<li><a href="#example-3">Example 3</a></li>
+</ul>
+</li>
+<li><a href="#watch-position">Watch Position</a><ul>
+<li><a href="#example-4">Example 4</a></li>
+</ul>
+</li>
+<li><a href="#document">Document</a></li>
+<li><a href="#reference">Reference</a></li>
+</ul>
+</li>
+</ul>
+<h2>Locate the User&#39;s Position</h2>
+<p>The <code>geolocation.getCurrentPosition()</code> method is used to get the user&#39;s current position:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Geolocation API&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Locate the User&#39;s Position&lt;/h4&gt;
+&lt;button onclick=&quot;getLocation()&quot;&gt;Get My Position&lt;/button&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+function getLocation() {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(showPosition);
+  } else {
+    document.getElementById(&quot;demo&quot;).innerHTML = &quot;Geolocation is not supported by this browser.&quot;;
+  }
+}
+
+function showPosition(position) {
+  document.getElementById(&quot;demo&quot;).innerHTML =
+    &quot;Latitude: &quot; + position.coords.latitude + &quot;&lt;br&gt;&quot; +
+    &quot;Longitude: &quot; + position.coords.longitude;
+}
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p1.png" alt=""></p>
+<h3>Example 1</h3>
+<p><strong>Result</strong> <a href="ex1-get_position/index.html">View Example</a></p>
+<h2>Handling Errors and Rejections</h2>
+<p>The second parameter of <code>getCurrentPosition()</code> is a callback function that handles errors:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Geolocation API&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Handling Errors and Rejections&lt;/h4&gt;
+&lt;button onclick=&quot;getLocation()&quot;&gt;Get My Position&lt;/button&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+function getLocation() {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(showPosition, showError);
+  } else {
+    document.getElementById(&quot;demo&quot;).innerHTML = &quot;Geolocation is not supported.&quot;;
+  }
+}
+
+function showPosition(position) {
+  document.getElementById(&quot;demo&quot;).innerHTML =
+    &quot;Latitude: &quot; + position.coords.latitude + &quot;&lt;br&gt;&quot; +
+    &quot;Longitude: &quot; + position.coords.longitude;
+}
+
+function showError(error) {
+  let msg = &quot;&quot;;
+  switch(error.code) {
+    case error.PERMISSION_DENIED:
+      msg = &quot;User denied the request for Geolocation.&quot;;
+      break;
+    case error.POSITION_UNAVAILABLE:
+      msg = &quot;Location information is unavailable.&quot;;
+      break;
+    case error.TIMEOUT:
+      msg = &quot;The request to get user location timed out.&quot;;
+      break;
+    case error.UNKNOWN_ERROR:
+      msg = &quot;An unknown error occurred.&quot;;
+      break;
+  }
+  document.getElementById(&quot;demo&quot;).innerHTML = &quot;Error: &quot; + msg;
+}
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p2.png" alt=""></p>
+<h3>Example 2</h3>
+<p><strong>Result</strong> <a href="ex2-error_handling/index.html">View Example</a></p>
+<h2>Geolocation Object - Return Data</h2>
+<p>The <code>getCurrentPosition()</code> method returns an object with various properties:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Geolocation API&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Geolocation Object - Return Data&lt;/h4&gt;
+&lt;button onclick=&quot;getLocation()&quot;&gt;Get My Full Position&lt;/button&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+function getLocation() {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(showPosition);
+  } else {
+    document.getElementById(&quot;demo&quot;).innerHTML = &quot;Geolocation is not supported.&quot;;
+  }
+}
+
+function showPosition(position) {
+  const coords = position.coords;
+  let text = &quot;Position Object:&lt;br&gt;&lt;br&gt;&quot;;
+  text += &quot;latitude: &quot; + coords.latitude + &quot;&lt;br&gt;&quot;;
+  text += &quot;longitude: &quot; + coords.longitude + &quot;&lt;br&gt;&quot;;
+  text += &quot;accuracy: &quot; + coords.accuracy + &quot; meters&lt;br&gt;&quot;;
+  text += &quot;altitude: &quot; + coords.altitude + &quot;&lt;br&gt;&quot;;
+  text += &quot;altitudeAccuracy: &quot; + coords.altitudeAccuracy + &quot; meters&lt;br&gt;&quot;;
+  text += &quot;heading: &quot; + coords.heading + &quot; degrees&lt;br&gt;&quot;;
+  text += &quot;speed: &quot; + coords.speed + &quot; m/s&lt;br&gt;&lt;br&gt;&quot;;
+  text += &quot;Timestamp: &quot; + new Date(position.timestamp).toLocaleString();
+  document.getElementById(&quot;demo&quot;).innerHTML = text;
+}
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p3.png" alt=""></p>
+<h3>Example 3</h3>
+<p><strong>Result</strong> <a href="ex3-position_data/index.html">View Example</a></p>
+<h2>Watch Position</h2>
+<p>The <code>watchPosition()</code> method continuously monitors the user&#39;s position and calls a callback each time the position changes:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Geolocation API&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Watch Position&lt;/h4&gt;
+&lt;button onclick=&quot;startWatch()&quot;&gt;Start Watching&lt;/button&gt;
+&lt;button onclick=&quot;stopWatch()&quot;&gt;Stop Watching&lt;/button&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+&lt;p id=&quot;watchStatus&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+let watchId = null;
+
+function startWatch() {
+  if (navigator.geolocation) {
+    document.getElementById(&quot;watchStatus&quot;).innerHTML = &quot;Watching position...&quot;;
+    watchId = navigator.geolocation.watchPosition(showPosition, showError);
+  } else {
+    document.getElementById(&quot;demo&quot;).innerHTML = &quot;Geolocation is not supported.&quot;;
+  }
+}
+
+function stopWatch() {
+  if (watchId !== null) {
+    navigator.geolocation.clearWatch(watchId);
+    watchId = null;
+    document.getElementById(&quot;watchStatus&quot;).innerHTML = &quot;Watching stopped.&quot;;
+  }
+}
+
+function showPosition(position) {
+  document.getElementById(&quot;demo&quot;).innerHTML =
+    &quot;Updated position:&lt;br&gt;&quot; +
+    &quot;Latitude: &quot; + position.coords.latitude + &quot;&lt;br&gt;&quot; +
+    &quot;Longitude: &quot; + position.coords.longitude + &quot;&lt;br&gt;&quot; +
+    &quot;Accuracy: &quot; + position.coords.accuracy + &quot; meters&lt;br&gt;&quot; +
+    &quot;Time: &quot; + new Date(position.timestamp).toLocaleTimeString();
+}
+
+function showError(error) {
+  document.getElementById(&quot;demo&quot;).innerHTML = &quot;Error: &quot; + error.message;
+}
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p4.png" alt=""></p>
+<h3>Example 4</h3>
+<p><strong>Result</strong> <a href="ex4-watch_position/index.html">View Example</a></p>
+<h2>Document</h2>
+<p>Document in project</p>
+<p>You can <a href="js-geolocation.pdf">Download PDF</a> file.</p>
+<h2>Reference</h2>
+<ul>
+<li><a href="https://www.w3schools.com/js/js_api_geolocation.asp">W3Schools JavaScript Geolocation API</a></li>
+</ul>
+
+</body>
+</html>

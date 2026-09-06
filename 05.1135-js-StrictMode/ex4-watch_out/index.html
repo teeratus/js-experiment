@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Strict Mode</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Watch Out!</h4>
+<p id="demo1"></p>
+<p id="demo2"></p>
+
+<script>
+// Strict mode is NOT active here (global scope without directive)
+
+// Function with strict mode - only affects this function
+function strictFunction() {
+  "use strict";
+  try {
+    undeclaredVar = 100; // Error in strict mode
+  } catch(err) {
+    document.getElementById("demo1").innerHTML =
+      "Inside strict function: " + err.message;
+  }
+}
+
+// Function WITHOUT strict mode - affected by global non-strict
+function nonStrictFunction() {
+  undeclaredVar2 = 200; // No error (non-strict)
+  document.getElementById("demo2").innerHTML =
+    "Outside strict function (global): undeclaredVar2 = " + undeclaredVar2 + "<br>" +
+    "Strict mode only applies where it is declared";
+}
+
+strictFunction();
+nonStrictFunction();
+</script>
+
+</body>
+</html>

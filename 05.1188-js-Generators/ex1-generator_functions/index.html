@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Generators</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Generator Functions</h4>
+<p id="demo"></p>
+
+<script>
+// Generator function defined with function*
+function* myGenerator() {
+  yield 1;
+  yield 2;
+  yield 3;
+}
+
+// Calling a generator returns a generator object
+const gen = myGenerator();
+
+let text = "Generator function created<br><br>";
+
+// Iterate over values
+for (let value of gen) {
+  text += "Yielded: " + value + "<br>";
+}
+
+document.getElementById("demo").innerHTML = text;
+</script>
+
+</body>
+</html>

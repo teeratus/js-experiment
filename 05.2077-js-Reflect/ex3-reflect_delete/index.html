@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Reflect</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Reflect.deleteProperty()</h4>
+<p id="demo"></p>
+
+<script>
+const car = {
+  make: "Toyota",
+  model: "Corolla",
+  year: 2020,
+  color: "blue"
+};
+
+let text = "Before delete:<br>";
+text += Object.keys(car).join(", ") + "<br><br>";
+
+// Delete a property using Reflect.deleteProperty()
+Reflect.deleteProperty(car, "color");
+
+text += "After deleteProperty(car, 'color'):<br>";
+text += Object.keys(car).join(", ") + "<br><br>";
+
+// Check if property still exists
+text += "Has 'color': " + Reflect.has(car, "color");
+
+document.getElementById("demo").innerHTML = text;
+</script>
+
+</body>
+</html>

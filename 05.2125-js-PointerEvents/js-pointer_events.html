@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>js-pointer_events</title>
+  <style>
+    body {
+      box-sizing: border-box;
+      min-width: 200px;
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 45px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+      font-size: 16px;
+      line-height: 1.5;
+      color: #24292e;
+      background-color: #ffffff;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 24px;
+      margin-bottom: 16px;
+      font-weight: 600;
+      line-height: 1.25;
+      border-bottom: 1px solid #eaecef;
+      padding-bottom: .3em;
+    }
+    h1 { font-size: 2em; }
+    h2 { font-size: 1.5em; }
+    h3 { font-size: 1.25em; }
+    code {
+      padding: .2em .4em;
+      margin: 0;
+      font-size: 85%;
+      background-color: rgba(27,31,35,.05);
+      border-radius: 3px;
+      font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
+    }
+    pre {
+      padding: 16px;
+      overflow: auto;
+      font-size: 85%;
+      line-height: 1.45;
+      background-color: #f6f8fa;
+      border-radius: 3px;
+      word-wrap: normal;
+    }
+    pre code {
+      background-color: transparent;
+      padding: 0;
+    }
+    blockquote {
+      padding: 0 1em;
+      color: #6a737d;
+      border-left: .25em solid #dfe2e5;
+      margin: 0 0 16px 0;
+    }
+    table {
+      border-spacing: 0;
+      border-collapse: collapse;
+      margin-top: 0;
+      margin-bottom: 16px;
+      width: 100%;
+    }
+    table th, table td {
+      padding: 6px 13px;
+      border: 1px solid #dfe2e5;
+    }
+    table tr:nth-child(2n) {
+      background-color: #f6f8fa;
+    }
+    img {
+      max-width: 100%;
+      box-sizing: content-box;
+    }
+    @media print {
+      body {
+        max-width: 100%;
+        padding: 0;
+      }
+      pre, blockquote, table, tr, img {
+        page-break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+<body>
+<h1>JavaScript Pointer Events API</h1>
+<p><a href="../acp-js.php">Back to JS page</a></p>
+<p>Table of Contents</p>
+<ul>
+<li><a href="#javascript-pointer-events-api">JavaScript Pointer Events API</a><ul>
+<li><a href="#event-types">Event Types</a><ul>
+<li><a href="#example-1">Example 1</a></li>
+</ul>
+</li>
+<li><a href="#event-properties">Event Properties</a><ul>
+<li><a href="#example-2">Example 2</a></li>
+</ul>
+</li>
+<li><a href="#pointer-events-api-benefits">Pointer Events API Benefits</a><ul>
+<li><a href="#example-3">Example 3</a></li>
+</ul>
+</li>
+<li><a href="#css-pointer-events-property">CSS pointer-events Property</a><ul>
+<li><a href="#example-4">Example 4</a></li>
+</ul>
+</li>
+<li><a href="#document">Document</a></li>
+<li><a href="#reference">Reference</a></li>
+</ul>
+</li>
+</ul>
+<h2>Event Types</h2>
+<p>Pointer events are DOM events that are fired for pointing devices. They handle input from mice, pens, touch screens, and other pointing devices with a single event model.</p>
+<p>The pointer events API provides the following event types:</p>
+<table>
+<thead>
+<tr>
+<th>Event</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>pointerdown</code></td>
+<td>When a pointer becomes active</td>
+</tr>
+<tr>
+<td><code>pointerup</code></td>
+<td>When a pointer is deactivated</td>
+</tr>
+<tr>
+<td><code>pointermove</code></td>
+<td>When a pointer changes coordinates</td>
+</tr>
+<tr>
+<td><code>pointerover</code></td>
+<td>When a pointer enters an element</td>
+</tr>
+<tr>
+<td><code>pointerout</code></td>
+<td>When a pointer leaves an element</td>
+</tr>
+<tr>
+<td><code>pointerenter</code></td>
+<td>When a pointer enters the hit test boundaries</td>
+</tr>
+<tr>
+<td><code>pointerleave</code></td>
+<td>When a pointer leaves the hit test boundaries</td>
+</tr>
+<tr>
+<td><code>pointercancel</code></td>
+<td>When a pointer event is canceled</td>
+</tr>
+</tbody></table>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Pointer Events API&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Event Types&lt;/h4&gt;
+
+&lt;div id=&quot;target&quot; style=&quot;width:300px;height:150px;background:#f0f0f0;border:2px solid #333;padding:10px;&quot;&gt;
+  Click, move, or press here
+&lt;/div&gt;
+
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+const target = document.getElementById(&quot;target&quot;);
+
+target.addEventListener(&quot;pointerdown&quot;, function(e) {
+  document.getElementById(&quot;demo&quot;).innerHTML += 
+    &quot;pointerdown - button: &quot; + e.button + &quot;&lt;br&gt;&quot;;
+});
+
+target.addEventListener(&quot;pointerup&quot;, function(e) {
+  document.getElementById(&quot;demo&quot;).innerHTML += 
+    &quot;pointerup&lt;br&gt;&quot;;
+});
+
+target.addEventListener(&quot;pointermove&quot;, function(e) {
+  // Only update on every 10th move to reduce noise
+  if (e.clientX % 10 === 0) {
+    document.getElementById(&quot;demo&quot;).innerHTML = 
+      &quot;pointermove - X: &quot; + e.clientX + &quot;, Y: &quot; + e.clientY;
+  }
+});
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p1.png" alt=""></p>
+<h3>Example 1</h3>
+<p><strong>Result</strong> <a href="ex1-event_types/index.html">View Example</a></p>
+<h2>Event Properties</h2>
+<p>Pointer event objects have properties that provide information about the pointer device:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Pointer Events API&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Event Properties&lt;/h4&gt;
+
+&lt;div id=&quot;target2&quot; style=&quot;width:300px;height:150px;background:#e8f0fe;border:2px solid #333;padding:10px;&quot;&gt;
+  Click here to see pointer properties
+&lt;/div&gt;
+
+&lt;p id=&quot;demo2&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+document.getElementById(&quot;target2&quot;).addEventListener(&quot;pointerdown&quot;, function(e) {
+  document.getElementById(&quot;demo2&quot;).innerHTML =
+    &quot;pointerType: &quot; + e.pointerType + &quot;&lt;br&gt;&quot; +
+    &quot;pointerId: &quot; + e.pointerId + &quot;&lt;br&gt;&quot; +
+    &quot;button: &quot; + e.button + &quot;&lt;br&gt;&quot; +
+    &quot;buttons: &quot; + e.buttons + &quot;&lt;br&gt;&quot; +
+    &quot;clientX: &quot; + e.clientX + &quot;&lt;br&gt;&quot; +
+    &quot;clientY: &quot; + e.clientY + &quot;&lt;br&gt;&quot; +
+    &quot;screenX: &quot; + e.screenX + &quot;&lt;br&gt;&quot; +
+    &quot;screenY: &quot; + e.screenY + &quot;&lt;br&gt;&quot; +
+    &quot;pressure: &quot; + e.pressure + &quot;&lt;br&gt;&quot; +
+    &quot;tiltX: &quot; + e.tiltX + &quot;&lt;br&gt;&quot; +
+    &quot;tiltY: &quot; + e.tiltY + &quot;&lt;br&gt;&quot; +
+    &quot;twist: &quot; + e.twist + &quot;&lt;br&gt;&quot; +
+    &quot;width: &quot; + e.width + &quot;&lt;br&gt;&quot; +
+    &quot;height: &quot; + e.height;
+});
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p2.png" alt=""></p>
+<h3>Example 2</h3>
+<p><strong>Result</strong> <a href="ex2-event_properties/index.html">View Example</a></p>
+<h2>Pointer Events API Benefits</h2>
+<p>Pointer events unify mouse, touch, and pen input into a single event model. Benefits include:</p>
+<ul>
+<li><strong>Cross-device compatibility</strong>: Works with mouse, touch, and pen</li>
+<li><strong>Simplified code</strong>: One event handler instead of separate mouse and touch handlers</li>
+<li><strong>Additional data</strong>: Pressure, tilt, twist, and contact geometry for pen/stylus</li>
+<li><strong>Event capture</strong>: The pointer can be captured to a specific element</li>
+</ul>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Pointer Events API&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Pointer Events API Benefits&lt;/h4&gt;
+&lt;p id=&quot;demo3&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+// Check browser support for pointer events
+let text = &quot;Pointer Events API Support Check:&lt;br&gt;&lt;br&gt;&quot;;
+
+if (window.PointerEvent) {
+  text += &quot;✓ PointerEvent is supported in this browser&lt;br&gt;&lt;br&gt;&quot;;
+  text += &quot;This means you can use:&lt;br&gt;&quot;;
+  text += &quot;- pointerdown, pointerup, pointermove&lt;br&gt;&quot;;
+  text += &quot;- Instead of separate mousedown/mouseup/touchstart handlers&lt;br&gt;&lt;br&gt;&quot;;
+  text += &quot;Examples where pointer events help:&lt;br&gt;&quot;;
+  text += &quot;- Drawing applications (pen + touch + mouse)&lt;br&gt;&quot;;
+  text += &quot;- Drag and drop (any input device)&lt;br&gt;&quot;;
+  text += &quot;- Signature capture (pen pressure)&lt;br&gt;&quot;;
+  text += &quot;- Games (multiple touch points)&quot;;
+} else {
+  text += &quot;✗ PointerEvent is NOT supported in this browser&lt;br&gt;&quot;;
+  text += &quot;Support falls back to mouse + touch events&quot;;
+}
+
+document.getElementById(&quot;demo3&quot;).innerHTML = text;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p3.png" alt=""></p>
+<h3>Example 3</h3>
+<p><strong>Result</strong> <a href="ex3-benefits/index.html">View Example</a></p>
+<h2>CSS pointer-events Property</h2>
+<p>The CSS <code>pointer-events</code> property specifies whether an element responds to pointer events:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Pointer Events API&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;CSS pointer-events Property&lt;/h4&gt;
+&lt;p id=&quot;demo4&quot;&gt;&lt;/p&gt;
+
+&lt;div id=&quot;parent&quot; style=&quot;position:relative;width:300px;height:100px;background:#ddd;&quot;&gt;
+  &lt;div id=&quot;blocked&quot; style=&quot;width:100px;height:100px;background:red;opacity:0.5;&quot;&gt;
+    Clickable (default)
+  &lt;/div&gt;
+  &lt;div id=&quot;clickable&quot; style=&quot;position:absolute;top:0;left:150px;width:100px;height:100px;background:green;opacity:0.5;&quot;&gt;
+    &lt;span id=&quot;child&quot; style=&quot;pointer-events:none;&quot;&gt;Not clickable&lt;/span&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;button onclick=&quot;togglePointerEvents()&quot;&gt;Toggle pointer-events&lt;/button&gt;
+&lt;p id=&quot;status&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+const child = document.getElementById(&quot;child&quot;);
+let enabled = true;
+
+function togglePointerEvents() {
+  enabled = !enabled;
+  child.style.pointerEvents = enabled ? &quot;none&quot; : &quot;auto&quot;;
+  document.getElementById(&quot;status&quot;).innerHTML =
+    &quot;pointer-events: &quot; + (enabled ? &quot;none&quot; : &quot;auto&quot;) + 
+    &quot; (element &quot; + (enabled ? &quot;cannot&quot; : &quot;can&quot;) + &quot; receive events)&quot;;
+}
+
+document.getElementById(&quot;parent&quot;).addEventListener(&quot;click&quot;, function() {
+  document.getElementById(&quot;demo4&quot;).innerHTML = &quot;Parent div clicked!&quot;;
+});
+
+// Show initial state
+document.getElementById(&quot;status&quot;).innerHTML = 
+  &quot;pointer-events: none (green area child cannot receive events)&quot;;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p4.png" alt=""></p>
+<h3>Example 4</h3>
+<p><strong>Result</strong> <a href="ex4-css_pointer_events/index.html">View Example</a></p>
+<h2>Document</h2>
+<p>Document in project</p>
+<p>You can <a href="js-pointer_events.pdf">Download PDF</a> file.</p>
+<h2>Reference</h2>
+<ul>
+<li><a href="https://www.w3schools.com/js/js_api_pointer_events.asp">W3Schools JavaScript Pointer Events API</a></li>
+</ul>
+
+</body>
+</html>

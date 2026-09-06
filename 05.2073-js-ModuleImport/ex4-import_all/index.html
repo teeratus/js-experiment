@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Module Import</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Importing All</h4>
+<p id="demo"></p>
+
+<script type="module">
+import * as Colors from './colors.js';
+
+document.getElementById("demo").innerHTML =
+  "Red: " + Colors.red + "<br>" +
+  "Green: " + Colors.green + "<br>" +
+  "Blue: " + Colors.blue + "<br>" +
+  "White: " + Colors.white + "<br>" +
+  "Black: " + Colors.black;
+</script>
+
+</body>
+</html>

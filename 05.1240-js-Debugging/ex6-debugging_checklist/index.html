@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Debugging</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>A Simple Debugging Checklist</h4>
+<p id="demo"></p>
+
+<script>
+let text = "";
+
+// Step 1: Check browser console (F12)
+console.log("Debugging Checklist Demo");
+
+// Step 2 & 3 & 4: Inspect variables, check spelling and types
+let num1 = "5";
+let num2 = 10;
+
+console.log("num1 type:", typeof num1);  // string
+console.log("num2 type:", typeof num2);  // number
+
+text += "num1 = \"" + num1 + "\" (type: " + typeof num1 + ")<br>";
+text += "num2 = " + num2 + " (type: " + typeof num2 + ")<br><br>";
+
+// Step 5: Try-catch for safety
+try {
+  let result = Number(num1) + num2;  // Explicit conversion
+  text += "Number(num1) + num2 = " + result;
+}
+catch(err) {
+  text += "Error: " + err.message;
+}
+
+document.getElementById("demo").innerHTML = text;
+</script>
+
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Chart.js Graphics</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Pie Charts</h4>
+
+<canvas id="pieChart" style="width:100%;max-width:500px;"></canvas>
+<p id="demo3"></p>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+
+<script>
+const xValues = ["Chrome", "Firefox", "Safari", "Edge", "Other"];
+const yValues = [55, 20, 15, 8, 2];
+const colors = ["#4CAF50", "#2196F3", "#FF9800", "#F44336", "#9C27B0"];
+
+new Chart("pieChart", {
+  type: "pie",
+  data: {
+    labels: xValues,
+    datasets: [{
+      backgroundColor: colors,
+      data: yValues
+    }]
+  },
+  options: {
+    title: {
+      display: true,
+      text: "Browser Market Share (Pie Chart)"
+    }
+  }
+});
+
+document.getElementById("demo3").innerHTML = "Chart.js pie chart created!";
+</script>
+
+</body>
+</html>

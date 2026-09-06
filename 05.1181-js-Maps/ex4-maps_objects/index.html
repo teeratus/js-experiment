@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Maps</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Maps are Objects</h4>
+<p id="demo"></p>
+
+<script>
+// Using objects as keys
+const person1 = { name: "John" };
+const person2 = { name: "Jane" };
+
+const persons = new Map();
+persons.set(person1, "Engineer");
+persons.set(person2, "Doctor");
+
+let text = "typeof Map: " + typeof persons + "<br>";
+text += "Instance of Map: " + (persons instanceof Map) + "<br><br>";
+
+text += "person1's job: " + persons.get(person1) + "<br>";
+text += "person2's job: " + persons.get(person2) + "<br><br>";
+
+text += "<b>Other Map methods:</b><br>";
+text += "delete(key): removes entry<br>";
+text += "clear(): removes all entries<br>";
+text += "keys(): iterator of keys<br>";
+text += "values(): iterator of values<br>";
+text += "entries(): iterator of [key, value] pairs";
+
+document.getElementById("demo").innerHTML = text;
+</script>
+
+</body>
+</html>

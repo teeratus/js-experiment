@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Data Types</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>JavaScript Types are Dynamic</h4>
+<p id="demo"></p>
+
+<script>
+let x = 5;            // x is a Number
+let type1 = typeof x;
+
+x = "Hello";          // x is now a String
+let type2 = typeof x;
+
+x = true;             // x is now a Boolean
+let type3 = typeof x;
+
+x = {name: "John"};   // x is now an Object
+let type4 = typeof x;
+
+document.getElementById("demo").innerHTML =
+  "let x = 5 → " + type1 + "<br>" +
+  "x = 'Hello' → " + type2 + "<br>" +
+  "x = true → " + type3 + "<br>" +
+  "x = {name: 'John'} → " + type4 + "<br><br>" +
+  "JavaScript types are dynamic - variables can change type";
+</script>
+
+</body>
+</html>

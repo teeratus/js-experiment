@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>js-assignment</title>
+  <style>
+    body {
+      box-sizing: border-box;
+      min-width: 200px;
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 45px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+      font-size: 16px;
+      line-height: 1.5;
+      color: #24292e;
+      background-color: #ffffff;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 24px;
+      margin-bottom: 16px;
+      font-weight: 600;
+      line-height: 1.25;
+      border-bottom: 1px solid #eaecef;
+      padding-bottom: .3em;
+    }
+    h1 { font-size: 2em; }
+    h2 { font-size: 1.5em; }
+    h3 { font-size: 1.25em; }
+    code {
+      padding: .2em .4em;
+      margin: 0;
+      font-size: 85%;
+      background-color: rgba(27,31,35,.05);
+      border-radius: 3px;
+      font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
+    }
+    pre {
+      padding: 16px;
+      overflow: auto;
+      font-size: 85%;
+      line-height: 1.45;
+      background-color: #f6f8fa;
+      border-radius: 3px;
+      word-wrap: normal;
+    }
+    pre code {
+      background-color: transparent;
+      padding: 0;
+    }
+    blockquote {
+      padding: 0 1em;
+      color: #6a737d;
+      border-left: .25em solid #dfe2e5;
+      margin: 0 0 16px 0;
+    }
+    table {
+      border-spacing: 0;
+      border-collapse: collapse;
+      margin-top: 0;
+      margin-bottom: 16px;
+      width: 100%;
+    }
+    table th, table td {
+      padding: 6px 13px;
+      border: 1px solid #dfe2e5;
+    }
+    table tr:nth-child(2n) {
+      background-color: #f6f8fa;
+    }
+    img {
+      max-width: 100%;
+      box-sizing: content-box;
+    }
+    @media print {
+      body {
+        max-width: 100%;
+        padding: 0;
+      }
+      pre, blockquote, table, tr, img {
+        page-break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+<body>
+<h1>JavaScript Assignment</h1>
+<p><a href="../acp-js.php">Back to JS page</a></p>
+<p>Table of Contents</p>
+<ul>
+<li><a href="#javascript-assignment">JavaScript Assignment</a><ul>
+<li><a href="#the--operator">The = Operator</a><ul>
+<li><a href="#example-1">Example 1</a></li>
+</ul>
+</li>
+<li><a href="#the--operator-1">The += Operator</a><ul>
+<li><a href="#example-2">Example 2</a></li>
+</ul>
+</li>
+<li><a href="#the---operator">The -= Operator</a><ul>
+<li><a href="#example-3">Example 3</a></li>
+</ul>
+</li>
+<li><a href="#the--operator-2">The *= Operator</a><ul>
+<li><a href="#example-4">Example 4</a></li>
+</ul>
+</li>
+<li><a href="#the--operator-3">The **= Operator</a><ul>
+<li><a href="#example-5">Example 5</a></li>
+</ul>
+</li>
+<li><a href="#the--operator-4">The /= Operator</a><ul>
+<li><a href="#example-6">Example 6</a></li>
+</ul>
+</li>
+<li><a href="#the--operator-5">The %= Operator</a><ul>
+<li><a href="#example-7">Example 7</a></li>
+</ul>
+</li>
+<li><a href="#string-assignment">String Assignment</a><ul>
+<li><a href="#example-8">Example 8</a></li>
+</ul>
+</li>
+<li><a href="#document">Document</a></li>
+<li><a href="#reference">Reference</a></li>
+</ul>
+</li>
+</ul>
+<h2>JavaScript Assignment Operators</h2>
+<p>Assignment operators assign values to JavaScript variables.</p>
+<p>Given that <code>x = 10</code> and <code>y = 5</code>, the table below explains the assignment operators:</p>
+<table>
+<thead>
+<tr>
+<th>Operator</th>
+<th>Example</th>
+<th>Same As</th>
+<th>Result</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>=</code></td>
+<td><code>x = y</code></td>
+<td><code>x = y</code></td>
+<td><code>x = 5</code></td>
+</tr>
+<tr>
+<td><code>+=</code></td>
+<td><code>x += y</code></td>
+<td><code>x = x + y</code></td>
+<td><code>x = 15</code></td>
+</tr>
+<tr>
+<td><code>-=</code></td>
+<td><code>x -= y</code></td>
+<td><code>x = x - y</code></td>
+<td><code>x = 5</code></td>
+</tr>
+<tr>
+<td><code>*=</code></td>
+<td><code>x *= y</code></td>
+<td><code>x = x * y</code></td>
+<td><code>x = 50</code></td>
+</tr>
+<tr>
+<td><code>/=</code></td>
+<td><code>x /= y</code></td>
+<td><code>x = x / y</code></td>
+<td><code>x = 2</code></td>
+</tr>
+<tr>
+<td><code>%=</code></td>
+<td><code>x %= y</code></td>
+<td><code>x = x % y</code></td>
+<td><code>x = 0</code></td>
+</tr>
+<tr>
+<td><code>**=</code></td>
+<td><code>x **= y</code></td>
+<td><code>x = x ** y</code></td>
+<td><code>x = 100000</code></td>
+</tr>
+</tbody></table>
+<h2>The = Operator</h2>
+<p>The <strong>Simple Assignment Operator</strong> assigns a simple value to a variable:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Assignment&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;The = Operator&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+let x = 10;
+document.getElementById(&quot;demo&quot;).innerHTML = &quot;x = &quot; + x;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p1.png" alt=""></p>
+<h3>Example 1</h3>
+<p><strong>Result</strong> <a href="ex1-simple_assignment/index.html">View Example</a></p>
+<h2>The += Operator</h2>
+<p>The <strong>Addition Assignment Operator</strong> adds a value to a variable:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Assignment&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;The += Operator&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+let x = 10;
+x += 5;
+document.getElementById(&quot;demo&quot;).innerHTML = &quot;x += 5 =&gt; &quot; + x;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p2.png" alt=""></p>
+<h3>Example 2</h3>
+<p><strong>Result</strong> <a href="ex2-addition_assignment/index.html">View Example</a></p>
+<h2>The -= Operator</h2>
+<p>The <strong>Subtraction Assignment Operator</strong> subtracts a value from a variable:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Assignment&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;The -= Operator&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+let x = 10;
+x -= 5;
+document.getElementById(&quot;demo&quot;).innerHTML = &quot;x -= 5 =&gt; &quot; + x;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p3.png" alt=""></p>
+<h3>Example 3</h3>
+<p><strong>Result</strong> <a href="ex3-subtraction_assignment/index.html">View Example</a></p>
+<h2>The *= Operator</h2>
+<p>The <strong>Multiplication Assignment Operator</strong> multiplies a variable:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Assignment&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;The *= Operator&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+let x = 10;
+x *= 5;
+document.getElementById(&quot;demo&quot;).innerHTML = &quot;x *= 5 =&gt; &quot; + x;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p4.png" alt=""></p>
+<h3>Example 4</h3>
+<p><strong>Result</strong> <a href="ex4-multiplication_assignment/index.html">View Example</a></p>
+<h2>The **= Operator</h2>
+<p>The <strong>Exponentiation Assignment Operator</strong> raises a variable to the power of the operand:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Assignment&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;The **= Operator&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+let x = 10;
+x **= 5;
+document.getElementById(&quot;demo&quot;).innerHTML = &quot;x **= 5 =&gt; &quot; + x;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p5.png" alt=""></p>
+<h3>Example 5</h3>
+<p><strong>Result</strong> <a href="ex5-exponentiation_assignment/index.html">View Example</a></p>
+<h2>The /= Operator</h2>
+<p>The <strong>Division Assignment Operator</strong> divides a variable:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Assignment&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;The /= Operator&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+let x = 10;
+x /= 5;
+document.getElementById(&quot;demo&quot;).innerHTML = &quot;x /= 5 =&gt; &quot; + x;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p6.png" alt=""></p>
+<h3>Example 6</h3>
+<p><strong>Result</strong> <a href="ex6-division_assignment/index.html">View Example</a></p>
+<h2>The %= Operator</h2>
+<p>The <strong>Remainder Assignment Operator</strong> assigns a remainder to a variable:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Assignment&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;The %= Operator&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+let x = 10;
+x %= 5;
+document.getElementById(&quot;demo&quot;).innerHTML = &quot;x %= 5 =&gt; &quot; + x;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p7.png" alt=""></p>
+<h3>Example 7</h3>
+<p><strong>Result</strong> <a href="ex7-remainder_assignment/index.html">View Example</a></p>
+<h2>String Assignment</h2>
+<p>Two assignment operators can assign values to strings:</p>
+<p>The <strong>Simple Assignment Operator</strong> (<code>=</code>) assigns a simple value to a string.</p>
+<p>The <strong>Addition Assignment Operator</strong> (<code>+=</code>) adds (concatenates) strings:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Assignment&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;String Assignment&lt;/h4&gt;
+&lt;p id=&quot;demo1&quot;&gt;&lt;/p&gt;
+&lt;p id=&quot;demo2&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+let text1 = &quot;Hello&quot;;
+let text2 = &quot;World&quot;;
+text2 += &quot;!&quot;;
+document.getElementById(&quot;demo1&quot;).innerHTML = &quot;text1 = &quot; + text1;
+document.getElementById(&quot;demo2&quot;).innerHTML = &quot;text2 += \&quot;!\&quot; =&gt; &quot; + text2;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p8.png" alt=""></p>
+<h3>Example 8</h3>
+<p><strong>Result</strong> <a href="ex8-string_assignment/index.html">View Example</a></p>
+<h2>Document</h2>
+<p>Document in project</p>
+<p>You can <a href="js-assignment.pdf">Download PDF</a> file.</p>
+<h2>Reference</h2>
+<ul>
+<li><a href="https://www.w3schools.com/js/js_assignment.asp">W3Schools JavaScript Assignment</a></li>
+</ul>
+
+</body>
+</html>

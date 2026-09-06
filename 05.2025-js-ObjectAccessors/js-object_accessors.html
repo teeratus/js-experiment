@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>js-object_accessors</title>
+  <style>
+    body {
+      box-sizing: border-box;
+      min-width: 200px;
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 45px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+      font-size: 16px;
+      line-height: 1.5;
+      color: #24292e;
+      background-color: #ffffff;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 24px;
+      margin-bottom: 16px;
+      font-weight: 600;
+      line-height: 1.25;
+      border-bottom: 1px solid #eaecef;
+      padding-bottom: .3em;
+    }
+    h1 { font-size: 2em; }
+    h2 { font-size: 1.5em; }
+    h3 { font-size: 1.25em; }
+    code {
+      padding: .2em .4em;
+      margin: 0;
+      font-size: 85%;
+      background-color: rgba(27,31,35,.05);
+      border-radius: 3px;
+      font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
+    }
+    pre {
+      padding: 16px;
+      overflow: auto;
+      font-size: 85%;
+      line-height: 1.45;
+      background-color: #f6f8fa;
+      border-radius: 3px;
+      word-wrap: normal;
+    }
+    pre code {
+      background-color: transparent;
+      padding: 0;
+    }
+    blockquote {
+      padding: 0 1em;
+      color: #6a737d;
+      border-left: .25em solid #dfe2e5;
+      margin: 0 0 16px 0;
+    }
+    table {
+      border-spacing: 0;
+      border-collapse: collapse;
+      margin-top: 0;
+      margin-bottom: 16px;
+      width: 100%;
+    }
+    table th, table td {
+      padding: 6px 13px;
+      border: 1px solid #dfe2e5;
+    }
+    table tr:nth-child(2n) {
+      background-color: #f6f8fa;
+    }
+    img {
+      max-width: 100%;
+      box-sizing: content-box;
+    }
+    @media print {
+      body {
+        max-width: 100%;
+        padding: 0;
+      }
+      pre, blockquote, table, tr, img {
+        page-break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+<body>
+<h1>JavaScript Object Accessors</h1>
+<p><a href="../acp-js.php">Back to JS page</a></p>
+<p>Table of Contents</p>
+<ul>
+<li><a href="#javascript-object-accessors">JavaScript Object Accessors</a><ul>
+<li><a href="#javascript-getter-the-get-keyword">JavaScript Getter (The get Keyword)</a><ul>
+<li><a href="#example-1">Example 1</a></li>
+</ul>
+</li>
+<li><a href="#javascript-setter-the-set-keyword">JavaScript Setter (The set Keyword)</a><ul>
+<li><a href="#example-2">Example 2</a></li>
+</ul>
+</li>
+<li><a href="#javascript-function-or-getter">JavaScript Function or Getter?</a><ul>
+<li><a href="#example-3">Example 3</a></li>
+</ul>
+</li>
+<li><a href="#data-quality">Data Quality</a><ul>
+<li><a href="#example-4">Example 4</a></li>
+</ul>
+</li>
+<li><a href="#objectdefineproperty">Object.defineProperty()</a><ul>
+<li><a href="#example-5">Example 5</a></li>
+</ul>
+</li>
+<li><a href="#document">Document</a></li>
+<li><a href="#reference">Reference</a></li>
+</ul>
+</li>
+</ul>
+<h2>JavaScript Getter (The get Keyword)</h2>
+<p>JavaScript accessors (getters and setters) allow you to define object properties as functions.</p>
+<p>The <code>get</code> keyword binds an object property to a function that will be called when that property is looked up:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Object Accessors&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;JavaScript Getter&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+const person = {
+  firstName: &quot;John&quot;,
+  lastName: &quot;Doe&quot;,
+  get fullName() {
+    return this.firstName + &quot; &quot; + this.lastName;
+  }
+};
+
+document.getElementById(&quot;demo&quot;).innerHTML = person.fullName;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p1.png" alt=""></p>
+<h3>Example 1</h3>
+<p><strong>Result</strong> <a href="ex1-getter/index.html">View Example</a></p>
+<h2>JavaScript Setter (The set Keyword)</h2>
+<p>The <code>set</code> keyword binds an object property to a function that will be called when an attempt is made to set that property:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Object Accessors&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;JavaScript Setter&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+const person = {
+  firstName: &quot;John&quot;,
+  lastName: &quot;Doe&quot;,
+  language: &quot;&quot;,
+  set lang(lang) {
+    this.language = lang;
+  }
+};
+
+person.lang = &quot;English&quot;;
+document.getElementById(&quot;demo&quot;).innerHTML = person.language;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p2.png" alt=""></p>
+<h3>Example 2</h3>
+<p><strong>Result</strong> <a href="ex2-setter/index.html">View Example</a></p>
+<h2>JavaScript Function or Getter?</h2>
+<p>Getters give you a simpler syntax. Compare a getter vs a regular function:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Object Accessors&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Function vs Getter&lt;/h4&gt;
+&lt;p id=&quot;demo1&quot;&gt;&lt;/p&gt;
+&lt;p id=&quot;demo2&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+const person = {
+  firstName: &quot;John&quot;,
+  lastName: &quot;Doe&quot;,
+  fullName: function() {
+    return this.firstName + &quot; &quot; + this.lastName;
+  },
+  get name() {
+    return this.firstName + &quot; &quot; + this.lastName;
+  }
+};
+
+// Using function - needs parentheses
+document.getElementById(&quot;demo1&quot;).innerHTML = &quot;Function: &quot; + person.fullName();
+
+// Using getter - no parentheses needed
+document.getElementById(&quot;demo2&quot;).innerHTML = &quot;Getter: &quot; + person.name;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p3.png" alt=""></p>
+<h3>Example 3</h3>
+<p><strong>Result</strong> <a href="ex3-function_vs_getter/index.html">View Example</a></p>
+<h2>Data Quality</h2>
+<p>Setters can be used to execute validation before setting a value:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Object Accessors&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Data Quality&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+const person = {
+  firstName: &quot;John&quot;,
+  lastName: &quot;Doe&quot;,
+  age: 0,
+  set setAge(a) {
+    if (a &gt; 0 &amp;&amp; a &lt; 120) {
+      this.age = a;
+    } else {
+      console.log(&quot;Invalid age&quot;);
+    }
+  }
+};
+
+person.setAge = 25;
+document.getElementById(&quot;demo&quot;).innerHTML = &quot;Age: &quot; + person.age;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p4.png" alt=""></p>
+<h3>Example 4</h3>
+<p><strong>Result</strong> <a href="ex4-data_quality/index.html">View Example</a></p>
+<h2>Object.defineProperty()</h2>
+<p>The <code>Object.defineProperty()</code> method can also be used to define getters and setters:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Object Accessors&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Object.defineProperty()&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+const person = {
+  firstName: &quot;John&quot;,
+  lastName: &quot;Doe&quot;
+};
+
+Object.defineProperty(person, &quot;fullName&quot;, {
+  get: function() {
+    return this.firstName + &quot; &quot; + this.lastName;
+  },
+  set: function(value) {
+    const parts = value.split(&quot; &quot;);
+    this.firstName = parts[0];
+    this.lastName = parts[1];
+  }
+});
+
+// Use the getter
+document.getElementById(&quot;demo&quot;).innerHTML = &quot;Before: &quot; + person.fullName + &quot;&lt;br&gt;&quot;;
+
+// Use the setter
+person.fullName = &quot;Jane Smith&quot;;
+document.getElementById(&quot;demo&quot;).innerHTML += &quot;After: &quot; + person.fullName;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p5.png" alt=""></p>
+<h3>Example 5</h3>
+<p><strong>Result</strong> <a href="ex5-define_property/index.html">View Example</a></p>
+<h2>Document</h2>
+<p>Document in project</p>
+<p>You can <a href="js-object_accessors.pdf">Download PDF</a> file.</p>
+<h2>Reference</h2>
+<ul>
+<li><a href="https://www.w3schools.com/js/js_object_accessors.asp">W3Schools JavaScript Object Accessors</a></li>
+</ul>
+
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Google Chart Graphics</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Pie Charts</h4>
+
+<div id="pieChart"></div>
+<p id="demo2"></p>
+
+<script src="https://www.gstatic.com/charts/loader.js"></script>
+
+<script>
+google.charts.load("current", {packages: ["corechart"]});
+google.charts.setOnLoadCallback(drawPieChart);
+
+function drawPieChart() {
+  const data = google.visualization.arrayToDataTable([
+    ["Browser", "Share"],
+    ["Chrome", 55],
+    ["Firefox", 20],
+    ["Safari", 15],
+    ["Edge", 8],
+    ["Other", 2]
+  ]);
+
+  const options = {
+    title: "Browser Market Share (Pie Chart)",
+    colors: ["#4CAF50", "#2196F3", "#FF9800", "#F44336", "#9C27B0"]
+  };
+
+  const chart = new google.visualization.PieChart(document.getElementById("pieChart"));
+  chart.draw(data, options);
+  document.getElementById("demo2").innerHTML = "Google Pie Chart created!";
+}
+</script>
+
+</body>
+</html>

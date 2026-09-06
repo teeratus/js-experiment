@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript JSON</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Storing Data</h4>
+<p id="demo"></p>
+
+<script>
+// Create an object
+const person = {
+  name: "John",
+  age: 30,
+  city: "New York"
+};
+
+// Store as JSON in localStorage
+localStorage.setItem("person", JSON.stringify(person));
+
+// Retrieve and parse from localStorage
+const storedPerson = JSON.parse(localStorage.getItem("person"));
+
+document.getElementById("demo").innerHTML =
+  "Stored name: " + storedPerson.name + "<br>" +
+  "Stored age: " + storedPerson.age + "<br>" +
+  "Stored city: " + storedPerson.city;
+</script>
+
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Debugging Breakpoints</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>The Scope Panel</h4>
+<p>Open DevTools (F12). Set a breakpoint inside the test() function to see local vs global scope.</p>
+<p id="demo"></p>
+
+<script>
+let x = 10;  // Global variable - visible in Scope panel everywhere
+
+function test() {
+  let y = 5;  // Local variable - visible only inside this function
+  console.log(x + y);  // Set breakpoint here to see Scope panel
+  return x + y;
+}
+
+document.getElementById("demo").innerHTML =
+  "Global x = " + x + ", Function result = " + test();
+</script>
+
+</body>
+</html>

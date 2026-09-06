@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript typeof</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>How to Recognize an Array</h4>
+<p id="demo"></p>
+
+<script>
+const fruits = ["Apple", "Banana", "Orange"];
+
+let text = "typeof fruits: " + typeof fruits + "<br>";
+text += "Array.isArray(fruits): " + Array.isArray(fruits) + "<br><br>";
+
+// Check with constructor
+text += "fruits.constructor === Array: " + (fruits.constructor === Array);
+
+document.getElementById("demo").innerHTML = text;
+</script>
+
+</body>
+</html>

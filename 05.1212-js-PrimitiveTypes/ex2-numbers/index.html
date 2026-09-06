@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Primitive Types</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>JavaScript Numbers</h4>
+<p id="demo"></p>
+
+<script>
+// Numbers can be integers or floats
+const x1 = 34.00;
+const x2 = 34;
+const x3 = 3.14;
+
+// Exponential notation
+const y1 = 123e5;      // 12300000
+const y2 = 123e-5;     // 0.00123
+
+let text = "x1 = 34.00: " + x1 + " (" + typeof x1 + ")<br>";
+text += "x2 = 34: " + x2 + " (" + typeof x2 + ")<br>";
+text += "x3 = 3.14: " + x3 + "<br><br>";
+text += "123e5 = " + y1 + "<br>";
+text += "123e-5 = " + y2 + "<br><br>";
+
+text += "Integer (32-bit): " + (x2 | 0) + "<br>";
+text += "Float (64-bit): " + x3;
+
+document.getElementById("demo").innerHTML = text;
+</script>
+
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Iterators</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>The next() Method</h4>
+<p id="demo"></p>
+
+<script>
+const fruits = ["Apple", "Banana", "Orange"];
+const iterator = fruits[Symbol.iterator]();
+
+let text = "Iterating with next():<br><br>";
+let result = iterator.next();
+while (!result.done) {
+  text += "next(): value = " + result.value + ", done = " + result.done + "<br>";
+  result = iterator.next();
+}
+text += "next(): value = " + result.value + ", done = " + result.done + " (done!)";
+
+document.getElementById("demo").innerHTML = text;
+</script>
+
+</body>
+</html>

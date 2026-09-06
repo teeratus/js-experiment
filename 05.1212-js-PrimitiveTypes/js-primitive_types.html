@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>js-primitive_types</title>
+  <style>
+    body {
+      box-sizing: border-box;
+      min-width: 200px;
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 45px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+      font-size: 16px;
+      line-height: 1.5;
+      color: #24292e;
+      background-color: #ffffff;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 24px;
+      margin-bottom: 16px;
+      font-weight: 600;
+      line-height: 1.25;
+      border-bottom: 1px solid #eaecef;
+      padding-bottom: .3em;
+    }
+    h1 { font-size: 2em; }
+    h2 { font-size: 1.5em; }
+    h3 { font-size: 1.25em; }
+    code {
+      padding: .2em .4em;
+      margin: 0;
+      font-size: 85%;
+      background-color: rgba(27,31,35,.05);
+      border-radius: 3px;
+      font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
+    }
+    pre {
+      padding: 16px;
+      overflow: auto;
+      font-size: 85%;
+      line-height: 1.45;
+      background-color: #f6f8fa;
+      border-radius: 3px;
+      word-wrap: normal;
+    }
+    pre code {
+      background-color: transparent;
+      padding: 0;
+    }
+    blockquote {
+      padding: 0 1em;
+      color: #6a737d;
+      border-left: .25em solid #dfe2e5;
+      margin: 0 0 16px 0;
+    }
+    table {
+      border-spacing: 0;
+      border-collapse: collapse;
+      margin-top: 0;
+      margin-bottom: 16px;
+      width: 100%;
+    }
+    table th, table td {
+      padding: 6px 13px;
+      border: 1px solid #dfe2e5;
+    }
+    table tr:nth-child(2n) {
+      background-color: #f6f8fa;
+    }
+    img {
+      max-width: 100%;
+      box-sizing: content-box;
+    }
+    @media print {
+      body {
+        max-width: 100%;
+        padding: 0;
+      }
+      pre, blockquote, table, tr, img {
+        page-break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+<body>
+<h1>JavaScript Primitive Types</h1>
+<p><a href="../acp-js.php">Back to JS page</a></p>
+<p>Table of Contents</p>
+<ul>
+<li><a href="#javascript-primitive-types">JavaScript Primitive Types</a><ul>
+<li><a href="#javascript-strings">JavaScript Strings</a><ul>
+<li><a href="#example-1">Example 1</a></li>
+</ul>
+</li>
+<li><a href="#javascript-numbers">JavaScript Numbers</a><ul>
+<li><a href="#example-2">Example 2</a></li>
+</ul>
+</li>
+<li><a href="#javascript-bigint">JavaScript BigInt</a><ul>
+<li><a href="#example-3">Example 3</a></li>
+</ul>
+</li>
+<li><a href="#javascript-booleans">JavaScript Booleans</a><ul>
+<li><a href="#example-4">Example 4</a></li>
+</ul>
+</li>
+<li><a href="#undefined-empty-values-and-null">Undefined, Empty Values, and null</a><ul>
+<li><a href="#example-5">Example 5</a></li>
+</ul>
+</li>
+<li><a href="#document">Document</a></li>
+<li><a href="#reference">Reference</a></li>
+</ul>
+</li>
+</ul>
+<h2>JavaScript Strings</h2>
+<p>A string is a sequence of characters. Strings are written inside quotes. You can use single or double quotes:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Primitive Types&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;JavaScript Strings&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+// Strings can be written in single or double quotes
+const name1 = &quot;John Doe&quot;;
+const name2 = &#39;John Doe&#39;;
+
+// Numbers in quotes are still strings
+const num1 = &quot;25&quot;;
+const num2 = &quot;25.5&quot;;
+
+let text = &quot;name1: &quot; + name1 + &quot;&lt;br&gt;&quot;;
+text += &quot;name2: &quot; + name2 + &quot;&lt;br&gt;&quot;;
+text += &quot;typeof &#39;25&#39;: &quot; + typeof num1 + &quot;&lt;br&gt;&quot;;
+text += &quot;typeof &#39;25.5&#39;: &quot; + typeof num2 + &quot;&lt;br&gt;&lt;br&gt;&quot;;
+
+text += &quot;Strings can be concatenated:&lt;br&gt;&quot;;
+text += name1 + &quot; is &quot; + 25 + &quot; years old&quot;;
+
+document.getElementById(&quot;demo&quot;).innerHTML = text;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p1.png" alt=""></p>
+<h3>Example 1</h3>
+<p><strong>Result</strong> <a href="ex1-strings/index.html">View Example</a></p>
+<h2>JavaScript Numbers</h2>
+<p>Numbers can be written with or without decimals. They can also use exponential notation:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Primitive Types&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;JavaScript Numbers&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+// Numbers can be integers or floats
+const x1 = 34.00;
+const x2 = 34;
+const x3 = 3.14;
+
+// Exponential notation
+const y1 = 123e5;      // 12300000
+const y2 = 123e-5;     // 0.00123
+
+let text = &quot;x1 = 34.00: &quot; + x1 + &quot; (&quot; + typeof x1 + &quot;)&lt;br&gt;&quot;;
+text += &quot;x2 = 34: &quot; + x2 + &quot; (&quot; + typeof x2 + &quot;)&lt;br&gt;&quot;;
+text += &quot;x3 = 3.14: &quot; + x3 + &quot;&lt;br&gt;&lt;br&gt;&quot;;
+text += &quot;123e5 = &quot; + y1 + &quot;&lt;br&gt;&quot;;
+text += &quot;123e-5 = &quot; + y2 + &quot;&lt;br&gt;&lt;br&gt;&quot;;
+
+text += &quot;Integer (32-bit): &quot; + (x2 | 0) + &quot;&lt;br&gt;&quot;;
+text += &quot;Float (64-bit): &quot; + x3;
+
+document.getElementById(&quot;demo&quot;).innerHTML = text;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p2.png" alt=""></p>
+<h3>Example 2</h3>
+<p><strong>Result</strong> <a href="ex2-numbers/index.html">View Example</a></p>
+<h2>JavaScript BigInt</h2>
+<p><code>BigInt</code> is for numbers too large for normal Number. Created by appending <code>n</code> to the end:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Primitive Types&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;JavaScript BigInt&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+// BigInt is for very large integers
+const big1 = 123456789012345678901234567890n;
+const big2 = BigInt(&quot;123456789012345678901234567890&quot;);
+
+// Normal number (limited precision)
+const normal = 123456789012345678901234567890;
+
+let text = &quot;Normal number: &quot; + normal + &quot;&lt;br&gt;&quot;;
+text += &quot;(loses precision for large values)&lt;br&gt;&lt;br&gt;&quot;;
+text += &quot;BigInt: &quot; + big1 + &quot;&lt;br&gt;&quot;;
+text += &quot;big2: &quot; + big2 + &quot;&lt;br&gt;&lt;br&gt;&quot;;
+text += &quot;typeof BigInt: &quot; + typeof big1 + &quot;&lt;br&gt;&lt;br&gt;&quot;;
+
+text += &quot;BigInt supports arithmetic:&lt;br&gt;&quot;;
+text += &quot;big1 + 1n: &quot; + (big1 + 1n);
+
+document.getElementById(&quot;demo&quot;).innerHTML = text;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p3.png" alt=""></p>
+<h3>Example 3</h3>
+<p><strong>Result</strong> <a href="ex3-bigint/index.html">View Example</a></p>
+<h2>JavaScript Booleans</h2>
+<p>Booleans can only have two values: <code>true</code> or <code>false</code>:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Primitive Types&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;JavaScript Booleans&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+// Booleans are true or false
+const isTrue = true;
+const isFalse = false;
+
+// Booleans from comparisons
+const isGreater = 5 &gt; 2;
+const isEqual = 5 === 2;
+
+let text = &quot;true: &quot; + isTrue + &quot; (&quot; + typeof isTrue + &quot;)&lt;br&gt;&quot;;
+text += &quot;false: &quot; + isFalse + &quot; (&quot; + typeof isFalse + &quot;)&lt;br&gt;&lt;br&gt;&quot;;
+text += &quot;5 &gt; 2: &quot; + isGreater + &quot;&lt;br&gt;&quot;;
+text += &quot;5 === 2: &quot; + isEqual;
+
+document.getElementById(&quot;demo&quot;).innerHTML = text;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p4.png" alt=""></p>
+<h3>Example 4</h3>
+<p><strong>Result</strong> <a href="ex4-booleans/index.html">View Example</a></p>
+<h2>Undefined, Empty Values, and null</h2>
+<p><code>undefined</code> is a variable without a value. <code>null</code> is an empty value. <code>&quot;&quot;</code> is an empty string:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Primitive Types&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Undefined, Empty Values, and null&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+// Undefined - variable without a value
+let car;   // undefined
+
+// null - explicitly empty value
+let person = null;
+
+// Empty string
+let text = &quot;&quot;;
+
+let output = &quot;let car; → &quot; + car + &quot; (&quot; + typeof car + &quot;)&lt;br&gt;&quot;;
+output += &quot;let person = null; → &quot; + person + &quot; (&quot; + typeof person + &quot;)&lt;br&gt;&quot;;
+output += &quot;let text = &#39;&#39;; → &#39;&quot; + text + &quot;&#39; (&quot; + typeof text + &quot;)&lt;br&gt;&lt;br&gt;&quot;;
+
+// Setting to undefined
+let x = &quot;Hello&quot;;
+x = undefined;
+output += &quot;x = &#39;Hello&#39;; x = undefined → &quot; + x + &quot; (&quot; + typeof x + &quot;)&quot;;
+
+document.getElementById(&quot;demo&quot;).innerHTML = output;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p5.png" alt=""></p>
+<h3>Example 5</h3>
+<p><strong>Result</strong> <a href="ex5-undefined_null/index.html">View Example</a></p>
+<h2>Document</h2>
+<p>Document in project</p>
+<p>You can <a href="js-primitive_types.pdf">Download PDF</a> file.</p>
+<h2>Reference</h2>
+<ul>
+<li><a href="https://www.w3schools.com/js/js_datatypes_primitives.asp">W3Schools JavaScript Primitive Types</a></li>
+</ul>
+
+</body>
+</html>

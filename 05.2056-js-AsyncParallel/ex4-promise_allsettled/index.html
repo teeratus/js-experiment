@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Async Parallel</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Promise.allSettled()</h4>
+<p id="demo"></p>
+
+<script>
+const promise1 = new Promise(function(resolve) {
+  setTimeout(function() { resolve("Success!"); }, 1000);
+});
+
+const promise2 = new Promise(function(resolve, reject) {
+  setTimeout(function() { reject("Failed!"); }, 500);
+});
+
+const promise3 = new Promise(function(resolve) {
+  setTimeout(function() { resolve("Done!"); }, 1500);
+});
+
+Promise.allSettled([promise1, promise2, promise3]).then(function(results) {
+  let text = "";
+  for (let result of results) {
+    text += "Status: " + result.status + ", ";
+    if (result.status === "fulfilled") {
+      text += "Value: " + result.value;
+    } else {
+      text += "Reason: " + result.reason;
+    }
+    text += "<br>";
+  }
+  document.getElementById("demo").innerHTML = text;
+});
+</script>
+
+</body>
+</html>

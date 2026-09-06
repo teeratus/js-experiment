@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Web Storage API</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Practical Example - Visitor Counter</h4>
+<p id="counter"></p>
+<p id="firstVisit"></p>
+<p id="lastVisit"></p>
+
+<button onclick="resetCounter()">Reset Counter</button>
+
+<script>
+function updateCounter() {
+  let count = localStorage.getItem("visitCount");
+  
+  if (count === null) {
+    count = 0;
+    localStorage.setItem("firstVisit", new Date().toLocaleString());
+  } else {
+    count = parseInt(count);
+  }
+  
+  count++;
+  localStorage.setItem("visitCount", count);
+  localStorage.setItem("lastVisit", new Date().toLocaleString());
+  
+  document.getElementById("counter").innerHTML = 
+    "You have visited this page " + count + " time(s).";
+  
+  document.getElementById("firstVisit").innerHTML = 
+    "First visit: " + localStorage.getItem("firstVisit");
+    
+  document.getElementById("lastVisit").innerHTML = 
+    "Last visit: " + localStorage.getItem("lastVisit");
+}
+
+function resetCounter() {
+  localStorage.removeItem("visitCount");
+  localStorage.removeItem("firstVisit");
+  localStorage.removeItem("lastVisit");
+  updateCounter();
+}
+
+updateCounter();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Object Properties</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Adding New Properties</h4>
+<p id="demo"></p>
+
+<script>
+const person = { firstName: "John", lastName: "Doe" };
+
+// Add new properties
+person.age = 30;
+person["eyeColor"] = "blue";
+person["favorite color"] = "green";
+
+let text = "Person properties:<br>";
+for (let key in person) {
+  text += key + ": " + person[key] + "<br>";
+}
+
+document.getElementById("demo").innerHTML = text;
+</script>
+
+</body>
+</html>

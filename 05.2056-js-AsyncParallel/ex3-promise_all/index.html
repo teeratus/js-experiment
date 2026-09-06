@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Async Parallel</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Promise.all()</h4>
+<p id="demo"></p>
+
+<script>
+const promise1 = new Promise(function(resolve) {
+  setTimeout(function() { resolve("Promise 1 done"); }, 1000);
+});
+
+const promise2 = new Promise(function(resolve) {
+  setTimeout(function() { resolve("Promise 2 done"); }, 2000);
+});
+
+const promise3 = new Promise(function(resolve) {
+  setTimeout(function() { resolve("Promise 3 done"); }, 1500);
+});
+
+Promise.all([promise1, promise2, promise3]).then(function(values) {
+  document.getElementById("demo").innerHTML =
+    "All promises resolved in parallel:<br>" +
+    values[0] + "<br>" +
+    values[1] + "<br>" +
+    values[2] + "<br>" +
+    "Total time: ~2 seconds (not 4.5)";
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript WeakMap</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>The WeakMap Object</h4>
+<p id="demo"></p>
+
+<script>
+// WeakMap keys must be objects
+const obj1 = { name: "John" };
+const obj2 = { name: "Jane" };
+
+const weakMap = new WeakMap();
+weakMap.set(obj1, "Engineer");
+weakMap.set(obj2, "Doctor");
+
+document.getElementById("demo").innerHTML =
+  "WeakMap size (no size property)<br>" +
+  "get(obj1): " + weakMap.get(obj1) + "<br>" +
+  "get(obj2): " + weakMap.get(obj2) + "<br><br>" +
+  "WeakMap keys must be objects";
+</script>
+
+</body>
+</html>

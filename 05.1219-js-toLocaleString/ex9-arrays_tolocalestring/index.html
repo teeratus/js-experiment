@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript toLocaleString()</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Arrays and toLocaleString()</h4>
+<p id="demo"></p>
+
+<script>
+const dates = [
+  new Date("2026-01-01"),
+  new Date("2026-12-24")
+];
+
+let text = dates.toLocaleString("en-US");
+
+document.getElementById("demo").innerHTML = text;
+</script>
+
+</body>
+</html>

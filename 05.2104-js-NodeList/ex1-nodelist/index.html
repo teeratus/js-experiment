@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript NodeList</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>The HTML DOM NodeList Object</h4>
+
+<p>First paragraph</p>
+<p>Second paragraph</p>
+<p>Third paragraph</p>
+
+<p id="demo"></p>
+
+<script>
+const myNodeList = document.querySelectorAll("p");
+
+document.getElementById("demo").innerHTML =
+  "Number of <p> elements: " + myNodeList.length + "<br>" +
+  "First paragraph text: " + myNodeList[0].innerHTML + "<br>" +
+  "Second paragraph text: " + myNodeList[1].innerHTML;
+</script>
+
+</body>
+</html>

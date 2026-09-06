@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>To-Do List</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<input id="task" placeholder="New task">
+<button onclick="addTask()">Add</button>
+<ul id="list"></ul>
+<button onclick="clearAll()">Clear All</button>
+
+<script>
+// Create a task Array
+let tasks = [];
+
+// Function to display the list
+function displayTasks() {
+  let html = "";
+  for (let i = 0; i < tasks.length; i++) {
+    html += "<li>" + tasks[i] +
+    " <button onclick='removeTask(" + i + ")'>x</button></li>";
+  }
+  document.getElementById("list").innerHTML = html;
+}
+
+// Function to Add a task
+function addTask() {
+  let taskInput = document.getElementById("task");
+  let text = taskInput.value;
+  if (text === "") {
+    return;
+  }
+  tasks.push(text);
+  taskInput.value = "";
+  displayTasks();
+}
+
+// Function to Remove a task
+function removeTask(i) {
+  tasks.splice(i, 1);
+  displayTasks();
+}
+
+// Function to Clear all tasks
+function clearAll() {
+  tasks = [];
+  displayTasks();
+}
+</script>
+
+</body>
+</html>

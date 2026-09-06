@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript ArrayBuffer</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Creating an ArrayBuffer</h4>
+<p id="demo"></p>
+
+<script>
+// Create an ArrayBuffer with 16 bytes
+const buffer = new ArrayBuffer(16);
+
+let text = "ArrayBuffer created with 16 bytes<br>";
+text += "byteLength: " + buffer.byteLength + "<br>";
+text += "Max byteLength: " + ArrayBuffer.maxByteLength + "<br>";
+text += "byteLength is read-only? " + (buffer.byteLength === 16);
+
+document.getElementById("demo").innerHTML = text;
+</script>
+
+</body>
+</html>

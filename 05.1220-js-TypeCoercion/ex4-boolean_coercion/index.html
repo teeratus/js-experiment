@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Type Coercion</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Boolean Coercion</h4>
+<p id="demo"></p>
+
+<script>
+let text = "";
+
+text += "Boolean(0) = " + Boolean(0) + "<br>";
+text += "Boolean(\"\") = " + Boolean("") + "<br>";
+text += "Boolean(null) = " + Boolean(null) + "<br>";
+text += "Boolean(undefined) = " + Boolean(undefined) + "<br>";
+text += "Boolean(NaN) = " + Boolean(NaN) + "<br>";
+text += "Boolean(false) = " + Boolean(false) + "<br>";
+text += "Boolean({}) = " + Boolean({}) + "<br>";
+text += "Boolean([]) = " + Boolean([]) + "<br>";
+
+document.getElementById("demo").innerHTML = text;
+</script>
+
+</body>
+</html>

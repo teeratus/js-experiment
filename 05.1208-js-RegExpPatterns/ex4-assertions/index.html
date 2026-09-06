@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript RegExp Patterns</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Full RegExp Assertions Reference</h4>
+<p id="demo"></p>
+
+<script>
+const text = "Hello Hello";
+
+let output = "Text: " + text + "<br><br>";
+output += "^Hello start: " + text.match(/^Hello/) + "<br>";
+output += "Hello$ end: " + text.match(/Hello$/) + "<br>";
+output += "Hello(?= Hello) lookahead: " + text.match(/Hello(?= Hello)/) + "<br>";
+output += "(?<=Hello )Hello lookbehind: " + text.match(/(?<=Hello )Hello/);
+
+document.getElementById("demo").innerHTML = output;
+</script>
+
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Type Conversion</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Converting Numbers to Strings</h4>
+<p id="demo"></p>
+
+<script>
+let text = "";
+
+let x = 123;
+
+text += "String(x): " + String(x) + "<br>";
+text += "String(123): " + String(123) + "<br>";
+text += "String(100 + 23): " + String(100 + 23) + "<br><br>";
+
+text += "x.toString(): " + x.toString() + "<br>";
+text += "(123).toString(): " + (123).toString() + "<br>";
+text += "(100 + 23).toString(): " + (100 + 23).toString();
+
+document.getElementById("demo").innerHTML = text;
+</script>
+
+</body>
+</html>

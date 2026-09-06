@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Validation API</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Validity Properties</h4>
+
+<form id="myForm">
+  <input type="text" id="username" required minlength="3" maxlength="10" placeholder="Username (3-10 chars)">
+  <br><br>
+  <input type="number" id="age" min="18" max="120" placeholder="Age (18-120)">
+  <br><br>
+  <input type="email" id="email2" placeholder="Email address">
+  <br><br>
+  <button type="button" onclick="showValidity()">Check All Fields</button>
+</form>
+
+<p id="demo3"></p>
+
+<script>
+function showValidity() {
+  const fields = ["username", "age", "email2"];
+  let text = "";
+  
+  for (let id of fields) {
+    const input = document.getElementById(id);
+    const v = input.validity;
+    
+    text += "<b>" + id + "</b>: ";
+    if (v.valid) {
+      text += "✓ Valid";
+    } else {
+      text += "✗ Invalid: ";
+      if (v.valueMissing) text += "Required, ";
+      if (v.typeMismatch) text += "Wrong type, ";
+      if (v.patternMismatch) text += "No pattern match, ";
+      if (v.tooShort) text += "Too short, ";
+      if (v.tooLong) text += "Too long, ";
+      if (v.rangeUnderflow) text += "Below minimum, ";
+      if (v.rangeOverflow) text += "Above maximum, ";
+    }
+    text += "<br>";
+  }
+  
+  document.getElementById("demo3").innerHTML = text;
+}
+</script>
+
+</body>
+</html>

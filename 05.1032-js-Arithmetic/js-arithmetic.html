@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>js-arithmetic</title>
+  <style>
+    body {
+      box-sizing: border-box;
+      min-width: 200px;
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 45px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+      font-size: 16px;
+      line-height: 1.5;
+      color: #24292e;
+      background-color: #ffffff;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 24px;
+      margin-bottom: 16px;
+      font-weight: 600;
+      line-height: 1.25;
+      border-bottom: 1px solid #eaecef;
+      padding-bottom: .3em;
+    }
+    h1 { font-size: 2em; }
+    h2 { font-size: 1.5em; }
+    h3 { font-size: 1.25em; }
+    code {
+      padding: .2em .4em;
+      margin: 0;
+      font-size: 85%;
+      background-color: rgba(27,31,35,.05);
+      border-radius: 3px;
+      font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
+    }
+    pre {
+      padding: 16px;
+      overflow: auto;
+      font-size: 85%;
+      line-height: 1.45;
+      background-color: #f6f8fa;
+      border-radius: 3px;
+      word-wrap: normal;
+    }
+    pre code {
+      background-color: transparent;
+      padding: 0;
+    }
+    blockquote {
+      padding: 0 1em;
+      color: #6a737d;
+      border-left: .25em solid #dfe2e5;
+      margin: 0 0 16px 0;
+    }
+    table {
+      border-spacing: 0;
+      border-collapse: collapse;
+      margin-top: 0;
+      margin-bottom: 16px;
+      width: 100%;
+    }
+    table th, table td {
+      padding: 6px 13px;
+      border: 1px solid #dfe2e5;
+    }
+    table tr:nth-child(2n) {
+      background-color: #f6f8fa;
+    }
+    img {
+      max-width: 100%;
+      box-sizing: content-box;
+    }
+    @media print {
+      body {
+        max-width: 100%;
+        padding: 0;
+      }
+      pre, blockquote, table, tr, img {
+        page-break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+<body>
+<h1>JavaScript Arithmetic</h1>
+<p><a href="../acp-js.php">Back to JS page</a></p>
+<p>Table of Contents</p>
+<ul>
+<li><a href="#javascript-arithmetic">JavaScript Arithmetic</a><ul>
+<li><a href="#arithmetic-operators">Arithmetic Operators</a><ul>
+<li><a href="#example-1">Example 1</a></li>
+</ul>
+</li>
+<li><a href="#adding">Adding</a><ul>
+<li><a href="#example-2">Example 2</a></li>
+</ul>
+</li>
+<li><a href="#subtracting">Subtracting</a><ul>
+<li><a href="#example-3">Example 3</a></li>
+</ul>
+</li>
+<li><a href="#multiplying">Multiplying</a><ul>
+<li><a href="#example-4">Example 4</a></li>
+</ul>
+</li>
+<li><a href="#dividing">Dividing</a><ul>
+<li><a href="#example-5">Example 5</a></li>
+</ul>
+</li>
+<li><a href="#remainder">Remainder</a><ul>
+<li><a href="#example-6">Example 6</a></li>
+</ul>
+</li>
+<li><a href="#incrementing">Incrementing</a><ul>
+<li><a href="#example-7">Example 7</a></li>
+</ul>
+</li>
+<li><a href="#decrementing">Decrementing</a><ul>
+<li><a href="#example-8">Example 8</a></li>
+</ul>
+</li>
+<li><a href="#exponentiation">Exponentiation</a><ul>
+<li><a href="#example-9">Example 9</a></li>
+</ul>
+</li>
+<li><a href="#operator-precedence">Operator Precedence</a><ul>
+<li><a href="#example-10">Example 10</a></li>
+</ul>
+</li>
+<li><a href="#document">Document</a></li>
+<li><a href="#reference">Reference</a></li>
+</ul>
+</li>
+</ul>
+<h2>Arithmetic Operators</h2>
+<p>Arithmetic operators perform arithmetic on numbers (literals or variables).</p>
+<p>A typical arithmetic operation operates on two numbers.</p>
+<p>The numbers (in an arithmetic operation) are called <strong>operands</strong>. The operation (to be performed between the two operands) is defined by an <strong>operator</strong>.</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Arithmetic&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Arithmetic Operators Overview&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+let x = 10;
+let y = 3;
+document.getElementById(&quot;demo&quot;).innerHTML =
+  &quot;x = &quot; + x + &quot;, y = &quot; + y + &quot;&lt;br&gt;&lt;br&gt;&quot; +
+  &quot;x + y = &quot; + (x + y) + &quot; (Addition)&lt;br&gt;&quot; +
+  &quot;x - y = &quot; + (x - y) + &quot; (Subtraction)&lt;br&gt;&quot; +
+  &quot;x * y = &quot; + (x * y) + &quot; (Multiplication)&lt;br&gt;&quot; +
+  &quot;x / y = &quot; + (x / y) + &quot; (Division)&lt;br&gt;&quot; +
+  &quot;x % y = &quot; + (x % y) + &quot; (Modulus)&lt;br&gt;&quot; +
+  &quot;x ** y = &quot; + (x ** y) + &quot; (Exponentiation)&quot;;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p1.png" alt=""></p>
+<h3>Example 1</h3>
+<p><strong>Result</strong> <a href="ex1-operators_overview/index.html">View Example</a></p>
+<h2>Adding</h2>
+<p>The <strong>addition</strong> operator (<code>+</code>) adds numbers:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Arithmetic&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Adding&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+let a = 100;
+let b = 50;
+let x = a + b;
+document.getElementById(&quot;demo&quot;).innerHTML = &quot;a + b = &quot; + x;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p2.png" alt=""></p>
+<h3>Example 2</h3>
+<p><strong>Result</strong> <a href="ex2-adding/index.html">View Example</a></p>
+<h2>Subtracting</h2>
+<p>The <strong>subtraction</strong> operator (<code>-</code>) subtracts numbers:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Arithmetic&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Subtracting&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+let a = 100;
+let b = 50;
+let x = a - b;
+document.getElementById(&quot;demo&quot;).innerHTML = &quot;a - b = &quot; + x;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p3.png" alt=""></p>
+<h3>Example 3</h3>
+<p><strong>Result</strong> <a href="ex3-subtracting/index.html">View Example</a></p>
+<h2>Multiplying</h2>
+<p>The <strong>multiplication</strong> operator (<code>*</code>) multiplies numbers:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Arithmetic&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Multiplying&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+let a = 100;
+let b = 50;
+let x = a * b;
+document.getElementById(&quot;demo&quot;).innerHTML = &quot;a * b = &quot; + x;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p4.png" alt=""></p>
+<h3>Example 4</h3>
+<p><strong>Result</strong> <a href="ex4-multiplying/index.html">View Example</a></p>
+<h2>Dividing</h2>
+<p>The <strong>division</strong> operator (<code>/</code>) divides numbers:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Arithmetic&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Dividing&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+let a = 100;
+let b = 50;
+let x = a / b;
+document.getElementById(&quot;demo&quot;).innerHTML = &quot;a / b = &quot; + x;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p5.png" alt=""></p>
+<h3>Example 5</h3>
+<p><strong>Result</strong> <a href="ex5-dividing/index.html">View Example</a></p>
+<h2>Remainder</h2>
+<p>The <strong>modulus</strong> operator (<code>%</code>) returns the division remainder:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Arithmetic&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Remainder (Modulus)&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+let a = 17;
+let b = 5;
+let x = a % b;
+document.getElementById(&quot;demo&quot;).innerHTML = &quot;a % b = &quot; + x + &quot; (remainder of &quot; + a + &quot; / &quot; + b + &quot;)&quot;;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p6.png" alt=""></p>
+<h3>Example 6</h3>
+<p><strong>Result</strong> <a href="ex6-modulus/index.html">View Example</a></p>
+<h2>Incrementing</h2>
+<p>The <strong>increment</strong> operator (<code>++</code>) increments numbers:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Arithmetic&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Incrementing&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+let x = 5;
+x++;
+let y = x;
+document.getElementById(&quot;demo&quot;).innerHTML = &quot;x = 5, x++ =&gt; y = &quot; + y;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p7.png" alt=""></p>
+<h3>Example 7</h3>
+<p><strong>Result</strong> <a href="ex7-incrementing/index.html">View Example</a></p>
+<h2>Decrementing</h2>
+<p>The <strong>decrement</strong> operator (<code>--</code>) decrements numbers:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Arithmetic&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Decrementing&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+let x = 5;
+x--;
+let y = x;
+document.getElementById(&quot;demo&quot;).innerHTML = &quot;x = 5, x-- =&gt; y = &quot; + y;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p8.png" alt=""></p>
+<h3>Example 8</h3>
+<p><strong>Result</strong> <a href="ex8-decrementing/index.html">View Example</a></p>
+<h2>Exponentiation</h2>
+<p>The <strong>exponentiation</strong> operator (<code>**</code>) raises the first operand to the power of the second operand:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Arithmetic&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Exponentiation&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+let x = 5;
+let y = x ** 2;
+document.getElementById(&quot;demo&quot;).innerHTML = &quot;x = 5, x ** 2 = &quot; + y;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p9.png" alt=""></p>
+<h3>Example 9</h3>
+<p><strong>Result</strong> <a href="ex9-exponentiation/index.html">View Example</a></p>
+<h2>Operator Precedence</h2>
+<p>Operator precedence describes the order in which operations are performed in an arithmetic expression.</p>
+<p>Multiplication (<code>*</code>) and division (<code>/</code>) have higher <strong>precedence</strong> than addition (<code>+</code>) and subtraction (<code>-</code>).</p>
+<p>Precedence can be changed by using parentheses:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Arithmetic&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Operator Precedence&lt;/h4&gt;
+&lt;p id=&quot;demo1&quot;&gt;&lt;/p&gt;
+&lt;p id=&quot;demo2&quot;&gt;&lt;/p&gt;
+&lt;p id=&quot;demo3&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+document.getElementById(&quot;demo1&quot;).innerHTML = &quot;100 + 50 * 3 = &quot; + (100 + 50 * 3);
+document.getElementById(&quot;demo2&quot;).innerHTML = &quot;(100 + 50) * 3 = &quot; + ((100 + 50) * 3);
+document.getElementById(&quot;demo3&quot;).innerHTML = &quot;100 + 50 - 3 * 2 = &quot; + (100 + 50 - 3 * 2);
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p10.png" alt=""></p>
+<h3>Example 10</h3>
+<p><strong>Result</strong> <a href="ex10-precedence/index.html">View Example</a></p>
+<h2>Document</h2>
+<p>Document in project</p>
+<p>You can <a href="js-arithmetic.pdf">Download PDF</a> file.</p>
+<h2>Reference</h2>
+<ul>
+<li><a href="https://www.w3schools.com/js/js_arithmetic.asp">W3Schools JavaScript Arithmetic</a></li>
+</ul>
+
+</body>
+</html>

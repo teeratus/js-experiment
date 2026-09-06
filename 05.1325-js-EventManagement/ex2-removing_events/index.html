@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Event Management</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Removing Events</h4>
+<button id="myBtn">Click me</button>
+<button id="removeBtn">Remove event</button>
+<p id="demo"></p>
+
+<script>
+function myFunction() {
+  document.getElementById("demo").innerHTML = "Button was clicked!";
+}
+
+document.getElementById("myBtn").addEventListener("click", myFunction);
+
+document.getElementById("removeBtn").addEventListener("click", function() {
+  document.getElementById("myBtn").removeEventListener("click", myFunction);
+  document.getElementById("demo").innerHTML = "Event handler removed!";
+});
+</script>
+
+</body>
+</html>

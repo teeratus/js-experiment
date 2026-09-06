@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript RegExp Groups</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>The Result Array</h4>
+<p id="demo"></p>
+
+<script>
+const text = "Date: 2024-05-15";
+const matches = text.match(/(\d{4})-(\d{2})-(\d{2})/);
+
+let text2 = "Text: " + text + "<br><br>";
+text2 += "match(/(\\d{4})-(\\d{2})-(\\d{2})/):<br><br>";
+text2 += "matches[0] (full): " + matches[0] + "<br>";
+text2 += "matches[1] (year): " + matches[1] + "<br>";
+text2 += "matches[2] (month): " + matches[2] + "<br>";
+text2 += "matches[3] (day): " + matches[3] + "<br><br>";
+text2 += "index: " + matches.index + "<br>";
+text2 += "input: " + matches.input;
+
+document.getElementById("demo").innerHTML = text2;
+</script>
+
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Type Conversion</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>The Unary + Operator</h4>
+<p id="demo"></p>
+
+<script>
+let text = "";
+
+let y = "5";      // y is a string
+let x = + y;      // x is a number
+
+text += "typeof y (\"5\"): " + typeof y + "<br>";
+text += "typeof x (+ y): " + typeof x + "<br><br>";
+
+let z = "John";
+let w = + z;
+
+text += "\"John\" to number: " + w;
+
+document.getElementById("demo").innerHTML = text;
+</script>
+
+</body>
+</html>

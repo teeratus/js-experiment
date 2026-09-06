@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Array Sort</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Find Min or Max with sort()</h4>
+<p id="demo"></p>
+
+<script>
+const points = [40, 100, 1, 5, 25, 10];
+
+// Sort ascending to find min and max
+const sorted = points.slice();
+sorted.sort(function(a, b) { return a - b; });
+
+const min = sorted[0];
+const max = sorted[sorted.length - 1];
+
+document.getElementById("demo").innerHTML =
+  "Array: " + points + "<br><br>" +
+  "Sorted ascending: " + sorted + "<br>" +
+  "Minimum value: " + min + "<br>" +
+  "Maximum value: " + max;
+</script>
+
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript RegExp</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>RegExp Metacharacters</h4>
+<p id="demo"></p>
+
+<script>
+const text = "Give 100% and 25% effort";
+
+// \d finds digits
+const digits = text.match(/\d/g);
+
+// \w finds word characters
+const words = text.match(/\w+/g);
+
+document.getElementById("demo").innerHTML =
+  "Text: " + text + "<br><br>" +
+  "match(/\\d/g) digits: " + digits + "<br>" +
+  "match(/\\w+/g) words: " + words;
+</script>
+
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript HTML DOM Elements</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>HTML Object Collections</h4>
+<form id="frm1">
+  First name: <input type="text" name="fname" value="John"><br>
+  Last name: <input type="text" name="lname" value="Doe">
+</form>
+<p id="demo"></p>
+
+<script>
+const forms = document.forms;
+const form = forms[0];
+let text = "";
+for (let i = 0; i < form.length; i++) {
+  text += form.elements[i].name + ": " + form.elements[i].value + "<br>";
+}
+document.getElementById("demo").innerHTML = "Form fields:<br>" + text;
+</script>
+
+</body>
+</html>

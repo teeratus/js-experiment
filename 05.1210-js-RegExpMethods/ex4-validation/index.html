@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript RegExp Methods</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Pattern-Based Validation</h4>
+<p id="demo"></p>
+
+<script>
+// Email validation pattern
+const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+// Phone validation pattern
+const phonePattern = /^\d{3}-\d{3}-\d{4}$/;
+
+let output = "Email: john@example.com → ";
+output += emailPattern.test("john@example.com") ? "✓ Valid" : "✗ Invalid";
+output += "<br>";
+
+output += "Email: invalid → ";
+output += emailPattern.test("invalid") ? "✓ Valid" : "✗ Invalid";
+output += "<br><br>";
+
+output += "Phone: 555-123-4567 → ";
+output += phonePattern.test("555-123-4567") ? "✓ Valid" : "✗ Invalid";
+output += "<br>";
+
+output += "Phone: 5551234567 → ";
+output += phonePattern.test("5551234567") ? "✓ Valid" : "✗ Invalid";
+
+document.getElementById("demo").innerHTML = output;
+</script>
+
+</body>
+</html>

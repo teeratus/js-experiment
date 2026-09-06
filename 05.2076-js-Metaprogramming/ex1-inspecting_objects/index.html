@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Metaprogramming</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Inspecting Objects</h4>
+<p id="demo"></p>
+
+<script>
+const person = {
+  firstName: "John",
+  lastName: "Doe",
+  age: 30
+};
+
+let text = "Properties:<br>";
+const keys = Object.keys(person);
+for (let key of keys) {
+  text += key + ": " + person[key] + " (" + typeof person[key] + ")<br>";
+}
+text += "<br>Number of properties: " + keys.length;
+
+document.getElementById("demo").innerHTML = text;
+</script>
+
+</body>
+</html>

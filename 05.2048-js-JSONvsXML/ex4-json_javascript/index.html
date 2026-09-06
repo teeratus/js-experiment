@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript JSON vs XML</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Working with JSON in JavaScript</h4>
+<p id="demo"></p>
+
+<script>
+// JSON data as string
+const jsonString = '{"name":"John","age":30,"city":"New York"}';
+
+// Parse JSON to JavaScript object
+const obj = JSON.parse(jsonString);
+
+// Easily access properties
+document.getElementById("demo").innerHTML =
+  "Name: " + obj.name + "<br>" +
+  "Age: " + obj.age + "<br>" +
+  "City: " + obj.city;
+</script>
+
+</body>
+</html>

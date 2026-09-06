@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>js-async_debugging</title>
+  <style>
+    body {
+      box-sizing: border-box;
+      min-width: 200px;
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 45px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+      font-size: 16px;
+      line-height: 1.5;
+      color: #24292e;
+      background-color: #ffffff;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 24px;
+      margin-bottom: 16px;
+      font-weight: 600;
+      line-height: 1.25;
+      border-bottom: 1px solid #eaecef;
+      padding-bottom: .3em;
+    }
+    h1 { font-size: 2em; }
+    h2 { font-size: 1.5em; }
+    h3 { font-size: 1.25em; }
+    code {
+      padding: .2em .4em;
+      margin: 0;
+      font-size: 85%;
+      background-color: rgba(27,31,35,.05);
+      border-radius: 3px;
+      font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
+    }
+    pre {
+      padding: 16px;
+      overflow: auto;
+      font-size: 85%;
+      line-height: 1.45;
+      background-color: #f6f8fa;
+      border-radius: 3px;
+      word-wrap: normal;
+    }
+    pre code {
+      background-color: transparent;
+      padding: 0;
+    }
+    blockquote {
+      padding: 0 1em;
+      color: #6a737d;
+      border-left: .25em solid #dfe2e5;
+      margin: 0 0 16px 0;
+    }
+    table {
+      border-spacing: 0;
+      border-collapse: collapse;
+      margin-top: 0;
+      margin-bottom: 16px;
+      width: 100%;
+    }
+    table th, table td {
+      padding: 6px 13px;
+      border: 1px solid #dfe2e5;
+    }
+    table tr:nth-child(2n) {
+      background-color: #f6f8fa;
+    }
+    img {
+      max-width: 100%;
+      box-sizing: content-box;
+    }
+    @media print {
+      body {
+        max-width: 100%;
+        padding: 0;
+      }
+      pre, blockquote, table, tr, img {
+        page-break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+<body>
+<h1>JavaScript Async Debugging</h1>
+<p><a href="../acp-js.php">Back to JS page</a></p>
+<p>Table of Contents</p>
+<ul>
+<li><a href="#javascript-async-debugging">JavaScript Async Debugging</a><ul>
+<li><a href="#log-events">Log Events</a><ul>
+<li><a href="#example-1">Example 1</a></li>
+</ul>
+</li>
+<li><a href="#rule-1-always-handle-errors">Rule 1: Always Handle Errors</a><ul>
+<li><a href="#example-2">Example 2</a></li>
+</ul>
+</li>
+<li><a href="#rule-2-check-responseok">Rule 2: Check response.ok</a><ul>
+<li><a href="#example-3">Example 3</a></li>
+</ul>
+</li>
+<li><a href="#rule-3-log-the-right-things">Rule 3: Log the Right Things</a><ul>
+<li><a href="#example-4">Example 4</a></li>
+</ul>
+</li>
+<li><a href="#understand-execution-order">Understand Execution Order</a><ul>
+<li><a href="#example-5">Example 5</a></li>
+</ul>
+</li>
+<li><a href="#document">Document</a></li>
+<li><a href="#reference">Reference</a></li>
+</ul>
+</li>
+</ul>
+<h2>Log Events</h2>
+<p>Use <code>console.log()</code> to track the flow of async operations. This helps you understand the order of execution:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Async Debugging&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Log Events&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+console.log(&quot;1. Script starts&quot;);
+
+async function fetchData() {
+  console.log(&quot;2. Inside async function&quot;);
+  let result = await new Promise(function(resolve) {
+    setTimeout(function() {
+      console.log(&quot;3. Promise resolved&quot;);
+      resolve(&quot;Data loaded&quot;);
+    }, 1000);
+  });
+  console.log(&quot;4. After await&quot;);
+  document.getElementById(&quot;demo&quot;).innerHTML = result;
+}
+
+fetchData();
+console.log(&quot;5. After calling fetchData (not blocked)&quot;);
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p1.png" alt=""></p>
+<h3>Example 1</h3>
+<p><strong>Result</strong> <a href="ex1-log_events/index.html">View Example</a></p>
+<h2>Rule 1: Always Handle Errors</h2>
+<p>Always use <code>try/catch</code> around async operations to catch errors:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Async Debugging&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Rule 1: Always Handle Errors&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+async function fetchWithCatch() {
+  try {
+    let response = await fetch(&#39;https://jsonplaceholder.typicode.com/users/1&#39;);
+    if (!response.ok) {
+      throw new Error(&quot;HTTP &quot; + response.status);
+    }
+    let data = await response.json();
+    document.getElementById(&quot;demo&quot;).innerHTML =
+      &quot;Success: &quot; + data.name + &quot;&lt;br&gt;&quot; +
+      &quot;Email: &quot; + data.email;
+  } catch(error) {
+    document.getElementById(&quot;demo&quot;).innerHTML =
+      &quot;Error caught: &quot; + error.message + &quot;&lt;br&gt;&quot; +
+      &quot;Tip: Check the URL or network connection&quot;;
+  }
+}
+
+fetchWithCatch();
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p2.png" alt=""></p>
+<h3>Example 2</h3>
+<p><strong>Result</strong> <a href="ex2-always_handle_errors/index.html">View Example</a></p>
+<h2>Rule 2: Check response.ok</h2>
+<p><code>fetch()</code> does NOT reject on HTTP errors (like 404). Always check <code>response.ok</code>:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Async Debugging&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Rule 2: Check response.ok&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+async function checkResponse() {
+  // Try with an invalid URL
+  const response = await fetch(&#39;https://jsonplaceholder.typicode.com/users/invalid&#39;);
+
+  console.log(&quot;Status:&quot;, response.status);
+  console.log(&quot;ok:&quot;, response.ok);
+
+  if (!response.ok) {
+    document.getElementById(&quot;demo&quot;).innerHTML =
+      &quot;response.ok is &quot; + response.ok + &quot;&lt;br&gt;&quot; +
+      &quot;Status: &quot; + response.status + &quot; &quot; + response.statusText + &quot;&lt;br&gt;&quot; +
+      &quot;Always check response.ok after fetch!&quot;;
+    return;
+  }
+
+  const data = await response.json();
+  document.getElementById(&quot;demo&quot;).innerHTML = &quot;Name: &quot; + data.name;
+}
+
+checkResponse();
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p3.png" alt=""></p>
+<h3>Example 3</h3>
+<p><strong>Result</strong> <a href="ex3-check_response_ok/index.html">View Example</a></p>
+<h2>Rule 3: Log the Right Things</h2>
+<p>Log meaningful information to understand what&#39;s happening:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Async Debugging&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Rule 3: Log the Right Things&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+async function logCorrectly() {
+  const url = &#39;https://jsonplaceholder.typicode.com/users/1&#39;;
+
+  // Log the URL being fetched
+  console.log(&quot;Fetching:&quot;, url);
+
+  try {
+    const response = await fetch(url);
+
+    // Log response status
+    console.log(&quot;Response status:&quot;, response.status);
+
+    if (!response.ok) {
+      throw new Error(&quot;HTTP error &quot; + response.status);
+    }
+
+    const data = await response.json();
+
+    // Log the received data structure
+    console.log(&quot;Data received:&quot;, data);
+    console.log(&quot;User name:&quot;, data.name);
+
+    document.getElementById(&quot;demo&quot;).innerHTML =
+      &quot;Check the browser console (F12) for logs&lt;br&gt;&quot; +
+      &quot;User: &quot; + data.name + &quot;&lt;br&gt;&quot; +
+      &quot;Email: &quot; + data.email;
+
+  } catch(error) {
+    console.error(&quot;Error:&quot;, error.message);
+    document.getElementById(&quot;demo&quot;).innerHTML = &quot;Error: &quot; + error.message;
+  }
+}
+
+logCorrectly();
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p4.png" alt=""></p>
+<h3>Example 4</h3>
+<p><strong>Result</strong> <a href="ex4-log_right_things/index.html">View Example</a></p>
+<h2>Understand Execution Order</h2>
+<p>Async code does not execute in the order it appears. Use logs to understand the flow:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Async Debugging&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Understand Execution Order&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+console.log(&quot;A: Start of script&quot;);
+
+setTimeout(function() {
+  console.log(&quot;B: setTimeout callback&quot;);
+}, 0);
+
+Promise.resolve().then(function() {
+  console.log(&quot;C: Promise microtask&quot;);
+});
+
+async function test() {
+  console.log(&quot;D: Inside async function (before await)&quot;);
+  await Promise.resolve();
+  console.log(&quot;E: After await&quot;);
+}
+test();
+
+console.log(&quot;F: End of script (sync code)&quot;);
+
+// Expected console order: A, D, F, C, E, B
+document.getElementById(&quot;demo&quot;).innerHTML =
+  &quot;Check browser console (F12) for execution order:&lt;br&gt;&quot; +
+  &quot;Expected: A → D → F → C → E → B&lt;br&gt;&lt;br&gt;&quot; +
+  &quot;A: Start&lt;br&gt;&quot; +
+  &quot;D: Inside async (before await)&lt;br&gt;&quot; +
+  &quot;F: End of sync code&lt;br&gt;&quot; +
+  &quot;C: Promise microtask&lt;br&gt;&quot; +
+  &quot;E: After await&lt;br&gt;&quot; +
+  &quot;B: setTimeout (Task queue - last)&quot;;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p5.png" alt=""></p>
+<h3>Example 5</h3>
+<p><strong>Result</strong> <a href="ex5-execution_order/index.html">View Example</a></p>
+<h2>Document</h2>
+<p>Document in project</p>
+<p>You can <a href="js-async_debugging.pdf">Download PDF</a> file.</p>
+<h2>Reference</h2>
+<ul>
+<li><a href="https://www.w3schools.com/js/js_async_debug.asp">W3Schools JavaScript Async Debugging</a></li>
+</ul>
+
+</body>
+</html>

@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>js-maps</title>
+  <style>
+    body {
+      box-sizing: border-box;
+      min-width: 200px;
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 45px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+      font-size: 16px;
+      line-height: 1.5;
+      color: #24292e;
+      background-color: #ffffff;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 24px;
+      margin-bottom: 16px;
+      font-weight: 600;
+      line-height: 1.25;
+      border-bottom: 1px solid #eaecef;
+      padding-bottom: .3em;
+    }
+    h1 { font-size: 2em; }
+    h2 { font-size: 1.5em; }
+    h3 { font-size: 1.25em; }
+    code {
+      padding: .2em .4em;
+      margin: 0;
+      font-size: 85%;
+      background-color: rgba(27,31,35,.05);
+      border-radius: 3px;
+      font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
+    }
+    pre {
+      padding: 16px;
+      overflow: auto;
+      font-size: 85%;
+      line-height: 1.45;
+      background-color: #f6f8fa;
+      border-radius: 3px;
+      word-wrap: normal;
+    }
+    pre code {
+      background-color: transparent;
+      padding: 0;
+    }
+    blockquote {
+      padding: 0 1em;
+      color: #6a737d;
+      border-left: .25em solid #dfe2e5;
+      margin: 0 0 16px 0;
+    }
+    table {
+      border-spacing: 0;
+      border-collapse: collapse;
+      margin-top: 0;
+      margin-bottom: 16px;
+      width: 100%;
+    }
+    table th, table td {
+      padding: 6px 13px;
+      border: 1px solid #dfe2e5;
+    }
+    table tr:nth-child(2n) {
+      background-color: #f6f8fa;
+    }
+    img {
+      max-width: 100%;
+      box-sizing: content-box;
+    }
+    @media print {
+      body {
+        max-width: 100%;
+        padding: 0;
+      }
+      pre, blockquote, table, tr, img {
+        page-break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+<body>
+<h1>JavaScript Maps</h1>
+<p><a href="../acp-js.php">Back to JS page</a></p>
+<p>Table of Contents</p>
+<ul>
+<li><a href="#javascript-maps">JavaScript Maps</a><ul>
+<li><a href="#how-to-create-a-map">How to Create a Map</a><ul>
+<li><a href="#example-1">Example 1</a></li>
+</ul>
+</li>
+<li><a href="#adding-and-changing-map-values">Adding and Changing Map Values</a><ul>
+<li><a href="#example-2">Example 2</a></li>
+</ul>
+</li>
+<li><a href="#the-get-method">The get() Method</a><ul>
+<li><a href="#example-3">Example 3</a></li>
+</ul>
+</li>
+<li><a href="#maps-are-objects">Maps are Objects</a><ul>
+<li><a href="#example-4">Example 4</a></li>
+</ul>
+</li>
+<li><a href="#javascript-objects-vs-maps">JavaScript Objects vs Maps</a><ul>
+<li><a href="#example-5">Example 5</a></li>
+</ul>
+</li>
+<li><a href="#document">Document</a></li>
+<li><a href="#reference">Reference</a></li>
+</ul>
+</li>
+</ul>
+<h2>How to Create a Map</h2>
+<p>A Map holds key-value pairs where the keys can be any datatype. To create a Map, use <code>new Map()</code>:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Maps&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;How to Create a Map&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+// Create a Map with key-value pairs
+const fruits = new Map([
+  [&quot;apple&quot;, 500],
+  [&quot;banana&quot;, 300],
+  [&quot;orange&quot;, 200]
+]);
+
+// Create an empty Map
+const emptyMap = new Map();
+
+document.getElementById(&quot;demo&quot;).innerHTML =
+  &quot;Map from array: &quot; + [...fruits] + &quot;&lt;br&gt;&quot; +
+  &quot;Map size: &quot; + fruits.size + &quot;&lt;br&gt;&lt;br&gt;&quot; +
+  &quot;Keys can be any datatype:&lt;br&gt;&quot; +
+  &quot;fruits.get(&#39;apple&#39;): &quot; + fruits.get(&quot;apple&quot;);
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p1.png" alt=""></p>
+<h3>Example 1</h3>
+<p><strong>Result</strong> <a href="ex1-create_map/index.html">View Example</a></p>
+<h2>Adding and Changing Map Values</h2>
+<p>Use <code>set()</code> to add or change Map values. The <code>get()</code> method gets the value of a key:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Maps&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Adding and Changing Map Values&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+const fruits = new Map([
+  [&quot;apple&quot;, 500]
+]);
+
+// Add new entries with set()
+fruits.set(&quot;banana&quot;, 300);
+fruits.set(&quot;orange&quot;, 200);
+
+// Change an existing value
+fruits.set(&quot;apple&quot;, 600);
+
+// set() can be chained
+fruits.set(&quot;mango&quot;, 150).set(&quot;grape&quot;, 100);
+
+document.getElementById(&quot;demo&quot;).innerHTML =
+  &quot;apple: &quot; + fruits.get(&quot;apple&quot;) + &quot; (changed to 600)&lt;br&gt;&quot; +
+  &quot;banana: &quot; + fruits.get(&quot;banana&quot;) + &quot;&lt;br&gt;&quot; +
+  &quot;orange: &quot; + fruits.get(&quot;orange&quot;) + &quot;&lt;br&gt;&quot; +
+  &quot;mango: &quot; + fruits.get(&quot;mango&quot;) + &quot;&lt;br&gt;&quot; +
+  &quot;grape: &quot; + fruits.get(&quot;grape&quot;) + &quot;&lt;br&gt;&lt;br&gt;&quot; +
+  &quot;Map size: &quot; + fruits.size;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p2.png" alt=""></p>
+<h3>Example 2</h3>
+<p><strong>Result</strong> <a href="ex2-add_change/index.html">View Example</a></p>
+<h2>The get() Method</h2>
+<p><code>get()</code> returns the value of a specified key. It returns <code>undefined</code> if the key doesn&#39;t exist:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Maps&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;The get() Method&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+const fruits = new Map([
+  [&quot;apple&quot;, 500],
+  [&quot;banana&quot;, 300]
+]);
+
+document.getElementById(&quot;demo&quot;).innerHTML =
+  &quot;get(&#39;apple&#39;): &quot; + fruits.get(&quot;apple&quot;) + &quot;&lt;br&gt;&quot; +
+  &quot;get(&#39;banana&#39;): &quot; + fruits.get(&quot;banana&quot;) + &quot;&lt;br&gt;&quot; +
+  &quot;get(&#39;orange&#39;): &quot; + fruits.get(&quot;orange&quot;) + &quot; (undefined - not in Map)&lt;br&gt;&lt;br&gt;&quot; +
+  &quot;has(&#39;apple&#39;): &quot; + fruits.has(&quot;apple&quot;) + &quot;&lt;br&gt;&quot; +
+  &quot;size: &quot; + fruits.size;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p3.png" alt=""></p>
+<h3>Example 3</h3>
+<p><strong>Result</strong> <a href="ex3-get_method/index.html">View Example</a></p>
+<h2>Maps are Objects</h2>
+<p><code>typeof</code> a Map is an object. A Map can use objects as keys:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Maps&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Maps are Objects&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+// Using objects as keys
+const person1 = { name: &quot;John&quot; };
+const person2 = { name: &quot;Jane&quot; };
+
+const persons = new Map();
+persons.set(person1, &quot;Engineer&quot;);
+persons.set(person2, &quot;Doctor&quot;);
+
+let text = &quot;typeof Map: &quot; + typeof persons + &quot;&lt;br&gt;&quot;;
+text += &quot;Instance of Map: &quot; + (persons instanceof Map) + &quot;&lt;br&gt;&lt;br&gt;&quot;;
+
+text += &quot;person1&#39;s job: &quot; + persons.get(person1) + &quot;&lt;br&gt;&quot;;
+text += &quot;person2&#39;s job: &quot; + persons.get(person2) + &quot;&lt;br&gt;&lt;br&gt;&quot;;
+
+text += &quot;&lt;b&gt;Other Map methods:&lt;/b&gt;&lt;br&gt;&quot;;
+text += &quot;delete(key): removes entry&lt;br&gt;&quot;;
+text += &quot;clear(): removes all entries&lt;br&gt;&quot;;
+text += &quot;keys(): iterator of keys&lt;br&gt;&quot;;
+text += &quot;values(): iterator of values&lt;br&gt;&quot;;
+text += &quot;entries(): iterator of [key, value] pairs&quot;;
+
+document.getElementById(&quot;demo&quot;).innerHTML = text;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p4.png" alt=""></p>
+<h3>Example 4</h3>
+<p><strong>Result</strong> <a href="ex4-maps_objects/index.html">View Example</a></p>
+<h2>JavaScript Objects vs Maps</h2>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>Object</th>
+<th>Map</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Iterable</td>
+<td>Not directly</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Size property</td>
+<td>No</td>
+<td>Yes (<code>size</code>)</td>
+</tr>
+<tr>
+<td>Key types</td>
+<td>Strings only</td>
+<td>Any type</td>
+</tr>
+<tr>
+<td>Key order</td>
+<td>Not guaranteed</td>
+<td>Insertion order</td>
+</tr>
+<tr>
+<td>Default values</td>
+<td>Has default keys</td>
+<td>No default keys</td>
+</tr>
+</tbody></table>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Maps&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;JavaScript Objects vs Maps&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+// Object
+const obj = { name: &quot;John&quot;, age: 30 };
+
+// Map
+const map = new Map([
+  [&quot;name&quot;, &quot;John&quot;],
+  [&quot;age&quot;, 30]
+]);
+
+let text = &quot;&lt;b&gt;Object:&lt;/b&gt;&lt;br&gt;&quot;;
+text += &quot;size: &quot; + Object.keys(obj).length + &quot; (via keys())&lt;br&gt;&quot;;
+text += &quot;Keys: strings only&lt;br&gt;&quot;;
+text += &quot;Iterable: no&lt;br&gt;&lt;br&gt;&quot;;
+
+text += &quot;&lt;b&gt;Map:&lt;/b&gt;&lt;br&gt;&quot;;
+text += &quot;size: &quot; + map.size + &quot;&lt;br&gt;&quot;;
+text += &quot;Keys: any type&lt;br&gt;&quot;;
+text += &quot;Iterable: yes&lt;br&gt;&lt;br&gt;&quot;;
+
+text += &quot;&lt;b&gt;When to use Map?&lt;/b&gt;&lt;br&gt;&quot;;
+text += &quot;1. Need keys other than strings&lt;br&gt;&quot;;
+text += &quot;2. Need size property&lt;br&gt;&quot;;
+text += &quot;3. Need iteration&lt;br&gt;&quot;;
+text += &quot;4. Need insertion order&quot;;
+
+document.getElementById(&quot;demo&quot;).innerHTML = text;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p5.png" alt=""></p>
+<h3>Example 5</h3>
+<p><strong>Result</strong> <a href="ex5-objects_vs_maps/index.html">View Example</a></p>
+<h2>Document</h2>
+<p>Document in project</p>
+<p>You can <a href="js-maps.pdf">Download PDF</a> file.</p>
+<h2>Reference</h2>
+<ul>
+<li><a href="https://www.w3schools.com/js/js_maps.asp">W3Schools JavaScript Maps</a></li>
+</ul>
+
+</body>
+</html>

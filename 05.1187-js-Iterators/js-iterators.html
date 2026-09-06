@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>js-iterators</title>
+  <style>
+    body {
+      box-sizing: border-box;
+      min-width: 200px;
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 45px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+      font-size: 16px;
+      line-height: 1.5;
+      color: #24292e;
+      background-color: #ffffff;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 24px;
+      margin-bottom: 16px;
+      font-weight: 600;
+      line-height: 1.25;
+      border-bottom: 1px solid #eaecef;
+      padding-bottom: .3em;
+    }
+    h1 { font-size: 2em; }
+    h2 { font-size: 1.5em; }
+    h3 { font-size: 1.25em; }
+    code {
+      padding: .2em .4em;
+      margin: 0;
+      font-size: 85%;
+      background-color: rgba(27,31,35,.05);
+      border-radius: 3px;
+      font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
+    }
+    pre {
+      padding: 16px;
+      overflow: auto;
+      font-size: 85%;
+      line-height: 1.45;
+      background-color: #f6f8fa;
+      border-radius: 3px;
+      word-wrap: normal;
+    }
+    pre code {
+      background-color: transparent;
+      padding: 0;
+    }
+    blockquote {
+      padding: 0 1em;
+      color: #6a737d;
+      border-left: .25em solid #dfe2e5;
+      margin: 0 0 16px 0;
+    }
+    table {
+      border-spacing: 0;
+      border-collapse: collapse;
+      margin-top: 0;
+      margin-bottom: 16px;
+      width: 100%;
+    }
+    table th, table td {
+      padding: 6px 13px;
+      border: 1px solid #dfe2e5;
+    }
+    table tr:nth-child(2n) {
+      background-color: #f6f8fa;
+    }
+    img {
+      max-width: 100%;
+      box-sizing: content-box;
+    }
+    @media print {
+      body {
+        max-width: 100%;
+        padding: 0;
+      }
+      pre, blockquote, table, tr, img {
+        page-break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+<body>
+<h1>JavaScript Iterators</h1>
+<p><a href="../acp-js.php">Back to JS page</a></p>
+<p>Table of Contents</p>
+<ul>
+<li><a href="#javascript-iterators">JavaScript Iterators</a><ul>
+<li><a href="#the-iterator-object">The Iterator Object</a><ul>
+<li><a href="#example-1">Example 1</a></li>
+</ul>
+</li>
+<li><a href="#the-next-method">The next() Method</a><ul>
+<li><a href="#example-2">Example 2</a></li>
+</ul>
+</li>
+<li><a href="#iteratorfrom-method">Iterator.from() Method</a><ul>
+<li><a href="#example-3">Example 3</a></li>
+</ul>
+</li>
+<li><a href="#iterator-helper-methods">Iterator Helper Methods</a><ul>
+<li><a href="#example-4">Example 4</a></li>
+</ul>
+</li>
+<li><a href="#document">Document</a></li>
+<li><a href="#reference">Reference</a></li>
+</ul>
+</li>
+</ul>
+<h2>The Iterator Object</h2>
+<p>An iterator is an object that defines a sequence of values and a termination condition. It implements the <code>next()</code> method:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Iterators&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;The Iterator Object&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+// An iterator is an object with a next() method
+// It defines a sequence of values
+
+// Arrays are iterables (have Symbol.iterator)
+const arr = [10, 20, 30];
+const iterator = arr[Symbol.iterator]();
+
+let text = &quot;Array iterator for [10, 20, 30]:&lt;br&gt;&lt;br&gt;&quot;;
+text += &quot;typeof arr[Symbol.iterator]: &quot; + typeof arr[Symbol.iterator] + &quot;&lt;br&gt;&quot;;
+text += &quot;Iterator has next(): &quot; + (typeof iterator.next === &quot;function&quot;);
+
+document.getElementById(&quot;demo&quot;).innerHTML = text;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p1.png" alt=""></p>
+<h3>Example 1</h3>
+<p><strong>Result</strong> <a href="ex1-iterator_object/index.html">View Example</a></p>
+<h2>The next() Method</h2>
+<p>The <code>next()</code> method returns an object with <code>value</code> and <code>done</code> properties. When <code>done</code> is true, iteration is complete:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Iterators&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;The next() Method&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+const fruits = [&quot;Apple&quot;, &quot;Banana&quot;, &quot;Orange&quot;];
+const iterator = fruits[Symbol.iterator]();
+
+let text = &quot;Iterating with next():&lt;br&gt;&lt;br&gt;&quot;;
+let result = iterator.next();
+while (!result.done) {
+  text += &quot;next(): value = &quot; + result.value + &quot;, done = &quot; + result.done + &quot;&lt;br&gt;&quot;;
+  result = iterator.next();
+}
+text += &quot;next(): value = &quot; + result.value + &quot;, done = &quot; + result.done + &quot; (done!)&quot;;
+
+document.getElementById(&quot;demo&quot;).innerHTML = text;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p2.png" alt=""></p>
+<h3>Example 2</h3>
+<p><strong>Result</strong> <a href="ex2-next_method/index.html">View Example</a></p>
+<h2>Iterator.from() Method</h2>
+<p><code>Iterator.from()</code> creates an iterator from an iterable object:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Iterators&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Iterator.from() Method&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+let text = &quot;&quot;;
+
+if (Iterator.from) {
+  // Create an iterator from an array
+  const iterator = Iterator.from([1, 2, 3]);
+  
+  text += &quot;Iterator.from([1, 2, 3]):&lt;br&gt;&quot;;
+  let result = iterator.next();
+  while (!result.done) {
+    text += &quot;value = &quot; + result.value + &quot;&lt;br&gt;&quot;;
+    result = iterator.next();
+  }
+} else {
+  text += &quot;Iterator.from() is not supported in this browser yet.&quot;;
+}
+
+document.getElementById(&quot;demo&quot;).innerHTML = text;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p3.png" alt=""></p>
+<h3>Example 3</h3>
+<p><strong>Result</strong> <a href="ex3-iterator_from/index.html">View Example</a></p>
+<h2>Iterator Helper Methods</h2>
+<p>Newer iterators support helper methods like <code>map()</code>, <code>filter()</code>, and <code>take()</code>:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Iterators&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Iterator Helper Methods&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+let text = &quot;&quot;;
+
+if (Iterator.from) {
+  const iterator = Iterator.from([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
+  
+  // Using helper methods
+  const doubled = iterator.map(v =&gt; v * 2);
+  
+  text += &quot;Iterator helpers:&lt;br&gt;&lt;br&gt;&quot;;
+  text += &quot;map(v * 2): &quot;;
+  let result = doubled.next();
+  while (!result.done) {
+    text += result.value + &quot; &quot;;
+    result = doubled.next();
+  }
+  text += &quot;&lt;br&gt;&lt;br&gt;&quot;;
+}
+
+text += &quot;&lt;b&gt;Available helper methods:&lt;/b&gt;&lt;br&gt;&quot;;
+text += &quot;map(), filter(), take(), drop()&lt;br&gt;&quot;;
+text += &quot;every(), some(), find(), reduce()&lt;br&gt;&quot;;
+text += &quot;forEach(), flatMap()&quot;;
+
+document.getElementById(&quot;demo&quot;).innerHTML = text;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p4.png" alt=""></p>
+<h3>Example 4</h3>
+<p><strong>Result</strong> <a href="ex4-helper_methods/index.html">View Example</a></p>
+<h2>Document</h2>
+<p>Document in project</p>
+<p>You can <a href="js-iterators.pdf">Download PDF</a> file.</p>
+<h2>Reference</h2>
+<ul>
+<li><a href="https://www.w3schools.com/js/js_iterators.asp">W3Schools JavaScript Iterators</a></li>
+</ul>
+
+</body>
+</html>

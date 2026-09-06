@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript RegExp Patterns</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Full Character Classes Reference</h4>
+<p id="demo"></p>
+
+<script>
+const text = "Hello World 123!";
+
+let output = "Text: " + text + "<br><br>";
+output += "[A-Z] uppercase: " + text.match(/[A-Z]/g) + "<br>";
+output += "[a-z] lowercase: " + text.match(/[a-z]/g) + "<br>";
+output += "[0-9] digits: " + text.match(/[0-9]/g) + "<br>";
+output += "[^a-z] not lowercase: " + text.match(/[^a-z]/g);
+
+document.getElementById("demo").innerHTML = output;
+</script>
+
+</body>
+</html>

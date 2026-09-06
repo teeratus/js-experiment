@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript JSON Syntax</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>JSON Syntax Rules</h4>
+<p id="demo"></p>
+
+<script>
+// JSON data - name/value pairs
+const jsonString = '{"firstName":"John","lastName":"Doe","age":30}';
+const obj = JSON.parse(jsonString);
+
+document.getElementById("demo").innerHTML =
+  "firstName: " + obj.firstName + "<br>" +
+  "lastName: " + obj.lastName + "<br>" +
+  "age: " + obj.age;
+</script>
+
+</body>
+</html>

@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>js-canvas_graphics</title>
+  <style>
+    body {
+      box-sizing: border-box;
+      min-width: 200px;
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 45px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+      font-size: 16px;
+      line-height: 1.5;
+      color: #24292e;
+      background-color: #ffffff;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 24px;
+      margin-bottom: 16px;
+      font-weight: 600;
+      line-height: 1.25;
+      border-bottom: 1px solid #eaecef;
+      padding-bottom: .3em;
+    }
+    h1 { font-size: 2em; }
+    h2 { font-size: 1.5em; }
+    h3 { font-size: 1.25em; }
+    code {
+      padding: .2em .4em;
+      margin: 0;
+      font-size: 85%;
+      background-color: rgba(27,31,35,.05);
+      border-radius: 3px;
+      font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
+    }
+    pre {
+      padding: 16px;
+      overflow: auto;
+      font-size: 85%;
+      line-height: 1.45;
+      background-color: #f6f8fa;
+      border-radius: 3px;
+      word-wrap: normal;
+    }
+    pre code {
+      background-color: transparent;
+      padding: 0;
+    }
+    blockquote {
+      padding: 0 1em;
+      color: #6a737d;
+      border-left: .25em solid #dfe2e5;
+      margin: 0 0 16px 0;
+    }
+    table {
+      border-spacing: 0;
+      border-collapse: collapse;
+      margin-top: 0;
+      margin-bottom: 16px;
+      width: 100%;
+    }
+    table th, table td {
+      padding: 6px 13px;
+      border: 1px solid #dfe2e5;
+    }
+    table tr:nth-child(2n) {
+      background-color: #f6f8fa;
+    }
+    img {
+      max-width: 100%;
+      box-sizing: content-box;
+    }
+    @media print {
+      body {
+        max-width: 100%;
+        padding: 0;
+      }
+      pre, blockquote, table, tr, img {
+        page-break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+<body>
+<h1>JavaScript Canvas Graphics</h1>
+<p><a href="../acp-js.php">Back to JS page</a></p>
+<p>Table of Contents</p>
+<ul>
+<li><a href="#javascript-canvas-graphics">JavaScript Canvas Graphics</a><ul>
+<li><a href="#scatter-plots">Scatter Plots</a><ul>
+<li><a href="#example-1">Example 1</a></li>
+</ul>
+</li>
+<li><a href="#line-graphs">Line Graphs</a><ul>
+<li><a href="#example-2">Example 2</a></li>
+</ul>
+</li>
+<li><a href="#combined-charts">Combined Charts</a><ul>
+<li><a href="#example-3">Example 3</a></li>
+</ul>
+</li>
+<li><a href="#document">Document</a></li>
+<li><a href="#reference">Reference</a></li>
+</ul>
+</li>
+</ul>
+<h2>Scatter Plots</h2>
+<p>A scatter plot displays values for two variables using dots. The position of each dot on the horizontal and vertical axis indicates values for an individual data point:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Canvas Graphics&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Scatter Plots&lt;/h4&gt;
+
+&lt;div id=&quot;scatterPlot&quot;&gt;&lt;/div&gt;
+
+&lt;script src=&quot;https://cdn.plot.ly/plotly-2.27.0.min.js&quot;&gt;&lt;/script&gt;
+
+&lt;script&gt;
+const trace1 = {
+  x: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+  y: [2, 4, 5, 7, 6, 8, 9, 11, 12, 10],
+  mode: &#39;markers&#39;,
+  type: &#39;scatter&#39;,
+  marker: {
+    size: 10,
+    color: &#39;rgba(76, 175, 80, 0.7)&#39;
+  },
+  name: &#39;Data Points&#39;
+};
+
+const data = [trace1];
+
+const layout = {
+  title: &#39;Scatter Plot (Plotly.js)&#39;,
+  xaxis: {title: &#39;X Values&#39;},
+  yaxis: {title: &#39;Y Values&#39;},
+  showlegend: true
+};
+
+Plotly.newPlot(&#39;scatterPlot&#39;, data, layout);
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p1.png" alt=""></p>
+<h3>Example 1</h3>
+<p><strong>Result</strong> <a href="ex1-scatter_plot/index.html">View Example</a></p>
+<h2>Line Graphs</h2>
+<p>A line graph displays information as a series of data points connected by straight line segments:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Canvas Graphics&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Line Graphs&lt;/h4&gt;
+
+&lt;div id=&quot;lineGraph&quot;&gt;&lt;/div&gt;
+
+&lt;script src=&quot;https://cdn.plot.ly/plotly-2.27.0.min.js&quot;&gt;&lt;/script&gt;
+
+&lt;script&gt;
+const trace1 = {
+  x: [1, 2, 3, 4, 5, 6, 7, 8],
+  y: [10, 15, 13, 17, 14, 20, 18, 22],
+  mode: &#39;lines+markers&#39;,
+  type: &#39;scatter&#39;,
+  line: {color: &#39;#2196F3&#39;, width: 3},
+  marker: {size: 8, color: &#39;#1565C0&#39;},
+  name: &#39;Series A&#39;
+};
+
+const trace2 = {
+  x: [1, 2, 3, 4, 5, 6, 7, 8],
+  y: [5, 8, 7, 11, 9, 13, 12, 15],
+  mode: &#39;lines+markers&#39;,
+  type: &#39;scatter&#39;,
+  line: {color: &#39;#FF5722&#39;, width: 3, dash: &#39;dot&#39;},
+  marker: {size: 8, color: &#39;#BF360C&#39;},
+  name: &#39;Series B&#39;
+};
+
+const data = [trace1, trace2];
+
+const layout = {
+  title: &#39;Line Graph (Plotly.js)&#39;,
+  xaxis: {title: &#39;Time&#39;},
+  yaxis: {title: &#39;Values&#39;},
+  showlegend: true
+};
+
+Plotly.newPlot(&#39;lineGraph&#39;, data, layout);
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p2.png" alt=""></p>
+<h3>Example 2</h3>
+<p><strong>Result</strong> <a href="ex2-line_graph/index.html">View Example</a></p>
+<h2>Combined Charts</h2>
+<p>Combined charts overlay multiple chart types (bars + lines) in the same figure for comparison:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Canvas Graphics&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Combined Charts&lt;/h4&gt;
+
+&lt;div id=&quot;combinedChart&quot;&gt;&lt;/div&gt;
+
+&lt;script src=&quot;https://cdn.plot.ly/plotly-2.27.0.min.js&quot;&gt;&lt;/script&gt;
+
+&lt;script&gt;
+const trace1 = {
+  x: [&#39;Jan&#39;, &#39;Feb&#39;, &#39;Mar&#39;, &#39;Apr&#39;, &#39;May&#39;, &#39;Jun&#39;],
+  y: [30, 45, 38, 55, 48, 62],
+  type: &#39;bar&#39;,
+  name: &#39;Revenue&#39;,
+  marker: {color: &#39;#4CAF50&#39;}
+};
+
+const trace2 = {
+  x: [&#39;Jan&#39;, &#39;Feb&#39;, &#39;Mar&#39;, &#39;Apr&#39;, &#39;May&#39;, &#39;Jun&#39;],
+  y: [20, 28, 24, 35, 30, 40],
+  type: &#39;scatter&#39;,
+  mode: &#39;lines+markers&#39;,
+  name: &#39;Expenses&#39;,
+  line: {color: &#39;#F44336&#39;, width: 3},
+  marker: {size: 8, color: &#39;#D32F2F&#39;},
+  yaxis: &#39;y2&#39;
+};
+
+const data = [trace1, trace2];
+
+const layout = {
+  title: &#39;Combined Chart (Bar + Line)&#39;,
+  xaxis: {title: &#39;Month&#39;},
+  yaxis: {title: &#39;Revenue&#39;},
+  yaxis2: {
+    title: &#39;Expenses&#39;,
+    overlaying: &#39;y&#39;,
+    side: &#39;right&#39;
+  },
+  showlegend: true,
+  barmode: &#39;group&#39;
+};
+
+Plotly.newPlot(&#39;combinedChart&#39;, data, layout);
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p3.png" alt=""></p>
+<h3>Example 3</h3>
+<p><strong>Result</strong> <a href="ex3-combined_chart/index.html">View Example</a></p>
+<h2>Document</h2>
+<p>Document in project</p>
+<p>You can <a href="js-canvas_graphics.pdf">Download PDF</a> file.</p>
+<h2>Reference</h2>
+<ul>
+<li><a href="https://www.w3schools.com/js/js_graphics_canvas.asp">W3Schools JavaScript Canvas Graphics</a></li>
+</ul>
+
+</body>
+</html>

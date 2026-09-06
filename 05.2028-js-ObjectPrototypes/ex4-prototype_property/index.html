@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Object Prototypes</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Using the prototype Property</h4>
+<p id="demo"></p>
+
+<script>
+function Person(first, last) {
+  this.firstName = first;
+  this.lastName = last;
+}
+
+// Add a property to ALL Person objects using prototype
+Person.prototype.nationality = "American";
+
+// Add a method to ALL Person objects using prototype
+Person.prototype.fullName = function() {
+  return this.firstName + " " + this.lastName;
+};
+
+const person1 = new Person("John", "Doe");
+const person2 = new Person("Jane", "Smith");
+
+document.getElementById("demo").innerHTML =
+  "person1: " + person1.fullName() + ", " + person1.nationality + "<br>" +
+  "person2: " + person2.fullName() + ", " + person2.nationality;
+</script>
+
+</body>
+</html>

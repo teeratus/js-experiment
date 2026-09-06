@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript RegExp Meta Characters</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>The \s (space) Metacharacter</h4>
+<p id="demo"></p>
+
+<script>
+const text = "Hello World!";
+const spaces = text.match(/\s/g);
+const noSpaces = text.match(/\S/g);
+
+document.getElementById("demo").innerHTML =
+  "Text: " + text + "<br><br>" +
+  "match(/\\s/g): " + spaces + " (" + spaces.length + " spaces)<br>" +
+  "match(/\\S/g): " + noSpaces.join("");
+</script>
+
+</body>
+</html>

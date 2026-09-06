@@ -1,0 +1,93 @@
+# JavaScript D3.js Graphics
+
+[Back to JS page](../acp-js.php)
+
+Table of Contents
+- [JavaScript D3.js Graphics](#javascript-d3js-graphics)
+  - [How to Use D3.js?](#how-to-use-d3js)
+    - [Example 1](#example-1)
+  - [Document](#document)
+  - [Reference](#reference)
+
+
+## How to Use D3.js?
+
+D3.js (Data-Driven Documents) is a JavaScript library for manipulating documents based on data. D3 helps you bring data to life using HTML, SVG, and CSS.
+
+To use D3.js, include the library via CDN:
+
+```html
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript D3.js Graphics</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>How to Use D3.js?</h4>
+
+<svg id="d3Chart" width="400" height="200"></svg>
+<p id="demo"></p>
+
+<script src="https://d3js.org/d3.v7.min.js"></script>
+
+<script>
+const data = [
+  {x: 10, y: 20},
+  {x: 40, y: 60},
+  {x: 80, y: 40},
+  {x: 120, y: 90},
+  {x: 160, y: 50},
+  {x: 200, y: 110},
+  {x: 240, y: 70},
+  {x: 280, y: 130},
+  {x: 320, y: 85},
+  {x: 360, y: 150}
+];
+
+const svg = d3.select("#d3Chart");
+
+// Add circles for each data point
+svg.selectAll("circle")
+  .data(data)
+  .enter()
+  .append("circle")
+  .attr("cx", function(d) { return d.x; })
+  .attr("cy", function(d) { return d.y; })
+  .attr("r", 6)
+  .attr("fill", "#4CAF50");
+
+// Add X and Y axis lines
+svg.append("line")
+  .attr("x1", 5).attr("y1", 5)
+  .attr("x2", 5).attr("y2", 180)
+  .attr("stroke", "black").attr("stroke-width", 1);
+
+svg.append("line")
+  .attr("x1", 5).attr("y1", 180)
+  .attr("x2", 395).attr("y2", 180)
+  .attr("stroke", "black").attr("stroke-width", 1);
+
+document.getElementById("demo").innerHTML = 
+  "D3.js scatter plot with " + data.length + " data points";
+</script>
+
+</body>
+</html>
+```
+
+![](images/p1.png)
+
+### Example 1
+
+**Result** [View Example](ex1-scatter_plot/index.html)
+
+## Document
+
+Document in project
+
+You can [Download PDF](js-d3js_graphics.pdf) file.
+
+## Reference
+
+- [W3Schools JavaScript D3.js Graphics](https://www.w3schools.com/js/js_graphics_d3js.asp)

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Debugging Breakpoints</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Stepping Through Code</h4>
+<p>Open DevTools (F12), go to Sources tab. Set a breakpoint at the first line inside multiply(), then reload.</p>
+<p id="demo"></p>
+
+<script>
+function multiply(a, b) {
+  let step1 = a * 2;    // Step Over: watch a*2
+  let step2 = b * 3;    // Step Over: watch b*3
+  let result = step1 + step2;  // Step Over: watch final result
+  return result;
+}
+
+let output = multiply(5, 4);
+document.getElementById("demo").innerHTML = "Result: " + output;
+console.log("multiply(5,4) = " + output);
+</script>
+
+</body>
+</html>

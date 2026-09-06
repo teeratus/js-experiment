@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript JSON vs XML</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>JSON Uses Objects and Arrays</h4>
+<p id="demo"></p>
+
+<script>
+// JSON: employees array with objects
+const employees = {
+  "employees": [
+    { "name": "John", "department": "Sales" },
+    { "name": "Jane", "department": "Marketing" },
+    { "name": "Bob", "department": "IT" }
+  ]
+};
+
+let text = "JSON Employees:<br>";
+for (let emp of employees.employees) {
+  text += emp.name + " - " + emp.department + "<br>";
+}
+document.getElementById("demo").innerHTML = text;
+</script>
+
+</body>
+</html>

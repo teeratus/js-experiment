@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>js-object_this</title>
+  <style>
+    body {
+      box-sizing: border-box;
+      min-width: 200px;
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 45px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+      font-size: 16px;
+      line-height: 1.5;
+      color: #24292e;
+      background-color: #ffffff;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 24px;
+      margin-bottom: 16px;
+      font-weight: 600;
+      line-height: 1.25;
+      border-bottom: 1px solid #eaecef;
+      padding-bottom: .3em;
+    }
+    h1 { font-size: 2em; }
+    h2 { font-size: 1.5em; }
+    h3 { font-size: 1.25em; }
+    code {
+      padding: .2em .4em;
+      margin: 0;
+      font-size: 85%;
+      background-color: rgba(27,31,35,.05);
+      border-radius: 3px;
+      font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
+    }
+    pre {
+      padding: 16px;
+      overflow: auto;
+      font-size: 85%;
+      line-height: 1.45;
+      background-color: #f6f8fa;
+      border-radius: 3px;
+      word-wrap: normal;
+    }
+    pre code {
+      background-color: transparent;
+      padding: 0;
+    }
+    blockquote {
+      padding: 0 1em;
+      color: #6a737d;
+      border-left: .25em solid #dfe2e5;
+      margin: 0 0 16px 0;
+    }
+    table {
+      border-spacing: 0;
+      border-collapse: collapse;
+      margin-top: 0;
+      margin-bottom: 16px;
+      width: 100%;
+    }
+    table th, table td {
+      padding: 6px 13px;
+      border: 1px solid #dfe2e5;
+    }
+    table tr:nth-child(2n) {
+      background-color: #f6f8fa;
+    }
+    img {
+      max-width: 100%;
+      box-sizing: content-box;
+    }
+    @media print {
+      body {
+        max-width: 100%;
+        padding: 0;
+      }
+      pre, blockquote, table, tr, img {
+        page-break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+<body>
+<h1>JavaScript Object this</h1>
+<p><a href="../acp-js.php">Back to JS page</a></p>
+<p>Table of Contents</p>
+<ul>
+<li><a href="#javascript-object-this">JavaScript Object this</a><ul>
+<li><a href="#this-in-objects">this in Objects</a><ul>
+<li><a href="#example-1">Example 1</a></li>
+</ul>
+</li>
+<li><a href="#this-in-an-object-method">this in an Object Method</a><ul>
+<li><a href="#example-2">Example 2</a></li>
+</ul>
+</li>
+<li><a href="#why-use-this">Why Use this?</a><ul>
+<li><a href="#example-3">Example 3</a></li>
+</ul>
+</li>
+<li><a href="#this-alone">this Alone</a><ul>
+<li><a href="#example-4">Example 4</a></li>
+</ul>
+</li>
+<li><a href="#this-in-a-function">this in a Function</a><ul>
+<li><a href="#example-5">Example 5</a></li>
+</ul>
+</li>
+<li><a href="#document">Document</a></li>
+<li><a href="#reference">Reference</a></li>
+</ul>
+</li>
+</ul>
+<h2>this in Objects</h2>
+<p>In JavaScript, the <code>this</code> keyword refers to an <strong>object</strong>.</p>
+<p>Which object depends on how <code>this</code> is being invoked (used or called).</p>
+<p>The <code>this</code> keyword refers to different objects depending on how it is used:</p>
+<ul>
+<li>In an object method, <code>this</code> refers to the <strong>object</strong></li>
+<li>Alone, <code>this</code> refers to the <strong>global object</strong></li>
+<li>In a function, <code>this</code> refers to the <strong>global object</strong></li>
+<li>In a function (strict mode), <code>this</code> is <code>undefined</code></li>
+<li>In an event, <code>this</code> refers to the <strong>element</strong> that received the event</li>
+</ul>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Object this&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;this in Objects&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+// Create an object
+const person = {
+  firstName: &quot;John&quot;,
+  lastName: &quot;Doe&quot;,
+  age: 30
+};
+
+// Using &#39;this&#39; would refer to the global object here
+// But when used in a method, &#39;this&#39; refers to the object
+
+document.getElementById(&quot;demo&quot;).innerHTML =
+  &quot;person.firstName: &quot; + person.firstName + &quot;&lt;br&gt;&quot; +
+  &quot;person.lastName: &quot; + person.lastName;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p1.png" alt=""></p>
+<h3>Example 1</h3>
+<p><strong>Result</strong> <a href="ex1-this_in_objects/index.html">View Example</a></p>
+<h2>this in an Object Method</h2>
+<p>When used in an object method, <code>this</code> refers to the object itself:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Object this&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;this in an Object Method&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+const person = {
+  firstName: &quot;John&quot;,
+  lastName: &quot;Doe&quot;,
+  age: 30,
+  fullName: function() {
+    return this.firstName + &quot; &quot; + this.lastName;
+  },
+  birthYear: function() {
+    const year = new Date().getFullYear();
+    return year - this.age;
+  }
+};
+
+document.getElementById(&quot;demo&quot;).innerHTML =
+  &quot;Full name: &quot; + person.fullName() + &quot;&lt;br&gt;&quot; +
+  &quot;Born in: &quot; + person.birthYear();
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p2.png" alt=""></p>
+<h3>Example 2</h3>
+<p><strong>Result</strong> <a href="ex2-this_in_method/index.html">View Example</a></p>
+<h2>Why Use this?</h2>
+<p>The <code>this</code> keyword allows you to reuse methods across different objects without rewriting the code:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Object this&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Why Use this?&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+// A method that uses &#39;this&#39; can work with any object
+function introduce() {
+  return &quot;Hi, I&#39;m &quot; + this.firstName + &quot; &quot; + this.lastName;
+}
+
+const person1 = {
+  firstName: &quot;John&quot;,
+  lastName: &quot;Doe&quot;,
+  introduce: introduce
+};
+
+const person2 = {
+  firstName: &quot;Jane&quot;,
+  lastName: &quot;Smith&quot;,
+  introduce: introduce
+};
+
+document.getElementById(&quot;demo&quot;).innerHTML =
+  person1.introduce() + &quot;&lt;br&gt;&quot; +
+  person2.introduce();
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p3.png" alt=""></p>
+<h3>Example 3</h3>
+<p><strong>Result</strong> <a href="ex3-why_use_this/index.html">View Example</a></p>
+<h2>this Alone</h2>
+<p>When used alone, <code>this</code> refers to the global object (window in a browser):</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Object this&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;this Alone&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+// In a browser, &#39;this&#39; alone refers to the window object
+let text = &quot;this (global): &quot; + this + &quot;&lt;br&gt;&quot;;
+text += &quot;this === window: &quot; + (this === window) + &quot;&lt;br&gt;&quot;;
+text += &quot;this.document === document: &quot; + (this.document === document);
+
+document.getElementById(&quot;demo&quot;).innerHTML = text;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p4.png" alt=""></p>
+<h3>Example 4</h3>
+<p><strong>Result</strong> <a href="ex4-this_alone/index.html">View Example</a></p>
+<h2>this in a Function</h2>
+<p>In a regular function, <code>this</code> refers to the global object (window in a browser):</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Object this&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;this in a Function&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+function myFunction() {
+  return this;
+}
+
+document.getElementById(&quot;demo&quot;).innerHTML =
+  &quot;Function returns: &quot; + myFunction() + &quot;&lt;br&gt;&quot; +
+  &quot;It&#39;s the window object: &quot; + (myFunction() === window);
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p5.png" alt=""></p>
+<h3>Example 5</h3>
+<p><strong>Result</strong> <a href="ex5-this_in_function/index.html">View Example</a></p>
+<h2>Document</h2>
+<p>Document in project</p>
+<p>You can <a href="js-object_this.pdf">Download PDF</a> file.</p>
+<h2>Reference</h2>
+<ul>
+<li><a href="https://www.w3schools.com/js/js_object_this.asp">W3Schools JavaScript Object this</a></li>
+</ul>
+
+</body>
+</html>

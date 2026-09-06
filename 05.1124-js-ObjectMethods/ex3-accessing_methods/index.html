@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Object Methods</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Accessing Object Methods</h4>
+<p id="demo1"></p>
+<p id="demo2"></p>
+
+<script>
+const person = {
+  firstName: "John",
+  lastName: "Doe",
+  fullName: function() {
+    return this.firstName + " " + this.lastName;
+  }
+};
+
+// Access method WITH parentheses
+document.getElementById("demo1").innerHTML =
+  "With parentheses: " + person.fullName();
+
+// Access method WITHOUT parentheses (returns function)
+document.getElementById("demo2").innerHTML =
+  "Without parentheses: " + person.fullName;
+</script>
+
+</body>
+</html>

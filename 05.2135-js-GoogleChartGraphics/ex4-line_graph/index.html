@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Google Chart Graphics</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Line Graph</h4>
+
+<div id="lineChart"></div>
+<p id="demo4"></p>
+
+<script src="https://www.gstatic.com/charts/loader.js"></script>
+
+<script>
+google.charts.load("current", {packages: ["corechart"]});
+google.charts.setOnLoadCallback(drawLineChart);
+
+function drawLineChart() {
+  const data = google.visualization.arrayToDataTable([
+    ["Time", "Series 1", "Series 2"],
+    [1, 10, 5],
+    [2, 15, 8],
+    [3, 13, 7],
+    [4, 17, 11],
+    [5, 14, 9],
+    [6, 20, 13],
+    [7, 18, 12],
+    [8, 22, 16]
+  ]);
+
+  const options = {
+    title: "Line Graph",
+    hAxis: {title: "Time"},
+    vAxis: {title: "Values", minValue: 0},
+    colors: ["#4CAF50", "#F44336"],
+    curveType: "function"
+  };
+
+  const chart = new google.visualization.LineChart(document.getElementById("lineChart"));
+  chart.draw(data, options);
+  document.getElementById("demo4").innerHTML = "Google Line Chart created!";
+}
+</script>
+
+</body>
+</html>

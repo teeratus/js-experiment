@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>js-regexp_groups</title>
+  <style>
+    body {
+      box-sizing: border-box;
+      min-width: 200px;
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 45px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+      font-size: 16px;
+      line-height: 1.5;
+      color: #24292e;
+      background-color: #ffffff;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 24px;
+      margin-bottom: 16px;
+      font-weight: 600;
+      line-height: 1.25;
+      border-bottom: 1px solid #eaecef;
+      padding-bottom: .3em;
+    }
+    h1 { font-size: 2em; }
+    h2 { font-size: 1.5em; }
+    h3 { font-size: 1.25em; }
+    code {
+      padding: .2em .4em;
+      margin: 0;
+      font-size: 85%;
+      background-color: rgba(27,31,35,.05);
+      border-radius: 3px;
+      font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
+    }
+    pre {
+      padding: 16px;
+      overflow: auto;
+      font-size: 85%;
+      line-height: 1.45;
+      background-color: #f6f8fa;
+      border-radius: 3px;
+      word-wrap: normal;
+    }
+    pre code {
+      background-color: transparent;
+      padding: 0;
+    }
+    blockquote {
+      padding: 0 1em;
+      color: #6a737d;
+      border-left: .25em solid #dfe2e5;
+      margin: 0 0 16px 0;
+    }
+    table {
+      border-spacing: 0;
+      border-collapse: collapse;
+      margin-top: 0;
+      margin-bottom: 16px;
+      width: 100%;
+    }
+    table th, table td {
+      padding: 6px 13px;
+      border: 1px solid #dfe2e5;
+    }
+    table tr:nth-child(2n) {
+      background-color: #f6f8fa;
+    }
+    img {
+      max-width: 100%;
+      box-sizing: content-box;
+    }
+    @media print {
+      body {
+        max-width: 100%;
+        padding: 0;
+      }
+      pre, blockquote, table, tr, img {
+        page-break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+<body>
+<h1>JavaScript RegExp Groups</h1>
+<p><a href="../acp-js.php">Back to JS page</a></p>
+<p>Table of Contents</p>
+<ul>
+<li><a href="#javascript-regexp-groups">JavaScript RegExp Groups</a><ul>
+<li><a href="#regexp-capturing-groups-x">RegExp Capturing Groups (x)</a><ul>
+<li><a href="#example-1">Example 1</a></li>
+</ul>
+</li>
+<li><a href="#the-result-array">The Result Array</a><ul>
+<li><a href="#example-2">Example 2</a></li>
+</ul>
+</li>
+<li><a href="#named-capturing-groups-n">Named Capturing Groups (?<n>)</a><ul>
+<li><a href="#example-3">Example 3</a></li>
+</ul>
+</li>
+<li><a href="#non-capturing-groups-">Non-Capturing Groups (?:...)</a><ul>
+<li><a href="#example-4">Example 4</a></li>
+</ul>
+</li>
+<li><a href="#document">Document</a></li>
+<li><a href="#reference">Reference</a></li>
+</ul>
+</li>
+</ul>
+<h2>RegExp Groups</h2>
+<p>Groups allow you to combine multiple patterns as a single unit:</p>
+<table>
+<thead>
+<tr>
+<th>Syntax</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>(x)</code></td>
+<td>Capturing group - remembers the match</td>
+</tr>
+<tr>
+<td><code>(?&lt;name&gt;x)</code></td>
+<td>Named capturing group</td>
+</tr>
+<tr>
+<td><code>(?:x)</code></td>
+<td>Non-capturing group</td>
+</tr>
+<tr>
+<td><code>x(?=y)</code></td>
+<td>Lookahead</td>
+</tr>
+<tr>
+<td><code>x(?!y)</code></td>
+<td>Negative lookahead</td>
+</tr>
+<tr>
+<td><code>(?&lt;=y)x</code></td>
+<td>Lookbehind</td>
+</tr>
+<tr>
+<td><code>(?&lt;!y)x)</code></td>
+<td>Negative lookbehind</td>
+</tr>
+</tbody></table>
+<h2>RegExp Capturing Groups (x)</h2>
+<p>Capturing groups <code>(...)</code> group patterns and remember the match:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript RegExp Groups&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;RegExp Capturing Groups (x)&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+const text = &quot;John Smith, Jane Doe&quot;;
+const matches = text.match(/(\w+) (\w+)/);
+
+document.getElementById(&quot;demo&quot;).innerHTML =
+  &quot;Text: &quot; + text + &quot;&lt;br&gt;&lt;br&gt;&quot; +
+  &quot;match(/(\\w+) (\\w+)/):&lt;br&gt;&quot; +
+  &quot;Full match: &quot; + matches[0] + &quot;&lt;br&gt;&quot; +
+  &quot;Group 1: &quot; + matches[1] + &quot;&lt;br&gt;&quot; +
+  &quot;Group 2: &quot; + matches[2];
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p1.png" alt=""></p>
+<h3>Example 1</h3>
+<p><strong>Result</strong> <a href="ex1-capturing_groups/index.html">View Example</a></p>
+<h2>The Result Array</h2>
+<p>When using <code>match()</code>, capturing groups appear in the result array:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript RegExp Groups&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;The Result Array&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+const text = &quot;Date: 2024-05-15&quot;;
+const matches = text.match(/(\d{4})-(\d{2})-(\d{2})/);
+
+let text2 = &quot;Text: &quot; + text + &quot;&lt;br&gt;&lt;br&gt;&quot;;
+text2 += &quot;match(/(\\d{4})-(\\d{2})-(\\d{2})/):&lt;br&gt;&lt;br&gt;&quot;;
+text2 += &quot;matches[0] (full): &quot; + matches[0] + &quot;&lt;br&gt;&quot;;
+text2 += &quot;matches[1] (year): &quot; + matches[1] + &quot;&lt;br&gt;&quot;;
+text2 += &quot;matches[2] (month): &quot; + matches[2] + &quot;&lt;br&gt;&quot;;
+text2 += &quot;matches[3] (day): &quot; + matches[3] + &quot;&lt;br&gt;&lt;br&gt;&quot;;
+text2 += &quot;index: &quot; + matches.index + &quot;&lt;br&gt;&quot;;
+text2 += &quot;input: &quot; + matches.input;
+
+document.getElementById(&quot;demo&quot;).innerHTML = text2;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p2.png" alt=""></p>
+<h3>Example 2</h3>
+<p><strong>Result</strong> <a href="ex2-result_array/index.html">View Example</a></p>
+<h2>Named Capturing Groups (?<n>)</h2>
+<p>Named groups use <code>(?&lt;name&gt;...)</code> syntax. You can access matches by name:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript RegExp Groups&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Named Capturing Groups (?&lt;n&gt;)&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+const text = &quot;Date: 2024-05-15&quot;;
+const matches = text.match(/(?&lt;year&gt;\d{4})-(?&lt;month&gt;\d{2})-(?&lt;day&gt;\d{2})/);
+
+document.getElementById(&quot;demo&quot;).innerHTML =
+  &quot;Text: &quot; + text + &quot;&lt;br&gt;&lt;br&gt;&quot; +
+  &quot;Named groups:&lt;br&gt;&quot; +
+  &quot;matches.groups.year: &quot; + matches.groups.year + &quot;&lt;br&gt;&quot; +
+  &quot;matches.groups.month: &quot; + matches.groups.month + &quot;&lt;br&gt;&quot; +
+  &quot;matches.groups.day: &quot; + matches.groups.day;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p3.png" alt=""></p>
+<h3>Example 3</h3>
+<p><strong>Result</strong> <a href="ex3-named_groups/index.html">View Example</a></p>
+<h2>Non-Capturing Groups (?:...)</h2>
+<p>Non-capturing groups <code>(?:...)</code> group patterns without remembering the match:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript RegExp Groups&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Non-Capturing Groups (?:...)&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+const text = &quot;apple orange apple orange&quot;;
+const matches = text.match(/(?:apple|orange)/g);
+
+document.getElementById(&quot;demo&quot;).innerHTML =
+  &quot;Text: &quot; + text + &quot;&lt;br&gt;&lt;br&gt;&quot; +
+  &quot;match(/(?:apple|orange)/g): &quot; + matches + &quot;&lt;br&gt;&lt;br&gt;&quot; +
+  &quot;Non-capturing groups don&#39;t save to result array:&lt;br&gt;&quot; +
+  &quot;matches.length: &quot; + matches.length;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p4.png" alt=""></p>
+<h3>Example 4</h3>
+<p><strong>Result</strong> <a href="ex4-non_capturing/index.html">View Example</a></p>
+<h2>Document</h2>
+<p>Document in project</p>
+<p>You can <a href="js-regexp_groups.pdf">Download PDF</a> file.</p>
+<h2>Reference</h2>
+<ul>
+<li><a href="https://www.w3schools.com/js/js_regexp_groups.asp">W3Schools JavaScript RegExp Groups</a></li>
+</ul>
+
+</body>
+</html>

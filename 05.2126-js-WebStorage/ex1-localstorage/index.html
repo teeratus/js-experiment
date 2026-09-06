@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Web Storage API</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>The localStorage Object</h4>
+<p id="demo"></p>
+
+<script>
+// Store data
+localStorage.setItem("name", "John Doe");
+localStorage.setItem("age", "30");
+localStorage.setItem("city", "New York");
+
+// Retrieve data
+document.getElementById("demo").innerHTML =
+  "Stored in localStorage:<br><br>" +
+  "name: " + localStorage.getItem("name") + "<br>" +
+  "age: " + localStorage.getItem("age") + "<br>" +
+  "city: " + localStorage.getItem("city");
+</script>
+
+</body>
+</html>

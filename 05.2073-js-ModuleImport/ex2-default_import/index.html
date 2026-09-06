@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Module Import</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Default Import</h4>
+<p id="demo"></p>
+
+<script type="module">
+import sayHello from './greet.js';
+
+document.getElementById("demo").innerHTML =
+  sayHello("John") + "<br>" +
+  sayHello("Jane");
+</script>
+
+</body>
+</html>

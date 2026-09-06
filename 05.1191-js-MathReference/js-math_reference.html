@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>js-math_reference</title>
+  <style>
+    body {
+      box-sizing: border-box;
+      min-width: 200px;
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 45px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+      font-size: 16px;
+      line-height: 1.5;
+      color: #24292e;
+      background-color: #ffffff;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 24px;
+      margin-bottom: 16px;
+      font-weight: 600;
+      line-height: 1.25;
+      border-bottom: 1px solid #eaecef;
+      padding-bottom: .3em;
+    }
+    h1 { font-size: 2em; }
+    h2 { font-size: 1.5em; }
+    h3 { font-size: 1.25em; }
+    code {
+      padding: .2em .4em;
+      margin: 0;
+      font-size: 85%;
+      background-color: rgba(27,31,35,.05);
+      border-radius: 3px;
+      font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
+    }
+    pre {
+      padding: 16px;
+      overflow: auto;
+      font-size: 85%;
+      line-height: 1.45;
+      background-color: #f6f8fa;
+      border-radius: 3px;
+      word-wrap: normal;
+    }
+    pre code {
+      background-color: transparent;
+      padding: 0;
+    }
+    blockquote {
+      padding: 0 1em;
+      color: #6a737d;
+      border-left: .25em solid #dfe2e5;
+      margin: 0 0 16px 0;
+    }
+    table {
+      border-spacing: 0;
+      border-collapse: collapse;
+      margin-top: 0;
+      margin-bottom: 16px;
+      width: 100%;
+    }
+    table th, table td {
+      padding: 6px 13px;
+      border: 1px solid #dfe2e5;
+    }
+    table tr:nth-child(2n) {
+      background-color: #f6f8fa;
+    }
+    img {
+      max-width: 100%;
+      box-sizing: content-box;
+    }
+    @media print {
+      body {
+        max-width: 100%;
+        padding: 0;
+      }
+      pre, blockquote, table, tr, img {
+        page-break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+<body>
+<h1>JavaScript Math Reference</h1>
+<p><a href="../acp-js.php">Back to JS page</a></p>
+<p>Table of Contents</p>
+<ul>
+<li><a href="#javascript-math-reference">JavaScript Math Reference</a><ul>
+<li><a href="#math-properties">Math Properties</a><ul>
+<li><a href="#example-1">Example 1</a></li>
+</ul>
+</li>
+<li><a href="#math-rounding-methods">Math Rounding Methods</a><ul>
+<li><a href="#example-2">Example 2</a></li>
+</ul>
+</li>
+<li><a href="#math-power-and-root-methods">Math Power and Root Methods</a><ul>
+<li><a href="#example-3">Example 3</a></li>
+</ul>
+</li>
+<li><a href="#math-trigonometry-methods">Math Trigonometry Methods</a><ul>
+<li><a href="#example-4">Example 4</a></li>
+</ul>
+</li>
+<li><a href="#math-utility-methods">Math Utility Methods</a><ul>
+<li><a href="#example-5">Example 5</a></li>
+</ul>
+</li>
+<li><a href="#document">Document</a></li>
+<li><a href="#reference">Reference</a></li>
+</ul>
+</li>
+</ul>
+<h2>Math Properties</h2>
+<p>The complete <code>Math</code> object reference - properties (constants):</p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>Math.E</code></td>
+<td>Euler&#39;s number (~2.718)</td>
+</tr>
+<tr>
+<td><code>Math.PI</code></td>
+<td>Pi (~3.14159)</td>
+</tr>
+<tr>
+<td><code>Math.SQRT2</code></td>
+<td>Square root of 2 (~1.414)</td>
+</tr>
+<tr>
+<td><code>Math.SQRT1_2</code></td>
+<td>Square root of 1/2 (~0.707)</td>
+</tr>
+<tr>
+<td><code>Math.LN2</code></td>
+<td>Natural log of 2 (~0.693)</td>
+</tr>
+<tr>
+<td><code>Math.LN10</code></td>
+<td>Natural log of 10 (~2.303)</td>
+</tr>
+<tr>
+<td><code>Math.LOG2E</code></td>
+<td>Log base 2 of E (~1.443)</td>
+</tr>
+<tr>
+<td><code>Math.LOG10E</code></td>
+<td>Log base 10 of E (~0.434)</td>
+</tr>
+</tbody></table>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Math Reference&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Math Properties&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+document.getElementById(&quot;demo&quot;).innerHTML =
+  &quot;Math.E: &quot; + Math.E + &quot;&lt;br&gt;&quot; +
+  &quot;Math.PI: &quot; + Math.PI + &quot;&lt;br&gt;&quot; +
+  &quot;Math.SQRT2: &quot; + Math.SQRT2 + &quot;&lt;br&gt;&quot; +
+  &quot;Math.SQRT1_2: &quot; + Math.SQRT1_2 + &quot;&lt;br&gt;&quot; +
+  &quot;Math.LN2: &quot; + Math.LN2 + &quot;&lt;br&gt;&quot; +
+  &quot;Math.LN10: &quot; + Math.LN10 + &quot;&lt;br&gt;&quot; +
+  &quot;Math.LOG2E: &quot; + Math.LOG2E + &quot;&lt;br&gt;&quot; +
+  &quot;Math.LOG10E: &quot; + Math.LOG10E;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p1.png" alt=""></p>
+<h3>Example 1</h3>
+<p><strong>Result</strong> <a href="ex1-properties/index.html">View Example</a></p>
+<h2>Math Rounding Methods</h2>
+<p>Reference for rounding methods:</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>Math.round(x)</code></td>
+<td>Rounds to nearest integer</td>
+</tr>
+<tr>
+<td><code>Math.ceil(x)</code></td>
+<td>Rounds up to nearest integer</td>
+</tr>
+<tr>
+<td><code>Math.floor(x)</code></td>
+<td>Rounds down to nearest integer</td>
+</tr>
+<tr>
+<td><code>Math.trunc(x)</code></td>
+<td>Removes decimal part (no rounding)</td>
+</tr>
+<tr>
+<td><code>Math.sign(x)</code></td>
+<td>Returns -1, 0, or 1</td>
+</tr>
+</tbody></table>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Math Reference&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Math Rounding Methods&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+document.getElementById(&quot;demo&quot;).innerHTML =
+  &quot;Math.round(4.6): &quot; + Math.round(4.6) + &quot;&lt;br&gt;&quot; +
+  &quot;Math.ceil(4.2): &quot; + Math.ceil(4.2) + &quot;&lt;br&gt;&quot; +
+  &quot;Math.floor(4.9): &quot; + Math.floor(4.9) + &quot;&lt;br&gt;&quot; +
+  &quot;Math.trunc(4.7): &quot; + Math.trunc(4.7) + &quot;&lt;br&gt;&quot; +
+  &quot;Math.sign(-5): &quot; + Math.sign(-5) + &quot;&lt;br&gt;&quot; +
+  &quot;Math.sign(0): &quot; + Math.sign(0) + &quot;&lt;br&gt;&quot; +
+  &quot;Math.sign(8): &quot; + Math.sign(8);
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p2.png" alt=""></p>
+<h3>Example 2</h3>
+<p><strong>Result</strong> <a href="ex2-rounding_methods/index.html">View Example</a></p>
+<h2>Math Power and Root Methods</h2>
+<p>Reference for power and root methods:</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>Math.pow(x, y)</code></td>
+<td>x raised to the power y</td>
+</tr>
+<tr>
+<td><code>Math.sqrt(x)</code></td>
+<td>Square root of x</td>
+</tr>
+<tr>
+<td><code>Math.cbrt(x)</code></td>
+<td>Cube root of x</td>
+</tr>
+<tr>
+<td><code>Math.exp(x)</code></td>
+<td>e raised to the power x</td>
+</tr>
+<tr>
+<td><code>Math.log(x)</code></td>
+<td>Natural log of x</td>
+</tr>
+<tr>
+<td><code>Math.log2(x)</code></td>
+<td>Log base 2 of x</td>
+</tr>
+<tr>
+<td><code>Math.log10(x)</code></td>
+<td>Log base 10 of x</td>
+</tr>
+</tbody></table>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Math Reference&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Math Power and Root Methods&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+document.getElementById(&quot;demo&quot;).innerHTML =
+  &quot;Math.pow(2, 3): &quot; + Math.pow(2, 3) + &quot;&lt;br&gt;&quot; +
+  &quot;Math.sqrt(16): &quot; + Math.sqrt(16) + &quot;&lt;br&gt;&quot; +
+  &quot;Math.cbrt(8): &quot; + Math.cbrt(8) + &quot;&lt;br&gt;&quot; +
+  &quot;Math.exp(1): &quot; + Math.exp(1).toFixed(4) + &quot;&lt;br&gt;&quot; +
+  &quot;Math.log(10): &quot; + Math.log(10).toFixed(4) + &quot;&lt;br&gt;&quot; +
+  &quot;Math.log2(8): &quot; + Math.log2(8) + &quot;&lt;br&gt;&quot; +
+  &quot;Math.log10(1000): &quot; + Math.log10(1000);
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p3.png" alt=""></p>
+<h3>Example 3</h3>
+<p><strong>Result</strong> <a href="ex3-power_root/index.html">View Example</a></p>
+<h2>Math Trigonometry Methods</h2>
+<p>Reference for trigonometry methods:</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>Math.sin(x)</code></td>
+<td>Sine of x (radians)</td>
+</tr>
+<tr>
+<td><code>Math.cos(x)</code></td>
+<td>Cosine of x (radians)</td>
+</tr>
+<tr>
+<td><code>Math.tan(x)</code></td>
+<td>Tangent of x (radians)</td>
+</tr>
+<tr>
+<td><code>Math.asin(x)</code></td>
+<td>Arcsine of x</td>
+</tr>
+<tr>
+<td><code>Math.acos(x)</code></td>
+<td>Arccosine of x</td>
+</tr>
+<tr>
+<td><code>Math.atan(x)</code></td>
+<td>Arctangent of x</td>
+</tr>
+</tbody></table>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Math Reference&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Math Trigonometry Methods&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+// Angle in radians: 90 degrees = PI/2
+const angle = Math.PI / 2;
+
+document.getElementById(&quot;demo&quot;).innerHTML =
+  &quot;sin(PI/2): &quot; + Math.sin(angle).toFixed(2) + &quot;&lt;br&gt;&quot; +
+  &quot;cos(0): &quot; + Math.cos(0).toFixed(2) + &quot;&lt;br&gt;&quot; +
+  &quot;tan(PI/4): &quot; + Math.tan(Math.PI / 4).toFixed(2) + &quot;&lt;br&gt;&lt;br&gt;&quot; +
+  &quot;asin(1): &quot; + Math.asin(1).toFixed(2) + &quot; rad&lt;br&gt;&quot; +
+  &quot;acos(1): &quot; + Math.acos(1).toFixed(2) + &quot; rad&lt;br&gt;&quot; +
+  &quot;atan(1): &quot; + Math.atan(1).toFixed(2) + &quot; rad&quot;;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p4.png" alt=""></p>
+<h3>Example 4</h3>
+<p><strong>Result</strong> <a href="ex4-trigonometry/index.html">View Example</a></p>
+<h2>Math Utility Methods</h2>
+<p>Reference for utility methods:</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>Math.abs(x)</code></td>
+<td>Absolute value of x</td>
+</tr>
+<tr>
+<td><code>Math.min(a, b, ...)</code></td>
+<td>Lowest value</td>
+</tr>
+<tr>
+<td><code>Math.max(a, b, ...)</code></td>
+<td>Highest value</td>
+</tr>
+<tr>
+<td><code>Math.random()</code></td>
+<td>Random number 0-1</td>
+</tr>
+<tr>
+<td><code>Math.hypot(a, b)</code></td>
+<td>Square root of (a² + b²)</td>
+</tr>
+<tr>
+<td><code>Math.fround(x)</code></td>
+<td>Nearest 32-bit float</td>
+</tr>
+</tbody></table>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Math Reference&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Math Utility Methods&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+document.getElementById(&quot;demo&quot;).innerHTML =
+  &quot;Math.abs(-7.5): &quot; + Math.abs(-7.5) + &quot;&lt;br&gt;&quot; +
+  &quot;Math.min(3, 8, 1): &quot; + Math.min(3, 8, 1) + &quot;&lt;br&gt;&quot; +
+  &quot;Math.max(3, 8, 1): &quot; + Math.max(3, 8, 1) + &quot;&lt;br&gt;&quot; +
+  &quot;Math.random(): &quot; + Math.random().toFixed(4) + &quot;&lt;br&gt;&quot; +
+  &quot;Math.hypot(3, 4): &quot; + Math.hypot(3, 4) + &quot; (3-4-5 triangle)&lt;br&gt;&quot; +
+  &quot;Math.fround(1.5): &quot; + Math.fround(1.5);
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p5.png" alt=""></p>
+<h3>Example 5</h3>
+<p><strong>Result</strong> <a href="ex5-utility_methods/index.html">View Example</a></p>
+<h2>Document</h2>
+<p>Document in project</p>
+<p>You can <a href="js-math_reference.pdf">Download PDF</a> file.</p>
+<h2>Reference</h2>
+<ul>
+<li><a href="https://www.w3schools.com/js/js_math_reference.asp">W3Schools JavaScript Math Reference</a></li>
+</ul>
+
+</body>
+</html>

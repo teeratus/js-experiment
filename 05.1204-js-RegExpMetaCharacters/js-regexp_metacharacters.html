@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>js-regexp_metacharacters</title>
+  <style>
+    body {
+      box-sizing: border-box;
+      min-width: 200px;
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 45px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+      font-size: 16px;
+      line-height: 1.5;
+      color: #24292e;
+      background-color: #ffffff;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 24px;
+      margin-bottom: 16px;
+      font-weight: 600;
+      line-height: 1.25;
+      border-bottom: 1px solid #eaecef;
+      padding-bottom: .3em;
+    }
+    h1 { font-size: 2em; }
+    h2 { font-size: 1.5em; }
+    h3 { font-size: 1.25em; }
+    code {
+      padding: .2em .4em;
+      margin: 0;
+      font-size: 85%;
+      background-color: rgba(27,31,35,.05);
+      border-radius: 3px;
+      font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
+    }
+    pre {
+      padding: 16px;
+      overflow: auto;
+      font-size: 85%;
+      line-height: 1.45;
+      background-color: #f6f8fa;
+      border-radius: 3px;
+      word-wrap: normal;
+    }
+    pre code {
+      background-color: transparent;
+      padding: 0;
+    }
+    blockquote {
+      padding: 0 1em;
+      color: #6a737d;
+      border-left: .25em solid #dfe2e5;
+      margin: 0 0 16px 0;
+    }
+    table {
+      border-spacing: 0;
+      border-collapse: collapse;
+      margin-top: 0;
+      margin-bottom: 16px;
+      width: 100%;
+    }
+    table th, table td {
+      padding: 6px 13px;
+      border: 1px solid #dfe2e5;
+    }
+    table tr:nth-child(2n) {
+      background-color: #f6f8fa;
+    }
+    img {
+      max-width: 100%;
+      box-sizing: content-box;
+    }
+    @media print {
+      body {
+        max-width: 100%;
+        padding: 0;
+      }
+      pre, blockquote, table, tr, img {
+        page-break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+<body>
+<h1>JavaScript RegExp Meta Characters</h1>
+<p><a href="../acp-js.php">Back to JS page</a></p>
+<p>Table of Contents</p>
+<ul>
+<li><a href="#javascript-regexp-meta-characters">JavaScript RegExp Meta Characters</a><ul>
+<li><a href="#regexp-d-digits-metacharacter">RegExp \d (digits) Metacharacter</a><ul>
+<li><a href="#example-1">Example 1</a></li>
+</ul>
+</li>
+<li><a href="#regexp-d-metacharacter">RegExp \D Metacharacter</a><ul>
+<li><a href="#example-2">Example 2</a></li>
+</ul>
+</li>
+<li><a href="#regexp-w-word-metacharacter">RegExp \w (word) Metacharacter</a><ul>
+<li><a href="#example-3">Example 3</a></li>
+</ul>
+</li>
+<li><a href="#the-s-space-metacharacter">The \s (space) Metacharacter</a><ul>
+<li><a href="#example-4">Example 4</a></li>
+</ul>
+</li>
+<li><a href="#document">Document</a></li>
+<li><a href="#reference">Reference</a></li>
+</ul>
+</li>
+</ul>
+<h2>Regular Expression Metacharacters</h2>
+<p>Metacharacters are characters with special meanings in regular expressions:</p>
+<table>
+<thead>
+<tr>
+<th>Metacharacter</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>\d</code></td>
+<td>Find a digit (0-9)</td>
+</tr>
+<tr>
+<td><code>\D</code></td>
+<td>Find a non-digit</td>
+</tr>
+<tr>
+<td><code>\w</code></td>
+<td>Find a word character (letter, digit, underscore)</td>
+</tr>
+<tr>
+<td><code>\W</code></td>
+<td>Find a non-word character</td>
+</tr>
+<tr>
+<td><code>\s</code></td>
+<td>Find a whitespace character</td>
+</tr>
+<tr>
+<td><code>\S</code></td>
+<td>Find a non-whitespace character</td>
+</tr>
+<tr>
+<td><code>\xhh</code></td>
+<td>Find a character by hexadecimal value</td>
+</tr>
+<tr>
+<td><code>\uhhhh</code></td>
+<td>Find a Unicode character</td>
+</tr>
+</tbody></table>
+<h2>RegExp \d (digits) Metacharacter</h2>
+<p><code>\d</code> matches any digit character (0-9):</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript RegExp Meta Characters&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;RegExp \d (digits) Metacharacter&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+const text = &quot;Phone: 123-456-7890&quot;;
+const matches = text.match(/\d/g);
+
+document.getElementById(&quot;demo&quot;).innerHTML =
+  &quot;Text: &quot; + text + &quot;&lt;br&gt;&lt;br&gt;&quot; +
+  &quot;match(/\\d/g): &quot; + matches + &quot;&lt;br&gt;&quot; +
+  &quot;Finds all digits (0-9)&quot;;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p1.png" alt=""></p>
+<h3>Example 1</h3>
+<p><strong>Result</strong> <a href="ex1-d_metacharacter/index.html">View Example</a></p>
+<h2>RegExp \D Metacharacter</h2>
+<p><code>\D</code> matches any character that is NOT a digit:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript RegExp Meta Characters&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;RegExp \D Metacharacter&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+const text = &quot;Phone: 123-456&quot;;
+const matches = text.match(/\D/g);
+
+document.getElementById(&quot;demo&quot;).innerHTML =
+  &quot;Text: &quot; + text + &quot;&lt;br&gt;&lt;br&gt;&quot; +
+  &quot;match(/\\D/g): &quot; + matches.join(&quot;&quot;) + &quot;&lt;br&gt;&quot; +
+  &quot;Finds all non-digit characters&quot;;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p2.png" alt=""></p>
+<h3>Example 2</h3>
+<p><strong>Result</strong> <a href="ex2-D_metacharacter/index.html">View Example</a></p>
+<h2>RegExp \w (word) Metacharacter</h2>
+<p><code>\w</code> matches any word character (letters, digits, and underscore). <code>\W</code> is the opposite:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript RegExp Meta Characters&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;RegExp \w (word) Metacharacter&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+const text = &quot;Hello_world 123!&quot;;
+const words = text.match(/\w+/g);
+const nonWords = text.match(/\W/g);
+
+document.getElementById(&quot;demo&quot;).innerHTML =
+  &quot;Text: &quot; + text + &quot;&lt;br&gt;&lt;br&gt;&quot; +
+  &quot;match(/\\w+/g): &quot; + words + &quot;&lt;br&gt;&quot; +
+  &quot;match(/\\W/g): &quot; + nonWords;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p3.png" alt=""></p>
+<h3>Example 3</h3>
+<p><strong>Result</strong> <a href="ex3-w_metacharacter/index.html">View Example</a></p>
+<h2>The \s (space) Metacharacter</h2>
+<p><code>\s</code> matches any whitespace character (spaces, tabs, newlines):</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript RegExp Meta Characters&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;The \s (space) Metacharacter&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+const text = &quot;Hello World!&quot;;
+const spaces = text.match(/\s/g);
+const noSpaces = text.match(/\S/g);
+
+document.getElementById(&quot;demo&quot;).innerHTML =
+  &quot;Text: &quot; + text + &quot;&lt;br&gt;&lt;br&gt;&quot; +
+  &quot;match(/\\s/g): &quot; + spaces + &quot; (&quot; + spaces.length + &quot; spaces)&lt;br&gt;&quot; +
+  &quot;match(/\\S/g): &quot; + noSpaces.join(&quot;&quot;);
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p4.png" alt=""></p>
+<h3>Example 4</h3>
+<p><strong>Result</strong> <a href="ex4-s_metacharacter/index.html">View Example</a></p>
+<h2>Document</h2>
+<p>Document in project</p>
+<p>You can <a href="js-regexp_metacharacters.pdf">Download PDF</a> file.</p>
+<h2>Reference</h2>
+<ul>
+<li><a href="https://www.w3schools.com/js/js_regexp_meta_characters.asp">W3Schools JavaScript RegExp Meta Characters</a></li>
+</ul>
+
+</body>
+</html>

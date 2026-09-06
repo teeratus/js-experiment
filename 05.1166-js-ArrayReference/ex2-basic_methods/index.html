@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Array Reference</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Basic Methods</h4>
+<p id="demo"></p>
+
+<script>
+const fruits = ["Banana", "Orange", "Apple"];
+
+// Create a copy for fill demonstration
+const filled = new Array(3);
+filled.fill("Kiwi");
+
+document.getElementById("demo").innerHTML =
+  "toString(): " + fruits.toString() + "<br>" +
+  "join(' - '): " + fruits.join(" - ") + "<br>" +
+  "at(-1): " + fruits.at(-1) + "<br>" +
+  "fill('Kiwi'): " + filled;
+</script>
+
+</body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Silent Errors</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Loose Equality (==)</h4>
+<p id="demo"></p>
+
+<script>
+let text = "";
+
+text += "5 == \"5\" : " + (5 == "5") + "<br>";
+text += "0 == false : " + (0 == false) + "<br>";
+text += "\"\" == false : " + ("" == false) + "<br>";
+text += "null == undefined : " + (null == undefined);
+
+document.getElementById("demo").innerHTML = text;
+</script>
+
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript API Fetch</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Loading Multiple Files</h4>
+<p id="demo"></p>
+
+<script>
+// Fetch multiple resources in parallel
+const urls = [
+  'https://jsonplaceholder.typicode.com/users/1',
+  'https://jsonplaceholder.typicode.com/users/2',
+  'https://jsonplaceholder.typicode.com/users/3'
+];
+
+Promise.all(urls.map(function(url) {
+  return fetch(url).then(function(response) {
+    if (!response.ok) throw new Error("HTTP " + response.status);
+    return response.json();
+  });
+}))
+  .then(function(users) {
+    let text = "Loaded " + users.length + " users:<br><br>";
+    for (let user of users) {
+      text += user.name + " - " + user.email + "<br>";
+    }
+    document.getElementById("demo").innerHTML = text;
+  })
+  .catch(function(error) {
+    document.getElementById("demo").innerHTML = "Error: " + error.message;
+  });
+</script>
+
+</body>
+</html>

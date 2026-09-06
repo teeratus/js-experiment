@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript ArrayBuffer</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Using a DataView</h4>
+<p id="demo"></p>
+
+<script>
+const buffer = new ArrayBuffer(16);
+const dataView = new DataView(buffer);
+
+// Write different data types
+dataView.setInt32(0, 42);        // 4 bytes at offset 0
+dataView.setFloat32(4, 3.14);    // 4 bytes at offset 4
+dataView.setInt16(8, 255);       // 2 bytes at offset 8
+
+// Read back
+let text = "DataView on ArrayBuffer(16):<br>";
+text += "getInt32(0): " + dataView.getInt32(0) + "<br>";
+text += "getFloat32(4): " + dataView.getFloat32(4) + "<br>";
+text += "getInt16(8): " + dataView.getInt16(8) + "<br><br>";
+
+// Check byte order (endianness)
+const testBuffer = new ArrayBuffer(2);
+const testView = new DataView(testBuffer);
+testView.setInt16(0, 256);
+text += "Endianness test: ";
+if (testView.getUint8(0) === 1) {
+  text += "Big-endian";
+} else {
+  text += "Little-endian";
+}
+
+document.getElementById("demo").innerHTML = text;
+</script>
+
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Temporal</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>What is JavaScript Temporal?</h4>
+<p id="demo"></p>
+
+<script>
+let text = "Temporal vs Date:<br><br>";
+text += "<b>Temporal provides:</b><br>";
+text += "1. Separate objects for different date/time needs<br>";
+text += "2. Immutable objects (safer)<br>";
+text += "3. Better timezone support<br>";
+text += "4. Simple arithmetic operations<br>";
+text += "5. Clearer API names<br><br>";
+
+if (typeof Temporal !== "undefined") {
+  text += "✓ Temporal is supported in this browser";
+} else {
+  text += "✗ Temporal needs a polyfill in this browser";
+}
+
+document.getElementById("demo").innerHTML = text;
+</script>
+
+</body>
+</html>

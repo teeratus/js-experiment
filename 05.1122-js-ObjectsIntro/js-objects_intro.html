@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>js-objects_intro</title>
+  <style>
+    body {
+      box-sizing: border-box;
+      min-width: 200px;
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 45px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+      font-size: 16px;
+      line-height: 1.5;
+      color: #24292e;
+      background-color: #ffffff;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 24px;
+      margin-bottom: 16px;
+      font-weight: 600;
+      line-height: 1.25;
+      border-bottom: 1px solid #eaecef;
+      padding-bottom: .3em;
+    }
+    h1 { font-size: 2em; }
+    h2 { font-size: 1.5em; }
+    h3 { font-size: 1.25em; }
+    code {
+      padding: .2em .4em;
+      margin: 0;
+      font-size: 85%;
+      background-color: rgba(27,31,35,.05);
+      border-radius: 3px;
+      font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
+    }
+    pre {
+      padding: 16px;
+      overflow: auto;
+      font-size: 85%;
+      line-height: 1.45;
+      background-color: #f6f8fa;
+      border-radius: 3px;
+      word-wrap: normal;
+    }
+    pre code {
+      background-color: transparent;
+      padding: 0;
+    }
+    blockquote {
+      padding: 0 1em;
+      color: #6a737d;
+      border-left: .25em solid #dfe2e5;
+      margin: 0 0 16px 0;
+    }
+    table {
+      border-spacing: 0;
+      border-collapse: collapse;
+      margin-top: 0;
+      margin-bottom: 16px;
+      width: 100%;
+    }
+    table th, table td {
+      padding: 6px 13px;
+      border: 1px solid #dfe2e5;
+    }
+    table tr:nth-child(2n) {
+      background-color: #f6f8fa;
+    }
+    img {
+      max-width: 100%;
+      box-sizing: content-box;
+    }
+    @media print {
+      body {
+        max-width: 100%;
+        padding: 0;
+      }
+      pre, blockquote, table, tr, img {
+        page-break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+<body>
+<h1>JavaScript Object Introduction</h1>
+<p><a href="../acp-js.php">Back to JS page</a></p>
+<p>Table of Contents</p>
+<ul>
+<li><a href="#javascript-object-introduction">JavaScript Object Introduction</a><ul>
+<li><a href="#what-are-objects">What Are Objects?</a><ul>
+<li><a href="#example-1">Example 1</a></li>
+</ul>
+</li>
+<li><a href="#object-properties">Object Properties</a><ul>
+<li><a href="#example-2">Example 2</a></li>
+</ul>
+</li>
+<li><a href="#adding-and-deleting-properties">Adding and Deleting Properties</a><ul>
+<li><a href="#example-3">Example 3</a></li>
+</ul>
+</li>
+<li><a href="#nested-objects">Nested Objects</a><ul>
+<li><a href="#example-4">Example 4</a></li>
+</ul>
+</li>
+<li><a href="#iterating-over-properties">Iterating Over Properties</a><ul>
+<li><a href="#example-5">Example 5</a></li>
+</ul>
+</li>
+<li><a href="#document">Document</a></li>
+<li><a href="#reference">Reference</a></li>
+</ul>
+</li>
+</ul>
+<h2>What Are Objects?</h2>
+<p>JavaScript objects are containers for named values called properties.</p>
+<p>Objects are variables too. But objects can contain many values.</p>
+<p>This code assigns many values (firstName, lastName, age) to a variable named person:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Object Introduction&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;What Are Objects?&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+// Create an object
+const car = {
+  brand: &quot;Toyota&quot;,
+  model: &quot;Corolla&quot;,
+  year: 2020,
+  color: &quot;blue&quot;
+};
+
+// Display object properties
+document.getElementById(&quot;demo&quot;).innerHTML =
+  &quot;Car: &quot; + car.brand + &quot; &quot; + car.model + &quot; (&quot; + car.year + &quot;)&quot;;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p1.png" alt=""></p>
+<h3>Example 1</h3>
+<p><strong>Result</strong> <a href="ex1-what_are_objects/index.html">View Example</a></p>
+<h2>Object Properties</h2>
+<p>Properties are the most important part of JavaScript objects. Properties can be accessed, added, changed, and removed:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Object Introduction&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Object Properties&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+const student = {
+  name: &quot;Alice&quot;,
+  grade: &quot;A&quot;,
+  subject: &quot;Mathematics&quot;
+};
+
+// Access properties using different methods
+let text = &quot;Student: &quot; + student.name + &quot;&lt;br&gt;&quot;;
+text += &quot;Grade: &quot; + student[&quot;grade&quot;] + &quot;&lt;br&gt;&quot;;
+text += &quot;Subject: &quot; + student[&quot;subject&quot;] + &quot;&lt;br&gt;&lt;br&gt;&quot;;
+
+// List all properties
+text += &quot;All properties: &quot; + Object.keys(student).join(&quot;, &quot;) + &quot;&lt;br&gt;&quot;;
+text += &quot;Total properties: &quot; + Object.keys(student).length;
+
+document.getElementById(&quot;demo&quot;).innerHTML = text;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p2.png" alt=""></p>
+<h3>Example 2</h3>
+<p><strong>Result</strong> <a href="ex2-object_properties/index.html">View Example</a></p>
+<h2>Adding and Deleting Properties</h2>
+<p>You can add new properties to an object and delete existing ones:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Object Introduction&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Adding and Deleting Properties&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+const book = {
+  title: &quot;JavaScript Guide&quot;,
+  author: &quot;John Doe&quot;,
+  pages: 500
+};
+
+let text = &quot;Original properties:&lt;br&gt;&quot;;
+for (let key in book) {
+  text += key + &quot;: &quot; + book[key] + &quot;&lt;br&gt;&quot;;
+}
+
+// Add a new property
+book.publisher = &quot;Tech Books Inc.&quot;;
+book.year = 2024;
+
+text += &quot;&lt;br&gt;After adding properties:&lt;br&gt;&quot;;
+for (let key in book) {
+  text += key + &quot;: &quot; + book[key] + &quot;&lt;br&gt;&quot;;
+}
+
+// Delete a property
+delete book.pages;
+
+text += &quot;&lt;br&gt;After deleting &#39;pages&#39;:&lt;br&gt;&quot;;
+for (let key in book) {
+  text += key + &quot;: &quot; + book[key] + &quot;&lt;br&gt;&quot;;
+}
+
+document.getElementById(&quot;demo&quot;).innerHTML = text;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p3.png" alt=""></p>
+<h3>Example 3</h3>
+<p><strong>Result</strong> <a href="ex3-add_delete_properties/index.html">View Example</a></p>
+<h2>Nested Objects</h2>
+<p>Property values can be other objects, creating nested objects:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Object Introduction&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Nested Objects&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+const user = {
+  id: 1001,
+  name: &quot;John Doe&quot;,
+  contact: {
+    email: &quot;john@example.com&quot;,
+    phone: &quot;555-1234&quot;,
+    address: {
+      street: &quot;123 Main St&quot;,
+      city: &quot;New York&quot;,
+      zip: &quot;10001&quot;
+    }
+  }
+};
+
+// Access nested properties
+document.getElementById(&quot;demo&quot;).innerHTML =
+  &quot;Name: &quot; + user.name + &quot;&lt;br&gt;&quot; +
+  &quot;Email: &quot; + user.contact.email + &quot;&lt;br&gt;&quot; +
+  &quot;Phone: &quot; + user.contact.phone + &quot;&lt;br&gt;&quot; +
+  &quot;City: &quot; + user.contact.address.city + &quot;&lt;br&gt;&quot; +
+  &quot;ZIP: &quot; + user.contact.address.zip;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p4.png" alt=""></p>
+<h3>Example 4</h3>
+<p><strong>Result</strong> <a href="ex4-nested_objects/index.html">View Example</a></p>
+<h2>Iterating Over Properties</h2>
+<p>You can loop through all properties of an object using <code>for...in</code>:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Object Introduction&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Iterating Over Properties&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+const fruit = {
+  name: &quot;Apple&quot;,
+  color: &quot;Red&quot;,
+  taste: &quot;Sweet&quot;,
+  origin: &quot;China&quot;,
+  price: 1.25
+};
+
+let text = &quot;&lt;ul&gt;&quot;;
+for (let key in fruit) {
+  text += &quot;&lt;li&gt;&quot; + key + &quot;: &quot; + fruit[key] + &quot;&lt;/li&gt;&quot;;
+}
+text += &quot;&lt;/ul&gt;&quot;;
+
+// Count properties
+text += &quot;Total properties: &quot; + Object.keys(fruit).length;
+
+document.getElementById(&quot;demo&quot;).innerHTML = text;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p5.png" alt=""></p>
+<h3>Example 5</h3>
+<p><strong>Result</strong> <a href="ex5-iterating_properties/index.html">View Example</a></p>
+<h2>Document</h2>
+<p>Document in project</p>
+<p>You can <a href="js-objects_intro.pdf">Download PDF</a> file.</p>
+<h2>Reference</h2>
+<ul>
+<li><a href="https://www.w3schools.com/js/js_objects.asp">W3Schools JavaScript Object Introduction</a></li>
+</ul>
+
+</body>
+</html>

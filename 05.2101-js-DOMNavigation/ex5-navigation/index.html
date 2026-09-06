@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript DOM Navigation</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Navigating Between Nodes</h4>
+
+<div id="container">
+  <p id="first">First paragraph</p>
+  <p id="second">Second paragraph</p>
+  <p id="third">Third paragraph</p>
+</div>
+
+<p id="demo1"></p>
+<p id="demo2"></p>
+<p id="demo3"></p>
+<p id="demo4"></p>
+<p id="demo5"></p>
+
+<script>
+const second = document.getElementById("second");
+
+document.getElementById("demo1").innerHTML =
+  "parentNode: " + second.parentNode.id;
+
+document.getElementById("demo2").innerHTML =
+  "previousSibling (element): " + second.previousElementSibling.textContent;
+
+document.getElementById("demo3").innerHTML =
+  "nextSibling (element): " + second.nextElementSibling.textContent;
+
+const parent = document.getElementById("container");
+document.getElementById("demo4").innerHTML =
+  "firstElementChild: " + parent.firstElementChild.textContent;
+
+document.getElementById("demo5").innerHTML =
+  "lastElementChild: " + parent.lastElementChild.textContent;
+</script>
+
+</body>
+</html>

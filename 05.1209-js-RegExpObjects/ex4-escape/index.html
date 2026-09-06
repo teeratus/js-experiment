@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript RegExp Objects</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>The RegExp.escape() Method</h4>
+<p id="demo"></p>
+
+<script>
+let text = "";
+
+if (RegExp.escape) {
+  // Escape special characters
+  const escaped = RegExp.escape("a.b*c");
+  text += "RegExp.escape('a.b*c'): " + escaped + "<br><br>";
+  
+  // Use escaped pattern to match literal dots and stars
+  const result = "a.b*c".match(new RegExp(escaped));
+  text += "Matching literal 'a.b*c': " + result[0];
+} else {
+  text += "RegExp.escape() is not supported in this browser yet.";
+}
+
+document.getElementById("demo").innerHTML = text;
+</script>
+
+</body>
+</html>

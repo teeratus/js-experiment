@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Modules</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Export Objects</h4>
+<p id="demo"></p>
+
+<script type="module">
+import { person, cars } from './person.js';
+
+document.getElementById("demo").innerHTML =
+  "Person: " + person.fullName() + "<br>" +
+  "Age: " + person.age + "<br><br>" +
+  "Cars: " + cars.join(", ");
+</script>
+
+</body>
+</html>

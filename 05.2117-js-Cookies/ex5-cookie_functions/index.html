@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Cookies</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Cookie Functions</h4>
+
+<input type="text" id="nameInput" placeholder="Enter name" value="John">
+<button onclick="saveName()">Save Name</button>
+<br><br>
+<button onclick="loadName()">Load Name</button>
+<button onclick="deleteName()">Delete Name</button>
+<p id="demo"></p>
+
+<script>
+function setCookie(cname, cvalue, exdays) {
+  const d = new Date();
+  d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+  let expires = "expires=" + d.toUTCString();
+  document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+}
+
+function getCookie(cname) {
+  let name = cname + "=";
+  let ca = document.cookie.split(";");
+  for (let i = 0; i < ca.length; i++) {
+    let c = ca[i].trim();
+    if (c.indexOf(name) === 0) return c.substring(name.length, c.length);
+  }
+  return "";
+}
+
+function checkCookie() {
+  let user = getCookie("username");
+  if (user !== "") {
+    document.getElementById("demo").innerHTML = "Welcome back " + user;
+  }
+}
+
+function saveName() {
+  let name = document.getElementById("nameInput").value;
+  setCookie("username", name, 365);
+  document.getElementById("demo").innerHTML = "Name '" + name + "' saved in cookie!";
+}
+
+function loadName() {
+  let user = getCookie("username");
+  if (user !== "") {
+    document.getElementById("demo").innerHTML = "Loaded: " + user;
+  } else {
+    document.getElementById("demo").innerHTML = "No cookie found!";
+  }
+}
+
+function deleteName() {
+  setCookie("username", "", -1);
+  document.getElementById("demo").innerHTML = "Cookie deleted!";
+}
+
+checkCookie();
+</script>
+
+</body>
+</html>

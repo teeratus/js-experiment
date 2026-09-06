@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Metaprogramming</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Proxy with Reflect</h4>
+<p id="demo"></p>
+
+<script>
+const logger = {
+  get: function(target, property) {
+    console.log("Accessing property: " + property);
+    return Reflect.get(target, property);
+  },
+  set: function(target, property, value) {
+    console.log("Setting property: " + property + " = " + value);
+    return Reflect.set(target, property, value);
+  }
+};
+
+const user = {
+  name: "Alice",
+  role: "admin"
+};
+
+const proxy = new Proxy(user, logger);
+
+// Operations are logged via the proxy
+proxy.name = "Bob";
+let role = proxy.role;
+
+document.getElementById("demo").innerHTML =
+  "name: " + proxy.name + "<br>" +
+  "role: " + proxy.role + "<br>" +
+  "(Check the browser console for logged operations)";
+</script>
+
+</body>
+</html>

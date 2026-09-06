@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>js-date_reference</title>
+  <style>
+    body {
+      box-sizing: border-box;
+      min-width: 200px;
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 45px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+      font-size: 16px;
+      line-height: 1.5;
+      color: #24292e;
+      background-color: #ffffff;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 24px;
+      margin-bottom: 16px;
+      font-weight: 600;
+      line-height: 1.25;
+      border-bottom: 1px solid #eaecef;
+      padding-bottom: .3em;
+    }
+    h1 { font-size: 2em; }
+    h2 { font-size: 1.5em; }
+    h3 { font-size: 1.25em; }
+    code {
+      padding: .2em .4em;
+      margin: 0;
+      font-size: 85%;
+      background-color: rgba(27,31,35,.05);
+      border-radius: 3px;
+      font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
+    }
+    pre {
+      padding: 16px;
+      overflow: auto;
+      font-size: 85%;
+      line-height: 1.45;
+      background-color: #f6f8fa;
+      border-radius: 3px;
+      word-wrap: normal;
+    }
+    pre code {
+      background-color: transparent;
+      padding: 0;
+    }
+    blockquote {
+      padding: 0 1em;
+      color: #6a737d;
+      border-left: .25em solid #dfe2e5;
+      margin: 0 0 16px 0;
+    }
+    table {
+      border-spacing: 0;
+      border-collapse: collapse;
+      margin-top: 0;
+      margin-bottom: 16px;
+      width: 100%;
+    }
+    table th, table td {
+      padding: 6px 13px;
+      border: 1px solid #dfe2e5;
+    }
+    table tr:nth-child(2n) {
+      background-color: #f6f8fa;
+    }
+    img {
+      max-width: 100%;
+      box-sizing: content-box;
+    }
+    @media print {
+      body {
+        max-width: 100%;
+        padding: 0;
+      }
+      pre, blockquote, table, tr, img {
+        page-break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+<body>
+<h1>JavaScript Date Reference</h1>
+<p><a href="../acp-js.php">Back to JS page</a></p>
+<p>Table of Contents</p>
+<ul>
+<li><a href="#javascript-date-reference">JavaScript Date Reference</a><ul>
+<li><a href="#date-get-methods">Date Get Methods</a><ul>
+<li><a href="#example-1">Example 1</a></li>
+</ul>
+</li>
+<li><a href="#date-set-methods">Date Set Methods</a><ul>
+<li><a href="#example-2">Example 2</a></li>
+</ul>
+</li>
+<li><a href="#date-display-methods">Date Display Methods</a><ul>
+<li><a href="#example-3">Example 3</a></li>
+</ul>
+</li>
+<li><a href="#document">Document</a></li>
+<li><a href="#reference">Reference</a></li>
+</ul>
+</li>
+</ul>
+<h2>Date Get Methods</h2>
+<p>Reference table for all Date get methods:</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>getFullYear()</code></td>
+<td>Year (4 digits)</td>
+</tr>
+<tr>
+<td><code>getMonth()</code></td>
+<td>Month (0-11)</td>
+</tr>
+<tr>
+<td><code>getDate()</code></td>
+<td>Day of month (1-31)</td>
+</tr>
+<tr>
+<td><code>getDay()</code></td>
+<td>Day of week (0=Sunday)</td>
+</tr>
+<tr>
+<td><code>getHours()</code></td>
+<td>Hours (0-23)</td>
+</tr>
+<tr>
+<td><code>getMinutes()</code></td>
+<td>Minutes (0-59)</td>
+</tr>
+<tr>
+<td><code>getSeconds()</code></td>
+<td>Seconds (0-59)</td>
+</tr>
+<tr>
+<td><code>getMilliseconds()</code></td>
+<td>Milliseconds (0-999)</td>
+</tr>
+<tr>
+<td><code>getTime()</code></td>
+<td>Milliseconds since Jan 1, 1970</td>
+</tr>
+<tr>
+<td><code>Date.now()</code></td>
+<td>Same as getTime() but static</td>
+</tr>
+<tr>
+<td><code>getTimezoneOffset()</code></td>
+<td>Minutes between local and UTC</td>
+</tr>
+</tbody></table>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Date Reference&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Date Get Methods&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+const d = new Date(2024, 5, 15, 12, 30, 45, 123);
+
+document.getElementById(&quot;demo&quot;).innerHTML =
+  &quot;getFullYear(): &quot; + d.getFullYear() + &quot;&lt;br&gt;&quot; +
+  &quot;getMonth(): &quot; + d.getMonth() + &quot;&lt;br&gt;&quot; +
+  &quot;getDate(): &quot; + d.getDate() + &quot;&lt;br&gt;&quot; +
+  &quot;getDay(): &quot; + d.getDay() + &quot;&lt;br&gt;&quot; +
+  &quot;getHours(): &quot; + d.getHours() + &quot;&lt;br&gt;&quot; +
+  &quot;getMinutes(): &quot; + d.getMinutes() + &quot;&lt;br&gt;&quot; +
+  &quot;getSeconds(): &quot; + d.getSeconds() + &quot;&lt;br&gt;&quot; +
+  &quot;getMilliseconds(): &quot; + d.getMilliseconds() + &quot;&lt;br&gt;&quot; +
+  &quot;getTime(): &quot; + d.getTime();
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p1.png" alt=""></p>
+<h3>Example 1</h3>
+<p><strong>Result</strong> <a href="ex1-get_methods/index.html">View Example</a></p>
+<h2>Date Set Methods</h2>
+<p>Reference table for all Date set methods:</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>setFullYear()</code></td>
+<td>Set year</td>
+</tr>
+<tr>
+<td><code>setMonth()</code></td>
+<td>Set month (0-11)</td>
+</tr>
+<tr>
+<td><code>setDate()</code></td>
+<td>Set day of month (1-31)</td>
+</tr>
+<tr>
+<td><code>setHours()</code></td>
+<td>Set hours (0-23)</td>
+</tr>
+<tr>
+<td><code>setMinutes()</code></td>
+<td>Set minutes (0-59)</td>
+</tr>
+<tr>
+<td><code>setSeconds()</code></td>
+<td>Set seconds (0-59)</td>
+</tr>
+<tr>
+<td><code>setMilliseconds()</code></td>
+<td>Set milliseconds (0-999)</td>
+</tr>
+<tr>
+<td><code>setTime()</code></td>
+<td>Set time (milliseconds)</td>
+</tr>
+</tbody></table>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Date Reference&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Date Set Methods&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+const d = new Date();
+d.setFullYear(2024);
+d.setMonth(5);
+d.setDate(15);
+d.setHours(12);
+d.setMinutes(30);
+d.setSeconds(45);
+
+document.getElementById(&quot;demo&quot;).innerHTML = &quot;After using set methods:&lt;br&gt;&quot; + d;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p2.png" alt=""></p>
+<h3>Example 2</h3>
+<p><strong>Result</strong> <a href="ex2-set_methods/index.html">View Example</a></p>
+<h2>Date Display Methods</h2>
+<p>Reference table for display methods:</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>toString()</code></td>
+<td>Standard string format</td>
+</tr>
+<tr>
+<td><code>toDateString()</code></td>
+<td>Date only, no time</td>
+</tr>
+<tr>
+<td><code>toISOString()</code></td>
+<td>ISO 8601 format</td>
+</tr>
+<tr>
+<td><code>toUTCString()</code></td>
+<td>UTC string format</td>
+</tr>
+<tr>
+<td><code>toLocaleDateString()</code></td>
+<td>Local date format</td>
+</tr>
+<tr>
+<td><code>toLocaleTimeString()</code></td>
+<td>Local time format</td>
+</tr>
+</tbody></table>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Date Reference&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Date Display Methods&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+const d = new Date(2024, 5, 15, 12, 30);
+
+document.getElementById(&quot;demo&quot;).innerHTML =
+  &quot;toString(): &quot; + d.toString() + &quot;&lt;br&gt;&quot; +
+  &quot;toDateString(): &quot; + d.toDateString() + &quot;&lt;br&gt;&quot; +
+  &quot;toISOString(): &quot; + d.toISOString() + &quot;&lt;br&gt;&quot; +
+  &quot;toUTCString(): &quot; + d.toUTCString() + &quot;&lt;br&gt;&quot; +
+  &quot;toLocaleDateString(): &quot; + d.toLocaleDateString() + &quot;&lt;br&gt;&quot; +
+  &quot;toLocaleTimeString(): &quot; + d.toLocaleTimeString();
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p3.png" alt=""></p>
+<h3>Example 3</h3>
+<p><strong>Result</strong> <a href="ex3-display_methods/index.html">View Example</a></p>
+<h2>Document</h2>
+<p>Document in project</p>
+<p>You can <a href="js-date_reference.pdf">Download PDF</a> file.</p>
+<h2>Reference</h2>
+<ul>
+<li><a href="https://www.w3schools.com/js/js_date_reference.asp">W3Schools JavaScript Date Reference</a></li>
+</ul>
+
+</body>
+</html>

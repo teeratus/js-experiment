@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>js-keyboard_events</title>
+  <style>
+    body {
+      box-sizing: border-box;
+      min-width: 200px;
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 45px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+      font-size: 16px;
+      line-height: 1.5;
+      color: #24292e;
+      background-color: #ffffff;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 24px;
+      margin-bottom: 16px;
+      font-weight: 600;
+      line-height: 1.25;
+      border-bottom: 1px solid #eaecef;
+      padding-bottom: .3em;
+    }
+    h1 { font-size: 2em; }
+    h2 { font-size: 1.5em; }
+    h3 { font-size: 1.25em; }
+    code {
+      padding: .2em .4em;
+      margin: 0;
+      font-size: 85%;
+      background-color: rgba(27,31,35,.05);
+      border-radius: 3px;
+      font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
+    }
+    pre {
+      padding: 16px;
+      overflow: auto;
+      font-size: 85%;
+      line-height: 1.45;
+      background-color: #f6f8fa;
+      border-radius: 3px;
+      word-wrap: normal;
+    }
+    pre code {
+      background-color: transparent;
+      padding: 0;
+    }
+    blockquote {
+      padding: 0 1em;
+      color: #6a737d;
+      border-left: .25em solid #dfe2e5;
+      margin: 0 0 16px 0;
+    }
+    table {
+      border-spacing: 0;
+      border-collapse: collapse;
+      margin-top: 0;
+      margin-bottom: 16px;
+      width: 100%;
+    }
+    table th, table td {
+      padding: 6px 13px;
+      border: 1px solid #dfe2e5;
+    }
+    table tr:nth-child(2n) {
+      background-color: #f6f8fa;
+    }
+    img {
+      max-width: 100%;
+      box-sizing: content-box;
+    }
+    @media print {
+      body {
+        max-width: 100%;
+        padding: 0;
+      }
+      pre, blockquote, table, tr, img {
+        page-break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+<body>
+<h1>JavaScript Keyboard Events</h1>
+<p><a href="../acp-js.php">Back to JS page</a></p>
+<p>Table of Contents</p>
+<ul>
+<li><a href="#javascript-keyboard-events">JavaScript Keyboard Events</a><ul>
+<li><a href="#the-keydown-event">The keydown Event</a><ul>
+<li><a href="#example-1">Example 1</a></li>
+</ul>
+</li>
+<li><a href="#key-properties">Key Properties</a></li>
+<li><a href="#detect-enter">Detect Enter</a><ul>
+<li><a href="#example-2">Example 2</a></li>
+</ul>
+</li>
+<li><a href="#document">Document</a></li>
+<li><a href="#reference">Reference</a></li>
+</ul>
+</li>
+</ul>
+<h2>The keydown Event</h2>
+<p>The <code>onkeydown</code> event occurs when the user presses a key on the keyboard.</p>
+<p>You can use <code>event.key</code> to get the value of the key that was pressed:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Keyboard Events&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;The keydown Event&lt;/h4&gt;
+&lt;p&gt;Press a key in the input field:&lt;/p&gt;
+&lt;input type=&quot;text&quot; id=&quot;myInput&quot; placeholder=&quot;Type something...&quot;&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+document.getElementById(&quot;myInput&quot;).addEventListener(&quot;keydown&quot;, function(event) {
+  document.getElementById(&quot;demo&quot;).innerHTML = &quot;Key pressed: &quot; + event.key;
+});
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p1.png" alt=""></p>
+<h3>Example 1</h3>
+<p><strong>Result</strong> <a href="ex1-keydown_event/index.html">View Example</a></p>
+<h2>Key Properties</h2>
+<p>Keyboard events have the following important properties:</p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>event.key</code></td>
+<td>Returns the key value (character) of the key pressed</td>
+</tr>
+<tr>
+<td><code>event.code</code></td>
+<td>Returns the physical key code (e.g. &quot;Enter&quot;, &quot;KeyA&quot;)</td>
+</tr>
+<tr>
+<td><code>event.altKey</code></td>
+<td>Returns true if the ALT key was pressed</td>
+</tr>
+<tr>
+<td><code>event.ctrlKey</code></td>
+<td>Returns true if the CTRL key was pressed</td>
+</tr>
+<tr>
+<td><code>event.shiftKey</code></td>
+<td>Returns true if the SHIFT key was pressed</td>
+</tr>
+<tr>
+<td><code>event.metaKey</code></td>
+<td>Returns true if the META key (Windows key / Cmd) was pressed</td>
+</tr>
+</tbody></table>
+<h2>Detect Enter</h2>
+<p>You can detect if the Enter key was pressed by checking <code>event.code === &quot;Enter&quot;</code>:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Keyboard Events&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Detect Enter&lt;/h4&gt;
+&lt;input type=&quot;text&quot; id=&quot;in01&quot; placeholder=&quot;Press Enter&quot;&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+const in01 = document.getElementById(&quot;in01&quot;);
+in01.addEventListener(&quot;keydown&quot;, function(event) {
+  if (event.code === &quot;Enter&quot;) {
+    document.getElementById(&quot;demo&quot;).innerHTML = &quot;Enter was pressed!&quot;;
+  }
+});
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p2.png" alt=""></p>
+<h3>Example 2</h3>
+<p><strong>Result</strong> <a href="ex2-detect_enter/index.html">View Example</a></p>
+<h2>Document</h2>
+<p>Document in project</p>
+<p>You can <a href="js-keyboard_events.pdf">Download PDF</a> file.</p>
+<h2>Reference</h2>
+<ul>
+<li><a href="https://www.w3schools.com/js/js_events_keyboard.asp">W3Schools JavaScript Keyboard Events</a></li>
+</ul>
+
+</body>
+</html>

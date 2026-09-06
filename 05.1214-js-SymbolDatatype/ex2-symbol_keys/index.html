@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Symbol Datatype</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Using Symbols as Object Keys</h4>
+<p id="demo"></p>
+
+<script>
+// Create symbol for secret key
+const secretKey = Symbol("secret");
+
+// Use symbol as object key
+const person = {
+  name: "John",
+  age: 30,
+  [secretKey]: "Hidden value"
+};
+
+let text = "person.name: " + person.name + "<br>";
+text += "person.age: " + person.age + "<br><br>";
+
+// Access using the symbol
+text += "person[secretKey]: " + person[secretKey] + "<br><br>";
+
+// Object.keys() does NOT show symbols
+text += "Object.keys(person): " + Object.keys(person) + "<br>";
+text += "Symbol is hidden from normal enumeration";
+
+document.getElementById("demo").innerHTML = text;
+</script>
+
+</body>
+</html>

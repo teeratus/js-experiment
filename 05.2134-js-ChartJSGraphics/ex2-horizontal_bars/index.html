@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Chart.js Graphics</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Horizontal Bars</h4>
+
+<canvas id="hBarChart" style="width:100%;max-width:600px;"></canvas>
+<p id="demo2"></p>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+
+<script>
+const xValues = ["Item A", "Item B", "Item C", "Item D", "Item E"];
+const yValues = [30, 45, 25, 60, 35];
+
+new Chart("hBarChart", {
+  type: "horizontalBar",
+  data: {
+    labels: xValues,
+    datasets: [{
+      backgroundColor: ["#4CAF50", "#2196F3", "#FF9800", "#F44336", "#9C27B0"],
+      data: yValues
+    }]
+  },
+  options: {
+    title: {
+      display: true,
+      text: "Horizontal Bar Chart"
+    },
+    legend: {display: false},
+    scales: {
+      xAxes: [{ticks: {beginAtZero: true}}]
+    }
+  }
+});
+
+document.getElementById("demo2").innerHTML = "Chart.js horizontal bar chart created!";
+</script>
+
+</body>
+</html>

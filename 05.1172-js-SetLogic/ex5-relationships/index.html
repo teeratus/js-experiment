@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Set Logic</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>isSubsetOf(), isSupersetOf(), isDisjointFrom()</h4>
+<p id="demo"></p>
+
+<script>
+const setA = new Set(["a", "b"]);
+const setB = new Set(["a", "b", "c", "d"]);
+const setC = new Set(["x", "y"]);
+
+let text = "Set A: " + [...setA] + "<br>";
+text += "Set B: " + [...setB] + "<br>";
+text += "Set C: " + [...setC] + "<br><br>";
+
+if (setA.isSubsetOf) {
+  text += "A.isSubsetOf(B): " + setA.isSubsetOf(setB) + "<br>";
+  text += "B.isSupersetOf(A): " + setB.isSupersetOf(setA) + "<br>";
+  text += "A.isDisjointFrom(C): " + setA.isDisjointFrom(setC) + "<br><br>";
+  text += "A is subset of B ✓<br>";
+  text += "B is superset of A ✓<br>";
+  text += "A and C are disjoint ✓";
+} else {
+  text += "These methods are not supported in this browser yet.";
+}
+
+document.getElementById("demo").innerHTML = text;
+</script>
+
+</body>
+</html>

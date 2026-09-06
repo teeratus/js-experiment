@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>js-operators</title>
+  <style>
+    body {
+      box-sizing: border-box;
+      min-width: 200px;
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 45px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+      font-size: 16px;
+      line-height: 1.5;
+      color: #24292e;
+      background-color: #ffffff;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 24px;
+      margin-bottom: 16px;
+      font-weight: 600;
+      line-height: 1.25;
+      border-bottom: 1px solid #eaecef;
+      padding-bottom: .3em;
+    }
+    h1 { font-size: 2em; }
+    h2 { font-size: 1.5em; }
+    h3 { font-size: 1.25em; }
+    code {
+      padding: .2em .4em;
+      margin: 0;
+      font-size: 85%;
+      background-color: rgba(27,31,35,.05);
+      border-radius: 3px;
+      font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
+    }
+    pre {
+      padding: 16px;
+      overflow: auto;
+      font-size: 85%;
+      line-height: 1.45;
+      background-color: #f6f8fa;
+      border-radius: 3px;
+      word-wrap: normal;
+    }
+    pre code {
+      background-color: transparent;
+      padding: 0;
+    }
+    blockquote {
+      padding: 0 1em;
+      color: #6a737d;
+      border-left: .25em solid #dfe2e5;
+      margin: 0 0 16px 0;
+    }
+    table {
+      border-spacing: 0;
+      border-collapse: collapse;
+      margin-top: 0;
+      margin-bottom: 16px;
+      width: 100%;
+    }
+    table th, table td {
+      padding: 6px 13px;
+      border: 1px solid #dfe2e5;
+    }
+    table tr:nth-child(2n) {
+      background-color: #f6f8fa;
+    }
+    img {
+      max-width: 100%;
+      box-sizing: content-box;
+    }
+    @media print {
+      body {
+        max-width: 100%;
+        padding: 0;
+      }
+      pre, blockquote, table, tr, img {
+        page-break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+<body>
+<h1>JavaScript Operators</h1>
+<p><a href="../acp-js.php">Back to JS page</a></p>
+<p>Table of Contents</p>
+<ul>
+<li><a href="#javascript-operators">JavaScript Operators</a><ul>
+<li><a href="#javascript-assignment">JavaScript Assignment</a><ul>
+<li><a href="#example-1">Example 1</a></li>
+</ul>
+</li>
+<li><a href="#javascript-addition">JavaScript Addition</a><ul>
+<li><a href="#example-2">Example 2</a></li>
+</ul>
+</li>
+<li><a href="#javascript-multiplication">JavaScript Multiplication</a><ul>
+<li><a href="#example-3">Example 3</a></li>
+</ul>
+</li>
+<li><a href="#types-of-javascript-operators">Types of JavaScript Operators</a></li>
+<li><a href="#javascript-arithmetic-operators">JavaScript Arithmetic Operators</a><ul>
+<li><a href="#example-4">Example 4</a></li>
+</ul>
+</li>
+<li><a href="#javascript-string-addition">JavaScript String Addition</a><ul>
+<li><a href="#example-5">Example 5</a></li>
+</ul>
+</li>
+<li><a href="#adding-strings-and-numbers">Adding Strings and Numbers</a><ul>
+<li><a href="#example-6">Example 6</a></li>
+</ul>
+</li>
+<li><a href="#javascript-assignment-operators">JavaScript Assignment Operators</a><ul>
+<li><a href="#example-7">Example 7</a></li>
+</ul>
+</li>
+<li><a href="#javascript-comparison-operators">JavaScript Comparison Operators</a><ul>
+<li><a href="#example-8">Example 8</a></li>
+</ul>
+</li>
+<li><a href="#document">Document</a></li>
+<li><a href="#reference">Reference</a></li>
+</ul>
+</li>
+</ul>
+<h2>JavaScript Assignment</h2>
+<p>The <strong>Assignment Operator</strong> (<code>=</code>) assigns a value to a variable:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Operators&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;JavaScript Assignment&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+let x = 10;
+document.getElementById(&quot;demo&quot;).innerHTML = &quot;x = &quot; + x;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p1.png" alt=""></p>
+<h3>Example 1</h3>
+<p><strong>Result</strong> <a href="ex1-assignment/index.html">View Example</a></p>
+<h2>JavaScript Addition</h2>
+<p>The <strong>Addition Operator</strong> (<code>+</code>) adds numbers:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Operators&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;JavaScript Addition&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+let x = 5;
+let y = 2;
+let z = x + y;
+document.getElementById(&quot;demo&quot;).innerHTML = &quot;x + y = &quot; + z;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p2.png" alt=""></p>
+<h3>Example 2</h3>
+<p><strong>Result</strong> <a href="ex2-addition/index.html">View Example</a></p>
+<h2>JavaScript Multiplication</h2>
+<p>The <strong>Multiplication Operator</strong> (<code>*</code>) multiplies numbers:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Operators&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;JavaScript Multiplication&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+let x = 5;
+let y = 2;
+let z = x * y;
+document.getElementById(&quot;demo&quot;).innerHTML = &quot;x * y = &quot; + z;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p3.png" alt=""></p>
+<h3>Example 3</h3>
+<p><strong>Result</strong> <a href="ex3-multiplication/index.html">View Example</a></p>
+<h2>Types of JavaScript Operators</h2>
+<p>There are different types of JavaScript operators:</p>
+<ul>
+<li><strong>Arithmetic Operators</strong>: <code>+</code>, <code>-</code>, <code>*</code>, <code>/</code>, <code>%</code>, <code>++</code>, <code>--</code></li>
+<li><strong>Assignment Operators</strong>: <code>=</code>, <code>+=</code>, <code>-=</code>, <code>*=</code>, <code>/=</code>, <code>%=</code>, <code>**=</code></li>
+<li><strong>String Operators</strong>: <code>+</code>, <code>+=</code></li>
+<li><strong>Comparison Operators</strong>: <code>==</code>, <code>===</code>, <code>!=</code>, <code>!==</code>, <code>&gt;</code>, <code>&lt;</code>, <code>&gt;=</code>, <code>&lt;=</code>, <code>?</code></li>
+<li><strong>Logical Operators</strong>: <code>&amp;&amp;</code>, <code>||</code>, <code>!</code></li>
+</ul>
+<h2>JavaScript Arithmetic Operators</h2>
+<p><strong>Arithmetic Operators</strong> are used to perform arithmetic on numbers:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Operators&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Arithmetic Operators&lt;/h4&gt;
+&lt;p id=&quot;demo1&quot;&gt;&lt;/p&gt;
+&lt;p id=&quot;demo2&quot;&gt;&lt;/p&gt;
+&lt;p id=&quot;demo3&quot;&gt;&lt;/p&gt;
+&lt;p id=&quot;demo4&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+let a = 10;
+let b = 3;
+document.getElementById(&quot;demo1&quot;).innerHTML = &quot;a + b = &quot; + (a + b);
+document.getElementById(&quot;demo2&quot;).innerHTML = &quot;a - b = &quot; + (a - b);
+document.getElementById(&quot;demo3&quot;).innerHTML = &quot;a * b = &quot; + (a * b);
+document.getElementById(&quot;demo4&quot;).innerHTML = &quot;a / b = &quot; + (a / b);
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p4.png" alt=""></p>
+<h3>Example 4</h3>
+<p><strong>Result</strong> <a href="ex4-arithmetic_operators/index.html">View Example</a></p>
+<h2>JavaScript String Addition</h2>
+<p>The <code>+</code> operator can also be used to add (concatenate) strings:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Operators&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;String Addition (Concatenation)&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+let text1 = &quot;John&quot;;
+let text2 = &quot;Doe&quot;;
+let text3 = text1 + &quot; &quot; + text2;
+document.getElementById(&quot;demo&quot;).innerHTML = text3;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p5.png" alt=""></p>
+<h3>Example 5</h3>
+<p><strong>Result</strong> <a href="ex5-string_addition/index.html">View Example</a></p>
+<h2>Adding Strings and Numbers</h2>
+<p>Adding two numbers will return the sum as a number.</p>
+<p>Adding a number and a string will return the sum as a concatenated string:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Operators&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Adding Strings and Numbers&lt;/h4&gt;
+&lt;p id=&quot;demo1&quot;&gt;&lt;/p&gt;
+&lt;p id=&quot;demo2&quot;&gt;&lt;/p&gt;
+&lt;p id=&quot;demo3&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+let x = 5 + 5;
+let y = &quot;5&quot; + 5;
+let z = &quot;Hello&quot; + 5;
+document.getElementById(&quot;demo1&quot;).innerHTML = &quot;5 + 5 = &quot; + x + &quot; (number)&quot;;
+document.getElementById(&quot;demo2&quot;).innerHTML = &#39;&quot;5&quot; + 5 = &#39; + y + &quot; (string)&quot;;
+document.getElementById(&quot;demo3&quot;).innerHTML = &#39;&quot;Hello&quot; + 5 = &#39; + z + &quot; (string)&quot;;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p6.png" alt=""></p>
+<h3>Example 6</h3>
+<p><strong>Result</strong> <a href="ex6-string_number/index.html">View Example</a></p>
+<h2>JavaScript Assignment Operators</h2>
+<p>Assignment operators assign values to JavaScript variables.</p>
+<p>The <strong>Addition Assignment Operator</strong> (<code>+=</code>) adds a value to a variable:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Operators&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Assignment Operators&lt;/h4&gt;
+&lt;p id=&quot;demo1&quot;&gt;&lt;/p&gt;
+&lt;p id=&quot;demo2&quot;&gt;&lt;/p&gt;
+&lt;p id=&quot;demo3&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+let x = 10;
+let y = 10;
+let z = 10;
+x += 5;
+y -= 3;
+z *= 2;
+document.getElementById(&quot;demo1&quot;).innerHTML = &quot;x += 5 =&gt; &quot; + x;
+document.getElementById(&quot;demo2&quot;).innerHTML = &quot;y -= 3 =&gt; &quot; + y;
+document.getElementById(&quot;demo3&quot;).innerHTML = &quot;z *= 2 =&gt; &quot; + z;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p7.png" alt=""></p>
+<h3>Example 7</h3>
+<p><strong>Result</strong> <a href="ex7-assignment_operators/index.html">View Example</a></p>
+<h2>JavaScript Comparison Operators</h2>
+<p>Comparison operators are used to <strong>compare two values</strong> and always return <code>true</code> or <code>false</code>:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Operators&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Comparison Operators&lt;/h4&gt;
+&lt;p id=&quot;demo1&quot;&gt;&lt;/p&gt;
+&lt;p id=&quot;demo2&quot;&gt;&lt;/p&gt;
+&lt;p id=&quot;demo3&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+let x = 5;
+document.getElementById(&quot;demo1&quot;).innerHTML = &quot;5 == &#39;5&#39; is &quot; + (5 == &quot;5&quot;);
+document.getElementById(&quot;demo2&quot;).innerHTML = &quot;5 === &#39;5&#39; is &quot; + (5 === &quot;5&quot;);
+document.getElementById(&quot;demo3&quot;).innerHTML = &quot;5 &gt; 8 is &quot; + (5 &gt; 8);
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p8.png" alt=""></p>
+<h3>Example 8</h3>
+<p><strong>Result</strong> <a href="ex8-comparison_operators/index.html">View Example</a></p>
+<h2>Document</h2>
+<p>Document in project</p>
+<p>You can <a href="js-operators.pdf">Download PDF</a> file.</p>
+<h2>Reference</h2>
+<ul>
+<li><a href="https://www.w3schools.com/js/js_operators.asp">W3Schools JavaScript Operators</a></li>
+</ul>
+
+</body>
+</html>

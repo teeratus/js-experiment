@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Arrays</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Adding Array Elements</h4>
+<p id="demo"></p>
+
+<script>
+const fruits = ["Banana", "Orange"];
+
+// push() adds to the end
+fruits.push("Mango");
+
+// Using length adds to the end
+fruits[fruits.length] = "Apple";
+
+// Adding at a higher index creates empty slots
+fruits[5] = "Grape";
+
+let text = "After adding elements: " + fruits + "<br><br>";
+
+for (let i = 0; i < fruits.length; i++) {
+  if (fruits[i] === undefined) {
+    text += "Index " + i + ": (empty)" + "<br>";
+  } else {
+    text += "Index " + i + ": " + fruits[i] + "<br>";
+  }
+}
+
+document.getElementById("demo").innerHTML = text;
+</script>
+
+</body>
+</html>

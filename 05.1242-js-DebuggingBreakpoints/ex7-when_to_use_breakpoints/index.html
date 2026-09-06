@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Debugging Breakpoints</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>When to Use Breakpoints</h4>
+<p>Open DevTools (F12) and set a breakpoint to debug this calculation.</p>
+<p id="demo"></p>
+
+<script>
+// This function has complex logic that could produce wrong results
+function calculateDiscount(price, customerType) {
+  let discount = 0;
+
+  if (customerType === "VIP") {
+    discount = 0.2;
+  } else if (customerType === "Member") {
+    discount = 0.1;
+  } else {
+    discount = 0.05;
+  }
+
+  let discountAmount = price * discount;  // Set breakpoint to verify values
+  let finalPrice = price - discountAmount;
+
+  return finalPrice;
+}
+
+let price1 = calculateDiscount(1000, "VIP");
+let price2 = calculateDiscount(500, "Member");
+let price3 = calculateDiscount(300, "Guest");
+
+console.log("VIP pays:", price1);
+console.log("Member pays:", price2);
+console.log("Guest pays:", price3);
+
+document.getElementById("demo").innerHTML =
+  "VIP: " + price1 + " (20% off 1000)<br>" +
+  "Member: " + price2 + " (10% off 500)<br>" +
+  "Guest: " + price3 + " (5% off 300)";
+</script>
+
+</body>
+</html>

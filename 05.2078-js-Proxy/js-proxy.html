@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>js-proxy</title>
+  <style>
+    body {
+      box-sizing: border-box;
+      min-width: 200px;
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 45px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+      font-size: 16px;
+      line-height: 1.5;
+      color: #24292e;
+      background-color: #ffffff;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 24px;
+      margin-bottom: 16px;
+      font-weight: 600;
+      line-height: 1.25;
+      border-bottom: 1px solid #eaecef;
+      padding-bottom: .3em;
+    }
+    h1 { font-size: 2em; }
+    h2 { font-size: 1.5em; }
+    h3 { font-size: 1.25em; }
+    code {
+      padding: .2em .4em;
+      margin: 0;
+      font-size: 85%;
+      background-color: rgba(27,31,35,.05);
+      border-radius: 3px;
+      font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
+    }
+    pre {
+      padding: 16px;
+      overflow: auto;
+      font-size: 85%;
+      line-height: 1.45;
+      background-color: #f6f8fa;
+      border-radius: 3px;
+      word-wrap: normal;
+    }
+    pre code {
+      background-color: transparent;
+      padding: 0;
+    }
+    blockquote {
+      padding: 0 1em;
+      color: #6a737d;
+      border-left: .25em solid #dfe2e5;
+      margin: 0 0 16px 0;
+    }
+    table {
+      border-spacing: 0;
+      border-collapse: collapse;
+      margin-top: 0;
+      margin-bottom: 16px;
+      width: 100%;
+    }
+    table th, table td {
+      padding: 6px 13px;
+      border: 1px solid #dfe2e5;
+    }
+    table tr:nth-child(2n) {
+      background-color: #f6f8fa;
+    }
+    img {
+      max-width: 100%;
+      box-sizing: content-box;
+    }
+    @media print {
+      body {
+        max-width: 100%;
+        padding: 0;
+      }
+      pre, blockquote, table, tr, img {
+        page-break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+<body>
+<h1>JavaScript Proxy</h1>
+<p><a href="../acp-js.php">Back to JS page</a></p>
+<p>Table of Contents</p>
+<ul>
+<li><a href="#javascript-proxy">JavaScript Proxy</a><ul>
+<li><a href="#what-is-a-proxy">What is a Proxy?</a><ul>
+<li><a href="#example-1">Example 1</a></li>
+</ul>
+</li>
+<li><a href="#proxy-logging">Proxy Logging</a><ul>
+<li><a href="#example-2">Example 2</a></li>
+</ul>
+</li>
+<li><a href="#proxy-validation">Proxy Validation</a><ul>
+<li><a href="#example-3">Example 3</a></li>
+</ul>
+</li>
+<li><a href="#virtual-properties">Virtual Properties</a><ul>
+<li><a href="#example-4">Example 4</a></li>
+</ul>
+</li>
+<li><a href="#dynamic-functions">Dynamic Functions</a><ul>
+<li><a href="#example-5">Example 5</a></li>
+</ul>
+</li>
+<li><a href="#document">Document</a></li>
+<li><a href="#reference">Reference</a></li>
+</ul>
+</li>
+</ul>
+<h2>What is a Proxy?</h2>
+<p>A Proxy object wraps another object and intercepts fundamental operations like property lookup, assignment, enumeration, and function invocation.</p>
+<p>The Proxy is created with two parameters:</p>
+<ul>
+<li><strong>target</strong>: the original object that the proxy wraps</li>
+<li><strong>handler</strong>: an object that defines which operations will be intercepted (traps)</li>
+</ul>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Proxy&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;What is a Proxy?&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+const person = {
+  firstName: &quot;John&quot;,
+  lastName: &quot;Doe&quot;
+};
+
+const handler = {
+  get: function(target, property) {
+    return target[property];
+  }
+};
+
+const proxy = new Proxy(person, handler);
+
+document.getElementById(&quot;demo&quot;).innerHTML =
+  &quot;proxy.firstName: &quot; + proxy.firstName + &quot;&lt;br&gt;&quot; +
+  &quot;proxy.lastName: &quot; + proxy.lastName + &quot;&lt;br&gt;&quot; +
+  &quot;proxy is a Proxy: &quot; + (proxy !== person);
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p1.png" alt=""></p>
+<h3>Example 1</h3>
+<p><strong>Result</strong> <a href="ex1-what_is_proxy/index.html">View Example</a></p>
+<h2>Proxy Logging</h2>
+<p>A Proxy can log all property accesses without modifying the original object:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Proxy&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Proxy Logging&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+const user = {
+  name: &quot;Alice&quot;,
+  age: 30,
+  role: &quot;admin&quot;
+};
+
+const loggingHandler = {
+  get: function(target, property) {
+    console.log(&quot;LOG: Accessing property &#39;&quot; + property + &quot;&#39;&quot;);
+    console.log(&quot;LOG: Current value is:&quot;, target[property]);
+    return target[property];
+  },
+  set: function(target, property, value) {
+    console.log(&quot;LOG: Setting property &#39;&quot; + property + &quot;&#39; to&quot;, value);
+    console.log(&quot;LOG: Previous value was:&quot;, target[property]);
+    target[property] = value;
+    return true;
+  }
+};
+
+const proxy = new Proxy(user, loggingHandler);
+
+// Access and modify through the proxy
+proxy.name = &quot;Bob&quot;;
+let userRole = proxy.role;
+proxy.age = 31;
+
+document.getElementById(&quot;demo&quot;).innerHTML =
+  &quot;name: &quot; + proxy.name + &quot;&lt;br&gt;&quot; +
+  &quot;age: &quot; + proxy.age + &quot;&lt;br&gt;&quot; +
+  &quot;role: &quot; + proxy.role + &quot;&lt;br&gt;&lt;br&gt;&quot; +
+  &quot;(Check browser console to see all log messages)&quot;;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p2.png" alt=""></p>
+<h3>Example 2</h3>
+<p><strong>Result</strong> <a href="ex2-proxy_logging/index.html">View Example</a></p>
+<h2>Proxy Validation</h2>
+<p>A Proxy can validate data before setting it on the target object:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Proxy&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Proxy Validation&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+const person = {
+  name: &quot;John&quot;,
+  age: 25
+};
+
+const validator = {
+  set: function(target, property, value) {
+    if (property === &quot;age&quot;) {
+      if (typeof value !== &quot;number&quot;) {
+        throw new Error(&quot;Age must be a number&quot;);
+      }
+      if (value &lt; 0 || value &gt; 120) {
+        throw new Error(&quot;Age must be between 0 and 120&quot;);
+      }
+    }
+    if (property === &quot;name&quot;) {
+      if (typeof value !== &quot;string&quot;) {
+        throw new Error(&quot;Name must be a string&quot;);
+      }
+      if (value.length &lt; 2) {
+        throw new Error(&quot;Name must be at least 2 characters&quot;);
+      }
+    }
+    target[property] = value;
+    return true;
+  }
+};
+
+const proxy = new Proxy(person, validator);
+
+try {
+  proxy.age = 30;   // Valid
+  proxy.name = &quot;Jane&quot;;  // Valid
+  // proxy.age = 200;  // Would throw error
+  // proxy.name = &quot;J&quot;; // Would throw error
+
+  document.getElementById(&quot;demo&quot;).innerHTML =
+    &quot;Validated proxy:&lt;br&gt;&quot; +
+    &quot;name: &quot; + proxy.name + &quot;&lt;br&gt;&quot; +
+    &quot;age: &quot; + proxy.age + &quot;&lt;br&gt;&lt;br&gt;&quot; +
+    &quot;Age and name validation is active - invalid values are rejected!&quot;;
+} catch(err) {
+  document.getElementById(&quot;demo&quot;).innerHTML = &quot;Error: &quot; + err.message;
+}
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p3.png" alt=""></p>
+<h3>Example 3</h3>
+<p><strong>Result</strong> <a href="ex3-proxy_validation/index.html">View Example</a></p>
+<h2>Virtual Properties</h2>
+<p>A Proxy can create virtual properties that don&#39;t exist on the target object:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Proxy&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Virtual Properties&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+const person = {
+  firstName: &quot;John&quot;,
+  lastName: &quot;Doe&quot;,
+  birthYear: 1990
+};
+
+const handler = {
+  get: function(target, property) {
+    if (property === &quot;fullName&quot;) {
+      return target.firstName + &quot; &quot; + target.lastName;
+    }
+    if (property === &quot;age&quot;) {
+      const year = new Date().getFullYear();
+      return year - target.birthYear;
+    }
+    return target[property];
+  }
+};
+
+const proxy = new Proxy(person, handler);
+
+document.getElementById(&quot;demo&quot;).innerHTML =
+  &quot;firstName: &quot; + proxy.firstName + &quot;&lt;br&gt;&quot; +
+  &quot;lastName: &quot; + proxy.lastName + &quot;&lt;br&gt;&quot; +
+  &quot;fullName (virtual): &quot; + proxy.fullName + &quot;&lt;br&gt;&quot; +
+  &quot;age (virtual): &quot; + proxy.age;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p4.png" alt=""></p>
+<h3>Example 4</h3>
+<p><strong>Result</strong> <a href="ex4-virtual_properties/index.html">View Example</a></p>
+<h2>Dynamic Functions</h2>
+<p>A Proxy can intercept function calls using the <code>apply</code> trap:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Proxy&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Dynamic Functions&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+function greet(name) {
+  return &quot;Hello, &quot; + name + &quot;!&quot;;
+}
+
+const handler = {
+  apply: function(target, thisArg, args) {
+    console.log(&quot;Function called with arguments:&quot;, args);
+    console.log(&quot;Call count: &quot; + (++callCount));
+    return target.apply(thisArg, args);
+  }
+};
+
+let callCount = 0;
+const proxy = new Proxy(greet, handler);
+
+// Call through proxy
+let result1 = proxy(&quot;Alice&quot;);
+let result2 = proxy(&quot;Bob&quot;);
+let result3 = proxy(&quot;Charlie&quot;);
+
+document.getElementById(&quot;demo&quot;).innerHTML =
+  result1 + &quot;&lt;br&gt;&quot; +
+  result2 + &quot;&lt;br&gt;&quot; +
+  result3 + &quot;&lt;br&gt;&lt;br&gt;&quot; +
+  &quot;Total function calls: &quot; + callCount + &quot;&lt;br&gt;&quot; +
+  &quot;(Check browser console for call logs)&quot;;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p5.png" alt=""></p>
+<h3>Example 5</h3>
+<p><strong>Result</strong> <a href="ex5-dynamic_functions/index.html">View Example</a></p>
+<h2>Document</h2>
+<p>Document in project</p>
+<p>You can <a href="js-proxy.pdf">Download PDF</a> file.</p>
+<h2>Reference</h2>
+<ul>
+<li><a href="https://www.w3schools.com/js/js_meta_proxy.asp">W3Schools JavaScript Proxy</a></li>
+</ul>
+
+</body>
+</html>

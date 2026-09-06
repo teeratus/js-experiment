@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>js-dom_navigation</title>
+  <style>
+    body {
+      box-sizing: border-box;
+      min-width: 200px;
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 45px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+      font-size: 16px;
+      line-height: 1.5;
+      color: #24292e;
+      background-color: #ffffff;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 24px;
+      margin-bottom: 16px;
+      font-weight: 600;
+      line-height: 1.25;
+      border-bottom: 1px solid #eaecef;
+      padding-bottom: .3em;
+    }
+    h1 { font-size: 2em; }
+    h2 { font-size: 1.5em; }
+    h3 { font-size: 1.25em; }
+    code {
+      padding: .2em .4em;
+      margin: 0;
+      font-size: 85%;
+      background-color: rgba(27,31,35,.05);
+      border-radius: 3px;
+      font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
+    }
+    pre {
+      padding: 16px;
+      overflow: auto;
+      font-size: 85%;
+      line-height: 1.45;
+      background-color: #f6f8fa;
+      border-radius: 3px;
+      word-wrap: normal;
+    }
+    pre code {
+      background-color: transparent;
+      padding: 0;
+    }
+    blockquote {
+      padding: 0 1em;
+      color: #6a737d;
+      border-left: .25em solid #dfe2e5;
+      margin: 0 0 16px 0;
+    }
+    table {
+      border-spacing: 0;
+      border-collapse: collapse;
+      margin-top: 0;
+      margin-bottom: 16px;
+      width: 100%;
+    }
+    table th, table td {
+      padding: 6px 13px;
+      border: 1px solid #dfe2e5;
+    }
+    table tr:nth-child(2n) {
+      background-color: #f6f8fa;
+    }
+    img {
+      max-width: 100%;
+      box-sizing: content-box;
+    }
+    @media print {
+      body {
+        max-width: 100%;
+        padding: 0;
+      }
+      pre, blockquote, table, tr, img {
+        page-break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+<body>
+<h1>JavaScript DOM Navigation</h1>
+<p><a href="../acp-js.php">Back to JS page</a></p>
+<p>Table of Contents</p>
+<ul>
+<li><a href="#javascript-dom-navigation">JavaScript DOM Navigation</a><ul>
+<li><a href="#dom-nodes">DOM Nodes</a></li>
+<li><a href="#child-nodes-and-node-values">Child Nodes and Node Values</a><ul>
+<li><a href="#example-1">Example 1</a></li>
+</ul>
+</li>
+<li><a href="#dom-root-nodes">DOM Root Nodes</a><ul>
+<li><a href="#example-2">Example 2</a></li>
+</ul>
+</li>
+<li><a href="#the-nodename-property">The nodeName Property</a><ul>
+<li><a href="#example-3">Example 3</a></li>
+</ul>
+</li>
+<li><a href="#the-nodetype-property">The nodeType Property</a><ul>
+<li><a href="#example-4">Example 4</a></li>
+</ul>
+</li>
+<li><a href="#navigating-between-nodes">Navigating Between Nodes</a><ul>
+<li><a href="#example-5">Example 5</a></li>
+</ul>
+</li>
+<li><a href="#document">Document</a></li>
+<li><a href="#reference">Reference</a></li>
+</ul>
+</li>
+</ul>
+<h2>DOM Nodes</h2>
+<p>According to the W3C HTML DOM standard, everything in an HTML document is a node:</p>
+<ul>
+<li>The entire document is a <strong>document node</strong></li>
+<li>Every HTML element is an <strong>element node</strong></li>
+<li>The text inside HTML elements are <strong>text nodes</strong></li>
+<li>Every HTML attribute is an <strong>attribute node</strong></li>
+<li>Comments are <strong>comment nodes</strong></li>
+</ul>
+<h2>Child Nodes and Node Values</h2>
+<p>You can access node values using <code>nodeValue</code> and <code>childNodes[0].nodeValue</code>. The <code>innerHTML</code> property returns the text content of an element:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript DOM Navigation&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Child Nodes and Node Values&lt;/h4&gt;
+
+&lt;p id=&quot;demo1&quot;&gt;Hello World!&lt;/p&gt;
+&lt;p id=&quot;demo2&quot;&gt;&lt;/p&gt;
+&lt;p id=&quot;demo3&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+const element = document.getElementById(&quot;demo1&quot;);
+
+// Access node value via childNodes
+document.getElementById(&quot;demo2&quot;).innerHTML =
+  &quot;Text via childNodes[0].nodeValue: &quot; + element.childNodes[0].nodeValue;
+
+// Access node value via innerHTML
+document.getElementById(&quot;demo3&quot;).innerHTML =
+  &quot;Text via innerHTML: &quot; + element.innerHTML;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p1.png" alt=""></p>
+<h3>Example 1</h3>
+<p><strong>Result</strong> <a href="ex1-node_values/index.html">View Example</a></p>
+<h2>DOM Root Nodes</h2>
+<p>There are two root nodes in the DOM tree:</p>
+<ul>
+<li><code>document.documentElement</code> - the full <code>&lt;html&gt;</code> element</li>
+<li><code>document.body</code> - the <code>&lt;body&gt;</code> element</li>
+</ul>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript DOM Navigation&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;DOM Root Nodes&lt;/h4&gt;
+&lt;p id=&quot;demo1&quot;&gt;&lt;/p&gt;
+&lt;p id=&quot;demo2&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+document.getElementById(&quot;demo1&quot;).innerHTML =
+  &quot;document.documentElement: &quot; + document.documentElement.tagName;
+
+document.getElementById(&quot;demo2&quot;).innerHTML =
+  &quot;document.body: &quot; + document.body.tagName;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p2.png" alt=""></p>
+<h3>Example 2</h3>
+<p><strong>Result</strong> <a href="ex2-root_nodes/index.html">View Example</a></p>
+<h2>The nodeName Property</h2>
+<p>The <code>nodeName</code> property returns the name of a node:</p>
+<ul>
+<li>For element nodes: the tag name (in uppercase)</li>
+<li>For text nodes: <code>#text</code></li>
+<li>For attribute nodes: the attribute name</li>
+<li>For document nodes: <code>#document</code></li>
+</ul>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript DOM Navigation&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;The nodeName Property&lt;/h4&gt;
+&lt;p id=&quot;demo1&quot;&gt;&lt;/p&gt;
+&lt;p id=&quot;demo2&quot;&gt;&lt;/p&gt;
+&lt;p id=&quot;demo3&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+document.getElementById(&quot;demo1&quot;).innerHTML =
+  &quot;document.nodeName: &quot; + document.nodeName;
+
+document.getElementById(&quot;demo2&quot;).innerHTML =
+  &quot;document.body.nodeName: &quot; + document.body.nodeName;
+
+const element = document.getElementById(&quot;demo1&quot;);
+document.getElementById(&quot;demo3&quot;).innerHTML =
+  &quot;First child nodeName: &quot; + element.childNodes[0].nodeName;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p3.png" alt=""></p>
+<h3>Example 3</h3>
+<p><strong>Result</strong> <a href="ex3-nodename/index.html">View Example</a></p>
+<h2>The nodeType Property</h2>
+<p>The <code>nodeType</code> property returns an integer that specifies the type of the node:</p>
+<table>
+<thead>
+<tr>
+<th>Value</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>Element</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Attribute</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Text</td>
+</tr>
+<tr>
+<td>8</td>
+<td>Comment</td>
+</tr>
+<tr>
+<td>9</td>
+<td>Document</td>
+</tr>
+</tbody></table>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript DOM Navigation&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;The nodeType Property&lt;/h4&gt;
+&lt;p id=&quot;demo1&quot;&gt;&lt;/p&gt;
+&lt;p id=&quot;demo2&quot;&gt;&lt;/p&gt;
+&lt;p id=&quot;demo3&quot;&gt;&lt;/p&gt;
+&lt;p id=&quot;demo4&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+document.getElementById(&quot;demo1&quot;).innerHTML =
+  &quot;document.nodeType: &quot; + document.nodeType + &quot; (Document)&quot;;
+
+document.getElementById(&quot;demo2&quot;).innerHTML =
+  &quot;document.body.nodeType: &quot; + document.body.nodeType + &quot; (Element)&quot;;
+
+const element = document.getElementById(&quot;demo1&quot;);
+document.getElementById(&quot;demo3&quot;).innerHTML =
+  &quot;First child nodeType: &quot; + element.childNodes[0].nodeType + &quot; (Text)&quot;;
+
+const comments = [];
+for (let node of document.body.childNodes) {
+  if (node.nodeType === 8) {
+    comments.push(node);
+  }
+}
+document.getElementById(&quot;demo4&quot;).innerHTML =
+  &quot;Number of comment nodes: &quot; + comments.length + &quot; (Comment)&quot;;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p4.png" alt=""></p>
+<h3>Example 4</h3>
+<p><strong>Result</strong> <a href="ex4-nodetype/index.html">View Example</a></p>
+<h2>Navigating Between Nodes</h2>
+<p>You can navigate the DOM tree using these properties:</p>
+<ul>
+<li><code>parentNode</code> - the parent node</li>
+<li><code>childNodes[nodenumber]</code> - child nodes (including text nodes)</li>
+<li><code>firstChild</code> - the first child node</li>
+<li><code>lastChild</code> - the last child node</li>
+<li><code>nextSibling</code> - the next sibling node</li>
+<li><code>previousSibling</code> - the previous sibling node</li>
+</ul>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript DOM Navigation&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Navigating Between Nodes&lt;/h4&gt;
+
+&lt;div id=&quot;container&quot;&gt;
+  &lt;p id=&quot;first&quot;&gt;First paragraph&lt;/p&gt;
+  &lt;p id=&quot;second&quot;&gt;Second paragraph&lt;/p&gt;
+  &lt;p id=&quot;third&quot;&gt;Third paragraph&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;p id=&quot;demo1&quot;&gt;&lt;/p&gt;
+&lt;p id=&quot;demo2&quot;&gt;&lt;/p&gt;
+&lt;p id=&quot;demo3&quot;&gt;&lt;/p&gt;
+&lt;p id=&quot;demo4&quot;&gt;&lt;/p&gt;
+&lt;p id=&quot;demo5&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+const second = document.getElementById(&quot;second&quot;);
+
+document.getElementById(&quot;demo1&quot;).innerHTML =
+  &quot;parentNode: &quot; + second.parentNode.id;
+
+document.getElementById(&quot;demo2&quot;).innerHTML =
+  &quot;previousSibling (element): &quot; + second.previousElementSibling.textContent;
+
+document.getElementById(&quot;demo3&quot;).innerHTML =
+  &quot;nextSibling (element): &quot; + second.nextElementSibling.textContent;
+
+const parent = document.getElementById(&quot;container&quot;);
+document.getElementById(&quot;demo4&quot;).innerHTML =
+  &quot;firstElementChild: &quot; + parent.firstElementChild.textContent;
+
+document.getElementById(&quot;demo5&quot;).innerHTML =
+  &quot;lastElementChild: &quot; + parent.lastElementChild.textContent;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p5.png" alt=""></p>
+<h3>Example 5</h3>
+<p><strong>Result</strong> <a href="ex5-navigation/index.html">View Example</a></p>
+<h2>Document</h2>
+<p>Document in project</p>
+<p>You can <a href="js-dom_navigation.pdf">Download PDF</a> file.</p>
+<h2>Reference</h2>
+<ul>
+<li><a href="https://www.w3schools.com/js/js_htmldom_navigation.asp">W3Schools JavaScript DOM Navigation</a></li>
+</ul>
+
+</body>
+</html>

@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>js-code_blocks</title>
+  <style>
+    body {
+      box-sizing: border-box;
+      min-width: 200px;
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 45px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+      font-size: 16px;
+      line-height: 1.5;
+      color: #24292e;
+      background-color: #ffffff;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 24px;
+      margin-bottom: 16px;
+      font-weight: 600;
+      line-height: 1.25;
+      border-bottom: 1px solid #eaecef;
+      padding-bottom: .3em;
+    }
+    h1 { font-size: 2em; }
+    h2 { font-size: 1.5em; }
+    h3 { font-size: 1.25em; }
+    code {
+      padding: .2em .4em;
+      margin: 0;
+      font-size: 85%;
+      background-color: rgba(27,31,35,.05);
+      border-radius: 3px;
+      font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
+    }
+    pre {
+      padding: 16px;
+      overflow: auto;
+      font-size: 85%;
+      line-height: 1.45;
+      background-color: #f6f8fa;
+      border-radius: 3px;
+      word-wrap: normal;
+    }
+    pre code {
+      background-color: transparent;
+      padding: 0;
+    }
+    blockquote {
+      padding: 0 1em;
+      color: #6a737d;
+      border-left: .25em solid #dfe2e5;
+      margin: 0 0 16px 0;
+    }
+    table {
+      border-spacing: 0;
+      border-collapse: collapse;
+      margin-top: 0;
+      margin-bottom: 16px;
+      width: 100%;
+    }
+    table th, table td {
+      padding: 6px 13px;
+      border: 1px solid #dfe2e5;
+    }
+    table tr:nth-child(2n) {
+      background-color: #f6f8fa;
+    }
+    img {
+      max-width: 100%;
+      box-sizing: content-box;
+    }
+    @media print {
+      body {
+        max-width: 100%;
+        padding: 0;
+      }
+      pre, blockquote, table, tr, img {
+        page-break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+<body>
+<h1>JavaScript Code Blocks</h1>
+<p><a href="../acp-js.php">Back to JS page</a></p>
+<p>Table of Contents</p>
+<ul>
+<li><a href="#javascript-code-blocks">JavaScript Code Blocks</a><ul>
+<li><a href="#code-blocks-and-statements">Code Blocks and Statements</a><ul>
+<li><a href="#example-1">Example 1</a></li>
+</ul>
+</li>
+<li><a href="#defining-scope">Defining Scope</a><ul>
+<li><a href="#example-2">Example 2</a></li>
+</ul>
+</li>
+<li><a href="#standalone-blocks">Standalone Blocks</a><ul>
+<li><a href="#example-3">Example 3</a></li>
+</ul>
+</li>
+<li><a href="#encapsulation">Encapsulation</a><ul>
+<li><a href="#example-4">Example 4</a></li>
+</ul>
+</li>
+<li><a href="#organized-code">Organized Code</a><ul>
+<li><a href="#example-5">Example 5</a></li>
+</ul>
+</li>
+<li><a href="#document">Document</a></li>
+<li><a href="#reference">Reference</a></li>
+</ul>
+</li>
+</ul>
+<h2>Code Blocks and Statements</h2>
+<p>JavaScript statements are grouped together in <strong>code blocks</strong>. A code block is defined by curly braces <code>{}</code>.</p>
+<p>Statements inside the same block execute together:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Code Blocks&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Code Blocks and Statements&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+// A code block groups statements together
+{
+  let x = 5;
+  let y = 10;
+  let result = x + y;
+  document.getElementById(&quot;demo&quot;).innerHTML =
+    &quot;x = &quot; + x + &quot;&lt;br&gt;&quot; +
+    &quot;y = &quot; + y + &quot;&lt;br&gt;&quot; +
+    &quot;x + y = &quot; + result;
+}
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p1.png" alt=""></p>
+<h3>Example 1</h3>
+<p><strong>Result</strong> <a href="ex1-code_block/index.html">View Example</a></p>
+<h2>Defining Scope</h2>
+<p>Code blocks define scope for variables declared with <code>let</code> and <code>const</code>. Variables declared inside a block are only accessible within that block:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Code Blocks&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Defining Scope&lt;/h4&gt;
+&lt;p id=&quot;demo1&quot;&gt;&lt;/p&gt;
+&lt;p id=&quot;demo2&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+// Outside block scope
+let globalResult = 0;
+
+{
+  // Inside block scope
+  let blockResult = 42;
+  globalResult = blockResult * 2;
+  document.getElementById(&quot;demo1&quot;).innerHTML =
+    &quot;Inside block - blockResult: &quot; + blockResult;
+}
+
+// blockResult is NOT accessible here
+// globalResult IS accessible
+document.getElementById(&quot;demo2&quot;).innerHTML =
+  &quot;Outside block - globalResult: &quot; + globalResult + &quot;&lt;br&gt;&quot; +
+  &quot;blockResult is not accessible outside the block&quot;;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p2.png" alt=""></p>
+<h3>Example 2</h3>
+<p><strong>Result</strong> <a href="ex2-defining_scope/index.html">View Example</a></p>
+<h2>Standalone Blocks</h2>
+<p>Blocks can be used on their own, without functions or control flow. They are useful for organizing temporary code:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Code Blocks&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Standalone Blocks&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+// Standalone block - no function or if statement needed
+{
+  let name = &quot;Alice&quot;;
+  let score = 95;
+
+  let grade = score &gt;= 90 ? &quot;A&quot; : &quot;B&quot;;
+
+  document.getElementById(&quot;demo&quot;).innerHTML =
+    &quot;Student: &quot; + name + &quot;&lt;br&gt;&quot; +
+    &quot;Score: &quot; + score + &quot;&lt;br&gt;&quot; +
+    &quot;Grade: &quot; + grade;
+}
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p3.png" alt=""></p>
+<h3>Example 3</h3>
+<p><strong>Result</strong> <a href="ex3-standalone_block/index.html">View Example</a></p>
+<h2>Encapsulation</h2>
+<p>Code blocks provide <strong>encapsulation</strong> - temporary variables are kept inside the block and don&#39;t pollute the global scope:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Code Blocks&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Encapsulation&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+let message = &quot;&quot;; // Global variable
+
+{
+  // Temporary variables - only used inside the block
+  let temp1 = 15;
+  let temp2 = 25;
+  let sum = temp1 + temp2;
+
+  message = &quot;Sum of temporary values: &quot; + sum;
+}
+
+// temp1, temp2, and sum are NOT accessible here
+// They are encapsulated inside the block
+document.getElementById(&quot;demo&quot;).innerHTML =
+  message + &quot;&lt;br&gt;&lt;br&gt;&quot; +
+  &quot;Temporary variables were kept inside the block&quot;;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p4.png" alt=""></p>
+<h3>Example 4</h3>
+<p><strong>Result</strong> <a href="ex4-encapsulation/index.html">View Example</a></p>
+<h2>Organized Code</h2>
+<p>Code blocks help organize code into logical sections, making it easier to read and maintain:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Code Blocks&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Organized Code&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+// Section 1: Calculate area
+{
+  const radius = 5;
+  let area = Math.PI * radius * radius;
+  document.getElementById(&quot;demo&quot;).innerHTML +=
+    &quot;Circle area: &quot; + area.toFixed(2) + &quot;&lt;br&gt;&quot;;
+}
+
+// Section 2: Calculate perimeter
+{
+  const width = 10;
+  const height = 6;
+  let perimeter = 2 * (width + height);
+  document.getElementById(&quot;demo&quot;).innerHTML +=
+    &quot;Rectangle perimeter: &quot; + perimeter + &quot;&lt;br&gt;&quot;;
+}
+
+// Section 3: Display summary
+{
+  let summary = &quot;Code organized into logical sections&quot;;
+  document.getElementById(&quot;demo&quot;).innerHTML += &quot;&lt;br&gt;&quot; + summary;
+}
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p5.png" alt=""></p>
+<h3>Example 5</h3>
+<p><strong>Result</strong> <a href="ex5-organized_code/index.html">View Example</a></p>
+<h2>Document</h2>
+<p>Document in project</p>
+<p>You can <a href="js-code_blocks.pdf">Download PDF</a> file.</p>
+<h2>Reference</h2>
+<ul>
+<li><a href="https://www.w3schools.com/js/js_codeblocks.asp">W3Schools JavaScript Code Blocks</a></li>
+</ul>
+
+</body>
+</html>

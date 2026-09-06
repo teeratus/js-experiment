@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript ArrayBuffer</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>ArrayBuffer.slice()</h4>
+<p id="demo"></p>
+
+<script>
+const buffer = new ArrayBuffer(16);
+const view = new Uint8Array(buffer);
+
+// Fill with values
+for (let i = 0; i < view.length; i++) {
+  view[i] = i * 10;
+}
+
+// Slice a portion
+const sliced = buffer.slice(4, 12);
+const slicedView = new Uint8Array(sliced);
+
+let text = "Original buffer: ";
+for (let i = 0; i < view.length; i++) text += view[i] + " ";
+text += "<br>";
+
+text += "Sliced buffer (bytes 4-12): ";
+for (let i = 0; i < slicedView.length; i++) text += slicedView[i] + " ";
+text += "<br><br>";
+
+text += "Original byteLength: " + buffer.byteLength + "<br>";
+text += "Sliced byteLength: " + sliced.byteLength;
+
+document.getElementById("demo").innerHTML = text;
+</script>
+
+</body>
+</html>

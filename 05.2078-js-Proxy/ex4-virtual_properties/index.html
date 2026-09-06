@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Proxy</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Virtual Properties</h4>
+<p id="demo"></p>
+
+<script>
+const person = {
+  firstName: "John",
+  lastName: "Doe",
+  birthYear: 1990
+};
+
+const handler = {
+  get: function(target, property) {
+    if (property === "fullName") {
+      return target.firstName + " " + target.lastName;
+    }
+    if (property === "age") {
+      const year = new Date().getFullYear();
+      return year - target.birthYear;
+    }
+    return target[property];
+  }
+};
+
+const proxy = new Proxy(person, handler);
+
+document.getElementById("demo").innerHTML =
+  "firstName: " + proxy.firstName + "<br>" +
+  "lastName: " + proxy.lastName + "<br>" +
+  "fullName (virtual): " + proxy.fullName + "<br>" +
+  "age (virtual): " + proxy.age;
+</script>
+
+</body>
+</html>

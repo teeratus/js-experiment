@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Object this</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>this in an Object Method</h4>
+<p id="demo"></p>
+
+<script>
+const person = {
+  firstName: "John",
+  lastName: "Doe",
+  age: 30,
+  fullName: function() {
+    return this.firstName + " " + this.lastName;
+  },
+  birthYear: function() {
+    const year = new Date().getFullYear();
+    return year - this.age;
+  }
+};
+
+document.getElementById("demo").innerHTML =
+  "Full name: " + person.fullName() + "<br>" +
+  "Born in: " + person.birthYear();
+</script>
+
+</body>
+</html>

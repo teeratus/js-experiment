@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Proxy</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Dynamic Functions</h4>
+<p id="demo"></p>
+
+<script>
+function greet(name) {
+  return "Hello, " + name + "!";
+}
+
+const handler = {
+  apply: function(target, thisArg, args) {
+    console.log("Function called with arguments:", args);
+    console.log("Call count: " + (++callCount));
+    return target.apply(thisArg, args);
+  }
+};
+
+let callCount = 0;
+const proxy = new Proxy(greet, handler);
+
+// Call through proxy
+let result1 = proxy("Alice");
+let result2 = proxy("Bob");
+let result3 = proxy("Charlie");
+
+document.getElementById("demo").innerHTML =
+  result1 + "<br>" +
+  result2 + "<br>" +
+  result3 + "<br><br>" +
+  "Total function calls: " + callCount + "<br>" +
+  "(Check browser console for call logs)";
+</script>
+
+</body>
+</html>

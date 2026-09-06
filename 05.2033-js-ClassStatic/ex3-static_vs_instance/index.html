@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Class Static</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Static vs Instance Methods</h4>
+<p id="demo1"></p>
+<p id="demo2"></p>
+<p id="demo3"></p>
+
+<script>
+class Car {
+  constructor(name) {
+    this.name = name;
+  }
+  // Instance method
+  start() {
+    return this.name + " engine started!";
+  }
+  // Static method
+  static description() {
+    return "A car is a wheeled motor vehicle used for transportation.";
+  }
+}
+
+const myCar = new Car("Ford");
+
+// Call instance method on the object
+document.getElementById("demo1").innerHTML = myCar.start();
+
+// Call static method on the class
+document.getElementById("demo2").innerHTML = Car.description();
+
+// Trying to call static method on an instance would cause an error
+try {
+  myCar.description();
+} catch(err) {
+  document.getElementById("demo3").innerHTML = "Error: " + err.message;
+}
+</script>
+
+</body>
+</html>

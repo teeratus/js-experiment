@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript toLocaleString()</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>A Clever Use: Readable File Sizes</h4>
+<p id="demo"></p>
+
+<script>
+function fileSize(bytes) {
+  if (bytes < 1024) return bytes + " bytes";
+  if (bytes < 1024 * 1024) return (bytes / 1024).toLocaleString("en-US", {maximumFractionDigits: 1}) + " KB";
+  return (bytes / 1024 / 1024).toLocaleString("en-US", {maximumFractionDigits: 1}) + " MB";
+}
+
+let size = 1536000;
+let text = fileSize(size);
+
+document.getElementById("demo").innerHTML = text;
+</script>
+
+</body>
+</html>

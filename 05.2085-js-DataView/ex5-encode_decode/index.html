@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript DataView</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Encoding and Decoding a Record</h4>
+<p id="demo"></p>
+
+<script>
+// Define a record structure
+function encodeRecord(id, score, name) {
+  const buf = new ArrayBuffer(16);
+  const dv = new DataView(buf);
+  dv.setInt32(0, id);               // ID (4 bytes)
+  dv.setFloat64(4, score);           // Score (8 bytes)
+  for (let i = 0; i < name.length; i++) {
+    dv.setUint8(12 + i, name.charCodeAt(i)); // Name chars
+  }
+  dv.setUint8(15, 0);               // Null terminator
+  return buf;
+}
+
+function decodeRecord(buf) {
+  const dv = new DataView(buf);
+  const id = dv.getInt32(0);
+  const score = dv.getFloat64(4);
+  let name = "";
+  for (let i = 12; i < 16; i++) {
+    const ch = dv.getUint8(i);
+    if (ch === 0) break;
+    name += String.fromCharCode(ch);
+  }
+  return { id, score, name };
+}
+
+// Encode a record
+const buffer = encodeRecord(101, 95.5, "Bob");
+const decoded = decodeRecord(buffer);
+
+let text = "Binary Record (16 bytes):<br><br>";
+text += "Encoded:<br>";
+const view = new Uint8Array(buffer);
+for (let b of view) text += b.toString(16).padStart(2, "0") + " ";
+text += "<br><br>";
+
+text += "Decoded:<br>";
+text += "ID: " + decoded.id + "<br>";
+text += "Score: " + decoded.score + "<br>";
+text += "Name: " + decoded.name;
+
+document.getElementById("demo").innerHTML = text;
+</script>
+
+</body>
+</html>

@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>js-destructuring</title>
+  <style>
+    body {
+      box-sizing: border-box;
+      min-width: 200px;
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 45px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+      font-size: 16px;
+      line-height: 1.5;
+      color: #24292e;
+      background-color: #ffffff;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 24px;
+      margin-bottom: 16px;
+      font-weight: 600;
+      line-height: 1.25;
+      border-bottom: 1px solid #eaecef;
+      padding-bottom: .3em;
+    }
+    h1 { font-size: 2em; }
+    h2 { font-size: 1.5em; }
+    h3 { font-size: 1.25em; }
+    code {
+      padding: .2em .4em;
+      margin: 0;
+      font-size: 85%;
+      background-color: rgba(27,31,35,.05);
+      border-radius: 3px;
+      font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
+    }
+    pre {
+      padding: 16px;
+      overflow: auto;
+      font-size: 85%;
+      line-height: 1.45;
+      background-color: #f6f8fa;
+      border-radius: 3px;
+      word-wrap: normal;
+    }
+    pre code {
+      background-color: transparent;
+      padding: 0;
+    }
+    blockquote {
+      padding: 0 1em;
+      color: #6a737d;
+      border-left: .25em solid #dfe2e5;
+      margin: 0 0 16px 0;
+    }
+    table {
+      border-spacing: 0;
+      border-collapse: collapse;
+      margin-top: 0;
+      margin-bottom: 16px;
+      width: 100%;
+    }
+    table th, table td {
+      padding: 6px 13px;
+      border: 1px solid #dfe2e5;
+    }
+    table tr:nth-child(2n) {
+      background-color: #f6f8fa;
+    }
+    img {
+      max-width: 100%;
+      box-sizing: content-box;
+    }
+    @media print {
+      body {
+        max-width: 100%;
+        padding: 0;
+      }
+      pre, blockquote, table, tr, img {
+        page-break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+<body>
+<h1>JavaScript Destructuring</h1>
+<p><a href="../acp-js.php">Back to JS page</a></p>
+<p>Table of Contents</p>
+<ul>
+<li><a href="#javascript-destructuring">JavaScript Destructuring</a><ul>
+<li><a href="#destructuring-assignment-syntax">Destructuring Assignment Syntax</a><ul>
+<li><a href="#example-1">Example 1</a></li>
+</ul>
+</li>
+<li><a href="#object-destructuring">Object Destructuring</a><ul>
+<li><a href="#example-2">Example 2</a></li>
+</ul>
+</li>
+<li><a href="#string-destructuring">String Destructuring</a><ul>
+<li><a href="#example-3">Example 3</a></li>
+</ul>
+</li>
+<li><a href="#array-destructuring">Array Destructuring</a><ul>
+<li><a href="#example-4">Example 4</a></li>
+</ul>
+</li>
+<li><a href="#destructuring-maps">Destructuring Maps</a><ul>
+<li><a href="#example-5">Example 5</a></li>
+</ul>
+</li>
+<li><a href="#swapping-javascript-variables">Swapping JavaScript Variables</a><ul>
+<li><a href="#example-6">Example 6</a></li>
+</ul>
+</li>
+<li><a href="#document">Document</a></li>
+<li><a href="#reference">Reference</a></li>
+</ul>
+</li>
+</ul>
+<h2>Destructuring Assignment Syntax</h2>
+<p>The <strong>destructuring assignment</strong> syntax is a JavaScript expression that makes it possible to unpack values from arrays, or properties from objects, into distinct variables.</p>
+<p>Destructuring makes it easy to extract only what is needed from data.</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Destructuring&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Destructuring Assignment Syntax&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+// Create an Array
+const vehicles = [&quot;mustang&quot;, &quot;f-150&quot;, &quot;expedition&quot;];
+
+// Old way
+const car = vehicles[0];
+const truck = vehicles[1];
+const suv = vehicles[2];
+
+// New way - Destructuring
+const [car2, truck2, suv2] = vehicles;
+
+document.getElementById(&quot;demo&quot;).innerHTML =
+  &quot;Destructured: &quot; + car2 + &quot;, &quot; + truck2 + &quot;, &quot; + suv2;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p1.png" alt=""></p>
+<h3>Example 1</h3>
+<p><strong>Result</strong> <a href="ex1-destructuring_syntax/index.html">View Example</a></p>
+<h2>Object Destructuring</h2>
+<p>Object destructuring allows you to extract properties from objects and assign them to variables. You can also assign <strong>default values</strong> and use <strong>property aliases</strong>.</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Destructuring&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Object Destructuring&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+// Create an Object
+const person = {
+  firstName: &quot;John&quot;,
+  lastName: &quot;Doe&quot;,
+  age: 50
+};
+
+// Destructuring
+let {firstName, lastName} = person;
+
+// Default values
+const {firstName: fName, country = &quot;US&quot;} = person;
+
+// Property alias
+const {lastName: lName} = person;
+
+document.getElementById(&quot;demo&quot;).innerHTML =
+  firstName + &quot; &quot; + lastName + &quot;&lt;br&gt;&quot; +
+  &quot;Alias: &quot; + fName + &quot; &quot; + lName + &quot;&lt;br&gt;&quot; +
+  &quot;Country (default): &quot; + country;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p2.png" alt=""></p>
+<h3>Example 2</h3>
+<p><strong>Result</strong> <a href="ex2-object_destructuring/index.html">View Example</a></p>
+<h2>String Destructuring</h2>
+<p>You can use destructuring to unpack characters from a string into variables.</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Destructuring&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;String Destructuring&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+// Create a String
+let name = &quot;W3Schools&quot;;
+
+// Destructuring
+let [a1, a2, a3, a4, a5] = name;
+
+document.getElementById(&quot;demo&quot;).innerHTML =
+  a1 + &quot; &quot; + a2 + &quot; &quot; + a3 + &quot; &quot; + a4 + &quot; &quot; + a5;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p3.png" alt=""></p>
+<h3>Example 3</h3>
+<p><strong>Result</strong> <a href="ex3-string_destructuring/index.html">View Example</a></p>
+<h2>Array Destructuring</h2>
+<p>Array destructuring allows unpacking array values into separate variables. You can <strong>skip values</strong> using commas, use <strong>position values</strong>, and capture remaining elements with the <strong>rest property</strong> (<code>...</code>).</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Destructuring&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Array Destructuring&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+const numbers = [10, 20, 30, 40, 50, 60, 70];
+
+// Basic array destructuring
+const [x, y] = numbers;
+
+// Skipping array values
+const [a, , , b] = numbers;
+
+// Array position values
+const {[0]:p1, [1]:p2} = numbers;
+
+// The rest property
+const [first, second, ...rest] = numbers;
+
+document.getElementById(&quot;demo&quot;).innerHTML =
+  &quot;x = &quot; + x + &quot;, y = &quot; + y + &quot;&lt;br&gt;&quot; +
+  &quot;Skipped: a = &quot; + a + &quot;, b = &quot; + b + &quot;&lt;br&gt;&quot; +
+  &quot;Position: p1 = &quot; + p1 + &quot;, p2 = &quot; + p2 + &quot;&lt;br&gt;&quot; +
+  &quot;Rest: first = &quot; + first + &quot;, second = &quot; + second + &quot;, rest = [&quot; + rest + &quot;]&quot;;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p4.png" alt=""></p>
+<h3>Example 4</h3>
+<p><strong>Result</strong> <a href="ex4-array_destructuring/index.html">View Example</a></p>
+<h2>Destructuring Maps</h2>
+<p>Destructuring can also be used with Maps to extract key-value pairs.</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Destructuring&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Destructuring Maps&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+// Create a Map
+const fruits = new Map([
+  [&quot;apples&quot;, 500],
+  [&quot;bananas&quot;, 300],
+  [&quot;oranges&quot;, 200]
+]);
+
+let text = &quot;&quot;;
+
+// Destructuring Maps
+for (const [key, value] of fruits) {
+  text += key + &quot; is &quot; + value + &quot;&lt;br&gt;&quot;;
+}
+
+document.getElementById(&quot;demo&quot;).innerHTML = text;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p5.png" alt=""></p>
+<h3>Example 5</h3>
+<p><strong>Result</strong> <a href="ex5-destructuring_maps/index.html">View Example</a></p>
+<h2>Swapping JavaScript Variables</h2>
+<p>Destructuring makes it easy to swap the values of two variables without needing a temporary third variable.</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Destructuring&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Swapping JavaScript Variables&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+let firstName = &quot;John&quot;;
+let lastName = &quot;Doe&quot;;
+
+document.getElementById(&quot;demo&quot;).innerHTML =
+  &quot;Before: &quot; + firstName + &quot; &quot; + lastName + &quot;&lt;br&gt;&quot;;
+
+// Swapping variables with destructuring
+[firstName, lastName] = [lastName, firstName];
+
+document.getElementById(&quot;demo&quot;).innerHTML +=
+  &quot;After: &quot; + firstName + &quot; &quot; + lastName;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p6.png" alt=""></p>
+<h3>Example 6</h3>
+<p><strong>Result</strong> <a href="ex6-swapping_variables/index.html">View Example</a></p>
+<h2>Document</h2>
+<p>Document in project</p>
+<p>You can <a href="js-destructuring.pdf">Download PDF</a> file.</p>
+<h2>Reference</h2>
+<ul>
+<li><a href="https://www.w3schools.com/js/js_destructuring.asp">W3Schools JavaScript Destructuring</a></li>
+</ul>
+
+</body>
+</html>

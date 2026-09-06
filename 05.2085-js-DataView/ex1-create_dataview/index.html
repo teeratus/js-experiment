@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript DataView</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Creating a DataView</h4>
+<p id="demo"></p>
+
+<script>
+const buffer = new ArrayBuffer(16);
+const dataView = new DataView(buffer);
+
+let text = "DataView created from ArrayBuffer(16)<br>";
+text += "buffer: " + dataView.buffer.byteLength + " bytes<br>";
+text += "byteOffset: " + dataView.byteOffset + "<br>";
+text += "byteLength: " + dataView.byteLength;
+
+document.getElementById("demo").innerHTML = text;
+</script>
+
+</body>
+</html>

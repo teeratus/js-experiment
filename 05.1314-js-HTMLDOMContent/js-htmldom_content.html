@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>js-htmldom_content</title>
+  <style>
+    body {
+      box-sizing: border-box;
+      min-width: 200px;
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 45px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+      font-size: 16px;
+      line-height: 1.5;
+      color: #24292e;
+      background-color: #ffffff;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 24px;
+      margin-bottom: 16px;
+      font-weight: 600;
+      line-height: 1.25;
+      border-bottom: 1px solid #eaecef;
+      padding-bottom: .3em;
+    }
+    h1 { font-size: 2em; }
+    h2 { font-size: 1.5em; }
+    h3 { font-size: 1.25em; }
+    code {
+      padding: .2em .4em;
+      margin: 0;
+      font-size: 85%;
+      background-color: rgba(27,31,35,.05);
+      border-radius: 3px;
+      font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
+    }
+    pre {
+      padding: 16px;
+      overflow: auto;
+      font-size: 85%;
+      line-height: 1.45;
+      background-color: #f6f8fa;
+      border-radius: 3px;
+      word-wrap: normal;
+    }
+    pre code {
+      background-color: transparent;
+      padding: 0;
+    }
+    blockquote {
+      padding: 0 1em;
+      color: #6a737d;
+      border-left: .25em solid #dfe2e5;
+      margin: 0 0 16px 0;
+    }
+    table {
+      border-spacing: 0;
+      border-collapse: collapse;
+      margin-top: 0;
+      margin-bottom: 16px;
+      width: 100%;
+    }
+    table th, table td {
+      padding: 6px 13px;
+      border: 1px solid #dfe2e5;
+    }
+    table tr:nth-child(2n) {
+      background-color: #f6f8fa;
+    }
+    img {
+      max-width: 100%;
+      box-sizing: content-box;
+    }
+    @media print {
+      body {
+        max-width: 100%;
+        padding: 0;
+      }
+      pre, blockquote, table, tr, img {
+        page-break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+<body>
+<h1>JavaScript HTML DOM Content</h1>
+<p><a href="../acp-js.php">Back to JS page</a></p>
+<p>Table of Contents</p>
+<ul>
+<li><a href="#javascript-html-dom-content">JavaScript HTML DOM Content</a><ul>
+<li><a href="#changing-html-content">Changing HTML Content</a><ul>
+<li><a href="#example-1">Example 1</a></li>
+</ul>
+</li>
+<li><a href="#the-innerhtml-property">The innerHTML Property</a><ul>
+<li><a href="#example-2">Example 2</a></li>
+</ul>
+</li>
+<li><a href="#changing-an-attribute">Changing an Attribute</a><ul>
+<li><a href="#example-3">Example 3</a></li>
+</ul>
+</li>
+<li><a href="#dynamic-html-content">Dynamic HTML content</a><ul>
+<li><a href="#example-4">Example 4</a></li>
+</ul>
+</li>
+<li><a href="#documentwrite">document.write()</a><ul>
+<li><a href="#example-5">Example 5</a></li>
+</ul>
+</li>
+<li><a href="#document">Document</a></li>
+<li><a href="#reference">Reference</a></li>
+</ul>
+</li>
+</ul>
+<h2>Changing HTML Content</h2>
+<p>The easiest way to change the content of an HTML element is by using the <code>innerHTML</code> property.</p>
+<p>To change the content of an HTML element, use this syntax:</p>
+<p><code>document.getElementById(id).innerHTML = new text</code></p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript HTML DOM Content&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Changing HTML Content&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;Original text&lt;/p&gt;
+&lt;button type=&quot;button&quot; onclick=&quot;document.getElementById(&#39;demo&#39;).innerHTML = &#39;Hello JavaScript!&#39;&quot;&gt;Click Me!&lt;/button&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p1.png" alt=""></p>
+<h3>Example 1</h3>
+<p><strong>Result</strong> <a href="ex1-changing_content/index.html">View Example</a></p>
+<h2>The innerHTML Property</h2>
+<p>The <code>innerHTML</code> property can be used to get or change any HTML element, including <code>&lt;html&gt;</code> and <code>&lt;body&gt;</code>:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript HTML DOM Content&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;The innerHTML Property&lt;/h4&gt;
+&lt;p id=&quot;demo1&quot;&gt;First paragraph&lt;/p&gt;
+&lt;p id=&quot;demo2&quot;&gt;Second paragraph&lt;/p&gt;
+
+&lt;script&gt;
+document.getElementById(&quot;demo1&quot;).innerHTML = &quot;Content changed!&quot;;
+document.getElementById(&quot;demo2&quot;).innerHTML = &quot;&lt;b&gt;Bold text&lt;/b&gt; with HTML tags&quot;;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p2.png" alt=""></p>
+<h3>Example 2</h3>
+<p><strong>Result</strong> <a href="ex2-innerhtml_property/index.html">View Example</a></p>
+<h2>Changing an Attribute</h2>
+<p>To change an HTML attribute, use this syntax:</p>
+<p><code>document.getElementById(id).attribute = new value</code></p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript HTML DOM Content&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Changing an Attribute&lt;/h4&gt;
+&lt;img id=&quot;image&quot; src=&quot;https://www.w3schools.com/js/pic_bulboff.gif&quot; width=&quot;100&quot; height=&quot;180&quot;&gt;
+&lt;p&gt;
+&lt;button type=&quot;button&quot; onclick=&quot;document.getElementById(&#39;image&#39;).src=&#39;https://www.w3schools.com/js/pic_bulbon.gif&#39;&quot;&gt;Turn on the light&lt;/button&gt;
+&lt;button type=&quot;button&quot; onclick=&quot;document.getElementById(&#39;image&#39;).src=&#39;https://www.w3schools.com/js/pic_bulboff.gif&#39;&quot;&gt;Turn off the light&lt;/button&gt;
+&lt;/p&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p3.png" alt=""></p>
+<h3>Example 3</h3>
+<p><strong>Result</strong> <a href="ex3-changing_attribute/index.html">View Example</a></p>
+<h2>Dynamic HTML content</h2>
+<p>JavaScript can create dynamic HTML content:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript HTML DOM Content&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Dynamic HTML content&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+const date = new Date();
+document.getElementById(&quot;demo&quot;).innerHTML = &quot;Today&#39;s date: &quot; + date;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p4.png" alt=""></p>
+<h3>Example 4</h3>
+<p><strong>Result</strong> <a href="ex4-dynamic_content/index.html">View Example</a></p>
+<h2>document.write()</h2>
+<p>The <code>document.write()</code> method can be used to write directly to the HTML output stream:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript HTML DOM Content&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;document.write()&lt;/h4&gt;
+&lt;p&gt;Note: document.write() clears the document if used after the document has loaded.&lt;/p&gt;
+
+&lt;script&gt;
+document.write(&quot;Hello from document.write!&quot;);
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p5.png" alt=""></p>
+<h3>Example 5</h3>
+<p><strong>Result</strong> <a href="ex5-document_write/index.html">View Example</a></p>
+<h2>Document</h2>
+<p>Document in project</p>
+<p>You can <a href="js-htmldom_content.pdf">Download PDF</a> file.</p>
+<h2>Reference</h2>
+<ul>
+<li><a href="https://www.w3schools.com/js/js_htmldom_html.asp">W3Schools JavaScript HTML DOM Content</a></li>
+</ul>
+
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Dynamic Import</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Another Example</h4>
+<button onclick="loadTemp()">Load Temperature Module</button>
+<p id="demo"></p>
+
+<script>
+function loadTemp() {
+  import('./temperatures.js')
+    .then(function(module) {
+      document.getElementById("demo").innerHTML =
+        "Temperature conversions:<br>" +
+        "32°F = " + module.toCelsius(32).toFixed(1) + "°C<br>" +
+        "100°F = " + module.toCelsius(100).toFixed(1) + "°C<br>" +
+        "0°C = " + module.toFahrenheit(0).toFixed(1) + "°F<br>" +
+        "100°C = " + module.toKelvin(100).toFixed(1) + "K";
+    })
+    .catch(function(err) {
+      document.getElementById("demo").innerHTML = "Error: " + err.message;
+    });
+}
+</script>
+
+</body>
+</html>

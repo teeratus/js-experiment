@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript RegExp Characters</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Character Range [1-4]</h4>
+<p id="demo"></p>
+
+<script>
+const text = "123456789";
+const matches = text.match(/[1-4]/g);
+
+document.getElementById("demo").innerHTML =
+  "Text: " + text + "<br><br>" +
+  "match(/[1-4]/g): " + matches + "<br>" +
+  "Range syntax = same as [1234]";
+</script>
+
+</body>
+</html>

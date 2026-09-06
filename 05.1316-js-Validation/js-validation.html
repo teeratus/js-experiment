@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>js-validation</title>
+  <style>
+    body {
+      box-sizing: border-box;
+      min-width: 200px;
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 45px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+      font-size: 16px;
+      line-height: 1.5;
+      color: #24292e;
+      background-color: #ffffff;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 24px;
+      margin-bottom: 16px;
+      font-weight: 600;
+      line-height: 1.25;
+      border-bottom: 1px solid #eaecef;
+      padding-bottom: .3em;
+    }
+    h1 { font-size: 2em; }
+    h2 { font-size: 1.5em; }
+    h3 { font-size: 1.25em; }
+    code {
+      padding: .2em .4em;
+      margin: 0;
+      font-size: 85%;
+      background-color: rgba(27,31,35,.05);
+      border-radius: 3px;
+      font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
+    }
+    pre {
+      padding: 16px;
+      overflow: auto;
+      font-size: 85%;
+      line-height: 1.45;
+      background-color: #f6f8fa;
+      border-radius: 3px;
+      word-wrap: normal;
+    }
+    pre code {
+      background-color: transparent;
+      padding: 0;
+    }
+    blockquote {
+      padding: 0 1em;
+      color: #6a737d;
+      border-left: .25em solid #dfe2e5;
+      margin: 0 0 16px 0;
+    }
+    table {
+      border-spacing: 0;
+      border-collapse: collapse;
+      margin-top: 0;
+      margin-bottom: 16px;
+      width: 100%;
+    }
+    table th, table td {
+      padding: 6px 13px;
+      border: 1px solid #dfe2e5;
+    }
+    table tr:nth-child(2n) {
+      background-color: #f6f8fa;
+    }
+    img {
+      max-width: 100%;
+      box-sizing: content-box;
+    }
+    @media print {
+      body {
+        max-width: 100%;
+        padding: 0;
+      }
+      pre, blockquote, table, tr, img {
+        page-break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+<body>
+<h1>JavaScript Validation</h1>
+<p><a href="../acp-js.php">Back to JS page</a></p>
+<p>Table of Contents</p>
+<ul>
+<li><a href="#javascript-validation">JavaScript Validation</a><ul>
+<li><a href="#javascript-form-validation">JavaScript Form Validation</a><ul>
+<li><a href="#example-1">Example 1</a></li>
+</ul>
+</li>
+<li><a href="#javascript-can-validate-numeric-input">JavaScript Can Validate Numeric Input</a><ul>
+<li><a href="#example-2">Example 2</a></li>
+</ul>
+</li>
+<li><a href="#automatic-html-form-validation">Automatic HTML Form Validation</a><ul>
+<li><a href="#example-3">Example 3</a></li>
+</ul>
+</li>
+<li><a href="#data-validation">Data Validation</a></li>
+<li><a href="#html-constraint-validation">HTML Constraint Validation</a></li>
+<li><a href="#document">Document</a></li>
+<li><a href="#reference">Reference</a></li>
+</ul>
+</li>
+</ul>
+<h2>JavaScript Form Validation</h2>
+<p>HTML form validation can be done by JavaScript.</p>
+<p>If a form field (fname) is empty, the <code>required</code> attribute prevents form submission:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Validation&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Form Validation&lt;/h4&gt;
+&lt;form action=&quot;/action_page.php&quot; method=&quot;post&quot;&gt;
+  &lt;label for=&quot;fname&quot;&gt;First name:&lt;/label&gt;
+  &lt;input type=&quot;text&quot; id=&quot;fname&quot; name=&quot;fname&quot; required&gt;
+  &lt;input type=&quot;submit&quot; value=&quot;Submit&quot;&gt;
+&lt;/form&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p1.png" alt=""></p>
+<h3>Example 1</h3>
+<p><strong>Result</strong> <a href="ex1-form_validation/index.html">View Example</a></p>
+<h2>JavaScript Can Validate Numeric Input</h2>
+<p>JavaScript is often used to validate numeric input:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Validation&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Validate Numeric Input&lt;/h4&gt;
+&lt;p&gt;Please input a number between 1 and 10:&lt;/p&gt;
+&lt;input id=&quot;numb&quot;&gt;
+&lt;button type=&quot;button&quot; onclick=&quot;myFunction()&quot;&gt;Submit&lt;/button&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+function myFunction() {
+  let x = document.getElementById(&quot;numb&quot;).value;
+  let text;
+  if (isNaN(x) || x &lt; 1 || x &gt; 10) {
+    text = &quot;Input not valid&quot;;
+  } else {
+    text = &quot;Input OK&quot;;
+  }
+  document.getElementById(&quot;demo&quot;).innerHTML = text;
+}
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p2.png" alt=""></p>
+<h3>Example 2</h3>
+<p><strong>Result</strong> <a href="ex2-numeric_validation/index.html">View Example</a></p>
+<h2>Automatic HTML Form Validation</h2>
+<p>HTML form validation can be performed automatically by the browser using the <code>required</code> attribute:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Validation&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Automatic HTML Form Validation&lt;/h4&gt;
+&lt;form action=&quot;/action_page.php&quot; method=&quot;post&quot;&gt;
+  &lt;label for=&quot;email&quot;&gt;Email:&lt;/label&gt;
+  &lt;input type=&quot;email&quot; id=&quot;email&quot; name=&quot;email&quot; required&gt;
+  &lt;input type=&quot;submit&quot; value=&quot;Submit&quot;&gt;
+&lt;/form&gt;
+&lt;p&gt;The required attribute prevents submission if the field is empty.&lt;/p&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p3.png" alt=""></p>
+<h3>Example 3</h3>
+<p><strong>Result</strong> <a href="ex3-auto_validation/index.html">View Example</a></p>
+<h2>Data Validation</h2>
+<p>Data validation is the process of ensuring that user input is clean, correct, and useful.</p>
+<p>Typical validation tasks:</p>
+<ul>
+<li>Has the user filled in all required fields?</li>
+<li>Has the user entered a valid date?</li>
+<li>Has the user entered text in a numeric field?</li>
+<li>Has the user entered a valid email address?</li>
+</ul>
+<p><strong>Constraint Validation HTML Input Attributes</strong></p>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>required</code></td>
+<td>Specifies that an input field must be filled in</td>
+</tr>
+<tr>
+<td><code>min</code> / <code>max</code></td>
+<td>Specifies min/max value of an input field</td>
+</tr>
+<tr>
+<td><code>minlength</code> / <code>maxlength</code></td>
+<td>Specifies min/max length of text input</td>
+</tr>
+<tr>
+<td><code>type</code></td>
+<td>Specifies the type of input (email, number, etc.)</td>
+</tr>
+<tr>
+<td><code>pattern</code></td>
+<td>Specifies a regex pattern for input validation</td>
+</tr>
+</tbody></table>
+<h2>HTML Constraint Validation</h2>
+<p>Constraint validation in HTML is based on:</p>
+<ul>
+<li><strong>Constraint validation HTML Input Attributes</strong> - described above</li>
+<li><strong>Constraint validation CSS Pseudo Selectors</strong> - style form elements based on validity:<ul>
+<li><code>:valid</code> - Selects form elements with a valid value</li>
+<li><code>:invalid</code> - Selects form elements with an invalid value</li>
+</ul>
+</li>
+</ul>
+<p>Example: Input fields with <code>type=&quot;email&quot;</code> will automatically be validated when the form is submitted. The <code>:valid</code> and <code>:invalid</code> CSS pseudo-classes allow you to style valid/invalid fields.</p>
+<h2>Document</h2>
+<p>Document in project</p>
+<p>You can <a href="js-validation.pdf">Download PDF</a> file.</p>
+<h2>Reference</h2>
+<ul>
+<li><a href="https://www.w3schools.com/js/js_validation.asp">W3Schools JavaScript Validation</a></li>
+</ul>
+
+</body>
+</html>

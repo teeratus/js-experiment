@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Async Common Mistakes</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Mistake 1: Forgetting await</h4>
+<p id="demo1"></p>
+<p id="demo2"></p>
+
+<script>
+async function getValue() {
+  return "Hello World";
+}
+
+// WRONG: missing await - returns a Promise object
+let wrong = getValue();
+document.getElementById("demo1").innerHTML = "Without await: " + wrong;
+
+// CORRECT: with await - returns the actual value
+async function correctVersion() {
+  let correct = await getValue();
+  document.getElementById("demo2").innerHTML = "With await: " + correct;
+}
+correctVersion();
+</script>
+
+</body>
+</html>

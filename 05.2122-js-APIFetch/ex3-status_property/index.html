@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript API Fetch</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>The status Property</h4>
+<p id="demo"></p>
+
+<script>
+function checkStatus(url) {
+  return fetch(url)
+    .then(function(response) {
+      let msg = "URL: " + url + "<br>";
+      msg += "Status: " + response.status + " " + response.statusText + "<br>";
+
+      if (response.status === 200) msg += "✓ Success (200 OK)";
+      else if (response.status === 201) msg += "✓ Created (201)";
+      else if (response.status === 404) msg += "✗ Not Found (404)";
+      else if (response.status >= 400 && response.status < 500) msg += "✗ Client Error (" + response.status + ")";
+      else if (response.status >= 500) msg += "✗ Server Error (" + response.status + ")";
+
+      msg += "<br><br>";
+      return msg;
+    });
+}
+
+// Check multiple URLs
+Promise.all([
+  checkStatus('https://jsonplaceholder.typicode.com/users/1'),
+  checkStatus('https://jsonplaceholder.typicode.com/users/nonexistent'),
+])
+  .then(function(results) {
+    document.getElementById("demo").innerHTML = results.join("");
+  });
+</script>
+
+</body>
+</html>

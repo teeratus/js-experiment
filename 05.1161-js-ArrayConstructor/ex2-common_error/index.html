@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Array Constructor</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>A Common Error</h4>
+<p id="demo"></p>
+
+<script>
+const arr = new Array(5);
+
+let text = "new Array(5):<br>";
+text += "Length: " + arr.length + "<br>";
+text += "Elements: " + arr + "<br><br>";
+text += "This creates 5 EMPTY slots, not an array with value 5!<br><br>";
+
+const correct = [5];
+text += "Correct way [5]: length = " + correct.length + ", value = " + correct[0];
+
+document.getElementById("demo").innerHTML = text;
+</script>
+
+</body>
+</html>

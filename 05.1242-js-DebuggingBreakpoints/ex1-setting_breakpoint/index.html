@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Debugging Breakpoints</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Setting a Breakpoint</h4>
+<p>Open the browser developer tools (F12), go to Sources tab, and click a line number to set a breakpoint.</p>
+<p id="demo"></p>
+
+<script>
+function add(a, b) {
+  let result = a + b;
+  return result;  // Set a breakpoint on this line
+}
+
+document.getElementById("demo").innerHTML = add(10, 5);
+console.log("Result: " + add(10, 5));
+</script>
+
+</body>
+</html>

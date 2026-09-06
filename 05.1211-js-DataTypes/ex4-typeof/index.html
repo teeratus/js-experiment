@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Data Types</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>The typeof Operator</h4>
+<p id="demo"></p>
+
+<script>
+let text = "";
+
+text += "typeof 'Hello': " + typeof "Hello" + "<br>";
+text += "typeof 42: " + typeof 42 + "<br>";
+text += "typeof 3.14: " + typeof 3.14 + "<br>";
+text += "typeof true: " + typeof true + "<br>";
+text += "typeof [1,2]: " + typeof [1,2] + " (arrays are objects)<br>";
+text += "typeof {}: " + typeof {} + "<br>";
+text += "typeof null: " + typeof null + " (null is object)<br>";
+text += "typeof undefined: " + typeof undefined + "<br>";
+text += "typeof function(): " + typeof function(){} + "<br>";
+text += "typeof NaN: " + typeof NaN + " (NaN is number)";
+
+document.getElementById("demo").innerHTML = text;
+</script>
+
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript var, let, const</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Reassignment vs. Redeclaration</h4>
+<p id="demo"></p>
+
+<script>
+// var - can be redeclared and reassigned
+var name = "John";
+var name = "Jane";     // Redeclaration OK
+name = "Bob";          // Reassignment OK
+
+// let - can be reassigned but NOT redeclared
+let age = 30;
+age = 31;              // Reassignment OK
+// let age = 32;       // Redeclaration ERROR
+
+// const - cannot be reassigned or redeclared
+const city = "New York";
+// city = "London";    // Reassignment ERROR
+// const city = "LA";  // Redeclaration ERROR
+
+document.getElementById("demo").innerHTML =
+  "var name: " + name + " (redeclared + reassigned)<br>" +
+  "let age: " + age + " (reassigned)<br>" +
+  "const city: " + city + " (cannot change)";
+</script>
+
+</body>
+</html>

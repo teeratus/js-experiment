@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+.flex-container {
+  display: flex;
+  flex-wrap: wrap;
+  background-color: #f1f1f1;
+  gap: 10px;
+  padding: 10px;
+}
+.flex-container > div {
+  background-color: #04AA6D;
+  color: white;
+  width: 150px;
+  text-align: center;
+  line-height: 75px;
+  font-size: 30px;
+  flex: 1 1 auto;
+}
+@media (max-width: 600px) {
+  .flex-container > div {
+    width: 100%;
+  }
+}
+</style>
+</head>
+<body>
+
+<h2>JavaScript CSS Features</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Responsive Layouts (CSS only)</h4>
+<p>Resize the browser window to see the responsive effect.</p>
+
+<div class="flex-container">
+  <div>1</div>
+  <div>2</div>
+  <div>3</div>
+  <div>4</div>
+</div>
+
+</body>
+</html>

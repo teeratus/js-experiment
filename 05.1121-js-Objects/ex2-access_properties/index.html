@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Objects</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Accessing Properties</h4>
+<p id="demo1"></p>
+<p id="demo2"></p>
+<p id="demo3"></p>
+
+<script>
+const person = {
+  firstName: "John",
+  lastName: "Doe",
+  age: 30
+};
+
+// Dot notation
+document.getElementById("demo1").innerHTML =
+  "Dot notation: " + person.firstName + " " + person.lastName;
+
+// Bracket notation
+document.getElementById("demo2").innerHTML =
+  "Bracket notation: " + person["firstName"] + " " + person["lastName"];
+
+// Using a variable
+const key = "age";
+document.getElementById("demo3").innerHTML =
+  "Using variable: " + person[key];
+</script>
+
+</body>
+</html>

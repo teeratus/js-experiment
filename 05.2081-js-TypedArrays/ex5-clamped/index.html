@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Typed Arrays</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Uint8Array vs Uint8ClampedArray</h4>
+<p id="demo"></p>
+
+<script>
+// Uint8Array - wraps around (modulo 256)
+const uint8 = new Uint8Array([-10, 0, 100, 255, 300]);
+
+// Uint8ClampedArray - clamps to 0 or 255
+const clamped = new Uint8ClampedArray([-10, 0, 100, 255, 300]);
+
+let text = "Uint8Array (wraps around):<br>";
+for (let num of uint8) {
+  text += num + " ";
+}
+text += "<br>(-10 wraps to " + uint8[0] + ", 300 wraps to " + uint8[4] + ")";
+text += "<br><br>";
+
+text += "Uint8ClampedArray (clamps):<br>";
+for (let num of clamped) {
+  text += num + " ";
+}
+text += "<br>(-10 clamped to " + clamped[0] + ", 300 clamped to " + clamped[4] + ")";
+
+document.getElementById("demo").innerHTML = text;
+</script>
+
+</body>
+</html>

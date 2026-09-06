@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript ArrayBuffer</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>SharedArrayBuffer</h4>
+<p id="demo"></p>
+
+<script>
+// Create a SharedArrayBuffer
+const sharedBuffer = new SharedArrayBuffer(16);
+const sharedView = new Int32Array(sharedBuffer);
+
+// Write values
+for (let i = 0; i < sharedView.length; i++) {
+  sharedView[i] = i * 100;
+}
+
+let text = "SharedArrayBuffer created with 16 bytes<br>";
+text += "byteLength: " + sharedBuffer.byteLength + "<br>";
+text += "Int32Array length: " + sharedView.length + " (4 bytes each)<br><br>";
+
+text += "Values: ";
+for (let i = 0; i < sharedView.length; i++) {
+  text += sharedView[i] + " ";
+}
+text += "<br><br>";
+
+text += "SharedArrayBuffer can be used with:<br>";
+text += "- Atomics.add()<br>";
+text += "- Atomics.load()<br>";
+text += "- Atomics.store()<br>";
+text += "- Web Workers for multi-threading";
+
+document.getElementById("demo").innerHTML = text;
+</script>
+
+</body>
+</html>

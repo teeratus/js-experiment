@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Reflect</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Reflect.has()</h4>
+<p id="demo"></p>
+
+<script>
+const person = {
+  firstName: "John",
+  lastName: "Doe",
+  age: 30
+};
+
+// Check if properties exist using Reflect.has()
+let text = "Checking properties using Reflect.has():<br>";
+text += "Has 'firstName': " + Reflect.has(person, "firstName") + "<br>";
+text += "Has 'email': " + Reflect.has(person, "email") + "<br>";
+text += "Has 'age': " + Reflect.has(person, "age");
+
+document.getElementById("demo").innerHTML = text;
+</script>
+
+</body>
+</html>

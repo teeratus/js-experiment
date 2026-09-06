@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Object Properties</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Accessing Properties</h4>
+<p id="demo"></p>
+
+<script>
+const person = {
+  firstName: "John",
+  lastName: "Doe",
+  age: 30,
+  "home town": "New York"
+};
+
+let text = "Dot notation: " + person.firstName + "<br>";
+text += "Bracket notation: " + person["lastName"] + "<br>";
+text += "Property with space: " + person["home town"] + "<br>";
+
+document.getElementById("demo").innerHTML = text;
+</script>
+
+</body>
+</html>

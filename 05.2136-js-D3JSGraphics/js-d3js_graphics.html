@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>js-d3js_graphics</title>
+  <style>
+    body {
+      box-sizing: border-box;
+      min-width: 200px;
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 45px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+      font-size: 16px;
+      line-height: 1.5;
+      color: #24292e;
+      background-color: #ffffff;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 24px;
+      margin-bottom: 16px;
+      font-weight: 600;
+      line-height: 1.25;
+      border-bottom: 1px solid #eaecef;
+      padding-bottom: .3em;
+    }
+    h1 { font-size: 2em; }
+    h2 { font-size: 1.5em; }
+    h3 { font-size: 1.25em; }
+    code {
+      padding: .2em .4em;
+      margin: 0;
+      font-size: 85%;
+      background-color: rgba(27,31,35,.05);
+      border-radius: 3px;
+      font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
+    }
+    pre {
+      padding: 16px;
+      overflow: auto;
+      font-size: 85%;
+      line-height: 1.45;
+      background-color: #f6f8fa;
+      border-radius: 3px;
+      word-wrap: normal;
+    }
+    pre code {
+      background-color: transparent;
+      padding: 0;
+    }
+    blockquote {
+      padding: 0 1em;
+      color: #6a737d;
+      border-left: .25em solid #dfe2e5;
+      margin: 0 0 16px 0;
+    }
+    table {
+      border-spacing: 0;
+      border-collapse: collapse;
+      margin-top: 0;
+      margin-bottom: 16px;
+      width: 100%;
+    }
+    table th, table td {
+      padding: 6px 13px;
+      border: 1px solid #dfe2e5;
+    }
+    table tr:nth-child(2n) {
+      background-color: #f6f8fa;
+    }
+    img {
+      max-width: 100%;
+      box-sizing: content-box;
+    }
+    @media print {
+      body {
+        max-width: 100%;
+        padding: 0;
+      }
+      pre, blockquote, table, tr, img {
+        page-break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+<body>
+<h1>JavaScript D3.js Graphics</h1>
+<p><a href="../acp-js.php">Back to JS page</a></p>
+<p>Table of Contents</p>
+<ul>
+<li><a href="#javascript-d3js-graphics">JavaScript D3.js Graphics</a><ul>
+<li><a href="#how-to-use-d3js">How to Use D3.js?</a><ul>
+<li><a href="#example-1">Example 1</a></li>
+</ul>
+</li>
+<li><a href="#document">Document</a></li>
+<li><a href="#reference">Reference</a></li>
+</ul>
+</li>
+</ul>
+<h2>How to Use D3.js?</h2>
+<p>D3.js (Data-Driven Documents) is a JavaScript library for manipulating documents based on data. D3 helps you bring data to life using HTML, SVG, and CSS.</p>
+<p>To use D3.js, include the library via CDN:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript D3.js Graphics&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;How to Use D3.js?&lt;/h4&gt;
+
+&lt;svg id=&quot;d3Chart&quot; width=&quot;400&quot; height=&quot;200&quot;&gt;&lt;/svg&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script src=&quot;https://d3js.org/d3.v7.min.js&quot;&gt;&lt;/script&gt;
+
+&lt;script&gt;
+const data = [
+  {x: 10, y: 20},
+  {x: 40, y: 60},
+  {x: 80, y: 40},
+  {x: 120, y: 90},
+  {x: 160, y: 50},
+  {x: 200, y: 110},
+  {x: 240, y: 70},
+  {x: 280, y: 130},
+  {x: 320, y: 85},
+  {x: 360, y: 150}
+];
+
+const svg = d3.select(&quot;#d3Chart&quot;);
+
+// Add circles for each data point
+svg.selectAll(&quot;circle&quot;)
+  .data(data)
+  .enter()
+  .append(&quot;circle&quot;)
+  .attr(&quot;cx&quot;, function(d) { return d.x; })
+  .attr(&quot;cy&quot;, function(d) { return d.y; })
+  .attr(&quot;r&quot;, 6)
+  .attr(&quot;fill&quot;, &quot;#4CAF50&quot;);
+
+// Add X and Y axis lines
+svg.append(&quot;line&quot;)
+  .attr(&quot;x1&quot;, 5).attr(&quot;y1&quot;, 5)
+  .attr(&quot;x2&quot;, 5).attr(&quot;y2&quot;, 180)
+  .attr(&quot;stroke&quot;, &quot;black&quot;).attr(&quot;stroke-width&quot;, 1);
+
+svg.append(&quot;line&quot;)
+  .attr(&quot;x1&quot;, 5).attr(&quot;y1&quot;, 180)
+  .attr(&quot;x2&quot;, 395).attr(&quot;y2&quot;, 180)
+  .attr(&quot;stroke&quot;, &quot;black&quot;).attr(&quot;stroke-width&quot;, 1);
+
+document.getElementById(&quot;demo&quot;).innerHTML = 
+  &quot;D3.js scatter plot with &quot; + data.length + &quot; data points&quot;;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p1.png" alt=""></p>
+<h3>Example 1</h3>
+<p><strong>Result</strong> <a href="ex1-scatter_plot/index.html">View Example</a></p>
+<h2>Document</h2>
+<p>Document in project</p>
+<p>You can <a href="js-d3js_graphics.pdf">Download PDF</a> file.</p>
+<h2>Reference</h2>
+<ul>
+<li><a href="https://www.w3schools.com/js/js_graphics_d3js.asp">W3Schools JavaScript D3.js Graphics</a></li>
+</ul>
+
+</body>
+</html>

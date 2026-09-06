@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript JSON Data Types</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>JSON String Values</h4>
+<p id="demo"></p>
+
+<script>
+// JSON with string values
+const jsonString = '{"firstName":"John","lastName":"Doe","city":"New York"}';
+const obj = JSON.parse(jsonString);
+
+document.getElementById("demo").innerHTML =
+  "First name: " + obj.firstName + "<br>" +
+  "Last name: " + obj.lastName + "<br>" +
+  "City: " + obj.city;
+</script>
+
+</body>
+</html>

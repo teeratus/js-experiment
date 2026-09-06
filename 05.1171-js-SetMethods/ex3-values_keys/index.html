@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Set Methods</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>The values() and keys() Methods</h4>
+<p id="demo"></p>
+
+<script>
+const letters = new Set(["a", "b", "c"]);
+
+// values() returns iterator
+let text = "values(): ";
+for (let v of letters.values()) {
+  text += v + " ";
+}
+text += "<br>";
+
+// keys() returns same as values() for Set
+text += "keys(): ";
+for (let k of letters.keys()) {
+  text += k + " ";
+}
+
+document.getElementById("demo").innerHTML = text;
+</script>
+
+</body>
+</html>

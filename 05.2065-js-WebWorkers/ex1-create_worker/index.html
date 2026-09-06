@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Web Workers</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Creating a Worker</h4>
+<button onclick="startWorker()">Start Worker</button>
+<p id="demo"></p>
+
+<script>
+let worker;
+
+function startWorker() {
+  if (typeof(Worker) !== "undefined") {
+    if (typeof(worker) == "undefined") {
+      worker = new Worker("worker.js");
+    }
+    worker.onmessage = function(event) {
+      document.getElementById("demo").innerHTML = event.data;
+    };
+  } else {
+    document.getElementById("demo").innerHTML = "Sorry, Web Workers are not supported.";
+  }
+}
+</script>
+
+</body>
+</html>

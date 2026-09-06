@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Function apply()</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Using apply() to Set this</h4>
+<p id="demo"></p>
+
+<script>
+const person = {
+  fullName: function() {
+    return this.firstName + " " + this.lastName;
+  }
+};
+
+const person1 = {
+  firstName: "John",
+  lastName: "Doe"
+};
+
+const person2 = {
+  firstName: "Mary",
+  lastName: "Smith"
+};
+
+document.getElementById("demo").innerHTML = 
+  person.fullName.apply(person1) + "<br>" + 
+  person.fullName.apply(person2);
+</script>
+
+</body>
+</html>

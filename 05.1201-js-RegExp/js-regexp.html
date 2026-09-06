@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>js-regexp</title>
+  <style>
+    body {
+      box-sizing: border-box;
+      min-width: 200px;
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 45px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+      font-size: 16px;
+      line-height: 1.5;
+      color: #24292e;
+      background-color: #ffffff;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 24px;
+      margin-bottom: 16px;
+      font-weight: 600;
+      line-height: 1.25;
+      border-bottom: 1px solid #eaecef;
+      padding-bottom: .3em;
+    }
+    h1 { font-size: 2em; }
+    h2 { font-size: 1.5em; }
+    h3 { font-size: 1.25em; }
+    code {
+      padding: .2em .4em;
+      margin: 0;
+      font-size: 85%;
+      background-color: rgba(27,31,35,.05);
+      border-radius: 3px;
+      font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
+    }
+    pre {
+      padding: 16px;
+      overflow: auto;
+      font-size: 85%;
+      line-height: 1.45;
+      background-color: #f6f8fa;
+      border-radius: 3px;
+      word-wrap: normal;
+    }
+    pre code {
+      background-color: transparent;
+      padding: 0;
+    }
+    blockquote {
+      padding: 0 1em;
+      color: #6a737d;
+      border-left: .25em solid #dfe2e5;
+      margin: 0 0 16px 0;
+    }
+    table {
+      border-spacing: 0;
+      border-collapse: collapse;
+      margin-top: 0;
+      margin-bottom: 16px;
+      width: 100%;
+    }
+    table th, table td {
+      padding: 6px 13px;
+      border: 1px solid #dfe2e5;
+    }
+    table tr:nth-child(2n) {
+      background-color: #f6f8fa;
+    }
+    img {
+      max-width: 100%;
+      box-sizing: content-box;
+    }
+    @media print {
+      body {
+        max-width: 100%;
+        padding: 0;
+      }
+      pre, blockquote, table, tr, img {
+        page-break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+<body>
+<h1>JavaScript RegExp</h1>
+<p><a href="../acp-js.php">Back to JS page</a></p>
+<p>Table of Contents</p>
+<ul>
+<li><a href="#javascript-regexp">JavaScript RegExp</a><ul>
+<li><a href="#regular-expression-syntax">Regular Expression Syntax</a><ul>
+<li><a href="#example-1">Example 1</a></li>
+</ul>
+</li>
+<li><a href="#using-string-methods">Using String Methods</a><ul>
+<li><a href="#example-2">Example 2</a></li>
+</ul>
+</li>
+<li><a href="#javascript-regex-flags">JavaScript Regex Flags</a><ul>
+<li><a href="#example-3">Example 3</a></li>
+</ul>
+</li>
+<li><a href="#regexp-metacharacters">RegExp Metacharacters</a><ul>
+<li><a href="#example-4">Example 4</a></li>
+</ul>
+</li>
+<li><a href="#document">Document</a></li>
+<li><a href="#reference">Reference</a></li>
+</ul>
+</li>
+</ul>
+<h2>Regular Expression Syntax</h2>
+<p>A regular expression is a sequence of characters that forms a search pattern. It is written between slashes <code>/pattern/</code>:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript RegExp&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Regular Expression Syntax&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+const text = &quot;The rain in Spain falls mainly in the plain&quot;;
+
+// Search for &quot;ain&quot; using a regular expression
+const pattern = /ain/;
+
+document.getElementById(&quot;demo&quot;).innerHTML =
+  &quot;Text: &quot; + text + &quot;&lt;br&gt;&lt;br&gt;&quot; +
+  &quot;Pattern: /ain/&lt;br&gt;&quot; +
+  &quot;match() result: &quot; + text.match(pattern);
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p1.png" alt=""></p>
+<h3>Example 1</h3>
+<p><strong>Result</strong> <a href="ex1-syntax/index.html">View Example</a></p>
+<h2>Using String Methods</h2>
+<p>Regular expressions are commonly used with string methods: <code>match()</code>, <code>replace()</code>, and <code>search()</code>:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript RegExp&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Using String Methods&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+const text = &quot;Visit W3Schools&quot;;
+
+// match() - returns matches
+const matchResult = text.match(/W3Schools/);
+
+// replace() - replaces matches
+const replaceResult = text.replace(/Visit/, &quot;Welcome to&quot;);
+
+// search() - returns position
+const searchResult = text.search(/W3Schools/);
+
+document.getElementById(&quot;demo&quot;).innerHTML =
+  &quot;Text: &quot; + text + &quot;&lt;br&gt;&lt;br&gt;&quot; +
+  &quot;match(/W3Schools/): &quot; + matchResult + &quot;&lt;br&gt;&quot; +
+  &quot;replace(/Visit/, &#39;Welcome to&#39;): &quot; + replaceResult + &quot;&lt;br&gt;&quot; +
+  &quot;search(/W3Schools/): &quot; + searchResult + &quot; (position)&quot;;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p2.png" alt=""></p>
+<h3>Example 2</h3>
+<p><strong>Result</strong> <a href="ex2-string_methods/index.html">View Example</a></p>
+<h2>JavaScript Regex Flags</h2>
+<p>Flags modify how the pattern is searched:</p>
+<table>
+<thead>
+<tr>
+<th>Flag</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>/g</code></td>
+<td>Global - matches all occurrences</td>
+</tr>
+<tr>
+<td><code>/i</code></td>
+<td>Insensitive - case insensitive</td>
+</tr>
+<tr>
+<td><code>/m</code></td>
+<td>Multiline - ^ and $ match line breaks</td>
+</tr>
+</tbody></table>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript RegExp&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;JavaScript Regex Flags&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+const text = &quot;The rain in Spain&quot;;
+
+// Without /g - only first match
+const noG = text.match(/ain/);
+
+// With /g - all matches
+const withG = text.match(/ain/g);
+
+// With /i - case insensitive
+const withI = text.match(/THE/i);
+
+document.getElementById(&quot;demo&quot;).innerHTML =
+  &quot;Text: &quot; + text + &quot;&lt;br&gt;&lt;br&gt;&quot; +
+  &quot;match(/ain/): &quot; + noG + &quot; (first only)&lt;br&gt;&quot; +
+  &quot;match(/ain/g): &quot; + withG + &quot; (all occurrences)&lt;br&gt;&quot; +
+  &quot;match(/THE/i): &quot; + withI + &quot; (case insensitive)&quot;;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p3.png" alt=""></p>
+<h3>Example 3</h3>
+<p><strong>Result</strong> <a href="ex3-flags/index.html">View Example</a></p>
+<h2>RegExp Metacharacters</h2>
+<p>Metacharacters have special meanings in regular expressions:</p>
+<table>
+<thead>
+<tr>
+<th>Metacharacter</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>\d</code></td>
+<td>Find a digit</td>
+</tr>
+<tr>
+<td><code>\s</code></td>
+<td>Find a whitespace</td>
+</tr>
+<tr>
+<td><code>\w</code></td>
+<td>Find a word character</td>
+</tr>
+<tr>
+<td><code>.</code></td>
+<td>Find a single character</td>
+</tr>
+<tr>
+<td><code>\b</code></td>
+<td>Find at word boundary</td>
+</tr>
+</tbody></table>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript RegExp&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;RegExp Metacharacters&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+const text = &quot;Give 100% and 25% effort&quot;;
+
+// \d finds digits
+const digits = text.match(/\d/g);
+
+// \w finds word characters
+const words = text.match(/\w+/g);
+
+document.getElementById(&quot;demo&quot;).innerHTML =
+  &quot;Text: &quot; + text + &quot;&lt;br&gt;&lt;br&gt;&quot; +
+  &quot;match(/\\d/g) digits: &quot; + digits + &quot;&lt;br&gt;&quot; +
+  &quot;match(/\\w+/g) words: &quot; + words;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p4.png" alt=""></p>
+<h3>Example 4</h3>
+<p><strong>Result</strong> <a href="ex4-metacharacters/index.html">View Example</a></p>
+<h2>Document</h2>
+<p>Document in project</p>
+<p>You can <a href="js-regexp.pdf">Download PDF</a> file.</p>
+<h2>Reference</h2>
+<ul>
+<li><a href="https://www.w3schools.com/js/js_regexp.asp">W3Schools JavaScript RegExp</a></li>
+</ul>
+
+</body>
+</html>

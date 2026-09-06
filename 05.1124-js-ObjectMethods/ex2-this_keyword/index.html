@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Object Methods</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>The this Keyword</h4>
+<p id="demo1"></p>
+<p id="demo2"></p>
+
+<script>
+const person = {
+  firstName: "John",
+  lastName: "Doe",
+  age: 30,
+  introduce: function() {
+    return "Hi, I'm " + this.firstName + " " + this.lastName;
+  },
+  getAge: function() {
+    return "I am " + this.age + " years old.";
+  }
+};
+
+document.getElementById("demo1").innerHTML = person.introduce();
+document.getElementById("demo2").innerHTML = person.getAge();
+</script>
+
+</body>
+</html>

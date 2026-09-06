@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>js-typed_arrays</title>
+  <style>
+    body {
+      box-sizing: border-box;
+      min-width: 200px;
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 45px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+      font-size: 16px;
+      line-height: 1.5;
+      color: #24292e;
+      background-color: #ffffff;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 24px;
+      margin-bottom: 16px;
+      font-weight: 600;
+      line-height: 1.25;
+      border-bottom: 1px solid #eaecef;
+      padding-bottom: .3em;
+    }
+    h1 { font-size: 2em; }
+    h2 { font-size: 1.5em; }
+    h3 { font-size: 1.25em; }
+    code {
+      padding: .2em .4em;
+      margin: 0;
+      font-size: 85%;
+      background-color: rgba(27,31,35,.05);
+      border-radius: 3px;
+      font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
+    }
+    pre {
+      padding: 16px;
+      overflow: auto;
+      font-size: 85%;
+      line-height: 1.45;
+      background-color: #f6f8fa;
+      border-radius: 3px;
+      word-wrap: normal;
+    }
+    pre code {
+      background-color: transparent;
+      padding: 0;
+    }
+    blockquote {
+      padding: 0 1em;
+      color: #6a737d;
+      border-left: .25em solid #dfe2e5;
+      margin: 0 0 16px 0;
+    }
+    table {
+      border-spacing: 0;
+      border-collapse: collapse;
+      margin-top: 0;
+      margin-bottom: 16px;
+      width: 100%;
+    }
+    table th, table td {
+      padding: 6px 13px;
+      border: 1px solid #dfe2e5;
+    }
+    table tr:nth-child(2n) {
+      background-color: #f6f8fa;
+    }
+    img {
+      max-width: 100%;
+      box-sizing: content-box;
+    }
+    @media print {
+      body {
+        max-width: 100%;
+        padding: 0;
+      }
+      pre, blockquote, table, tr, img {
+        page-break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+<body>
+<h1>JavaScript Typed Arrays</h1>
+<p><a href="../acp-js.php">Back to JS page</a></p>
+<p>Table of Contents</p>
+<ul>
+<li><a href="#javascript-typed-arrays">JavaScript Typed Arrays</a><ul>
+<li><a href="#typed-array-basics">Typed Array Basics</a><ul>
+<li><a href="#example-1">Example 1</a></li>
+</ul>
+</li>
+<li><a href="#8-bit-integers">8 Bit Integers</a><ul>
+<li><a href="#example-2">Example 2</a></li>
+</ul>
+</li>
+<li><a href="#16-bit-and-32-bit-integers">16-Bit and 32-Bit Integers</a><ul>
+<li><a href="#example-3">Example 3</a></li>
+</ul>
+</li>
+<li><a href="#floating-point-numbers">Floating Point Numbers</a><ul>
+<li><a href="#example-4">Example 4</a></li>
+</ul>
+</li>
+<li><a href="#uint8array-vs-uint8clampedarray">Uint8Array vs Uint8ClampedArray</a><ul>
+<li><a href="#example-5">Example 5</a></li>
+</ul>
+</li>
+<li><a href="#document">Document</a></li>
+<li><a href="#reference">Reference</a></li>
+</ul>
+</li>
+</ul>
+<h2>Typed Array Basics</h2>
+<p>Typed arrays are array-like objects that provide a mechanism for reading and writing raw binary data in memory buffers.</p>
+<p>Unlike regular arrays, typed arrays always hold the same type of data and have a fixed length.</p>
+<p>Common typed array types:</p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Description</th>
+<th>Size</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>Int8Array</code></td>
+<td>8-bit signed integer</td>
+<td>1 byte</td>
+</tr>
+<tr>
+<td><code>Uint8Array</code></td>
+<td>8-bit unsigned integer</td>
+<td>1 byte</td>
+</tr>
+<tr>
+<td><code>Uint8ClampedArray</code></td>
+<td>8-bit unsigned integer (clamped)</td>
+<td>1 byte</td>
+</tr>
+<tr>
+<td><code>Int16Array</code></td>
+<td>16-bit signed integer</td>
+<td>2 bytes</td>
+</tr>
+<tr>
+<td><code>Uint16Array</code></td>
+<td>16-bit unsigned integer</td>
+<td>2 bytes</td>
+</tr>
+<tr>
+<td><code>Int32Array</code></td>
+<td>32-bit signed integer</td>
+<td>4 bytes</td>
+</tr>
+<tr>
+<td><code>Uint32Array</code></td>
+<td>32-bit unsigned integer</td>
+<td>4 bytes</td>
+</tr>
+<tr>
+<td><code>Float32Array</code></td>
+<td>32-bit floating point</td>
+<td>4 bytes</td>
+</tr>
+<tr>
+<td><code>Float64Array</code></td>
+<td>64-bit floating point</td>
+<td>8 bytes</td>
+</tr>
+</tbody></table>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Typed Arrays&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Typed Array Basics&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+// Create a typed array with initial values
+const numbers = new Int8Array([10, 20, 30, 40, 50]);
+
+let text = &quot;Int8Array values:&lt;br&gt;&quot;;
+for (let num of numbers) {
+  text += num + &quot; &quot;;
+}
+text += &quot;&lt;br&gt;&lt;br&gt;&quot;;
+text += &quot;Length: &quot; + numbers.length + &quot;&lt;br&gt;&quot;;
+text += &quot;BYTES_PER_ELEMENT: &quot; + numbers.BYTES_PER_ELEMENT + &quot;&lt;br&gt;&quot;;
+text += &quot;Constructor: &quot; + numbers.constructor.name;
+
+document.getElementById(&quot;demo&quot;).innerHTML = text;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p1.png" alt=""></p>
+<h3>Example 1</h3>
+<p><strong>Result</strong> <a href="ex1-typed_array_basics/index.html">View Example</a></p>
+<h2>8 Bit Integers</h2>
+<p><code>Int8Array</code> holds 8-bit signed integers (-128 to 127). <code>Uint8Array</code> holds 8-bit unsigned integers (0 to 255):</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Typed Arrays&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;8 Bit Integers&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+// Int8Array - signed (-128 to 127)
+const signed = new Int8Array([-10, 0, 50, 127, -128]);
+
+// Uint8Array - unsigned (0 to 255)
+const unsigned = new Uint8Array([0, 100, 200, 255]);
+
+let text = &quot;Int8Array (signed -128 to 127):&lt;br&gt;&quot;;
+for (let num of signed) {
+  text += num + &quot; &quot;;
+}
+text += &quot;&lt;br&gt;&lt;br&gt;&quot;;
+
+text += &quot;Uint8Array (unsigned 0 to 255):&lt;br&gt;&quot;;
+for (let num of unsigned) {
+  text += num + &quot; &quot;;
+}
+
+document.getElementById(&quot;demo&quot;).innerHTML = text;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p2.png" alt=""></p>
+<h3>Example 2</h3>
+<p><strong>Result</strong> <a href="ex2-8bit_integers/index.html">View Example</a></p>
+<h2>16-Bit and 32-Bit Integers</h2>
+<p><code>Int16Array</code> holds 16-bit signed integers. <code>Int32Array</code> holds 32-bit signed integers:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Typed Arrays&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;16-Bit and 32-Bit Integers&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+// Int16Array - larger range
+const int16 = new Int16Array([1000, 20000, 30000]);
+
+// Int32Array - even larger range
+const int32 = new Int32Array([100000, 2000000]);
+
+let text = &quot;Int16Array (16-bit):&lt;br&gt;&quot;;
+for (let num of int16) {
+  text += num + &quot; &quot;;
+}
+text += &quot;&lt;br&gt;BYTES_PER_ELEMENT: &quot; + int16.BYTES_PER_ELEMENT + &quot;&lt;br&gt;&lt;br&gt;&quot;;
+
+text += &quot;Int32Array (32-bit):&lt;br&gt;&quot;;
+for (let num of int32) {
+  text += num + &quot; &quot;;
+}
+text += &quot;&lt;br&gt;BYTES_PER_ELEMENT: &quot; + int32.BYTES_PER_ELEMENT;
+
+document.getElementById(&quot;demo&quot;).innerHTML = text;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p3.png" alt=""></p>
+<h3>Example 3</h3>
+<p><strong>Result</strong> <a href="ex3-16_32bit_integers/index.html">View Example</a></p>
+<h2>Floating Point Numbers</h2>
+<p><code>Float32Array</code> and <code>Float64Array</code> hold floating point numbers:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Typed Arrays&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Floating Point Numbers&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+// Float32Array - 32-bit floating point
+const float32 = new Float32Array([1.5, 3.14, 9.99, 100.05]);
+
+// Float64Array - 64-bit floating point (double precision)
+const float64 = new Float64Array([0.123456789, 123456.789]);
+
+let text = &quot;Float32Array (32-bit float):&lt;br&gt;&quot;;
+for (let num of float32) {
+  text += num + &quot; &quot;;
+}
+text += &quot;&lt;br&gt;&lt;br&gt;&quot;;
+
+text += &quot;Float64Array (64-bit double):&lt;br&gt;&quot;;
+for (let num of float64) {
+  text += num + &quot; &quot;;
+}
+text += &quot;&lt;br&gt;&lt;br&gt;&quot;;
+
+text += &quot;Float32 BYTES_PER_ELEMENT: &quot; + float32.BYTES_PER_ELEMENT + &quot;&lt;br&gt;&quot;;
+text += &quot;Float64 BYTES_PER_ELEMENT: &quot; + float64.BYTES_PER_ELEMENT;
+
+document.getElementById(&quot;demo&quot;).innerHTML = text;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p4.png" alt=""></p>
+<h3>Example 4</h3>
+<p><strong>Result</strong> <a href="ex4-floating_point/index.html">View Example</a></p>
+<h2>Uint8Array vs Uint8ClampedArray</h2>
+<p>The difference between <code>Uint8Array</code> and <code>Uint8ClampedArray</code> is how they handle values outside the 0-255 range:</p>
+<ul>
+<li><code>Uint8Array</code>: wraps around (modulo 256)</li>
+<li><code>Uint8ClampedArray</code>: clamps to 0 or 255</li>
+</ul>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Typed Arrays&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Uint8Array vs Uint8ClampedArray&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+// Uint8Array - wraps around (modulo 256)
+const uint8 = new Uint8Array([-10, 0, 100, 255, 300]);
+
+// Uint8ClampedArray - clamps to 0 or 255
+const clamped = new Uint8ClampedArray([-10, 0, 100, 255, 300]);
+
+let text = &quot;Uint8Array (wraps around):&lt;br&gt;&quot;;
+for (let num of uint8) {
+  text += num + &quot; &quot;;
+}
+text += &quot;&lt;br&gt;(-10 wraps to &quot; + uint8[0] + &quot;, 300 wraps to &quot; + uint8[4] + &quot;)&quot;;
+text += &quot;&lt;br&gt;&lt;br&gt;&quot;;
+
+text += &quot;Uint8ClampedArray (clamps):&lt;br&gt;&quot;;
+for (let num of clamped) {
+  text += num + &quot; &quot;;
+}
+text += &quot;&lt;br&gt;(-10 clamped to &quot; + clamped[0] + &quot;, 300 clamped to &quot; + clamped[4] + &quot;)&quot;;
+
+document.getElementById(&quot;demo&quot;).innerHTML = text;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p5.png" alt=""></p>
+<h3>Example 5</h3>
+<p><strong>Result</strong> <a href="ex5-clamped/index.html">View Example</a></p>
+<h2>Document</h2>
+<p>Document in project</p>
+<p>You can <a href="js-typed_arrays.pdf">Download PDF</a> file.</p>
+<h2>Reference</h2>
+<ul>
+<li><a href="https://www.w3schools.com/js/js_typed_arrays.asp">W3Schools JavaScript Typed Arrays</a></li>
+</ul>
+
+</body>
+</html>

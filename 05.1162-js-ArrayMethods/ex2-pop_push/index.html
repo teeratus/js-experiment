@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Array Methods</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Popping and Pushing</h4>
+<p id="demo"></p>
+
+<script>
+const fruits = ["Banana", "Orange", "Apple"];
+
+// pop() removes the last element
+let popped = fruits.pop();
+let text = "Popped: " + popped + "<br>";
+text += "After pop(): " + fruits + "<br><br>";
+
+// push() adds to the end
+let newLength = fruits.push("Kiwi");
+text += "Pushed 'Kiwi', new length: " + newLength + "<br>";
+text += "After push(): " + fruits;
+
+document.getElementById("demo").innerHTML = text;
+</script>
+
+</body>
+</html>

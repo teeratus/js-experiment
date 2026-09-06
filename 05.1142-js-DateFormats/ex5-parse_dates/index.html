@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Date Formats</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Date Input - Parsing Dates</h4>
+<p id="demo"></p>
+
+<script>
+// Date.parse() converts a date string to milliseconds
+let ms = Date.parse("March 15, 2024");
+const parsedDate = new Date(ms);
+
+// Parse ISO format
+let ms2 = Date.parse("2024-03-15T10:30:00");
+const parsedDate2 = new Date(ms2);
+
+document.getElementById("demo").innerHTML =
+  "Date.parse('March 15, 2024'): " + ms + " ms<br>" +
+  "new Date(ms): " + parsedDate + "<br><br>" +
+  "Date.parse('2024-03-15T10:30:00'): " + ms2 + " ms<br>" +
+  "new Date(ms2): " + parsedDate2;
+</script>
+
+</body>
+</html>

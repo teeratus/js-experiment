@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Typed Array Methods</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>The fill() Method</h4>
+<p id="demo"></p>
+
+<script>
+// Create an array and fill it
+const arr = new Int8Array(8);
+arr.fill(42);
+
+let text = "Int8Array(8) filled with 42:<br>";
+for (let num of arr) {
+  text += num + " ";
+}
+text += "<br><br>";
+
+// Fill with a different value from index 3 to 6
+arr.fill(99, 3, 6);
+text += "After arr.fill(99, 3, 6):<br>";
+for (let num of arr) {
+  text += num + " ";
+}
+
+document.getElementById("demo").innerHTML = text;
+</script>
+
+</body>
+</html>

@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>js-const</title>
+  <style>
+    body {
+      box-sizing: border-box;
+      min-width: 200px;
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 45px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+      font-size: 16px;
+      line-height: 1.5;
+      color: #24292e;
+      background-color: #ffffff;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 24px;
+      margin-bottom: 16px;
+      font-weight: 600;
+      line-height: 1.25;
+      border-bottom: 1px solid #eaecef;
+      padding-bottom: .3em;
+    }
+    h1 { font-size: 2em; }
+    h2 { font-size: 1.5em; }
+    h3 { font-size: 1.25em; }
+    code {
+      padding: .2em .4em;
+      margin: 0;
+      font-size: 85%;
+      background-color: rgba(27,31,35,.05);
+      border-radius: 3px;
+      font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
+    }
+    pre {
+      padding: 16px;
+      overflow: auto;
+      font-size: 85%;
+      line-height: 1.45;
+      background-color: #f6f8fa;
+      border-radius: 3px;
+      word-wrap: normal;
+    }
+    pre code {
+      background-color: transparent;
+      padding: 0;
+    }
+    blockquote {
+      padding: 0 1em;
+      color: #6a737d;
+      border-left: .25em solid #dfe2e5;
+      margin: 0 0 16px 0;
+    }
+    table {
+      border-spacing: 0;
+      border-collapse: collapse;
+      margin-top: 0;
+      margin-bottom: 16px;
+      width: 100%;
+    }
+    table th, table td {
+      padding: 6px 13px;
+      border: 1px solid #dfe2e5;
+    }
+    table tr:nth-child(2n) {
+      background-color: #f6f8fa;
+    }
+    img {
+      max-width: 100%;
+      box-sizing: content-box;
+    }
+    @media print {
+      body {
+        max-width: 100%;
+        padding: 0;
+      }
+      pre, blockquote, table, tr, img {
+        page-break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+<body>
+<h1>JavaScript Const</h1>
+<p><a href="../acp-js.php">Back to JS page</a></p>
+<p>Table of Contents</p>
+<ul>
+<li><a href="#javascript-const">JavaScript Const</a><ul>
+<li><a href="#cannot-be-reassigned">Cannot be Reassigned</a><ul>
+<li><a href="#example-1">Example 1</a></li>
+</ul>
+</li>
+<li><a href="#must-be-assigned">Must be Assigned</a><ul>
+<li><a href="#example-2">Example 2</a></li>
+</ul>
+</li>
+<li><a href="#constant-arrays">Constant Arrays</a><ul>
+<li><a href="#example-3">Example 3</a></li>
+</ul>
+</li>
+<li><a href="#constant-objects">Constant Objects</a><ul>
+<li><a href="#example-4">Example 4</a></li>
+</ul>
+</li>
+<li><a href="#block-scope">Block Scope</a><ul>
+<li><a href="#example-5">Example 5</a></li>
+</ul>
+</li>
+<li><a href="#redeclaring">Redeclaring</a><ul>
+<li><a href="#example-6">Example 6</a></li>
+</ul>
+</li>
+<li><a href="#hoisting">Hoisting</a><ul>
+<li><a href="#example-7">Example 7</a></li>
+</ul>
+</li>
+<li><a href="#document">Document</a></li>
+<li><a href="#reference">Reference</a></li>
+</ul>
+</li>
+</ul>
+<h2>Cannot be Reassigned</h2>
+<p>A variable defined with the <code>const</code> keyword cannot be reassigned:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Const&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Cannot be Reassigned&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+const PI = 3.141592653589793;
+// PI = 3.14; // This will cause an error (commented out)
+document.getElementById(&quot;demo&quot;).innerHTML = PI;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p1.png" alt=""></p>
+<h3>Example 1</h3>
+<p><strong>Result</strong> <a href="ex1-cannot_reassign/index.html">View Example</a></p>
+<h2>Must be Assigned</h2>
+<p>JavaScript <code>const</code> variables must be assigned a value when they are declared:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Const&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Must be Assigned&lt;/h4&gt;
+&lt;p id=&quot;demo1&quot;&gt;&lt;/p&gt;
+&lt;p id=&quot;demo2&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+// Correct: const variables must be assigned at declaration
+const price1 = 5;
+const price2 = 6;
+let total = price1 + price2;
+document.getElementById(&quot;demo1&quot;).innerHTML = &quot;Price1: &quot; + price1 + &quot;, Price2: &quot; + price2;
+document.getElementById(&quot;demo2&quot;).innerHTML = &quot;Total: &quot; + total;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p2.png" alt=""></p>
+<h3>Example 2</h3>
+<p><strong>Result</strong> <a href="ex2-must_assign/index.html">View Example</a></p>
+<h2>Constant Arrays</h2>
+<p>You can change the elements of a constant array, but you can NOT reassign the array:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Const&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Constant Arrays&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+const cars = [&quot;Saab&quot;, &quot;Volvo&quot;, &quot;BMW&quot;];
+// You can change an element:
+cars[0] = &quot;Toyota&quot;;
+// You can add an element:
+cars.push(&quot;Audi&quot;);
+// But you can NOT reassign the array
+// cars = [&quot;Toyota&quot;, &quot;Volvo&quot;, &quot;BMW&quot;]; // ERROR
+document.getElementById(&quot;demo&quot;).innerHTML = cars;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p3.png" alt=""></p>
+<h3>Example 3</h3>
+<p><strong>Result</strong> <a href="ex3-constant_arrays/index.html">View Example</a></p>
+<h2>Constant Objects</h2>
+<p>You can change the properties of a constant object, but you can NOT reassign the object:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Const&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Constant Objects&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+const car = {type:&quot;Fiat&quot;, model:&quot;500&quot;, color:&quot;white&quot;};
+// You can change a property:
+car.color = &quot;red&quot;;
+// You can add a property:
+car.owner = &quot;Johnson&quot;;
+// But you can NOT reassign the object
+// car = {type:&quot;Volvo&quot;, model:&quot;EX60&quot;, color:&quot;red&quot;}; // ERROR
+document.getElementById(&quot;demo&quot;).innerHTML = &quot;Car: &quot; + car.type + &quot; &quot; + car.model + &quot; (&quot; + car.color + &quot;)&quot;;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p4.png" alt=""></p>
+<h3>Example 4</h3>
+<p><strong>Result</strong> <a href="ex4-constant_objects/index.html">View Example</a></p>
+<h2>Block Scope</h2>
+<p>Declaring a variable with <code>const</code> is similar to <code>let</code> when it comes to <strong>Block Scope</strong>.</p>
+<p>The x declared in the block is not the same as the x declared outside the block:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Const&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Block Scope&lt;/h4&gt;
+&lt;p id=&quot;demo1&quot;&gt;&lt;/p&gt;
+&lt;p id=&quot;demo2&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+const x = 10;
+// Here x is 10
+{
+  const x = 2;
+  // Here x is 2
+  document.getElementById(&quot;demo1&quot;).innerHTML = &quot;Inside block: x = &quot; + x;
+}
+// Here x is 10 (not affected by block)
+document.getElementById(&quot;demo2&quot;).innerHTML = &quot;Outside block: x = &quot; + x;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p5.png" alt=""></p>
+<h3>Example 5</h3>
+<p><strong>Result</strong> <a href="ex5-block_scope/index.html">View Example</a></p>
+<h2>Redeclaring</h2>
+<p>Redeclaring a variable with <code>const</code>, in another scope, or in another block, is allowed. But redeclaring in the same scope is not allowed:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Const&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Redeclaring&lt;/h4&gt;
+&lt;p id=&quot;demo1&quot;&gt;&lt;/p&gt;
+&lt;p id=&quot;demo2&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+const x = 2;
+// const x = 3; // Not allowed in same scope (commented out)
+document.getElementById(&quot;demo1&quot;).innerHTML = &quot;Outer x: &quot; + x;
+{
+  const x = 3; // Allowed in another block scope
+  document.getElementById(&quot;demo2&quot;).innerHTML = &quot;Inner x: &quot; + x;
+}
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p6.png" alt=""></p>
+<h3>Example 6</h3>
+<p><strong>Result</strong> <a href="ex6-redeclare/index.html">View Example</a></p>
+<h2>Hoisting</h2>
+<p>Variables defined with <code>const</code> are also hoisted to the top, but not initialized.</p>
+<p>Using a <code>const</code> variable before it is declared will result in a <code>ReferenceError</code>:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Const&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Const Hoisting&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+try {
+  // Using const variable before declaring it is not allowed (hoisting but not initialized)
+  const x = 5;
+  // Uncommenting the line below would cause an error:
+  // console.log(y);
+  // const y = 10;
+  document.getElementById(&quot;demo&quot;).innerHTML = &quot;const x: &quot; + x + &quot; - Variables defined with const are hoisted to the top but not initialized.&quot;;
+} catch(err) {
+  document.getElementById(&quot;demo&quot;).innerHTML = &quot;Error: &quot; + err.message;
+}
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p7.png" alt=""></p>
+<h3>Example 7</h3>
+<p><strong>Result</strong> <a href="ex7-hoisting/index.html">View Example</a></p>
+<h2>Document</h2>
+<p>Document in project</p>
+<p>You can <a href="js-const.pdf">Download PDF</a> file.</p>
+<h2>Reference</h2>
+<ul>
+<li><a href="https://www.w3schools.com/js/js_const.asp">W3Schools JavaScript Const</a></li>
+</ul>
+
+</body>
+</html>

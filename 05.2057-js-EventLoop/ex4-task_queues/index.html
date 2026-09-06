@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Event Loop</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Task Queue and Microtask Queue</h4>
+<p id="demo"></p>
+
+<script>
+document.getElementById("demo").innerHTML += "1. Synchronous code<br>";
+
+// Promise (Microtask Queue)
+Promise.resolve().then(function() {
+  document.getElementById("demo").innerHTML += "3. Promise (microtask)<br>";
+});
+
+// Promise (Microtask Queue)
+Promise.resolve().then(function() {
+  document.getElementById("demo").innerHTML += "4. Another promise (microtask)<br>";
+});
+
+// setTimeout (Task Queue)
+setTimeout(function() {
+  document.getElementById("demo").innerHTML += "5. setTimeout (task)<br>";
+}, 0);
+
+document.getElementById("demo").innerHTML += "2. End of synchronous code<br>";
+</script>
+
+</body>
+</html>

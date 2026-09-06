@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Arrow Functions</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Arrow Functions Are Not Declarations</h4>
+<p id="demo1"></p>
+<p id="demo2"></p>
+
+<script>
+// Function declaration can be called before definition
+document.getElementById("demo1").innerHTML = "Declaration: " + myFunction(5);
+
+function myFunction(x) {
+  return x * 2;
+}
+
+// Arrow function is an expression - must be defined before use
+const myArrow = (x) => x * 2;
+document.getElementById("demo2").innerHTML = "Arrow: " + myArrow(5);
+</script>
+
+</body>
+</html>

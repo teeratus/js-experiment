@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Dynamic Import</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>How Dynamic Import Works</h4>
+<button onclick="loadMath()">Load Math Module</button>
+<p id="demo"></p>
+
+<script>
+function loadMath() {
+  import('./math.js')
+    .then(function(module) {
+      document.getElementById("demo").innerHTML =
+        "Module loaded dynamically!<br>" +
+        "add(10, 5) = " + module.add(10, 5) + "<br>" +
+        "subtract(10, 5) = " + module.subtract(10, 5) + "<br>" +
+        "multiply(10, 5) = " + module.multiply(10, 5) + "<br>" +
+        "divide(10, 5) = " + module.divide(10, 5);
+    })
+    .catch(function(err) {
+      document.getElementById("demo").innerHTML = "Error: " + err.message;
+    });
+}
+</script>
+
+</body>
+</html>

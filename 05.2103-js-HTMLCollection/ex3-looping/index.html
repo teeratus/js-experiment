@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript HTMLCollection</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Looping Through an HTMLCollection</h4>
+
+<div id="colors">
+  <p class="item">Red</p>
+  <p class="item">Green</p>
+  <p class="item">Blue</p>
+  <p class="item">Yellow</p>
+</div>
+
+<button onclick="changeColors()">Change Colors</button>
+<p id="demo"></p>
+
+<script>
+function changeColors() {
+  const items = document.getElementById("colors").getElementsByClassName("item");
+
+  // Convert HTMLCollection to Array for using forEach
+  const arr = Array.from(items);
+  arr.forEach(function(item, index) {
+    item.innerHTML += " (" + (index + 1) + ")";
+  });
+
+  document.getElementById("demo").innerHTML =
+    "Modified " + items.length + " items using Array.from() + forEach()";
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Typed Array Reference</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Typed Array Types Overview</h4>
+<p id="demo"></p>
+
+<script>
+// Demonstrate different typed array types
+const int8 = new Int8Array([-10, 0, 50, 100]);
+const uint8 = new Uint8Array([0, 100, 200, 255]);
+const int16 = new Int16Array([-1000, 0, 1000, 30000]);
+const int32 = new Int32Array([-100000, 0, 100000]);
+const float32 = new Float32Array([1.5, 3.14, 9.99]);
+const float64 = new Float64Array([0.123456789, 123456.789]);
+
+let text = "";
+
+text += "Int8Array: " + Array.from(int8).join(", ") + "<br>";
+text += "Uint8Array: " + Array.from(uint8).join(", ") + "<br>";
+text += "Int16Array: " + Array.from(int16).join(", ") + "<br>";
+text += "Int32Array: " + Array.from(int32).join(", ") + "<br>";
+text += "Float32Array: " + Array.from(float32).join(", ") + "<br>";
+text += "Float64Array: " + Array.from(float64).join(", ");
+
+document.getElementById("demo").innerHTML = text;
+</script>
+
+</body>
+</html>

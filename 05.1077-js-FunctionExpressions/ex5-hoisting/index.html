@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Function Expressions</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Hoisting</h4>
+<p id="demo1"></p>
+<p id="demo2"></p>
+
+<script>
+// Function declaration is hoisted - can be called before definition
+document.getElementById("demo1").innerHTML = "Declaration hoisted: " + myDeclaration(5);
+
+function myDeclaration(x) {
+  return x * 2;
+}
+
+// Function expression is NOT hoisted - this would cause an error:
+try {
+  let result = myExpression(5);
+  document.getElementById("demo2").innerHTML = "Expression: " + result;
+} catch(err) {
+  document.getElementById("demo2").innerHTML = "Expression error: " + err.message;
+}
+
+const myExpression = function(x) {
+  return x * 2;
+};
+</script>
+
+</body>
+</html>

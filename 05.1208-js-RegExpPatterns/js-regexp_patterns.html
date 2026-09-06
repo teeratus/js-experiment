@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>js-regexp_patterns</title>
+  <style>
+    body {
+      box-sizing: border-box;
+      min-width: 200px;
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 45px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+      font-size: 16px;
+      line-height: 1.5;
+      color: #24292e;
+      background-color: #ffffff;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 24px;
+      margin-bottom: 16px;
+      font-weight: 600;
+      line-height: 1.25;
+      border-bottom: 1px solid #eaecef;
+      padding-bottom: .3em;
+    }
+    h1 { font-size: 2em; }
+    h2 { font-size: 1.5em; }
+    h3 { font-size: 1.25em; }
+    code {
+      padding: .2em .4em;
+      margin: 0;
+      font-size: 85%;
+      background-color: rgba(27,31,35,.05);
+      border-radius: 3px;
+      font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
+    }
+    pre {
+      padding: 16px;
+      overflow: auto;
+      font-size: 85%;
+      line-height: 1.45;
+      background-color: #f6f8fa;
+      border-radius: 3px;
+      word-wrap: normal;
+    }
+    pre code {
+      background-color: transparent;
+      padding: 0;
+    }
+    blockquote {
+      padding: 0 1em;
+      color: #6a737d;
+      border-left: .25em solid #dfe2e5;
+      margin: 0 0 16px 0;
+    }
+    table {
+      border-spacing: 0;
+      border-collapse: collapse;
+      margin-top: 0;
+      margin-bottom: 16px;
+      width: 100%;
+    }
+    table th, table td {
+      padding: 6px 13px;
+      border: 1px solid #dfe2e5;
+    }
+    table tr:nth-child(2n) {
+      background-color: #f6f8fa;
+    }
+    img {
+      max-width: 100%;
+      box-sizing: content-box;
+    }
+    @media print {
+      body {
+        max-width: 100%;
+        padding: 0;
+      }
+      pre, blockquote, table, tr, img {
+        page-break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+<body>
+<h1>JavaScript RegExp Patterns</h1>
+<p><a href="../acp-js.php">Back to JS page</a></p>
+<p>Table of Contents</p>
+<ul>
+<li><a href="#javascript-regexp-patterns">JavaScript RegExp Patterns</a><ul>
+<li><a href="#full-regexp-flag-reference">Full RegExp Flag Reference</a><ul>
+<li><a href="#example-1">Example 1</a></li>
+</ul>
+</li>
+<li><a href="#full-character-classes-reference">Full Character Classes Reference</a><ul>
+<li><a href="#example-2">Example 2</a></li>
+</ul>
+</li>
+<li><a href="#full-metacharacter-reference">Full Metacharacter Reference</a><ul>
+<li><a href="#example-3">Example 3</a></li>
+</ul>
+</li>
+<li><a href="#full-regexp-assertions-reference">Full RegExp Assertions Reference</a><ul>
+<li><a href="#example-4">Example 4</a></li>
+</ul>
+</li>
+<li><a href="#regexp-quantifiers">RexExp Quantifiers</a><ul>
+<li><a href="#example-5">Example 5</a></li>
+</ul>
+</li>
+<li><a href="#document">Document</a></li>
+<li><a href="#reference">Reference</a></li>
+</ul>
+</li>
+</ul>
+<h2>Full RegExp Flag Reference</h2>
+<p>All RegExp flags:</p>
+<table>
+<thead>
+<tr>
+<th>Flag</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>/g</code></td>
+<td>Global - matches all occurrences</td>
+</tr>
+<tr>
+<td><code>/i</code></td>
+<td>Insensitive - case insensitive</td>
+</tr>
+<tr>
+<td><code>/m</code></td>
+<td>Multiline - ^ and $ match line breaks</td>
+</tr>
+<tr>
+<td><code>/s</code></td>
+<td>DotAll - <code>.</code> matches newlines</td>
+</tr>
+<tr>
+<td><code>/y</code></td>
+<td>Sticky - matches from lastIndex</td>
+</tr>
+<tr>
+<td><code>/u</code></td>
+<td>Unicode - proper Unicode</td>
+</tr>
+<tr>
+<td><code>/v</code></td>
+<td>Unicode sets</td>
+</tr>
+</tbody></table>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript RegExp Patterns&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Full RegExp Flag Reference&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+const text = &quot;JavaScript JAVASCRIPT javascript&quot;;
+
+let output = &quot;Text: &quot; + text + &quot;&lt;br&gt;&lt;br&gt;&quot;;
+output += &quot;flags: &quot; + /javascript/gi.flags + &quot;&lt;br&gt;&quot;;
+output += &quot;match(/javascript/gi): &quot; + text.match(/javascript/gi) + &quot;&lt;br&gt;&lt;br&gt;&quot;;
+
+output += &quot;&lt;b&gt;All flags:&lt;/b&gt;&lt;br&gt;&quot;;
+output += &quot;/g global: &quot; + /a/g.flags + &quot;&lt;br&gt;&quot;;
+output += &quot;/i insensitive&lt;br&gt;/m multiline&lt;br&gt;&quot;;
+output += &quot;/s dotAll&lt;br&gt;/y sticky&lt;br&gt;/u unicode&lt;br&gt;/v unicodeSets&quot;;
+
+document.getElementById(&quot;demo&quot;).innerHTML = output;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p1.png" alt=""></p>
+<h3>Example 1</h3>
+<p><strong>Result</strong> <a href="ex1-flags/index.html">View Example</a></p>
+<h2>Full Character Classes Reference</h2>
+<p>Character classes match characters in brackets:</p>
+<table>
+<thead>
+<tr>
+<th>Class</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>[abc]</code></td>
+<td>Any character in the set</td>
+</tr>
+<tr>
+<td><code>[^abc]</code></td>
+<td>Any character NOT in the set</td>
+</tr>
+<tr>
+<td><code>[0-9]</code></td>
+<td>Any digit from 0 to 9</td>
+</tr>
+<tr>
+<td><code>[A-Z]</code></td>
+<td>Any uppercase letter</td>
+</tr>
+<tr>
+<td><code>[a-z]</code></td>
+<td>Any lowercase letter</td>
+</tr>
+<tr>
+<td><code>[A-Za-z]</code></td>
+<td>Any letter</td>
+</tr>
+</tbody></table>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript RegExp Patterns&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Full Character Classes Reference&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+const text = &quot;Hello World 123!&quot;;
+
+let output = &quot;Text: &quot; + text + &quot;&lt;br&gt;&lt;br&gt;&quot;;
+output += &quot;[A-Z] uppercase: &quot; + text.match(/[A-Z]/g) + &quot;&lt;br&gt;&quot;;
+output += &quot;[a-z] lowercase: &quot; + text.match(/[a-z]/g) + &quot;&lt;br&gt;&quot;;
+output += &quot;[0-9] digits: &quot; + text.match(/[0-9]/g) + &quot;&lt;br&gt;&quot;;
+output += &quot;[^a-z] not lowercase: &quot; + text.match(/[^a-z]/g);
+
+document.getElementById(&quot;demo&quot;).innerHTML = output;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p2.png" alt=""></p>
+<h3>Example 2</h3>
+<p><strong>Result</strong> <a href="ex2-character_classes/index.html">View Example</a></p>
+<h2>Full Metacharacter Reference</h2>
+<p>Metacharacters with special meanings:</p>
+<table>
+<thead>
+<tr>
+<th>Meta</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>\d</code></td>
+<td>Digit (0-9)</td>
+</tr>
+<tr>
+<td><code>\D</code></td>
+<td>Non-digit</td>
+</tr>
+<tr>
+<td><code>\w</code></td>
+<td>Word character</td>
+</tr>
+<tr>
+<td><code>\W</code></td>
+<td>Non-word character</td>
+</tr>
+<tr>
+<td><code>\s</code></td>
+<td>Whitespace</td>
+</tr>
+<tr>
+<td><code>\S</code></td>
+<td>Non-whitespace</td>
+</tr>
+<tr>
+<td><code>.</code></td>
+<td>Any character (except newline)</td>
+</tr>
+<tr>
+<td><code>\b</code></td>
+<td>Word boundary</td>
+</tr>
+</tbody></table>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript RegExp Patterns&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Full Metacharacter Reference&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+const text = &quot;Test 123&quot;;
+
+let output = &quot;Text: &quot; + text + &quot;&lt;br&gt;&lt;br&gt;&quot;;
+output += &quot;\\d digits: &quot; + text.match(/\d/g) + &quot;&lt;br&gt;&quot;;
+output += &quot;\\D non-digits: &quot; + text.match(/\D/g) + &quot;&lt;br&gt;&quot;;
+output += &quot;\\w+ words: &quot; + text.match(/\w+/g) + &quot;&lt;br&gt;&quot;;
+output += &quot;\\s spaces: &quot; + text.match(/\s/g).length + &quot;&lt;br&gt;&quot;;
+output += &quot;. any chars: &quot; + text.match(/./g).length;
+
+document.getElementById(&quot;demo&quot;).innerHTML = output;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p3.png" alt=""></p>
+<h3>Example 3</h3>
+<p><strong>Result</strong> <a href="ex3-metacharacters/index.html">View Example</a></p>
+<h2>Full RegExp Assertions Reference</h2>
+<p>Assertions check positions:</p>
+<table>
+<thead>
+<tr>
+<th>Assertion</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>^</code></td>
+<td>Start of string</td>
+</tr>
+<tr>
+<td><code>$</code></td>
+<td>End of string</td>
+</tr>
+<tr>
+<td><code>\b</code></td>
+<td>Word boundary</td>
+</tr>
+<tr>
+<td><code>x(?=y)</code></td>
+<td>Positive lookahead</td>
+</tr>
+<tr>
+<td><code>x(?!y)</code></td>
+<td>Negative lookahead</td>
+</tr>
+<tr>
+<td><code>(?&lt;=y)x</code></td>
+<td>Positive lookbehind</td>
+</tr>
+<tr>
+<td><code>(?&lt;!y)x</code></td>
+<td>Negative lookbehind</td>
+</tr>
+</tbody></table>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript RegExp Patterns&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Full RegExp Assertions Reference&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+const text = &quot;Hello Hello&quot;;
+
+let output = &quot;Text: &quot; + text + &quot;&lt;br&gt;&lt;br&gt;&quot;;
+output += &quot;^Hello start: &quot; + text.match(/^Hello/) + &quot;&lt;br&gt;&quot;;
+output += &quot;Hello$ end: &quot; + text.match(/Hello$/) + &quot;&lt;br&gt;&quot;;
+output += &quot;Hello(?= Hello) lookahead: &quot; + text.match(/Hello(?= Hello)/) + &quot;&lt;br&gt;&quot;;
+output += &quot;(?&lt;=Hello )Hello lookbehind: &quot; + text.match(/(?&lt;=Hello )Hello/);
+
+document.getElementById(&quot;demo&quot;).innerHTML = output;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p4.png" alt=""></p>
+<h3>Example 4</h3>
+<p><strong>Result</strong> <a href="ex4-assertions/index.html">View Example</a></p>
+<h2>RexExp Quantifiers</h2>
+<p>Quantifiers specify repetition:</p>
+<table>
+<thead>
+<tr>
+<th>Quantifier</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>+</code></td>
+<td>1 or more</td>
+</tr>
+<tr>
+<td><code>*</code></td>
+<td>0 or more</td>
+</tr>
+<tr>
+<td><code>?</code></td>
+<td>0 or 1</td>
+</tr>
+<tr>
+<td><code>{n}</code></td>
+<td>Exactly n</td>
+</tr>
+<tr>
+<td><code>{n,m}</code></td>
+<td>Between n and m</td>
+</tr>
+<tr>
+<td><code>{n,}</code></td>
+<td>n or more</td>
+</tr>
+</tbody></table>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript RegExp Patterns&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;RexExp Quantifiers&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+const text = &quot;100 1000 10000&quot;;
+
+let output = &quot;Text: &quot; + text + &quot;&lt;br&gt;&lt;br&gt;&quot;;
+output += &quot;\\d+ 1+ digits: &quot; + text.match(/\d+/g) + &quot;&lt;br&gt;&quot;;
+output += &quot;1\\d? optional: &quot; + text.match(/1\d?/g) + &quot;&lt;br&gt;&quot;;
+output += &quot;\\d{4} exactly 4: &quot; + text.match(/\d{4}/g) + &quot;&lt;br&gt;&quot;;
+output += &quot;\\d{3,} 3+ digits: &quot; + text.match(/\d{3,}/g);
+
+document.getElementById(&quot;demo&quot;).innerHTML = output;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p5.png" alt=""></p>
+<h3>Example 5</h3>
+<p><strong>Result</strong> <a href="ex5-quantifiers/index.html">View Example</a></p>
+<h2>Document</h2>
+<p>Document in project</p>
+<p>You can <a href="js-regexp_patterns.pdf">Download PDF</a> file.</p>
+<h2>Reference</h2>
+<ul>
+<li><a href="https://www.w3schools.com/js/js_regexp_patterns.asp">W3Schools JavaScript RegExp Patterns</a></li>
+</ul>
+
+</body>
+</html>

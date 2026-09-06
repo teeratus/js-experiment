@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript DataView</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Reading and Writing Values</h4>
+<p id="demo"></p>
+
+<script>
+const buffer = new ArrayBuffer(16);
+const dv = new DataView(buffer);
+
+// Write values at different offsets
+dv.setInt32(0, 42);        // 4 bytes at offset 0
+dv.setFloat64(4, 3.14159); // 8 bytes at offset 4
+dv.setInt16(12, 255);      // 2 bytes at offset 12
+
+// Read values back
+let text = "Values written to DataView:<br><br>";
+text += "getInt32(0): " + dv.getInt32(0) + " (4 bytes)<br>";
+text += "getFloat64(4): " + dv.getFloat64(4) + " (8 bytes)<br>";
+text += "getInt16(12): " + dv.getInt16(12) + " (2 bytes)<br><br>";
+
+// Total bytes used: 4 + 8 + 2 = 14 bytes
+text += "Total bytes used: 14 of " + buffer.byteLength;
+
+document.getElementById("demo").innerHTML = text;
+</script>
+
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript RegExp Objects</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Using test()</h4>
+<p id="demo"></p>
+
+<script>
+const text = "The rain in Spain";
+
+// test() returns boolean
+const result1 = /ain/.test(text);
+const result2 = /xyz/.test(text);
+
+document.getElementById("demo").innerHTML =
+  "Text: " + text + "<br><br>" +
+  "test(/ain/): " + result1 + " (found)<br>" +
+  "test(/xyz/): " + result2 + " (not found)<br><br>" +
+  "test() returns true or false";
+</script>
+
+</body>
+</html>

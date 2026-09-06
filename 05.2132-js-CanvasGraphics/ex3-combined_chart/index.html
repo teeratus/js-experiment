@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Canvas Graphics</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Combined Charts</h4>
+
+<div id="combinedChart"></div>
+
+<script src="https://cdn.plot.ly/plotly-2.27.0.min.js"></script>
+
+<script>
+const trace1 = {
+  x: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+  y: [30, 45, 38, 55, 48, 62],
+  type: 'bar',
+  name: 'Revenue',
+  marker: {color: '#4CAF50'}
+};
+
+const trace2 = {
+  x: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+  y: [20, 28, 24, 35, 30, 40],
+  type: 'scatter',
+  mode: 'lines+markers',
+  name: 'Expenses',
+  line: {color: '#F44336', width: 3},
+  marker: {size: 8, color: '#D32F2F'},
+  yaxis: 'y2'
+};
+
+const data = [trace1, trace2];
+
+const layout = {
+  title: 'Combined Chart (Bar + Line)',
+  xaxis: {title: 'Month'},
+  yaxis: {title: 'Revenue'},
+  yaxis2: {
+    title: 'Expenses',
+    overlaying: 'y',
+    side: 'right'
+  },
+  showlegend: true,
+  barmode: 'group'
+};
+
+Plotly.newPlot('combinedChart', data, layout);
+</script>
+
+</body>
+</html>

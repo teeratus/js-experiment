@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Array Iteration</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Looping Array Values</h4>
+<p id="demo1"></p>
+<p id="demo2"></p>
+
+<script>
+const fruits = ["Banana", "Orange", "Apple", "Mango"];
+
+// for...of loop (recommended) - iterates values
+let text1 = "for...of: ";
+for (let fruit of fruits) {
+  text1 += fruit + " ";
+}
+document.getElementById("demo1").innerHTML = text1;
+
+// for...in loop (not recommended) - iterates indexes
+let text2 = "for...in: ";
+for (let index in fruits) {
+  text2 += index + " ";
+}
+document.getElementById("demo2").innerHTML = text2;
+</script>
+
+</body>
+</html>

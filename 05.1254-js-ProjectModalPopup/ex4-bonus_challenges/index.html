@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+/* CSS Reset and basic typography */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f0f2f5;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+#openBtn {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  font-size: 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  transition: background-color 0.2s, transform 0.1s;
+}
+
+#openBtn:hover {
+  background-color: #0056b3;
+}
+
+#openBtn:active {
+  transform: scale(0.98);
+}
+
+/* The overlay (background) with smooth fade */
+.modal-overlay {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(4px);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+  z-index: 1000;
+}
+
+/* Show state */
+.modal-overlay.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* The modal box with scale-up transition */
+.modal-box {
+  background: white;
+  width: 90%;
+  max-width: 400px;
+  padding: 24px;
+  border-radius: 16px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+  position: relative;
+  transform: scale(0.8);
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* Scale up when overlay is shown */
+.modal-overlay.show .modal-box {
+  transform: scale(1);
+}
+
+/* Close button style */
+.modal-close {
+  position: absolute;
+  right: 16px;
+  top: 12px;
+  font-size: 24px;
+  border: none;
+  background: none;
+  color: #aaa;
+  cursor: pointer;
+  transition: color 0.2s;
+  padding: 4px 8px;
+  border-radius: 50%;
+}
+
+.modal-close:hover {
+  color: #333;
+}
+
+.modal-close:focus {
+  outline: 2px solid #007bff;
+}
+
+h3 {
+  margin-top: 0;
+  color: #333;
+}
+
+p {
+  color: #666;
+}
+</style>
+</head>
+<body>
+
+<div style="text-align: center;">
+  <h2>Modal Popup with Bonus Challenges</h2>
+  <p>From w3schools.com, Experiment by Teeratus_R</p>
+  <button id="openBtn">Open Modal</button>
+</div>
+
+<div id="modal" class="modal-overlay">
+  <div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="modalTitle" aria-describedby="modalDesc" tabindex="-1">
+    <button id="closeBtn" class="modal-close" aria-label="Close modal">&times;</button>
+    <h3 id="modalTitle">Hello!</h3>
+    <p id="modalDesc">This is a modal popup with animations and accessibility support.</p>
+    <button id="modalAction" style="background-color: #28a745; color: white; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer;">Awesome!</button>
+  </div>
+</div>
+
+<script>
+const modal = document.getElementById("modal");
+const modalBox = modal.querySelector(".modal-box");
+const openBtn = document.getElementById("openBtn");
+const closeBtn = document.getElementById("closeBtn");
+const modalAction = document.getElementById("modalAction");
+
+let previousActiveElement = null;
+
+function openModal() {
+  previousActiveElement = document.activeElement;
+  modal.classList.add("show");
+  // Move focus to modal content
+  modalBox.focus();
+}
+
+function closeModal() {
+  modal.classList.remove("show");
+  // Restore focus to button that opened it
+  if (previousActiveElement) {
+    previousActiveElement.focus();
+  }
+}
+
+openBtn.addEventListener("click", openModal);
+closeBtn.addEventListener("click", closeModal);
+modalAction.addEventListener("click", closeModal);
+
+// Close when clicking outside modal box
+modal.addEventListener("click", function (event) {
+  if (event.target === modal) {
+    closeModal();
+  }
+});
+
+// Close when pressing Escape
+document.addEventListener("keydown", function (event) {
+  if (event.key === "Escape" && modal.classList.contains("show")) {
+    closeModal();
+  }
+});
+
+// Focus Trap inside the modal
+modalBox.addEventListener("keydown", function (event) {
+  const focusableElements = modalBox.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+  const firstFocusable = focusableElements[0];
+  const lastFocusable = focusableElements[focusableElements.length - 1];
+
+  if (event.key === "Tab") {
+    if (event.shiftKey) { // Shift + Tab
+      if (document.activeElement === firstFocusable) {
+        lastFocusable.focus();
+        event.preventDefault();
+      }
+    } else { // Tab
+      if (document.activeElement === lastFocusable) {
+        firstFocusable.focus();
+        event.preventDefault();
+      }
+    }
+  }
+});
+</script>
+
+</body>
+</html>

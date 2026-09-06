@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Callbacks</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>What is a Callback Function?</h4>
+<p id="demo"></p>
+
+<script>
+function myCalculator(num, myCallback) {
+  let result = num * 2;
+  myCallback(result);
+}
+
+function displayResult(result) {
+  document.getElementById("demo").innerHTML = "Result: " + result;
+}
+
+myCalculator(5, displayResult);
+</script>
+
+</body>
+</html>

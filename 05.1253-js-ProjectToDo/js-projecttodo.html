@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>js-projecttodo</title>
+  <style>
+    body {
+      box-sizing: border-box;
+      min-width: 200px;
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 45px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+      font-size: 16px;
+      line-height: 1.5;
+      color: #24292e;
+      background-color: #ffffff;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 24px;
+      margin-bottom: 16px;
+      font-weight: 600;
+      line-height: 1.25;
+      border-bottom: 1px solid #eaecef;
+      padding-bottom: .3em;
+    }
+    h1 { font-size: 2em; }
+    h2 { font-size: 1.5em; }
+    h3 { font-size: 1.25em; }
+    code {
+      padding: .2em .4em;
+      margin: 0;
+      font-size: 85%;
+      background-color: rgba(27,31,35,.05);
+      border-radius: 3px;
+      font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
+    }
+    pre {
+      padding: 16px;
+      overflow: auto;
+      font-size: 85%;
+      line-height: 1.45;
+      background-color: #f6f8fa;
+      border-radius: 3px;
+      word-wrap: normal;
+    }
+    pre code {
+      background-color: transparent;
+      padding: 0;
+    }
+    blockquote {
+      padding: 0 1em;
+      color: #6a737d;
+      border-left: .25em solid #dfe2e5;
+      margin: 0 0 16px 0;
+    }
+    table {
+      border-spacing: 0;
+      border-collapse: collapse;
+      margin-top: 0;
+      margin-bottom: 16px;
+      width: 100%;
+    }
+    table th, table td {
+      padding: 6px 13px;
+      border: 1px solid #dfe2e5;
+    }
+    table tr:nth-child(2n) {
+      background-color: #f6f8fa;
+    }
+    img {
+      max-width: 100%;
+      box-sizing: content-box;
+    }
+    @media print {
+      body {
+        max-width: 100%;
+        padding: 0;
+      }
+      pre, blockquote, table, tr, img {
+        page-break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+<body>
+<h1>JavaScript Project - To-Do List</h1>
+<p><a href="../acp-js.php">Back to JS page</a></p>
+<p>Table of Contents</p>
+<ul>
+<li><a href="#javascript-project---to-do-list">JavaScript Project - To-Do List</a><ul>
+<li><a href="#to-do-list-overview">To-Do List Overview</a></li>
+<li><a href="#you-will-learn">You Will Learn</a></li>
+<li><a href="#first-create-the-html">First: Create the HTML</a><ul>
+<li><a href="#example-1">Example 1</a></li>
+</ul>
+</li>
+<li><a href="#add-a-display-function">Add a Display Function</a><ul>
+<li><a href="#example-2">Example 2</a></li>
+</ul>
+</li>
+<li><a href="#add-an-add-task-function">Add an Add Task Function</a></li>
+<li><a href="#add-a-remove-task-function">Add a Remove Task Function</a></li>
+<li><a href="#add-a-clear-all-function">Add a Clear All Function</a></li>
+<li><a href="#function-to-save-a-task">Function to Save a Task</a></li>
+<li><a href="#function-to-load-the-tasks">Function to Load the Tasks</a></li>
+<li><a href="#final-project">Final Project</a><ul>
+<li><a href="#example-3">Example 3</a></li>
+</ul>
+</li>
+<li><a href="#exercises--solutions">Exercises &amp; Solutions</a><ul>
+<li><a href="#example-4">Example 4</a></li>
+</ul>
+</li>
+<li><a href="#bonus-challenges-level-up">Bonus Challenges (Level Up)</a><ul>
+<li><a href="#example-5">Example 5</a></li>
+</ul>
+</li>
+<li><a href="#document">Document</a></li>
+<li><a href="#reference">Reference</a></li>
+</ul>
+</li>
+</ul>
+<h2>To-Do List Overview</h2>
+<p>In this project, you will build a functional <strong>To-Do List</strong>.</p>
+<ul>
+<li>You will be able to <strong>add</strong>, <strong>remove</strong>, and <strong>clear all</strong> tasks.</li>
+<li>The tasks will be kept synchronized within an <strong>Array</strong> saved in <strong>localStorage</strong>.</li>
+</ul>
+<h2>You Will Learn</h2>
+<ul>
+<li>How to store items in an array structure</li>
+<li>How to add and remove items dynamically from an array</li>
+<li>How to generate and update HTML lists based on array values</li>
+<li>How to serialize and load JSON data using localStorage</li>
+</ul>
+<h2>First: Create the HTML</h2>
+<p>Start by creating an HTML file with:</p>
+<ul>
+<li>An <code>&lt;input&gt;</code> field with <code>id=&quot;task&quot;</code>.</li>
+<li>An &quot;Add&quot; button calling <code>addTask()</code>.</li>
+<li>An unordered list <code>&lt;ul&gt;</code> with <code>id=&quot;list&quot;</code>.</li>
+<li>A &quot;Clear All&quot; button calling <code>clearAll()</code>.</li>
+<li>A script tag initializing an empty <code>tasks</code> array.</li>
+</ul>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;To-Do List&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;input id=&quot;task&quot; placeholder=&quot;New task&quot;&gt;
+&lt;button onclick=&quot;addTask()&quot;&gt;Add&lt;/button&gt;
+&lt;ul id=&quot;list&quot;&gt;&lt;/ul&gt;
+&lt;button onclick=&quot;clearAll()&quot;&gt;Clear All&lt;/button&gt;
+
+&lt;script&gt;
+// Create a task Array
+let tasks = [];
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p1.png" alt=""></p>
+<h3>Example 1</h3>
+<p><strong>Result</strong> <a href="ex1-html_structure/index.html">View Example</a></p>
+<h2>Add a Display Function</h2>
+<p>The <code>displayTasks()</code> function loops through the array items, wraps each item in <code>&lt;li&gt;</code> elements alongside remove buttons, and prints the result inside the list element:</p>
+<pre><code class="language-javascript">// Function to display the list
+function displayTasks() {
+  let html = &quot;&quot;;
+  for (let i = 0; i &lt; tasks.length; i++) {
+    html += &quot;&lt;li&gt;&quot; + tasks[i] +
+    &quot; &lt;button onclick=&#39;removeTask(&quot; + i + &quot;)&#39;&gt;x&lt;/button&gt;&lt;/li&gt;&quot;;
+  }
+  document.getElementById(&quot;list&quot;).innerHTML = html;
+}
+</code></pre>
+<p><img src="images/p2.png" alt=""></p>
+<h3>Example 2</h3>
+<p><strong>Result</strong> <a href="ex2-add_remove/index.html">View Example</a></p>
+<h2>Add an Add Task Function</h2>
+<p>Retrieves the input value, pushes it to the tasks array, resets input text, and updates list views:</p>
+<pre><code class="language-javascript">// Function to Add a task
+function addTask() {
+  let taskInput = document.getElementById(&quot;task&quot;);
+  let text = taskInput.value;
+  if (text === &quot;&quot;) {
+    return;
+  }
+  tasks.push(text);
+  taskInput.value = &quot;&quot;;
+  saveTasks();
+  displayTasks();
+}
+</code></pre>
+<h2>Add a Remove Task Function</h2>
+<p>Removes tasks by index using the JavaScript array <code>splice()</code> method:</p>
+<pre><code class="language-javascript">// Function to Remove a task
+function removeTask(i) {
+  tasks.splice(i, 1);
+  saveTasks();
+  displayTasks();
+}
+</code></pre>
+<blockquote>
+<p>[!NOTE]<br><code>tasks.splice(i, 1)</code> deletes exactly 1 item at index position <code>i</code>.</p>
+</blockquote>
+<h2>Add a Clear All Function</h2>
+<p>Empties the array and refreshes the displays:</p>
+<pre><code class="language-javascript">// Function to Clear all tasks
+function clearAll() {
+  tasks = [];
+  saveTasks();
+  displayTasks();
+}
+</code></pre>
+<h2>Function to Save a Task</h2>
+<p>Converts the tasks array into text format and saves it inside <code>localStorage</code>:</p>
+<pre><code class="language-javascript">// Function to Save tasks
+function saveTasks() {
+  localStorage.setItem(&quot;tasks&quot;, JSON.stringify(tasks));
+}
+</code></pre>
+<blockquote>
+<p>[!IMPORTANT]<br><code>localStorage</code> only handles text keys and values. We must use <code>JSON.stringify(tasks)</code> to convert the tasks array into a string before saving.</p>
+</blockquote>
+<h2>Function to Load the Tasks</h2>
+<p>Retrieves string data and parses it back into an array structure:</p>
+<pre><code class="language-javascript">function loadTasks() {
+  let saved = localStorage.getItem(&quot;tasks&quot;);
+  if (saved !== null) {
+    tasks = JSON.parse(saved);
+  }
+}
+</code></pre>
+<h2>Final Project</h2>
+<p>Combines HTML code structure and state persistence logics together:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;To-Do List&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;input id=&quot;task&quot; placeholder=&quot;New task&quot;&gt;
+&lt;button onclick=&quot;addTask()&quot;&gt;Add&lt;/button&gt;
+&lt;ul id=&quot;list&quot;&gt;&lt;/ul&gt;
+&lt;button onclick=&quot;clearAll()&quot;&gt;Clear All&lt;/button&gt;
+
+&lt;script&gt;
+let tasks = [];
+
+function displayTasks() {
+  let html = &quot;&quot;;
+  for (let i = 0; i &lt; tasks.length; i++) {
+    html += &quot;&lt;li&gt;&quot; + tasks[i] +
+    &quot; &lt;button onclick=&#39;removeTask(&quot; + i + &quot;)&#39;&gt;x&lt;/button&gt;&lt;/li&gt;&quot;;
+  }
+  document.getElementById(&quot;list&quot;).innerHTML = html;
+}
+
+function addTask() {
+  let taskInput = document.getElementById(&quot;task&quot;);
+  let text = taskInput.value;
+  if (text === &quot;&quot;) {
+    return;
+  }
+  tasks.push(text);
+  taskInput.value = &quot;&quot;;
+  saveTasks();
+  displayTasks();
+}
+
+function removeTask(i) {
+  tasks.splice(i, 1);
+  saveTasks();
+  displayTasks();
+}
+
+function clearAll() {
+  tasks = [];
+  saveTasks();
+  displayTasks();
+}
+
+function saveTasks() {
+  localStorage.setItem(&quot;tasks&quot;, JSON.stringify(tasks));
+}
+
+function loadTasks() {
+  let saved = localStorage.getItem(&quot;tasks&quot;);
+  if (saved !== null) {
+    tasks = JSON.parse(saved);
+  }
+}
+
+loadTasks();
+displayTasks();
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p3.png" alt=""></p>
+<h3>Example 3</h3>
+<p><strong>Result</strong> <a href="ex3-final_project/index.html">View Example</a></p>
+<h2>Exercises &amp; Solutions</h2>
+<h3>Exercise 1</h3>
+<p>Show an alert if the user tries to add an empty task.</p>
+<h3>Exercise 2</h3>
+<p>Allow the user to press Enter to add a task.</p>
+<h3>Exercise 3</h3>
+<p>Add a &quot;Saved!&quot; message to show when saving.</p>
+<h3>Solutions Code</h3>
+<pre><code class="language-html">&lt;input id=&quot;task&quot; placeholder=&quot;New task&quot; onkeydown=&quot;handleKey(event)&quot;&gt;
+&lt;button onclick=&quot;addTask()&quot;&gt;Add&lt;/button&gt;
+&lt;ul id=&quot;list&quot;&gt;&lt;/ul&gt;
+&lt;button onclick=&quot;clearAll()&quot;&gt;Clear All&lt;/button&gt;
+&lt;p id=&quot;status&quot; style=&quot;color: green; font-weight: bold;&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+// (Inside script)
+function addTask() {
+  let taskInput = document.getElementById(&quot;task&quot;);
+  let text = taskInput.value.trim();
+  if (text === &quot;&quot;) {
+    alert(&quot;Please enter a task! Task cannot be empty.&quot;);
+    return;
+  }
+  tasks.push(text);
+  taskInput.value = &quot;&quot;;
+  saveTasks();
+  displayTasks();
+}
+
+function handleKey(event) {
+  if (event.key === &quot;Enter&quot;) {
+    addTask();
+  }
+}
+
+function saveTasks() {
+  localStorage.setItem(&quot;tasks&quot;, JSON.stringify(tasks));
+  showStatus(&quot;Saved!&quot;);
+}
+
+function showStatus(msg) {
+  let statusEl = document.getElementById(&quot;status&quot;);
+  statusEl.innerHTML = msg;
+  setTimeout(function () {
+    statusEl.innerHTML = &quot;&quot;;
+  }, 2000);
+}
+&lt;/script&gt;
+</code></pre>
+<p><img src="images/p4.png" alt=""></p>
+<h3>Example 4</h3>
+<p><strong>Result</strong> <a href="ex4-exercises_solutions/index.html">View Example</a></p>
+<h2>Bonus Challenges (Level Up)</h2>
+<p>Improve task workflows by adding premium styling, status checks, and filtering controls:</p>
+<ul>
+<li><strong>Checkbox markers:</strong> Check off tasks as done (triggers text strikethrough).</li>
+<li><strong>Filters:</strong> Toggle list views by active state categories (All / Active / Completed).</li>
+<li><strong>Inline Editing:</strong> Modify list names and save task changes dynamically.</li>
+<li><strong>Sorting:</strong> Sort list items alphabetically in one click.</li>
+</ul>
+<p><img src="images/p5.png" alt=""></p>
+<h3>Example 5</h3>
+<p><strong>Result</strong> <a href="ex5-bonus_challenges/index.html">View Example</a></p>
+<h2>Document</h2>
+<p>Document in project</p>
+<p>You can <a href="js-projecttodo.pdf">Download PDF</a> file.</p>
+<h2>Reference</h2>
+<ul>
+<li><a href="https://www.w3schools.com/js/js_project_todo.asp">W3Schools JavaScript To-Do List Project</a></li>
+</ul>
+
+</body>
+</html>

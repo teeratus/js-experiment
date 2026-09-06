@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Object Iterations</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>for...in Loop</h4>
+<p id="demo"></p>
+
+<script>
+const person = {
+  firstName: "John",
+  lastName: "Doe",
+  age: 30
+};
+
+let text = "";
+for (let key in person) {
+  text += key + ": " + person[key] + "<br>";
+}
+document.getElementById("demo").innerHTML = text;
+</script>
+
+</body>
+</html>

@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>js-set_logic</title>
+  <style>
+    body {
+      box-sizing: border-box;
+      min-width: 200px;
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 45px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+      font-size: 16px;
+      line-height: 1.5;
+      color: #24292e;
+      background-color: #ffffff;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 24px;
+      margin-bottom: 16px;
+      font-weight: 600;
+      line-height: 1.25;
+      border-bottom: 1px solid #eaecef;
+      padding-bottom: .3em;
+    }
+    h1 { font-size: 2em; }
+    h2 { font-size: 1.5em; }
+    h3 { font-size: 1.25em; }
+    code {
+      padding: .2em .4em;
+      margin: 0;
+      font-size: 85%;
+      background-color: rgba(27,31,35,.05);
+      border-radius: 3px;
+      font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
+    }
+    pre {
+      padding: 16px;
+      overflow: auto;
+      font-size: 85%;
+      line-height: 1.45;
+      background-color: #f6f8fa;
+      border-radius: 3px;
+      word-wrap: normal;
+    }
+    pre code {
+      background-color: transparent;
+      padding: 0;
+    }
+    blockquote {
+      padding: 0 1em;
+      color: #6a737d;
+      border-left: .25em solid #dfe2e5;
+      margin: 0 0 16px 0;
+    }
+    table {
+      border-spacing: 0;
+      border-collapse: collapse;
+      margin-top: 0;
+      margin-bottom: 16px;
+      width: 100%;
+    }
+    table th, table td {
+      padding: 6px 13px;
+      border: 1px solid #dfe2e5;
+    }
+    table tr:nth-child(2n) {
+      background-color: #f6f8fa;
+    }
+    img {
+      max-width: 100%;
+      box-sizing: content-box;
+    }
+    @media print {
+      body {
+        max-width: 100%;
+        padding: 0;
+      }
+      pre, blockquote, table, tr, img {
+        page-break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+<body>
+<h1>JavaScript Set Logic</h1>
+<p><a href="../acp-js.php">Back to JS page</a></p>
+<p>Table of Contents</p>
+<ul>
+<li><a href="#javascript-set-logic">JavaScript Set Logic</a><ul>
+<li><a href="#the-union-method">The union() Method</a><ul>
+<li><a href="#example-1">Example 1</a></li>
+</ul>
+</li>
+<li><a href="#the-intersection-method">The intersection() Method</a><ul>
+<li><a href="#example-2">Example 2</a></li>
+</ul>
+</li>
+<li><a href="#the-difference-method">The difference() Method</a><ul>
+<li><a href="#example-3">Example 3</a></li>
+</ul>
+</li>
+<li><a href="#the-symmetricdifference-method">The symmetricDifference() Method</a><ul>
+<li><a href="#example-4">Example 4</a></li>
+</ul>
+</li>
+<li><a href="#issubsetof-issupersetof-isdisjointfrom">isSubsetOf(), isSupersetOf(), isDisjointFrom()</a><ul>
+<li><a href="#example-5">Example 5</a></li>
+</ul>
+</li>
+<li><a href="#document">Document</a></li>
+<li><a href="#reference">Reference</a></li>
+</ul>
+</li>
+</ul>
+<h2>The union() Method</h2>
+<p><code>union()</code> creates a new Set containing all elements from both Sets:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Set Logic&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;The union() Method&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+const setA = new Set([&quot;a&quot;, &quot;b&quot;, &quot;c&quot;]);
+const setB = new Set([&quot;c&quot;, &quot;d&quot;, &quot;e&quot;]);
+
+let text = &quot;Set A: &quot; + [...setA] + &quot;&lt;br&gt;&quot;;
+text += &quot;Set B: &quot; + [...setB] + &quot;&lt;br&gt;&lt;br&gt;&quot;;
+
+if (setA.union) {
+  const result = setA.union(setB);
+  text += &quot;union(): &quot; + [...result] + &quot;&lt;br&gt;&quot;;
+  text += &quot;All elements from both sets (no duplicates)&quot;;
+} else {
+  text += &quot;union() is not supported in this browser yet.&quot;;
+}
+
+document.getElementById(&quot;demo&quot;).innerHTML = text;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p1.png" alt=""></p>
+<h3>Example 1</h3>
+<p><strong>Result</strong> <a href="ex1-union/index.html">View Example</a></p>
+<h2>The intersection() Method</h2>
+<p><code>intersection()</code> creates a new Set with elements in BOTH Sets:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Set Logic&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;The intersection() Method&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+const setA = new Set([&quot;a&quot;, &quot;b&quot;, &quot;c&quot;]);
+const setB = new Set([&quot;c&quot;, &quot;d&quot;, &quot;e&quot;]);
+
+let text = &quot;Set A: &quot; + [...setA] + &quot;&lt;br&gt;&quot;;
+text += &quot;Set B: &quot; + [...setB] + &quot;&lt;br&gt;&lt;br&gt;&quot;;
+
+if (setA.intersection) {
+  const result = setA.intersection(setB);
+  text += &quot;intersection(): &quot; + [...result] + &quot;&lt;br&gt;&quot;;
+  text += &quot;Only elements present in BOTH sets&quot;;
+} else {
+  text += &quot;intersection() is not supported in this browser yet.&quot;;
+}
+
+document.getElementById(&quot;demo&quot;).innerHTML = text;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p2.png" alt=""></p>
+<h3>Example 2</h3>
+<p><strong>Result</strong> <a href="ex2-intersection/index.html">View Example</a></p>
+<h2>The difference() Method</h2>
+<p><code>difference()</code> creates a new Set with elements in A but NOT in B:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Set Logic&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;The difference() Method&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+const setA = new Set([&quot;a&quot;, &quot;b&quot;, &quot;c&quot;]);
+const setB = new Set([&quot;c&quot;, &quot;d&quot;, &quot;e&quot;]);
+
+let text = &quot;Set A: &quot; + [...setA] + &quot;&lt;br&gt;&quot;;
+text += &quot;Set B: &quot; + [...setB] + &quot;&lt;br&gt;&lt;br&gt;&quot;;
+
+if (setA.difference) {
+  const result = setA.difference(setB);
+  text += &quot;difference(): &quot; + [...result] + &quot;&lt;br&gt;&quot;;
+  text += &quot;Elements in A but NOT in B&quot;;
+} else {
+  text += &quot;difference() is not supported in this browser yet.&quot;;
+}
+
+document.getElementById(&quot;demo&quot;).innerHTML = text;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p3.png" alt=""></p>
+<h3>Example 3</h3>
+<p><strong>Result</strong> <a href="ex3-difference/index.html">View Example</a></p>
+<h2>The symmetricDifference() Method</h2>
+<p><code>symmetricDifference()</code> creates a new Set with elements in either Set, but NOT in both:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Set Logic&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;The symmetricDifference() Method&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+const setA = new Set([&quot;a&quot;, &quot;b&quot;, &quot;c&quot;]);
+const setB = new Set([&quot;c&quot;, &quot;d&quot;, &quot;e&quot;]);
+
+let text = &quot;Set A: &quot; + [...setA] + &quot;&lt;br&gt;&quot;;
+text += &quot;Set B: &quot; + [...setB] + &quot;&lt;br&gt;&lt;br&gt;&quot;;
+
+if (setA.symmetricDifference) {
+  const result = setA.symmetricDifference(setB);
+  text += &quot;symmetricDifference(): &quot; + [...result] + &quot;&lt;br&gt;&quot;;
+  text += &quot;Elements in either set but NOT in both&quot;;
+} else {
+  text += &quot;symmetricDifference() is not supported in this browser yet.&quot;;
+}
+
+document.getElementById(&quot;demo&quot;).innerHTML = text;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p4.png" alt=""></p>
+<h3>Example 4</h3>
+<p><strong>Result</strong> <a href="ex4-symmetric_difference/index.html">View Example</a></p>
+<h2>isSubsetOf(), isSupersetOf(), isDisjointFrom()</h2>
+<p>These methods check the relationships between two Sets:</p>
+<ul>
+<li><code>isSubsetOf()</code> - true if every element of A is in B</li>
+<li><code>isSupersetOf()</code> - true if every element of B is in A</li>
+<li><code>isDisjointFrom()</code> - true if A and B have no common elements</li>
+</ul>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Set Logic&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;isSubsetOf(), isSupersetOf(), isDisjointFrom()&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+const setA = new Set([&quot;a&quot;, &quot;b&quot;]);
+const setB = new Set([&quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;d&quot;]);
+const setC = new Set([&quot;x&quot;, &quot;y&quot;]);
+
+let text = &quot;Set A: &quot; + [...setA] + &quot;&lt;br&gt;&quot;;
+text += &quot;Set B: &quot; + [...setB] + &quot;&lt;br&gt;&quot;;
+text += &quot;Set C: &quot; + [...setC] + &quot;&lt;br&gt;&lt;br&gt;&quot;;
+
+if (setA.isSubsetOf) {
+  text += &quot;A.isSubsetOf(B): &quot; + setA.isSubsetOf(setB) + &quot;&lt;br&gt;&quot;;
+  text += &quot;B.isSupersetOf(A): &quot; + setB.isSupersetOf(setA) + &quot;&lt;br&gt;&quot;;
+  text += &quot;A.isDisjointFrom(C): &quot; + setA.isDisjointFrom(setC) + &quot;&lt;br&gt;&lt;br&gt;&quot;;
+  text += &quot;A is subset of B ✓&lt;br&gt;&quot;;
+  text += &quot;B is superset of A ✓&lt;br&gt;&quot;;
+  text += &quot;A and C are disjoint ✓&quot;;
+} else {
+  text += &quot;These methods are not supported in this browser yet.&quot;;
+}
+
+document.getElementById(&quot;demo&quot;).innerHTML = text;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p5.png" alt=""></p>
+<h3>Example 5</h3>
+<p><strong>Result</strong> <a href="ex5-relationships/index.html">View Example</a></p>
+<h2>Document</h2>
+<p>Document in project</p>
+<p>You can <a href="js-set_logic.pdf">Download PDF</a> file.</p>
+<h2>Reference</h2>
+<ul>
+<li><a href="https://www.w3schools.com/js/js_set_logic.asp">W3Schools JavaScript Set Logic</a></li>
+</ul>
+
+</body>
+</html>

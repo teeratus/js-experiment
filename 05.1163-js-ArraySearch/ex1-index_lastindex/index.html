@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Array Search</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>indexOf() and lastIndexOf()</h4>
+<p id="demo"></p>
+
+<script>
+const fruits = ["Apple", "Orange", "Apple", "Mango"];
+
+// indexOf() - first occurrence
+let index = fruits.indexOf("Apple");
+
+// lastIndexOf() - last occurrence
+let lastIndex = fruits.lastIndexOf("Apple");
+
+document.getElementById("demo").innerHTML =
+  "Array: " + fruits + "<br><br>" +
+  "indexOf('Apple'): " + index + "<br>" +
+  "lastIndexOf('Apple'): " + lastIndex + "<br><br>" +
+  "indexOf('Banana'): " + fruits.indexOf("Banana") + " (-1 = not found)";
+</script>
+
+</body>
+</html>

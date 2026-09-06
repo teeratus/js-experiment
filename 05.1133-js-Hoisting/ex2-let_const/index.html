@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Hoisting</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>The let and const Keywords</h4>
+<p id="demo1"></p>
+<p id="demo2"></p>
+
+<script>
+// let and const are NOT hoisted like var
+try {
+  let carName = "Volvo";
+  document.getElementById("demo1").innerHTML =
+    "let carName: " + carName + " (declared before use - OK)";
+} catch(err) {
+  document.getElementById("demo1").innerHTML = "Error: " + err.message;
+}
+
+// Using let BEFORE declaration would cause an error
+try {
+  document.getElementById("demo2").innerHTML = 
+    "Attempting to use a let variable before declaration:";
+  console.log(city);
+  let city = "New York";
+} catch(err) {
+  document.getElementById("demo2").innerHTML = 
+    "Error caught: " + err.message + "<br>" +
+    "let/const are NOT hoisted like var";
+}
+</script>
+
+</body>
+</html>

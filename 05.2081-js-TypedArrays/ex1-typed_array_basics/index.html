@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Typed Arrays</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Typed Array Basics</h4>
+<p id="demo"></p>
+
+<script>
+// Create a typed array with initial values
+const numbers = new Int8Array([10, 20, 30, 40, 50]);
+
+let text = "Int8Array values:<br>";
+for (let num of numbers) {
+  text += num + " ";
+}
+text += "<br><br>";
+text += "Length: " + numbers.length + "<br>";
+text += "BYTES_PER_ELEMENT: " + numbers.BYTES_PER_ELEMENT + "<br>";
+text += "Constructor: " + numbers.constructor.name;
+
+document.getElementById("demo").innerHTML = text;
+</script>
+
+</body>
+</html>

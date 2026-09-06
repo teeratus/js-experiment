@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Validation API</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>The rangeOverflow Property</h4>
+
+<input type="number" id="quantity" max="100" placeholder="Max: 100">
+<button onclick="checkRangeOverflow()">Check</button>
+<p id="demo4"></p>
+
+<script>
+function checkRangeOverflow() {
+  const input = document.getElementById("quantity");
+  const value = input.value;
+  
+  if (value === "") {
+    document.getElementById("demo4").innerHTML = "Please enter a value.";
+    return;
+  }
+  
+  if (input.validity.rangeOverflow) {
+    document.getElementById("demo4").innerHTML = 
+      "Value " + value + " is too high! Max is " + input.max;
+  } else {
+    document.getElementById("demo4").innerHTML = 
+      "Value " + value + " is within range. Valid!";
+  }
+}
+</script>
+
+</body>
+</html>

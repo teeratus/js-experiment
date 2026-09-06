@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript AbortController</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Cancel After a Timeout</h4>
+<p id="demo"></p>
+
+<script>
+async function fetchWithTimeout(url, timeoutMs) {
+  const controller = new AbortController();
+  const signal = controller.signal;
+
+  // Set timeout to abort
+  const timeoutId = setTimeout(function() {
+    controller.abort();
+  }, timeoutMs);
+
+  try {
+    const response = await fetch(url, { signal });
+    clearTimeout(timeoutId); // Cancel the timeout if fetch completed
+    const data = await response.json();
+    document.getElementById("demo").innerHTML = "Data loaded in time!<br>User: " + data.name;
+  } catch(error) {
+    if (error.name === "AbortError") {
+      document.getElementById("demo").innerHTML = "Timeout: Request took too long!";
+    } else {
+      document.getElementById("demo").innerHTML = "Error: " + error.message;
+    }
+  }
+}
+
+// Try with a 3-second timeout (should complete quickly)
+fetchWithTimeout('https://jsonplaceholder.typicode.com/users/1', 3000);
+</script>
+
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Window History</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Window History Back</h4>
+<p id="demo"></p>
+
+<button onclick="goBack()">Go Back</button>
+<button onclick="showInfo()">History Info</button>
+
+<script>
+function goBack() {
+  window.history.back();
+}
+
+function showInfo() {
+  document.getElementById("demo").innerHTML =
+    "History length: " + window.history.length + "<br>" +
+    "Click 'Go Back' to navigate to the previous page";
+}
+</script>
+
+</body>
+</html>

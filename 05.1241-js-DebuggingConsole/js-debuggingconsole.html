@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>js-debuggingconsole</title>
+  <style>
+    body {
+      box-sizing: border-box;
+      min-width: 200px;
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 45px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+      font-size: 16px;
+      line-height: 1.5;
+      color: #24292e;
+      background-color: #ffffff;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 24px;
+      margin-bottom: 16px;
+      font-weight: 600;
+      line-height: 1.25;
+      border-bottom: 1px solid #eaecef;
+      padding-bottom: .3em;
+    }
+    h1 { font-size: 2em; }
+    h2 { font-size: 1.5em; }
+    h3 { font-size: 1.25em; }
+    code {
+      padding: .2em .4em;
+      margin: 0;
+      font-size: 85%;
+      background-color: rgba(27,31,35,.05);
+      border-radius: 3px;
+      font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
+    }
+    pre {
+      padding: 16px;
+      overflow: auto;
+      font-size: 85%;
+      line-height: 1.45;
+      background-color: #f6f8fa;
+      border-radius: 3px;
+      word-wrap: normal;
+    }
+    pre code {
+      background-color: transparent;
+      padding: 0;
+    }
+    blockquote {
+      padding: 0 1em;
+      color: #6a737d;
+      border-left: .25em solid #dfe2e5;
+      margin: 0 0 16px 0;
+    }
+    table {
+      border-spacing: 0;
+      border-collapse: collapse;
+      margin-top: 0;
+      margin-bottom: 16px;
+      width: 100%;
+    }
+    table th, table td {
+      padding: 6px 13px;
+      border: 1px solid #dfe2e5;
+    }
+    table tr:nth-child(2n) {
+      background-color: #f6f8fa;
+    }
+    img {
+      max-width: 100%;
+      box-sizing: content-box;
+    }
+    @media print {
+      body {
+        max-width: 100%;
+        padding: 0;
+      }
+      pre, blockquote, table, tr, img {
+        page-break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+<body>
+<h1>JavaScript Debugging Console</h1>
+<p><a href="../acp-js.php">Back to JS page</a></p>
+<p>Table of Contents</p>
+<ul>
+<li><a href="#javascript-debugging-console">JavaScript Debugging Console</a><ul>
+<li><a href="#using-consolelog">Using console.log()</a><ul>
+<li><a href="#example-1">Example 1</a></li>
+</ul>
+</li>
+<li><a href="#using-consolewarn">Using console.warn()</a><ul>
+<li><a href="#example-2">Example 2</a></li>
+</ul>
+</li>
+<li><a href="#using-consoleerror">Using console.error()</a><ul>
+<li><a href="#example-3">Example 3</a></li>
+</ul>
+</li>
+<li><a href="#logging-multiple-values">Logging Multiple Values</a><ul>
+<li><a href="#example-4">Example 4</a></li>
+</ul>
+</li>
+<li><a href="#inspecting-objects">Inspecting Objects</a><ul>
+<li><a href="#example-5">Example 5</a></li>
+</ul>
+</li>
+<li><a href="#using-consoletable">Using console.table()</a><ul>
+<li><a href="#example-6">Example 6</a></li>
+</ul>
+</li>
+<li><a href="#debugging-tip-stop-guessing">Debugging Tip: Stop Guessing</a><ul>
+<li><a href="#example-7">Example 7</a></li>
+</ul>
+</li>
+<li><a href="#document">Document</a></li>
+<li><a href="#reference">Reference</a></li>
+</ul>
+</li>
+</ul>
+<h2>Using console.log()</h2>
+<p>The <code>console.log()</code> method is the most common console method. Use it to print values and see what your program is doing. It prints messages and can print variable values to the browser&#39;s console.</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Debugging Console&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Using console.log()&lt;/h4&gt;
+&lt;p&gt;Open the browser console (F12) to see the debug output.&lt;/p&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+let name = &quot;John&quot;;
+let age = 25;
+
+console.log(&quot;Hello from JavaScript!&quot;);
+console.log(name);
+console.log(age);
+
+document.getElementById(&quot;demo&quot;).innerHTML =
+  &quot;name = &quot; + name + &quot;, age = &quot; + age + &quot; (check console)&quot;;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p1.png" alt=""></p>
+<h3>Example 1</h3>
+<p><strong>Result</strong> <a href="ex1-console_log/index.html">View Example</a></p>
+<h2>Using console.warn()</h2>
+<p>Use <code>console.warn()</code> to display warnings. Warnings tell you something might be wrong, but your code can still run. Use warnings when you want to highlight something suspicious in your program.</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Debugging Console&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Using console.warn()&lt;/h4&gt;
+&lt;p&gt;Open the browser console (F12) to see warning messages.&lt;/p&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+let age = 15;
+
+if (age &lt; 18) {
+  console.warn(&quot;This is a warning! User is under 18 years old.&quot;);
+  console.warn(&quot;Age: &quot; + age);
+}
+
+document.getElementById(&quot;demo&quot;).innerHTML =
+  &quot;Warning example: age = &quot; + age + &quot; (check console for warning)&quot;;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p2.png" alt=""></p>
+<h3>Example 2</h3>
+<p><strong>Result</strong> <a href="ex2-console_warn/index.html">View Example</a></p>
+<h2>Using console.error()</h2>
+<p>Use <code>console.error()</code> to display error messages. Errors show that something has failed. The error message is displayed in red in most browsers&#39; consoles, making it easy to spot.</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Debugging Console&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Using console.error()&lt;/h4&gt;
+&lt;p&gt;Open the browser console (F12) to see error messages.&lt;/p&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+let text = &quot;&quot;;
+
+try {
+  // Intentionally cause an error
+  undefinedFunction();
+}
+catch(err) {
+  console.error(&quot;Something went wrong!&quot;);
+  console.error(&quot;Error: &quot; + err.message);
+  text = &quot;Error caught: &quot; + err.message;
+}
+
+document.getElementById(&quot;demo&quot;).innerHTML = text + &quot; (check console)&quot;;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p3.png" alt=""></p>
+<h3>Example 3</h3>
+<p><strong>Result</strong> <a href="ex3-console_error/index.html">View Example</a></p>
+<h2>Logging Multiple Values</h2>
+<p>You can log more than one value at once with <code>console.log()</code>. Simply separate values with commas. This is very useful for tracking related variable values together.</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Debugging Console&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Logging Multiple Values&lt;/h4&gt;
+&lt;p&gt;Open the browser console (F12) to see the debug output.&lt;/p&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+let x = 10;
+let y = 5;
+let sum = x + y;
+
+console.log(&quot;x =&quot;, x, &quot;y =&quot;, y);
+console.log(&quot;x =&quot;, x, &quot;y =&quot;, y, &quot;sum =&quot;, sum);
+
+document.getElementById(&quot;demo&quot;).innerHTML =
+  &quot;x = &quot; + x + &quot;, y = &quot; + y + &quot;, sum = &quot; + sum + &quot; (check console)&quot;;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p4.png" alt=""></p>
+<h3>Example 4</h3>
+<p><strong>Result</strong> <a href="ex4-multiple_values/index.html">View Example</a></p>
+<h2>Inspecting Objects</h2>
+<p>The console is very useful for inspecting objects. You can log an object with <code>console.log()</code>, then in the console, you can click the object to expand it and see its properties.</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Debugging Console&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Inspecting Objects&lt;/h4&gt;
+&lt;p&gt;Open the browser console (F12) and expand the object to see its properties.&lt;/p&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+let user = {
+  name: &quot;John&quot;,
+  age: 25,
+  email: &quot;john@example.com&quot;,
+  city: &quot;New York&quot;
+};
+
+console.log(user);
+console.log(&quot;User name:&quot;, user.name);
+console.log(&quot;User age:&quot;, user.age);
+
+document.getElementById(&quot;demo&quot;).innerHTML =
+  &quot;User: &quot; + user.name + &quot;, Age: &quot; + user.age + &quot; (check console to inspect object)&quot;;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p5.png" alt=""></p>
+<h3>Example 5</h3>
+<p><strong>Result</strong> <a href="ex5-inspecting_objects/index.html">View Example</a></p>
+<h2>Using console.table()</h2>
+<p>Use <code>console.table()</code> to display data in a table format. Tables make it much easier to debug arrays of objects. The data is displayed as a formatted table in the browser console.</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Debugging Console&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Using console.table()&lt;/h4&gt;
+&lt;p&gt;Open the browser console (F12) to see the table output.&lt;/p&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+let users = [
+  {name: &quot;John&quot;, age: 25, city: &quot;New York&quot;},
+  {name: &quot;Anna&quot;, age: 30, city: &quot;London&quot;},
+  {name: &quot;Peter&quot;, age: 28, city: &quot;Paris&quot;}
+];
+
+console.table(users);
+console.log(&quot;Users array logged as table (check console)&quot;);
+
+let displayText = &quot;&quot;;
+for (let user of users) {
+  displayText += user.name + &quot; (&quot; + user.age + &quot;) - &quot; + user.city + &quot;&lt;br&gt;&quot;;
+}
+document.getElementById(&quot;demo&quot;).innerHTML =
+  displayText + &quot;(check console for table view)&quot;;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p6.png" alt=""></p>
+<h3>Example 6</h3>
+<p><strong>Result</strong> <a href="ex6-console_table/index.html">View Example</a></p>
+<h2>Debugging Tip: Stop Guessing</h2>
+<p>Beginners often <strong>guess</strong> what the value is. Professionals <strong>log the value</strong> and confirm it. If your code is not working, <strong>do not guess</strong>. Use <code>console.log()</code>. Every time you assume a value, log it to the console and verify.</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Debugging Console&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Debugging Tip: Stop Guessing&lt;/h4&gt;
+&lt;p&gt;Open the browser console (F12) to see the debug output.&lt;/p&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+let result = &quot;&quot;;
+
+// Don&#39;t guess what the value is — log it!
+let a = 5;
+let b = &quot;10&quot;;
+
+console.log(&quot;Value of a:&quot;, a, &quot;| type:&quot;, typeof a);
+console.log(&quot;Value of b:&quot;, b, &quot;| type:&quot;, typeof b);
+
+let total = a + b;
+console.log(&quot;total = a + b =&quot;, total, &quot;| type:&quot;, typeof total);
+
+// Now fix it by converting
+let fixedTotal = a + Number(b);
+console.log(&quot;fixedTotal = a + Number(b) =&quot;, fixedTotal, &quot;| type:&quot;, typeof fixedTotal);
+
+result += &quot;a = &quot; + a + &quot; (type: &quot; + typeof a + &quot;)&lt;br&gt;&quot;;
+result += &quot;b = \&quot;&quot; + b + &quot;\&quot; (type: &quot; + typeof b + &quot;)&lt;br&gt;&quot;;
+result += &quot;a + b = &quot; + total + &quot; (unexpected string concatenation!)&lt;br&gt;&quot;;
+result += &quot;a + Number(b) = &quot; + fixedTotal + &quot; (correct addition)&quot;;
+
+document.getElementById(&quot;demo&quot;).innerHTML = result;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p7.png" alt=""></p>
+<h3>Example 7</h3>
+<p><strong>Result</strong> <a href="ex7-stop_guessing/index.html">View Example</a></p>
+<h2>Document</h2>
+<p>Document in project</p>
+<p>You can <a href="js-debuggingconsole.pdf">Download PDF</a> file.</p>
+<h2>Reference</h2>
+<ul>
+<li><a href="https://www.w3schools.com/js/js_debugging_console.asp">W3Schools JavaScript Debugging Console</a></li>
+</ul>
+
+</body>
+</html>

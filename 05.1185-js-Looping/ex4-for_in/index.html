@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Looping</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>The for...in Loop</h4>
+<p id="demo"></p>
+
+<script>
+const person = { name: "John", age: 30, city: "New York" };
+let text = "";
+
+for (let key in person) {
+  text += key + ": " + person[key] + "<br>";
+}
+document.getElementById("demo").innerHTML = text;
+</script>
+
+</body>
+</html>

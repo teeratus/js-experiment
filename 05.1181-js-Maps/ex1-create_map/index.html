@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Maps</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>How to Create a Map</h4>
+<p id="demo"></p>
+
+<script>
+// Create a Map with key-value pairs
+const fruits = new Map([
+  ["apple", 500],
+  ["banana", 300],
+  ["orange", 200]
+]);
+
+// Create an empty Map
+const emptyMap = new Map();
+
+document.getElementById("demo").innerHTML =
+  "Map from array: " + [...fruits] + "<br>" +
+  "Map size: " + fruits.size + "<br><br>" +
+  "Keys can be any datatype:<br>" +
+  "fruits.get('apple'): " + fruits.get("apple");
+</script>
+
+</body>
+</html>

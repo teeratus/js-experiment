@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Maps</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>JavaScript Objects vs Maps</h4>
+<p id="demo"></p>
+
+<script>
+// Object
+const obj = { name: "John", age: 30 };
+
+// Map
+const map = new Map([
+  ["name", "John"],
+  ["age", 30]
+]);
+
+let text = "<b>Object:</b><br>";
+text += "size: " + Object.keys(obj).length + " (via keys())<br>";
+text += "Keys: strings only<br>";
+text += "Iterable: no<br><br>";
+
+text += "<b>Map:</b><br>";
+text += "size: " + map.size + "<br>";
+text += "Keys: any type<br>";
+text += "Iterable: yes<br><br>";
+
+text += "<b>When to use Map?</b><br>";
+text += "1. Need keys other than strings<br>";
+text += "2. Need size property<br>";
+text += "3. Need iteration<br>";
+text += "4. Need insertion order";
+
+document.getElementById("demo").innerHTML = text;
+</script>
+
+</body>
+</html>

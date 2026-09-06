@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript WeakSet</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>WeakSet vs Set</h4>
+<p id="demo"></p>
+
+<script>
+// Set can hold any type
+const set = new Set(["string", 42, true, {obj: true}]);
+
+// WeakSet can only hold objects
+const obj = {name: "John"};
+const weakSet = new WeakSet([obj]);
+
+let text = "<b>Set can hold:</b><br>";
+text += "- Strings: ✓<br>";
+text += "- Numbers: ✓<br>";
+text += "- Booleans: ✓<br>";
+text += "- Objects: ✓<br><br>";
+
+text += "<b>WeakSet can only hold:</b><br>";
+text += "- Objects: ✓ (only types allowed)<br><br>";
+
+text += "<b>Set has:</b> size, forEach(), values(), keys()<br>";
+text += "<b>WeakSet has:</b> add(), delete(), has() only<br><br>";
+
+document.getElementById("demo").innerHTML = text;
+</script>
+
+</body>
+</html>

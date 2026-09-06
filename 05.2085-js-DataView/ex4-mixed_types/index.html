@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript DataView</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Mixed Types</h4>
+<p id="demo"></p>
+
+<script>
+const buffer = new ArrayBuffer(20);
+const dv = new DataView(buffer);
+
+// Write mixed data types
+dv.setInt32(0, 2024);        // Year (4 bytes)
+dv.setInt16(4, 12);          // Month (2 bytes)
+dv.setInt16(6, 25);          // Day (2 bytes)
+dv.setFloat32(8, 36.5);      // Temperature (4 bytes)
+dv.setInt8(12, 72);          // Humidity % (1 byte)
+dv.setInt8(13, 1);           // Active flag (1 byte)
+
+// Read back
+let text = "Mixed Data Types in DataView:<br><br>";
+text += "Year: " + dv.getInt32(0) + "<br>";
+text += "Month: " + dv.getInt16(4) + "<br>";
+text += "Day: " + dv.getInt16(6) + "<br>";
+text += "Temperature: " + dv.getFloat32(8) + "°C<br>";
+text += "Humidity: " + dv.getInt8(12) + "%<br>";
+text += "Active: " + (dv.getInt8(13) === 1);
+
+document.getElementById("demo").innerHTML = text;
+</script>
+
+</body>
+</html>

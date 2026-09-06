@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Temporal</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Temporal.Now</h4>
+<p id="demo"></p>
+
+<script>
+if (typeof Temporal !== "undefined") {
+  document.getElementById("demo").innerHTML =
+    "Temporal.Now.instant(): " + Temporal.Now.instant().toString() + "<br>" +
+    "Temporal.Now.zonedDateTimeISO(): " + Temporal.Now.zonedDateTimeISO().toString() + "<br>" +
+    "Temporal.Now.plainDateTimeISO(): " + Temporal.Now.plainDateTimeISO().toString() + "<br>" +
+    "Temporal.Now.plainDateISO(): " + Temporal.Now.plainDateISO().toString() + "<br>" +
+    "Temporal.Now.plainTimeISO(): " + Temporal.Now.plainTimeISO().toString();
+} else {
+  document.getElementById("demo").innerHTML =
+    "Temporal is not supported in this browser.<br>" +
+    "Equivalent Date.now(): " + new Date().toLocaleString();
+}
+</script>
+
+</body>
+</html>

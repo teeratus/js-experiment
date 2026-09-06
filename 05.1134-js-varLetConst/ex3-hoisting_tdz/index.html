@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript var, let, const</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Hoisting and the Temporal Dead Zone (TDZ)</h4>
+<p id="demo1"></p>
+<p id="demo2"></p>
+
+<script>
+// var is hoisted and initialized with undefined
+document.getElementById("demo1").innerHTML =
+  "var x: " + x + " (hoisted, initialized as undefined)";
+var x = 5;
+
+// let is NOT initialized before declaration (TDZ)
+try {
+  console.log(y); // Would throw ReferenceError
+  let y = 10;
+} catch(err) {
+  document.getElementById("demo2").innerHTML =
+    "let y: Error - " + err.message + "<br>" +
+    "let is in Temporal Dead Zone before declaration";
+}
+</script>
+
+</body>
+</html>

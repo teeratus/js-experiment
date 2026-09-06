@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Sets</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>The add() Method</h4>
+<p id="demo"></p>
+
+<script>
+const fruits = new Set();
+
+// Add values with add()
+fruits.add("Apple");
+fruits.add("Banana");
+fruits.add("Orange");
+
+// Duplicate values are ignored
+fruits.add("Apple");  // Already exists - ignored!
+
+document.getElementById("demo").innerHTML =
+  "Set: " + [...fruits] + "<br>" +
+  "Size: " + fruits.size + "<br><br>" +
+  "Duplicates are automatically removed";
+</script>
+
+</body>
+</html>

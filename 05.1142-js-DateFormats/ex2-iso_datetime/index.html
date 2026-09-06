@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Date Formats</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>ISO Dates (Date-Time)</h4>
+<p id="demo"></p>
+
+<script>
+// Date and time with T separator
+const dateTime = new Date("2024-03-15T10:30:00");
+
+// Date and time with UTC (Z = Zulu time / UTC)
+const utcTime = new Date("2024-03-15T10:30:00Z");
+
+// Date and time with timezone offset
+const timezoneTime = new Date("2024-03-15T10:30:00+07:00");
+
+document.getElementById("demo").innerHTML =
+  "With T separator: " + dateTime + "<br>" +
+  "With Z (UTC): " + utcTime + "<br>" +
+  "With +07:00 offset: " + timezoneTime;
+</script>
+
+</body>
+</html>

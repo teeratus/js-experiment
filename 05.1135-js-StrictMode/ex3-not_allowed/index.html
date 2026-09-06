@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Strict Mode</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Not Allowed in Strict Mode</h4>
+<p id="demo"></p>
+
+<script>
+"use strict";
+
+let text = "<b>Not allowed in strict mode:</b><br><br>";
+text += "1. Using undeclared variables (ReferenceError)<br>";
+text += "2. Deleting variables (SyntaxError)<br>";
+text += "3. Duplicating parameters (SyntaxError)<br>";
+text += "4. Using reserved words as names<br>";
+text += "5. Octal numeric literals<br>";
+text += "6. Writing to read-only properties<br><br>";
+
+// Example: writing to read-only property
+try {
+  const obj = {};
+  Object.defineProperty(obj, "readonly", {value: 10, writable: false});
+  obj.readonly = 20;  // TypeError in strict mode
+  text += "Read-only property write: no error (non-strict behavior)";
+} catch(err) {
+  text += "Read-only property error: " + err.message;
+}
+
+document.getElementById("demo").innerHTML = text;
+</script>
+
+</body>
+</html>

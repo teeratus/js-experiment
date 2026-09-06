@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript WeakMap</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Not Iterable and Limited Methods</h4>
+<p id="demo"></p>
+
+<script>
+const weakMap = new WeakMap();
+const obj = { id: 1 };
+
+// The 4 available methods
+weakMap.set(obj, "value");
+let text = "After set(obj, 'value'):<br>";
+text += "get(obj): " + weakMap.get(obj) + "<br>";
+text += "has(obj): " + weakMap.has(obj) + "<br><br>";
+
+weakMap.delete(obj);
+text += "After delete(obj):<br>";
+text += "has(obj): " + weakMap.has(obj) + "<br><br>";
+
+text += "<b>WeakMap limitations:</b><br>";
+text += "1. NOT iterable (no forEach, keys, values)<br>";
+text += "2. NO size property<br>";
+text += "3. Only 4 methods: set(), get(), delete(), has()";
+
+document.getElementById("demo").innerHTML = text;
+</script>
+
+</body>
+</html>

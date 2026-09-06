@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Maps</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>The get() Method</h4>
+<p id="demo"></p>
+
+<script>
+const fruits = new Map([
+  ["apple", 500],
+  ["banana", 300]
+]);
+
+document.getElementById("demo").innerHTML =
+  "get('apple'): " + fruits.get("apple") + "<br>" +
+  "get('banana'): " + fruits.get("banana") + "<br>" +
+  "get('orange'): " + fruits.get("orange") + " (undefined - not in Map)<br><br>" +
+  "has('apple'): " + fruits.has("apple") + "<br>" +
+  "size: " + fruits.size;
+</script>
+
+</body>
+</html>

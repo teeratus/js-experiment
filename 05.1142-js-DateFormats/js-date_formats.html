@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>js-date_formats</title>
+  <style>
+    body {
+      box-sizing: border-box;
+      min-width: 200px;
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 45px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+      font-size: 16px;
+      line-height: 1.5;
+      color: #24292e;
+      background-color: #ffffff;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 24px;
+      margin-bottom: 16px;
+      font-weight: 600;
+      line-height: 1.25;
+      border-bottom: 1px solid #eaecef;
+      padding-bottom: .3em;
+    }
+    h1 { font-size: 2em; }
+    h2 { font-size: 1.5em; }
+    h3 { font-size: 1.25em; }
+    code {
+      padding: .2em .4em;
+      margin: 0;
+      font-size: 85%;
+      background-color: rgba(27,31,35,.05);
+      border-radius: 3px;
+      font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
+    }
+    pre {
+      padding: 16px;
+      overflow: auto;
+      font-size: 85%;
+      line-height: 1.45;
+      background-color: #f6f8fa;
+      border-radius: 3px;
+      word-wrap: normal;
+    }
+    pre code {
+      background-color: transparent;
+      padding: 0;
+    }
+    blockquote {
+      padding: 0 1em;
+      color: #6a737d;
+      border-left: .25em solid #dfe2e5;
+      margin: 0 0 16px 0;
+    }
+    table {
+      border-spacing: 0;
+      border-collapse: collapse;
+      margin-top: 0;
+      margin-bottom: 16px;
+      width: 100%;
+    }
+    table th, table td {
+      padding: 6px 13px;
+      border: 1px solid #dfe2e5;
+    }
+    table tr:nth-child(2n) {
+      background-color: #f6f8fa;
+    }
+    img {
+      max-width: 100%;
+      box-sizing: content-box;
+    }
+    @media print {
+      body {
+        max-width: 100%;
+        padding: 0;
+      }
+      pre, blockquote, table, tr, img {
+        page-break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+<body>
+<h1>JavaScript Date Formats</h1>
+<p><a href="../acp-js.php">Back to JS page</a></p>
+<p>Table of Contents</p>
+<ul>
+<li><a href="#javascript-date-formats">JavaScript Date Formats</a><ul>
+<li><a href="#javascript-iso-dates">JavaScript ISO Dates</a><ul>
+<li><a href="#example-1">Example 1</a></li>
+</ul>
+</li>
+<li><a href="#iso-dates-date-time">ISO Dates (Date-Time)</a><ul>
+<li><a href="#example-2">Example 2</a></li>
+</ul>
+</li>
+<li><a href="#javascript-short-dates">JavaScript Short Dates</a><ul>
+<li><a href="#example-3">Example 3</a></li>
+</ul>
+</li>
+<li><a href="#javascript-long-dates">JavaScript Long Dates</a><ul>
+<li><a href="#example-4">Example 4</a></li>
+</ul>
+</li>
+<li><a href="#date-input---parsing-dates">Date Input - Parsing Dates</a><ul>
+<li><a href="#example-5">Example 5</a></li>
+</ul>
+</li>
+<li><a href="#document">Document</a></li>
+<li><a href="#reference">Reference</a></li>
+</ul>
+</li>
+</ul>
+<h2>JavaScript ISO Dates</h2>
+<p><strong>ISO 8601</strong> is the international standard for the representation of dates and times. The ISO 8601 syntax (YYYY-MM-DD) is also the preferred JavaScript date format:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Date Formats&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;JavaScript ISO Dates&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+// Complete date (year-month-day)
+const completeDate = new Date(&quot;2024-03-15&quot;);
+
+// Year and month (yyyy-mm)
+const yearMonth = new Date(&quot;2024-03&quot;);
+
+// Only year (yyyy)
+const onlyYear = new Date(&quot;2024&quot;);
+
+document.getElementById(&quot;demo&quot;).innerHTML =
+  &quot;new Date(&#39;2024-03-15&#39;): &quot; + completeDate + &quot;&lt;br&gt;&quot; +
+  &quot;new Date(&#39;2024-03&#39;): &quot; + yearMonth + &quot;&lt;br&gt;&quot; +
+  &quot;new Date(&#39;2024&#39;): &quot; + onlyYear;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p1.png" alt=""></p>
+<h3>Example 1</h3>
+<p><strong>Result</strong> <a href="ex1-iso_dates/index.html">View Example</a></p>
+<h2>ISO Dates (Date-Time)</h2>
+<p>ISO dates can be written with added hours, minutes, and seconds (YYYY-MM-DDTHH:MM:SSZ):</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Date Formats&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;ISO Dates (Date-Time)&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+// Date and time with T separator
+const dateTime = new Date(&quot;2024-03-15T10:30:00&quot;);
+
+// Date and time with UTC (Z = Zulu time / UTC)
+const utcTime = new Date(&quot;2024-03-15T10:30:00Z&quot;);
+
+// Date and time with timezone offset
+const timezoneTime = new Date(&quot;2024-03-15T10:30:00+07:00&quot;);
+
+document.getElementById(&quot;demo&quot;).innerHTML =
+  &quot;With T separator: &quot; + dateTime + &quot;&lt;br&gt;&quot; +
+  &quot;With Z (UTC): &quot; + utcTime + &quot;&lt;br&gt;&quot; +
+  &quot;With +07:00 offset: &quot; + timezoneTime;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p2.png" alt=""></p>
+<h3>Example 2</h3>
+<p><strong>Result</strong> <a href="ex2-iso_datetime/index.html">View Example</a></p>
+<h2>JavaScript Short Dates</h2>
+<p>Short dates are written with the &quot;MM/DD/YYYY&quot; syntax. Be careful with month/day order:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Date Formats&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;JavaScript Short Dates&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+// Short date format: MM/DD/YYYY
+const shortDate1 = new Date(&quot;03/15/2024&quot;);   // March 15, 2024
+
+// Short date with dashes
+const shortDate2 = new Date(&quot;2024-03-15&quot;);
+
+// Short date or long date
+const shortDate3 = new Date(&quot;March 15, 2024&quot;);
+
+document.getElementById(&quot;demo&quot;).innerHTML =
+  &quot;MM/DD/YYYY: &quot; + shortDate1 + &quot;&lt;br&gt;&quot; +
+  &quot;YYYY-MM-DD: &quot; + shortDate2 + &quot;&lt;br&gt;&quot; +
+  &quot;Month name: &quot; + shortDate3;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p3.png" alt=""></p>
+<h3>Example 3</h3>
+<p><strong>Result</strong> <a href="ex3-short_dates/index.html">View Example</a></p>
+<h2>JavaScript Long Dates</h2>
+<p>Long dates are most often written with a &quot;MMM DD YYYY&quot; syntax. Month and day can be in any order:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Date Formats&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;JavaScript Long Dates&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+// Long date formats
+const longDate1 = new Date(&quot;Mar 15 2024&quot;);          // Month name short
+const longDate2 = new Date(&quot;March 15, 2024&quot;);       // Full month name
+const longDate3 = new Date(&quot;15 Mar 2024&quot;);          // Day first
+
+// With time
+const longDate4 = new Date(&quot;March 15, 2024 10:30:00&quot;);
+
+document.getElementById(&quot;demo&quot;).innerHTML =
+  &quot;Mar 15 2024: &quot; + longDate1 + &quot;&lt;br&gt;&quot; +
+  &quot;March 15, 2024: &quot; + longDate2 + &quot;&lt;br&gt;&quot; +
+  &quot;15 Mar 2024: &quot; + longDate3 + &quot;&lt;br&gt;&quot; +
+  &quot;March 15, 2024 10:30:00: &quot; + longDate4;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p4.png" alt=""></p>
+<h3>Example 4</h3>
+<p><strong>Result</strong> <a href="ex4-long_dates/index.html">View Example</a></p>
+<h2>Date Input - Parsing Dates</h2>
+<p>If you have a valid date string, you can use the <code>Date.parse()</code> method to convert it to milliseconds and back to a Date object:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Date Formats&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Date Input - Parsing Dates&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+// Date.parse() converts a date string to milliseconds
+let ms = Date.parse(&quot;March 15, 2024&quot;);
+const parsedDate = new Date(ms);
+
+// Parse ISO format
+let ms2 = Date.parse(&quot;2024-03-15T10:30:00&quot;);
+const parsedDate2 = new Date(ms2);
+
+document.getElementById(&quot;demo&quot;).innerHTML =
+  &quot;Date.parse(&#39;March 15, 2024&#39;): &quot; + ms + &quot; ms&lt;br&gt;&quot; +
+  &quot;new Date(ms): &quot; + parsedDate + &quot;&lt;br&gt;&lt;br&gt;&quot; +
+  &quot;Date.parse(&#39;2024-03-15T10:30:00&#39;): &quot; + ms2 + &quot; ms&lt;br&gt;&quot; +
+  &quot;new Date(ms2): &quot; + parsedDate2;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p5.png" alt=""></p>
+<h3>Example 5</h3>
+<p><strong>Result</strong> <a href="ex5-parse_dates/index.html">View Example</a></p>
+<h2>Document</h2>
+<p>Document in project</p>
+<p>You can <a href="js-date_formats.pdf">Download PDF</a> file.</p>
+<h2>Reference</h2>
+<ul>
+<li><a href="https://www.w3schools.com/js/js_date_formats.asp">W3Schools JavaScript Date Formats</a></li>
+</ul>
+
+</body>
+</html>

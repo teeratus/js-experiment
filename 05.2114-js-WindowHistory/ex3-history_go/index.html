@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Window History</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Window History Go</h4>
+<p id="demo"></p>
+
+<button onclick="goBack2()">Go Back 2 Pages</button>
+<button onclick="goForward2()">Go Forward 2 Pages</button>
+<button onclick="showInfo()">History Info</button>
+
+<script>
+function goBack2() {
+  window.history.go(-2);
+}
+
+function goForward2() {
+  window.history.go(2);
+}
+
+function showInfo() {
+  document.getElementById("demo").innerHTML =
+    "History length: " + window.history.length + "<br><br>" +
+    "history.go(-2): Go back 2 pages<br>" +
+    "history.go(2): Go forward 2 pages<br>" +
+    "history.go(0): Reload current page<br>" +
+    "history.go(-1): Go back 1 page (same as back())<br>" +
+    "history.go(1): Go forward 1 page (same as forward())";
+}
+</script>
+
+</body>
+</html>

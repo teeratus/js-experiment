@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Scopes</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Automatically Global</h4>
+<p id="demo"></p>
+
+<script>
+function myFunction() {
+  // This becomes GLOBAL automatically (not recommended!)
+  carName = "Volvo";
+}
+
+// Call the function first
+myFunction();
+
+// Now carName is global and accessible here
+document.getElementById("demo").innerHTML =
+  "After running myFunction():<br>" +
+  "carName = " + carName + "<br><br>" +
+  "Warning: This variable is now global!<br>" +
+  "Always declare variables with let/const/var";
+</script>
+
+</body>
+</html>

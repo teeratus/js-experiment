@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Google Chart Graphics</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Scatter Plots</h4>
+
+<div id="scatterChart"></div>
+<p id="demo5"></p>
+
+<script src="https://www.gstatic.com/charts/loader.js"></script>
+
+<script>
+google.charts.load("current", {packages: ["corechart"]});
+google.charts.setOnLoadCallback(drawScatterChart);
+
+function drawScatterChart() {
+  const data = google.visualization.arrayToDataTable([
+    ["X", "Y"],
+    [1, 2], [3, 5], [4, 4], [6, 8], [7, 7],
+    [9, 10], [2, 3], [4, 6], [5, 5], [7, 9],
+    [8, 8], [10, 11]
+  ]);
+
+  const options = {
+    title: "Scatter Plot",
+    hAxis: {title: "X Values", minValue: 0, maxValue: 11},
+    vAxis: {title: "Y Values", minValue: 0, maxValue: 12},
+    legend: "none",
+    pointSize: 8,
+    colors: ["#4CAF50"]
+  };
+
+  const chart = new google.visualization.ScatterChart(document.getElementById("scatterChart"));
+  chart.draw(data, options);
+  document.getElementById("demo5").innerHTML = "Google Scatter Chart created!";
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Object Prototypes</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Prototype Inheritance</h4>
+<p id="demo"></p>
+
+<script>
+function Person(first, last, age) {
+  this.firstName = first;
+  this.lastName = last;
+  this.age = age;
+}
+
+const myFather = new Person("John", "Doe", 50);
+const myMother = new Person("Jane", "Doe", 48);
+
+document.getElementById("demo").innerHTML =
+  "My father is " + myFather.firstName + " " + myFather.lastName + "<br>" +
+  "My mother is " + myMother.firstName + " " + myMother.lastName;
+</script>
+
+</body>
+</html>

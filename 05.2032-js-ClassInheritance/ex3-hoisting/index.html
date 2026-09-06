@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Class Inheritance</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Hoisting</h4>
+<p id="demo1"></p>
+<p id="demo2"></p>
+
+<script>
+// Trying to use the class before declaration would cause an error
+try {
+  const myCar = new Car("Ford");
+} catch(err) {
+  document.getElementById("demo1").innerHTML = "Error: " + err.message;
+}
+
+// Class declaration
+class Car {
+  constructor(brand) {
+    this.carname = brand;
+  }
+}
+
+// This works - class declared before use
+const myCar = new Car("Toyota");
+document.getElementById("demo2").innerHTML = "Success: " + myCar.carname;
+</script>
+
+</body>
+</html>

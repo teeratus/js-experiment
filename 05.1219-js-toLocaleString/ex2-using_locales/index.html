@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript toLocaleString()</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Using Locales</h4>
+<p id="demo"></p>
+
+<script>
+let num = 1234567.89;
+
+let us = num.toLocaleString("en-US");
+let de = num.toLocaleString("de-DE");
+let no = num.toLocaleString("no-NO");
+
+document.getElementById("demo").innerHTML =
+  "en-US: " + us + "<br>" +
+  "de-DE: " + de + "<br>" +
+  "no-NO: " + no;
+</script>
+
+</body>
+</html>

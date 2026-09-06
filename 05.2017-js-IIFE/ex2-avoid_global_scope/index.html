@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript IIFE</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Avoid Polluting the Global Scope</h4>
+<p id="demo1"></p>
+<p id="demo2"></p>
+
+<script>
+(function() {
+  let privateVar = "This is private";
+  document.getElementById("demo1").innerHTML = "Inside IIFE: " + privateVar;
+})();
+
+// privateVar is NOT accessible here (would cause error)
+document.getElementById("demo2").innerHTML = "Outside IIFE: privateVar is not accessible";
+</script>
+
+</body>
+</html>

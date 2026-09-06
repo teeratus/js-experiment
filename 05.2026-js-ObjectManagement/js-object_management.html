@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>js-object_management</title>
+  <style>
+    body {
+      box-sizing: border-box;
+      min-width: 200px;
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 45px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+      font-size: 16px;
+      line-height: 1.5;
+      color: #24292e;
+      background-color: #ffffff;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 24px;
+      margin-bottom: 16px;
+      font-weight: 600;
+      line-height: 1.25;
+      border-bottom: 1px solid #eaecef;
+      padding-bottom: .3em;
+    }
+    h1 { font-size: 2em; }
+    h2 { font-size: 1.5em; }
+    h3 { font-size: 1.25em; }
+    code {
+      padding: .2em .4em;
+      margin: 0;
+      font-size: 85%;
+      background-color: rgba(27,31,35,.05);
+      border-radius: 3px;
+      font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
+    }
+    pre {
+      padding: 16px;
+      overflow: auto;
+      font-size: 85%;
+      line-height: 1.45;
+      background-color: #f6f8fa;
+      border-radius: 3px;
+      word-wrap: normal;
+    }
+    pre code {
+      background-color: transparent;
+      padding: 0;
+    }
+    blockquote {
+      padding: 0 1em;
+      color: #6a737d;
+      border-left: .25em solid #dfe2e5;
+      margin: 0 0 16px 0;
+    }
+    table {
+      border-spacing: 0;
+      border-collapse: collapse;
+      margin-top: 0;
+      margin-bottom: 16px;
+      width: 100%;
+    }
+    table th, table td {
+      padding: 6px 13px;
+      border: 1px solid #dfe2e5;
+    }
+    table tr:nth-child(2n) {
+      background-color: #f6f8fa;
+    }
+    img {
+      max-width: 100%;
+      box-sizing: content-box;
+    }
+    @media print {
+      body {
+        max-width: 100%;
+        padding: 0;
+      }
+      pre, blockquote, table, tr, img {
+        page-break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+<body>
+<h1>JavaScript Object Management</h1>
+<p><a href="../acp-js.php">Back to JS page</a></p>
+<p>Table of Contents</p>
+<ul>
+<li><a href="#javascript-object-management">JavaScript Object Management</a><ul>
+<li><a href="#adding-a-new-property">Adding a New Property</a><ul>
+<li><a href="#example-1">Example 1</a></li>
+</ul>
+</li>
+<li><a href="#changing-a-property-value">Changing a Property Value</a><ul>
+<li><a href="#example-2">Example 2</a></li>
+</ul>
+</li>
+<li><a href="#property-attributes">Property Attributes</a></li>
+<li><a href="#list-all-object-properties">List All Object Properties</a><ul>
+<li><a href="#example-3">Example 3</a></li>
+</ul>
+</li>
+<li><a href="#adding-getters-and-setters">Adding Getters and Setters</a><ul>
+<li><a href="#example-4">Example 4</a></li>
+</ul>
+</li>
+<li><a href="#a-counter-example">A Counter Example</a><ul>
+<li><a href="#example-5">Example 5</a></li>
+</ul>
+</li>
+<li><a href="#document">Document</a></li>
+<li><a href="#reference">Reference</a></li>
+</ul>
+</li>
+</ul>
+<h2>Adding a New Property</h2>
+<p>You can add new properties to an existing object using <code>Object.defineProperty()</code>:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Object Management&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Adding a New Property&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+const person = {
+  firstName: &quot;John&quot;,
+  lastName: &quot;Doe&quot;
+};
+
+// Add a new property
+Object.defineProperty(person, &quot;fullName&quot;, {
+  value: &quot;John Doe&quot;,
+  writable: true
+});
+
+document.getElementById(&quot;demo&quot;).innerHTML = person.fullName;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p1.png" alt=""></p>
+<h3>Example 1</h3>
+<p><strong>Result</strong> <a href="ex1-add_property/index.html">View Example</a></p>
+<h2>Changing a Property Value</h2>
+<p>You can change a property value using <code>Object.defineProperty()</code>:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Object Management&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Changing a Property Value&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+const person = {
+  firstName: &quot;John&quot;,
+  lastName: &quot;Doe&quot;,
+  age: 30
+};
+
+// Change the age property
+Object.defineProperty(person, &quot;age&quot;, {
+  value: 35
+});
+
+document.getElementById(&quot;demo&quot;).innerHTML = &quot;Age: &quot; + person.age;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p2.png" alt=""></p>
+<h3>Example 2</h3>
+<p><strong>Result</strong> <a href="ex2-change_value/index.html">View Example</a></p>
+<h2>Property Attributes</h2>
+<p>Property attributes control how properties behave:</p>
+<ul>
+<li><strong><code>writable</code></strong> - If <code>true</code>, the value can be changed</li>
+<li><strong><code>enumerable</code></strong> - If <code>true</code>, the property shows up in enumeration (<code>for...in</code>)</li>
+<li><strong><code>configurable</code></strong> - If <code>true</code>, the property can be deleted or changed</li>
+</ul>
+<h2>List All Object Properties</h2>
+<p><code>Object.getOwnPropertyNames()</code> returns all properties (including non-enumerable):</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Object Management&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;List All Object Properties&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+const person = {
+  firstName: &quot;John&quot;,
+  lastName: &quot;Doe&quot;,
+  age: 30,
+  eyeColor: &quot;blue&quot;
+};
+
+// Get all property names
+const properties = Object.getOwnPropertyNames(person);
+let text = &quot;&quot;;
+for (let prop of properties) {
+  text += prop + &quot;: &quot; + person[prop] + &quot;&lt;br&gt;&quot;;
+}
+document.getElementById(&quot;demo&quot;).innerHTML = text;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p3.png" alt=""></p>
+<h3>Example 3</h3>
+<p><strong>Result</strong> <a href="ex3-list_properties/index.html">View Example</a></p>
+<h2>Adding Getters and Setters</h2>
+<p><code>Object.defineProperty()</code> can also add getters and setters:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Object Management&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Adding Getters and Setters&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+const person = {
+  firstName: &quot;John&quot;,
+  lastName: &quot;Doe&quot;
+};
+
+Object.defineProperty(person, &quot;fullName&quot;, {
+  get: function() {
+    return this.firstName + &quot; &quot; + this.lastName;
+  },
+  set: function(value) {
+    const parts = value.split(&quot; &quot;);
+    this.firstName = parts[0];
+    this.lastName = parts[1];
+  },
+  enumerable: true
+});
+
+document.getElementById(&quot;demo&quot;).innerHTML = &quot;Before: &quot; + person.fullName + &quot;&lt;br&gt;&quot;;
+person.fullName = &quot;Jane Smith&quot;;
+document.getElementById(&quot;demo&quot;).innerHTML += &quot;After: &quot; + person.fullName;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p4.png" alt=""></p>
+<h3>Example 4</h3>
+<p><strong>Result</strong> <a href="ex4-add_getter_setter/index.html">View Example</a></p>
+<h2>A Counter Example</h2>
+<p>Using <code>Object.defineProperty()</code> to create a counter with controlled access:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Object Management&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;A Counter Example&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+const obj = { counter: 0 };
+
+Object.defineProperty(obj, &quot;increment&quot;, {
+  get: function() {
+    this.counter++;
+    return this.counter;
+  }
+});
+
+Object.defineProperty(obj, &quot;decrement&quot;, {
+  get: function() {
+    this.counter--;
+    return this.counter;
+  }
+});
+
+Object.defineProperty(obj, &quot;reset&quot;, {
+  get: function() {
+    this.counter = 0;
+    return this.counter;
+  }
+});
+
+document.getElementById(&quot;demo&quot;).innerHTML =
+  &quot;Initial: &quot; + obj.reset + &quot;&lt;br&gt;&quot; +
+  &quot;After increment: &quot; + obj.increment + &quot;&lt;br&gt;&quot; +
+  &quot;After increment: &quot; + obj.increment + &quot;&lt;br&gt;&quot; +
+  &quot;After decrement: &quot; + obj.decrement + &quot;&lt;br&gt;&quot; +
+  &quot;After reset: &quot; + obj.reset;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p5.png" alt=""></p>
+<h3>Example 5</h3>
+<p><strong>Result</strong> <a href="ex5-counter/index.html">View Example</a></p>
+<h2>Document</h2>
+<p>Document in project</p>
+<p>You can <a href="js-object_management.pdf">Download PDF</a> file.</p>
+<h2>Reference</h2>
+<ul>
+<li><a href="https://www.w3schools.com/js/js_object_management.asp">W3Schools JavaScript Object Management</a></li>
+</ul>
+
+</body>
+</html>

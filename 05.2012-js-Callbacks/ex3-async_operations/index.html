@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Callbacks</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Asynchronous Operations</h4>
+<p id="demo"></p>
+
+<script>
+function showMessage() {
+  document.getElementById("demo").innerHTML = "This message appears after 2 seconds!";
+}
+
+setTimeout(showMessage, 2000);
+document.getElementById("demo").innerHTML = "Waiting...";
+</script>
+
+</body>
+</html>

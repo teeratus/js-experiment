@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>js-cookies</title>
+  <style>
+    body {
+      box-sizing: border-box;
+      min-width: 200px;
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 45px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+      font-size: 16px;
+      line-height: 1.5;
+      color: #24292e;
+      background-color: #ffffff;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 24px;
+      margin-bottom: 16px;
+      font-weight: 600;
+      line-height: 1.25;
+      border-bottom: 1px solid #eaecef;
+      padding-bottom: .3em;
+    }
+    h1 { font-size: 2em; }
+    h2 { font-size: 1.5em; }
+    h3 { font-size: 1.25em; }
+    code {
+      padding: .2em .4em;
+      margin: 0;
+      font-size: 85%;
+      background-color: rgba(27,31,35,.05);
+      border-radius: 3px;
+      font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
+    }
+    pre {
+      padding: 16px;
+      overflow: auto;
+      font-size: 85%;
+      line-height: 1.45;
+      background-color: #f6f8fa;
+      border-radius: 3px;
+      word-wrap: normal;
+    }
+    pre code {
+      background-color: transparent;
+      padding: 0;
+    }
+    blockquote {
+      padding: 0 1em;
+      color: #6a737d;
+      border-left: .25em solid #dfe2e5;
+      margin: 0 0 16px 0;
+    }
+    table {
+      border-spacing: 0;
+      border-collapse: collapse;
+      margin-top: 0;
+      margin-bottom: 16px;
+      width: 100%;
+    }
+    table th, table td {
+      padding: 6px 13px;
+      border: 1px solid #dfe2e5;
+    }
+    table tr:nth-child(2n) {
+      background-color: #f6f8fa;
+    }
+    img {
+      max-width: 100%;
+      box-sizing: content-box;
+    }
+    @media print {
+      body {
+        max-width: 100%;
+        padding: 0;
+      }
+      pre, blockquote, table, tr, img {
+        page-break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+<body>
+<h1>JavaScript Cookies</h1>
+<p><a href="../acp-js.php">Back to JS page</a></p>
+<p>Table of Contents</p>
+<ul>
+<li><a href="#javascript-cookies">JavaScript Cookies</a><ul>
+<li><a href="#create-a-cookie">Create a Cookie</a><ul>
+<li><a href="#example-1">Example 1</a></li>
+</ul>
+</li>
+<li><a href="#read-a-cookie">Read a Cookie</a><ul>
+<li><a href="#example-2">Example 2</a></li>
+</ul>
+</li>
+<li><a href="#change-a-cookie">Change a Cookie</a><ul>
+<li><a href="#example-3">Example 3</a></li>
+</ul>
+</li>
+<li><a href="#delete-a-cookie">Delete a Cookie</a><ul>
+<li><a href="#example-4">Example 4</a></li>
+</ul>
+</li>
+<li><a href="#cookie-functions">Cookie Functions</a><ul>
+<li><a href="#example-5">Example 5</a></li>
+</ul>
+</li>
+<li><a href="#document">Document</a></li>
+<li><a href="#reference">Reference</a></li>
+</ul>
+</li>
+</ul>
+<h2>What are Cookies?</h2>
+<p>Cookies are data, stored in small text files on your computer. When a web server sends a web page to a browser, the connection is closed. The server forgets everything about the user. Cookies were invented to solve the problem of &quot;remembering&quot; the user.</p>
+<h2>Create a Cookie</h2>
+<p>A cookie is created with <code>document.cookie</code>. You can add an expiry date (in UTC time) and a path:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Cookies&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Create a Cookie&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;button onclick=&quot;createCookie()&quot;&gt;Create Cookie&lt;/button&gt;
+
+&lt;script&gt;
+function createCookie() {
+  document.cookie = &quot;username=John Doe; expires=Thu, 31 Dec 2027 23:59:59 UTC; path=/&quot;;
+  document.getElementById(&quot;demo&quot;).innerHTML = &quot;Cookie &#39;username&#39; created!&quot;;
+}
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p1.png" alt=""></p>
+<h3>Example 1</h3>
+<p><strong>Result</strong> <a href="ex1-create_cookie/index.html">View Example</a></p>
+<h2>Read a Cookie</h2>
+<p>You can read all cookies with <code>document.cookie</code>. It returns all cookies in one string:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Cookies&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Read a Cookie&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;button onclick=&quot;createCookie()&quot;&gt;Create Cookie&lt;/button&gt;
+&lt;button onclick=&quot;readCookie()&quot;&gt;Read Cookie&lt;/button&gt;
+
+&lt;script&gt;
+function createCookie() {
+  document.cookie = &quot;username=John Doe; expires=Thu, 31 Dec 2027 23:59:59 UTC; path=/&quot;;
+  document.getElementById(&quot;demo&quot;).innerHTML = &quot;Cookie &#39;username&#39; created!&quot;;
+}
+
+function readCookie() {
+  let cookies = document.cookie;
+  document.getElementById(&quot;demo&quot;).innerHTML = &quot;All cookies: &quot; + cookies;
+}
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p2.png" alt=""></p>
+<h3>Example 2</h3>
+<p><strong>Result</strong> <a href="ex2-read_cookie/index.html">View Example</a></p>
+<h2>Change a Cookie</h2>
+<p>To change a cookie, just set it again with a new value:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Cookies&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Change a Cookie&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;button onclick=&quot;createCookie()&quot;&gt;Create Cookie&lt;/button&gt;
+&lt;button onclick=&quot;changeCookie()&quot;&gt;Change Cookie&lt;/button&gt;
+&lt;button onclick=&quot;readCookie()&quot;&gt;Read Cookie&lt;/button&gt;
+
+&lt;script&gt;
+function createCookie() {
+  document.cookie = &quot;username=John Doe; expires=Thu, 31 Dec 2027 23:59:59 UTC; path=/&quot;;
+  document.getElementById(&quot;demo&quot;).innerHTML = &quot;Cookie &#39;username&#39; created!&quot;;
+}
+
+function changeCookie() {
+  document.cookie = &quot;username=Jane Smith; expires=Thu, 31 Dec 2027 23:59:59 UTC; path=/&quot;;
+  document.getElementById(&quot;demo&quot;).innerHTML = &quot;Cookie &#39;username&#39; changed to Jane Smith!&quot;;
+}
+
+function readCookie() {
+  document.getElementById(&quot;demo&quot;).innerHTML = &quot;All cookies: &quot; + document.cookie;
+}
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p3.png" alt=""></p>
+<h3>Example 3</h3>
+<p><strong>Result</strong> <a href="ex3-change_cookie/index.html">View Example</a></p>
+<h2>Delete a Cookie</h2>
+<p>To delete a cookie, set the expires parameter to a past date:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Cookies&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Delete a Cookie&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;button onclick=&quot;createCookie()&quot;&gt;Create Cookie&lt;/button&gt;
+&lt;button onclick=&quot;deleteCookie()&quot;&gt;Delete Cookie&lt;/button&gt;
+&lt;button onclick=&quot;readCookie()&quot;&gt;Check Cookies&lt;/button&gt;
+
+&lt;script&gt;
+function createCookie() {
+  document.cookie = &quot;username=John Doe; expires=Thu, 31 Dec 2027 23:59:59 UTC; path=/&quot;;
+  document.getElementById(&quot;demo&quot;).innerHTML = &quot;Cookie created!&quot;;
+}
+
+function deleteCookie() {
+  document.cookie = &quot;username=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/&quot;;
+  document.getElementById(&quot;demo&quot;).innerHTML = &quot;Cookie deleted!&quot;;
+}
+
+function readCookie() {
+  document.getElementById(&quot;demo&quot;).innerHTML = &quot;All cookies: &quot; + document.cookie;
+}
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p4.png" alt=""></p>
+<h3>Example 4</h3>
+<p><strong>Result</strong> <a href="ex4-delete_cookie/index.html">View Example</a></p>
+<h2>Cookie Functions</h2>
+<p>Create a complete set of cookie functions for easier management:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Cookies&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Cookie Functions&lt;/h4&gt;
+
+&lt;input type=&quot;text&quot; id=&quot;nameInput&quot; placeholder=&quot;Enter name&quot; value=&quot;John&quot;&gt;
+&lt;button onclick=&quot;saveName()&quot;&gt;Save Name&lt;/button&gt;
+&lt;br&gt;&lt;br&gt;
+&lt;button onclick=&quot;loadName()&quot;&gt;Load Name&lt;/button&gt;
+&lt;button onclick=&quot;deleteName()&quot;&gt;Delete Name&lt;/button&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+function setCookie(cname, cvalue, exdays) {
+  const d = new Date();
+  d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+  let expires = &quot;expires=&quot; + d.toUTCString();
+  document.cookie = cname + &quot;=&quot; + cvalue + &quot;;&quot; + expires + &quot;;path=/&quot;;
+}
+
+function getCookie(cname) {
+  let name = cname + &quot;=&quot;;
+  let ca = document.cookie.split(&quot;;&quot;);
+  for (let i = 0; i &lt; ca.length; i++) {
+    let c = ca[i].trim();
+    if (c.indexOf(name) === 0) return c.substring(name.length, c.length);
+  }
+  return &quot;&quot;;
+}
+
+function checkCookie() {
+  let user = getCookie(&quot;username&quot;);
+  if (user !== &quot;&quot;) {
+    document.getElementById(&quot;demo&quot;).innerHTML = &quot;Welcome back &quot; + user;
+  }
+}
+
+function saveName() {
+  let name = document.getElementById(&quot;nameInput&quot;).value;
+  setCookie(&quot;username&quot;, name, 365);
+  document.getElementById(&quot;demo&quot;).innerHTML = &quot;Name &#39;&quot; + name + &quot;&#39; saved in cookie!&quot;;
+}
+
+function loadName() {
+  let user = getCookie(&quot;username&quot;);
+  if (user !== &quot;&quot;) {
+    document.getElementById(&quot;demo&quot;).innerHTML = &quot;Loaded: &quot; + user;
+  } else {
+    document.getElementById(&quot;demo&quot;).innerHTML = &quot;No cookie found!&quot;;
+  }
+}
+
+function deleteName() {
+  setCookie(&quot;username&quot;, &quot;&quot;, -1);
+  document.getElementById(&quot;demo&quot;).innerHTML = &quot;Cookie deleted!&quot;;
+}
+
+checkCookie();
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p5.png" alt=""></p>
+<h3>Example 5</h3>
+<p><strong>Result</strong> <a href="ex5-cookie_functions/index.html">View Example</a></p>
+<h2>Document</h2>
+<p>Document in project</p>
+<p>You can <a href="js-cookies.pdf">Download PDF</a> file.</p>
+<h2>Reference</h2>
+<ul>
+<li><a href="https://www.w3schools.com/js/js_cookies.asp">W3Schools JavaScript Cookies</a></li>
+</ul>
+
+</body>
+</html>

@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>js-debuggingbreakpoints</title>
+  <style>
+    body {
+      box-sizing: border-box;
+      min-width: 200px;
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 45px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+      font-size: 16px;
+      line-height: 1.5;
+      color: #24292e;
+      background-color: #ffffff;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 24px;
+      margin-bottom: 16px;
+      font-weight: 600;
+      line-height: 1.25;
+      border-bottom: 1px solid #eaecef;
+      padding-bottom: .3em;
+    }
+    h1 { font-size: 2em; }
+    h2 { font-size: 1.5em; }
+    h3 { font-size: 1.25em; }
+    code {
+      padding: .2em .4em;
+      margin: 0;
+      font-size: 85%;
+      background-color: rgba(27,31,35,.05);
+      border-radius: 3px;
+      font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
+    }
+    pre {
+      padding: 16px;
+      overflow: auto;
+      font-size: 85%;
+      line-height: 1.45;
+      background-color: #f6f8fa;
+      border-radius: 3px;
+      word-wrap: normal;
+    }
+    pre code {
+      background-color: transparent;
+      padding: 0;
+    }
+    blockquote {
+      padding: 0 1em;
+      color: #6a737d;
+      border-left: .25em solid #dfe2e5;
+      margin: 0 0 16px 0;
+    }
+    table {
+      border-spacing: 0;
+      border-collapse: collapse;
+      margin-top: 0;
+      margin-bottom: 16px;
+      width: 100%;
+    }
+    table th, table td {
+      padding: 6px 13px;
+      border: 1px solid #dfe2e5;
+    }
+    table tr:nth-child(2n) {
+      background-color: #f6f8fa;
+    }
+    img {
+      max-width: 100%;
+      box-sizing: content-box;
+    }
+    @media print {
+      body {
+        max-width: 100%;
+        padding: 0;
+      }
+      pre, blockquote, table, tr, img {
+        page-break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+<body>
+<h1>JavaScript Debugging Breakpoints</h1>
+<p><a href="../acp-js.php">Back to JS page</a></p>
+<p>Table of Contents</p>
+<ul>
+<li><a href="#javascript-debugging-breakpoints">JavaScript Debugging Breakpoints</a><ul>
+<li><a href="#setting-a-breakpoint">Setting a Breakpoint</a><ul>
+<li><a href="#example-1">Example 1</a></li>
+</ul>
+</li>
+<li><a href="#the-debugger-keyword">The debugger Keyword</a><ul>
+<li><a href="#example-2">Example 2</a></li>
+</ul>
+</li>
+<li><a href="#stepping-through-code">Stepping Through Code</a><ul>
+<li><a href="#example-3">Example 3</a></li>
+</ul>
+</li>
+<li><a href="#the-scope-panel">The Scope Panel</a><ul>
+<li><a href="#example-4">Example 4</a></li>
+</ul>
+</li>
+<li><a href="#watching-variables">Watching Variables</a><ul>
+<li><a href="#example-5">Example 5</a></li>
+</ul>
+</li>
+<li><a href="#common-beginner-mistakes">Common Beginner Mistakes</a><ul>
+<li><a href="#example-6">Example 6</a></li>
+</ul>
+</li>
+<li><a href="#when-to-use-breakpoints">When to Use Breakpoints</a><ul>
+<li><a href="#example-7">Example 7</a></li>
+</ul>
+</li>
+<li><a href="#document">Document</a></li>
+<li><a href="#reference">Reference</a></li>
+</ul>
+</li>
+</ul>
+<h2>Setting a Breakpoint</h2>
+<p>A breakpoint pauses code execution on a specific line. When the code stops, you can inspect variables and step through the code line by line. Breakpoints are set inside the browser developer tools. You do not guess values when using breakpoints—you see them.</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Debugging Breakpoints&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Setting a Breakpoint&lt;/h4&gt;
+&lt;p&gt;Open the browser developer tools (F12), go to Sources tab, and click a line number to set a breakpoint.&lt;/p&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+function add(a, b) {
+  let result = a + b;
+  return result;  // Set a breakpoint on this line
+}
+
+document.getElementById(&quot;demo&quot;).innerHTML = add(10, 5);
+console.log(&quot;Result: &quot; + add(10, 5));
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p1.png" alt=""></p>
+<h3>Example 1</h3>
+<p><strong>Result</strong> <a href="ex1-setting_breakpoint/index.html">View Example</a></p>
+<h2>The debugger Keyword</h2>
+<p>The <code>debugger</code> keyword stops the execution of JavaScript and calls (if available) the debugging function. This has the same function as setting a breakpoint in the debugger. If no debugging is available, the <code>debugger</code> statement has no effect.</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Debugging Breakpoints&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;The debugger Keyword&lt;/h4&gt;
+&lt;p&gt;Open the browser console (F12). If DevTools is open, execution will pause at the debugger statement.&lt;/p&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+let x = 15 * 5;
+debugger;  // Execution pauses here if DevTools is open
+document.getElementById(&quot;demo&quot;).innerHTML = x;
+
+console.log(&quot;x = &quot; + x);
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p2.png" alt=""></p>
+<h3>Example 2</h3>
+<p><strong>Result</strong> <a href="ex2-debugger_keyword/index.html">View Example</a></p>
+<h2>Stepping Through Code</h2>
+<p>When execution is paused, you can control how the code runs. <strong>Step Over</strong> runs the next line. <strong>Step Into</strong> enters a function. <strong>Step Out</strong> exits the current function. Step slowly and watch how values change.</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Debugging Breakpoints&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Stepping Through Code&lt;/h4&gt;
+&lt;p&gt;Open DevTools (F12), go to Sources tab. Set a breakpoint at the first line inside multiply(), then reload.&lt;/p&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+function multiply(a, b) {
+  let step1 = a * 2;    // Step Over: watch a*2
+  let step2 = b * 3;    // Step Over: watch b*3
+  let result = step1 + step2;  // Step Over: watch final result
+  return result;
+}
+
+let output = multiply(5, 4);
+document.getElementById(&quot;demo&quot;).innerHTML = &quot;Result: &quot; + output;
+console.log(&quot;multiply(5,4) = &quot; + output);
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p3.png" alt=""></p>
+<h3>Example 3</h3>
+<p><strong>Result</strong> <a href="ex3-stepping_through_code/index.html">View Example</a></p>
+<h2>The Scope Panel</h2>
+<p>The Scope panel shows which variables are available at the current line. It helps you understand where variables live. Local variables exist inside a function. Global variables exist everywhere.</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Debugging Breakpoints&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;The Scope Panel&lt;/h4&gt;
+&lt;p&gt;Open DevTools (F12). Set a breakpoint inside the test() function to see local vs global scope.&lt;/p&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+let x = 10;  // Global variable - visible in Scope panel everywhere
+
+function test() {
+  let y = 5;  // Local variable - visible only inside this function
+  console.log(x + y);  // Set breakpoint here to see Scope panel
+  return x + y;
+}
+
+document.getElementById(&quot;demo&quot;).innerHTML =
+  &quot;Global x = &quot; + x + &quot;, Function result = &quot; + test();
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p4.png" alt=""></p>
+<h3>Example 4</h3>
+<p><strong>Result</strong> <a href="ex4-scope_panel/index.html">View Example</a></p>
+<h2>Watching Variables</h2>
+<p>The Watch panel lets you track variable values live. This is useful when values change many times. The value updates automatically as you step through the code. Watch variables instead of adding many <code>console.log()</code> calls.</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Debugging Breakpoints&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Watching Variables&lt;/h4&gt;
+&lt;p&gt;Open DevTools (F12), go to Sources tab. Set a breakpoint at the start of the loop to watch counter and total.&lt;/p&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+function calculateSum(count) {
+  let total = 0;
+  for (let i = 1; i &lt;= count; i++) {
+    total += i;  // Set breakpoint here and watch &#39;i&#39; and &#39;total&#39;
+    console.log(&quot;i =&quot;, i, &quot;total =&quot;, total);
+  }
+  return total;
+}
+
+let result = calculateSum(5);
+document.getElementById(&quot;demo&quot;).innerHTML =
+  &quot;Sum of 1 to 5 = &quot; + result + &quot; (check console to see each step)&quot;;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p5.png" alt=""></p>
+<h3>Example 5</h3>
+<p><strong>Result</strong> <a href="ex5-watching_variables/index.html">View Example</a></p>
+<h2>Common Beginner Mistakes</h2>
+<p>Beginners often forget to reload the page after adding a breakpoint. Breakpoints inside loops can trigger many times. If execution stops repeatedly, disable the breakpoint temporarily.</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Debugging Breakpoints&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Common Beginner Mistakes&lt;/h4&gt;
+&lt;p&gt;Open DevTools (F12). Try setting a breakpoint inside the loop to see it trigger multiple times.&lt;/p&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+let text = &quot;&quot;;
+
+// Mistake: Breakpoint inside loop triggers many times
+for (let i = 0; i &lt; 5; i++) {
+  text += &quot;Iteration &quot; + i + &quot;&lt;br&gt;&quot;;  // Set breakpoint here - triggers 5 times!
+}
+
+// Mistake: Variables change unexpectedly
+let value = 10;
+value = value * 2;
+value = value + 5;
+value = value - 3;  // What is the value now? Don&#39;t guess - check the console!
+
+console.log(&quot;Final value:&quot;, value);
+text += &quot;&lt;br&gt;Final value: &quot; + value + &quot; (check console)&quot;;
+
+document.getElementById(&quot;demo&quot;).innerHTML = text;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p6.png" alt=""></p>
+<h3>Example 6</h3>
+<p><strong>Result</strong> <a href="ex6-beginner_mistakes/index.html">View Example</a></p>
+<h2>When to Use Breakpoints</h2>
+<p>Use breakpoints when values change unexpectedly, when code runs but produces wrong results, or when debugging complex logic. Breakpoints let you see exactly what&#39;s happening at every step of your code.</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Debugging Breakpoints&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;When to Use Breakpoints&lt;/h4&gt;
+&lt;p&gt;Open DevTools (F12) and set a breakpoint to debug this calculation.&lt;/p&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+// This function has complex logic that could produce wrong results
+function calculateDiscount(price, customerType) {
+  let discount = 0;
+
+  if (customerType === &quot;VIP&quot;) {
+    discount = 0.2;
+  } else if (customerType === &quot;Member&quot;) {
+    discount = 0.1;
+  } else {
+    discount = 0.05;
+  }
+
+  let discountAmount = price * discount;  // Set breakpoint to verify values
+  let finalPrice = price - discountAmount;
+
+  return finalPrice;
+}
+
+let price1 = calculateDiscount(1000, &quot;VIP&quot;);
+let price2 = calculateDiscount(500, &quot;Member&quot;);
+let price3 = calculateDiscount(300, &quot;Guest&quot;);
+
+console.log(&quot;VIP pays:&quot;, price1);
+console.log(&quot;Member pays:&quot;, price2);
+console.log(&quot;Guest pays:&quot;, price3);
+
+document.getElementById(&quot;demo&quot;).innerHTML =
+  &quot;VIP: &quot; + price1 + &quot; (20% off 1000)&lt;br&gt;&quot; +
+  &quot;Member: &quot; + price2 + &quot; (10% off 500)&lt;br&gt;&quot; +
+  &quot;Guest: &quot; + price3 + &quot; (5% off 300)&quot;;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p7.png" alt=""></p>
+<h3>Example 7</h3>
+<p><strong>Result</strong> <a href="ex7-when_to_use_breakpoints/index.html">View Example</a></p>
+<h2>Document</h2>
+<p>Document in project</p>
+<p>You can <a href="js-debuggingbreakpoints.pdf">Download PDF</a> file.</p>
+<h2>Reference</h2>
+<ul>
+<li><a href="https://www.w3schools.com/js/js_debugging_breakpoints.asp">W3Schools JavaScript Debugging Breakpoints</a></li>
+</ul>
+
+</body>
+</html>

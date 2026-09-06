@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>js-array_sort</title>
+  <style>
+    body {
+      box-sizing: border-box;
+      min-width: 200px;
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 45px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+      font-size: 16px;
+      line-height: 1.5;
+      color: #24292e;
+      background-color: #ffffff;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 24px;
+      margin-bottom: 16px;
+      font-weight: 600;
+      line-height: 1.25;
+      border-bottom: 1px solid #eaecef;
+      padding-bottom: .3em;
+    }
+    h1 { font-size: 2em; }
+    h2 { font-size: 1.5em; }
+    h3 { font-size: 1.25em; }
+    code {
+      padding: .2em .4em;
+      margin: 0;
+      font-size: 85%;
+      background-color: rgba(27,31,35,.05);
+      border-radius: 3px;
+      font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
+    }
+    pre {
+      padding: 16px;
+      overflow: auto;
+      font-size: 85%;
+      line-height: 1.45;
+      background-color: #f6f8fa;
+      border-radius: 3px;
+      word-wrap: normal;
+    }
+    pre code {
+      background-color: transparent;
+      padding: 0;
+    }
+    blockquote {
+      padding: 0 1em;
+      color: #6a737d;
+      border-left: .25em solid #dfe2e5;
+      margin: 0 0 16px 0;
+    }
+    table {
+      border-spacing: 0;
+      border-collapse: collapse;
+      margin-top: 0;
+      margin-bottom: 16px;
+      width: 100%;
+    }
+    table th, table td {
+      padding: 6px 13px;
+      border: 1px solid #dfe2e5;
+    }
+    table tr:nth-child(2n) {
+      background-color: #f6f8fa;
+    }
+    img {
+      max-width: 100%;
+      box-sizing: content-box;
+    }
+    @media print {
+      body {
+        max-width: 100%;
+        padding: 0;
+      }
+      pre, blockquote, table, tr, img {
+        page-break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+<body>
+<h1>JavaScript Array Sort</h1>
+<p><a href="../acp-js.php">Back to JS page</a></p>
+<p>Table of Contents</p>
+<ul>
+<li><a href="#javascript-array-sort">JavaScript Array Sort</a><ul>
+<li><a href="#alphabetic-sort">Alphabetic Sort</a><ul>
+<li><a href="#example-1">Example 1</a></li>
+</ul>
+</li>
+<li><a href="#reverse-sort">Reverse Sort</a><ul>
+<li><a href="#example-2">Example 2</a></li>
+</ul>
+</li>
+<li><a href="#numeric-sort">Numeric Sort</a><ul>
+<li><a href="#example-3">Example 3</a></li>
+</ul>
+</li>
+<li><a href="#the-compare-function">The Compare Function</a><ul>
+<li><a href="#example-4">Example 4</a></li>
+</ul>
+</li>
+<li><a href="#find-min-or-max-with-sort">Find Min or Max with sort()</a><ul>
+<li><a href="#example-5">Example 5</a></li>
+</ul>
+</li>
+<li><a href="#document">Document</a></li>
+<li><a href="#reference">Reference</a></li>
+</ul>
+</li>
+</ul>
+<h2>Alphabetic Sort</h2>
+<p>The <code>sort()</code> method sorts an array alphabetically:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Array Sort&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Alphabetic Sort&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+const fruits = [&quot;Banana&quot;, &quot;Orange&quot;, &quot;Apple&quot;, &quot;Mango&quot;];
+
+// Sort alphabetically
+fruits.sort();
+
+document.getElementById(&quot;demo&quot;).innerHTML =
+  &quot;Original: Banana, Orange, Apple, Mango&lt;br&gt;&quot; +
+  &quot;After sort(): &quot; + fruits;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p1.png" alt=""></p>
+<h3>Example 1</h3>
+<p><strong>Result</strong> <a href="ex1-alphabetic_sort/index.html">View Example</a></p>
+<h2>Reverse Sort</h2>
+<p>The <code>reverse()</code> method reverses the elements in an array. You can reverse after sorting for descending order:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Array Sort&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Reverse Sort&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+const fruits = [&quot;Banana&quot;, &quot;Orange&quot;, &quot;Apple&quot;, &quot;Mango&quot;];
+
+// Sort first, then reverse
+fruits.sort();
+fruits.reverse();
+
+document.getElementById(&quot;demo&quot;).innerHTML =
+  &quot;After sort() and reverse(): &quot; + fruits;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p2.png" alt=""></p>
+<h3>Example 2</h3>
+<p><strong>Result</strong> <a href="ex2-reverse_sort/index.html">View Example</a></p>
+<h2>Numeric Sort</h2>
+<p>The <code>sort()</code> method sorts numbers as strings, so <code>25</code> comes before <code>100</code>. Use a compare function for numeric sort:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Array Sort&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Numeric Sort&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+const points = [40, 100, 1, 5, 25, 10];
+
+// Without compare function: sorts as strings (WRONG for numbers)
+const wrong = points.slice();
+wrong.sort();
+
+// With compare function: sorts as numbers
+const right = points.slice();
+right.sort(function(a, b) { return a - b; });
+
+document.getElementById(&quot;demo&quot;).innerHTML =
+  &quot;Original: &quot; + points + &quot;&lt;br&gt;&lt;br&gt;&quot; +
+  &quot;Without compare function: &quot; + wrong + &quot; (wrong for numbers)&lt;br&gt;&quot; +
+  &quot;With compare function: &quot; + right + &quot; (correct)&quot;;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p3.png" alt=""></p>
+<h3>Example 3</h3>
+<p><strong>Result</strong> <a href="ex3-numeric_sort/index.html">View Example</a></p>
+<h2>The Compare Function</h2>
+<p>The compare function takes two arguments <code>a</code> and <code>b</code>. If the result is:</p>
+<ul>
+<li><strong>Negative</strong>: <code>a</code> is sorted before <code>b</code></li>
+<li><strong>Positive</strong>: <code>b</code> is sorted before <code>a</code></li>
+<li><strong>Zero</strong>: no change</li>
+</ul>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Array Sort&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;The Compare Function&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+const points = [40, 100, 1, 5, 25, 10];
+
+// Ascending: a - b
+const ascending = points.slice();
+ascending.sort(function(a, b) { return a - b; });
+
+// Descending: b - a
+const descending = points.slice();
+descending.sort(function(a, b) { return b - a; });
+
+document.getElementById(&quot;demo&quot;).innerHTML =
+  &quot;Original: &quot; + points + &quot;&lt;br&gt;&lt;br&gt;&quot; +
+  &quot;Ascending (a - b): &quot; + ascending + &quot;&lt;br&gt;&quot; +
+  &quot;Descending (b - a): &quot; + descending;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p4.png" alt=""></p>
+<h3>Example 4</h3>
+<p><strong>Result</strong> <a href="ex4-compare_function/index.html">View Example</a></p>
+<h2>Find Min or Max with sort()</h2>
+<p>You can find the lowest or highest value in an array by sorting and accessing the first/last element:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Array Sort&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Find Min or Max with sort()&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+const points = [40, 100, 1, 5, 25, 10];
+
+// Sort ascending to find min and max
+const sorted = points.slice();
+sorted.sort(function(a, b) { return a - b; });
+
+const min = sorted[0];
+const max = sorted[sorted.length - 1];
+
+document.getElementById(&quot;demo&quot;).innerHTML =
+  &quot;Array: &quot; + points + &quot;&lt;br&gt;&lt;br&gt;&quot; +
+  &quot;Sorted ascending: &quot; + sorted + &quot;&lt;br&gt;&quot; +
+  &quot;Minimum value: &quot; + min + &quot;&lt;br&gt;&quot; +
+  &quot;Maximum value: &quot; + max;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p5.png" alt=""></p>
+<h3>Example 5</h3>
+<p><strong>Result</strong> <a href="ex5-min_max/index.html">View Example</a></p>
+<h2>Document</h2>
+<p>Document in project</p>
+<p>You can <a href="js-array_sort.pdf">Download PDF</a> file.</p>
+<h2>Reference</h2>
+<ul>
+<li><a href="https://www.w3schools.com/js/js_array_sort.asp">W3Schools JavaScript Array Sort</a></li>
+</ul>
+
+</body>
+</html>

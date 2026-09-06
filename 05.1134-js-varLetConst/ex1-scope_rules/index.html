@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript var, let, const</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Scope Rules</h4>
+<p id="demo"></p>
+
+<script>
+{
+  var varX = 1;      // Function scoped (accessible outside block)
+  let letX = 2;      // Block scoped
+  const constX = 3;  // Block scoped
+}
+
+document.getElementById("demo").innerHTML =
+  "var (function scope): " + varX + " - accessible<br>" +
+  "let (block scope): not accessible outside<br>" +
+  "const (block scope): not accessible outside";
+</script>
+
+</body>
+</html>

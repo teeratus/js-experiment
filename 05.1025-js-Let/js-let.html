@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>js-let</title>
+  <style>
+    body {
+      box-sizing: border-box;
+      min-width: 200px;
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 45px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+      font-size: 16px;
+      line-height: 1.5;
+      color: #24292e;
+      background-color: #ffffff;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 24px;
+      margin-bottom: 16px;
+      font-weight: 600;
+      line-height: 1.25;
+      border-bottom: 1px solid #eaecef;
+      padding-bottom: .3em;
+    }
+    h1 { font-size: 2em; }
+    h2 { font-size: 1.5em; }
+    h3 { font-size: 1.25em; }
+    code {
+      padding: .2em .4em;
+      margin: 0;
+      font-size: 85%;
+      background-color: rgba(27,31,35,.05);
+      border-radius: 3px;
+      font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
+    }
+    pre {
+      padding: 16px;
+      overflow: auto;
+      font-size: 85%;
+      line-height: 1.45;
+      background-color: #f6f8fa;
+      border-radius: 3px;
+      word-wrap: normal;
+    }
+    pre code {
+      background-color: transparent;
+      padding: 0;
+    }
+    blockquote {
+      padding: 0 1em;
+      color: #6a737d;
+      border-left: .25em solid #dfe2e5;
+      margin: 0 0 16px 0;
+    }
+    table {
+      border-spacing: 0;
+      border-collapse: collapse;
+      margin-top: 0;
+      margin-bottom: 16px;
+      width: 100%;
+    }
+    table th, table td {
+      padding: 6px 13px;
+      border: 1px solid #dfe2e5;
+    }
+    table tr:nth-child(2n) {
+      background-color: #f6f8fa;
+    }
+    img {
+      max-width: 100%;
+      box-sizing: content-box;
+    }
+    @media print {
+      body {
+        max-width: 100%;
+        padding: 0;
+      }
+      pre, blockquote, table, tr, img {
+        page-break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+<body>
+<h1>JavaScript Let</h1>
+<p><a href="../acp-js.php">Back to JS page</a></p>
+<p>Table of Contents</p>
+<ul>
+<li><a href="#javascript-let">JavaScript Let</a><ul>
+<li><a href="#block-scope">Block Scope</a><ul>
+<li><a href="#example-1">Example 1</a></li>
+</ul>
+</li>
+<li><a href="#function-scope">Function Scope</a><ul>
+<li><a href="#example-2">Example 2</a></li>
+</ul>
+</li>
+<li><a href="#global-scope">Global Scope</a><ul>
+<li><a href="#example-3">Example 3</a></li>
+</ul>
+</li>
+<li><a href="#cannot-be-redeclared">Cannot be Redeclared</a><ul>
+<li><a href="#example-4">Example 4</a></li>
+</ul>
+</li>
+<li><a href="#redeclaring-variables">Redeclaring Variables</a><ul>
+<li><a href="#example-5">Example 5</a></li>
+</ul>
+</li>
+<li><a href="#let-hoisting">Let Hoisting</a><ul>
+<li><a href="#example-6">Example 6</a></li>
+</ul>
+</li>
+<li><a href="#document">Document</a></li>
+<li><a href="#reference">Reference</a></li>
+</ul>
+</li>
+</ul>
+<h2>Block Scope</h2>
+<p>Before ES6 (2015), JavaScript did not have <strong>Block Scope</strong>.</p>
+<p>ES6 introduced the <code>let</code> and <code>const</code> keywords which provided <strong>Block Scope</strong>.</p>
+<p>Variables declared inside a <code>{ }</code> block cannot be accessed from outside the block:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Let&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Block Scope&lt;/h4&gt;
+&lt;p id=&quot;demo1&quot;&gt;&lt;/p&gt;
+&lt;p id=&quot;demo2&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+{
+  let x = 2;
+  document.getElementById(&quot;demo1&quot;).innerHTML = &quot;Inside block: x = &quot; + x;
+}
+// x can NOT be used here (outside the block)
+document.getElementById(&quot;demo2&quot;).innerHTML = &quot;Outside block: x is not accessible&quot;;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p1.png" alt=""></p>
+<h3>Example 1</h3>
+<p><strong>Result</strong> <a href="ex1-block_scope/index.html">View Example</a></p>
+<h2>Function Scope</h2>
+<p>Inside a function all variables declared with <code>var</code>, <code>let</code> or <code>const</code> have <strong>Function Scope</strong>:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Let&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Function Scope&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+function myFunction() {
+  let carName = &quot;Volvo&quot;;
+  document.getElementById(&quot;demo&quot;).innerHTML = &quot;Inside function: &quot; + carName;
+}
+myFunction();
+// carName is NOT accessible outside the function
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p2.png" alt=""></p>
+<h3>Example 2</h3>
+<p><strong>Result</strong> <a href="ex2-function_scope/index.html">View Example</a></p>
+<h2>Global Scope</h2>
+<p>Variables declared with <code>var</code> always have <strong>Global Scope</strong>.</p>
+<p>Variables declared with <code>var</code> inside a <code>{ }</code> block can be accessed from outside the block:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Let&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Global Scope (var)&lt;/h4&gt;
+&lt;p id=&quot;demo1&quot;&gt;&lt;/p&gt;
+&lt;p id=&quot;demo2&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+{
+  var x = 2;
+  document.getElementById(&quot;demo1&quot;).innerHTML = &quot;Inside block: x = &quot; + x;
+}
+// x CAN be used here (var has global scope)
+document.getElementById(&quot;demo2&quot;).innerHTML = &quot;Outside block: x = &quot; + x;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p3.png" alt=""></p>
+<h3>Example 3</h3>
+<p><strong>Result</strong> <a href="ex3-global_scope/index.html">View Example</a></p>
+<h2>Cannot be Redeclared</h2>
+<p>Variables defined with <code>let</code> <strong>can not</strong> be redeclared.</p>
+<p>You can not accidentally redeclare a variable declared with <code>let</code>:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Let&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Cannot be Redeclared&lt;/h4&gt;
+&lt;p&gt;let variables cannot be redeclared in the same scope.&lt;/p&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+let x = &quot;John Doe&quot;;
+document.getElementById(&quot;demo&quot;).innerHTML = x;
+// let x = 0; // This would cause an error (commented out)
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p4.png" alt=""></p>
+<h3>Example 4</h3>
+<p><strong>Result</strong> <a href="ex4-cannot_redeclare/index.html">View Example</a></p>
+<h2>Redeclaring Variables</h2>
+<p>Redeclaring a variable using the <code>var</code> keyword can impose problems.</p>
+<p>Redeclaring a variable inside a block will also redeclare the variable outside the block.</p>
+<p>Redeclaring a variable using the <code>let</code> keyword solves this problem - redeclaring inside a block will not redeclare the variable outside the block:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Let&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Redeclaring Variables (let)&lt;/h4&gt;
+&lt;p id=&quot;demo1&quot;&gt;&lt;/p&gt;
+&lt;p id=&quot;demo2&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+let x = 10;
+// Here x is 10
+{
+  let x = 2;
+  // Here x is 2
+  document.getElementById(&quot;demo1&quot;).innerHTML = &quot;Inside block: x = &quot; + x;
+}
+// Here x is 10 (not affected by block)
+document.getElementById(&quot;demo2&quot;).innerHTML = &quot;Outside block: x = &quot; + x;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p5.png" alt=""></p>
+<h3>Example 5</h3>
+<p><strong>Result</strong> <a href="ex5-redeclare_let/index.html">View Example</a></p>
+<h2>Let Hoisting</h2>
+<p>Variables defined with <code>var</code> are <strong>hoisted</strong> to the top and can be initialized at any time. You can use the variable before it is declared.</p>
+<p>Variables defined with <code>let</code> are also hoisted to the top of the block, but not initialized. Using a <code>let</code> variable before it is declared will result in a <code>ReferenceError</code>:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Let&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Let Hoisting&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+try {
+  // Using let variable before declaring it causes ReferenceError
+  carName = &quot;Volvo&quot;;
+  let carName;
+} catch(err) {
+  document.getElementById(&quot;demo&quot;).innerHTML = &quot;Error: &quot; + err.message;
+}
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p6.png" alt=""></p>
+<h3>Example 6</h3>
+<p><strong>Result</strong> <a href="ex6-hoisting/index.html">View Example</a></p>
+<h2>Document</h2>
+<p>Document in project</p>
+<p>You can <a href="js-let.pdf">Download PDF</a> file.</p>
+<h2>Reference</h2>
+<ul>
+<li><a href="https://www.w3schools.com/js/js_let.asp">W3Schools JavaScript Let</a></li>
+</ul>
+
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Object Definitions</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>JavaScript Object.create()</h4>
+<p id="demo"></p>
+
+<script>
+// Define prototype object
+const personProto = {
+  greet: function() {
+    return "Hello, I'm " + this.firstName;
+  }
+};
+
+// Create new object based on prototype
+const person = Object.create(personProto);
+person.firstName = "John";
+person.lastName = "Doe";
+
+document.getElementById("demo").innerHTML = person.greet();
+</script>
+
+</body>
+</html>

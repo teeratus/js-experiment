@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Atomics</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Atomics.load() and Atomics.store()</h4>
+<p id="demo"></p>
+
+<script>
+const sharedBuffer = new SharedArrayBuffer(8);
+const sharedArray = new Int32Array(sharedBuffer);
+
+// Store values atomically
+Atomics.store(sharedArray, 0, 42);
+Atomics.store(sharedArray, 1, 100);
+
+// Load values atomically
+const val0 = Atomics.load(sharedArray, 0);
+const val1 = Atomics.load(sharedArray, 1);
+
+let text = "Atomics.store() and Atomics.load():<br><br>";
+text += "After Atomics.store(sharedArray, 0, 42): " + val0 + "<br>";
+text += "After Atomics.store(sharedArray, 1, 100): " + val1 + "<br><br>";
+
+text += "All values: ";
+for (let i = 0; i < sharedArray.length; i++) {
+  text += Atomics.load(sharedArray, i) + " ";
+}
+
+document.getElementById("demo").innerHTML = text;
+</script>
+
+</body>
+</html>

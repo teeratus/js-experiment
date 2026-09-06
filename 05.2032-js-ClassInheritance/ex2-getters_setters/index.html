@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Class Inheritance</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Getters and Setters</h4>
+<p id="demo"></p>
+
+<script>
+class Car {
+  constructor(brand) {
+    this.carname = brand;
+  }
+  get carname() {
+    return this._carname;
+  }
+  set carname(name) {
+    this._carname = name;
+  }
+}
+
+const myCar = new Car("Ford");
+document.getElementById("demo").innerHTML = "Car name: " + myCar.carname;
+</script>
+
+</body>
+</html>

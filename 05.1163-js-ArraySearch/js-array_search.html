@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>js-array_search</title>
+  <style>
+    body {
+      box-sizing: border-box;
+      min-width: 200px;
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 45px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+      font-size: 16px;
+      line-height: 1.5;
+      color: #24292e;
+      background-color: #ffffff;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 24px;
+      margin-bottom: 16px;
+      font-weight: 600;
+      line-height: 1.25;
+      border-bottom: 1px solid #eaecef;
+      padding-bottom: .3em;
+    }
+    h1 { font-size: 2em; }
+    h2 { font-size: 1.5em; }
+    h3 { font-size: 1.25em; }
+    code {
+      padding: .2em .4em;
+      margin: 0;
+      font-size: 85%;
+      background-color: rgba(27,31,35,.05);
+      border-radius: 3px;
+      font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
+    }
+    pre {
+      padding: 16px;
+      overflow: auto;
+      font-size: 85%;
+      line-height: 1.45;
+      background-color: #f6f8fa;
+      border-radius: 3px;
+      word-wrap: normal;
+    }
+    pre code {
+      background-color: transparent;
+      padding: 0;
+    }
+    blockquote {
+      padding: 0 1em;
+      color: #6a737d;
+      border-left: .25em solid #dfe2e5;
+      margin: 0 0 16px 0;
+    }
+    table {
+      border-spacing: 0;
+      border-collapse: collapse;
+      margin-top: 0;
+      margin-bottom: 16px;
+      width: 100%;
+    }
+    table th, table td {
+      padding: 6px 13px;
+      border: 1px solid #dfe2e5;
+    }
+    table tr:nth-child(2n) {
+      background-color: #f6f8fa;
+    }
+    img {
+      max-width: 100%;
+      box-sizing: content-box;
+    }
+    @media print {
+      body {
+        max-width: 100%;
+        padding: 0;
+      }
+      pre, blockquote, table, tr, img {
+        page-break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+<body>
+<h1>JavaScript Array Search</h1>
+<p><a href="../acp-js.php">Back to JS page</a></p>
+<p>Table of Contents</p>
+<ul>
+<li><a href="#javascript-array-search">JavaScript Array Search</a><ul>
+<li><a href="#indexof-and-lastindexof">indexOf() and lastIndexOf()</a><ul>
+<li><a href="#example-1">Example 1</a></li>
+</ul>
+</li>
+<li><a href="#includes">includes()</a><ul>
+<li><a href="#example-2">Example 2</a></li>
+</ul>
+</li>
+<li><a href="#find">find()</a><ul>
+<li><a href="#example-3">Example 3</a></li>
+</ul>
+</li>
+<li><a href="#findindex">findIndex()</a><ul>
+<li><a href="#example-4">Example 4</a></li>
+</ul>
+</li>
+<li><a href="#findlast-and-findlastindex">findLast() and findLastIndex()</a><ul>
+<li><a href="#example-5">Example 5</a></li>
+</ul>
+</li>
+<li><a href="#document">Document</a></li>
+<li><a href="#reference">Reference</a></li>
+</ul>
+</li>
+</ul>
+<h2>indexOf() and lastIndexOf()</h2>
+<p><code>indexOf()</code> searches an array for an element value and returns its position. <code>lastIndexOf()</code> returns the last index of the element:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Array Search&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;indexOf() and lastIndexOf()&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+const fruits = [&quot;Apple&quot;, &quot;Orange&quot;, &quot;Apple&quot;, &quot;Mango&quot;];
+
+// indexOf() - first occurrence
+let index = fruits.indexOf(&quot;Apple&quot;);
+
+// lastIndexOf() - last occurrence
+let lastIndex = fruits.lastIndexOf(&quot;Apple&quot;);
+
+document.getElementById(&quot;demo&quot;).innerHTML =
+  &quot;Array: &quot; + fruits + &quot;&lt;br&gt;&lt;br&gt;&quot; +
+  &quot;indexOf(&#39;Apple&#39;): &quot; + index + &quot;&lt;br&gt;&quot; +
+  &quot;lastIndexOf(&#39;Apple&#39;): &quot; + lastIndex + &quot;&lt;br&gt;&lt;br&gt;&quot; +
+  &quot;indexOf(&#39;Banana&#39;): &quot; + fruits.indexOf(&quot;Banana&quot;) + &quot; (-1 = not found)&quot;;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p1.png" alt=""></p>
+<h3>Example 1</h3>
+<p><strong>Result</strong> <a href="ex1-index_lastindex/index.html">View Example</a></p>
+<h2>includes()</h2>
+<p><code>includes()</code> checks if an element is present in the array. It returns true or false:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Array Search&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;includes()&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+const fruits = [&quot;Banana&quot;, &quot;Orange&quot;, &quot;Apple&quot;, &quot;Mango&quot;];
+
+document.getElementById(&quot;demo&quot;).innerHTML =
+  &quot;Array: &quot; + fruits + &quot;&lt;br&gt;&lt;br&gt;&quot; +
+  &quot;includes(&#39;Apple&#39;): &quot; + fruits.includes(&quot;Apple&quot;) + &quot;&lt;br&gt;&quot; +
+  &quot;includes(&#39;Grape&#39;): &quot; + fruits.includes(&quot;Grape&quot;) + &quot;&lt;br&gt;&lt;br&gt;&quot; +
+  &quot;includes() returns true if the element is in the array&quot;;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p2.png" alt=""></p>
+<h3>Example 2</h3>
+<p><strong>Result</strong> <a href="ex2-includes/index.html">View Example</a></p>
+<h2>find()</h2>
+<p><code>find()</code> returns the value of the first element that passes a test function:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Array Search&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;find()&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+const numbers = [4, 9, 16, 25, 29];
+
+// Find the first element &gt; 18
+let first = numbers.find(function(value) {
+  return value &gt; 18;
+});
+
+// Find the first element &gt; 10 and &lt; 20
+let first2 = numbers.find(function(value) {
+  return value &gt; 10 &amp;&amp; value &lt; 20;
+});
+
+document.getElementById(&quot;demo&quot;).innerHTML =
+  &quot;Array: &quot; + numbers + &quot;&lt;br&gt;&lt;br&gt;&quot; +
+  &quot;First &gt; 18: &quot; + first + &quot;&lt;br&gt;&quot; +
+  &quot;First &gt; 10 and &lt; 20: &quot; + first2;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p3.png" alt=""></p>
+<h3>Example 3</h3>
+<p><strong>Result</strong> <a href="ex3-find/index.html">View Example</a></p>
+<h2>findIndex()</h2>
+<p><code>findIndex()</code> returns the index of the first element that passes a test function:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Array Search&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;findIndex()&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+const numbers = [4, 9, 16, 25, 29];
+
+// Find the index of the first element &gt; 18
+let index = numbers.findIndex(function(value) {
+  return value &gt; 18;
+});
+
+document.getElementById(&quot;demo&quot;).innerHTML =
+  &quot;Array: &quot; + numbers + &quot;&lt;br&gt;&lt;br&gt;&quot; +
+  &quot;findIndex(v &gt; 18): &quot; + index + &quot; (element is &quot; + numbers[index] + &quot;)&quot;;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p4.png" alt=""></p>
+<h3>Example 4</h3>
+<p><strong>Result</strong> <a href="ex4-find_index/index.html">View Example</a></p>
+<h2>findLast() and findLastIndex()</h2>
+<p><code>findLast()</code> returns the value of the LAST element that passes a test. <code>findLastIndex()</code> returns its index:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Array Search&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;findLast() and findLastIndex()&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+const numbers = [4, 9, 16, 25, 29];
+
+// findLast() - last element &gt; 10
+let last = numbers.findLast(function(value) {
+  return value &gt; 10;
+});
+
+// findLastIndex() - index of last element &gt; 10
+let lastIndex = numbers.findLastIndex(function(value) {
+  return value &gt; 10;
+});
+
+document.getElementById(&quot;demo&quot;).innerHTML =
+  &quot;Array: &quot; + numbers + &quot;&lt;br&gt;&lt;br&gt;&quot; +
+  &quot;findLast(v &gt; 10): &quot; + last + &quot;&lt;br&gt;&quot; +
+  &quot;findLastIndex(v &gt; 10): &quot; + lastIndex;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p5.png" alt=""></p>
+<h3>Example 5</h3>
+<p><strong>Result</strong> <a href="ex5-find_last/index.html">View Example</a></p>
+<h2>Document</h2>
+<p>Document in project</p>
+<p>You can <a href="js-array_search.pdf">Download PDF</a> file.</p>
+<h2>Reference</h2>
+<ul>
+<li><a href="https://www.w3schools.com/js/js_array_search.asp">W3Schools JavaScript Array Search</a></li>
+</ul>
+
+</body>
+</html>

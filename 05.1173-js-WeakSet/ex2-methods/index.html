@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript WeakSet</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>WeakSet Methods</h4>
+<p id="demo"></p>
+
+<script>
+const weakSet = new WeakSet();
+
+const obj1 = { id: 1 };
+const obj2 = { id: 2 };
+
+// add() - add an object
+weakSet.add(obj1);
+weakSet.add(obj2);
+
+let text = "After adding 2 objects:<br>";
+text += "has(obj1): " + weakSet.has(obj1) + "<br>";
+text += "has(obj2): " + weakSet.has(obj2) + "<br><br>";
+
+// delete() - remove an object
+weakSet.delete(obj1);
+text += "After delete(obj1):<br>";
+text += "has(obj1): " + weakSet.has(obj1) + "<br><br>";
+
+text += "<b>Methods available:</b><br>";
+text += "add(obj) - add an object<br>";
+text += "delete(obj) - remove an object<br>";
+text += "has(obj) - check if object exists<br><br>";
+
+text += "WeakSet has NO size property and NO iteration methods";
+
+document.getElementById("demo").innerHTML = text;
+</script>
+
+</body>
+</html>

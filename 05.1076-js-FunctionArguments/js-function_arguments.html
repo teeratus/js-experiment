@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>js-function_arguments</title>
+  <style>
+    body {
+      box-sizing: border-box;
+      min-width: 200px;
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 45px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+      font-size: 16px;
+      line-height: 1.5;
+      color: #24292e;
+      background-color: #ffffff;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 24px;
+      margin-bottom: 16px;
+      font-weight: 600;
+      line-height: 1.25;
+      border-bottom: 1px solid #eaecef;
+      padding-bottom: .3em;
+    }
+    h1 { font-size: 2em; }
+    h2 { font-size: 1.5em; }
+    h3 { font-size: 1.25em; }
+    code {
+      padding: .2em .4em;
+      margin: 0;
+      font-size: 85%;
+      background-color: rgba(27,31,35,.05);
+      border-radius: 3px;
+      font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
+    }
+    pre {
+      padding: 16px;
+      overflow: auto;
+      font-size: 85%;
+      line-height: 1.45;
+      background-color: #f6f8fa;
+      border-radius: 3px;
+      word-wrap: normal;
+    }
+    pre code {
+      background-color: transparent;
+      padding: 0;
+    }
+    blockquote {
+      padding: 0 1em;
+      color: #6a737d;
+      border-left: .25em solid #dfe2e5;
+      margin: 0 0 16px 0;
+    }
+    table {
+      border-spacing: 0;
+      border-collapse: collapse;
+      margin-top: 0;
+      margin-bottom: 16px;
+      width: 100%;
+    }
+    table th, table td {
+      padding: 6px 13px;
+      border: 1px solid #dfe2e5;
+    }
+    table tr:nth-child(2n) {
+      background-color: #f6f8fa;
+    }
+    img {
+      max-width: 100%;
+      box-sizing: content-box;
+    }
+    @media print {
+      body {
+        max-width: 100%;
+        padding: 0;
+      }
+      pre, blockquote, table, tr, img {
+        page-break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+<body>
+<h1>JavaScript Function Arguments</h1>
+<p><a href="../acp-js.php">Back to JS page</a></p>
+<p>Table of Contents</p>
+<ul>
+<li><a href="#javascript-function-arguments">JavaScript Function Arguments</a><ul>
+<li><a href="#parameters-vs-arguments">Parameters vs. Arguments</a><ul>
+<li><a href="#example-1">Example 1</a></li>
+</ul>
+</li>
+<li><a href="#the-arguments-object">The Arguments Object</a><ul>
+<li><a href="#example-2">Example 2</a></li>
+</ul>
+</li>
+<li><a href="#the-order-of-arguments-matters">The Order of Arguments Matters</a><ul>
+<li><a href="#example-3">Example 3</a></li>
+</ul>
+</li>
+<li><a href="#arguments-can-be-variables">Arguments Can Be Variables</a><ul>
+<li><a href="#example-4">Example 4</a></li>
+</ul>
+</li>
+<li><a href="#missing-arguments">Missing Arguments</a><ul>
+<li><a href="#example-5">Example 5</a></li>
+</ul>
+</li>
+<li><a href="#default-parameters">Default Parameters</a><ul>
+<li><a href="#example-6">Example 6</a></li>
+</ul>
+</li>
+<li><a href="#function-rest-parameter">Function Rest Parameter</a><ul>
+<li><a href="#example-7">Example 7</a></li>
+</ul>
+</li>
+<li><a href="#document">Document</a></li>
+<li><a href="#reference">Reference</a></li>
+</ul>
+</li>
+</ul>
+<h2>Parameters vs. Arguments</h2>
+<p>Function <strong>parameters</strong> are the names listed in the function definition.</p>
+<p>Function <strong>arguments</strong> are the real values passed to (and received by) the function.</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Function Arguments&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Parameters vs. Arguments&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+function myFunction(firstName, lastName) {
+  return &quot;Hello &quot; + firstName + &quot; &quot; + lastName;
+}
+// &quot;John&quot; and &quot;Doe&quot; are arguments
+document.getElementById(&quot;demo&quot;).innerHTML = myFunction(&quot;John&quot;, &quot;Doe&quot;);
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p1.png" alt=""></p>
+<h3>Example 1</h3>
+<p><strong>Result</strong> <a href="ex1-parameters_vs_arguments/index.html">View Example</a></p>
+<h2>The Arguments Object</h2>
+<p>JavaScript functions have a built-in object called the <code>arguments</code> object.</p>
+<p>The <code>arguments</code> object contains an array of the arguments used when the function was called:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Function Arguments&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;The Arguments Object&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+function findMax() {
+  let max = -Infinity;
+  for (let i = 0; i &lt; arguments.length; i++) {
+    if (arguments[i] &gt; max) {
+      max = arguments[i];
+    }
+  }
+  return max;
+}
+document.getElementById(&quot;demo&quot;).innerHTML = &quot;Max of (4, 7, 2, 9, 5): &quot; + findMax(4, 7, 2, 9, 5);
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p2.png" alt=""></p>
+<h3>Example 2</h3>
+<p><strong>Result</strong> <a href="ex2-arguments_object/index.html">View Example</a></p>
+<h2>The Order of Arguments Matters</h2>
+<p>The order of arguments passed to a function must match the order of parameters defined:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Function Arguments&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;The Order of Arguments Matters&lt;/h4&gt;
+&lt;p id=&quot;demo1&quot;&gt;&lt;/p&gt;
+&lt;p id=&quot;demo2&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+function carInfo(brand, model, year) {
+  return brand + &quot; &quot; + model + &quot; (&quot; + year + &quot;)&quot;;
+}
+// Correct order
+document.getElementById(&quot;demo1&quot;).innerHTML = &quot;Correct: &quot; + carInfo(&quot;Toyota&quot;, &quot;Corolla&quot;, 2020);
+// Wrong order - produces different result
+document.getElementById(&quot;demo2&quot;).innerHTML = &quot;Wrong: &quot; + carInfo(2020, &quot;Toyota&quot;, &quot;Corolla&quot;);
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p3.png" alt=""></p>
+<h3>Example 3</h3>
+<p><strong>Result</strong> <a href="ex3-arguments_order/index.html">View Example</a></p>
+<h2>Arguments Can Be Variables</h2>
+<p>Arguments can be variables, not just literal values:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Function Arguments&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Arguments Can Be Variables&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+function add(x, y) {
+  return x + y;
+}
+let a = 10;
+let b = 25;
+document.getElementById(&quot;demo&quot;).innerHTML = a + &quot; + &quot; + b + &quot; = &quot; + add(a, b);
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p4.png" alt=""></p>
+<h3>Example 4</h3>
+<p><strong>Result</strong> <a href="ex4-arguments_variables/index.html">View Example</a></p>
+<h2>Missing Arguments</h2>
+<p>If a function is called with missing arguments (fewer than declared), the missing values are set to <code>undefined</code>:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Function Arguments&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Missing Arguments&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+function multiply(a, b) {
+  return a * b;
+}
+document.getElementById(&quot;demo&quot;).innerHTML = &quot;multiply(5) = &quot; + multiply(5) + &quot; (NaN because b is undefined)&quot;;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p5.png" alt=""></p>
+<h3>Example 5</h3>
+<p><strong>Result</strong> <a href="ex5-missing_arguments/index.html">View Example</a></p>
+<h2>Default Parameters</h2>
+<p>ES6 allows function parameters to have default values, used when arguments are missing:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Function Arguments&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Default Parameters&lt;/h4&gt;
+&lt;p id=&quot;demo1&quot;&gt;&lt;/p&gt;
+&lt;p id=&quot;demo2&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+function myFunction(x, y = 10) {
+  return x + y;
+}
+document.getElementById(&quot;demo1&quot;).innerHTML = &quot;myFunction(5) = &quot; + myFunction(5);
+document.getElementById(&quot;demo2&quot;).innerHTML = &quot;myFunction(5, 3) = &quot; + myFunction(5, 3);
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p6.png" alt=""></p>
+<h3>Example 6</h3>
+<p><strong>Result</strong> <a href="ex6-default_parameters/index.html">View Example</a></p>
+<h2>Function Rest Parameter</h2>
+<p>The rest parameter (<code>...</code>) allows a function to treat an indefinite number of arguments as an array:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Function Arguments&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Function Rest Parameter&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+function sum(...args) {
+  let total = 0;
+  for (let arg of args) {
+    total += arg;
+  }
+  return total;
+}
+document.getElementById(&quot;demo&quot;).innerHTML = &quot;Sum of (1, 2, 3, 4, 5): &quot; + sum(1, 2, 3, 4, 5);
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p7.png" alt=""></p>
+<h3>Example 7</h3>
+<p><strong>Result</strong> <a href="ex7-rest_parameter/index.html">View Example</a></p>
+<h2>Document</h2>
+<p>Document in project</p>
+<p>You can <a href="js-function_arguments.pdf">Download PDF</a> file.</p>
+<h2>Reference</h2>
+<ul>
+<li><a href="https://www.w3schools.com/js/js_function_arguments.asp">W3Schools JavaScript Function Arguments</a></li>
+</ul>
+
+</body>
+</html>

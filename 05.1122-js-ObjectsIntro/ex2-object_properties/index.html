@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Object Introduction</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Object Properties</h4>
+<p id="demo"></p>
+
+<script>
+const student = {
+  name: "Alice",
+  grade: "A",
+  subject: "Mathematics"
+};
+
+let text = "Student: " + student.name + "<br>";
+text += "Grade: " + student["grade"] + "<br>";
+text += "Subject: " + student["subject"] + "<br><br>";
+
+text += "All properties: " + Object.keys(student).join(", ") + "<br>";
+text += "Total properties: " + Object.keys(student).length;
+
+document.getElementById("demo").innerHTML = text;
+</script>
+
+</body>
+</html>

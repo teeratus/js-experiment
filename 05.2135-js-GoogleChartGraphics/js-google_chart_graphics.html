@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>js-google_chart_graphics</title>
+  <style>
+    body {
+      box-sizing: border-box;
+      min-width: 200px;
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 45px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+      font-size: 16px;
+      line-height: 1.5;
+      color: #24292e;
+      background-color: #ffffff;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 24px;
+      margin-bottom: 16px;
+      font-weight: 600;
+      line-height: 1.25;
+      border-bottom: 1px solid #eaecef;
+      padding-bottom: .3em;
+    }
+    h1 { font-size: 2em; }
+    h2 { font-size: 1.5em; }
+    h3 { font-size: 1.25em; }
+    code {
+      padding: .2em .4em;
+      margin: 0;
+      font-size: 85%;
+      background-color: rgba(27,31,35,.05);
+      border-radius: 3px;
+      font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
+    }
+    pre {
+      padding: 16px;
+      overflow: auto;
+      font-size: 85%;
+      line-height: 1.45;
+      background-color: #f6f8fa;
+      border-radius: 3px;
+      word-wrap: normal;
+    }
+    pre code {
+      background-color: transparent;
+      padding: 0;
+    }
+    blockquote {
+      padding: 0 1em;
+      color: #6a737d;
+      border-left: .25em solid #dfe2e5;
+      margin: 0 0 16px 0;
+    }
+    table {
+      border-spacing: 0;
+      border-collapse: collapse;
+      margin-top: 0;
+      margin-bottom: 16px;
+      width: 100%;
+    }
+    table th, table td {
+      padding: 6px 13px;
+      border: 1px solid #dfe2e5;
+    }
+    table tr:nth-child(2n) {
+      background-color: #f6f8fa;
+    }
+    img {
+      max-width: 100%;
+      box-sizing: content-box;
+    }
+    @media print {
+      body {
+        max-width: 100%;
+        padding: 0;
+      }
+      pre, blockquote, table, tr, img {
+        page-break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+<body>
+<h1>JavaScript Google Chart Graphics</h1>
+<p><a href="../acp-js.php">Back to JS page</a></p>
+<p>Table of Contents</p>
+<ul>
+<li><a href="#javascript-google-chart-graphics">JavaScript Google Chart Graphics</a><ul>
+<li><a href="#bar-charts">Bar Charts</a><ul>
+<li><a href="#example-1">Example 1</a></li>
+</ul>
+</li>
+<li><a href="#pie-charts">Pie Charts</a><ul>
+<li><a href="#example-2">Example 2</a></li>
+</ul>
+</li>
+<li><a href="#3d-pie">3D Pie</a><ul>
+<li><a href="#example-3">Example 3</a></li>
+</ul>
+</li>
+<li><a href="#line-graph">Line Graph</a><ul>
+<li><a href="#example-4">Example 4</a></li>
+</ul>
+</li>
+<li><a href="#scatter-plots">Scatter Plots</a><ul>
+<li><a href="#example-5">Example 5</a></li>
+</ul>
+</li>
+<li><a href="#document">Document</a></li>
+<li><a href="#reference">Reference</a></li>
+</ul>
+</li>
+</ul>
+<h2>Bar Charts</h2>
+<p>Google Bar Chart displays data with rectangular bars:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Google Chart Graphics&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Bar Charts&lt;/h4&gt;
+
+&lt;div id=&quot;barChart&quot;&gt;&lt;/div&gt;
+&lt;p id=&quot;demo1&quot;&gt;&lt;/p&gt;
+
+&lt;script src=&quot;https://www.gstatic.com/charts/loader.js&quot;&gt;&lt;/script&gt;
+
+&lt;script&gt;
+google.charts.load(&quot;current&quot;, {packages: [&quot;corechart&quot;]});
+google.charts.setOnLoadCallback(drawBarChart);
+
+function drawBarChart() {
+  const data = google.visualization.arrayToDataTable([
+    [&quot;Product&quot;, &quot;Sales&quot;],
+    [&quot;Product A&quot;, 25],
+    [&quot;Product B&quot;, 40],
+    [&quot;Product C&quot;, 30],
+    [&quot;Product D&quot;, 55],
+    [&quot;Product E&quot;, 20]
+  ]);
+
+  const options = {
+    title: &quot;Product Sales (Bar Chart)&quot;,
+    hAxis: {title: &quot;Product&quot;},
+    vAxis: {title: &quot;Sales ($)&quot;, minValue: 0},
+    legend: &quot;none&quot;
+  };
+
+  const chart = new google.visualization.ColumnChart(document.getElementById(&quot;barChart&quot;));
+  chart.draw(data, options);
+  document.getElementById(&quot;demo1&quot;).innerHTML = &quot;Google Bar Chart created!&quot;;
+}
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p1.png" alt=""></p>
+<h3>Example 1</h3>
+<p><strong>Result</strong> <a href="ex1-bar_chart/index.html">View Example</a></p>
+<h2>Pie Charts</h2>
+<p>Google Pie Chart shows data as slices of a circle:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Google Chart Graphics&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Pie Charts&lt;/h4&gt;
+
+&lt;div id=&quot;pieChart&quot;&gt;&lt;/div&gt;
+&lt;p id=&quot;demo2&quot;&gt;&lt;/p&gt;
+
+&lt;script src=&quot;https://www.gstatic.com/charts/loader.js&quot;&gt;&lt;/script&gt;
+
+&lt;script&gt;
+google.charts.load(&quot;current&quot;, {packages: [&quot;corechart&quot;]});
+google.charts.setOnLoadCallback(drawPieChart);
+
+function drawPieChart() {
+  const data = google.visualization.arrayToDataTable([
+    [&quot;Browser&quot;, &quot;Share&quot;],
+    [&quot;Chrome&quot;, 55],
+    [&quot;Firefox&quot;, 20],
+    [&quot;Safari&quot;, 15],
+    [&quot;Edge&quot;, 8],
+    [&quot;Other&quot;, 2]
+  ]);
+
+  const options = {
+    title: &quot;Browser Market Share (Pie Chart)&quot;,
+    colors: [&quot;#4CAF50&quot;, &quot;#2196F3&quot;, &quot;#FF9800&quot;, &quot;#F44336&quot;, &quot;#9C27B0&quot;]
+  };
+
+  const chart = new google.visualization.PieChart(document.getElementById(&quot;pieChart&quot;));
+  chart.draw(data, options);
+  document.getElementById(&quot;demo2&quot;).innerHTML = &quot;Google Pie Chart created!&quot;;
+}
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p2.png" alt=""></p>
+<h3>Example 2</h3>
+<p><strong>Result</strong> <a href="ex2-pie_chart/index.html">View Example</a></p>
+<h2>3D Pie</h2>
+<p>Google 3D Pie Chart adds a three-dimensional effect:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Google Chart Graphics&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;3D Pie&lt;/h4&gt;
+
+&lt;div id=&quot;pie3dChart&quot;&gt;&lt;/div&gt;
+&lt;p id=&quot;demo3&quot;&gt;&lt;/p&gt;
+
+&lt;script src=&quot;https://www.gstatic.com/charts/loader.js&quot;&gt;&lt;/script&gt;
+
+&lt;script&gt;
+google.charts.load(&quot;current&quot;, {packages: [&quot;corechart&quot;]});
+google.charts.setOnLoadCallback(draw3DPieChart);
+
+function draw3DPieChart() {
+  const data = google.visualization.arrayToDataTable([
+    [&quot;Category&quot;, &quot;Value&quot;],
+    [&quot;North&quot;, 35],
+    [&quot;South&quot;, 25],
+    [&quot;East&quot;, 20],
+    [&quot;West&quot;, 20]
+  ]);
+
+  const options = {
+    title: &quot;Regional Sales (3D Pie Chart)&quot;,
+    is3D: true,
+    colors: [&quot;#4CAF50&quot;, &quot;#2196F3&quot;, &quot;#FF9800&quot;, &quot;#F44336&quot;]
+  };
+
+  const chart = new google.visualization.PieChart(document.getElementById(&quot;pie3dChart&quot;));
+  chart.draw(data, options);
+  document.getElementById(&quot;demo3&quot;).innerHTML = &quot;Google 3D Pie Chart created!&quot;;
+}
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p3.png" alt=""></p>
+<h3>Example 3</h3>
+<p><strong>Result</strong> <a href="ex3-3d_pie/index.html">View Example</a></p>
+<h2>Line Graph</h2>
+<p>A line graph displays information as a series of data points connected by straight line segments:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Google Chart Graphics&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Line Graph&lt;/h4&gt;
+
+&lt;div id=&quot;lineChart&quot;&gt;&lt;/div&gt;
+&lt;p id=&quot;demo4&quot;&gt;&lt;/p&gt;
+
+&lt;script src=&quot;https://www.gstatic.com/charts/loader.js&quot;&gt;&lt;/script&gt;
+
+&lt;script&gt;
+google.charts.load(&quot;current&quot;, {packages: [&quot;corechart&quot;]});
+google.charts.setOnLoadCallback(drawLineChart);
+
+function drawLineChart() {
+  const data = google.visualization.arrayToDataTable([
+    [&quot;Time&quot;, &quot;Series 1&quot;, &quot;Series 2&quot;],
+    [1, 10, 5],
+    [2, 15, 8],
+    [3, 13, 7],
+    [4, 17, 11],
+    [5, 14, 9],
+    [6, 20, 13],
+    [7, 18, 12],
+    [8, 22, 16]
+  ]);
+
+  const options = {
+    title: &quot;Line Graph&quot;,
+    hAxis: {title: &quot;Time&quot;},
+    vAxis: {title: &quot;Values&quot;, minValue: 0},
+    colors: [&quot;#4CAF50&quot;, &quot;#F44336&quot;],
+    curveType: &quot;function&quot;
+  };
+
+  const chart = new google.visualization.LineChart(document.getElementById(&quot;lineChart&quot;));
+  chart.draw(data, options);
+  document.getElementById(&quot;demo4&quot;).innerHTML = &quot;Google Line Chart created!&quot;;
+}
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p4.png" alt=""></p>
+<h3>Example 4</h3>
+<p><strong>Result</strong> <a href="ex4-line_graph/index.html">View Example</a></p>
+<h2>Scatter Plots</h2>
+<p>A scatter plot displays values for two variables using dots:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Google Chart Graphics&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Scatter Plots&lt;/h4&gt;
+
+&lt;div id=&quot;scatterChart&quot;&gt;&lt;/div&gt;
+&lt;p id=&quot;demo5&quot;&gt;&lt;/p&gt;
+
+&lt;script src=&quot;https://www.gstatic.com/charts/loader.js&quot;&gt;&lt;/script&gt;
+
+&lt;script&gt;
+google.charts.load(&quot;current&quot;, {packages: [&quot;corechart&quot;]});
+google.charts.setOnLoadCallback(drawScatterChart);
+
+function drawScatterChart() {
+  const data = google.visualization.arrayToDataTable([
+    [&quot;X&quot;, &quot;Y&quot;],
+    [1, 2], [3, 5], [4, 4], [6, 8], [7, 7],
+    [9, 10], [2, 3], [4, 6], [5, 5], [7, 9],
+    [8, 8], [10, 11]
+  ]);
+
+  const options = {
+    title: &quot;Scatter Plot&quot;,
+    hAxis: {title: &quot;X Values&quot;, minValue: 0, maxValue: 11},
+    vAxis: {title: &quot;Y Values&quot;, minValue: 0, maxValue: 12},
+    legend: &quot;none&quot;,
+    pointSize: 8,
+    colors: [&quot;#4CAF50&quot;]
+  };
+
+  const chart = new google.visualization.ScatterChart(document.getElementById(&quot;scatterChart&quot;));
+  chart.draw(data, options);
+  document.getElementById(&quot;demo5&quot;).innerHTML = &quot;Google Scatter Chart created!&quot;;
+}
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p5.png" alt=""></p>
+<h3>Example 5</h3>
+<p><strong>Result</strong> <a href="ex5-scatter_plot/index.html">View Example</a></p>
+<h2>Document</h2>
+<p>Document in project</p>
+<p>You can <a href="js-google_chart_graphics.pdf">Download PDF</a> file.</p>
+<h2>Reference</h2>
+<ul>
+<li><a href="https://www.w3schools.com/js/js_graphics_google_chart.asp">W3Schools JavaScript Google Chart Graphics</a></li>
+</ul>
+
+</body>
+</html>

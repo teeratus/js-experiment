@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Pointer Events API</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Pointer Events API Benefits</h4>
+<p id="demo3"></p>
+
+<script>
+let text = "Pointer Events API Support Check:<br><br>";
+
+if (window.PointerEvent) {
+  text += "✓ PointerEvent is supported in this browser<br><br>";
+  text += "This means you can use:<br>";
+  text += "- pointerdown, pointerup, pointermove<br>";
+  text += "- Instead of separate mousedown/mouseup/touchstart handlers<br><br>";
+  text += "Examples where pointer events help:<br>";
+  text += "- Drawing applications (pen + touch + mouse)<br>";
+  text += "- Drag and drop (any input device)<br>";
+  text += "- Signature capture (pen pressure)<br>";
+  text += "- Games (multiple touch points)";
+} else {
+  text += "✗ PointerEvent is NOT supported in this browser<br>";
+  text += "Support falls back to mouse + touch events";
+}
+
+document.getElementById("demo3").innerHTML = text;
+</script>
+
+</body>
+</html>

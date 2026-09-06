@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Proxy</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Proxy Logging</h4>
+<p id="demo"></p>
+
+<script>
+const user = {
+  name: "Alice",
+  age: 30,
+  role: "admin"
+};
+
+const loggingHandler = {
+  get: function(target, property) {
+    console.log("LOG: Accessing property '" + property + "'");
+    console.log("LOG: Current value is:", target[property]);
+    return target[property];
+  },
+  set: function(target, property, value) {
+    console.log("LOG: Setting property '" + property + "' to", value);
+    console.log("LOG: Previous value was:", target[property]);
+    target[property] = value;
+    return true;
+  }
+};
+
+const proxy = new Proxy(user, loggingHandler);
+
+// Access and modify through the proxy
+proxy.name = "Bob";
+let userRole = proxy.role;
+proxy.age = 31;
+
+document.getElementById("demo").innerHTML =
+  "name: " + proxy.name + "<br>" +
+  "age: " + proxy.age + "<br>" +
+  "role: " + proxy.role + "<br><br>" +
+  "(Check browser console to see all log messages)";
+</script>
+
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Promises</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Creating a Promise</h4>
+<p id="demo"></p>
+
+<script>
+const myPromise = new Promise(function(resolve, reject) {
+  let x = 0;
+  if (x === 0) {
+    resolve("OK");
+  } else {
+    reject("Error");
+  }
+});
+
+myPromise.then(function(value) {
+  document.getElementById("demo").innerHTML = "Promise resolved: " + value;
+});
+</script>
+
+</body>
+</html>

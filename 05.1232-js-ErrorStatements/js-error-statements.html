@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>js-error-statements</title>
+  <style>
+    body {
+      box-sizing: border-box;
+      min-width: 200px;
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 45px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+      font-size: 16px;
+      line-height: 1.5;
+      color: #24292e;
+      background-color: #ffffff;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 24px;
+      margin-bottom: 16px;
+      font-weight: 600;
+      line-height: 1.25;
+      border-bottom: 1px solid #eaecef;
+      padding-bottom: .3em;
+    }
+    h1 { font-size: 2em; }
+    h2 { font-size: 1.5em; }
+    h3 { font-size: 1.25em; }
+    code {
+      padding: .2em .4em;
+      margin: 0;
+      font-size: 85%;
+      background-color: rgba(27,31,35,.05);
+      border-radius: 3px;
+      font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
+    }
+    pre {
+      padding: 16px;
+      overflow: auto;
+      font-size: 85%;
+      line-height: 1.45;
+      background-color: #f6f8fa;
+      border-radius: 3px;
+      word-wrap: normal;
+    }
+    pre code {
+      background-color: transparent;
+      padding: 0;
+    }
+    blockquote {
+      padding: 0 1em;
+      color: #6a737d;
+      border-left: .25em solid #dfe2e5;
+      margin: 0 0 16px 0;
+    }
+    table {
+      border-spacing: 0;
+      border-collapse: collapse;
+      margin-top: 0;
+      margin-bottom: 16px;
+      width: 100%;
+    }
+    table th, table td {
+      padding: 6px 13px;
+      border: 1px solid #dfe2e5;
+    }
+    table tr:nth-child(2n) {
+      background-color: #f6f8fa;
+    }
+    img {
+      max-width: 100%;
+      box-sizing: content-box;
+    }
+    @media print {
+      body {
+        max-width: 100%;
+        padding: 0;
+      }
+      pre, blockquote, table, tr, img {
+        page-break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+<body>
+<h1>JavaScript Error Statements</h1>
+<p><a href="../acp-js.php">Back to JS page</a></p>
+<p>Table of Contents</p>
+<ul>
+<li><a href="#javascript-error-statements">JavaScript Error Statements</a><ul>
+<li><a href="#the-try-and-catch-blocks">The try and catch Blocks</a><ul>
+<li><a href="#example-1">Example 1</a></li>
+</ul>
+</li>
+<li><a href="#the-error-object">The Error Object</a><ul>
+<li><a href="#example-2">Example 2</a></li>
+</ul>
+</li>
+<li><a href="#the-finally-block">The finally Block</a><ul>
+<li><a href="#example-3">Example 3</a></li>
+</ul>
+</li>
+<li><a href="#the-throw-statement">The throw Statement</a><ul>
+<li><a href="#example-4">Example 4</a></li>
+</ul>
+</li>
+<li><a href="#input-validation">Input Validation</a><ul>
+<li><a href="#example-5">Example 5</a></li>
+</ul>
+</li>
+<li><a href="#error-object-properties">Error Object Properties</a><ul>
+<li><a href="#example-6">Example 6</a></li>
+</ul>
+</li>
+<li><a href="#document">Document</a></li>
+<li><a href="#reference">Reference</a></li>
+</ul>
+</li>
+</ul>
+<h2>The try and catch Blocks</h2>
+<p>The <code>try</code> statement defines a code block to run (to try). The <code>catch</code> statement defines a code block to handle any error. If an error occurs in the <code>try</code> block, the <code>catch</code> block is executed.</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Error Statements&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Try and Catch&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+try {
+  adddlert(&quot;Welcome guest!&quot;);
+}
+catch(err) {
+  document.getElementById(&quot;demo&quot;).innerHTML = err.message;
+}
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p1.png" alt=""></p>
+<h3>Example 1</h3>
+<p><strong>Result</strong> <a href="ex1-try_catch/index.html">View Example</a></p>
+<h2>The Error Object</h2>
+<p>When an error occurs, JavaScript creates an <strong>Error object</strong> with two properties: <code>name</code> and <code>message</code>. The <code>name</code> property returns the error type (e.g., ReferenceError, TypeError). The <code>message</code> property returns a description of the error.</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Error Statements&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;The Error Object&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+let text = &quot;&quot;;
+
+try {
+  adddlert(&quot;Welcome guest!&quot;);
+}
+catch(err) {
+  text += &quot;Error Name: &quot; + err.name + &quot;&lt;br&gt;&quot;;
+  text += &quot;Error Message: &quot; + err.message;
+}
+
+document.getElementById(&quot;demo&quot;).innerHTML = text;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p2.png" alt=""></p>
+<h3>Example 2</h3>
+<p><strong>Result</strong> <a href="ex2-catch_error_object/index.html">View Example</a></p>
+<h2>The finally Block</h2>
+<p>The <code>finally</code> statement lets you execute code after <code>try</code> and <code>catch</code>, regardless of the result. The <code>finally</code> block will always run, whether an error occurred or not.</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Error Statements&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;The finally Block&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+let text = &quot;&quot;;
+
+try {
+  adddlert(&quot;Welcome guest!&quot;);
+}
+catch(err) {
+  text += &quot;Error caught: &quot; + err.message + &quot;&lt;br&gt;&lt;br&gt;&quot;;
+}
+finally {
+  text += &quot;The &#39;finally&#39; block always runs.&quot;;
+}
+
+document.getElementById(&quot;demo&quot;).innerHTML = text;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p3.png" alt=""></p>
+<h3>Example 3</h3>
+<p><strong>Result</strong> <a href="ex3-finally_block/index.html">View Example</a></p>
+<h2>The throw Statement</h2>
+<p>The <code>throw</code> statement allows you to create a custom error. You can throw a string, number, boolean, or an object. When you use <code>throw</code> together with <code>try</code> and <code>catch</code>, you can control program flow and generate custom error messages.</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Error Statements&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;The throw Statement&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+let text = &quot;&quot;;
+
+try {
+  throw &quot;Too big&quot;;    // throw a text
+}
+catch(err) {
+  text += &quot;Error: &quot; + err;
+}
+
+document.getElementById(&quot;demo&quot;).innerHTML = text;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p4.png" alt=""></p>
+<h3>Example 4</h3>
+<p><strong>Result</strong> <a href="ex4-throw_statement/index.html">View Example</a></p>
+<h2>Input Validation</h2>
+<p>The <code>throw</code> statement is commonly used for input validation. If the input is invalid, you can throw an error message and catch it to display to the user.</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Error Statements&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Input Validation&lt;/h4&gt;
+&lt;p&gt;Please input a number between 5 and 10:&lt;/p&gt;
+
+&lt;input id=&quot;demo&quot; type=&quot;text&quot;&gt;
+&lt;button type=&quot;button&quot; onclick=&quot;myFunction()&quot;&gt;Test Input&lt;/button&gt;
+&lt;p id=&quot;message&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+function myFunction() {
+  const message = document.getElementById(&quot;message&quot;);
+  message.innerHTML = &quot;&quot;;
+  let x = document.getElementById(&quot;demo&quot;).value;
+  
+  try {
+    if(x.trim() == &quot;&quot;) throw &quot;empty&quot;;
+    if(isNaN(x)) throw &quot;not a number&quot;;
+    x = Number(x);
+    if(x &lt; 5) throw &quot;too low&quot;;
+    if(x &gt; 10) throw &quot;too high&quot;;
+  }
+  catch(err) {
+    message.innerHTML = &quot;Input is &quot; + err;
+  }
+}
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p5.png" alt=""></p>
+<h3>Example 5</h3>
+<p><strong>Result</strong> <a href="ex5-input_validation/index.html">View Example</a></p>
+<h2>Error Object Properties</h2>
+<p>The Error object provides several properties to help debug and identify problems:</p>
+<ul>
+<li><strong>name:</strong> The type of error (e.g., &quot;ReferenceError&quot;, &quot;TypeError&quot;)</li>
+<li><strong>message:</strong> A human-readable description of the error</li>
+</ul>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Error Statements&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Error Object Properties&lt;/h4&gt;
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+let text = &quot;&quot;;
+
+// ReferenceError
+try {
+  x = y + 1;
+}
+catch(err) {
+  text += &quot;Error Name: &quot; + err.name + &quot;&lt;br&gt;&quot;;
+  text += &quot;Error Message: &quot; + err.message + &quot;&lt;br&gt;&lt;br&gt;&quot;;
+}
+
+// TypeError
+try {
+  let num = 1;
+  num.toUpperCase();
+}
+catch(err) {
+  text += &quot;Error Name: &quot; + err.name + &quot;&lt;br&gt;&quot;;
+  text += &quot;Error Message: &quot; + err.message;
+}
+
+document.getElementById(&quot;demo&quot;).innerHTML = text;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p6.png" alt=""></p>
+<h3>Example 6</h3>
+<p><strong>Result</strong> <a href="ex6-error_properties/index.html">View Example</a></p>
+<h2>Document</h2>
+<p>Document in project</p>
+<p>You can <a href="js-error-statements.pdf">Download PDF</a> file.</p>
+<h2>Reference</h2>
+<ul>
+<li><a href="https://www.w3schools.com/js/js_errors.asp">W3Schools JavaScript Error Statements</a></li>
+</ul>
+
+</body>
+</html>

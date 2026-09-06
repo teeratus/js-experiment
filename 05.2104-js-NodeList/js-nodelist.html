@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>js-nodelist</title>
+  <style>
+    body {
+      box-sizing: border-box;
+      min-width: 200px;
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 45px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+      font-size: 16px;
+      line-height: 1.5;
+      color: #24292e;
+      background-color: #ffffff;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 24px;
+      margin-bottom: 16px;
+      font-weight: 600;
+      line-height: 1.25;
+      border-bottom: 1px solid #eaecef;
+      padding-bottom: .3em;
+    }
+    h1 { font-size: 2em; }
+    h2 { font-size: 1.5em; }
+    h3 { font-size: 1.25em; }
+    code {
+      padding: .2em .4em;
+      margin: 0;
+      font-size: 85%;
+      background-color: rgba(27,31,35,.05);
+      border-radius: 3px;
+      font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
+    }
+    pre {
+      padding: 16px;
+      overflow: auto;
+      font-size: 85%;
+      line-height: 1.45;
+      background-color: #f6f8fa;
+      border-radius: 3px;
+      word-wrap: normal;
+    }
+    pre code {
+      background-color: transparent;
+      padding: 0;
+    }
+    blockquote {
+      padding: 0 1em;
+      color: #6a737d;
+      border-left: .25em solid #dfe2e5;
+      margin: 0 0 16px 0;
+    }
+    table {
+      border-spacing: 0;
+      border-collapse: collapse;
+      margin-top: 0;
+      margin-bottom: 16px;
+      width: 100%;
+    }
+    table th, table td {
+      padding: 6px 13px;
+      border: 1px solid #dfe2e5;
+    }
+    table tr:nth-child(2n) {
+      background-color: #f6f8fa;
+    }
+    img {
+      max-width: 100%;
+      box-sizing: content-box;
+    }
+    @media print {
+      body {
+        max-width: 100%;
+        padding: 0;
+      }
+      pre, blockquote, table, tr, img {
+        page-break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+<body>
+<h1>JavaScript NodeList</h1>
+<p><a href="../acp-js.php">Back to JS page</a></p>
+<p>Table of Contents</p>
+<ul>
+<li><a href="#javascript-nodelist">JavaScript NodeList</a><ul>
+<li><a href="#the-html-dom-nodelist-object">The HTML DOM NodeList Object</a><ul>
+<li><a href="#example-1">Example 1</a></li>
+</ul>
+</li>
+<li><a href="#html-dom-node-list-length">HTML DOM Node List Length</a><ul>
+<li><a href="#example-2">Example 2</a></li>
+</ul>
+</li>
+<li><a href="#the-difference-between-htmlcollection-and-nodelist">The Difference Between HTMLCollection and NodeList</a><ul>
+<li><a href="#example-3">Example 3</a></li>
+</ul>
+</li>
+<li><a href="#document">Document</a></li>
+<li><a href="#reference">Reference</a></li>
+</ul>
+</li>
+</ul>
+<h2>The HTML DOM NodeList Object</h2>
+<p>A <code>NodeList</code> is a list of nodes extracted from a document.</p>
+<p>The <code>querySelectorAll()</code> method returns a <code>NodeList</code>.</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript NodeList&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;The HTML DOM NodeList Object&lt;/h4&gt;
+
+&lt;p&gt;First paragraph&lt;/p&gt;
+&lt;p&gt;Second paragraph&lt;/p&gt;
+&lt;p&gt;Third paragraph&lt;/p&gt;
+
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+const myNodeList = document.querySelectorAll(&quot;p&quot;);
+
+document.getElementById(&quot;demo&quot;).innerHTML =
+  &quot;Number of &lt;p&gt; elements: &quot; + myNodeList.length + &quot;&lt;br&gt;&quot; +
+  &quot;First paragraph text: &quot; + myNodeList[0].innerHTML + &quot;&lt;br&gt;&quot; +
+  &quot;Second paragraph text: &quot; + myNodeList[1].innerHTML;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p1.png" alt=""></p>
+<h3>Example 1</h3>
+<p><strong>Result</strong> <a href="ex1-nodelist/index.html">View Example</a></p>
+<h2>HTML DOM Node List Length</h2>
+<p>The <code>length</code> property defines the number of elements in the NodeList. You can use it to loop through the list:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript NodeList&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;HTML DOM Node List Length&lt;/h4&gt;
+
+&lt;div id=&quot;list&quot;&gt;
+  &lt;p&gt;Apple&lt;/p&gt;
+  &lt;p&gt;Banana&lt;/p&gt;
+  &lt;p&gt;Orange&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+const nodeList = document.querySelectorAll(&quot;#list p&quot;);
+let text = &quot;Items (&quot; + nodeList.length + &quot;):&lt;br&gt;&quot;;
+for (let i = 0; i &lt; nodeList.length; i++) {
+  text += (i + 1) + &quot;. &quot; + nodeList[i].innerHTML + &quot;&lt;br&gt;&quot;;
+}
+document.getElementById(&quot;demo&quot;).innerHTML = text;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p2.png" alt=""></p>
+<h3>Example 2</h3>
+<p><strong>Result</strong> <a href="ex2-length/index.html">View Example</a></p>
+<h2>The Difference Between HTMLCollection and NodeList</h2>
+<p>An <code>HTMLCollection</code> is live (updates when DOM changes). A <code>NodeList</code> from <code>querySelectorAll()</code> is static (does not update):</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript NodeList&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;HTMLCollection vs NodeList&lt;/h4&gt;
+
+&lt;div id=&quot;container&quot;&gt;
+  &lt;p class=&quot;test&quot;&gt;Item 1&lt;/p&gt;
+  &lt;p class=&quot;test&quot;&gt;Item 2&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;button onclick=&quot;addItem()&quot;&gt;Add Item&lt;/button&gt;
+&lt;p id=&quot;demo1&quot;&gt;&lt;/p&gt;
+&lt;p id=&quot;demo2&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+function addItem() {
+  const para = document.createElement(&quot;p&quot;);
+  para.className = &quot;test&quot;;
+  para.innerHTML = &quot;Item &quot; + (document.querySelectorAll(&quot;.test&quot;).length + 1);
+  document.getElementById(&quot;container&quot;).appendChild(para);
+
+  // HTMLCollection is LIVE - automatically updated
+  const liveCollection = document.getElementsByClassName(&quot;test&quot;);
+  document.getElementById(&quot;demo1&quot;).innerHTML =
+    &quot;HTMLCollection (live) count: &quot; + liveCollection.length;
+
+  // NodeList is STATIC - shows original count
+  const staticList = document.querySelectorAll(&quot;.test&quot;);
+  document.getElementById(&quot;demo2&quot;).innerHTML =
+    &quot;NodeList (static) count: &quot; + staticList.length;
+}
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p3.png" alt=""></p>
+<h3>Example 3</h3>
+<p><strong>Result</strong> <a href="ex3-collection_vs_nodelist/index.html">View Example</a></p>
+<h2>Document</h2>
+<p>Document in project</p>
+<p>You can <a href="js-nodelist.pdf">Download PDF</a> file.</p>
+<h2>Reference</h2>
+<ul>
+<li><a href="https://www.w3schools.com/js/js_htmldom_nodelist.asp">W3Schools JavaScript NodeList</a></li>
+</ul>
+
+</body>
+</html>

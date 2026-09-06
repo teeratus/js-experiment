@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Metaprogramming</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Generate Dynamic Code</h4>
+<p id="demo"></p>
+
+<script>
+// Create a function dynamically using the Function constructor
+const operation = "multiply";
+let dynamicFunction;
+
+if (operation === "add") {
+  dynamicFunction = new Function("a", "b", "return a + b");
+} else if (operation === "multiply") {
+  dynamicFunction = new Function("a", "b", "return a * b");
+} else if (operation === "power") {
+  dynamicFunction = new Function("a", "b", "return Math.pow(a, b)");
+}
+
+document.getElementById("demo").innerHTML =
+  "Dynamic function created for: " + operation + "<br>" +
+  "5 * 3 = " + dynamicFunction(5, 3);
+</script>
+
+</body>
+</html>

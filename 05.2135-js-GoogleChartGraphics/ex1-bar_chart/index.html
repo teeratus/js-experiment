@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Google Chart Graphics</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Bar Charts</h4>
+
+<div id="barChart"></div>
+<p id="demo1"></p>
+
+<script src="https://www.gstatic.com/charts/loader.js"></script>
+
+<script>
+google.charts.load("current", {packages: ["corechart"]});
+google.charts.setOnLoadCallback(drawBarChart);
+
+function drawBarChart() {
+  const data = google.visualization.arrayToDataTable([
+    ["Product", "Sales"],
+    ["Product A", 25],
+    ["Product B", 40],
+    ["Product C", 30],
+    ["Product D", 55],
+    ["Product E", 20]
+  ]);
+
+  const options = {
+    title: "Product Sales (Bar Chart)",
+    hAxis: {title: "Product"},
+    vAxis: {title: "Sales ($)", minValue: 0},
+    legend: "none"
+  };
+
+  const chart = new google.visualization.ColumnChart(document.getElementById("barChart"));
+  chart.draw(data, options);
+  document.getElementById("demo1").innerHTML = "Google Bar Chart created!";
+}
+</script>
+
+</body>
+</html>

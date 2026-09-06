@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>Counter</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<p id="count" style="font-size:40px;">0</p>
+
+<button onclick="increaseCount()">+</button>
+<button onclick="decreaseCount()">-</button>
+<button onclick="resetCount()">Reset</button>
+<button onclick="saveCount()">Save</button>
+<button onclick="loadCount()">Load</button>
+
+<script>
+// Declare a counter
+let count = 0;
+
+// Function to display the counter
+function updateCount() {
+  document.getElementById("count").innerHTML = count;
+}
+</script>
+
+</body>
+</html>

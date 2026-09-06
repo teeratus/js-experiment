@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript JSON vs XML</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>JSON Example</h4>
+<p>JSON data:</p>
+<pre id="demo"></pre>
+
+<script>
+// JSON object representing a person
+const person = {
+  "firstName": "John",
+  "lastName": "Doe",
+  "age": 30,
+  "address": {
+    "street": "123 Main St",
+    "city": "New York"
+  },
+  "phoneNumbers": ["555-1234", "555-5678"]
+};
+
+document.getElementById("demo").innerHTML = JSON.stringify(person, null, 2);
+</script>
+
+</body>
+</html>

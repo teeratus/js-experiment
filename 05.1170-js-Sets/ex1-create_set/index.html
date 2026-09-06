@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Sets</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>How to Create a Set</h4>
+<p id="demo"></p>
+
+<script>
+// Create a Set with an array
+const letters = new Set(["a", "b", "c"]);
+
+// Create an empty Set and add values later
+const numbers = new Set();
+
+document.getElementById("demo").innerHTML =
+  "Set from array: " + [...letters] + "<br>" +
+  "Set size: " + letters.size + "<br>" +
+  "Empty Set size: " + numbers.size;
+</script>
+
+</body>
+</html>

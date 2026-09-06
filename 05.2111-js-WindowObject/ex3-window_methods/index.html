@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Window Object</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Window Methods</h4>
+
+<button onclick="openWindow()">Open New Window</button>
+<button onclick="moveWindow()">Move Window</button>
+<button onclick="closeWindow()">Close Window</button>
+<p id="demo"></p>
+
+<script>
+let myWindow;
+
+function openWindow() {
+  myWindow = window.open("", "", "width=300,height=200");
+  myWindow.document.write("<p>This is a new window.</p>");
+  document.getElementById("demo").innerHTML = "New window opened!";
+}
+
+function moveWindow() {
+  if (myWindow && !myWindow.closed) {
+    myWindow.moveTo(500, 100);
+    myWindow.resizeTo(400, 300);
+    document.getElementById("demo").innerHTML = "Window moved and resized!";
+  } else {
+    document.getElementById("demo").innerHTML = "No open window to move!";
+  }
+}
+
+function closeWindow() {
+  if (myWindow && !myWindow.closed) {
+    myWindow.close();
+    document.getElementById("demo").innerHTML = "Window closed!";
+  } else {
+    document.getElementById("demo").innerHTML = "No open window to close!";
+  }
+}
+</script>
+
+</body>
+</html>

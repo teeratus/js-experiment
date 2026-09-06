@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>js-progressive</title>
+  <style>
+    body {
+      box-sizing: border-box;
+      min-width: 200px;
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 45px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+      font-size: 16px;
+      line-height: 1.5;
+      color: #24292e;
+      background-color: #ffffff;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 24px;
+      margin-bottom: 16px;
+      font-weight: 600;
+      line-height: 1.25;
+      border-bottom: 1px solid #eaecef;
+      padding-bottom: .3em;
+    }
+    h1 { font-size: 2em; }
+    h2 { font-size: 1.5em; }
+    h3 { font-size: 1.25em; }
+    code {
+      padding: .2em .4em;
+      margin: 0;
+      font-size: 85%;
+      background-color: rgba(27,31,35,.05);
+      border-radius: 3px;
+      font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
+    }
+    pre {
+      padding: 16px;
+      overflow: auto;
+      font-size: 85%;
+      line-height: 1.45;
+      background-color: #f6f8fa;
+      border-radius: 3px;
+      word-wrap: normal;
+    }
+    pre code {
+      background-color: transparent;
+      padding: 0;
+    }
+    blockquote {
+      padding: 0 1em;
+      color: #6a737d;
+      border-left: .25em solid #dfe2e5;
+      margin: 0 0 16px 0;
+    }
+    table {
+      border-spacing: 0;
+      border-collapse: collapse;
+      margin-top: 0;
+      margin-bottom: 16px;
+      width: 100%;
+    }
+    table th, table td {
+      padding: 6px 13px;
+      border: 1px solid #dfe2e5;
+    }
+    table tr:nth-child(2n) {
+      background-color: #f6f8fa;
+    }
+    img {
+      max-width: 100%;
+      box-sizing: content-box;
+    }
+    @media print {
+      body {
+        max-width: 100%;
+        padding: 0;
+      }
+      pre, blockquote, table, tr, img {
+        page-break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+<body>
+<h1>JavaScript Progressive Enhancement</h1>
+<p><a href="../acp-js.php">Back to JS page</a></p>
+<p>Table of Contents</p>
+<ul>
+<li><a href="#javascript-progressive-enhancement">JavaScript Progressive Enhancement</a><ul>
+<li><a href="#start-with-html">Start With HTML</a><ul>
+<li><a href="#example-1">Example 1</a></li>
+</ul>
+</li>
+<li><a href="#add-css-for-better-design">Add CSS for Better Design</a><ul>
+<li><a href="#example-2">Example 2</a></li>
+</ul>
+</li>
+<li><a href="#add-javascript-as-an-enhancement">Add JavaScript as an Enhancement</a><ul>
+<li><a href="#example-3">Example 3</a></li>
+</ul>
+</li>
+<li><a href="#graceful-degradation-vs-progressive-enhancement">Graceful Degradation vs Progressive Enhancement</a></li>
+<li><a href="#modern-html-helps">Modern HTML Helps</a></li>
+<li><a href="#document">Document</a></li>
+<li><a href="#reference">Reference</a></li>
+</ul>
+</li>
+</ul>
+<h2>Start With HTML</h2>
+<p>Progressive enhancement starts with a solid HTML foundation. Your web page should work and be accessible with HTML alone, before adding any CSS or JavaScript.</p>
+<p>This ensures that:</p>
+<ul>
+<li>Content is accessible to all users and devices</li>
+<li>Search engines can index your content</li>
+<li>The page works in older browsers</li>
+<li>Screen readers can navigate the content</li>
+</ul>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Progressive Enhancement&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Start With HTML&lt;/h4&gt;
+&lt;p&gt;This page works with HTML only.&lt;/p&gt;
+
+&lt;!-- HTML-only navigation --&gt;
+&lt;nav&gt;
+  &lt;a href=&quot;#&quot;&gt;Home&lt;/a&gt; |
+  &lt;a href=&quot;#&quot;&gt;Products&lt;/a&gt; |
+  &lt;a href=&quot;#&quot;&gt;About&lt;/a&gt; |
+  &lt;a href=&quot;#&quot;&gt;Contact&lt;/a&gt;
+&lt;/nav&gt;
+
+&lt;!-- HTML-only form --&gt;
+&lt;form action=&quot;/action_page.php&quot;&gt;
+  &lt;label for=&quot;email&quot;&gt;Subscribe to newsletter:&lt;/label&gt;
+  &lt;input type=&quot;email&quot; id=&quot;email&quot; name=&quot;email&quot; required&gt;
+  &lt;input type=&quot;submit&quot; value=&quot;Subscribe&quot;&gt;
+&lt;/form&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p1.png" alt=""></p>
+<h3>Example 1</h3>
+<p><strong>Result</strong> <a href="ex1-start_html/index.html">View Example</a></p>
+<h2>Add CSS for Better Design</h2>
+<p>After the HTML foundation is solid, add CSS to improve the visual design and layout of the page. CSS enhances the appearance without affecting functionality:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;style&gt;
+.card {
+  background-color: #f1f1f1;
+  border-radius: 8px;
+  padding: 20px;
+  margin: 10px 0;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+.btn {
+  background-color: #04AA6D;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Progressive Enhancement&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Add CSS for Better Design&lt;/h4&gt;
+
+&lt;div class=&quot;card&quot;&gt;
+  &lt;h5&gt;Card Title&lt;/h5&gt;
+  &lt;p&gt;This card is styled with CSS, but the HTML content is still accessible without it.&lt;/p&gt;
+  &lt;button class=&quot;btn&quot; onclick=&quot;alert(&#39;Button clicked!&#39;)&quot;&gt;Click me&lt;/button&gt;
+&lt;/div&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p2.png" alt=""></p>
+<h3>Example 2</h3>
+<p><strong>Result</strong> <a href="ex2-add_css/index.html">View Example</a></p>
+<h2>Add JavaScript as an Enhancement</h2>
+<p>After HTML and CSS are in place, add JavaScript to enhance the user experience. JavaScript should add functionality on top of what already works:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;JavaScript Progressive Enhancement&lt;/h2&gt;
+&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+
+&lt;h4&gt;Add JavaScript as an Enhancement&lt;/h4&gt;
+
+&lt;!-- HTML foundation: basic form validation --&gt;
+&lt;form id=&quot;myForm&quot; action=&quot;/action_page.php&quot;&gt;
+  &lt;label for=&quot;fname&quot;&gt;Name:&lt;/label&gt;
+  &lt;input type=&quot;text&quot; id=&quot;fname&quot; name=&quot;fname&quot; required&gt;
+  &lt;br&gt;&lt;br&gt;
+  &lt;label for=&quot;email&quot;&gt;Email:&lt;/label&gt;
+  &lt;input type=&quot;email&quot; id=&quot;email&quot; name=&quot;email&quot; required&gt;
+  &lt;br&gt;&lt;br&gt;
+  &lt;input type=&quot;submit&quot; value=&quot;Submit&quot;&gt;
+&lt;/form&gt;
+
+&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+
+&lt;script&gt;
+// JavaScript enhancement: add live validation feedback
+let form = document.getElementById(&quot;myForm&quot;);
+let fname = document.getElementById(&quot;fname&quot;);
+let email = document.getElementById(&quot;email&quot;);
+
+fname.addEventListener(&quot;input&quot;, function() {
+  if (fname.value.length &gt; 0) {
+    fname.style.borderColor = &quot;green&quot;;
+  } else {
+    fname.style.borderColor = &quot;red&quot;;
+  }
+});
+
+email.addEventListener(&quot;input&quot;, function() {
+  if (email.value.includes(&quot;@&quot;)) {
+    email.style.borderColor = &quot;green&quot;;
+    document.getElementById(&quot;demo&quot;).innerHTML = &quot;Email looks valid!&quot;;
+  } else if (email.value.length &gt; 0) {
+    email.style.borderColor = &quot;orange&quot;;
+    document.getElementById(&quot;demo&quot;).innerHTML = &quot;Email needs @ symbol&quot;;
+  } else {
+    email.style.borderColor = &quot;&quot;;
+    document.getElementById(&quot;demo&quot;).innerHTML = &quot;&quot;;
+  }
+});
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="images/p3.png" alt=""></p>
+<h3>Example 3</h3>
+<p><strong>Result</strong> <a href="ex3-add_javascript/index.html">View Example</a></p>
+<h2>Graceful Degradation vs Progressive Enhancement</h2>
+<table>
+<thead>
+<tr>
+<th>Approach</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Progressive Enhancement</strong></td>
+<td>Start with a basic HTML version that works everywhere. Add CSS and JavaScript to enhance the experience for capable browsers. Content is always accessible.</td>
+</tr>
+<tr>
+<td><strong>Graceful Degradation</strong></td>
+<td>Build the full-featured version first (with JavaScript). Then try to make it work in older browsers. The user may get a broken experience if JavaScript fails.</td>
+</tr>
+</tbody></table>
+<p>Progressive enhancement is generally preferred because it ensures your content is always accessible, regardless of the user&#39;s browser or device.</p>
+<h2>Modern HTML Helps</h2>
+<p>Modern HTML5 provides many built-in features that reduce the need for JavaScript:</p>
+<ul>
+<li><code>&lt;input type=&quot;email&quot;&gt;</code> - Built-in email validation</li>
+<li><code>&lt;input type=&quot;date&quot;&gt;</code> - Native date picker</li>
+<li><code>&lt;input type=&quot;range&quot;&gt;</code> - Native slider</li>
+<li><code>&lt;details&gt;</code> / <code>&lt;summary&gt;</code> - Native expandable sections</li>
+<li><code>&lt;dialog&gt;</code> - Native modal dialogs</li>
+<li><code>&lt;progress&gt;</code> - Native progress bars</li>
+</ul>
+<p>Using these HTML features means your page works without JavaScript, following the progressive enhancement approach.</p>
+<h2>Document</h2>
+<p>Document in project</p>
+<p>You can <a href="js-progressive.pdf">Download PDF</a> file.</p>
+<h2>Reference</h2>
+<ul>
+<li><a href="https://www.w3schools.com/js/js_htmlfirst_progressive.asp">W3Schools JavaScript Progressive Enhancement</a></li>
+</ul>
+
+</body>
+</html>

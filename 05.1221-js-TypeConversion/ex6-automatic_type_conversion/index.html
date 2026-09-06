@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Type Conversion</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Automatic Type Conversion</h4>
+<p id="demo"></p>
+
+<script>
+let text = "";
+
+text += "(5 + null) = " + (5 + null) + "<br>";
+text += "(\"5\" + null) = \"" + ("5" + null) + "\"<br>";
+text += "(\"5\" + 2) = \"" + ("5" + 2) + "\"<br>";
+text += "(\"5\" - 2) = " + ("5" - 2) + "<br>";
+text += "(\"5\" * \"2\") = " + ("5" * "2") + "<br><br>";
+
+// Automatic string conversion
+document.getElementById("demo").innerHTML = text;
+
+// Object to string
+text += "Automatic toString() on object: " + {firstName:"John", lastName:"Doe"};
+
+document.getElementById("demo").innerHTML = text;
+</script>
+
+</body>
+</html>

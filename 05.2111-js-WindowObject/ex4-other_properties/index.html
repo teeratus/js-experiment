@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Window Object</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Other Window Properties</h4>
+
+<button onclick="scrollDown()">Scroll Down</button>
+<button onclick="scrollToTop()">Scroll to Top</button>
+<button onclick="printPage()">Print</button>
+<p id="demo"></p>
+
+<div style="height: 1000px; background: linear-gradient(to bottom, #f0f0f0, #ddd);">
+  <p>Scroll down to see the scroll effect.</p>
+  <p style="margin-top: 800px;">You are at the bottom!</p>
+</div>
+
+<script>
+function scrollDown() {
+  window.scrollBy(0, 300);
+  document.getElementById("demo").innerHTML =
+    "Scrolled down! pageYOffset: " + window.pageYOffset;
+}
+
+function scrollToTop() {
+  window.scrollTo(0, 0);
+  document.getElementById("demo").innerHTML =
+    "Scrolled to top! pageYOffset: " + window.pageYOffset;
+}
+
+function printPage() {
+  window.print();
+}
+</script>
+
+</body>
+</html>

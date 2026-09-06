@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Callbacks</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Sequence Control</h4>
+<p id="demo"></p>
+
+<script>
+function step1(callback) {
+  setTimeout(function() {
+    document.getElementById("demo").innerHTML += "Step 1 complete<br>";
+    callback();
+  }, 1000);
+}
+
+function step2(callback) {
+  setTimeout(function() {
+    document.getElementById("demo").innerHTML += "Step 2 complete<br>";
+    callback();
+  }, 1000);
+}
+
+function step3() {
+  setTimeout(function() {
+    document.getElementById("demo").innerHTML += "Step 3 complete<br>";
+    document.getElementById("demo").innerHTML += "All steps finished!";
+  }, 1000);
+}
+
+// Chain the callbacks
+step1(function() {
+  step2(function() {
+    step3();
+  });
+});
+</script>
+
+</body>
+</html>

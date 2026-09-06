@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript RegExp</h2>
+<p>From w3schools.com, Experiment by Teeratus_R</p>
+
+<h4>Regular Expression Syntax</h4>
+<p id="demo"></p>
+
+<script>
+const text = "The rain in Spain falls mainly in the plain";
+
+// Search for "ain" using a regular expression
+const pattern = /ain/;
+
+document.getElementById("demo").innerHTML =
+  "Text: " + text + "<br><br>" +
+  "Pattern: /ain/<br>" +
+  "match() result: " + text.match(pattern);
+</script>
+
+</body>
+</html>
