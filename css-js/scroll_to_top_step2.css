@@ -1,0 +1,40 @@
+/* 
+step1 add HTML
+*/
+
+
+/*
+
+    <!-- begin scroll to top Step 1-2 Add HTML: -->
+    <button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
+    <!-- end scroll to top Step 1-2 Add HTML: -->
+
+*/
+
+
+/* begin scroll to top Step 2 Add CSS style: */
+
+
+/*  */
+
+#myBtn {
+    display: none;
+    position: fixed;
+    bottom: 50px;
+    right: 200px;
+    z-index: 99;
+    border: none;
+    outline: none;
+    background-color: red;
+    color: white;
+    cursor: pointer;
+    padding: 15px;
+    border-radius: 10px;
+}
+
+#myBtn:hover {
+    background-color: #cc0000;
+}
+
+
+/* end scroll to top Step 2 Add CSS style: */
