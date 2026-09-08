@@ -1,4 +1,4 @@
-# JavaScript Syntax 112
+# JavaScript Syntax
 
 [Back to JS page](../acp-js.php)
 
