@@ -1,6 +1,6 @@
 # JavaScript HTML-First
 
-[Back to JS page](../acp-js.php)
+[Back to JS page](../index.html)
 
 Table of Contents
 - [JavaScript HTML-First](#javascript-html-first)

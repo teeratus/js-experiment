@@ -1,6 +1,6 @@
 # JavaScript JSON HTML
 
-[Back to JS page](../acp-js.php)
+[Back to JS page](../index.html)
 
 Table of Contents
 - [JavaScript JSON HTML](#javascript-json-html)

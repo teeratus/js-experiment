@@ -1,6 +1,6 @@
 # JavaScript Mouse Events
 
-[Back to JS page](../acp-js.php)
+[Back to JS page](../index.html)
 
 Table of Contents
 - [JavaScript Mouse Events](#javascript-mouse-events)

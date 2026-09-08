@@ -1,6 +1,6 @@
 # JavaScript Web Storage API
 
-[Back to JS page](../acp-js.php)
+[Back to JS page](../index.html)
 
 Table of Contents
 - [JavaScript Web Storage API](#javascript-web-storage-api)

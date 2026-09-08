@@ -1,6 +1,6 @@
 # JavaScript D3.js Graphics
 
-[Back to JS page](../acp-js.php)
+[Back to JS page](../index.html)
 
 Table of Contents
 - [JavaScript D3.js Graphics](#javascript-d3js-graphics)

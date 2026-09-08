@@ -1,6 +1,6 @@
 # JavaScript JSON Syntax
 
-[Back to JS page](../acp-js.php)
+[Back to JS page](../index.html)
 
 Table of Contents
 - [JavaScript JSON Syntax](#javascript-json-syntax)

@@ -1,6 +1,6 @@
 # JavaScript Math Reference
 
-[Back to JS page](../acp-js.php)
+[Back to JS page](../index.html)
 
 Table of Contents
 - [JavaScript Math Reference](#javascript-math-reference)

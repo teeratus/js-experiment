@@ -1,6 +1,6 @@
 # JavaScript Progressive Enhancement
 
-[Back to JS page](../acp-js.php)
+[Back to JS page](../index.html)
 
 Table of Contents
 - [JavaScript Progressive Enhancement](#javascript-progressive-enhancement)

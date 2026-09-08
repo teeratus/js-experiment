@@ -1,6 +1,6 @@
 # JavaScript Object Management
 
-[Back to JS page](../acp-js.php)
+[Back to JS page](../index.html)
 
 Table of Contents
 - [JavaScript Object Management](#javascript-object-management)

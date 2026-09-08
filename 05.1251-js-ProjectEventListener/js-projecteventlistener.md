@@ -1,6 +1,6 @@
 # JavaScript Project - Event Listener
 
-[Back to JS page](../acp-js.php)
+[Back to JS page](../index.html)
 
 Table of Contents
 - [JavaScript Project - Event Listener](#javascript-project---event-listener)

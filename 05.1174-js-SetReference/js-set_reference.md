@@ -1,6 +1,6 @@
 # JavaScript Set Reference
 
-[Back to JS page](../acp-js.php)
+[Back to JS page](../index.html)
 
 Table of Contents
 - [JavaScript Set Reference](#javascript-set-reference)

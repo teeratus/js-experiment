@@ -1,6 +1,6 @@
 # JavaScript Project - To-Do List
 
-[Back to JS page](../acp-js.php)
+[Back to JS page](../index.html)
 
 Table of Contents
 - [JavaScript Project - To-Do List](#javascript-project---to-do-list)

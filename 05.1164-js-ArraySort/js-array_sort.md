@@ -1,6 +1,6 @@
 # JavaScript Array Sort
 
-[Back to JS page](../acp-js.php)
+[Back to JS page](../index.html)
 
 Table of Contents
 - [JavaScript Array Sort](#javascript-array-sort)

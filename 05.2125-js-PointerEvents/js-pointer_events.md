@@ -1,6 +1,6 @@
 # JavaScript Pointer Events API
 
-[Back to JS page](../acp-js.php)
+[Back to JS page](../index.html)
 
 Table of Contents
 - [JavaScript Pointer Events API](#javascript-pointer-events-api)

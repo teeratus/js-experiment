@@ -1,6 +1,6 @@
 # JavaScript Typed Array Reference
 
-[Back to JS page](../acp-js.php)
+[Back to JS page](../index.html)
 
 Table of Contents
 - [JavaScript Typed Array Reference](#javascript-typed-array-reference)

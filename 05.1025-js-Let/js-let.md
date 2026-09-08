@@ -1,6 +1,6 @@
 # JavaScript Let
 
-[Back to JS page](../acp-js.php)
+[Back to JS page](../index.html)
 
 Table of Contents
 - [JavaScript Let](#javascript-let)

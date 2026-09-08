@@ -1,6 +1,6 @@
 # JavaScript RegExp Patterns
 
-[Back to JS page](../acp-js.php)
+[Back to JS page](../index.html)
 
 Table of Contents
 - [JavaScript RegExp Patterns](#javascript-regexp-patterns)

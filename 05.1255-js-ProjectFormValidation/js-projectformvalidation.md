@@ -1,6 +1,6 @@
 # JavaScript Project - Form Validation
 
-[Back to JS page](../acp-js.php)
+[Back to JS page](../index.html)
 
 Table of Contents
 - [JavaScript Project - Form Validation](#javascript-project---form-validation)

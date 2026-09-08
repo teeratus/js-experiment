@@ -1,6 +1,6 @@
 # JavaScript JSON vs XML
 
-[Back to JS page](../acp-js.php)
+[Back to JS page](../index.html)
 
 Table of Contents
 - [JavaScript JSON vs XML](#javascript-json-vs-xml)

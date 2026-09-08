@@ -1,6 +1,6 @@
 # JavaScript Type Conversion
 
-[Back to JS page](../acp-js.php)
+[Back to JS page](../index.html)
 
 Table of Contents
 - [JavaScript Type Conversion](#javascript-type-conversion)

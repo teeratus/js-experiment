@@ -1,6 +1,6 @@
 # JavaScript Window Location
 
-[Back to JS page](../acp-js.php)
+[Back to JS page](../index.html)
 
 Table of Contents
 - [JavaScript Window Location](#javascript-window-location)

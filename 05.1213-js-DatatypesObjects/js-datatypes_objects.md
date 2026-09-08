@@ -1,6 +1,6 @@
 # JavaScript Datatypes Objects
 
-[Back to JS page](../acp-js.php)
+[Back to JS page](../index.html)
 
 Table of Contents
 - [JavaScript Datatypes Objects](#javascript-datatypes-objects)

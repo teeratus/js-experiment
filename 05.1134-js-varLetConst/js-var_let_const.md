@@ -1,6 +1,6 @@
 # JavaScript var, let, const
 
-[Back to JS page](../acp-js.php)
+[Back to JS page](../index.html)
 
 Table of Contents
 - [JavaScript var, let, const](#javascript-var-let-const)

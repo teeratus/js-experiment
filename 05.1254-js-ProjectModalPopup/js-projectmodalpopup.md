@@ -1,6 +1,6 @@
 # JavaScript Project - Modal Popup
 
-[Back to JS page](../acp-js.php)
+[Back to JS page](../index.html)
 
 Table of Contents
 - [JavaScript Project - Modal Popup](#javascript-project---modal-popup)

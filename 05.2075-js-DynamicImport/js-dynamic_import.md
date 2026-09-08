@@ -1,6 +1,6 @@
 # JavaScript Dynamic Import
 
-[Back to JS page](../acp-js.php)
+[Back to JS page](../index.html)
 
 Table of Contents
 - [JavaScript Dynamic Import](#javascript-dynamic-import)

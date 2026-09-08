@@ -1,6 +1,6 @@
 # JavaScript Object Methods
 
-[Back to JS page](../acp-js.php)
+[Back to JS page](../index.html)
 
 Table of Contents
 - [JavaScript Object Methods](#javascript-object-methods)

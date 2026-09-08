@@ -1,6 +1,6 @@
 # JavaScript Strings
 
-[Back to JS page](../acp-js.php)
+[Back to JS page](../index.html)
 
 Table of Contents
 - [JavaScript Strings](#javascript-strings)
