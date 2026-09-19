@@ -1,118 +1,405 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>js-projectformvalidation</title>
-  <style>
-    body {
-      box-sizing: border-box;
-      min-width: 200px;
-      max-width: 980px;
-      margin: 0 auto;
-      padding: 45px;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
-      font-size: 16px;
-      line-height: 1.5;
-      color: #24292e;
-      background-color: #ffffff;
-    }
-    h1, h2, h3, h4, h5, h6 {
-      margin-top: 24px;
-      margin-bottom: 16px;
-      font-weight: 600;
-      line-height: 1.25;
-      border-bottom: 1px solid #eaecef;
-      padding-bottom: .3em;
-    }
-    h1 { font-size: 2em; }
-    h2 { font-size: 1.5em; }
-    h3 { font-size: 1.25em; }
-    code {
-      padding: .2em .4em;
-      margin: 0;
-      font-size: 85%;
-      background-color: rgba(27,31,35,.05);
-      border-radius: 3px;
-      font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
-    }
-    pre {
-      padding: 16px;
-      overflow: auto;
-      font-size: 85%;
-      line-height: 1.45;
-      background-color: #f6f8fa;
-      border-radius: 3px;
-      word-wrap: normal;
-    }
-    pre code {
-      background-color: transparent;
-      padding: 0;
-    }
-    blockquote {
-      padding: 0 1em;
-      color: #6a737d;
-      border-left: .25em solid #dfe2e5;
-      margin: 0 0 16px 0;
-    }
-    table {
-      border-spacing: 0;
-      border-collapse: collapse;
-      margin-top: 0;
-      margin-bottom: 16px;
-      width: 100%;
-    }
-    table th, table td {
-      padding: 6px 13px;
-      border: 1px solid #dfe2e5;
-    }
-    table tr:nth-child(2n) {
-      background-color: #f6f8fa;
-    }
-    img {
-      max-width: 100%;
-      box-sizing: content-box;
-    }
-    @media print {
-      body {
-        max-width: 100%;
-        padding: 0;
-      }
-      pre, blockquote, table, tr, img {
-        page-break-inside: avoid;
-      }
-    }
-  </style>
+<title>js-projectformvalidation.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> or <div class="page"></div> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
 </head>
 <body>
-<h1>JavaScript Project - Form Validation</h1>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="javascript-project---form-validation">JavaScript Project - Form Validation</h1>
 <p><a href="../">Back to JS page</a></p>
 <p>Table of Contents</p>
 <ul>
-<li><a href="#javascript-project---form-validation">JavaScript Project - Form Validation</a><ul>
+<li><a href="#javascript-project---form-validation">JavaScript Project - Form Validation</a>
+<ul>
 <li><a href="#form-validation-overview">Form Validation Overview</a></li>
 <li><a href="#what-you-will-learn">What You Will Learn</a></li>
-<li><a href="#step-1---create-the-html">Step 1 - Create the HTML</a><ul>
+<li><a href="#step-1---create-the-html">Step 1 - Create the HTML</a>
+<ul>
 <li><a href="#example-1">Example 1</a></li>
 </ul>
 </li>
-<li><a href="#step-2---add-the-css">Step 2 - Add the CSS</a><ul>
+<li><a href="#step-2---add-the-css">Step 2 - Add the CSS</a>
+<ul>
 <li><a href="#example-2">Example 2</a></li>
 </ul>
 </li>
-<li><a href="#step-3---add-javascript">Step 3 - Add JavaScript</a><ul>
+<li><a href="#step-3---add-javascript">Step 3 - Add JavaScript</a>
+<ul>
 <li><a href="#example-3">Example 3</a></li>
 </ul>
 </li>
-<li><a href="#step-4---validate-fields">Step 4 - Validate Fields</a><ul>
+<li><a href="#step-4---validate-fields">Step 4 - Validate Fields</a>
+<ul>
 <li><a href="#example-4">Example 4</a></li>
 </ul>
 </li>
-<li><a href="#exercises--solutions">Exercises &amp; Solutions</a><ul>
+<li><a href="#exercises--solutions">Exercises &amp; Solutions</a>
+<ul>
 <li><a href="#example-5">Example 5</a></li>
 </ul>
 </li>
-<li><a href="#bonus-challenges-level-up">Bonus Challenges (Level Up)</a><ul>
+<li><a href="#bonus-challenges-level-up">Bonus Challenges (Level Up)</a>
+<ul>
 <li><a href="#example-6">Example 6</a></li>
 </ul>
 </li>
@@ -121,244 +408,244 @@
 </ul>
 </li>
 </ul>
-<h2>Form Validation Overview</h2>
-<p>In this project, you will build a sign-up form with input validation. </p>
+<h2 id="form-validation-overview">Form Validation Overview</h2>
+<p>In this project, you will build a sign-up form with input validation.</p>
 <p>The form shows inline error messages under each field and prevents submission until all fields are filled and valid.</p>
-<h2>What You Will Learn</h2>
+<h2 id="what-you-will-learn">What You Will Learn</h2>
 <ul>
 <li>How to validate user input against custom rules using JavaScript</li>
 <li>How to prevent forms from reloading the page during submit events</li>
 <li>How to write validation check helper functions</li>
 <li>How to check email formats using Regular Expressions (regex)</li>
 </ul>
-<h2>Step 1 - Create the HTML</h2>
+<h2 id="step-1---create-the-html">Step 1 - Create the HTML</h2>
 <p>Start by creating the basic structure containing four text fields (Name, Email, Password, Confirm Password), associated error message paragraphs, and a submit button.</p>
-<pre><code class="language-html">&lt;!DOCTYPE html&gt;
-&lt;html&gt;
-&lt;body&gt;
+<pre class="hljs"><code><div><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-keyword">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
 
-&lt;h2&gt;Sign Up&lt;/h2&gt;
-&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+<span class="hljs-tag">&lt;<span class="hljs-name">h2</span>&gt;</span>Sign Up<span class="hljs-tag">&lt;/<span class="hljs-name">h2</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>From w3schools.com, Experiment by Teeratus_R<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
 
-&lt;form id=&quot;signupForm&quot;&gt;
+<span class="hljs-tag">&lt;<span class="hljs-name">form</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;signupForm&quot;</span>&gt;</span>
 
-&lt;div class=&quot;field&quot;&gt;
-  &lt;label&gt;Name:&lt;/label&gt;&lt;br&gt;
-  &lt;input id=&quot;name&quot; type=&quot;text&quot; placeholder=&quot;Your name&quot;&gt;
-  &lt;p id=&quot;nameError&quot; class=&quot;error&quot;&gt;&lt;/p&gt;
-&lt;/div&gt;
+<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;field&quot;</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">label</span>&gt;</span>Name:<span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">br</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;name&quot;</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;text&quot;</span> <span class="hljs-attr">placeholder</span>=<span class="hljs-string">&quot;Your name&quot;</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;nameError&quot;</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;error&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
 
-&lt;div class=&quot;field&quot;&gt;
-  &lt;label&gt;Email:&lt;/label&gt;&lt;br&gt;
-  &lt;input id=&quot;email&quot; type=&quot;text&quot; placeholder=&quot;name@example.com&quot;&gt;
-  &lt;p id=&quot;emailError&quot; class=&quot;error&quot;&gt;&lt;/p&gt;
-&lt;/div&gt;
+<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;field&quot;</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">label</span>&gt;</span>Email:<span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">br</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;email&quot;</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;text&quot;</span> <span class="hljs-attr">placeholder</span>=<span class="hljs-string">&quot;name@example.com&quot;</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;emailError&quot;</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;error&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
 
-&lt;div class=&quot;field&quot;&gt;
-  &lt;label&gt;Password:&lt;/label&gt;&lt;br&gt;
-  &lt;input id=&quot;password&quot; type=&quot;password&quot; placeholder=&quot;Min 8 characters&quot;&gt;
-  &lt;p id=&quot;passwordError&quot; class=&quot;error&quot;&gt;&lt;/p&gt;
-&lt;/div&gt;
+<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;field&quot;</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">label</span>&gt;</span>Password:<span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">br</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;password&quot;</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;password&quot;</span> <span class="hljs-attr">placeholder</span>=<span class="hljs-string">&quot;Min 8 characters&quot;</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;passwordError&quot;</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;error&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
 
-&lt;div class=&quot;field&quot;&gt;
-  &lt;label&gt;Confirm Password:&lt;/label&gt;&lt;br&gt;
-  &lt;input id=&quot;confirm&quot; type=&quot;password&quot; placeholder=&quot;Repeat password&quot;&gt;
-  &lt;p id=&quot;confirmError&quot; class=&quot;error&quot;&gt;&lt;/p&gt;
-&lt;/div&gt;
+<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;field&quot;</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">label</span>&gt;</span>Confirm Password:<span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">br</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;confirm&quot;</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;password&quot;</span> <span class="hljs-attr">placeholder</span>=<span class="hljs-string">&quot;Repeat password&quot;</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;confirmError&quot;</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;error&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
 
-&lt;p&gt;&lt;button type=&quot;submit&quot;&gt;Create Account&lt;/button&gt;&lt;/p&gt;
+<span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;submit&quot;</span>&gt;</span>Create Account<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
 
-&lt;/form&gt;
+<span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span>
 
-&lt;p id=&quot;result&quot;&gt;&lt;/p&gt;
+<span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;result&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
 
-&lt;script&gt;
-// Create a task Array
-let tasks = [];
-&lt;/script&gt;
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="language-javascript">
+<span class="hljs-comment">// Create a task Array</span>
+<span class="hljs-keyword">let</span> tasks = [];
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
 
-&lt;/body&gt;
-&lt;/html&gt;
-</code></pre>
+<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span>
+</div></code></pre>
 <p><img src="images/p1.png" alt=""></p>
-<h3>Example 1</h3>
+<h3 id="example-1">Example 1</h3>
 <p><strong>Result</strong> <a href="ex1-html_structure/index.html">View Example</a></p>
-<h2>Step 2 - Add the CSS</h2>
+<h2 id="step-2---add-the-css">Step 2 - Add the CSS</h2>
 <p>Add styling to distinguish input boxes, error layout styles, and valid confirmation elements:</p>
-<pre><code class="language-html">&lt;style&gt;
-input {
-  padding: 8px;
-  width: 260px;
-  margin-bottom: 4px;
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">style</span>&gt;</span><span class="language-css">
+<span class="hljs-selector-tag">input</span> {
+  <span class="hljs-attribute">padding</span>: <span class="hljs-number">8px</span>;
+  <span class="hljs-attribute">width</span>: <span class="hljs-number">260px</span>;
+  <span class="hljs-attribute">margin-bottom</span>: <span class="hljs-number">4px</span>;
 }
-.error {
-  color: red;
-  margin: 0;
+<span class="hljs-selector-class">.error</span> {
+  <span class="hljs-attribute">color</span>: red;
+  <span class="hljs-attribute">margin</span>: <span class="hljs-number">0</span>;
 }
-.ok {
-  color: green;
-  margin: 0;
+<span class="hljs-selector-class">.ok</span> {
+  <span class="hljs-attribute">color</span>: green;
+  <span class="hljs-attribute">margin</span>: <span class="hljs-number">0</span>;
 }
-.field {
-  margin-bottom: 12px;
+<span class="hljs-selector-class">.field</span> {
+  <span class="hljs-attribute">margin-bottom</span>: <span class="hljs-number">12px</span>;
 }
-&lt;/style&gt;
-</code></pre>
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span>
+</div></code></pre>
 <p><img src="images/p2.png" alt=""></p>
-<h3>Example 2</h3>
+<h3 id="example-2">Example 2</h3>
 <p><strong>Result</strong> <a href="ex2-styling/index.html">View Example</a></p>
-<h2>Step 3 - Add JavaScript</h2>
+<h2 id="step-3---add-javascript">Step 3 - Add JavaScript</h2>
 <p>Cache inputs and build common error layout handlers:</p>
 <ul>
 <li><strong>Create variables for each element:</strong></li>
 </ul>
-<pre><code class="language-javascript">const form = document.getElementById(&quot;signupForm&quot;);
-const nameInput = document.getElementById(&quot;name&quot;);
-const emailInput = document.getElementById(&quot;email&quot;);
-const passInput = document.getElementById(&quot;password&quot;);
-const confirmInput = document.getElementById(&quot;confirm&quot;);
-const nameError = document.getElementById(&quot;nameError&quot;);
-const emailError = document.getElementById(&quot;emailError&quot;);
-const passError = document.getElementById(&quot;passwordError&quot;);
-const confirmError = document.getElementById(&quot;confirmError&quot;);
-const result = document.getElementById(&quot;result&quot;);
-</code></pre>
+<pre class="hljs"><code><div><span class="hljs-keyword">const</span> form = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&quot;signupForm&quot;</span>);
+<span class="hljs-keyword">const</span> nameInput = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&quot;name&quot;</span>);
+<span class="hljs-keyword">const</span> emailInput = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&quot;email&quot;</span>);
+<span class="hljs-keyword">const</span> passInput = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&quot;password&quot;</span>);
+<span class="hljs-keyword">const</span> confirmInput = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&quot;confirm&quot;</span>);
+<span class="hljs-keyword">const</span> nameError = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&quot;nameError&quot;</span>);
+<span class="hljs-keyword">const</span> emailError = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&quot;emailError&quot;</span>);
+<span class="hljs-keyword">const</span> passError = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&quot;passwordError&quot;</span>);
+<span class="hljs-keyword">const</span> confirmError = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&quot;confirmError&quot;</span>);
+<span class="hljs-keyword">const</span> result = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&quot;result&quot;</span>);
+</div></code></pre>
 <ul>
 <li><strong>Define message display and clear helpers:</strong></li>
 </ul>
-<pre><code class="language-javascript">function showError(el, message) {
-  el.innerHTML = message;
+<pre class="hljs"><code><div><span class="hljs-keyword">function</span> <span class="hljs-title function_">showError</span>(<span class="hljs-params">el, message</span>) {
+  el.<span class="hljs-property">innerHTML</span> = message;
 }
 
-function clearError(el) {
-  el.innerHTML = &quot;&quot;;
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">clearError</span>(<span class="hljs-params">el</span>) {
+  el.<span class="hljs-property">innerHTML</span> = <span class="hljs-string">&quot;&quot;</span>;
 }
-</code></pre>
+</div></code></pre>
 <ul>
 <li><strong>Intercept submits to prevent page reloading:</strong></li>
 </ul>
-<pre><code class="language-javascript">form.addEventListener(&quot;submit&quot;, function (event) {
-  event.preventDefault();
-  result.innerHTML = &quot;&quot;;
+<pre class="hljs"><code><div>form.<span class="hljs-title function_">addEventListener</span>(<span class="hljs-string">&quot;submit&quot;</span>, <span class="hljs-keyword">function</span> (<span class="hljs-params">event</span>) {
+  event.<span class="hljs-title function_">preventDefault</span>();
+  result.<span class="hljs-property">innerHTML</span> = <span class="hljs-string">&quot;&quot;</span>;
 
-  if (validateForm()) {
-    result.innerHTML = &quot;Form is valid!&quot;;
-    result.className = &quot;ok&quot;;
-  } else {
-    result.innerHTML = &quot;Please fix the errors.&quot;;
-    result.className = &quot;error&quot;;
+  <span class="hljs-keyword">if</span> (<span class="hljs-title function_">validateForm</span>()) {
+    result.<span class="hljs-property">innerHTML</span> = <span class="hljs-string">&quot;Form is valid!&quot;</span>;
+    result.<span class="hljs-property">className</span> = <span class="hljs-string">&quot;ok&quot;</span>;
+  } <span class="hljs-keyword">else</span> {
+    result.<span class="hljs-property">innerHTML</span> = <span class="hljs-string">&quot;Please fix the errors.&quot;</span>;
+    result.<span class="hljs-property">className</span> = <span class="hljs-string">&quot;error&quot;</span>;
   }
 });
-</code></pre>
+</div></code></pre>
 <p><img src="images/p3.png" alt=""></p>
-<h3>Example 3</h3>
+<h3 id="example-3">Example 3</h3>
 <p><strong>Result</strong> <a href="ex3-validation_basics/index.html">View Example</a></p>
-<h2>Step 4 - Validate Fields</h2>
+<h2 id="step-4---validate-fields">Step 4 - Validate Fields</h2>
 <p>Implement individual validation checks:</p>
 <ul>
 <li><strong>Name field:</strong> Must contain at least 2 characters.</li>
 </ul>
-<pre><code class="language-javascript">function validateName() {
-  let value = nameInput.value.trim();
-  if (value.length &lt; 2) {
-    showError(nameError, &quot;Name must be at least 2 characters.&quot;);
-    return false;
+<pre class="hljs"><code><div><span class="hljs-keyword">function</span> <span class="hljs-title function_">validateName</span>(<span class="hljs-params"></span>) {
+  <span class="hljs-keyword">let</span> value = nameInput.<span class="hljs-property">value</span>.<span class="hljs-title function_">trim</span>();
+  <span class="hljs-keyword">if</span> (value.<span class="hljs-property">length</span> &lt; <span class="hljs-number">2</span>) {
+    <span class="hljs-title function_">showError</span>(nameError, <span class="hljs-string">&quot;Name must be at least 2 characters.&quot;</span>);
+    <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
   }
-  clearError(nameError);
-  return true;
+  <span class="hljs-title function_">clearError</span>(nameError);
+  <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
 }
-</code></pre>
+</div></code></pre>
 <ul>
 <li><strong>Email field:</strong> Verified using a simple regex pattern.</li>
 </ul>
-<pre><code class="language-javascript">function validateEmail() {
-  let value = emailInput.value.trim();
-  if (!(/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value))) {
-    showError(emailError, &quot;Enter a valid email address.&quot;);
-    return false;
+<pre class="hljs"><code><div><span class="hljs-keyword">function</span> <span class="hljs-title function_">validateEmail</span>(<span class="hljs-params"></span>) {
+  <span class="hljs-keyword">let</span> value = emailInput.<span class="hljs-property">value</span>.<span class="hljs-title function_">trim</span>();
+  <span class="hljs-keyword">if</span> (!(<span class="hljs-regexp">/^[^\s@]+@[^\s@]+\.[^\s@]+$/</span>.<span class="hljs-title function_">test</span>(value))) {
+    <span class="hljs-title function_">showError</span>(emailError, <span class="hljs-string">&quot;Enter a valid email address.&quot;</span>);
+    <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
   }
-  clearError(emailError);
-  return true;
+  <span class="hljs-title function_">clearError</span>(emailError);
+  <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
 }
-</code></pre>
+</div></code></pre>
 <ul>
 <li><strong>Password field:</strong> Must contain at least 8 characters.</li>
 </ul>
-<pre><code class="language-javascript">function validatePassword() {
-  let value = passInput.value;
-  if (value.length &lt; 8) {
-    showError(passError, &quot;Password must be at least 8 characters.&quot;);
-    return false;
+<pre class="hljs"><code><div><span class="hljs-keyword">function</span> <span class="hljs-title function_">validatePassword</span>(<span class="hljs-params"></span>) {
+  <span class="hljs-keyword">let</span> value = passInput.<span class="hljs-property">value</span>;
+  <span class="hljs-keyword">if</span> (value.<span class="hljs-property">length</span> &lt; <span class="hljs-number">8</span>) {
+    <span class="hljs-title function_">showError</span>(passError, <span class="hljs-string">&quot;Password must be at least 8 characters.&quot;</span>);
+    <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
   }
-  clearError(passError);
-  return true;
+  <span class="hljs-title function_">clearError</span>(passError);
+  <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
 }
-</code></pre>
+</div></code></pre>
 <ul>
 <li><strong>Confirm Password:</strong> Matches the password input.</li>
 </ul>
-<pre><code class="language-javascript">function validateConfirm() {
-  let pass = passInput.value;
-  let confirm = confirmInput.value;
-  if (confirm === &quot;&quot;) {
-    showError(confirmError, &quot;Please confirm your password.&quot;);
-    return false;
+<pre class="hljs"><code><div><span class="hljs-keyword">function</span> <span class="hljs-title function_">validateConfirm</span>(<span class="hljs-params"></span>) {
+  <span class="hljs-keyword">let</span> pass = passInput.<span class="hljs-property">value</span>;
+  <span class="hljs-keyword">let</span> confirm = confirmInput.<span class="hljs-property">value</span>;
+  <span class="hljs-keyword">if</span> (confirm === <span class="hljs-string">&quot;&quot;</span>) {
+    <span class="hljs-title function_">showError</span>(confirmError, <span class="hljs-string">&quot;Please confirm your password.&quot;</span>);
+    <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
   }
-  if (confirm !== pass) {
-    showError(confirmError, &quot;Passwords do not match.&quot;);
-    return false;
+  <span class="hljs-keyword">if</span> (confirm !== pass) {
+    <span class="hljs-title function_">showError</span>(confirmError, <span class="hljs-string">&quot;Passwords do not match.&quot;</span>);
+    <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
   }
-  clearError(confirmError);
-  return true;
+  <span class="hljs-title function_">clearError</span>(confirmError);
+  <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
 }
-</code></pre>
+</div></code></pre>
 <ul>
 <li><strong>Final Form validator:</strong></li>
 </ul>
-<pre><code class="language-javascript">function validateForm() {
-  let okName = validateName();
-  let okEmail = validateEmail();
-  let okPass = validatePassword();
-  let okConfirm = validateConfirm();
-  return okName &amp;&amp; okEmail &amp;&amp; okPass &amp;&amp; okConfirm;
+<pre class="hljs"><code><div><span class="hljs-keyword">function</span> <span class="hljs-title function_">validateForm</span>(<span class="hljs-params"></span>) {
+  <span class="hljs-keyword">let</span> okName = <span class="hljs-title function_">validateName</span>();
+  <span class="hljs-keyword">let</span> okEmail = <span class="hljs-title function_">validateEmail</span>();
+  <span class="hljs-keyword">let</span> okPass = <span class="hljs-title function_">validatePassword</span>();
+  <span class="hljs-keyword">let</span> okConfirm = <span class="hljs-title function_">validateConfirm</span>();
+  <span class="hljs-keyword">return</span> okName &amp;&amp; okEmail &amp;&amp; okPass &amp;&amp; okConfirm;
 }
-</code></pre>
+</div></code></pre>
 <p><img src="images/p4.png" alt=""></p>
-<h3>Example 4</h3>
+<h3 id="example-4">Example 4</h3>
 <p><strong>Result</strong> <a href="ex4-full_validation/index.html">View Example</a></p>
-<h2>Exercises &amp; Solutions</h2>
-<h3>Exercise 1</h3>
+<h2 id="exercises--solutions">Exercises &amp; Solutions</h2>
+<h3 id="exercise-1">Exercise 1</h3>
 <p>Show an alert or custom styling if something is wrong.</p>
-<h3>Exercise 2</h3>
+<h3 id="exercise-2">Exercise 2</h3>
 <p>Check email format using regex (already covered in Step 4).</p>
-<h3>Exercise 3</h3>
+<h3 id="exercise-3">Exercise 3</h3>
 <p>Show a green success message next to fields that validate successfully.</p>
-<h3>Solutions Code</h3>
+<h3 id="solutions-code">Solutions Code</h3>
 <p>Update display functions to show success styles when parameters match successfully:</p>
-<pre><code class="language-javascript">function showError(el, message) {
-  el.innerHTML = message;
-  el.className = &quot;error&quot;;
+<pre class="hljs"><code><div><span class="hljs-keyword">function</span> <span class="hljs-title function_">showError</span>(<span class="hljs-params">el, message</span>) {
+  el.<span class="hljs-property">innerHTML</span> = message;
+  el.<span class="hljs-property">className</span> = <span class="hljs-string">&quot;error&quot;</span>;
 }
 
-function showSuccess(el, message) {
-  el.innerHTML = message;
-  el.className = &quot;ok&quot;;
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">showSuccess</span>(<span class="hljs-params">el, message</span>) {
+  el.<span class="hljs-property">innerHTML</span> = message;
+  el.<span class="hljs-property">className</span> = <span class="hljs-string">&quot;ok&quot;</span>;
 }
 
-function validateName() {
-  let value = nameInput.value.trim();
-  if (value.length &lt; 2) {
-    showError(nameError, &quot;Name must be at least 2 characters.&quot;);
-    return false;
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">validateName</span>(<span class="hljs-params"></span>) {
+  <span class="hljs-keyword">let</span> value = nameInput.<span class="hljs-property">value</span>.<span class="hljs-title function_">trim</span>();
+  <span class="hljs-keyword">if</span> (value.<span class="hljs-property">length</span> &lt; <span class="hljs-number">2</span>) {
+    <span class="hljs-title function_">showError</span>(nameError, <span class="hljs-string">&quot;Name must be at least 2 characters.&quot;</span>);
+    <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
   }
-  showSuccess(nameError, &quot;Name is valid.&quot;);
-  return true;
+  <span class="hljs-title function_">showSuccess</span>(nameError, <span class="hljs-string">&quot;Name is valid.&quot;</span>);
+  <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
 }
-</code></pre>
+</div></code></pre>
 <p><img src="images/p5.png" alt=""></p>
-<h3>Example 5</h3>
+<h3 id="example-5">Example 5</h3>
 <p><strong>Result</strong> <a href="ex5-exercises_solutions/index.html">View Example</a></p>
-<h2>Bonus Challenges (Level Up)</h2>
+<h2 id="bonus-challenges-level-up">Bonus Challenges (Level Up)</h2>
 <p>Elevate the interface with advanced real-world features:</p>
 <ul>
 <li><strong>Real-time inline validation:</strong> Bind validators directly to <code>input</code> and <code>blur</code> events so users receive instant feedback.</li>
@@ -366,12 +653,12 @@ function validateName() {
 <li><strong>Password visibility toggler:</strong> Show or hide password inputs dynamically.</li>
 </ul>
 <p><img src="images/p6.png" alt=""></p>
-<h3>Example 6</h3>
+<h3 id="example-6">Example 6</h3>
 <p><strong>Result</strong> <a href="ex6-bonus_challenges/index.html">View Example</a></p>
-<h2>Document</h2>
+<h2 id="document">Document</h2>
 <p>Document in project</p>
 <p>You can <a href="js-projectformvalidation.pdf">Download PDF</a> file.</p>
-<h2>Reference</h2>
+<h2 id="reference">Reference</h2>
 <ul>
 <li><a href="https://www.w3schools.com/js/js_project_form_validation.asp">W3Schools JavaScript Form Validation Project</a></li>
 </ul>

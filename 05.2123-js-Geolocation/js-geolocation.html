@@ -1,108 +1,393 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>js-geolocation</title>
-  <style>
-    body {
-      box-sizing: border-box;
-      min-width: 200px;
-      max-width: 980px;
-      margin: 0 auto;
-      padding: 45px;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
-      font-size: 16px;
-      line-height: 1.5;
-      color: #24292e;
-      background-color: #ffffff;
-    }
-    h1, h2, h3, h4, h5, h6 {
-      margin-top: 24px;
-      margin-bottom: 16px;
-      font-weight: 600;
-      line-height: 1.25;
-      border-bottom: 1px solid #eaecef;
-      padding-bottom: .3em;
-    }
-    h1 { font-size: 2em; }
-    h2 { font-size: 1.5em; }
-    h3 { font-size: 1.25em; }
-    code {
-      padding: .2em .4em;
-      margin: 0;
-      font-size: 85%;
-      background-color: rgba(27,31,35,.05);
-      border-radius: 3px;
-      font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
-    }
-    pre {
-      padding: 16px;
-      overflow: auto;
-      font-size: 85%;
-      line-height: 1.45;
-      background-color: #f6f8fa;
-      border-radius: 3px;
-      word-wrap: normal;
-    }
-    pre code {
-      background-color: transparent;
-      padding: 0;
-    }
-    blockquote {
-      padding: 0 1em;
-      color: #6a737d;
-      border-left: .25em solid #dfe2e5;
-      margin: 0 0 16px 0;
-    }
-    table {
-      border-spacing: 0;
-      border-collapse: collapse;
-      margin-top: 0;
-      margin-bottom: 16px;
-      width: 100%;
-    }
-    table th, table td {
-      padding: 6px 13px;
-      border: 1px solid #dfe2e5;
-    }
-    table tr:nth-child(2n) {
-      background-color: #f6f8fa;
-    }
-    img {
-      max-width: 100%;
-      box-sizing: content-box;
-    }
-    @media print {
-      body {
-        max-width: 100%;
-        padding: 0;
-      }
-      pre, blockquote, table, tr, img {
-        page-break-inside: avoid;
-      }
-    }
-  </style>
+<title>js-geolocation.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> or <div class="page"></div> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
 </head>
 <body>
-<h1>JavaScript Geolocation API</h1>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="javascript-geolocation-api">JavaScript Geolocation API</h1>
 <p><a href="../">Back to JS page</a></p>
 <p>Table of Contents</p>
 <ul>
-<li><a href="#javascript-geolocation-api">JavaScript Geolocation API</a><ul>
-<li><a href="#locate-the-users-position">Locate the User&#39;s Position</a><ul>
+<li><a href="#javascript-geolocation-api">JavaScript Geolocation API</a>
+<ul>
+<li><a href="#locate-the-users-position">Locate the User's Position</a>
+<ul>
 <li><a href="#example-1">Example 1</a></li>
 </ul>
 </li>
-<li><a href="#handling-errors-and-rejections">Handling Errors and Rejections</a><ul>
+<li><a href="#handling-errors-and-rejections">Handling Errors and Rejections</a>
+<ul>
 <li><a href="#example-2">Example 2</a></li>
 </ul>
 </li>
-<li><a href="#geolocation-object---return-data">Geolocation Object - Return Data</a><ul>
+<li><a href="#geolocation-object---return-data">Geolocation Object - Return Data</a>
+<ul>
 <li><a href="#example-3">Example 3</a></li>
 </ul>
 </li>
-<li><a href="#watch-position">Watch Position</a><ul>
+<li><a href="#watch-position">Watch Position</a>
+<ul>
 <li><a href="#example-4">Example 4</a></li>
 </ul>
 </li>
@@ -111,197 +396,197 @@
 </ul>
 </li>
 </ul>
-<h2>Locate the User&#39;s Position</h2>
-<p>The <code>geolocation.getCurrentPosition()</code> method is used to get the user&#39;s current position:</p>
-<pre><code class="language-html">&lt;!DOCTYPE html&gt;
-&lt;html&gt;
-&lt;body&gt;
+<h2 id="locate-the-users-position">Locate the User's Position</h2>
+<p>The <code>geolocation.getCurrentPosition()</code> method is used to get the user's current position:</p>
+<pre class="hljs"><code><div><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-keyword">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
 
-&lt;h2&gt;JavaScript Geolocation API&lt;/h2&gt;
-&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+<span class="hljs-tag">&lt;<span class="hljs-name">h2</span>&gt;</span>JavaScript Geolocation API<span class="hljs-tag">&lt;/<span class="hljs-name">h2</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>From w3schools.com, Experiment by Teeratus_R<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
 
-&lt;h4&gt;Locate the User&#39;s Position&lt;/h4&gt;
-&lt;button onclick=&quot;getLocation()&quot;&gt;Get My Position&lt;/button&gt;
-&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+<span class="hljs-tag">&lt;<span class="hljs-name">h4</span>&gt;</span>Locate the User&#x27;s Position<span class="hljs-tag">&lt;/<span class="hljs-name">h4</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onclick</span>=<span class="hljs-string">&quot;getLocation()&quot;</span>&gt;</span>Get My Position<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;demo&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
 
-&lt;script&gt;
-function getLocation() {
-  if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(showPosition);
-  } else {
-    document.getElementById(&quot;demo&quot;).innerHTML = &quot;Geolocation is not supported by this browser.&quot;;
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="language-javascript">
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">getLocation</span>(<span class="hljs-params"></span>) {
+  <span class="hljs-keyword">if</span> (navigator.<span class="hljs-property">geolocation</span>) {
+    navigator.<span class="hljs-property">geolocation</span>.<span class="hljs-title function_">getCurrentPosition</span>(showPosition);
+  } <span class="hljs-keyword">else</span> {
+    <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&quot;demo&quot;</span>).<span class="hljs-property">innerHTML</span> = <span class="hljs-string">&quot;Geolocation is not supported by this browser.&quot;</span>;
   }
 }
 
-function showPosition(position) {
-  document.getElementById(&quot;demo&quot;).innerHTML =
-    &quot;Latitude: &quot; + position.coords.latitude + &quot;&lt;br&gt;&quot; +
-    &quot;Longitude: &quot; + position.coords.longitude;
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">showPosition</span>(<span class="hljs-params">position</span>) {
+  <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&quot;demo&quot;</span>).<span class="hljs-property">innerHTML</span> =
+    <span class="hljs-string">&quot;Latitude: &quot;</span> + position.<span class="hljs-property">coords</span>.<span class="hljs-property">latitude</span> + <span class="hljs-string">&quot;&lt;br&gt;&quot;</span> +
+    <span class="hljs-string">&quot;Longitude: &quot;</span> + position.<span class="hljs-property">coords</span>.<span class="hljs-property">longitude</span>;
 }
-&lt;/script&gt;
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
 
-&lt;/body&gt;
-&lt;/html&gt;
-</code></pre>
+<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span>
+</div></code></pre>
 <p><img src="images/p1.png" alt=""></p>
-<h3>Example 1</h3>
+<h3 id="example-1">Example 1</h3>
 <p><strong>Result</strong> <a href="ex1-get_position/index.html">View Example</a></p>
-<h2>Handling Errors and Rejections</h2>
+<h2 id="handling-errors-and-rejections">Handling Errors and Rejections</h2>
 <p>The second parameter of <code>getCurrentPosition()</code> is a callback function that handles errors:</p>
-<pre><code class="language-html">&lt;!DOCTYPE html&gt;
-&lt;html&gt;
-&lt;body&gt;
+<pre class="hljs"><code><div><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-keyword">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
 
-&lt;h2&gt;JavaScript Geolocation API&lt;/h2&gt;
-&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+<span class="hljs-tag">&lt;<span class="hljs-name">h2</span>&gt;</span>JavaScript Geolocation API<span class="hljs-tag">&lt;/<span class="hljs-name">h2</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>From w3schools.com, Experiment by Teeratus_R<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
 
-&lt;h4&gt;Handling Errors and Rejections&lt;/h4&gt;
-&lt;button onclick=&quot;getLocation()&quot;&gt;Get My Position&lt;/button&gt;
-&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+<span class="hljs-tag">&lt;<span class="hljs-name">h4</span>&gt;</span>Handling Errors and Rejections<span class="hljs-tag">&lt;/<span class="hljs-name">h4</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onclick</span>=<span class="hljs-string">&quot;getLocation()&quot;</span>&gt;</span>Get My Position<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;demo&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
 
-&lt;script&gt;
-function getLocation() {
-  if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(showPosition, showError);
-  } else {
-    document.getElementById(&quot;demo&quot;).innerHTML = &quot;Geolocation is not supported.&quot;;
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="language-javascript">
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">getLocation</span>(<span class="hljs-params"></span>) {
+  <span class="hljs-keyword">if</span> (navigator.<span class="hljs-property">geolocation</span>) {
+    navigator.<span class="hljs-property">geolocation</span>.<span class="hljs-title function_">getCurrentPosition</span>(showPosition, showError);
+  } <span class="hljs-keyword">else</span> {
+    <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&quot;demo&quot;</span>).<span class="hljs-property">innerHTML</span> = <span class="hljs-string">&quot;Geolocation is not supported.&quot;</span>;
   }
 }
 
-function showPosition(position) {
-  document.getElementById(&quot;demo&quot;).innerHTML =
-    &quot;Latitude: &quot; + position.coords.latitude + &quot;&lt;br&gt;&quot; +
-    &quot;Longitude: &quot; + position.coords.longitude;
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">showPosition</span>(<span class="hljs-params">position</span>) {
+  <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&quot;demo&quot;</span>).<span class="hljs-property">innerHTML</span> =
+    <span class="hljs-string">&quot;Latitude: &quot;</span> + position.<span class="hljs-property">coords</span>.<span class="hljs-property">latitude</span> + <span class="hljs-string">&quot;&lt;br&gt;&quot;</span> +
+    <span class="hljs-string">&quot;Longitude: &quot;</span> + position.<span class="hljs-property">coords</span>.<span class="hljs-property">longitude</span>;
 }
 
-function showError(error) {
-  let msg = &quot;&quot;;
-  switch(error.code) {
-    case error.PERMISSION_DENIED:
-      msg = &quot;User denied the request for Geolocation.&quot;;
-      break;
-    case error.POSITION_UNAVAILABLE:
-      msg = &quot;Location information is unavailable.&quot;;
-      break;
-    case error.TIMEOUT:
-      msg = &quot;The request to get user location timed out.&quot;;
-      break;
-    case error.UNKNOWN_ERROR:
-      msg = &quot;An unknown error occurred.&quot;;
-      break;
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">showError</span>(<span class="hljs-params">error</span>) {
+  <span class="hljs-keyword">let</span> msg = <span class="hljs-string">&quot;&quot;</span>;
+  <span class="hljs-keyword">switch</span>(error.<span class="hljs-property">code</span>) {
+    <span class="hljs-keyword">case</span> error.<span class="hljs-property">PERMISSION_DENIED</span>:
+      msg = <span class="hljs-string">&quot;User denied the request for Geolocation.&quot;</span>;
+      <span class="hljs-keyword">break</span>;
+    <span class="hljs-keyword">case</span> error.<span class="hljs-property">POSITION_UNAVAILABLE</span>:
+      msg = <span class="hljs-string">&quot;Location information is unavailable.&quot;</span>;
+      <span class="hljs-keyword">break</span>;
+    <span class="hljs-keyword">case</span> error.<span class="hljs-property">TIMEOUT</span>:
+      msg = <span class="hljs-string">&quot;The request to get user location timed out.&quot;</span>;
+      <span class="hljs-keyword">break</span>;
+    <span class="hljs-keyword">case</span> error.<span class="hljs-property">UNKNOWN_ERROR</span>:
+      msg = <span class="hljs-string">&quot;An unknown error occurred.&quot;</span>;
+      <span class="hljs-keyword">break</span>;
   }
-  document.getElementById(&quot;demo&quot;).innerHTML = &quot;Error: &quot; + msg;
+  <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&quot;demo&quot;</span>).<span class="hljs-property">innerHTML</span> = <span class="hljs-string">&quot;Error: &quot;</span> + msg;
 }
-&lt;/script&gt;
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
 
-&lt;/body&gt;
-&lt;/html&gt;
-</code></pre>
+<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span>
+</div></code></pre>
 <p><img src="images/p2.png" alt=""></p>
-<h3>Example 2</h3>
+<h3 id="example-2">Example 2</h3>
 <p><strong>Result</strong> <a href="ex2-error_handling/index.html">View Example</a></p>
-<h2>Geolocation Object - Return Data</h2>
+<h2 id="geolocation-object---return-data">Geolocation Object - Return Data</h2>
 <p>The <code>getCurrentPosition()</code> method returns an object with various properties:</p>
-<pre><code class="language-html">&lt;!DOCTYPE html&gt;
-&lt;html&gt;
-&lt;body&gt;
+<pre class="hljs"><code><div><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-keyword">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
 
-&lt;h2&gt;JavaScript Geolocation API&lt;/h2&gt;
-&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+<span class="hljs-tag">&lt;<span class="hljs-name">h2</span>&gt;</span>JavaScript Geolocation API<span class="hljs-tag">&lt;/<span class="hljs-name">h2</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>From w3schools.com, Experiment by Teeratus_R<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
 
-&lt;h4&gt;Geolocation Object - Return Data&lt;/h4&gt;
-&lt;button onclick=&quot;getLocation()&quot;&gt;Get My Full Position&lt;/button&gt;
-&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+<span class="hljs-tag">&lt;<span class="hljs-name">h4</span>&gt;</span>Geolocation Object - Return Data<span class="hljs-tag">&lt;/<span class="hljs-name">h4</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onclick</span>=<span class="hljs-string">&quot;getLocation()&quot;</span>&gt;</span>Get My Full Position<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;demo&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
 
-&lt;script&gt;
-function getLocation() {
-  if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(showPosition);
-  } else {
-    document.getElementById(&quot;demo&quot;).innerHTML = &quot;Geolocation is not supported.&quot;;
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="language-javascript">
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">getLocation</span>(<span class="hljs-params"></span>) {
+  <span class="hljs-keyword">if</span> (navigator.<span class="hljs-property">geolocation</span>) {
+    navigator.<span class="hljs-property">geolocation</span>.<span class="hljs-title function_">getCurrentPosition</span>(showPosition);
+  } <span class="hljs-keyword">else</span> {
+    <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&quot;demo&quot;</span>).<span class="hljs-property">innerHTML</span> = <span class="hljs-string">&quot;Geolocation is not supported.&quot;</span>;
   }
 }
 
-function showPosition(position) {
-  const coords = position.coords;
-  let text = &quot;Position Object:&lt;br&gt;&lt;br&gt;&quot;;
-  text += &quot;latitude: &quot; + coords.latitude + &quot;&lt;br&gt;&quot;;
-  text += &quot;longitude: &quot; + coords.longitude + &quot;&lt;br&gt;&quot;;
-  text += &quot;accuracy: &quot; + coords.accuracy + &quot; meters&lt;br&gt;&quot;;
-  text += &quot;altitude: &quot; + coords.altitude + &quot;&lt;br&gt;&quot;;
-  text += &quot;altitudeAccuracy: &quot; + coords.altitudeAccuracy + &quot; meters&lt;br&gt;&quot;;
-  text += &quot;heading: &quot; + coords.heading + &quot; degrees&lt;br&gt;&quot;;
-  text += &quot;speed: &quot; + coords.speed + &quot; m/s&lt;br&gt;&lt;br&gt;&quot;;
-  text += &quot;Timestamp: &quot; + new Date(position.timestamp).toLocaleString();
-  document.getElementById(&quot;demo&quot;).innerHTML = text;
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">showPosition</span>(<span class="hljs-params">position</span>) {
+  <span class="hljs-keyword">const</span> coords = position.<span class="hljs-property">coords</span>;
+  <span class="hljs-keyword">let</span> text = <span class="hljs-string">&quot;Position Object:&lt;br&gt;&lt;br&gt;&quot;</span>;
+  text += <span class="hljs-string">&quot;latitude: &quot;</span> + coords.<span class="hljs-property">latitude</span> + <span class="hljs-string">&quot;&lt;br&gt;&quot;</span>;
+  text += <span class="hljs-string">&quot;longitude: &quot;</span> + coords.<span class="hljs-property">longitude</span> + <span class="hljs-string">&quot;&lt;br&gt;&quot;</span>;
+  text += <span class="hljs-string">&quot;accuracy: &quot;</span> + coords.<span class="hljs-property">accuracy</span> + <span class="hljs-string">&quot; meters&lt;br&gt;&quot;</span>;
+  text += <span class="hljs-string">&quot;altitude: &quot;</span> + coords.<span class="hljs-property">altitude</span> + <span class="hljs-string">&quot;&lt;br&gt;&quot;</span>;
+  text += <span class="hljs-string">&quot;altitudeAccuracy: &quot;</span> + coords.<span class="hljs-property">altitudeAccuracy</span> + <span class="hljs-string">&quot; meters&lt;br&gt;&quot;</span>;
+  text += <span class="hljs-string">&quot;heading: &quot;</span> + coords.<span class="hljs-property">heading</span> + <span class="hljs-string">&quot; degrees&lt;br&gt;&quot;</span>;
+  text += <span class="hljs-string">&quot;speed: &quot;</span> + coords.<span class="hljs-property">speed</span> + <span class="hljs-string">&quot; m/s&lt;br&gt;&lt;br&gt;&quot;</span>;
+  text += <span class="hljs-string">&quot;Timestamp: &quot;</span> + <span class="hljs-keyword">new</span> <span class="hljs-title class_">Date</span>(position.<span class="hljs-property">timestamp</span>).<span class="hljs-title function_">toLocaleString</span>();
+  <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&quot;demo&quot;</span>).<span class="hljs-property">innerHTML</span> = text;
 }
-&lt;/script&gt;
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
 
-&lt;/body&gt;
-&lt;/html&gt;
-</code></pre>
+<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span>
+</div></code></pre>
 <p><img src="images/p3.png" alt=""></p>
-<h3>Example 3</h3>
+<h3 id="example-3">Example 3</h3>
 <p><strong>Result</strong> <a href="ex3-position_data/index.html">View Example</a></p>
-<h2>Watch Position</h2>
-<p>The <code>watchPosition()</code> method continuously monitors the user&#39;s position and calls a callback each time the position changes:</p>
-<pre><code class="language-html">&lt;!DOCTYPE html&gt;
-&lt;html&gt;
-&lt;body&gt;
+<h2 id="watch-position">Watch Position</h2>
+<p>The <code>watchPosition()</code> method continuously monitors the user's position and calls a callback each time the position changes:</p>
+<pre class="hljs"><code><div><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-keyword">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
 
-&lt;h2&gt;JavaScript Geolocation API&lt;/h2&gt;
-&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+<span class="hljs-tag">&lt;<span class="hljs-name">h2</span>&gt;</span>JavaScript Geolocation API<span class="hljs-tag">&lt;/<span class="hljs-name">h2</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>From w3schools.com, Experiment by Teeratus_R<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
 
-&lt;h4&gt;Watch Position&lt;/h4&gt;
-&lt;button onclick=&quot;startWatch()&quot;&gt;Start Watching&lt;/button&gt;
-&lt;button onclick=&quot;stopWatch()&quot;&gt;Stop Watching&lt;/button&gt;
-&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
-&lt;p id=&quot;watchStatus&quot;&gt;&lt;/p&gt;
+<span class="hljs-tag">&lt;<span class="hljs-name">h4</span>&gt;</span>Watch Position<span class="hljs-tag">&lt;/<span class="hljs-name">h4</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onclick</span>=<span class="hljs-string">&quot;startWatch()&quot;</span>&gt;</span>Start Watching<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onclick</span>=<span class="hljs-string">&quot;stopWatch()&quot;</span>&gt;</span>Stop Watching<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;demo&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;watchStatus&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
 
-&lt;script&gt;
-let watchId = null;
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="language-javascript">
+<span class="hljs-keyword">let</span> watchId = <span class="hljs-literal">null</span>;
 
-function startWatch() {
-  if (navigator.geolocation) {
-    document.getElementById(&quot;watchStatus&quot;).innerHTML = &quot;Watching position...&quot;;
-    watchId = navigator.geolocation.watchPosition(showPosition, showError);
-  } else {
-    document.getElementById(&quot;demo&quot;).innerHTML = &quot;Geolocation is not supported.&quot;;
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">startWatch</span>(<span class="hljs-params"></span>) {
+  <span class="hljs-keyword">if</span> (navigator.<span class="hljs-property">geolocation</span>) {
+    <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&quot;watchStatus&quot;</span>).<span class="hljs-property">innerHTML</span> = <span class="hljs-string">&quot;Watching position...&quot;</span>;
+    watchId = navigator.<span class="hljs-property">geolocation</span>.<span class="hljs-title function_">watchPosition</span>(showPosition, showError);
+  } <span class="hljs-keyword">else</span> {
+    <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&quot;demo&quot;</span>).<span class="hljs-property">innerHTML</span> = <span class="hljs-string">&quot;Geolocation is not supported.&quot;</span>;
   }
 }
 
-function stopWatch() {
-  if (watchId !== null) {
-    navigator.geolocation.clearWatch(watchId);
-    watchId = null;
-    document.getElementById(&quot;watchStatus&quot;).innerHTML = &quot;Watching stopped.&quot;;
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">stopWatch</span>(<span class="hljs-params"></span>) {
+  <span class="hljs-keyword">if</span> (watchId !== <span class="hljs-literal">null</span>) {
+    navigator.<span class="hljs-property">geolocation</span>.<span class="hljs-title function_">clearWatch</span>(watchId);
+    watchId = <span class="hljs-literal">null</span>;
+    <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&quot;watchStatus&quot;</span>).<span class="hljs-property">innerHTML</span> = <span class="hljs-string">&quot;Watching stopped.&quot;</span>;
   }
 }
 
-function showPosition(position) {
-  document.getElementById(&quot;demo&quot;).innerHTML =
-    &quot;Updated position:&lt;br&gt;&quot; +
-    &quot;Latitude: &quot; + position.coords.latitude + &quot;&lt;br&gt;&quot; +
-    &quot;Longitude: &quot; + position.coords.longitude + &quot;&lt;br&gt;&quot; +
-    &quot;Accuracy: &quot; + position.coords.accuracy + &quot; meters&lt;br&gt;&quot; +
-    &quot;Time: &quot; + new Date(position.timestamp).toLocaleTimeString();
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">showPosition</span>(<span class="hljs-params">position</span>) {
+  <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&quot;demo&quot;</span>).<span class="hljs-property">innerHTML</span> =
+    <span class="hljs-string">&quot;Updated position:&lt;br&gt;&quot;</span> +
+    <span class="hljs-string">&quot;Latitude: &quot;</span> + position.<span class="hljs-property">coords</span>.<span class="hljs-property">latitude</span> + <span class="hljs-string">&quot;&lt;br&gt;&quot;</span> +
+    <span class="hljs-string">&quot;Longitude: &quot;</span> + position.<span class="hljs-property">coords</span>.<span class="hljs-property">longitude</span> + <span class="hljs-string">&quot;&lt;br&gt;&quot;</span> +
+    <span class="hljs-string">&quot;Accuracy: &quot;</span> + position.<span class="hljs-property">coords</span>.<span class="hljs-property">accuracy</span> + <span class="hljs-string">&quot; meters&lt;br&gt;&quot;</span> +
+    <span class="hljs-string">&quot;Time: &quot;</span> + <span class="hljs-keyword">new</span> <span class="hljs-title class_">Date</span>(position.<span class="hljs-property">timestamp</span>).<span class="hljs-title function_">toLocaleTimeString</span>();
 }
 
-function showError(error) {
-  document.getElementById(&quot;demo&quot;).innerHTML = &quot;Error: &quot; + error.message;
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">showError</span>(<span class="hljs-params">error</span>) {
+  <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&quot;demo&quot;</span>).<span class="hljs-property">innerHTML</span> = <span class="hljs-string">&quot;Error: &quot;</span> + error.<span class="hljs-property">message</span>;
 }
-&lt;/script&gt;
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
 
-&lt;/body&gt;
-&lt;/html&gt;
-</code></pre>
+<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span>
+</div></code></pre>
 <p><img src="images/p4.png" alt=""></p>
-<h3>Example 4</h3>
+<h3 id="example-4">Example 4</h3>
 <p><strong>Result</strong> <a href="ex4-watch_position/index.html">View Example</a></p>
-<h2>Document</h2>
+<h2 id="document">Document</h2>
 <p>Document in project</p>
 <p>You can <a href="js-geolocation.pdf">Download PDF</a> file.</p>
-<h2>Reference</h2>
+<h2 id="reference">Reference</h2>
 <ul>
 <li><a href="https://www.w3schools.com/js/js_api_geolocation.asp">W3Schools JavaScript Geolocation API</a></li>
 </ul>

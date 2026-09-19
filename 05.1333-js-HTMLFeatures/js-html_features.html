@@ -1,116 +1,403 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>js-html_features</title>
-  <style>
-    body {
-      box-sizing: border-box;
-      min-width: 200px;
-      max-width: 980px;
-      margin: 0 auto;
-      padding: 45px;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
-      font-size: 16px;
-      line-height: 1.5;
-      color: #24292e;
-      background-color: #ffffff;
-    }
-    h1, h2, h3, h4, h5, h6 {
-      margin-top: 24px;
-      margin-bottom: 16px;
-      font-weight: 600;
-      line-height: 1.25;
-      border-bottom: 1px solid #eaecef;
-      padding-bottom: .3em;
-    }
-    h1 { font-size: 2em; }
-    h2 { font-size: 1.5em; }
-    h3 { font-size: 1.25em; }
-    code {
-      padding: .2em .4em;
-      margin: 0;
-      font-size: 85%;
-      background-color: rgba(27,31,35,.05);
-      border-radius: 3px;
-      font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
-    }
-    pre {
-      padding: 16px;
-      overflow: auto;
-      font-size: 85%;
-      line-height: 1.45;
-      background-color: #f6f8fa;
-      border-radius: 3px;
-      word-wrap: normal;
-    }
-    pre code {
-      background-color: transparent;
-      padding: 0;
-    }
-    blockquote {
-      padding: 0 1em;
-      color: #6a737d;
-      border-left: .25em solid #dfe2e5;
-      margin: 0 0 16px 0;
-    }
-    table {
-      border-spacing: 0;
-      border-collapse: collapse;
-      margin-top: 0;
-      margin-bottom: 16px;
-      width: 100%;
-    }
-    table th, table td {
-      padding: 6px 13px;
-      border: 1px solid #dfe2e5;
-    }
-    table tr:nth-child(2n) {
-      background-color: #f6f8fa;
-    }
-    img {
-      max-width: 100%;
-      box-sizing: content-box;
-    }
-    @media print {
-      body {
-        max-width: 100%;
-        padding: 0;
-      }
-      pre, blockquote, table, tr, img {
-        page-break-inside: avoid;
-      }
-    }
-  </style>
+<title>js-html_features.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> or <div class="page"></div> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
 </head>
 <body>
-<h1>JavaScript HTML Features</h1>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="javascript-html-features">JavaScript HTML Features</h1>
 <p><a href="../">Back to JS page</a></p>
 <p>Table of Contents</p>
 <ul>
-<li><a href="#javascript-html-features">JavaScript HTML Features</a><ul>
-<li><a href="#the-details-element">The details Element</a><ul>
+<li><a href="#javascript-html-features">JavaScript HTML Features</a>
+<ul>
+<li><a href="#the-details-element">The details Element</a>
+<ul>
 <li><a href="#example-1">Example 1</a></li>
 </ul>
 </li>
-<li><a href="#html-form-validation">HTML Form Validation</a><ul>
+<li><a href="#html-form-validation">HTML Form Validation</a>
+<ul>
 <li><a href="#example-2">Example 2</a></li>
 </ul>
 </li>
-<li><a href="#input-types">Input Types</a><ul>
+<li><a href="#input-types">Input Types</a>
+<ul>
 <li><a href="#example-3">Example 3</a></li>
 </ul>
 </li>
-<li><a href="#the-datalist-element">The datalist Element</a><ul>
+<li><a href="#the-datalist-element">The datalist Element</a>
+<ul>
 <li><a href="#example-4">Example 4</a></li>
 </ul>
 </li>
-<li><a href="#the-dialog-element">The dialog Element</a><ul>
+<li><a href="#the-dialog-element">The dialog Element</a>
+<ul>
 <li><a href="#example-5">Example 5</a></li>
 </ul>
 </li>
-<li><a href="#lazy-loading-images">Lazy Loading Images</a><ul>
+<li><a href="#lazy-loading-images">Lazy Loading Images</a>
+<ul>
 <li><a href="#example-6">Example 6</a></li>
 </ul>
 </li>
@@ -119,181 +406,181 @@
 </ul>
 </li>
 </ul>
-<h2>The details Element</h2>
+<h2 id="the-details-element">The details Element</h2>
 <p>The <code>&lt;details&gt;</code> element creates a disclosure widget that can be opened and closed without JavaScript:</p>
-<pre><code class="language-html">&lt;!DOCTYPE html&gt;
-&lt;html&gt;
-&lt;body&gt;
+<pre class="hljs"><code><div><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-keyword">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
 
-&lt;h2&gt;JavaScript HTML Features&lt;/h2&gt;
-&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+<span class="hljs-tag">&lt;<span class="hljs-name">h2</span>&gt;</span>JavaScript HTML Features<span class="hljs-tag">&lt;/<span class="hljs-name">h2</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>From w3schools.com, Experiment by Teeratus_R<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
 
-&lt;h4&gt;The details Element&lt;/h4&gt;
+<span class="hljs-tag">&lt;<span class="hljs-name">h4</span>&gt;</span>The details Element<span class="hljs-tag">&lt;/<span class="hljs-name">h4</span>&gt;</span>
 
-&lt;details&gt;
-  &lt;summary&gt;Click to open (HTML only)&lt;/summary&gt;
-  &lt;p&gt;This content is shown/hidden using the HTML &lt;details&gt; element. No JavaScript required!&lt;/p&gt;
-  &lt;ul&gt;
-    &lt;li&gt;Item 1&lt;/li&gt;
-    &lt;li&gt;Item 2&lt;/li&gt;
-    &lt;li&gt;Item 3&lt;/li&gt;
-  &lt;/ul&gt;
-&lt;/details&gt;
+<span class="hljs-tag">&lt;<span class="hljs-name">details</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">summary</span>&gt;</span>Click to open (HTML only)<span class="hljs-tag">&lt;/<span class="hljs-name">summary</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>This content is shown/hidden using the HTML <span class="hljs-tag">&lt;<span class="hljs-name">details</span>&gt;</span> element. No JavaScript required!<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">ul</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>Item 1<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>Item 2<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>Item 3<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">ul</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">details</span>&gt;</span>
 
-&lt;/body&gt;
-&lt;/html&gt;
-</code></pre>
+<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span>
+</div></code></pre>
 <p><img src="images/p1.png" alt=""></p>
-<h3>Example 1</h3>
+<h3 id="example-1">Example 1</h3>
 <p><strong>Result</strong> <a href="ex1-details_element/index.html">View Example</a></p>
-<h2>HTML Form Validation</h2>
+<h2 id="html-form-validation">HTML Form Validation</h2>
 <p>HTML5 provides built-in form validation using attributes like <code>required</code>, <code>min</code>, <code>max</code>, <code>pattern</code>, etc.:</p>
-<pre><code class="language-html">&lt;!DOCTYPE html&gt;
-&lt;html&gt;
-&lt;body&gt;
+<pre class="hljs"><code><div><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-keyword">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
 
-&lt;h2&gt;JavaScript HTML Features&lt;/h2&gt;
-&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+<span class="hljs-tag">&lt;<span class="hljs-name">h2</span>&gt;</span>JavaScript HTML Features<span class="hljs-tag">&lt;/<span class="hljs-name">h2</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>From w3schools.com, Experiment by Teeratus_R<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
 
-&lt;h4&gt;HTML Form Validation&lt;/h4&gt;
+<span class="hljs-tag">&lt;<span class="hljs-name">h4</span>&gt;</span>HTML Form Validation<span class="hljs-tag">&lt;/<span class="hljs-name">h4</span>&gt;</span>
 
-&lt;form action=&quot;/action_page.php&quot;&gt;
-  &lt;label for=&quot;fname&quot;&gt;Name (required):&lt;/label&gt;
-  &lt;input type=&quot;text&quot; id=&quot;fname&quot; name=&quot;fname&quot; required&gt;
-  &lt;br&gt;&lt;br&gt;
+<span class="hljs-tag">&lt;<span class="hljs-name">form</span> <span class="hljs-attr">action</span>=<span class="hljs-string">&quot;/action_page.php&quot;</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">label</span> <span class="hljs-attr">for</span>=<span class="hljs-string">&quot;fname&quot;</span>&gt;</span>Name (required):<span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;text&quot;</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;fname&quot;</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;fname&quot;</span> <span class="hljs-attr">required</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">br</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">br</span>&gt;</span>
 
-  &lt;label for=&quot;age&quot;&gt;Age (min=18, max=99):&lt;/label&gt;
-  &lt;input type=&quot;number&quot; id=&quot;age&quot; name=&quot;age&quot; min=&quot;18&quot; max=&quot;99&quot;&gt;
-  &lt;br&gt;&lt;br&gt;
+  <span class="hljs-tag">&lt;<span class="hljs-name">label</span> <span class="hljs-attr">for</span>=<span class="hljs-string">&quot;age&quot;</span>&gt;</span>Age (min=18, max=99):<span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;number&quot;</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;age&quot;</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;age&quot;</span> <span class="hljs-attr">min</span>=<span class="hljs-string">&quot;18&quot;</span> <span class="hljs-attr">max</span>=<span class="hljs-string">&quot;99&quot;</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">br</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">br</span>&gt;</span>
 
-  &lt;label for=&quot;phone&quot;&gt;Phone (pattern 10 digits):&lt;/label&gt;
-  &lt;input type=&quot;tel&quot; id=&quot;phone&quot; name=&quot;phone&quot; pattern=&quot;[0-9]{10}&quot;&gt;
-  &lt;br&gt;&lt;br&gt;
+  <span class="hljs-tag">&lt;<span class="hljs-name">label</span> <span class="hljs-attr">for</span>=<span class="hljs-string">&quot;phone&quot;</span>&gt;</span>Phone (pattern 10 digits):<span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;tel&quot;</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;phone&quot;</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;phone&quot;</span> <span class="hljs-attr">pattern</span>=<span class="hljs-string">&quot;[0-9]{10}&quot;</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">br</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">br</span>&gt;</span>
 
-  &lt;input type=&quot;submit&quot; value=&quot;Submit&quot;&gt;
-&lt;/form&gt;
+  <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;submit&quot;</span> <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;Submit&quot;</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span>
 
-&lt;/body&gt;
-&lt;/html&gt;
-</code></pre>
+<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span>
+</div></code></pre>
 <p><img src="images/p2.png" alt=""></p>
-<h3>Example 2</h3>
+<h3 id="example-2">Example 2</h3>
 <p><strong>Result</strong> <a href="ex2-form_validation/index.html">View Example</a></p>
-<h2>Input Types</h2>
+<h2 id="input-types">Input Types</h2>
 <p>HTML5 introduced many new input types that provide native UI controls and validation:</p>
-<pre><code class="language-html">&lt;!DOCTYPE html&gt;
-&lt;html&gt;
-&lt;body&gt;
+<pre class="hljs"><code><div><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-keyword">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
 
-&lt;h2&gt;JavaScript HTML Features&lt;/h2&gt;
-&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+<span class="hljs-tag">&lt;<span class="hljs-name">h2</span>&gt;</span>JavaScript HTML Features<span class="hljs-tag">&lt;/<span class="hljs-name">h2</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>From w3schools.com, Experiment by Teeratus_R<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
 
-&lt;h4&gt;Input Types&lt;/h4&gt;
+<span class="hljs-tag">&lt;<span class="hljs-name">h4</span>&gt;</span>Input Types<span class="hljs-tag">&lt;/<span class="hljs-name">h4</span>&gt;</span>
 
-&lt;form&gt;
-  &lt;label&gt;Color: &lt;input type=&quot;color&quot;&gt;&lt;/label&gt;&lt;br&gt;&lt;br&gt;
-  &lt;label&gt;Date: &lt;input type=&quot;date&quot;&gt;&lt;/label&gt;&lt;br&gt;&lt;br&gt;
-  &lt;label&gt;Range: &lt;input type=&quot;range&quot;&gt;&lt;/label&gt;&lt;br&gt;&lt;br&gt;
-  &lt;label&gt;Email: &lt;input type=&quot;email&quot;&gt;&lt;/label&gt;&lt;br&gt;&lt;br&gt;
-  &lt;label&gt;URL: &lt;input type=&quot;url&quot;&gt;&lt;/label&gt;&lt;br&gt;&lt;br&gt;
-  &lt;label&gt;Search: &lt;input type=&quot;search&quot;&gt;&lt;/label&gt;&lt;br&gt;&lt;br&gt;
-  &lt;label&gt;Tel: &lt;input type=&quot;tel&quot;&gt;&lt;/label&gt;&lt;br&gt;&lt;br&gt;
-  &lt;label&gt;Number: &lt;input type=&quot;number&quot;&gt;&lt;/label&gt;
-&lt;/form&gt;
+<span class="hljs-tag">&lt;<span class="hljs-name">form</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">label</span>&gt;</span>Color: <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;color&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">br</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">br</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">label</span>&gt;</span>Date: <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;date&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">br</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">br</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">label</span>&gt;</span>Range: <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;range&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">br</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">br</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">label</span>&gt;</span>Email: <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;email&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">br</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">br</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">label</span>&gt;</span>URL: <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;url&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">br</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">br</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">label</span>&gt;</span>Search: <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;search&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">br</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">br</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">label</span>&gt;</span>Tel: <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;tel&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">br</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">br</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">label</span>&gt;</span>Number: <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;number&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span>
 
-&lt;/body&gt;
-&lt;/html&gt;
-</code></pre>
+<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span>
+</div></code></pre>
 <p><img src="images/p3.png" alt=""></p>
-<h3>Example 3</h3>
+<h3 id="example-3">Example 3</h3>
 <p><strong>Result</strong> <a href="ex3-input_types/index.html">View Example</a></p>
-<h2>The datalist Element</h2>
+<h2 id="the-datalist-element">The datalist Element</h2>
 <p>The <code>&lt;datalist&gt;</code> element provides an autocomplete feature for input fields:</p>
-<pre><code class="language-html">&lt;!DOCTYPE html&gt;
-&lt;html&gt;
-&lt;body&gt;
+<pre class="hljs"><code><div><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-keyword">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
 
-&lt;h2&gt;JavaScript HTML Features&lt;/h2&gt;
-&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+<span class="hljs-tag">&lt;<span class="hljs-name">h2</span>&gt;</span>JavaScript HTML Features<span class="hljs-tag">&lt;/<span class="hljs-name">h2</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>From w3schools.com, Experiment by Teeratus_R<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
 
-&lt;h4&gt;The datalist Element&lt;/h4&gt;
+<span class="hljs-tag">&lt;<span class="hljs-name">h4</span>&gt;</span>The datalist Element<span class="hljs-tag">&lt;/<span class="hljs-name">h4</span>&gt;</span>
 
-&lt;form&gt;
-  &lt;label for=&quot;browser&quot;&gt;Choose a browser:&lt;/label&gt;
-  &lt;input list=&quot;browsers&quot; id=&quot;browser&quot; name=&quot;browser&quot;&gt;
-  &lt;datalist id=&quot;browsers&quot;&gt;
-    &lt;option value=&quot;Chrome&quot;&gt;
-    &lt;option value=&quot;Firefox&quot;&gt;
-    &lt;option value=&quot;Edge&quot;&gt;
-    &lt;option value=&quot;Safari&quot;&gt;
-    &lt;option value=&quot;Opera&quot;&gt;
-  &lt;/datalist&gt;
-  &lt;input type=&quot;submit&quot;&gt;
-&lt;/form&gt;
+<span class="hljs-tag">&lt;<span class="hljs-name">form</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">label</span> <span class="hljs-attr">for</span>=<span class="hljs-string">&quot;browser&quot;</span>&gt;</span>Choose a browser:<span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">list</span>=<span class="hljs-string">&quot;browsers&quot;</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;browser&quot;</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;browser&quot;</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">datalist</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;browsers&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">option</span> <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;Chrome&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">option</span> <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;Firefox&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">option</span> <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;Edge&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">option</span> <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;Safari&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">option</span> <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;Opera&quot;</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">datalist</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;submit&quot;</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span>
 
-&lt;/body&gt;
-&lt;/html&gt;
-</code></pre>
+<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span>
+</div></code></pre>
 <p><img src="images/p4.png" alt=""></p>
-<h3>Example 4</h3>
+<h3 id="example-4">Example 4</h3>
 <p><strong>Result</strong> <a href="ex4-datalist_element/index.html">View Example</a></p>
-<h2>The dialog Element</h2>
+<h2 id="the-dialog-element">The dialog Element</h2>
 <p>The <code>&lt;dialog&gt;</code> element creates a native modal dialog without JavaScript:</p>
-<pre><code class="language-html">&lt;!DOCTYPE html&gt;
-&lt;html&gt;
-&lt;body&gt;
+<pre class="hljs"><code><div><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-keyword">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
 
-&lt;h2&gt;JavaScript HTML Features&lt;/h2&gt;
-&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+<span class="hljs-tag">&lt;<span class="hljs-name">h2</span>&gt;</span>JavaScript HTML Features<span class="hljs-tag">&lt;/<span class="hljs-name">h2</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>From w3schools.com, Experiment by Teeratus_R<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
 
-&lt;h4&gt;The dialog Element&lt;/h4&gt;
+<span class="hljs-tag">&lt;<span class="hljs-name">h4</span>&gt;</span>The dialog Element<span class="hljs-tag">&lt;/<span class="hljs-name">h4</span>&gt;</span>
 
-&lt;dialog id=&quot;myDialog&quot;&gt;
-  &lt;p&gt;This is a native HTML dialog!&lt;/p&gt;
-  &lt;button onclick=&quot;document.getElementById(&#39;myDialog&#39;).close()&quot;&gt;Close&lt;/button&gt;
-&lt;/dialog&gt;
+<span class="hljs-tag">&lt;<span class="hljs-name">dialog</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;myDialog&quot;</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>This is a native HTML dialog!<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onclick</span>=<span class="hljs-string">&quot;document.getElementById(&#x27;myDialog&#x27;).close()&quot;</span>&gt;</span>Close<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">dialog</span>&gt;</span>
 
-&lt;button onclick=&quot;document.getElementById(&#39;myDialog&#39;).showModal()&quot;&gt;Open Dialog&lt;/button&gt;
+<span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onclick</span>=<span class="hljs-string">&quot;document.getElementById(&#x27;myDialog&#x27;).showModal()&quot;</span>&gt;</span>Open Dialog<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
 
-&lt;p&gt;The &lt;dialog&gt; element is a modern HTML feature for modal dialogs.&lt;/p&gt;
+<span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>The <span class="hljs-tag">&lt;<span class="hljs-name">dialog</span>&gt;</span> element is a modern HTML feature for modal dialogs.<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
 
-&lt;/body&gt;
-&lt;/html&gt;
-</code></pre>
+<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span>
+</div></code></pre>
 <p><img src="images/p5.png" alt=""></p>
-<h3>Example 5</h3>
+<h3 id="example-5">Example 5</h3>
 <p><strong>Result</strong> <a href="ex5-dialog_element/index.html">View Example</a></p>
-<h2>Lazy Loading Images</h2>
+<h2 id="lazy-loading-images">Lazy Loading Images</h2>
 <p>The <code>loading=&quot;lazy&quot;</code> attribute tells the browser to defer loading of images until the user scrolls near them:</p>
-<pre><code class="language-html">&lt;!DOCTYPE html&gt;
-&lt;html&gt;
-&lt;body&gt;
+<pre class="hljs"><code><div><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-keyword">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
 
-&lt;h2&gt;JavaScript HTML Features&lt;/h2&gt;
-&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+<span class="hljs-tag">&lt;<span class="hljs-name">h2</span>&gt;</span>JavaScript HTML Features<span class="hljs-tag">&lt;/<span class="hljs-name">h2</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>From w3schools.com, Experiment by Teeratus_R<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
 
-&lt;h4&gt;Lazy Loading Images&lt;/h4&gt;
+<span class="hljs-tag">&lt;<span class="hljs-name">h4</span>&gt;</span>Lazy Loading Images<span class="hljs-tag">&lt;/<span class="hljs-name">h4</span>&gt;</span>
 
-&lt;p&gt;The loading=&quot;lazy&quot; attribute defers image loading until the user scrolls near the image.&lt;/p&gt;
+<span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>The loading=&quot;lazy&quot; attribute defers image loading until the user scrolls near the image.<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
 
-&lt;img src=&quot;https://www.w3schools.com/js/pic_bulboff.gif&quot; alt=&quot;Bulb off&quot; loading=&quot;lazy&quot; width=&quot;100&quot; height=&quot;180&quot;&gt;
+<span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;https://www.w3schools.com/js/pic_bulboff.gif&quot;</span> <span class="hljs-attr">alt</span>=<span class="hljs-string">&quot;Bulb off&quot;</span> <span class="hljs-attr">loading</span>=<span class="hljs-string">&quot;lazy&quot;</span> <span class="hljs-attr">width</span>=<span class="hljs-string">&quot;100&quot;</span> <span class="hljs-attr">height</span>=<span class="hljs-string">&quot;180&quot;</span>&gt;</span>
 
-&lt;p&gt;Scroll down to see the lazy-loaded image below (if viewing on a small screen):&lt;/p&gt;
+<span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>Scroll down to see the lazy-loaded image below (if viewing on a small screen):<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
 
-&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+<span class="hljs-tag">&lt;<span class="hljs-name">br</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">br</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">br</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">br</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">br</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">br</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">br</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">br</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">br</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">br</span>&gt;</span>
 
-&lt;img src=&quot;https://www.w3schools.com/images/w3schools_green.jpg&quot; alt=&quot;W3Schools&quot; loading=&quot;lazy&quot; width=&quot;200&quot; height=&quot;200&quot;&gt;
+<span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;https://www.w3schools.com/images/w3schools_green.jpg&quot;</span> <span class="hljs-attr">alt</span>=<span class="hljs-string">&quot;W3Schools&quot;</span> <span class="hljs-attr">loading</span>=<span class="hljs-string">&quot;lazy&quot;</span> <span class="hljs-attr">width</span>=<span class="hljs-string">&quot;200&quot;</span> <span class="hljs-attr">height</span>=<span class="hljs-string">&quot;200&quot;</span>&gt;</span>
 
-&lt;/body&gt;
-&lt;/html&gt;
-</code></pre>
+<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span>
+</div></code></pre>
 <p><img src="images/p6.png" alt=""></p>
-<h3>Example 6</h3>
+<h3 id="example-6">Example 6</h3>
 <p><strong>Result</strong> <a href="ex6-lazy_loading/index.html">View Example</a></p>
-<h2>Document</h2>
+<h2 id="document">Document</h2>
 <p>Document in project</p>
 <p>You can <a href="js-html_features.pdf">Download PDF</a> file.</p>
-<h2>Reference</h2>
+<h2 id="reference">Reference</h2>
 <ul>
 <li><a href="https://www.w3schools.com/js/js_htmlfirst_features.asp">W3Schools JavaScript HTML Features</a></li>
 </ul>

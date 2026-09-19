@@ -1,112 +1,398 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>js-regexp_flags</title>
-  <style>
-    body {
-      box-sizing: border-box;
-      min-width: 200px;
-      max-width: 980px;
-      margin: 0 auto;
-      padding: 45px;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
-      font-size: 16px;
-      line-height: 1.5;
-      color: #24292e;
-      background-color: #ffffff;
-    }
-    h1, h2, h3, h4, h5, h6 {
-      margin-top: 24px;
-      margin-bottom: 16px;
-      font-weight: 600;
-      line-height: 1.25;
-      border-bottom: 1px solid #eaecef;
-      padding-bottom: .3em;
-    }
-    h1 { font-size: 2em; }
-    h2 { font-size: 1.5em; }
-    h3 { font-size: 1.25em; }
-    code {
-      padding: .2em .4em;
-      margin: 0;
-      font-size: 85%;
-      background-color: rgba(27,31,35,.05);
-      border-radius: 3px;
-      font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
-    }
-    pre {
-      padding: 16px;
-      overflow: auto;
-      font-size: 85%;
-      line-height: 1.45;
-      background-color: #f6f8fa;
-      border-radius: 3px;
-      word-wrap: normal;
-    }
-    pre code {
-      background-color: transparent;
-      padding: 0;
-    }
-    blockquote {
-      padding: 0 1em;
-      color: #6a737d;
-      border-left: .25em solid #dfe2e5;
-      margin: 0 0 16px 0;
-    }
-    table {
-      border-spacing: 0;
-      border-collapse: collapse;
-      margin-top: 0;
-      margin-bottom: 16px;
-      width: 100%;
-    }
-    table th, table td {
-      padding: 6px 13px;
-      border: 1px solid #dfe2e5;
-    }
-    table tr:nth-child(2n) {
-      background-color: #f6f8fa;
-    }
-    img {
-      max-width: 100%;
-      box-sizing: content-box;
-    }
-    @media print {
-      body {
-        max-width: 100%;
-        padding: 0;
-      }
-      pre, blockquote, table, tr, img {
-        page-break-inside: avoid;
-      }
-    }
-  </style>
+<title>js-regexp_flags.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> or <div class="page"></div> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
 </head>
 <body>
-<h1>JavaScript RegExp Flags</h1>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="javascript-regexp-flags">JavaScript RegExp Flags</h1>
 <p><a href="../">Back to JS page</a></p>
 <p>Table of Contents</p>
 <ul>
-<li><a href="#javascript-regexp-flags">JavaScript RegExp Flags</a><ul>
-<li><a href="#regexp-g-flag-global">RegExp /g Flag (Global)</a><ul>
+<li><a href="#javascript-regexp-flags">JavaScript RegExp Flags</a>
+<ul>
+<li><a href="#regexp-g-flag-global">RegExp /g Flag (Global)</a>
+<ul>
 <li><a href="#example-1">Example 1</a></li>
 </ul>
 </li>
-<li><a href="#regexp-i-flag-insensitive">RegExp /i Flag (Insensitive)</a><ul>
+<li><a href="#regexp-i-flag-insensitive">RegExp /i Flag (Insensitive)</a>
+<ul>
 <li><a href="#example-2">Example 2</a></li>
 </ul>
 </li>
-<li><a href="#regexp-m-flag-multiline">RegExp /m Flag (Multiline)</a><ul>
+<li><a href="#regexp-m-flag-multiline">RegExp /m Flag (Multiline)</a>
+<ul>
 <li><a href="#example-3">Example 3</a></li>
 </ul>
 </li>
-<li><a href="#regexp-y-flag-sticky">RegExp /y Flag (Sticky)</a><ul>
+<li><a href="#regexp-y-flag-sticky">RegExp /y Flag (Sticky)</a>
+<ul>
 <li><a href="#example-4">Example 4</a></li>
 </ul>
 </li>
-<li><a href="#regexp-u-flag-unicode">RegExp /u Flag (Unicode)</a><ul>
+<li><a href="#regexp-u-flag-unicode">RegExp /u Flag (Unicode)</a>
+<ul>
 <li><a href="#example-5">Example 5</a></li>
 </ul>
 </li>
@@ -115,7 +401,7 @@
 </ul>
 </li>
 </ul>
-<h2>RegExp Modifier Flags</h2>
+<h2 id="regexp-modifier-flags">RegExp Modifier Flags</h2>
 <p>Flags modify how a regular expression searches for patterns. The syntax is <code>/pattern/flags</code>:</p>
 <table>
 <thead>
@@ -124,7 +410,8 @@
 <th>Description</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td><code>/g</code></td>
 <td>Global - matches all occurrences</td>
 </tr>
@@ -148,181 +435,182 @@
 <td><code>/u</code></td>
 <td>Unicode - proper Unicode handling</td>
 </tr>
-</tbody></table>
-<h2>RegExp /g Flag (Global)</h2>
+</tbody>
+</table>
+<h2 id="regexp-g-flag-global">RegExp /g Flag (Global)</h2>
 <p>The <code>/g</code> flag searches for <strong>all</strong> occurrences, not just the first:</p>
-<pre><code class="language-html">&lt;!DOCTYPE html&gt;
-&lt;html&gt;
-&lt;body&gt;
+<pre class="hljs"><code><div><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-keyword">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
 
-&lt;h2&gt;JavaScript RegExp Flags&lt;/h2&gt;
-&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+<span class="hljs-tag">&lt;<span class="hljs-name">h2</span>&gt;</span>JavaScript RegExp Flags<span class="hljs-tag">&lt;/<span class="hljs-name">h2</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>From w3schools.com, Experiment by Teeratus_R<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
 
-&lt;h4&gt;RegExp /g Flag (Global)&lt;/h4&gt;
-&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+<span class="hljs-tag">&lt;<span class="hljs-name">h4</span>&gt;</span>RegExp /g Flag (Global)<span class="hljs-tag">&lt;/<span class="hljs-name">h4</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;demo&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
 
-&lt;script&gt;
-const text = &quot;apple banana apple cherry apple&quot;;
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="language-javascript">
+<span class="hljs-keyword">const</span> text = <span class="hljs-string">&quot;apple banana apple cherry apple&quot;</span>;
 
-// Without /g - only first match
-const first = text.match(/apple/);
+<span class="hljs-comment">// Without /g - only first match</span>
+<span class="hljs-keyword">const</span> first = text.<span class="hljs-title function_">match</span>(<span class="hljs-regexp">/apple/</span>);
 
-// With /g - all matches
-const all = text.match(/apple/g);
+<span class="hljs-comment">// With /g - all matches</span>
+<span class="hljs-keyword">const</span> all = text.<span class="hljs-title function_">match</span>(<span class="hljs-regexp">/apple/g</span>);
 
-document.getElementById(&quot;demo&quot;).innerHTML =
-  &quot;Text: &quot; + text + &quot;&lt;br&gt;&lt;br&gt;&quot; +
-  &quot;without /g: &quot; + first + &quot;&lt;br&gt;&quot; +
-  &quot;with /g: &quot; + all + &quot; (all occurrences)&quot;;
-&lt;/script&gt;
+<span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&quot;demo&quot;</span>).<span class="hljs-property">innerHTML</span> =
+  <span class="hljs-string">&quot;Text: &quot;</span> + text + <span class="hljs-string">&quot;&lt;br&gt;&lt;br&gt;&quot;</span> +
+  <span class="hljs-string">&quot;without /g: &quot;</span> + first + <span class="hljs-string">&quot;&lt;br&gt;&quot;</span> +
+  <span class="hljs-string">&quot;with /g: &quot;</span> + all + <span class="hljs-string">&quot; (all occurrences)&quot;</span>;
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
 
-&lt;/body&gt;
-&lt;/html&gt;
-</code></pre>
+<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span>
+</div></code></pre>
 <p><img src="images/p1.png" alt=""></p>
-<h3>Example 1</h3>
+<h3 id="example-1">Example 1</h3>
 <p><strong>Result</strong> <a href="ex1-global_flag/index.html">View Example</a></p>
-<h2>RegExp /i Flag (Insensitive)</h2>
+<h2 id="regexp-i-flag-insensitive">RegExp /i Flag (Insensitive)</h2>
 <p>The <code>/i</code> flag makes the search <strong>case insensitive</strong>:</p>
-<pre><code class="language-html">&lt;!DOCTYPE html&gt;
-&lt;html&gt;
-&lt;body&gt;
+<pre class="hljs"><code><div><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-keyword">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
 
-&lt;h2&gt;JavaScript RegExp Flags&lt;/h2&gt;
-&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+<span class="hljs-tag">&lt;<span class="hljs-name">h2</span>&gt;</span>JavaScript RegExp Flags<span class="hljs-tag">&lt;/<span class="hljs-name">h2</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>From w3schools.com, Experiment by Teeratus_R<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
 
-&lt;h4&gt;RegExp /i Flag (Insensitive)&lt;/h4&gt;
-&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+<span class="hljs-tag">&lt;<span class="hljs-name">h4</span>&gt;</span>RegExp /i Flag (Insensitive)<span class="hljs-tag">&lt;/<span class="hljs-name">h4</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;demo&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
 
-&lt;script&gt;
-const text = &quot;JavaScript is FUN!&quot;;
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="language-javascript">
+<span class="hljs-keyword">const</span> text = <span class="hljs-string">&quot;JavaScript is FUN!&quot;</span>;
 
-// Case sensitive
-const sensitive = text.match(/fun/);
+<span class="hljs-comment">// Case sensitive</span>
+<span class="hljs-keyword">const</span> sensitive = text.<span class="hljs-title function_">match</span>(<span class="hljs-regexp">/fun/</span>);
 
-// Case insensitive
-const insensitive = text.match(/fun/i);
+<span class="hljs-comment">// Case insensitive</span>
+<span class="hljs-keyword">const</span> insensitive = text.<span class="hljs-title function_">match</span>(<span class="hljs-regexp">/fun/i</span>);
 
-document.getElementById(&quot;demo&quot;).innerHTML =
-  &quot;Text: &quot; + text + &quot;&lt;br&gt;&lt;br&gt;&quot; +
-  &quot;match(/fun/): &quot; + sensitive + &quot; (no match)&lt;br&gt;&quot; +
-  &quot;match(/fun/i): &quot; + insensitive + &quot; (matched)&quot;;
-&lt;/script&gt;
+<span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&quot;demo&quot;</span>).<span class="hljs-property">innerHTML</span> =
+  <span class="hljs-string">&quot;Text: &quot;</span> + text + <span class="hljs-string">&quot;&lt;br&gt;&lt;br&gt;&quot;</span> +
+  <span class="hljs-string">&quot;match(/fun/): &quot;</span> + sensitive + <span class="hljs-string">&quot; (no match)&lt;br&gt;&quot;</span> +
+  <span class="hljs-string">&quot;match(/fun/i): &quot;</span> + insensitive + <span class="hljs-string">&quot; (matched)&quot;</span>;
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
 
-&lt;/body&gt;
-&lt;/html&gt;
-</code></pre>
+<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span>
+</div></code></pre>
 <p><img src="images/p2.png" alt=""></p>
-<h3>Example 2</h3>
+<h3 id="example-2">Example 2</h3>
 <p><strong>Result</strong> <a href="ex2-insensitive_flag/index.html">View Example</a></p>
-<h2>RegExp /m Flag (Multiline)</h2>
+<h2 id="regexp-m-flag-multiline">RegExp /m Flag (Multiline)</h2>
 <p>The <code>/m</code> flag makes <code>^</code> and <code>$</code> match the beginning/end of each line:</p>
-<pre><code class="language-html">&lt;!DOCTYPE html&gt;
-&lt;html&gt;
-&lt;body&gt;
+<pre class="hljs"><code><div><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-keyword">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
 
-&lt;h2&gt;JavaScript RegExp Flags&lt;/h2&gt;
-&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+<span class="hljs-tag">&lt;<span class="hljs-name">h2</span>&gt;</span>JavaScript RegExp Flags<span class="hljs-tag">&lt;/<span class="hljs-name">h2</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>From w3schools.com, Experiment by Teeratus_R<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
 
-&lt;h4&gt;RegExp /m Flag (Multiline)&lt;/h4&gt;
-&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+<span class="hljs-tag">&lt;<span class="hljs-name">h4</span>&gt;</span>RegExp /m Flag (Multiline)<span class="hljs-tag">&lt;/<span class="hljs-name">h4</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;demo&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
 
-&lt;script&gt;
-const text = &quot;line1\nline2\nline3&quot;;
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="language-javascript">
+<span class="hljs-keyword">const</span> text = <span class="hljs-string">&quot;line1\nline2\nline3&quot;</span>;
 
-// Without /m - ^ only matches start of string
-const withoutM = text.match(/^line/g);
+<span class="hljs-comment">// Without /m - ^ only matches start of string</span>
+<span class="hljs-keyword">const</span> withoutM = text.<span class="hljs-title function_">match</span>(<span class="hljs-regexp">/^line/g</span>);
 
-// With /m - ^ matches start of each line
-const withM = text.match(/^line/gm);
+<span class="hljs-comment">// With /m - ^ matches start of each line</span>
+<span class="hljs-keyword">const</span> withM = text.<span class="hljs-title function_">match</span>(<span class="hljs-regexp">/^line/gm</span>);
 
-document.getElementById(&quot;demo&quot;).innerHTML =
-  &quot;Text:&lt;br&gt;&quot; + text + &quot;&lt;br&gt;&lt;br&gt;&quot; +
-  &quot;match(/^line/g): &quot; + withoutM + &quot;&lt;br&gt;&quot; +
-  &quot;match(/^line/gm): &quot; + withM + &quot; (each line)&quot;;
-&lt;/script&gt;
+<span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&quot;demo&quot;</span>).<span class="hljs-property">innerHTML</span> =
+  <span class="hljs-string">&quot;Text:&lt;br&gt;&quot;</span> + text + <span class="hljs-string">&quot;&lt;br&gt;&lt;br&gt;&quot;</span> +
+  <span class="hljs-string">&quot;match(/^line/g): &quot;</span> + withoutM + <span class="hljs-string">&quot;&lt;br&gt;&quot;</span> +
+  <span class="hljs-string">&quot;match(/^line/gm): &quot;</span> + withM + <span class="hljs-string">&quot; (each line)&quot;</span>;
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
 
-&lt;/body&gt;
-&lt;/html&gt;
-</code></pre>
+<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span>
+</div></code></pre>
 <p><img src="images/p3.png" alt=""></p>
-<h3>Example 3</h3>
+<h3 id="example-3">Example 3</h3>
 <p><strong>Result</strong> <a href="ex3-multiline_flag/index.html">View Example</a></p>
-<h2>RegExp /y Flag (Sticky)</h2>
+<h2 id="regexp-y-flag-sticky">RegExp /y Flag (Sticky)</h2>
 <p>The <code>/y</code> flag makes the search <strong>sticky</strong> - it only matches starting at <code>lastIndex</code>:</p>
-<pre><code class="language-html">&lt;!DOCTYPE html&gt;
-&lt;html&gt;
-&lt;body&gt;
+<pre class="hljs"><code><div><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-keyword">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
 
-&lt;h2&gt;JavaScript RegExp Flags&lt;/h2&gt;
-&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+<span class="hljs-tag">&lt;<span class="hljs-name">h2</span>&gt;</span>JavaScript RegExp Flags<span class="hljs-tag">&lt;/<span class="hljs-name">h2</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>From w3schools.com, Experiment by Teeratus_R<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
 
-&lt;h4&gt;RegExp /y Flag (Sticky)&lt;/h4&gt;
-&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+<span class="hljs-tag">&lt;<span class="hljs-name">h4</span>&gt;</span>RegExp /y Flag (Sticky)<span class="hljs-tag">&lt;/<span class="hljs-name">h4</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;demo&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
 
-&lt;script&gt;
-const text = &quot;abcabc&quot;;
-const sticky = /abc/y;
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="language-javascript">
+<span class="hljs-keyword">const</span> text = <span class="hljs-string">&quot;abcabc&quot;</span>;
+<span class="hljs-keyword">const</span> sticky = <span class="hljs-regexp">/abc/y</span>;
 
-// First match at position 0
-const first = sticky.exec(text);
+<span class="hljs-comment">// First match at position 0</span>
+<span class="hljs-keyword">const</span> first = sticky.<span class="hljs-title function_">exec</span>(text);
 
-// After lastIndex = 3, matches &quot;abc&quot; again at position 3
-const second = sticky.exec(text);
+<span class="hljs-comment">// After lastIndex = 3, matches &quot;abc&quot; again at position 3</span>
+<span class="hljs-keyword">const</span> second = sticky.<span class="hljs-title function_">exec</span>(text);
 
-document.getElementById(&quot;demo&quot;).innerHTML =
-  &quot;Text: &quot; + text + &quot;&lt;br&gt;&lt;br&gt;&quot; +
-  &quot;sticky = /abc/y&lt;br&gt;&quot; +
-  &quot;First exec: &quot; + first[0] + &quot; at index &quot; + first.index + &quot;&lt;br&gt;&quot; +
-  &quot;lastIndex after: &quot; + sticky.lastIndex + &quot;&lt;br&gt;&quot; +
-  &quot;Second exec: &quot; + second[0] + &quot; at index &quot; + second.index;
-&lt;/script&gt;
+<span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&quot;demo&quot;</span>).<span class="hljs-property">innerHTML</span> =
+  <span class="hljs-string">&quot;Text: &quot;</span> + text + <span class="hljs-string">&quot;&lt;br&gt;&lt;br&gt;&quot;</span> +
+  <span class="hljs-string">&quot;sticky = /abc/y&lt;br&gt;&quot;</span> +
+  <span class="hljs-string">&quot;First exec: &quot;</span> + first[<span class="hljs-number">0</span>] + <span class="hljs-string">&quot; at index &quot;</span> + first.<span class="hljs-property">index</span> + <span class="hljs-string">&quot;&lt;br&gt;&quot;</span> +
+  <span class="hljs-string">&quot;lastIndex after: &quot;</span> + sticky.<span class="hljs-property">lastIndex</span> + <span class="hljs-string">&quot;&lt;br&gt;&quot;</span> +
+  <span class="hljs-string">&quot;Second exec: &quot;</span> + second[<span class="hljs-number">0</span>] + <span class="hljs-string">&quot; at index &quot;</span> + second.<span class="hljs-property">index</span>;
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
 
-&lt;/body&gt;
-&lt;/html&gt;
-</code></pre>
+<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span>
+</div></code></pre>
 <p><img src="images/p4.png" alt=""></p>
-<h3>Example 4</h3>
+<h3 id="example-4">Example 4</h3>
 <p><strong>Result</strong> <a href="ex4-sticky_flag/index.html">View Example</a></p>
-<h2>RegExp /u Flag (Unicode)</h2>
+<h2 id="regexp-u-flag-unicode">RegExp /u Flag (Unicode)</h2>
 <p>The <code>/u</code> flag enables proper Unicode handling:</p>
-<pre><code class="language-html">&lt;!DOCTYPE html&gt;
-&lt;html&gt;
-&lt;body&gt;
+<pre class="hljs"><code><div><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-keyword">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
 
-&lt;h2&gt;JavaScript RegExp Flags&lt;/h2&gt;
-&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+<span class="hljs-tag">&lt;<span class="hljs-name">h2</span>&gt;</span>JavaScript RegExp Flags<span class="hljs-tag">&lt;/<span class="hljs-name">h2</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>From w3schools.com, Experiment by Teeratus_R<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
 
-&lt;h4&gt;RegExp /u Flag (Unicode)&lt;/h4&gt;
-&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+<span class="hljs-tag">&lt;<span class="hljs-name">h4</span>&gt;</span>RegExp /u Flag (Unicode)<span class="hljs-tag">&lt;/<span class="hljs-name">h4</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;demo&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
 
-&lt;script&gt;
-const text = &quot;Café 100&quot;;
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="language-javascript">
+<span class="hljs-keyword">const</span> text = <span class="hljs-string">&quot;Café 100&quot;</span>;
 
-// \d finds ASCII digits only
-const asciiDigits = text.match(/\d/g);
+<span class="hljs-comment">// \d finds ASCII digits only</span>
+<span class="hljs-keyword">const</span> asciiDigits = text.<span class="hljs-title function_">match</span>(<span class="hljs-regexp">/\d/g</span>);
 
-document.getElementById(&quot;demo&quot;).innerHTML =
-  &quot;Text: &quot; + text + &quot;&lt;br&gt;&lt;br&gt;&quot; +
-  &quot;match(/\\d/g): &quot; + asciiDigits + &quot;&lt;br&gt;&lt;br&gt;&quot; +
-  &quot;&lt;b&gt;Other flag properties:&lt;/b&gt;&lt;br&gt;&quot; +
-  &quot;global: &quot; + /a/g.global + &quot;&lt;br&gt;&quot; +
-  &quot;ignoreCase: &quot; + /a/i.ignoreCase + &quot;&lt;br&gt;&quot; +
-  &quot;multiline: &quot; + /a/m.multiline + &quot;&lt;br&gt;&quot; +
-  &quot;sticky: &quot; + /a/y.sticky + &quot;&lt;br&gt;&quot; +
-  &quot;unicode: &quot; + /a/u.unicode;
-&lt;/script&gt;
+<span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&quot;demo&quot;</span>).<span class="hljs-property">innerHTML</span> =
+  <span class="hljs-string">&quot;Text: &quot;</span> + text + <span class="hljs-string">&quot;&lt;br&gt;&lt;br&gt;&quot;</span> +
+  <span class="hljs-string">&quot;match(/\\d/g): &quot;</span> + asciiDigits + <span class="hljs-string">&quot;&lt;br&gt;&lt;br&gt;&quot;</span> +
+  <span class="hljs-string">&quot;&lt;b&gt;Other flag properties:&lt;/b&gt;&lt;br&gt;&quot;</span> +
+  <span class="hljs-string">&quot;global: &quot;</span> + <span class="hljs-regexp">/a/g</span>.<span class="hljs-property">global</span> + <span class="hljs-string">&quot;&lt;br&gt;&quot;</span> +
+  <span class="hljs-string">&quot;ignoreCase: &quot;</span> + <span class="hljs-regexp">/a/i</span>.<span class="hljs-property">ignoreCase</span> + <span class="hljs-string">&quot;&lt;br&gt;&quot;</span> +
+  <span class="hljs-string">&quot;multiline: &quot;</span> + <span class="hljs-regexp">/a/m</span>.<span class="hljs-property">multiline</span> + <span class="hljs-string">&quot;&lt;br&gt;&quot;</span> +
+  <span class="hljs-string">&quot;sticky: &quot;</span> + <span class="hljs-regexp">/a/y</span>.<span class="hljs-property">sticky</span> + <span class="hljs-string">&quot;&lt;br&gt;&quot;</span> +
+  <span class="hljs-string">&quot;unicode: &quot;</span> + <span class="hljs-regexp">/a/u</span>.<span class="hljs-property">unicode</span>;
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
 
-&lt;/body&gt;
-&lt;/html&gt;
-</code></pre>
+<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span>
+</div></code></pre>
 <p><img src="images/p5.png" alt=""></p>
-<h3>Example 5</h3>
+<h3 id="example-5">Example 5</h3>
 <p><strong>Result</strong> <a href="ex5-unicode_flag/index.html">View Example</a></p>
-<h2>Document</h2>
+<h2 id="document">Document</h2>
 <p>Document in project</p>
 <p>You can <a href="js-regexp_flags.pdf">Download PDF</a> file.</p>
-<h2>Reference</h2>
+<h2 id="reference">Reference</h2>
 <ul>
 <li><a href="https://www.w3schools.com/js/js_regexp_flags.asp">W3Schools JavaScript RegExp Flags</a></li>
 </ul>

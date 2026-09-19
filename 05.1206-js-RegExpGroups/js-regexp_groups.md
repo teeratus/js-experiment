@@ -8,7 +8,7 @@ Table of Contents
     - [Example 1](#example-1)
   - [The Result Array](#the-result-array)
     - [Example 2](#example-2)
-  - [Named Capturing Groups (?<n>)](#named-capturing-groups-n)
+  - [Named Capturing Groups (?&lt;n&gt;)](#named-capturing-groups-n)
     - [Example 3](#example-3)
   - [Non-Capturing Groups (?:...)](#non-capturing-groups-)
     - [Example 4](#example-4)
@@ -108,7 +108,7 @@ document.getElementById("demo").innerHTML = text2;
 
 **Result** [View Example](ex2-result_array/index.html)
 
-## Named Capturing Groups (?<n>)
+## Named Capturing Groups (?&lt;n&gt;)
 
 Named groups use `(?<name>...)` syntax. You can access matches by name:
 
@@ -120,7 +120,7 @@ Named groups use `(?<name>...)` syntax. You can access matches by name:
 <h2>JavaScript RegExp Groups</h2>
 <p>From w3schools.com, Experiment by Teeratus_R</p>
 
-<h4>Named Capturing Groups (?<n>)</h4>
+<h4>Named Capturing Groups (?&lt;n&gt;)</h4>
 <p id="demo"></p>
 
 <script>

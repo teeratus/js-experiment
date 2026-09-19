@@ -1,112 +1,398 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>js-web_storage</title>
-  <style>
-    body {
-      box-sizing: border-box;
-      min-width: 200px;
-      max-width: 980px;
-      margin: 0 auto;
-      padding: 45px;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
-      font-size: 16px;
-      line-height: 1.5;
-      color: #24292e;
-      background-color: #ffffff;
-    }
-    h1, h2, h3, h4, h5, h6 {
-      margin-top: 24px;
-      margin-bottom: 16px;
-      font-weight: 600;
-      line-height: 1.25;
-      border-bottom: 1px solid #eaecef;
-      padding-bottom: .3em;
-    }
-    h1 { font-size: 2em; }
-    h2 { font-size: 1.5em; }
-    h3 { font-size: 1.25em; }
-    code {
-      padding: .2em .4em;
-      margin: 0;
-      font-size: 85%;
-      background-color: rgba(27,31,35,.05);
-      border-radius: 3px;
-      font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
-    }
-    pre {
-      padding: 16px;
-      overflow: auto;
-      font-size: 85%;
-      line-height: 1.45;
-      background-color: #f6f8fa;
-      border-radius: 3px;
-      word-wrap: normal;
-    }
-    pre code {
-      background-color: transparent;
-      padding: 0;
-    }
-    blockquote {
-      padding: 0 1em;
-      color: #6a737d;
-      border-left: .25em solid #dfe2e5;
-      margin: 0 0 16px 0;
-    }
-    table {
-      border-spacing: 0;
-      border-collapse: collapse;
-      margin-top: 0;
-      margin-bottom: 16px;
-      width: 100%;
-    }
-    table th, table td {
-      padding: 6px 13px;
-      border: 1px solid #dfe2e5;
-    }
-    table tr:nth-child(2n) {
-      background-color: #f6f8fa;
-    }
-    img {
-      max-width: 100%;
-      box-sizing: content-box;
-    }
-    @media print {
-      body {
-        max-width: 100%;
-        padding: 0;
-      }
-      pre, blockquote, table, tr, img {
-        page-break-inside: avoid;
-      }
-    }
-  </style>
+<title>js-web_storage.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> or <div class="page"></div> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
 </head>
 <body>
-<h1>JavaScript Web Storage API</h1>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="javascript-web-storage-api">JavaScript Web Storage API</h1>
 <p><a href="../">Back to JS page</a></p>
 <p>Table of Contents</p>
 <ul>
-<li><a href="#javascript-web-storage-api">JavaScript Web Storage API</a><ul>
-<li><a href="#the-localstorage-object">The localStorage Object</a><ul>
+<li><a href="#javascript-web-storage-api">JavaScript Web Storage API</a>
+<ul>
+<li><a href="#the-localstorage-object">The localStorage Object</a>
+<ul>
 <li><a href="#example-1">Example 1</a></li>
 </ul>
 </li>
-<li><a href="#the-setitem-and-getitem-methods">The setItem() and getItem() Methods</a><ul>
+<li><a href="#the-setitem-and-getitem-methods">The setItem() and getItem() Methods</a>
+<ul>
 <li><a href="#example-2">Example 2</a></li>
 </ul>
 </li>
-<li><a href="#the-sessionstorage-object">The sessionStorage Object</a><ul>
+<li><a href="#the-sessionstorage-object">The sessionStorage Object</a>
+<ul>
 <li><a href="#example-3">Example 3</a></li>
 </ul>
 </li>
-<li><a href="#storage-object-properties-and-methods">Storage Object Properties and Methods</a><ul>
+<li><a href="#storage-object-properties-and-methods">Storage Object Properties and Methods</a>
+<ul>
 <li><a href="#example-4">Example 4</a></li>
 </ul>
 </li>
-<li><a href="#practical-example---visitor-counter">Practical Example - Visitor Counter</a><ul>
+<li><a href="#practical-example---visitor-counter">Practical Example - Visitor Counter</a>
+<ul>
 <li><a href="#example-5">Example 5</a></li>
 </ul>
 </li>
@@ -115,123 +401,123 @@
 </ul>
 </li>
 </ul>
-<h2>The localStorage Object</h2>
+<h2 id="the-localstorage-object">The localStorage Object</h2>
 <p>The <code>localStorage</code> object stores data with no expiration date. The data is NOT deleted when the browser is closed, and will be available the next day, week, or year.</p>
-<pre><code class="language-html">&lt;!DOCTYPE html&gt;
-&lt;html&gt;
-&lt;body&gt;
+<pre class="hljs"><code><div><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-keyword">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
 
-&lt;h2&gt;JavaScript Web Storage API&lt;/h2&gt;
-&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+<span class="hljs-tag">&lt;<span class="hljs-name">h2</span>&gt;</span>JavaScript Web Storage API<span class="hljs-tag">&lt;/<span class="hljs-name">h2</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>From w3schools.com, Experiment by Teeratus_R<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
 
-&lt;h4&gt;The localStorage Object&lt;/h4&gt;
-&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+<span class="hljs-tag">&lt;<span class="hljs-name">h4</span>&gt;</span>The localStorage Object<span class="hljs-tag">&lt;/<span class="hljs-name">h4</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;demo&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
 
-&lt;script&gt;
-// Store data
-localStorage.setItem(&quot;name&quot;, &quot;John Doe&quot;);
-localStorage.setItem(&quot;age&quot;, &quot;30&quot;);
-localStorage.setItem(&quot;city&quot;, &quot;New York&quot;);
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="language-javascript">
+<span class="hljs-comment">// Store data</span>
+<span class="hljs-variable language_">localStorage</span>.<span class="hljs-title function_">setItem</span>(<span class="hljs-string">&quot;name&quot;</span>, <span class="hljs-string">&quot;John Doe&quot;</span>);
+<span class="hljs-variable language_">localStorage</span>.<span class="hljs-title function_">setItem</span>(<span class="hljs-string">&quot;age&quot;</span>, <span class="hljs-string">&quot;30&quot;</span>);
+<span class="hljs-variable language_">localStorage</span>.<span class="hljs-title function_">setItem</span>(<span class="hljs-string">&quot;city&quot;</span>, <span class="hljs-string">&quot;New York&quot;</span>);
 
-// Retrieve data
-document.getElementById(&quot;demo&quot;).innerHTML =
-  &quot;Stored in localStorage:&lt;br&gt;&lt;br&gt;&quot; +
-  &quot;name: &quot; + localStorage.getItem(&quot;name&quot;) + &quot;&lt;br&gt;&quot; +
-  &quot;age: &quot; + localStorage.getItem(&quot;age&quot;) + &quot;&lt;br&gt;&quot; +
-  &quot;city: &quot; + localStorage.getItem(&quot;city&quot;);
-&lt;/script&gt;
+<span class="hljs-comment">// Retrieve data</span>
+<span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&quot;demo&quot;</span>).<span class="hljs-property">innerHTML</span> =
+  <span class="hljs-string">&quot;Stored in localStorage:&lt;br&gt;&lt;br&gt;&quot;</span> +
+  <span class="hljs-string">&quot;name: &quot;</span> + <span class="hljs-variable language_">localStorage</span>.<span class="hljs-title function_">getItem</span>(<span class="hljs-string">&quot;name&quot;</span>) + <span class="hljs-string">&quot;&lt;br&gt;&quot;</span> +
+  <span class="hljs-string">&quot;age: &quot;</span> + <span class="hljs-variable language_">localStorage</span>.<span class="hljs-title function_">getItem</span>(<span class="hljs-string">&quot;age&quot;</span>) + <span class="hljs-string">&quot;&lt;br&gt;&quot;</span> +
+  <span class="hljs-string">&quot;city: &quot;</span> + <span class="hljs-variable language_">localStorage</span>.<span class="hljs-title function_">getItem</span>(<span class="hljs-string">&quot;city&quot;</span>);
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
 
-&lt;/body&gt;
-&lt;/html&gt;
-</code></pre>
+<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span>
+</div></code></pre>
 <p><img src="images/p1.png" alt=""></p>
-<h3>Example 1</h3>
+<h3 id="example-1">Example 1</h3>
 <p><strong>Result</strong> <a href="ex1-localstorage/index.html">View Example</a></p>
-<h2>The setItem() and getItem() Methods</h2>
+<h2 id="the-setitem-and-getitem-methods">The setItem() and getItem() Methods</h2>
 <p><code>setItem(key, value)</code> stores data. <code>getItem(key)</code> retrieves data. Values are stored as strings:</p>
-<pre><code class="language-html">&lt;!DOCTYPE html&gt;
-&lt;html&gt;
-&lt;body&gt;
+<pre class="hljs"><code><div><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-keyword">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
 
-&lt;h2&gt;JavaScript Web Storage API&lt;/h2&gt;
-&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+<span class="hljs-tag">&lt;<span class="hljs-name">h2</span>&gt;</span>JavaScript Web Storage API<span class="hljs-tag">&lt;/<span class="hljs-name">h2</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>From w3schools.com, Experiment by Teeratus_R<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
 
-&lt;h4&gt;The setItem() and getItem() Methods&lt;/h4&gt;
+<span class="hljs-tag">&lt;<span class="hljs-name">h4</span>&gt;</span>The setItem() and getItem() Methods<span class="hljs-tag">&lt;/<span class="hljs-name">h4</span>&gt;</span>
 
-&lt;input type=&quot;text&quot; id=&quot;keyInput&quot; placeholder=&quot;Key&quot; value=&quot;color&quot;&gt;
-&lt;input type=&quot;text&quot; id=&quot;valueInput&quot; placeholder=&quot;Value&quot; value=&quot;blue&quot;&gt;
-&lt;br&gt;&lt;br&gt;
-&lt;button onclick=&quot;saveItem()&quot;&gt;Save Item&lt;/button&gt;
-&lt;button onclick=&quot;loadItem()&quot;&gt;Load Item&lt;/button&gt;
-&lt;button onclick=&quot;removeItem()&quot;&gt;Remove Item&lt;/button&gt;
-&lt;p id=&quot;demo2&quot;&gt;&lt;/p&gt;
+<span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;text&quot;</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;keyInput&quot;</span> <span class="hljs-attr">placeholder</span>=<span class="hljs-string">&quot;Key&quot;</span> <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;color&quot;</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;text&quot;</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;valueInput&quot;</span> <span class="hljs-attr">placeholder</span>=<span class="hljs-string">&quot;Value&quot;</span> <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;blue&quot;</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">br</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">br</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onclick</span>=<span class="hljs-string">&quot;saveItem()&quot;</span>&gt;</span>Save Item<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onclick</span>=<span class="hljs-string">&quot;loadItem()&quot;</span>&gt;</span>Load Item<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onclick</span>=<span class="hljs-string">&quot;removeItem()&quot;</span>&gt;</span>Remove Item<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;demo2&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
 
-&lt;script&gt;
-function saveItem() {
-  const key = document.getElementById(&quot;keyInput&quot;).value;
-  const value = document.getElementById(&quot;valueInput&quot;).value;
-  localStorage.setItem(key, value);
-  document.getElementById(&quot;demo2&quot;).innerHTML =
-    &quot;Saved: &quot; + key + &quot; = &quot; + value;
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="language-javascript">
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">saveItem</span>(<span class="hljs-params"></span>) {
+  <span class="hljs-keyword">const</span> key = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&quot;keyInput&quot;</span>).<span class="hljs-property">value</span>;
+  <span class="hljs-keyword">const</span> value = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&quot;valueInput&quot;</span>).<span class="hljs-property">value</span>;
+  <span class="hljs-variable language_">localStorage</span>.<span class="hljs-title function_">setItem</span>(key, value);
+  <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&quot;demo2&quot;</span>).<span class="hljs-property">innerHTML</span> =
+    <span class="hljs-string">&quot;Saved: &quot;</span> + key + <span class="hljs-string">&quot; = &quot;</span> + value;
 }
 
-function loadItem() {
-  const key = document.getElementById(&quot;keyInput&quot;).value;
-  const value = localStorage.getItem(key);
-  if (value !== null) {
-    document.getElementById(&quot;demo2&quot;).innerHTML =
-      &quot;Loaded: &quot; + key + &quot; = &quot; + value;
-  } else {
-    document.getElementById(&quot;demo2&quot;).innerHTML =
-      &quot;Key &#39;&quot; + key + &quot;&#39; not found!&quot;;
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">loadItem</span>(<span class="hljs-params"></span>) {
+  <span class="hljs-keyword">const</span> key = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&quot;keyInput&quot;</span>).<span class="hljs-property">value</span>;
+  <span class="hljs-keyword">const</span> value = <span class="hljs-variable language_">localStorage</span>.<span class="hljs-title function_">getItem</span>(key);
+  <span class="hljs-keyword">if</span> (value !== <span class="hljs-literal">null</span>) {
+    <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&quot;demo2&quot;</span>).<span class="hljs-property">innerHTML</span> =
+      <span class="hljs-string">&quot;Loaded: &quot;</span> + key + <span class="hljs-string">&quot; = &quot;</span> + value;
+  } <span class="hljs-keyword">else</span> {
+    <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&quot;demo2&quot;</span>).<span class="hljs-property">innerHTML</span> =
+      <span class="hljs-string">&quot;Key &#x27;&quot;</span> + key + <span class="hljs-string">&quot;&#x27; not found!&quot;</span>;
   }
 }
 
-function removeItem() {
-  const key = document.getElementById(&quot;keyInput&quot;).value;
-  localStorage.removeItem(key);
-  document.getElementById(&quot;demo2&quot;).innerHTML =
-    &quot;Removed: &quot; + key;
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">removeItem</span>(<span class="hljs-params"></span>) {
+  <span class="hljs-keyword">const</span> key = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&quot;keyInput&quot;</span>).<span class="hljs-property">value</span>;
+  <span class="hljs-variable language_">localStorage</span>.<span class="hljs-title function_">removeItem</span>(key);
+  <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&quot;demo2&quot;</span>).<span class="hljs-property">innerHTML</span> =
+    <span class="hljs-string">&quot;Removed: &quot;</span> + key;
 }
-&lt;/script&gt;
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
 
-&lt;/body&gt;
-&lt;/html&gt;
-</code></pre>
+<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span>
+</div></code></pre>
 <p><img src="images/p2.png" alt=""></p>
-<h3>Example 2</h3>
+<h3 id="example-2">Example 2</h3>
 <p><strong>Result</strong> <a href="ex2-set_get_item/index.html">View Example</a></p>
-<h2>The sessionStorage Object</h2>
+<h2 id="the-sessionstorage-object">The sessionStorage Object</h2>
 <p>The <code>sessionStorage</code> object stores data for one session only. The data is deleted when the browser tab is closed:</p>
-<pre><code class="language-html">&lt;!DOCTYPE html&gt;
-&lt;html&gt;
-&lt;body&gt;
+<pre class="hljs"><code><div><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-keyword">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
 
-&lt;h2&gt;JavaScript Web Storage API&lt;/h2&gt;
-&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+<span class="hljs-tag">&lt;<span class="hljs-name">h2</span>&gt;</span>JavaScript Web Storage API<span class="hljs-tag">&lt;/<span class="hljs-name">h2</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>From w3schools.com, Experiment by Teeratus_R<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
 
-&lt;h4&gt;The sessionStorage Object&lt;/h4&gt;
-&lt;p id=&quot;demo3&quot;&gt;&lt;/p&gt;
+<span class="hljs-tag">&lt;<span class="hljs-name">h4</span>&gt;</span>The sessionStorage Object<span class="hljs-tag">&lt;/<span class="hljs-name">h4</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;demo3&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
 
-&lt;script&gt;
-// Store session data
-sessionStorage.setItem(&quot;sessionId&quot;, &quot;abc123&quot;);
-sessionStorage.setItem(&quot;startTime&quot;, new Date().toLocaleTimeString());
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="language-javascript">
+<span class="hljs-comment">// Store session data</span>
+<span class="hljs-variable language_">sessionStorage</span>.<span class="hljs-title function_">setItem</span>(<span class="hljs-string">&quot;sessionId&quot;</span>, <span class="hljs-string">&quot;abc123&quot;</span>);
+<span class="hljs-variable language_">sessionStorage</span>.<span class="hljs-title function_">setItem</span>(<span class="hljs-string">&quot;startTime&quot;</span>, <span class="hljs-keyword">new</span> <span class="hljs-title class_">Date</span>().<span class="hljs-title function_">toLocaleTimeString</span>());
 
-// Retrieve session data
-document.getElementById(&quot;demo3&quot;).innerHTML =
-  &quot;sessionStorage data (will be deleted when tab closes):&lt;br&gt;&lt;br&gt;&quot; +
-  &quot;sessionId: &quot; + sessionStorage.getItem(&quot;sessionId&quot;) + &quot;&lt;br&gt;&quot; +
-  &quot;startTime: &quot; + sessionStorage.getItem(&quot;startTime&quot;);
-&lt;/script&gt;
+<span class="hljs-comment">// Retrieve session data</span>
+<span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&quot;demo3&quot;</span>).<span class="hljs-property">innerHTML</span> =
+  <span class="hljs-string">&quot;sessionStorage data (will be deleted when tab closes):&lt;br&gt;&lt;br&gt;&quot;</span> +
+  <span class="hljs-string">&quot;sessionId: &quot;</span> + <span class="hljs-variable language_">sessionStorage</span>.<span class="hljs-title function_">getItem</span>(<span class="hljs-string">&quot;sessionId&quot;</span>) + <span class="hljs-string">&quot;&lt;br&gt;&quot;</span> +
+  <span class="hljs-string">&quot;startTime: &quot;</span> + <span class="hljs-variable language_">sessionStorage</span>.<span class="hljs-title function_">getItem</span>(<span class="hljs-string">&quot;startTime&quot;</span>);
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
 
-&lt;/body&gt;
-&lt;/html&gt;
-</code></pre>
+<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span>
+</div></code></pre>
 <p><img src="images/p3.png" alt=""></p>
-<h3>Example 3</h3>
+<h3 id="example-3">Example 3</h3>
 <p><strong>Result</strong> <a href="ex3-sessionstorage/index.html">View Example</a></p>
-<h2>Storage Object Properties and Methods</h2>
+<h2 id="storage-object-properties-and-methods">Storage Object Properties and Methods</h2>
 <p>The Storage object provides these properties and methods:</p>
 <table>
 <thead>
@@ -240,7 +526,8 @@ document.getElementById(&quot;demo3&quot;).innerHTML =
 <th>Description</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td><code>setItem(key, value)</code></td>
 <td>Stores a key/value pair</td>
 </tr>
@@ -264,117 +551,118 @@ document.getElementById(&quot;demo3&quot;).innerHTML =
 <td><code>length</code></td>
 <td>Returns the number of stored items</td>
 </tr>
-</tbody></table>
-<pre><code class="language-html">&lt;!DOCTYPE html&gt;
-&lt;html&gt;
-&lt;body&gt;
+</tbody>
+</table>
+<pre class="hljs"><code><div><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-keyword">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
 
-&lt;h2&gt;JavaScript Web Storage API&lt;/h2&gt;
-&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+<span class="hljs-tag">&lt;<span class="hljs-name">h2</span>&gt;</span>JavaScript Web Storage API<span class="hljs-tag">&lt;/<span class="hljs-name">h2</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>From w3schools.com, Experiment by Teeratus_R<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
 
-&lt;h4&gt;Storage Object Properties and Methods&lt;/h4&gt;
-&lt;p id=&quot;demo4&quot;&gt;&lt;/p&gt;
+<span class="hljs-tag">&lt;<span class="hljs-name">h4</span>&gt;</span>Storage Object Properties and Methods<span class="hljs-tag">&lt;/<span class="hljs-name">h4</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;demo4&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
 
-&lt;button onclick=&quot;showAll()&quot;&gt;Show All Items&lt;/button&gt;
-&lt;button onclick=&quot;clearAll()&quot;&gt;Clear All&lt;/button&gt;
+<span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onclick</span>=<span class="hljs-string">&quot;showAll()&quot;</span>&gt;</span>Show All Items<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onclick</span>=<span class="hljs-string">&quot;clearAll()&quot;</span>&gt;</span>Clear All<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
 
-&lt;script&gt;
-function showAll() {
-  let text = &quot;Number of items: &quot; + localStorage.length + &quot;&lt;br&gt;&lt;br&gt;&quot;;
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="language-javascript">
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">showAll</span>(<span class="hljs-params"></span>) {
+  <span class="hljs-keyword">let</span> text = <span class="hljs-string">&quot;Number of items: &quot;</span> + <span class="hljs-variable language_">localStorage</span>.<span class="hljs-property">length</span> + <span class="hljs-string">&quot;&lt;br&gt;&lt;br&gt;&quot;</span>;
   
-  for (let i = 0; i &lt; localStorage.length; i++) {
-    const key = localStorage.key(i);
-    const value = localStorage.getItem(key);
-    text += &quot;[&quot; + i + &quot;] &quot; + key + &quot;: &quot; + value + &quot;&lt;br&gt;&quot;;
+  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-variable language_">localStorage</span>.<span class="hljs-property">length</span>; i++) {
+    <span class="hljs-keyword">const</span> key = <span class="hljs-variable language_">localStorage</span>.<span class="hljs-title function_">key</span>(i);
+    <span class="hljs-keyword">const</span> value = <span class="hljs-variable language_">localStorage</span>.<span class="hljs-title function_">getItem</span>(key);
+    text += <span class="hljs-string">&quot;[&quot;</span> + i + <span class="hljs-string">&quot;] &quot;</span> + key + <span class="hljs-string">&quot;: &quot;</span> + value + <span class="hljs-string">&quot;&lt;br&gt;&quot;</span>;
   }
   
-  if (localStorage.length === 0) {
-    text += &quot;(empty)&quot;;
+  <span class="hljs-keyword">if</span> (<span class="hljs-variable language_">localStorage</span>.<span class="hljs-property">length</span> === <span class="hljs-number">0</span>) {
+    text += <span class="hljs-string">&quot;(empty)&quot;</span>;
   }
   
-  document.getElementById(&quot;demo4&quot;).innerHTML = text;
+  <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&quot;demo4&quot;</span>).<span class="hljs-property">innerHTML</span> = text;
 }
 
-function clearAll() {
-  localStorage.clear();
-  document.getElementById(&quot;demo4&quot;).innerHTML = &quot;All items cleared! (&quot; + localStorage.length + &quot; items)&quot;;
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">clearAll</span>(<span class="hljs-params"></span>) {
+  <span class="hljs-variable language_">localStorage</span>.<span class="hljs-title function_">clear</span>();
+  <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&quot;demo4&quot;</span>).<span class="hljs-property">innerHTML</span> = <span class="hljs-string">&quot;All items cleared! (&quot;</span> + <span class="hljs-variable language_">localStorage</span>.<span class="hljs-property">length</span> + <span class="hljs-string">&quot; items)&quot;</span>;
 }
 
-// Add some demo items if empty
-if (localStorage.length === 0) {
-  localStorage.setItem(&quot;demo1&quot;, &quot;value1&quot;);
-  localStorage.setItem(&quot;demo2&quot;, &quot;value2&quot;);
-  localStorage.setItem(&quot;demo3&quot;, &quot;value3&quot;);
+<span class="hljs-comment">// Add some demo items if empty</span>
+<span class="hljs-keyword">if</span> (<span class="hljs-variable language_">localStorage</span>.<span class="hljs-property">length</span> === <span class="hljs-number">0</span>) {
+  <span class="hljs-variable language_">localStorage</span>.<span class="hljs-title function_">setItem</span>(<span class="hljs-string">&quot;demo1&quot;</span>, <span class="hljs-string">&quot;value1&quot;</span>);
+  <span class="hljs-variable language_">localStorage</span>.<span class="hljs-title function_">setItem</span>(<span class="hljs-string">&quot;demo2&quot;</span>, <span class="hljs-string">&quot;value2&quot;</span>);
+  <span class="hljs-variable language_">localStorage</span>.<span class="hljs-title function_">setItem</span>(<span class="hljs-string">&quot;demo3&quot;</span>, <span class="hljs-string">&quot;value3&quot;</span>);
 }
-&lt;/script&gt;
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
 
-&lt;/body&gt;
-&lt;/html&gt;
-</code></pre>
+<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span>
+</div></code></pre>
 <p><img src="images/p4.png" alt=""></p>
-<h3>Example 4</h3>
+<h3 id="example-4">Example 4</h3>
 <p><strong>Result</strong> <a href="ex4-storage_properties/index.html">View Example</a></p>
-<h2>Practical Example - Visitor Counter</h2>
+<h2 id="practical-example---visitor-counter">Practical Example - Visitor Counter</h2>
 <p>A practical example using localStorage to count and remember visitors:</p>
-<pre><code class="language-html">&lt;!DOCTYPE html&gt;
-&lt;html&gt;
-&lt;body&gt;
+<pre class="hljs"><code><div><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-keyword">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
 
-&lt;h2&gt;JavaScript Web Storage API&lt;/h2&gt;
-&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+<span class="hljs-tag">&lt;<span class="hljs-name">h2</span>&gt;</span>JavaScript Web Storage API<span class="hljs-tag">&lt;/<span class="hljs-name">h2</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>From w3schools.com, Experiment by Teeratus_R<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
 
-&lt;h4&gt;Practical Example - Visitor Counter&lt;/h4&gt;
-&lt;p id=&quot;counter&quot;&gt;&lt;/p&gt;
-&lt;p id=&quot;firstVisit&quot;&gt;&lt;/p&gt;
-&lt;p id=&quot;lastVisit&quot;&gt;&lt;/p&gt;
+<span class="hljs-tag">&lt;<span class="hljs-name">h4</span>&gt;</span>Practical Example - Visitor Counter<span class="hljs-tag">&lt;/<span class="hljs-name">h4</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;counter&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;firstVisit&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;lastVisit&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
 
-&lt;button onclick=&quot;resetCounter()&quot;&gt;Reset Counter&lt;/button&gt;
+<span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onclick</span>=<span class="hljs-string">&quot;resetCounter()&quot;</span>&gt;</span>Reset Counter<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
 
-&lt;script&gt;
-function updateCounter() {
-  let count = localStorage.getItem(&quot;visitCount&quot;);
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="language-javascript">
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">updateCounter</span>(<span class="hljs-params"></span>) {
+  <span class="hljs-keyword">let</span> count = <span class="hljs-variable language_">localStorage</span>.<span class="hljs-title function_">getItem</span>(<span class="hljs-string">&quot;visitCount&quot;</span>);
   
-  if (count === null) {
-    count = 0;
-    localStorage.setItem(&quot;firstVisit&quot;, new Date().toLocaleString());
-  } else {
-    count = parseInt(count);
+  <span class="hljs-keyword">if</span> (count === <span class="hljs-literal">null</span>) {
+    count = <span class="hljs-number">0</span>;
+    <span class="hljs-variable language_">localStorage</span>.<span class="hljs-title function_">setItem</span>(<span class="hljs-string">&quot;firstVisit&quot;</span>, <span class="hljs-keyword">new</span> <span class="hljs-title class_">Date</span>().<span class="hljs-title function_">toLocaleString</span>());
+  } <span class="hljs-keyword">else</span> {
+    count = <span class="hljs-built_in">parseInt</span>(count);
   }
   
   count++;
-  localStorage.setItem(&quot;visitCount&quot;, count);
-  localStorage.setItem(&quot;lastVisit&quot;, new Date().toLocaleString());
+  <span class="hljs-variable language_">localStorage</span>.<span class="hljs-title function_">setItem</span>(<span class="hljs-string">&quot;visitCount&quot;</span>, count);
+  <span class="hljs-variable language_">localStorage</span>.<span class="hljs-title function_">setItem</span>(<span class="hljs-string">&quot;lastVisit&quot;</span>, <span class="hljs-keyword">new</span> <span class="hljs-title class_">Date</span>().<span class="hljs-title function_">toLocaleString</span>());
   
-  document.getElementById(&quot;counter&quot;).innerHTML = 
-    &quot;You have visited this page &quot; + count + &quot; time(s).&quot;;
+  <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&quot;counter&quot;</span>).<span class="hljs-property">innerHTML</span> = 
+    <span class="hljs-string">&quot;You have visited this page &quot;</span> + count + <span class="hljs-string">&quot; time(s).&quot;</span>;
   
-  document.getElementById(&quot;firstVisit&quot;).innerHTML = 
-    &quot;First visit: &quot; + localStorage.getItem(&quot;firstVisit&quot;);
+  <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&quot;firstVisit&quot;</span>).<span class="hljs-property">innerHTML</span> = 
+    <span class="hljs-string">&quot;First visit: &quot;</span> + <span class="hljs-variable language_">localStorage</span>.<span class="hljs-title function_">getItem</span>(<span class="hljs-string">&quot;firstVisit&quot;</span>);
     
-  document.getElementById(&quot;lastVisit&quot;).innerHTML = 
-    &quot;Last visit: &quot; + localStorage.getItem(&quot;lastVisit&quot;);
+  <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&quot;lastVisit&quot;</span>).<span class="hljs-property">innerHTML</span> = 
+    <span class="hljs-string">&quot;Last visit: &quot;</span> + <span class="hljs-variable language_">localStorage</span>.<span class="hljs-title function_">getItem</span>(<span class="hljs-string">&quot;lastVisit&quot;</span>);
 }
 
-function resetCounter() {
-  localStorage.removeItem(&quot;visitCount&quot;);
-  localStorage.removeItem(&quot;firstVisit&quot;);
-  localStorage.removeItem(&quot;lastVisit&quot;);
-  updateCounter();
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">resetCounter</span>(<span class="hljs-params"></span>) {
+  <span class="hljs-variable language_">localStorage</span>.<span class="hljs-title function_">removeItem</span>(<span class="hljs-string">&quot;visitCount&quot;</span>);
+  <span class="hljs-variable language_">localStorage</span>.<span class="hljs-title function_">removeItem</span>(<span class="hljs-string">&quot;firstVisit&quot;</span>);
+  <span class="hljs-variable language_">localStorage</span>.<span class="hljs-title function_">removeItem</span>(<span class="hljs-string">&quot;lastVisit&quot;</span>);
+  <span class="hljs-title function_">updateCounter</span>();
 }
 
-updateCounter();
-&lt;/script&gt;
+<span class="hljs-title function_">updateCounter</span>();
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
 
-&lt;/body&gt;
-&lt;/html&gt;
-</code></pre>
+<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span>
+</div></code></pre>
 <p><img src="images/p5.png" alt=""></p>
-<h3>Example 5</h3>
+<h3 id="example-5">Example 5</h3>
 <p><strong>Result</strong> <a href="ex5-visitor_counter/index.html">View Example</a></p>
-<h2>Document</h2>
+<h2 id="document">Document</h2>
 <p>Document in project</p>
 <p>You can <a href="js-web_storage.pdf">Download PDF</a> file.</p>
-<h2>Reference</h2>
+<h2 id="reference">Reference</h2>
 <ul>
 <li><a href="https://www.w3schools.com/js/js_api_web_storage.asp">W3Schools JavaScript Web Storage API</a></li>
 </ul>

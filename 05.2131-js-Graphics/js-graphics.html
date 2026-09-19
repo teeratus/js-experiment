@@ -1,108 +1,393 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>js-graphics</title>
-  <style>
-    body {
-      box-sizing: border-box;
-      min-width: 200px;
-      max-width: 980px;
-      margin: 0 auto;
-      padding: 45px;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
-      font-size: 16px;
-      line-height: 1.5;
-      color: #24292e;
-      background-color: #ffffff;
-    }
-    h1, h2, h3, h4, h5, h6 {
-      margin-top: 24px;
-      margin-bottom: 16px;
-      font-weight: 600;
-      line-height: 1.25;
-      border-bottom: 1px solid #eaecef;
-      padding-bottom: .3em;
-    }
-    h1 { font-size: 2em; }
-    h2 { font-size: 1.5em; }
-    h3 { font-size: 1.25em; }
-    code {
-      padding: .2em .4em;
-      margin: 0;
-      font-size: 85%;
-      background-color: rgba(27,31,35,.05);
-      border-radius: 3px;
-      font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
-    }
-    pre {
-      padding: 16px;
-      overflow: auto;
-      font-size: 85%;
-      line-height: 1.45;
-      background-color: #f6f8fa;
-      border-radius: 3px;
-      word-wrap: normal;
-    }
-    pre code {
-      background-color: transparent;
-      padding: 0;
-    }
-    blockquote {
-      padding: 0 1em;
-      color: #6a737d;
-      border-left: .25em solid #dfe2e5;
-      margin: 0 0 16px 0;
-    }
-    table {
-      border-spacing: 0;
-      border-collapse: collapse;
-      margin-top: 0;
-      margin-bottom: 16px;
-      width: 100%;
-    }
-    table th, table td {
-      padding: 6px 13px;
-      border: 1px solid #dfe2e5;
-    }
-    table tr:nth-child(2n) {
-      background-color: #f6f8fa;
-    }
-    img {
-      max-width: 100%;
-      box-sizing: content-box;
-    }
-    @media print {
-      body {
-        max-width: 100%;
-        padding: 0;
-      }
-      pre, blockquote, table, tr, img {
-        page-break-inside: avoid;
-      }
-    }
-  </style>
+<title>js-graphics.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> or <div class="page"></div> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
 </head>
 <body>
-<h1>JavaScript Graphics</h1>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="javascript-graphics">JavaScript Graphics</h1>
 <p><a href="../">Back to JS page</a></p>
 <p>Table of Contents</p>
 <ul>
-<li><a href="#javascript-graphics">JavaScript Graphics</a><ul>
-<li><a href="#graphic-libraries">Graphic Libraries</a><ul>
+<li><a href="#javascript-graphics">JavaScript Graphics</a>
+<ul>
+<li><a href="#graphic-libraries">Graphic Libraries</a>
+<ul>
 <li><a href="#example-1">Example 1</a></li>
 </ul>
 </li>
-<li><a href="#plotlyjs">Plotly.js</a><ul>
+<li><a href="#plotlyjs">Plotly.js</a>
+<ul>
 <li><a href="#example-2">Example 2</a></li>
 </ul>
 </li>
-<li><a href="#chartjs">Chart.js</a><ul>
+<li><a href="#chartjs">Chart.js</a>
+<ul>
 <li><a href="#example-3">Example 3</a></li>
 </ul>
 </li>
-<li><a href="#google-chart">Google Chart</a><ul>
+<li><a href="#google-chart">Google Chart</a>
+<ul>
 <li><a href="#example-4">Example 4</a></li>
 </ul>
 </li>
@@ -111,7 +396,7 @@
 </ul>
 </li>
 </ul>
-<h2>Graphic Libraries</h2>
+<h2 id="graphic-libraries">Graphic Libraries</h2>
 <p>There are many JavaScript graphic libraries available for creating charts, graphs, and visualizations on web pages:</p>
 <table>
 <thead>
@@ -121,7 +406,8 @@
 <th>Type</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td><strong>Plotly.js</strong></td>
 <td>High-level charting library (scatter, bar, pie, 3D charts)</td>
 <td>Open source</td>
@@ -133,7 +419,7 @@
 </tr>
 <tr>
 <td><strong>Google Chart</strong></td>
-<td>Google&#39;s charting library (wide variety of chart types)</td>
+<td>Google's charting library (wide variety of chart types)</td>
 <td>Free</td>
 </tr>
 <tr>
@@ -151,190 +437,191 @@
 <td>3D graphics and animations</td>
 <td>Open source</td>
 </tr>
-</tbody></table>
-<pre><code class="language-html">&lt;!DOCTYPE html&gt;
-&lt;html&gt;
-&lt;body&gt;
+</tbody>
+</table>
+<pre class="hljs"><code><div><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-keyword">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
 
-&lt;h2&gt;JavaScript Graphics&lt;/h2&gt;
-&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+<span class="hljs-tag">&lt;<span class="hljs-name">h2</span>&gt;</span>JavaScript Graphics<span class="hljs-tag">&lt;/<span class="hljs-name">h2</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>From w3schools.com, Experiment by Teeratus_R<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
 
-&lt;h4&gt;Graphic Libraries&lt;/h4&gt;
-&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+<span class="hljs-tag">&lt;<span class="hljs-name">h4</span>&gt;</span>Graphic Libraries<span class="hljs-tag">&lt;/<span class="hljs-name">h4</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;demo&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
 
-&lt;script&gt;
-let text = &quot;JavaScript Graphics Libraries:&lt;br&gt;&lt;br&gt;&quot;;
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="language-javascript">
+<span class="hljs-keyword">let</span> text = <span class="hljs-string">&quot;JavaScript Graphics Libraries:&lt;br&gt;&lt;br&gt;&quot;</span>;
 
-text += &quot;1. &lt;b&gt;Plotly.js&lt;/b&gt; - Interactive charts (scatter, bar, 3D)&lt;br&gt;&quot;;
-text += &quot;2. &lt;b&gt;Chart.js&lt;/b&gt; - Simple, responsive canvas charts&lt;br&gt;&quot;;
-text += &quot;3. &lt;b&gt;Google Chart&lt;/b&gt; - Google&#39;s charting service&lt;br&gt;&quot;;
-text += &quot;4. &lt;b&gt;D3.js&lt;/b&gt; - Data-driven document manipulation&lt;br&gt;&quot;;
-text += &quot;5. &lt;b&gt;Three.js&lt;/b&gt; - 3D graphics in the browser&lt;br&gt;&quot;;
-text += &quot;6. &lt;b&gt;Canvas API&lt;/b&gt; - Built-in 2D drawing&lt;br&gt;&quot;;
-text += &quot;7. &lt;b&gt;SVG&lt;/b&gt; - Scalable Vector Graphics&lt;br&gt;&lt;br&gt;&quot;;
+text += <span class="hljs-string">&quot;1. &lt;b&gt;Plotly.js&lt;/b&gt; - Interactive charts (scatter, bar, 3D)&lt;br&gt;&quot;</span>;
+text += <span class="hljs-string">&quot;2. &lt;b&gt;Chart.js&lt;/b&gt; - Simple, responsive canvas charts&lt;br&gt;&quot;</span>;
+text += <span class="hljs-string">&quot;3. &lt;b&gt;Google Chart&lt;/b&gt; - Google&#x27;s charting service&lt;br&gt;&quot;</span>;
+text += <span class="hljs-string">&quot;4. &lt;b&gt;D3.js&lt;/b&gt; - Data-driven document manipulation&lt;br&gt;&quot;</span>;
+text += <span class="hljs-string">&quot;5. &lt;b&gt;Three.js&lt;/b&gt; - 3D graphics in the browser&lt;br&gt;&quot;</span>;
+text += <span class="hljs-string">&quot;6. &lt;b&gt;Canvas API&lt;/b&gt; - Built-in 2D drawing&lt;br&gt;&quot;</span>;
+text += <span class="hljs-string">&quot;7. &lt;b&gt;SVG&lt;/b&gt; - Scalable Vector Graphics&lt;br&gt;&lt;br&gt;&quot;</span>;
 
-text += &quot;To use a library, include its CDN link:&quot;;
+text += <span class="hljs-string">&quot;To use a library, include its CDN link:&quot;</span>;
 
-document.getElementById(&quot;demo&quot;).innerHTML = text;
-&lt;/script&gt;
+<span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&quot;demo&quot;</span>).<span class="hljs-property">innerHTML</span> = text;
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
 
-&lt;/body&gt;
-&lt;/html&gt;
-</code></pre>
+<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span>
+</div></code></pre>
 <p><img src="images/p1.png" alt=""></p>
-<h3>Example 1</h3>
+<h3 id="example-1">Example 1</h3>
 <p><strong>Result</strong> <a href="ex1-graphic_libraries/index.html">View Example</a></p>
-<h2>Plotly.js</h2>
+<h2 id="plotlyjs">Plotly.js</h2>
 <p>Plotly.js is a high-level, declarative charting library. It supports over 40 chart types including scatter plots, bar charts, pie charts, and 3D charts:</p>
-<pre><code class="language-html">&lt;!DOCTYPE html&gt;
-&lt;html&gt;
-&lt;body&gt;
+<pre class="hljs"><code><div><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-keyword">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
 
-&lt;h2&gt;JavaScript Graphics&lt;/h2&gt;
-&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+<span class="hljs-tag">&lt;<span class="hljs-name">h2</span>&gt;</span>JavaScript Graphics<span class="hljs-tag">&lt;/<span class="hljs-name">h2</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>From w3schools.com, Experiment by Teeratus_R<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
 
-&lt;h4&gt;Plotly.js&lt;/h4&gt;
+<span class="hljs-tag">&lt;<span class="hljs-name">h4</span>&gt;</span>Plotly.js<span class="hljs-tag">&lt;/<span class="hljs-name">h4</span>&gt;</span>
 
-&lt;div id=&quot;plotlyChart&quot;&gt;&lt;/div&gt;
-&lt;p id=&quot;demo2&quot;&gt;&lt;/p&gt;
+<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;plotlyChart&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;demo2&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
 
-&lt;!-- Plotly.js CDN --&gt;
-&lt;script src=&quot;https://cdn.plot.ly/plotly-2.27.0.min.js&quot;&gt;&lt;/script&gt;
+<span class="hljs-comment">&lt;!-- Plotly.js CDN --&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;https://cdn.plot.ly/plotly-2.27.0.min.js&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
 
-&lt;script&gt;
-// Sample data
-const xValues = [1, 2, 3, 4, 5, 6, 7];
-const yValues = [10, 15, 13, 17, 14, 20, 18];
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="language-javascript">
+<span class="hljs-comment">// Sample data</span>
+<span class="hljs-keyword">const</span> xValues = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span>, <span class="hljs-number">7</span>];
+<span class="hljs-keyword">const</span> yValues = [<span class="hljs-number">10</span>, <span class="hljs-number">15</span>, <span class="hljs-number">13</span>, <span class="hljs-number">17</span>, <span class="hljs-number">14</span>, <span class="hljs-number">20</span>, <span class="hljs-number">18</span>];
 
-// Create a bar chart
-const data = [{
-  x: xValues,
-  y: yValues,
-  type: &quot;bar&quot;,
-  marker: {
-    color: &quot;#4CAF50&quot;
+<span class="hljs-comment">// Create a bar chart</span>
+<span class="hljs-keyword">const</span> data = [{
+  <span class="hljs-attr">x</span>: xValues,
+  <span class="hljs-attr">y</span>: yValues,
+  <span class="hljs-attr">type</span>: <span class="hljs-string">&quot;bar&quot;</span>,
+  <span class="hljs-attr">marker</span>: {
+    <span class="hljs-attr">color</span>: <span class="hljs-string">&quot;#4CAF50&quot;</span>
   }
 }];
 
-const layout = {
-  title: &quot;Weekly Sales (Plotly.js)&quot;,
-  xaxis: {title: &quot;Day&quot;},
-  yaxis: {title: &quot;Sales&quot;}
+<span class="hljs-keyword">const</span> layout = {
+  <span class="hljs-attr">title</span>: <span class="hljs-string">&quot;Weekly Sales (Plotly.js)&quot;</span>,
+  <span class="hljs-attr">xaxis</span>: {<span class="hljs-attr">title</span>: <span class="hljs-string">&quot;Day&quot;</span>},
+  <span class="hljs-attr">yaxis</span>: {<span class="hljs-attr">title</span>: <span class="hljs-string">&quot;Sales&quot;</span>}
 };
 
-Plotly.newPlot(&quot;plotlyChart&quot;, data, layout);
-document.getElementById(&quot;demo2&quot;).innerHTML = &quot;Plotly.js bar chart created!&quot;;
-&lt;/script&gt;
+<span class="hljs-title class_">Plotly</span>.<span class="hljs-title function_">newPlot</span>(<span class="hljs-string">&quot;plotlyChart&quot;</span>, data, layout);
+<span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&quot;demo2&quot;</span>).<span class="hljs-property">innerHTML</span> = <span class="hljs-string">&quot;Plotly.js bar chart created!&quot;</span>;
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
 
-&lt;/body&gt;
-&lt;/html&gt;
-</code></pre>
+<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span>
+</div></code></pre>
 <p><img src="images/p2.png" alt=""></p>
-<h3>Example 2</h3>
+<h3 id="example-2">Example 2</h3>
 <p><strong>Result</strong> <a href="ex2-plotly/index.html">View Example</a></p>
-<h2>Chart.js</h2>
+<h2 id="chartjs">Chart.js</h2>
 <p>Chart.js is a simple yet flexible JavaScript charting library for designers and developers. It creates responsive, canvas-based charts:</p>
-<pre><code class="language-html">&lt;!DOCTYPE html&gt;
-&lt;html&gt;
-&lt;body&gt;
+<pre class="hljs"><code><div><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-keyword">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
 
-&lt;h2&gt;JavaScript Graphics&lt;/h2&gt;
-&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+<span class="hljs-tag">&lt;<span class="hljs-name">h2</span>&gt;</span>JavaScript Graphics<span class="hljs-tag">&lt;/<span class="hljs-name">h2</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>From w3schools.com, Experiment by Teeratus_R<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
 
-&lt;h4&gt;Chart.js&lt;/h4&gt;
+<span class="hljs-tag">&lt;<span class="hljs-name">h4</span>&gt;</span>Chart.js<span class="hljs-tag">&lt;/<span class="hljs-name">h4</span>&gt;</span>
 
-&lt;canvas id=&quot;chartjsChart&quot; style=&quot;width:100%;max-width:600px;&quot;&gt;&lt;/canvas&gt;
-&lt;p id=&quot;demo3&quot;&gt;&lt;/p&gt;
+<span class="hljs-tag">&lt;<span class="hljs-name">canvas</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;chartjsChart&quot;</span> <span class="hljs-attr">style</span>=<span class="hljs-string">&quot;width:100%;max-width:600px;&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">canvas</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;demo3&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
 
-&lt;!-- Chart.js CDN --&gt;
-&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js&quot;&gt;&lt;/script&gt;
+<span class="hljs-comment">&lt;!-- Chart.js CDN --&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
 
-&lt;script&gt;
-const xValues2 = [&quot;Jan&quot;, &quot;Feb&quot;, &quot;Mar&quot;, &quot;Apr&quot;, &quot;May&quot;, &quot;Jun&quot;];
-const yValues2 = [55, 49, 80, 70, 65, 90];
-const barColors = [&quot;red&quot;, &quot;green&quot;, &quot;blue&quot;, &quot;orange&quot;, &quot;brown&quot;, &quot;purple&quot;];
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="language-javascript">
+<span class="hljs-keyword">const</span> xValues2 = [<span class="hljs-string">&quot;Jan&quot;</span>, <span class="hljs-string">&quot;Feb&quot;</span>, <span class="hljs-string">&quot;Mar&quot;</span>, <span class="hljs-string">&quot;Apr&quot;</span>, <span class="hljs-string">&quot;May&quot;</span>, <span class="hljs-string">&quot;Jun&quot;</span>];
+<span class="hljs-keyword">const</span> yValues2 = [<span class="hljs-number">55</span>, <span class="hljs-number">49</span>, <span class="hljs-number">80</span>, <span class="hljs-number">70</span>, <span class="hljs-number">65</span>, <span class="hljs-number">90</span>];
+<span class="hljs-keyword">const</span> barColors = [<span class="hljs-string">&quot;red&quot;</span>, <span class="hljs-string">&quot;green&quot;</span>, <span class="hljs-string">&quot;blue&quot;</span>, <span class="hljs-string">&quot;orange&quot;</span>, <span class="hljs-string">&quot;brown&quot;</span>, <span class="hljs-string">&quot;purple&quot;</span>];
 
-new Chart(&quot;chartjsChart&quot;, {
-  type: &quot;bar&quot;,
-  data: {
-    labels: xValues2,
-    datasets: [{
-      backgroundColor: barColors,
-      data: yValues2
+<span class="hljs-keyword">new</span> <span class="hljs-title class_">Chart</span>(<span class="hljs-string">&quot;chartjsChart&quot;</span>, {
+  <span class="hljs-attr">type</span>: <span class="hljs-string">&quot;bar&quot;</span>,
+  <span class="hljs-attr">data</span>: {
+    <span class="hljs-attr">labels</span>: xValues2,
+    <span class="hljs-attr">datasets</span>: [{
+      <span class="hljs-attr">backgroundColor</span>: barColors,
+      <span class="hljs-attr">data</span>: yValues2
     }]
   },
-  options: {
-    title: {
-      display: true,
-      text: &quot;Monthly Revenue (Chart.js)&quot;
+  <span class="hljs-attr">options</span>: {
+    <span class="hljs-attr">title</span>: {
+      <span class="hljs-attr">display</span>: <span class="hljs-literal">true</span>,
+      <span class="hljs-attr">text</span>: <span class="hljs-string">&quot;Monthly Revenue (Chart.js)&quot;</span>
     },
-    legend: {display: false}
+    <span class="hljs-attr">legend</span>: {<span class="hljs-attr">display</span>: <span class="hljs-literal">false</span>}
   }
 });
 
-document.getElementById(&quot;demo3&quot;).innerHTML = &quot;Chart.js bar chart created!&quot;;
-&lt;/script&gt;
+<span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&quot;demo3&quot;</span>).<span class="hljs-property">innerHTML</span> = <span class="hljs-string">&quot;Chart.js bar chart created!&quot;</span>;
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
 
-&lt;/body&gt;
-&lt;/html&gt;
-</code></pre>
+<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span>
+</div></code></pre>
 <p><img src="images/p3.png" alt=""></p>
-<h3>Example 3</h3>
+<h3 id="example-3">Example 3</h3>
 <p><strong>Result</strong> <a href="ex3-chartjs/index.html">View Example</a></p>
-<h2>Google Chart</h2>
+<h2 id="google-chart">Google Chart</h2>
 <p>Google Chart provides a wide variety of chart types powered by Google. Charts are rendered using HTML5/SVG technology:</p>
-<pre><code class="language-html">&lt;!DOCTYPE html&gt;
-&lt;html&gt;
-&lt;body&gt;
+<pre class="hljs"><code><div><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-keyword">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
 
-&lt;h2&gt;JavaScript Graphics&lt;/h2&gt;
-&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+<span class="hljs-tag">&lt;<span class="hljs-name">h2</span>&gt;</span>JavaScript Graphics<span class="hljs-tag">&lt;/<span class="hljs-name">h2</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>From w3schools.com, Experiment by Teeratus_R<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
 
-&lt;h4&gt;Google Chart&lt;/h4&gt;
+<span class="hljs-tag">&lt;<span class="hljs-name">h4</span>&gt;</span>Google Chart<span class="hljs-tag">&lt;/<span class="hljs-name">h4</span>&gt;</span>
 
-&lt;div id=&quot;googleChart&quot;&gt;&lt;/div&gt;
-&lt;p id=&quot;demo4&quot;&gt;&lt;/p&gt;
+<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;googleChart&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;demo4&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
 
-&lt;!-- Google Chart CDN --&gt;
-&lt;script src=&quot;https://www.gstatic.com/charts/loader.js&quot;&gt;&lt;/script&gt;
+<span class="hljs-comment">&lt;!-- Google Chart CDN --&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;https://www.gstatic.com/charts/loader.js&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
 
-&lt;script&gt;
-google.charts.load(&quot;current&quot;, {packages: [&quot;corechart&quot;]});
-google.charts.setOnLoadCallback(drawChart);
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="language-javascript">
+google.<span class="hljs-property">charts</span>.<span class="hljs-title function_">load</span>(<span class="hljs-string">&quot;current&quot;</span>, {<span class="hljs-attr">packages</span>: [<span class="hljs-string">&quot;corechart&quot;</span>]});
+google.<span class="hljs-property">charts</span>.<span class="hljs-title function_">setOnLoadCallback</span>(drawChart);
 
-function drawChart() {
-  const data = google.visualization.arrayToDataTable([
-    [&quot;Category&quot;, &quot;Value&quot;],
-    [&quot;Product A&quot;, 45],
-    [&quot;Product B&quot;, 25],
-    [&quot;Product C&quot;, 15],
-    [&quot;Product D&quot;, 10],
-    [&quot;Product E&quot;, 5]
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">drawChart</span>(<span class="hljs-params"></span>) {
+  <span class="hljs-keyword">const</span> data = google.<span class="hljs-property">visualization</span>.<span class="hljs-title function_">arrayToDataTable</span>([
+    [<span class="hljs-string">&quot;Category&quot;</span>, <span class="hljs-string">&quot;Value&quot;</span>],
+    [<span class="hljs-string">&quot;Product A&quot;</span>, <span class="hljs-number">45</span>],
+    [<span class="hljs-string">&quot;Product B&quot;</span>, <span class="hljs-number">25</span>],
+    [<span class="hljs-string">&quot;Product C&quot;</span>, <span class="hljs-number">15</span>],
+    [<span class="hljs-string">&quot;Product D&quot;</span>, <span class="hljs-number">10</span>],
+    [<span class="hljs-string">&quot;Product E&quot;</span>, <span class="hljs-number">5</span>]
   ]);
 
-  const options = {
-    title: &quot;Market Share (Google Chart)&quot;,
-    is3D: true,
-    pieHole: 0.4
+  <span class="hljs-keyword">const</span> options = {
+    <span class="hljs-attr">title</span>: <span class="hljs-string">&quot;Market Share (Google Chart)&quot;</span>,
+    <span class="hljs-attr">is3D</span>: <span class="hljs-literal">true</span>,
+    <span class="hljs-attr">pieHole</span>: <span class="hljs-number">0.4</span>
   };
 
-  const chart = new google.visualization.PieChart(document.getElementById(&quot;googleChart&quot;));
-  chart.draw(data, options);
+  <span class="hljs-keyword">const</span> chart = <span class="hljs-keyword">new</span> google.<span class="hljs-property">visualization</span>.<span class="hljs-title class_">PieChart</span>(<span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&quot;googleChart&quot;</span>));
+  chart.<span class="hljs-title function_">draw</span>(data, options);
   
-  document.getElementById(&quot;demo4&quot;).innerHTML = &quot;Google Chart pie chart created!&quot;;
+  <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&quot;demo4&quot;</span>).<span class="hljs-property">innerHTML</span> = <span class="hljs-string">&quot;Google Chart pie chart created!&quot;</span>;
 }
-&lt;/script&gt;
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
 
-&lt;/body&gt;
-&lt;/html&gt;
-</code></pre>
+<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span>
+</div></code></pre>
 <p><img src="images/p4.png" alt=""></p>
-<h3>Example 4</h3>
+<h3 id="example-4">Example 4</h3>
 <p><strong>Result</strong> <a href="ex4-google_chart/index.html">View Example</a></p>
-<h2>Document</h2>
+<h2 id="document">Document</h2>
 <p>Document in project</p>
 <p>You can <a href="js-graphics.pdf">Download PDF</a> file.</p>
-<h2>Reference</h2>
+<h2 id="reference">Reference</h2>
 <ul>
 <li><a href="https://www.w3schools.com/js/js_graphics.asp">W3Schools JavaScript Graphics</a></li>
 </ul>

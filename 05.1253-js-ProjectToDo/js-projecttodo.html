@@ -1,102 +1,385 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>js-projecttodo</title>
-  <style>
-    body {
-      box-sizing: border-box;
-      min-width: 200px;
-      max-width: 980px;
-      margin: 0 auto;
-      padding: 45px;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
-      font-size: 16px;
-      line-height: 1.5;
-      color: #24292e;
-      background-color: #ffffff;
-    }
-    h1, h2, h3, h4, h5, h6 {
-      margin-top: 24px;
-      margin-bottom: 16px;
-      font-weight: 600;
-      line-height: 1.25;
-      border-bottom: 1px solid #eaecef;
-      padding-bottom: .3em;
-    }
-    h1 { font-size: 2em; }
-    h2 { font-size: 1.5em; }
-    h3 { font-size: 1.25em; }
-    code {
-      padding: .2em .4em;
-      margin: 0;
-      font-size: 85%;
-      background-color: rgba(27,31,35,.05);
-      border-radius: 3px;
-      font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
-    }
-    pre {
-      padding: 16px;
-      overflow: auto;
-      font-size: 85%;
-      line-height: 1.45;
-      background-color: #f6f8fa;
-      border-radius: 3px;
-      word-wrap: normal;
-    }
-    pre code {
-      background-color: transparent;
-      padding: 0;
-    }
-    blockquote {
-      padding: 0 1em;
-      color: #6a737d;
-      border-left: .25em solid #dfe2e5;
-      margin: 0 0 16px 0;
-    }
-    table {
-      border-spacing: 0;
-      border-collapse: collapse;
-      margin-top: 0;
-      margin-bottom: 16px;
-      width: 100%;
-    }
-    table th, table td {
-      padding: 6px 13px;
-      border: 1px solid #dfe2e5;
-    }
-    table tr:nth-child(2n) {
-      background-color: #f6f8fa;
-    }
-    img {
-      max-width: 100%;
-      box-sizing: content-box;
-    }
-    @media print {
-      body {
-        max-width: 100%;
-        padding: 0;
-      }
-      pre, blockquote, table, tr, img {
-        page-break-inside: avoid;
-      }
-    }
-  </style>
+<title>js-projecttodo.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> or <div class="page"></div> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
 </head>
 <body>
-<h1>JavaScript Project - To-Do List</h1>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="javascript-project---to-do-list">JavaScript Project - To-Do List</h1>
 <p><a href="../">Back to JS page</a></p>
 <p>Table of Contents</p>
 <ul>
-<li><a href="#javascript-project---to-do-list">JavaScript Project - To-Do List</a><ul>
+<li><a href="#javascript-project---to-do-list">JavaScript Project - To-Do List</a>
+<ul>
 <li><a href="#to-do-list-overview">To-Do List Overview</a></li>
 <li><a href="#you-will-learn">You Will Learn</a></li>
-<li><a href="#first-create-the-html">First: Create the HTML</a><ul>
+<li><a href="#first-create-the-html">First: Create the HTML</a>
+<ul>
 <li><a href="#example-1">Example 1</a></li>
 </ul>
 </li>
-<li><a href="#add-a-display-function">Add a Display Function</a><ul>
+<li><a href="#add-a-display-function">Add a Display Function</a>
+<ul>
 <li><a href="#example-2">Example 2</a></li>
 </ul>
 </li>
@@ -105,15 +388,18 @@
 <li><a href="#add-a-clear-all-function">Add a Clear All Function</a></li>
 <li><a href="#function-to-save-a-task">Function to Save a Task</a></li>
 <li><a href="#function-to-load-the-tasks">Function to Load the Tasks</a></li>
-<li><a href="#final-project">Final Project</a><ul>
+<li><a href="#final-project">Final Project</a>
+<ul>
 <li><a href="#example-3">Example 3</a></li>
 </ul>
 </li>
-<li><a href="#exercises--solutions">Exercises &amp; Solutions</a><ul>
+<li><a href="#exercises--solutions">Exercises &amp; Solutions</a>
+<ul>
 <li><a href="#example-4">Example 4</a></li>
 </ul>
 </li>
-<li><a href="#bonus-challenges-level-up">Bonus Challenges (Level Up)</a><ul>
+<li><a href="#bonus-challenges-level-up">Bonus Challenges (Level Up)</a>
+<ul>
 <li><a href="#example-5">Example 5</a></li>
 </ul>
 </li>
@@ -122,20 +408,20 @@
 </ul>
 </li>
 </ul>
-<h2>To-Do List Overview</h2>
+<h2 id="to-do-list-overview">To-Do List Overview</h2>
 <p>In this project, you will build a functional <strong>To-Do List</strong>.</p>
 <ul>
 <li>You will be able to <strong>add</strong>, <strong>remove</strong>, and <strong>clear all</strong> tasks.</li>
 <li>The tasks will be kept synchronized within an <strong>Array</strong> saved in <strong>localStorage</strong>.</li>
 </ul>
-<h2>You Will Learn</h2>
+<h2 id="you-will-learn">You Will Learn</h2>
 <ul>
 <li>How to store items in an array structure</li>
 <li>How to add and remove items dynamically from an array</li>
 <li>How to generate and update HTML lists based on array values</li>
 <li>How to serialize and load JSON data using localStorage</li>
 </ul>
-<h2>First: Create the HTML</h2>
+<h2 id="first-create-the-html">First: Create the HTML</h2>
 <p>Start by creating an HTML file with:</p>
 <ul>
 <li>An <code>&lt;input&gt;</code> field with <code>id=&quot;task&quot;</code>.</li>
@@ -144,223 +430,225 @@
 <li>A &quot;Clear All&quot; button calling <code>clearAll()</code>.</li>
 <li>A script tag initializing an empty <code>tasks</code> array.</li>
 </ul>
-<pre><code class="language-html">&lt;!DOCTYPE html&gt;
-&lt;html&gt;
-&lt;body&gt;
+<pre class="hljs"><code><div><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-keyword">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
 
-&lt;h2&gt;To-Do List&lt;/h2&gt;
-&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+<span class="hljs-tag">&lt;<span class="hljs-name">h2</span>&gt;</span>To-Do List<span class="hljs-tag">&lt;/<span class="hljs-name">h2</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>From w3schools.com, Experiment by Teeratus_R<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
 
-&lt;input id=&quot;task&quot; placeholder=&quot;New task&quot;&gt;
-&lt;button onclick=&quot;addTask()&quot;&gt;Add&lt;/button&gt;
-&lt;ul id=&quot;list&quot;&gt;&lt;/ul&gt;
-&lt;button onclick=&quot;clearAll()&quot;&gt;Clear All&lt;/button&gt;
+<span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;task&quot;</span> <span class="hljs-attr">placeholder</span>=<span class="hljs-string">&quot;New task&quot;</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onclick</span>=<span class="hljs-string">&quot;addTask()&quot;</span>&gt;</span>Add<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">ul</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;list&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">ul</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onclick</span>=<span class="hljs-string">&quot;clearAll()&quot;</span>&gt;</span>Clear All<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
 
-&lt;script&gt;
-// Create a task Array
-let tasks = [];
-&lt;/script&gt;
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="language-javascript">
+<span class="hljs-comment">// Create a task Array</span>
+<span class="hljs-keyword">let</span> tasks = [];
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
 
-&lt;/body&gt;
-&lt;/html&gt;
-</code></pre>
+<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span>
+</div></code></pre>
 <p><img src="images/p1.png" alt=""></p>
-<h3>Example 1</h3>
+<h3 id="example-1">Example 1</h3>
 <p><strong>Result</strong> <a href="ex1-html_structure/index.html">View Example</a></p>
-<h2>Add a Display Function</h2>
+<h2 id="add-a-display-function">Add a Display Function</h2>
 <p>The <code>displayTasks()</code> function loops through the array items, wraps each item in <code>&lt;li&gt;</code> elements alongside remove buttons, and prints the result inside the list element:</p>
-<pre><code class="language-javascript">// Function to display the list
-function displayTasks() {
-  let html = &quot;&quot;;
-  for (let i = 0; i &lt; tasks.length; i++) {
-    html += &quot;&lt;li&gt;&quot; + tasks[i] +
-    &quot; &lt;button onclick=&#39;removeTask(&quot; + i + &quot;)&#39;&gt;x&lt;/button&gt;&lt;/li&gt;&quot;;
+<pre class="hljs"><code><div><span class="hljs-comment">// Function to display the list</span>
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">displayTasks</span>(<span class="hljs-params"></span>) {
+  <span class="hljs-keyword">let</span> html = <span class="hljs-string">&quot;&quot;</span>;
+  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; tasks.<span class="hljs-property">length</span>; i++) {
+    html += <span class="hljs-string">&quot;&lt;li&gt;&quot;</span> + tasks[i] +
+    <span class="hljs-string">&quot; &lt;button onclick=&#x27;removeTask(&quot;</span> + i + <span class="hljs-string">&quot;)&#x27;&gt;x&lt;/button&gt;&lt;/li&gt;&quot;</span>;
   }
-  document.getElementById(&quot;list&quot;).innerHTML = html;
+  <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&quot;list&quot;</span>).<span class="hljs-property">innerHTML</span> = html;
 }
-</code></pre>
+</div></code></pre>
 <p><img src="images/p2.png" alt=""></p>
-<h3>Example 2</h3>
+<h3 id="example-2">Example 2</h3>
 <p><strong>Result</strong> <a href="ex2-add_remove/index.html">View Example</a></p>
-<h2>Add an Add Task Function</h2>
+<h2 id="add-an-add-task-function">Add an Add Task Function</h2>
 <p>Retrieves the input value, pushes it to the tasks array, resets input text, and updates list views:</p>
-<pre><code class="language-javascript">// Function to Add a task
-function addTask() {
-  let taskInput = document.getElementById(&quot;task&quot;);
-  let text = taskInput.value;
-  if (text === &quot;&quot;) {
-    return;
+<pre class="hljs"><code><div><span class="hljs-comment">// Function to Add a task</span>
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">addTask</span>(<span class="hljs-params"></span>) {
+  <span class="hljs-keyword">let</span> taskInput = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&quot;task&quot;</span>);
+  <span class="hljs-keyword">let</span> text = taskInput.<span class="hljs-property">value</span>;
+  <span class="hljs-keyword">if</span> (text === <span class="hljs-string">&quot;&quot;</span>) {
+    <span class="hljs-keyword">return</span>;
   }
-  tasks.push(text);
-  taskInput.value = &quot;&quot;;
-  saveTasks();
-  displayTasks();
+  tasks.<span class="hljs-title function_">push</span>(text);
+  taskInput.<span class="hljs-property">value</span> = <span class="hljs-string">&quot;&quot;</span>;
+  <span class="hljs-title function_">saveTasks</span>();
+  <span class="hljs-title function_">displayTasks</span>();
 }
-</code></pre>
-<h2>Add a Remove Task Function</h2>
+</div></code></pre>
+<h2 id="add-a-remove-task-function">Add a Remove Task Function</h2>
 <p>Removes tasks by index using the JavaScript array <code>splice()</code> method:</p>
-<pre><code class="language-javascript">// Function to Remove a task
-function removeTask(i) {
-  tasks.splice(i, 1);
-  saveTasks();
-  displayTasks();
+<pre class="hljs"><code><div><span class="hljs-comment">// Function to Remove a task</span>
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">removeTask</span>(<span class="hljs-params">i</span>) {
+  tasks.<span class="hljs-title function_">splice</span>(i, <span class="hljs-number">1</span>);
+  <span class="hljs-title function_">saveTasks</span>();
+  <span class="hljs-title function_">displayTasks</span>();
 }
-</code></pre>
+</div></code></pre>
 <blockquote>
-<p>[!NOTE]<br><code>tasks.splice(i, 1)</code> deletes exactly 1 item at index position <code>i</code>.</p>
+<p>[!NOTE]
+<code>tasks.splice(i, 1)</code> deletes exactly 1 item at index position <code>i</code>.</p>
 </blockquote>
-<h2>Add a Clear All Function</h2>
+<h2 id="add-a-clear-all-function">Add a Clear All Function</h2>
 <p>Empties the array and refreshes the displays:</p>
-<pre><code class="language-javascript">// Function to Clear all tasks
-function clearAll() {
+<pre class="hljs"><code><div><span class="hljs-comment">// Function to Clear all tasks</span>
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">clearAll</span>(<span class="hljs-params"></span>) {
   tasks = [];
-  saveTasks();
-  displayTasks();
+  <span class="hljs-title function_">saveTasks</span>();
+  <span class="hljs-title function_">displayTasks</span>();
 }
-</code></pre>
-<h2>Function to Save a Task</h2>
+</div></code></pre>
+<h2 id="function-to-save-a-task">Function to Save a Task</h2>
 <p>Converts the tasks array into text format and saves it inside <code>localStorage</code>:</p>
-<pre><code class="language-javascript">// Function to Save tasks
-function saveTasks() {
-  localStorage.setItem(&quot;tasks&quot;, JSON.stringify(tasks));
+<pre class="hljs"><code><div><span class="hljs-comment">// Function to Save tasks</span>
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">saveTasks</span>(<span class="hljs-params"></span>) {
+  <span class="hljs-variable language_">localStorage</span>.<span class="hljs-title function_">setItem</span>(<span class="hljs-string">&quot;tasks&quot;</span>, <span class="hljs-title class_">JSON</span>.<span class="hljs-title function_">stringify</span>(tasks));
 }
-</code></pre>
+</div></code></pre>
 <blockquote>
-<p>[!IMPORTANT]<br><code>localStorage</code> only handles text keys and values. We must use <code>JSON.stringify(tasks)</code> to convert the tasks array into a string before saving.</p>
+<p>[!IMPORTANT]
+<code>localStorage</code> only handles text keys and values. We must use <code>JSON.stringify(tasks)</code> to convert the tasks array into a string before saving.</p>
 </blockquote>
-<h2>Function to Load the Tasks</h2>
+<h2 id="function-to-load-the-tasks">Function to Load the Tasks</h2>
 <p>Retrieves string data and parses it back into an array structure:</p>
-<pre><code class="language-javascript">function loadTasks() {
-  let saved = localStorage.getItem(&quot;tasks&quot;);
-  if (saved !== null) {
-    tasks = JSON.parse(saved);
+<pre class="hljs"><code><div><span class="hljs-keyword">function</span> <span class="hljs-title function_">loadTasks</span>(<span class="hljs-params"></span>) {
+  <span class="hljs-keyword">let</span> saved = <span class="hljs-variable language_">localStorage</span>.<span class="hljs-title function_">getItem</span>(<span class="hljs-string">&quot;tasks&quot;</span>);
+  <span class="hljs-keyword">if</span> (saved !== <span class="hljs-literal">null</span>) {
+    tasks = <span class="hljs-title class_">JSON</span>.<span class="hljs-title function_">parse</span>(saved);
   }
 }
-</code></pre>
-<h2>Final Project</h2>
+</div></code></pre>
+<h2 id="final-project">Final Project</h2>
 <p>Combines HTML code structure and state persistence logics together:</p>
-<pre><code class="language-html">&lt;!DOCTYPE html&gt;
-&lt;html&gt;
-&lt;body&gt;
+<pre class="hljs"><code><div><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-keyword">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
 
-&lt;h2&gt;To-Do List&lt;/h2&gt;
-&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+<span class="hljs-tag">&lt;<span class="hljs-name">h2</span>&gt;</span>To-Do List<span class="hljs-tag">&lt;/<span class="hljs-name">h2</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>From w3schools.com, Experiment by Teeratus_R<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
 
-&lt;input id=&quot;task&quot; placeholder=&quot;New task&quot;&gt;
-&lt;button onclick=&quot;addTask()&quot;&gt;Add&lt;/button&gt;
-&lt;ul id=&quot;list&quot;&gt;&lt;/ul&gt;
-&lt;button onclick=&quot;clearAll()&quot;&gt;Clear All&lt;/button&gt;
+<span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;task&quot;</span> <span class="hljs-attr">placeholder</span>=<span class="hljs-string">&quot;New task&quot;</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onclick</span>=<span class="hljs-string">&quot;addTask()&quot;</span>&gt;</span>Add<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">ul</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;list&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">ul</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onclick</span>=<span class="hljs-string">&quot;clearAll()&quot;</span>&gt;</span>Clear All<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
 
-&lt;script&gt;
-let tasks = [];
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="language-javascript">
+<span class="hljs-keyword">let</span> tasks = [];
 
-function displayTasks() {
-  let html = &quot;&quot;;
-  for (let i = 0; i &lt; tasks.length; i++) {
-    html += &quot;&lt;li&gt;&quot; + tasks[i] +
-    &quot; &lt;button onclick=&#39;removeTask(&quot; + i + &quot;)&#39;&gt;x&lt;/button&gt;&lt;/li&gt;&quot;;
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">displayTasks</span>(<span class="hljs-params"></span>) {
+  <span class="hljs-keyword">let</span> html = <span class="hljs-string">&quot;&quot;</span>;
+  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; tasks.<span class="hljs-property">length</span>; i++) {
+    html += <span class="hljs-string">&quot;&lt;li&gt;&quot;</span> + tasks[i] +
+    <span class="hljs-string">&quot; &lt;button onclick=&#x27;removeTask(&quot;</span> + i + <span class="hljs-string">&quot;)&#x27;&gt;x&lt;/button&gt;&lt;/li&gt;&quot;</span>;
   }
-  document.getElementById(&quot;list&quot;).innerHTML = html;
+  <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&quot;list&quot;</span>).<span class="hljs-property">innerHTML</span> = html;
 }
 
-function addTask() {
-  let taskInput = document.getElementById(&quot;task&quot;);
-  let text = taskInput.value;
-  if (text === &quot;&quot;) {
-    return;
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">addTask</span>(<span class="hljs-params"></span>) {
+  <span class="hljs-keyword">let</span> taskInput = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&quot;task&quot;</span>);
+  <span class="hljs-keyword">let</span> text = taskInput.<span class="hljs-property">value</span>;
+  <span class="hljs-keyword">if</span> (text === <span class="hljs-string">&quot;&quot;</span>) {
+    <span class="hljs-keyword">return</span>;
   }
-  tasks.push(text);
-  taskInput.value = &quot;&quot;;
-  saveTasks();
-  displayTasks();
+  tasks.<span class="hljs-title function_">push</span>(text);
+  taskInput.<span class="hljs-property">value</span> = <span class="hljs-string">&quot;&quot;</span>;
+  <span class="hljs-title function_">saveTasks</span>();
+  <span class="hljs-title function_">displayTasks</span>();
 }
 
-function removeTask(i) {
-  tasks.splice(i, 1);
-  saveTasks();
-  displayTasks();
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">removeTask</span>(<span class="hljs-params">i</span>) {
+  tasks.<span class="hljs-title function_">splice</span>(i, <span class="hljs-number">1</span>);
+  <span class="hljs-title function_">saveTasks</span>();
+  <span class="hljs-title function_">displayTasks</span>();
 }
 
-function clearAll() {
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">clearAll</span>(<span class="hljs-params"></span>) {
   tasks = [];
-  saveTasks();
-  displayTasks();
+  <span class="hljs-title function_">saveTasks</span>();
+  <span class="hljs-title function_">displayTasks</span>();
 }
 
-function saveTasks() {
-  localStorage.setItem(&quot;tasks&quot;, JSON.stringify(tasks));
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">saveTasks</span>(<span class="hljs-params"></span>) {
+  <span class="hljs-variable language_">localStorage</span>.<span class="hljs-title function_">setItem</span>(<span class="hljs-string">&quot;tasks&quot;</span>, <span class="hljs-title class_">JSON</span>.<span class="hljs-title function_">stringify</span>(tasks));
 }
 
-function loadTasks() {
-  let saved = localStorage.getItem(&quot;tasks&quot;);
-  if (saved !== null) {
-    tasks = JSON.parse(saved);
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">loadTasks</span>(<span class="hljs-params"></span>) {
+  <span class="hljs-keyword">let</span> saved = <span class="hljs-variable language_">localStorage</span>.<span class="hljs-title function_">getItem</span>(<span class="hljs-string">&quot;tasks&quot;</span>);
+  <span class="hljs-keyword">if</span> (saved !== <span class="hljs-literal">null</span>) {
+    tasks = <span class="hljs-title class_">JSON</span>.<span class="hljs-title function_">parse</span>(saved);
   }
 }
 
-loadTasks();
-displayTasks();
-&lt;/script&gt;
+<span class="hljs-title function_">loadTasks</span>();
+<span class="hljs-title function_">displayTasks</span>();
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
 
-&lt;/body&gt;
-&lt;/html&gt;
-</code></pre>
+<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span>
+</div></code></pre>
 <p><img src="images/p3.png" alt=""></p>
-<h3>Example 3</h3>
+<h3 id="example-3">Example 3</h3>
 <p><strong>Result</strong> <a href="ex3-final_project/index.html">View Example</a></p>
-<h2>Exercises &amp; Solutions</h2>
-<h3>Exercise 1</h3>
+<h2 id="exercises--solutions">Exercises &amp; Solutions</h2>
+<h3 id="exercise-1">Exercise 1</h3>
 <p>Show an alert if the user tries to add an empty task.</p>
-<h3>Exercise 2</h3>
+<h3 id="exercise-2">Exercise 2</h3>
 <p>Allow the user to press Enter to add a task.</p>
-<h3>Exercise 3</h3>
+<h3 id="exercise-3">Exercise 3</h3>
 <p>Add a &quot;Saved!&quot; message to show when saving.</p>
-<h3>Solutions Code</h3>
-<pre><code class="language-html">&lt;input id=&quot;task&quot; placeholder=&quot;New task&quot; onkeydown=&quot;handleKey(event)&quot;&gt;
-&lt;button onclick=&quot;addTask()&quot;&gt;Add&lt;/button&gt;
-&lt;ul id=&quot;list&quot;&gt;&lt;/ul&gt;
-&lt;button onclick=&quot;clearAll()&quot;&gt;Clear All&lt;/button&gt;
-&lt;p id=&quot;status&quot; style=&quot;color: green; font-weight: bold;&quot;&gt;&lt;/p&gt;
+<h3 id="solutions-code">Solutions Code</h3>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;task&quot;</span> <span class="hljs-attr">placeholder</span>=<span class="hljs-string">&quot;New task&quot;</span> <span class="hljs-attr">onkeydown</span>=<span class="hljs-string">&quot;handleKey(event)&quot;</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onclick</span>=<span class="hljs-string">&quot;addTask()&quot;</span>&gt;</span>Add<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">ul</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;list&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">ul</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onclick</span>=<span class="hljs-string">&quot;clearAll()&quot;</span>&gt;</span>Clear All<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;status&quot;</span> <span class="hljs-attr">style</span>=<span class="hljs-string">&quot;color: green; font-weight: bold;&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
 
-&lt;script&gt;
-// (Inside script)
-function addTask() {
-  let taskInput = document.getElementById(&quot;task&quot;);
-  let text = taskInput.value.trim();
-  if (text === &quot;&quot;) {
-    alert(&quot;Please enter a task! Task cannot be empty.&quot;);
-    return;
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="language-javascript">
+<span class="hljs-comment">// (Inside script)</span>
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">addTask</span>(<span class="hljs-params"></span>) {
+  <span class="hljs-keyword">let</span> taskInput = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&quot;task&quot;</span>);
+  <span class="hljs-keyword">let</span> text = taskInput.<span class="hljs-property">value</span>.<span class="hljs-title function_">trim</span>();
+  <span class="hljs-keyword">if</span> (text === <span class="hljs-string">&quot;&quot;</span>) {
+    <span class="hljs-title function_">alert</span>(<span class="hljs-string">&quot;Please enter a task! Task cannot be empty.&quot;</span>);
+    <span class="hljs-keyword">return</span>;
   }
-  tasks.push(text);
-  taskInput.value = &quot;&quot;;
-  saveTasks();
-  displayTasks();
+  tasks.<span class="hljs-title function_">push</span>(text);
+  taskInput.<span class="hljs-property">value</span> = <span class="hljs-string">&quot;&quot;</span>;
+  <span class="hljs-title function_">saveTasks</span>();
+  <span class="hljs-title function_">displayTasks</span>();
 }
 
-function handleKey(event) {
-  if (event.key === &quot;Enter&quot;) {
-    addTask();
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">handleKey</span>(<span class="hljs-params">event</span>) {
+  <span class="hljs-keyword">if</span> (event.<span class="hljs-property">key</span> === <span class="hljs-string">&quot;Enter&quot;</span>) {
+    <span class="hljs-title function_">addTask</span>();
   }
 }
 
-function saveTasks() {
-  localStorage.setItem(&quot;tasks&quot;, JSON.stringify(tasks));
-  showStatus(&quot;Saved!&quot;);
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">saveTasks</span>(<span class="hljs-params"></span>) {
+  <span class="hljs-variable language_">localStorage</span>.<span class="hljs-title function_">setItem</span>(<span class="hljs-string">&quot;tasks&quot;</span>, <span class="hljs-title class_">JSON</span>.<span class="hljs-title function_">stringify</span>(tasks));
+  <span class="hljs-title function_">showStatus</span>(<span class="hljs-string">&quot;Saved!&quot;</span>);
 }
 
-function showStatus(msg) {
-  let statusEl = document.getElementById(&quot;status&quot;);
-  statusEl.innerHTML = msg;
-  setTimeout(function () {
-    statusEl.innerHTML = &quot;&quot;;
-  }, 2000);
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">showStatus</span>(<span class="hljs-params">msg</span>) {
+  <span class="hljs-keyword">let</span> statusEl = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&quot;status&quot;</span>);
+  statusEl.<span class="hljs-property">innerHTML</span> = msg;
+  <span class="hljs-built_in">setTimeout</span>(<span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) {
+    statusEl.<span class="hljs-property">innerHTML</span> = <span class="hljs-string">&quot;&quot;</span>;
+  }, <span class="hljs-number">2000</span>);
 }
-&lt;/script&gt;
-</code></pre>
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+</div></code></pre>
 <p><img src="images/p4.png" alt=""></p>
-<h3>Example 4</h3>
+<h3 id="example-4">Example 4</h3>
 <p><strong>Result</strong> <a href="ex4-exercises_solutions/index.html">View Example</a></p>
-<h2>Bonus Challenges (Level Up)</h2>
+<h2 id="bonus-challenges-level-up">Bonus Challenges (Level Up)</h2>
 <p>Improve task workflows by adding premium styling, status checks, and filtering controls:</p>
 <ul>
 <li><strong>Checkbox markers:</strong> Check off tasks as done (triggers text strikethrough).</li>
@@ -369,12 +657,12 @@ function showStatus(msg) {
 <li><strong>Sorting:</strong> Sort list items alphabetically in one click.</li>
 </ul>
 <p><img src="images/p5.png" alt=""></p>
-<h3>Example 5</h3>
+<h3 id="example-5">Example 5</h3>
 <p><strong>Result</strong> <a href="ex5-bonus_challenges/index.html">View Example</a></p>
-<h2>Document</h2>
+<h2 id="document">Document</h2>
 <p>Document in project</p>
 <p>You can <a href="js-projecttodo.pdf">Download PDF</a> file.</p>
-<h2>Reference</h2>
+<h2 id="reference">Reference</h2>
 <ul>
 <li><a href="https://www.w3schools.com/js/js_project_todo.asp">W3Schools JavaScript To-Do List Project</a></li>
 </ul>

@@ -6,7 +6,7 @@ Table of Contents
 - [JavaScript Dates](#javascript-dates)
   - [Creating Date Objects](#creating-date-objects)
     - [Example 1](#example-1)
-  - [new Date(year, month, ...)](#new-dateyear-month)
+  - [new Date(year, month, ...)](#new-dateyear-month-)
     - [Example 2](#example-2)
   - [JavaScript Stores Dates as Milliseconds](#javascript-stores-dates-as-milliseconds)
     - [Example 3](#example-3)

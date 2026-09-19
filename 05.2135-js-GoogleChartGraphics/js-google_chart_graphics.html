@@ -1,112 +1,398 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>js-google_chart_graphics</title>
-  <style>
-    body {
-      box-sizing: border-box;
-      min-width: 200px;
-      max-width: 980px;
-      margin: 0 auto;
-      padding: 45px;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
-      font-size: 16px;
-      line-height: 1.5;
-      color: #24292e;
-      background-color: #ffffff;
-    }
-    h1, h2, h3, h4, h5, h6 {
-      margin-top: 24px;
-      margin-bottom: 16px;
-      font-weight: 600;
-      line-height: 1.25;
-      border-bottom: 1px solid #eaecef;
-      padding-bottom: .3em;
-    }
-    h1 { font-size: 2em; }
-    h2 { font-size: 1.5em; }
-    h3 { font-size: 1.25em; }
-    code {
-      padding: .2em .4em;
-      margin: 0;
-      font-size: 85%;
-      background-color: rgba(27,31,35,.05);
-      border-radius: 3px;
-      font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
-    }
-    pre {
-      padding: 16px;
-      overflow: auto;
-      font-size: 85%;
-      line-height: 1.45;
-      background-color: #f6f8fa;
-      border-radius: 3px;
-      word-wrap: normal;
-    }
-    pre code {
-      background-color: transparent;
-      padding: 0;
-    }
-    blockquote {
-      padding: 0 1em;
-      color: #6a737d;
-      border-left: .25em solid #dfe2e5;
-      margin: 0 0 16px 0;
-    }
-    table {
-      border-spacing: 0;
-      border-collapse: collapse;
-      margin-top: 0;
-      margin-bottom: 16px;
-      width: 100%;
-    }
-    table th, table td {
-      padding: 6px 13px;
-      border: 1px solid #dfe2e5;
-    }
-    table tr:nth-child(2n) {
-      background-color: #f6f8fa;
-    }
-    img {
-      max-width: 100%;
-      box-sizing: content-box;
-    }
-    @media print {
-      body {
-        max-width: 100%;
-        padding: 0;
-      }
-      pre, blockquote, table, tr, img {
-        page-break-inside: avoid;
-      }
-    }
-  </style>
+<title>js-google_chart_graphics.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> or <div class="page"></div> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
 </head>
 <body>
-<h1>JavaScript Google Chart Graphics</h1>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="javascript-google-chart-graphics">JavaScript Google Chart Graphics</h1>
 <p><a href="../">Back to JS page</a></p>
 <p>Table of Contents</p>
 <ul>
-<li><a href="#javascript-google-chart-graphics">JavaScript Google Chart Graphics</a><ul>
-<li><a href="#bar-charts">Bar Charts</a><ul>
+<li><a href="#javascript-google-chart-graphics">JavaScript Google Chart Graphics</a>
+<ul>
+<li><a href="#bar-charts">Bar Charts</a>
+<ul>
 <li><a href="#example-1">Example 1</a></li>
 </ul>
 </li>
-<li><a href="#pie-charts">Pie Charts</a><ul>
+<li><a href="#pie-charts">Pie Charts</a>
+<ul>
 <li><a href="#example-2">Example 2</a></li>
 </ul>
 </li>
-<li><a href="#3d-pie">3D Pie</a><ul>
+<li><a href="#3d-pie">3D Pie</a>
+<ul>
 <li><a href="#example-3">Example 3</a></li>
 </ul>
 </li>
-<li><a href="#line-graph">Line Graph</a><ul>
+<li><a href="#line-graph">Line Graph</a>
+<ul>
 <li><a href="#example-4">Example 4</a></li>
 </ul>
 </li>
-<li><a href="#scatter-plots">Scatter Plots</a><ul>
+<li><a href="#scatter-plots">Scatter Plots</a>
+<ul>
 <li><a href="#example-5">Example 5</a></li>
 </ul>
 </li>
@@ -115,255 +401,255 @@
 </ul>
 </li>
 </ul>
-<h2>Bar Charts</h2>
+<h2 id="bar-charts">Bar Charts</h2>
 <p>Google Bar Chart displays data with rectangular bars:</p>
-<pre><code class="language-html">&lt;!DOCTYPE html&gt;
-&lt;html&gt;
-&lt;body&gt;
+<pre class="hljs"><code><div><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-keyword">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
 
-&lt;h2&gt;JavaScript Google Chart Graphics&lt;/h2&gt;
-&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+<span class="hljs-tag">&lt;<span class="hljs-name">h2</span>&gt;</span>JavaScript Google Chart Graphics<span class="hljs-tag">&lt;/<span class="hljs-name">h2</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>From w3schools.com, Experiment by Teeratus_R<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
 
-&lt;h4&gt;Bar Charts&lt;/h4&gt;
+<span class="hljs-tag">&lt;<span class="hljs-name">h4</span>&gt;</span>Bar Charts<span class="hljs-tag">&lt;/<span class="hljs-name">h4</span>&gt;</span>
 
-&lt;div id=&quot;barChart&quot;&gt;&lt;/div&gt;
-&lt;p id=&quot;demo1&quot;&gt;&lt;/p&gt;
+<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;barChart&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;demo1&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
 
-&lt;script src=&quot;https://www.gstatic.com/charts/loader.js&quot;&gt;&lt;/script&gt;
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;https://www.gstatic.com/charts/loader.js&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
 
-&lt;script&gt;
-google.charts.load(&quot;current&quot;, {packages: [&quot;corechart&quot;]});
-google.charts.setOnLoadCallback(drawBarChart);
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="language-javascript">
+google.<span class="hljs-property">charts</span>.<span class="hljs-title function_">load</span>(<span class="hljs-string">&quot;current&quot;</span>, {<span class="hljs-attr">packages</span>: [<span class="hljs-string">&quot;corechart&quot;</span>]});
+google.<span class="hljs-property">charts</span>.<span class="hljs-title function_">setOnLoadCallback</span>(drawBarChart);
 
-function drawBarChart() {
-  const data = google.visualization.arrayToDataTable([
-    [&quot;Product&quot;, &quot;Sales&quot;],
-    [&quot;Product A&quot;, 25],
-    [&quot;Product B&quot;, 40],
-    [&quot;Product C&quot;, 30],
-    [&quot;Product D&quot;, 55],
-    [&quot;Product E&quot;, 20]
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">drawBarChart</span>(<span class="hljs-params"></span>) {
+  <span class="hljs-keyword">const</span> data = google.<span class="hljs-property">visualization</span>.<span class="hljs-title function_">arrayToDataTable</span>([
+    [<span class="hljs-string">&quot;Product&quot;</span>, <span class="hljs-string">&quot;Sales&quot;</span>],
+    [<span class="hljs-string">&quot;Product A&quot;</span>, <span class="hljs-number">25</span>],
+    [<span class="hljs-string">&quot;Product B&quot;</span>, <span class="hljs-number">40</span>],
+    [<span class="hljs-string">&quot;Product C&quot;</span>, <span class="hljs-number">30</span>],
+    [<span class="hljs-string">&quot;Product D&quot;</span>, <span class="hljs-number">55</span>],
+    [<span class="hljs-string">&quot;Product E&quot;</span>, <span class="hljs-number">20</span>]
   ]);
 
-  const options = {
-    title: &quot;Product Sales (Bar Chart)&quot;,
-    hAxis: {title: &quot;Product&quot;},
-    vAxis: {title: &quot;Sales ($)&quot;, minValue: 0},
-    legend: &quot;none&quot;
+  <span class="hljs-keyword">const</span> options = {
+    <span class="hljs-attr">title</span>: <span class="hljs-string">&quot;Product Sales (Bar Chart)&quot;</span>,
+    <span class="hljs-attr">hAxis</span>: {<span class="hljs-attr">title</span>: <span class="hljs-string">&quot;Product&quot;</span>},
+    <span class="hljs-attr">vAxis</span>: {<span class="hljs-attr">title</span>: <span class="hljs-string">&quot;Sales ($)&quot;</span>, <span class="hljs-attr">minValue</span>: <span class="hljs-number">0</span>},
+    <span class="hljs-attr">legend</span>: <span class="hljs-string">&quot;none&quot;</span>
   };
 
-  const chart = new google.visualization.ColumnChart(document.getElementById(&quot;barChart&quot;));
-  chart.draw(data, options);
-  document.getElementById(&quot;demo1&quot;).innerHTML = &quot;Google Bar Chart created!&quot;;
+  <span class="hljs-keyword">const</span> chart = <span class="hljs-keyword">new</span> google.<span class="hljs-property">visualization</span>.<span class="hljs-title class_">ColumnChart</span>(<span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&quot;barChart&quot;</span>));
+  chart.<span class="hljs-title function_">draw</span>(data, options);
+  <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&quot;demo1&quot;</span>).<span class="hljs-property">innerHTML</span> = <span class="hljs-string">&quot;Google Bar Chart created!&quot;</span>;
 }
-&lt;/script&gt;
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
 
-&lt;/body&gt;
-&lt;/html&gt;
-</code></pre>
+<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span>
+</div></code></pre>
 <p><img src="images/p1.png" alt=""></p>
-<h3>Example 1</h3>
+<h3 id="example-1">Example 1</h3>
 <p><strong>Result</strong> <a href="ex1-bar_chart/index.html">View Example</a></p>
-<h2>Pie Charts</h2>
+<h2 id="pie-charts">Pie Charts</h2>
 <p>Google Pie Chart shows data as slices of a circle:</p>
-<pre><code class="language-html">&lt;!DOCTYPE html&gt;
-&lt;html&gt;
-&lt;body&gt;
+<pre class="hljs"><code><div><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-keyword">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
 
-&lt;h2&gt;JavaScript Google Chart Graphics&lt;/h2&gt;
-&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+<span class="hljs-tag">&lt;<span class="hljs-name">h2</span>&gt;</span>JavaScript Google Chart Graphics<span class="hljs-tag">&lt;/<span class="hljs-name">h2</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>From w3schools.com, Experiment by Teeratus_R<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
 
-&lt;h4&gt;Pie Charts&lt;/h4&gt;
+<span class="hljs-tag">&lt;<span class="hljs-name">h4</span>&gt;</span>Pie Charts<span class="hljs-tag">&lt;/<span class="hljs-name">h4</span>&gt;</span>
 
-&lt;div id=&quot;pieChart&quot;&gt;&lt;/div&gt;
-&lt;p id=&quot;demo2&quot;&gt;&lt;/p&gt;
+<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;pieChart&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;demo2&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
 
-&lt;script src=&quot;https://www.gstatic.com/charts/loader.js&quot;&gt;&lt;/script&gt;
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;https://www.gstatic.com/charts/loader.js&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
 
-&lt;script&gt;
-google.charts.load(&quot;current&quot;, {packages: [&quot;corechart&quot;]});
-google.charts.setOnLoadCallback(drawPieChart);
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="language-javascript">
+google.<span class="hljs-property">charts</span>.<span class="hljs-title function_">load</span>(<span class="hljs-string">&quot;current&quot;</span>, {<span class="hljs-attr">packages</span>: [<span class="hljs-string">&quot;corechart&quot;</span>]});
+google.<span class="hljs-property">charts</span>.<span class="hljs-title function_">setOnLoadCallback</span>(drawPieChart);
 
-function drawPieChart() {
-  const data = google.visualization.arrayToDataTable([
-    [&quot;Browser&quot;, &quot;Share&quot;],
-    [&quot;Chrome&quot;, 55],
-    [&quot;Firefox&quot;, 20],
-    [&quot;Safari&quot;, 15],
-    [&quot;Edge&quot;, 8],
-    [&quot;Other&quot;, 2]
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">drawPieChart</span>(<span class="hljs-params"></span>) {
+  <span class="hljs-keyword">const</span> data = google.<span class="hljs-property">visualization</span>.<span class="hljs-title function_">arrayToDataTable</span>([
+    [<span class="hljs-string">&quot;Browser&quot;</span>, <span class="hljs-string">&quot;Share&quot;</span>],
+    [<span class="hljs-string">&quot;Chrome&quot;</span>, <span class="hljs-number">55</span>],
+    [<span class="hljs-string">&quot;Firefox&quot;</span>, <span class="hljs-number">20</span>],
+    [<span class="hljs-string">&quot;Safari&quot;</span>, <span class="hljs-number">15</span>],
+    [<span class="hljs-string">&quot;Edge&quot;</span>, <span class="hljs-number">8</span>],
+    [<span class="hljs-string">&quot;Other&quot;</span>, <span class="hljs-number">2</span>]
   ]);
 
-  const options = {
-    title: &quot;Browser Market Share (Pie Chart)&quot;,
-    colors: [&quot;#4CAF50&quot;, &quot;#2196F3&quot;, &quot;#FF9800&quot;, &quot;#F44336&quot;, &quot;#9C27B0&quot;]
+  <span class="hljs-keyword">const</span> options = {
+    <span class="hljs-attr">title</span>: <span class="hljs-string">&quot;Browser Market Share (Pie Chart)&quot;</span>,
+    <span class="hljs-attr">colors</span>: [<span class="hljs-string">&quot;#4CAF50&quot;</span>, <span class="hljs-string">&quot;#2196F3&quot;</span>, <span class="hljs-string">&quot;#FF9800&quot;</span>, <span class="hljs-string">&quot;#F44336&quot;</span>, <span class="hljs-string">&quot;#9C27B0&quot;</span>]
   };
 
-  const chart = new google.visualization.PieChart(document.getElementById(&quot;pieChart&quot;));
-  chart.draw(data, options);
-  document.getElementById(&quot;demo2&quot;).innerHTML = &quot;Google Pie Chart created!&quot;;
+  <span class="hljs-keyword">const</span> chart = <span class="hljs-keyword">new</span> google.<span class="hljs-property">visualization</span>.<span class="hljs-title class_">PieChart</span>(<span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&quot;pieChart&quot;</span>));
+  chart.<span class="hljs-title function_">draw</span>(data, options);
+  <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&quot;demo2&quot;</span>).<span class="hljs-property">innerHTML</span> = <span class="hljs-string">&quot;Google Pie Chart created!&quot;</span>;
 }
-&lt;/script&gt;
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
 
-&lt;/body&gt;
-&lt;/html&gt;
-</code></pre>
+<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span>
+</div></code></pre>
 <p><img src="images/p2.png" alt=""></p>
-<h3>Example 2</h3>
+<h3 id="example-2">Example 2</h3>
 <p><strong>Result</strong> <a href="ex2-pie_chart/index.html">View Example</a></p>
-<h2>3D Pie</h2>
+<h2 id="3d-pie">3D Pie</h2>
 <p>Google 3D Pie Chart adds a three-dimensional effect:</p>
-<pre><code class="language-html">&lt;!DOCTYPE html&gt;
-&lt;html&gt;
-&lt;body&gt;
+<pre class="hljs"><code><div><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-keyword">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
 
-&lt;h2&gt;JavaScript Google Chart Graphics&lt;/h2&gt;
-&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+<span class="hljs-tag">&lt;<span class="hljs-name">h2</span>&gt;</span>JavaScript Google Chart Graphics<span class="hljs-tag">&lt;/<span class="hljs-name">h2</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>From w3schools.com, Experiment by Teeratus_R<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
 
-&lt;h4&gt;3D Pie&lt;/h4&gt;
+<span class="hljs-tag">&lt;<span class="hljs-name">h4</span>&gt;</span>3D Pie<span class="hljs-tag">&lt;/<span class="hljs-name">h4</span>&gt;</span>
 
-&lt;div id=&quot;pie3dChart&quot;&gt;&lt;/div&gt;
-&lt;p id=&quot;demo3&quot;&gt;&lt;/p&gt;
+<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;pie3dChart&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;demo3&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
 
-&lt;script src=&quot;https://www.gstatic.com/charts/loader.js&quot;&gt;&lt;/script&gt;
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;https://www.gstatic.com/charts/loader.js&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
 
-&lt;script&gt;
-google.charts.load(&quot;current&quot;, {packages: [&quot;corechart&quot;]});
-google.charts.setOnLoadCallback(draw3DPieChart);
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="language-javascript">
+google.<span class="hljs-property">charts</span>.<span class="hljs-title function_">load</span>(<span class="hljs-string">&quot;current&quot;</span>, {<span class="hljs-attr">packages</span>: [<span class="hljs-string">&quot;corechart&quot;</span>]});
+google.<span class="hljs-property">charts</span>.<span class="hljs-title function_">setOnLoadCallback</span>(draw3DPieChart);
 
-function draw3DPieChart() {
-  const data = google.visualization.arrayToDataTable([
-    [&quot;Category&quot;, &quot;Value&quot;],
-    [&quot;North&quot;, 35],
-    [&quot;South&quot;, 25],
-    [&quot;East&quot;, 20],
-    [&quot;West&quot;, 20]
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">draw3DPieChart</span>(<span class="hljs-params"></span>) {
+  <span class="hljs-keyword">const</span> data = google.<span class="hljs-property">visualization</span>.<span class="hljs-title function_">arrayToDataTable</span>([
+    [<span class="hljs-string">&quot;Category&quot;</span>, <span class="hljs-string">&quot;Value&quot;</span>],
+    [<span class="hljs-string">&quot;North&quot;</span>, <span class="hljs-number">35</span>],
+    [<span class="hljs-string">&quot;South&quot;</span>, <span class="hljs-number">25</span>],
+    [<span class="hljs-string">&quot;East&quot;</span>, <span class="hljs-number">20</span>],
+    [<span class="hljs-string">&quot;West&quot;</span>, <span class="hljs-number">20</span>]
   ]);
 
-  const options = {
-    title: &quot;Regional Sales (3D Pie Chart)&quot;,
-    is3D: true,
-    colors: [&quot;#4CAF50&quot;, &quot;#2196F3&quot;, &quot;#FF9800&quot;, &quot;#F44336&quot;]
+  <span class="hljs-keyword">const</span> options = {
+    <span class="hljs-attr">title</span>: <span class="hljs-string">&quot;Regional Sales (3D Pie Chart)&quot;</span>,
+    <span class="hljs-attr">is3D</span>: <span class="hljs-literal">true</span>,
+    <span class="hljs-attr">colors</span>: [<span class="hljs-string">&quot;#4CAF50&quot;</span>, <span class="hljs-string">&quot;#2196F3&quot;</span>, <span class="hljs-string">&quot;#FF9800&quot;</span>, <span class="hljs-string">&quot;#F44336&quot;</span>]
   };
 
-  const chart = new google.visualization.PieChart(document.getElementById(&quot;pie3dChart&quot;));
-  chart.draw(data, options);
-  document.getElementById(&quot;demo3&quot;).innerHTML = &quot;Google 3D Pie Chart created!&quot;;
+  <span class="hljs-keyword">const</span> chart = <span class="hljs-keyword">new</span> google.<span class="hljs-property">visualization</span>.<span class="hljs-title class_">PieChart</span>(<span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&quot;pie3dChart&quot;</span>));
+  chart.<span class="hljs-title function_">draw</span>(data, options);
+  <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&quot;demo3&quot;</span>).<span class="hljs-property">innerHTML</span> = <span class="hljs-string">&quot;Google 3D Pie Chart created!&quot;</span>;
 }
-&lt;/script&gt;
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
 
-&lt;/body&gt;
-&lt;/html&gt;
-</code></pre>
+<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span>
+</div></code></pre>
 <p><img src="images/p3.png" alt=""></p>
-<h3>Example 3</h3>
+<h3 id="example-3">Example 3</h3>
 <p><strong>Result</strong> <a href="ex3-3d_pie/index.html">View Example</a></p>
-<h2>Line Graph</h2>
+<h2 id="line-graph">Line Graph</h2>
 <p>A line graph displays information as a series of data points connected by straight line segments:</p>
-<pre><code class="language-html">&lt;!DOCTYPE html&gt;
-&lt;html&gt;
-&lt;body&gt;
+<pre class="hljs"><code><div><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-keyword">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
 
-&lt;h2&gt;JavaScript Google Chart Graphics&lt;/h2&gt;
-&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+<span class="hljs-tag">&lt;<span class="hljs-name">h2</span>&gt;</span>JavaScript Google Chart Graphics<span class="hljs-tag">&lt;/<span class="hljs-name">h2</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>From w3schools.com, Experiment by Teeratus_R<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
 
-&lt;h4&gt;Line Graph&lt;/h4&gt;
+<span class="hljs-tag">&lt;<span class="hljs-name">h4</span>&gt;</span>Line Graph<span class="hljs-tag">&lt;/<span class="hljs-name">h4</span>&gt;</span>
 
-&lt;div id=&quot;lineChart&quot;&gt;&lt;/div&gt;
-&lt;p id=&quot;demo4&quot;&gt;&lt;/p&gt;
+<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;lineChart&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;demo4&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
 
-&lt;script src=&quot;https://www.gstatic.com/charts/loader.js&quot;&gt;&lt;/script&gt;
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;https://www.gstatic.com/charts/loader.js&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
 
-&lt;script&gt;
-google.charts.load(&quot;current&quot;, {packages: [&quot;corechart&quot;]});
-google.charts.setOnLoadCallback(drawLineChart);
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="language-javascript">
+google.<span class="hljs-property">charts</span>.<span class="hljs-title function_">load</span>(<span class="hljs-string">&quot;current&quot;</span>, {<span class="hljs-attr">packages</span>: [<span class="hljs-string">&quot;corechart&quot;</span>]});
+google.<span class="hljs-property">charts</span>.<span class="hljs-title function_">setOnLoadCallback</span>(drawLineChart);
 
-function drawLineChart() {
-  const data = google.visualization.arrayToDataTable([
-    [&quot;Time&quot;, &quot;Series 1&quot;, &quot;Series 2&quot;],
-    [1, 10, 5],
-    [2, 15, 8],
-    [3, 13, 7],
-    [4, 17, 11],
-    [5, 14, 9],
-    [6, 20, 13],
-    [7, 18, 12],
-    [8, 22, 16]
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">drawLineChart</span>(<span class="hljs-params"></span>) {
+  <span class="hljs-keyword">const</span> data = google.<span class="hljs-property">visualization</span>.<span class="hljs-title function_">arrayToDataTable</span>([
+    [<span class="hljs-string">&quot;Time&quot;</span>, <span class="hljs-string">&quot;Series 1&quot;</span>, <span class="hljs-string">&quot;Series 2&quot;</span>],
+    [<span class="hljs-number">1</span>, <span class="hljs-number">10</span>, <span class="hljs-number">5</span>],
+    [<span class="hljs-number">2</span>, <span class="hljs-number">15</span>, <span class="hljs-number">8</span>],
+    [<span class="hljs-number">3</span>, <span class="hljs-number">13</span>, <span class="hljs-number">7</span>],
+    [<span class="hljs-number">4</span>, <span class="hljs-number">17</span>, <span class="hljs-number">11</span>],
+    [<span class="hljs-number">5</span>, <span class="hljs-number">14</span>, <span class="hljs-number">9</span>],
+    [<span class="hljs-number">6</span>, <span class="hljs-number">20</span>, <span class="hljs-number">13</span>],
+    [<span class="hljs-number">7</span>, <span class="hljs-number">18</span>, <span class="hljs-number">12</span>],
+    [<span class="hljs-number">8</span>, <span class="hljs-number">22</span>, <span class="hljs-number">16</span>]
   ]);
 
-  const options = {
-    title: &quot;Line Graph&quot;,
-    hAxis: {title: &quot;Time&quot;},
-    vAxis: {title: &quot;Values&quot;, minValue: 0},
-    colors: [&quot;#4CAF50&quot;, &quot;#F44336&quot;],
-    curveType: &quot;function&quot;
+  <span class="hljs-keyword">const</span> options = {
+    <span class="hljs-attr">title</span>: <span class="hljs-string">&quot;Line Graph&quot;</span>,
+    <span class="hljs-attr">hAxis</span>: {<span class="hljs-attr">title</span>: <span class="hljs-string">&quot;Time&quot;</span>},
+    <span class="hljs-attr">vAxis</span>: {<span class="hljs-attr">title</span>: <span class="hljs-string">&quot;Values&quot;</span>, <span class="hljs-attr">minValue</span>: <span class="hljs-number">0</span>},
+    <span class="hljs-attr">colors</span>: [<span class="hljs-string">&quot;#4CAF50&quot;</span>, <span class="hljs-string">&quot;#F44336&quot;</span>],
+    <span class="hljs-attr">curveType</span>: <span class="hljs-string">&quot;function&quot;</span>
   };
 
-  const chart = new google.visualization.LineChart(document.getElementById(&quot;lineChart&quot;));
-  chart.draw(data, options);
-  document.getElementById(&quot;demo4&quot;).innerHTML = &quot;Google Line Chart created!&quot;;
+  <span class="hljs-keyword">const</span> chart = <span class="hljs-keyword">new</span> google.<span class="hljs-property">visualization</span>.<span class="hljs-title class_">LineChart</span>(<span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&quot;lineChart&quot;</span>));
+  chart.<span class="hljs-title function_">draw</span>(data, options);
+  <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&quot;demo4&quot;</span>).<span class="hljs-property">innerHTML</span> = <span class="hljs-string">&quot;Google Line Chart created!&quot;</span>;
 }
-&lt;/script&gt;
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
 
-&lt;/body&gt;
-&lt;/html&gt;
-</code></pre>
+<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span>
+</div></code></pre>
 <p><img src="images/p4.png" alt=""></p>
-<h3>Example 4</h3>
+<h3 id="example-4">Example 4</h3>
 <p><strong>Result</strong> <a href="ex4-line_graph/index.html">View Example</a></p>
-<h2>Scatter Plots</h2>
+<h2 id="scatter-plots">Scatter Plots</h2>
 <p>A scatter plot displays values for two variables using dots:</p>
-<pre><code class="language-html">&lt;!DOCTYPE html&gt;
-&lt;html&gt;
-&lt;body&gt;
+<pre class="hljs"><code><div><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-keyword">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
 
-&lt;h2&gt;JavaScript Google Chart Graphics&lt;/h2&gt;
-&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+<span class="hljs-tag">&lt;<span class="hljs-name">h2</span>&gt;</span>JavaScript Google Chart Graphics<span class="hljs-tag">&lt;/<span class="hljs-name">h2</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>From w3schools.com, Experiment by Teeratus_R<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
 
-&lt;h4&gt;Scatter Plots&lt;/h4&gt;
+<span class="hljs-tag">&lt;<span class="hljs-name">h4</span>&gt;</span>Scatter Plots<span class="hljs-tag">&lt;/<span class="hljs-name">h4</span>&gt;</span>
 
-&lt;div id=&quot;scatterChart&quot;&gt;&lt;/div&gt;
-&lt;p id=&quot;demo5&quot;&gt;&lt;/p&gt;
+<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;scatterChart&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;demo5&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
 
-&lt;script src=&quot;https://www.gstatic.com/charts/loader.js&quot;&gt;&lt;/script&gt;
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;https://www.gstatic.com/charts/loader.js&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
 
-&lt;script&gt;
-google.charts.load(&quot;current&quot;, {packages: [&quot;corechart&quot;]});
-google.charts.setOnLoadCallback(drawScatterChart);
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="language-javascript">
+google.<span class="hljs-property">charts</span>.<span class="hljs-title function_">load</span>(<span class="hljs-string">&quot;current&quot;</span>, {<span class="hljs-attr">packages</span>: [<span class="hljs-string">&quot;corechart&quot;</span>]});
+google.<span class="hljs-property">charts</span>.<span class="hljs-title function_">setOnLoadCallback</span>(drawScatterChart);
 
-function drawScatterChart() {
-  const data = google.visualization.arrayToDataTable([
-    [&quot;X&quot;, &quot;Y&quot;],
-    [1, 2], [3, 5], [4, 4], [6, 8], [7, 7],
-    [9, 10], [2, 3], [4, 6], [5, 5], [7, 9],
-    [8, 8], [10, 11]
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">drawScatterChart</span>(<span class="hljs-params"></span>) {
+  <span class="hljs-keyword">const</span> data = google.<span class="hljs-property">visualization</span>.<span class="hljs-title function_">arrayToDataTable</span>([
+    [<span class="hljs-string">&quot;X&quot;</span>, <span class="hljs-string">&quot;Y&quot;</span>],
+    [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>], [<span class="hljs-number">3</span>, <span class="hljs-number">5</span>], [<span class="hljs-number">4</span>, <span class="hljs-number">4</span>], [<span class="hljs-number">6</span>, <span class="hljs-number">8</span>], [<span class="hljs-number">7</span>, <span class="hljs-number">7</span>],
+    [<span class="hljs-number">9</span>, <span class="hljs-number">10</span>], [<span class="hljs-number">2</span>, <span class="hljs-number">3</span>], [<span class="hljs-number">4</span>, <span class="hljs-number">6</span>], [<span class="hljs-number">5</span>, <span class="hljs-number">5</span>], [<span class="hljs-number">7</span>, <span class="hljs-number">9</span>],
+    [<span class="hljs-number">8</span>, <span class="hljs-number">8</span>], [<span class="hljs-number">10</span>, <span class="hljs-number">11</span>]
   ]);
 
-  const options = {
-    title: &quot;Scatter Plot&quot;,
-    hAxis: {title: &quot;X Values&quot;, minValue: 0, maxValue: 11},
-    vAxis: {title: &quot;Y Values&quot;, minValue: 0, maxValue: 12},
-    legend: &quot;none&quot;,
-    pointSize: 8,
-    colors: [&quot;#4CAF50&quot;]
+  <span class="hljs-keyword">const</span> options = {
+    <span class="hljs-attr">title</span>: <span class="hljs-string">&quot;Scatter Plot&quot;</span>,
+    <span class="hljs-attr">hAxis</span>: {<span class="hljs-attr">title</span>: <span class="hljs-string">&quot;X Values&quot;</span>, <span class="hljs-attr">minValue</span>: <span class="hljs-number">0</span>, <span class="hljs-attr">maxValue</span>: <span class="hljs-number">11</span>},
+    <span class="hljs-attr">vAxis</span>: {<span class="hljs-attr">title</span>: <span class="hljs-string">&quot;Y Values&quot;</span>, <span class="hljs-attr">minValue</span>: <span class="hljs-number">0</span>, <span class="hljs-attr">maxValue</span>: <span class="hljs-number">12</span>},
+    <span class="hljs-attr">legend</span>: <span class="hljs-string">&quot;none&quot;</span>,
+    <span class="hljs-attr">pointSize</span>: <span class="hljs-number">8</span>,
+    <span class="hljs-attr">colors</span>: [<span class="hljs-string">&quot;#4CAF50&quot;</span>]
   };
 
-  const chart = new google.visualization.ScatterChart(document.getElementById(&quot;scatterChart&quot;));
-  chart.draw(data, options);
-  document.getElementById(&quot;demo5&quot;).innerHTML = &quot;Google Scatter Chart created!&quot;;
+  <span class="hljs-keyword">const</span> chart = <span class="hljs-keyword">new</span> google.<span class="hljs-property">visualization</span>.<span class="hljs-title class_">ScatterChart</span>(<span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&quot;scatterChart&quot;</span>));
+  chart.<span class="hljs-title function_">draw</span>(data, options);
+  <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&quot;demo5&quot;</span>).<span class="hljs-property">innerHTML</span> = <span class="hljs-string">&quot;Google Scatter Chart created!&quot;</span>;
 }
-&lt;/script&gt;
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
 
-&lt;/body&gt;
-&lt;/html&gt;
-</code></pre>
+<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span>
+</div></code></pre>
 <p><img src="images/p5.png" alt=""></p>
-<h3>Example 5</h3>
+<h3 id="example-5">Example 5</h3>
 <p><strong>Result</strong> <a href="ex5-scatter_plot/index.html">View Example</a></p>
-<h2>Document</h2>
+<h2 id="document">Document</h2>
 <p>Document in project</p>
 <p>You can <a href="js-google_chart_graphics.pdf">Download PDF</a> file.</p>
-<h2>Reference</h2>
+<h2 id="reference">Reference</h2>
 <ul>
 <li><a href="https://www.w3schools.com/js/js_graphics_google_chart.asp">W3Schools JavaScript Google Chart Graphics</a></li>
 </ul>

@@ -1,112 +1,398 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>js-arraybuffer</title>
-  <style>
-    body {
-      box-sizing: border-box;
-      min-width: 200px;
-      max-width: 980px;
-      margin: 0 auto;
-      padding: 45px;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
-      font-size: 16px;
-      line-height: 1.5;
-      color: #24292e;
-      background-color: #ffffff;
-    }
-    h1, h2, h3, h4, h5, h6 {
-      margin-top: 24px;
-      margin-bottom: 16px;
-      font-weight: 600;
-      line-height: 1.25;
-      border-bottom: 1px solid #eaecef;
-      padding-bottom: .3em;
-    }
-    h1 { font-size: 2em; }
-    h2 { font-size: 1.5em; }
-    h3 { font-size: 1.25em; }
-    code {
-      padding: .2em .4em;
-      margin: 0;
-      font-size: 85%;
-      background-color: rgba(27,31,35,.05);
-      border-radius: 3px;
-      font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
-    }
-    pre {
-      padding: 16px;
-      overflow: auto;
-      font-size: 85%;
-      line-height: 1.45;
-      background-color: #f6f8fa;
-      border-radius: 3px;
-      word-wrap: normal;
-    }
-    pre code {
-      background-color: transparent;
-      padding: 0;
-    }
-    blockquote {
-      padding: 0 1em;
-      color: #6a737d;
-      border-left: .25em solid #dfe2e5;
-      margin: 0 0 16px 0;
-    }
-    table {
-      border-spacing: 0;
-      border-collapse: collapse;
-      margin-top: 0;
-      margin-bottom: 16px;
-      width: 100%;
-    }
-    table th, table td {
-      padding: 6px 13px;
-      border: 1px solid #dfe2e5;
-    }
-    table tr:nth-child(2n) {
-      background-color: #f6f8fa;
-    }
-    img {
-      max-width: 100%;
-      box-sizing: content-box;
-    }
-    @media print {
-      body {
-        max-width: 100%;
-        padding: 0;
-      }
-      pre, blockquote, table, tr, img {
-        page-break-inside: avoid;
-      }
-    }
-  </style>
+<title>js-arraybuffer.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> or <div class="page"></div> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
 </head>
 <body>
-<h1>JavaScript ArrayBuffer</h1>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="javascript-arraybuffer">JavaScript ArrayBuffer</h1>
 <p><a href="../">Back to JS page</a></p>
 <p>Table of Contents</p>
 <ul>
-<li><a href="#javascript-arraybuffer">JavaScript ArrayBuffer</a><ul>
-<li><a href="#creating-an-arraybuffer">Creating an ArrayBuffer</a><ul>
+<li><a href="#javascript-arraybuffer">JavaScript ArrayBuffer</a>
+<ul>
+<li><a href="#creating-an-arraybuffer">Creating an ArrayBuffer</a>
+<ul>
 <li><a href="#example-1">Example 1</a></li>
 </ul>
 </li>
-<li><a href="#using-an-uint8array-with-arraybuffer">Using an Uint8Array with ArrayBuffer</a><ul>
+<li><a href="#using-an-uint8array-with-arraybuffer">Using an Uint8Array with ArrayBuffer</a>
+<ul>
 <li><a href="#example-2">Example 2</a></li>
 </ul>
 </li>
-<li><a href="#using-a-dataview">Using a DataView</a><ul>
+<li><a href="#using-a-dataview">Using a DataView</a>
+<ul>
 <li><a href="#example-3">Example 3</a></li>
 </ul>
 </li>
-<li><a href="#arraybufferslice">ArrayBuffer.slice()</a><ul>
+<li><a href="#arraybufferslice">ArrayBuffer.slice()</a>
+<ul>
 <li><a href="#example-4">Example 4</a></li>
 </ul>
 </li>
-<li><a href="#sharedarraybuffer">SharedArrayBuffer</a><ul>
+<li><a href="#sharedarraybuffer">SharedArrayBuffer</a>
+<ul>
 <li><a href="#example-5">Example 5</a></li>
 </ul>
 </li>
@@ -115,225 +401,225 @@
 </ul>
 </li>
 </ul>
-<h2>ArrayBuffer</h2>
+<h2 id="arraybuffer">ArrayBuffer</h2>
 <p>An <code>ArrayBuffer</code> is a fixed-length, raw binary data buffer in memory. It cannot be read or written directly. Instead, you create a <strong>typed array view</strong> or a <strong>DataView</strong> to read/write the buffer.</p>
-<h2>Creating an ArrayBuffer</h2>
+<h2 id="creating-an-arraybuffer">Creating an ArrayBuffer</h2>
 <p>You create an <code>ArrayBuffer</code> by specifying its size in bytes:</p>
-<pre><code class="language-html">&lt;!DOCTYPE html&gt;
-&lt;html&gt;
-&lt;body&gt;
+<pre class="hljs"><code><div><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-keyword">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
 
-&lt;h2&gt;JavaScript ArrayBuffer&lt;/h2&gt;
-&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+<span class="hljs-tag">&lt;<span class="hljs-name">h2</span>&gt;</span>JavaScript ArrayBuffer<span class="hljs-tag">&lt;/<span class="hljs-name">h2</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>From w3schools.com, Experiment by Teeratus_R<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
 
-&lt;h4&gt;Creating an ArrayBuffer&lt;/h4&gt;
-&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+<span class="hljs-tag">&lt;<span class="hljs-name">h4</span>&gt;</span>Creating an ArrayBuffer<span class="hljs-tag">&lt;/<span class="hljs-name">h4</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;demo&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
 
-&lt;script&gt;
-// Create an ArrayBuffer with 16 bytes
-const buffer = new ArrayBuffer(16);
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="language-javascript">
+<span class="hljs-comment">// Create an ArrayBuffer with 16 bytes</span>
+<span class="hljs-keyword">const</span> buffer = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ArrayBuffer</span>(<span class="hljs-number">16</span>);
 
-let text = &quot;ArrayBuffer created with 16 bytes&lt;br&gt;&quot;;
-text += &quot;byteLength: &quot; + buffer.byteLength + &quot;&lt;br&gt;&quot;;
-text += &quot;Max byteLength: &quot; + ArrayBuffer.maxByteLength + &quot;&lt;br&gt;&quot;;
-text += &quot;byteLength is read-only? &quot; + (buffer.byteLength === 16);
+<span class="hljs-keyword">let</span> text = <span class="hljs-string">&quot;ArrayBuffer created with 16 bytes&lt;br&gt;&quot;</span>;
+text += <span class="hljs-string">&quot;byteLength: &quot;</span> + buffer.<span class="hljs-property">byteLength</span> + <span class="hljs-string">&quot;&lt;br&gt;&quot;</span>;
+text += <span class="hljs-string">&quot;Max byteLength: &quot;</span> + <span class="hljs-title class_">ArrayBuffer</span>.<span class="hljs-property">maxByteLength</span> + <span class="hljs-string">&quot;&lt;br&gt;&quot;</span>;
+text += <span class="hljs-string">&quot;byteLength is read-only? &quot;</span> + (buffer.<span class="hljs-property">byteLength</span> === <span class="hljs-number">16</span>);
 
-document.getElementById(&quot;demo&quot;).innerHTML = text;
-&lt;/script&gt;
+<span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&quot;demo&quot;</span>).<span class="hljs-property">innerHTML</span> = text;
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
 
-&lt;/body&gt;
-&lt;/html&gt;
-</code></pre>
+<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span>
+</div></code></pre>
 <p><img src="images/p1.png" alt=""></p>
-<h3>Example 1</h3>
+<h3 id="example-1">Example 1</h3>
 <p><strong>Result</strong> <a href="ex1-create_buffer/index.html">View Example</a></p>
-<h2>Using an Uint8Array with ArrayBuffer</h2>
+<h2 id="using-an-uint8array-with-arraybuffer">Using an Uint8Array with ArrayBuffer</h2>
 <p>To access an <code>ArrayBuffer</code>, you need a typed array view. <code>Uint8Array</code> treats each byte as an unsigned 8-bit integer:</p>
-<pre><code class="language-html">&lt;!DOCTYPE html&gt;
-&lt;html&gt;
-&lt;body&gt;
+<pre class="hljs"><code><div><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-keyword">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
 
-&lt;h2&gt;JavaScript ArrayBuffer&lt;/h2&gt;
-&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+<span class="hljs-tag">&lt;<span class="hljs-name">h2</span>&gt;</span>JavaScript ArrayBuffer<span class="hljs-tag">&lt;/<span class="hljs-name">h2</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>From w3schools.com, Experiment by Teeratus_R<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
 
-&lt;h4&gt;Using an Uint8Array with ArrayBuffer&lt;/h4&gt;
-&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+<span class="hljs-tag">&lt;<span class="hljs-name">h4</span>&gt;</span>Using an Uint8Array with ArrayBuffer<span class="hljs-tag">&lt;/<span class="hljs-name">h4</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;demo&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
 
-&lt;script&gt;
-// Create buffer and view
-const buffer = new ArrayBuffer(8);
-const view = new Uint8Array(buffer);
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="language-javascript">
+<span class="hljs-comment">// Create buffer and view</span>
+<span class="hljs-keyword">const</span> buffer = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ArrayBuffer</span>(<span class="hljs-number">8</span>);
+<span class="hljs-keyword">const</span> view = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Uint8Array</span>(buffer);
 
-// Write values
-view[0] = 65;   // &#39;A&#39;
-view[1] = 66;   // &#39;B&#39;
-view[2] = 67;   // &#39;C&#39;
-view[3] = 97;   // &#39;a&#39;
-view[4] = 98;   // &#39;b&#39;
+<span class="hljs-comment">// Write values</span>
+view[<span class="hljs-number">0</span>] = <span class="hljs-number">65</span>;   <span class="hljs-comment">// &#x27;A&#x27;</span>
+view[<span class="hljs-number">1</span>] = <span class="hljs-number">66</span>;   <span class="hljs-comment">// &#x27;B&#x27;</span>
+view[<span class="hljs-number">2</span>] = <span class="hljs-number">67</span>;   <span class="hljs-comment">// &#x27;C&#x27;</span>
+view[<span class="hljs-number">3</span>] = <span class="hljs-number">97</span>;   <span class="hljs-comment">// &#x27;a&#x27;</span>
+view[<span class="hljs-number">4</span>] = <span class="hljs-number">98</span>;   <span class="hljs-comment">// &#x27;b&#x27;</span>
 
-// Read values
-let text = &quot;Uint8Array view of ArrayBuffer(8):&lt;br&gt;&quot;;
-for (let i = 0; i &lt; view.length; i++) {
-  text += &quot;view[&quot; + i + &quot;] = &quot; + view[i];
-  if (view[i] &gt;= 65 &amp;&amp; view[i] &lt;= 90) {
-    text += &quot; (char: &quot; + String.fromCharCode(view[i]) + &quot;)&quot;;
+<span class="hljs-comment">// Read values</span>
+<span class="hljs-keyword">let</span> text = <span class="hljs-string">&quot;Uint8Array view of ArrayBuffer(8):&lt;br&gt;&quot;</span>;
+<span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; view.<span class="hljs-property">length</span>; i++) {
+  text += <span class="hljs-string">&quot;view[&quot;</span> + i + <span class="hljs-string">&quot;] = &quot;</span> + view[i];
+  <span class="hljs-keyword">if</span> (view[i] &gt;= <span class="hljs-number">65</span> &amp;&amp; view[i] &lt;= <span class="hljs-number">90</span>) {
+    text += <span class="hljs-string">&quot; (char: &quot;</span> + <span class="hljs-title class_">String</span>.<span class="hljs-title function_">fromCharCode</span>(view[i]) + <span class="hljs-string">&quot;)&quot;</span>;
   }
-  text += &quot;&lt;br&gt;&quot;;
+  text += <span class="hljs-string">&quot;&lt;br&gt;&quot;</span>;
 }
-text += &quot;&lt;br&gt;byteLength: &quot; + buffer.byteLength;
+text += <span class="hljs-string">&quot;&lt;br&gt;byteLength: &quot;</span> + buffer.<span class="hljs-property">byteLength</span>;
 
-document.getElementById(&quot;demo&quot;).innerHTML = text;
-&lt;/script&gt;
+<span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&quot;demo&quot;</span>).<span class="hljs-property">innerHTML</span> = text;
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
 
-&lt;/body&gt;
-&lt;/html&gt;
-</code></pre>
+<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span>
+</div></code></pre>
 <p><img src="images/p2.png" alt=""></p>
-<h3>Example 2</h3>
+<h3 id="example-2">Example 2</h3>
 <p><strong>Result</strong> <a href="ex2-uint8array/index.html">View Example</a></p>
-<h2>Using a DataView</h2>
+<h2 id="using-a-dataview">Using a DataView</h2>
 <p>A <code>DataView</code> provides a flexible interface to read/write different data types at any byte offset:</p>
-<pre><code class="language-html">&lt;!DOCTYPE html&gt;
-&lt;html&gt;
-&lt;body&gt;
+<pre class="hljs"><code><div><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-keyword">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
 
-&lt;h2&gt;JavaScript ArrayBuffer&lt;/h2&gt;
-&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+<span class="hljs-tag">&lt;<span class="hljs-name">h2</span>&gt;</span>JavaScript ArrayBuffer<span class="hljs-tag">&lt;/<span class="hljs-name">h2</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>From w3schools.com, Experiment by Teeratus_R<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
 
-&lt;h4&gt;Using a DataView&lt;/h4&gt;
-&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+<span class="hljs-tag">&lt;<span class="hljs-name">h4</span>&gt;</span>Using a DataView<span class="hljs-tag">&lt;/<span class="hljs-name">h4</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;demo&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
 
-&lt;script&gt;
-const buffer = new ArrayBuffer(16);
-const dataView = new DataView(buffer);
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="language-javascript">
+<span class="hljs-keyword">const</span> buffer = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ArrayBuffer</span>(<span class="hljs-number">16</span>);
+<span class="hljs-keyword">const</span> dataView = <span class="hljs-keyword">new</span> <span class="hljs-title class_">DataView</span>(buffer);
 
-// Write different data types
-dataView.setInt32(0, 42);        // 4 bytes at offset 0
-dataView.setFloat32(4, 3.14);    // 4 bytes at offset 4
-dataView.setInt16(8, 255);       // 2 bytes at offset 8
+<span class="hljs-comment">// Write different data types</span>
+dataView.<span class="hljs-title function_">setInt32</span>(<span class="hljs-number">0</span>, <span class="hljs-number">42</span>);        <span class="hljs-comment">// 4 bytes at offset 0</span>
+dataView.<span class="hljs-title function_">setFloat32</span>(<span class="hljs-number">4</span>, <span class="hljs-number">3.14</span>);    <span class="hljs-comment">// 4 bytes at offset 4</span>
+dataView.<span class="hljs-title function_">setInt16</span>(<span class="hljs-number">8</span>, <span class="hljs-number">255</span>);       <span class="hljs-comment">// 2 bytes at offset 8</span>
 
-// Read back
-let text = &quot;DataView on ArrayBuffer(16):&lt;br&gt;&quot;;
-text += &quot;getInt32(0): &quot; + dataView.getInt32(0) + &quot;&lt;br&gt;&quot;;
-text += &quot;getFloat32(4): &quot; + dataView.getFloat32(4) + &quot;&lt;br&gt;&quot;;
-text += &quot;getInt16(8): &quot; + dataView.getInt16(8) + &quot;&lt;br&gt;&lt;br&gt;&quot;;
+<span class="hljs-comment">// Read back</span>
+<span class="hljs-keyword">let</span> text = <span class="hljs-string">&quot;DataView on ArrayBuffer(16):&lt;br&gt;&quot;</span>;
+text += <span class="hljs-string">&quot;getInt32(0): &quot;</span> + dataView.<span class="hljs-title function_">getInt32</span>(<span class="hljs-number">0</span>) + <span class="hljs-string">&quot;&lt;br&gt;&quot;</span>;
+text += <span class="hljs-string">&quot;getFloat32(4): &quot;</span> + dataView.<span class="hljs-title function_">getFloat32</span>(<span class="hljs-number">4</span>) + <span class="hljs-string">&quot;&lt;br&gt;&quot;</span>;
+text += <span class="hljs-string">&quot;getInt16(8): &quot;</span> + dataView.<span class="hljs-title function_">getInt16</span>(<span class="hljs-number">8</span>) + <span class="hljs-string">&quot;&lt;br&gt;&lt;br&gt;&quot;</span>;
 
-// Check byte order (endianness)
-const testBuffer = new ArrayBuffer(2);
-const testView = new DataView(testBuffer);
-testView.setInt16(0, 256);
-text += &quot;Endianness test: &quot;;
-if (testView.getUint8(0) === 1) {
-  text += &quot;Big-endian&quot;;
-} else {
-  text += &quot;Little-endian&quot;;
+<span class="hljs-comment">// Check byte order (endianness)</span>
+<span class="hljs-keyword">const</span> testBuffer = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ArrayBuffer</span>(<span class="hljs-number">2</span>);
+<span class="hljs-keyword">const</span> testView = <span class="hljs-keyword">new</span> <span class="hljs-title class_">DataView</span>(testBuffer);
+testView.<span class="hljs-title function_">setInt16</span>(<span class="hljs-number">0</span>, <span class="hljs-number">256</span>);
+text += <span class="hljs-string">&quot;Endianness test: &quot;</span>;
+<span class="hljs-keyword">if</span> (testView.<span class="hljs-title function_">getUint8</span>(<span class="hljs-number">0</span>) === <span class="hljs-number">1</span>) {
+  text += <span class="hljs-string">&quot;Big-endian&quot;</span>;
+} <span class="hljs-keyword">else</span> {
+  text += <span class="hljs-string">&quot;Little-endian&quot;</span>;
 }
 
-document.getElementById(&quot;demo&quot;).innerHTML = text;
-&lt;/script&gt;
+<span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&quot;demo&quot;</span>).<span class="hljs-property">innerHTML</span> = text;
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
 
-&lt;/body&gt;
-&lt;/html&gt;
-</code></pre>
+<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span>
+</div></code></pre>
 <p><img src="images/p3.png" alt=""></p>
-<h3>Example 3</h3>
+<h3 id="example-3">Example 3</h3>
 <p><strong>Result</strong> <a href="ex3-dataview/index.html">View Example</a></p>
-<h2>ArrayBuffer.slice()</h2>
+<h2 id="arraybufferslice">ArrayBuffer.slice()</h2>
 <p>You can create a new <code>ArrayBuffer</code> from a portion of an existing buffer using <code>slice()</code>:</p>
-<pre><code class="language-html">&lt;!DOCTYPE html&gt;
-&lt;html&gt;
-&lt;body&gt;
+<pre class="hljs"><code><div><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-keyword">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
 
-&lt;h2&gt;JavaScript ArrayBuffer&lt;/h2&gt;
-&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+<span class="hljs-tag">&lt;<span class="hljs-name">h2</span>&gt;</span>JavaScript ArrayBuffer<span class="hljs-tag">&lt;/<span class="hljs-name">h2</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>From w3schools.com, Experiment by Teeratus_R<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
 
-&lt;h4&gt;ArrayBuffer.slice()&lt;/h4&gt;
-&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+<span class="hljs-tag">&lt;<span class="hljs-name">h4</span>&gt;</span>ArrayBuffer.slice()<span class="hljs-tag">&lt;/<span class="hljs-name">h4</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;demo&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
 
-&lt;script&gt;
-const buffer = new ArrayBuffer(16);
-const view = new Uint8Array(buffer);
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="language-javascript">
+<span class="hljs-keyword">const</span> buffer = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ArrayBuffer</span>(<span class="hljs-number">16</span>);
+<span class="hljs-keyword">const</span> view = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Uint8Array</span>(buffer);
 
-// Fill with values
-for (let i = 0; i &lt; view.length; i++) {
-  view[i] = i * 10;
+<span class="hljs-comment">// Fill with values</span>
+<span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; view.<span class="hljs-property">length</span>; i++) {
+  view[i] = i * <span class="hljs-number">10</span>;
 }
 
-// Slice a portion
-const sliced = buffer.slice(4, 12);
-const slicedView = new Uint8Array(sliced);
+<span class="hljs-comment">// Slice a portion</span>
+<span class="hljs-keyword">const</span> sliced = buffer.<span class="hljs-title function_">slice</span>(<span class="hljs-number">4</span>, <span class="hljs-number">12</span>);
+<span class="hljs-keyword">const</span> slicedView = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Uint8Array</span>(sliced);
 
-let text = &quot;Original buffer: &quot;;
-for (let i = 0; i &lt; view.length; i++) text += view[i] + &quot; &quot;;
-text += &quot;&lt;br&gt;&quot;;
+<span class="hljs-keyword">let</span> text = <span class="hljs-string">&quot;Original buffer: &quot;</span>;
+<span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; view.<span class="hljs-property">length</span>; i++) text += view[i] + <span class="hljs-string">&quot; &quot;</span>;
+text += <span class="hljs-string">&quot;&lt;br&gt;&quot;</span>;
 
-text += &quot;Sliced buffer (bytes 4-12): &quot;;
-for (let i = 0; i &lt; slicedView.length; i++) text += slicedView[i] + &quot; &quot;;
-text += &quot;&lt;br&gt;&lt;br&gt;&quot;;
+text += <span class="hljs-string">&quot;Sliced buffer (bytes 4-12): &quot;</span>;
+<span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; slicedView.<span class="hljs-property">length</span>; i++) text += slicedView[i] + <span class="hljs-string">&quot; &quot;</span>;
+text += <span class="hljs-string">&quot;&lt;br&gt;&lt;br&gt;&quot;</span>;
 
-text += &quot;Original byteLength: &quot; + buffer.byteLength + &quot;&lt;br&gt;&quot;;
-text += &quot;Sliced byteLength: &quot; + sliced.byteLength;
+text += <span class="hljs-string">&quot;Original byteLength: &quot;</span> + buffer.<span class="hljs-property">byteLength</span> + <span class="hljs-string">&quot;&lt;br&gt;&quot;</span>;
+text += <span class="hljs-string">&quot;Sliced byteLength: &quot;</span> + sliced.<span class="hljs-property">byteLength</span>;
 
-document.getElementById(&quot;demo&quot;).innerHTML = text;
-&lt;/script&gt;
+<span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&quot;demo&quot;</span>).<span class="hljs-property">innerHTML</span> = text;
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
 
-&lt;/body&gt;
-&lt;/html&gt;
-</code></pre>
+<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span>
+</div></code></pre>
 <p><img src="images/p4.png" alt=""></p>
-<h3>Example 4</h3>
+<h3 id="example-4">Example 4</h3>
 <p><strong>Result</strong> <a href="ex4-slice/index.html">View Example</a></p>
-<h2>SharedArrayBuffer</h2>
+<h2 id="sharedarraybuffer">SharedArrayBuffer</h2>
 <p>A <code>SharedArrayBuffer</code> is similar to <code>ArrayBuffer</code> but can be shared between workers (threads):</p>
-<pre><code class="language-html">&lt;!DOCTYPE html&gt;
-&lt;html&gt;
-&lt;body&gt;
+<pre class="hljs"><code><div><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-keyword">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
 
-&lt;h2&gt;JavaScript ArrayBuffer&lt;/h2&gt;
-&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+<span class="hljs-tag">&lt;<span class="hljs-name">h2</span>&gt;</span>JavaScript ArrayBuffer<span class="hljs-tag">&lt;/<span class="hljs-name">h2</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>From w3schools.com, Experiment by Teeratus_R<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
 
-&lt;h4&gt;SharedArrayBuffer&lt;/h4&gt;
-&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+<span class="hljs-tag">&lt;<span class="hljs-name">h4</span>&gt;</span>SharedArrayBuffer<span class="hljs-tag">&lt;/<span class="hljs-name">h4</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;demo&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
 
-&lt;script&gt;
-// Create a SharedArrayBuffer
-const sharedBuffer = new SharedArrayBuffer(16);
-const sharedView = new Int32Array(sharedBuffer);
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="language-javascript">
+<span class="hljs-comment">// Create a SharedArrayBuffer</span>
+<span class="hljs-keyword">const</span> sharedBuffer = <span class="hljs-keyword">new</span> <span class="hljs-title class_">SharedArrayBuffer</span>(<span class="hljs-number">16</span>);
+<span class="hljs-keyword">const</span> sharedView = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Int32Array</span>(sharedBuffer);
 
-// Write values
-for (let i = 0; i &lt; sharedView.length; i++) {
-  sharedView[i] = i * 100;
+<span class="hljs-comment">// Write values</span>
+<span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; sharedView.<span class="hljs-property">length</span>; i++) {
+  sharedView[i] = i * <span class="hljs-number">100</span>;
 }
 
-let text = &quot;SharedArrayBuffer created with 16 bytes&lt;br&gt;&quot;;
-text += &quot;byteLength: &quot; + sharedBuffer.byteLength + &quot;&lt;br&gt;&quot;;
-text += &quot;Int32Array length: &quot; + sharedView.length + &quot; (4 bytes each)&lt;br&gt;&lt;br&gt;&quot;;
+<span class="hljs-keyword">let</span> text = <span class="hljs-string">&quot;SharedArrayBuffer created with 16 bytes&lt;br&gt;&quot;</span>;
+text += <span class="hljs-string">&quot;byteLength: &quot;</span> + sharedBuffer.<span class="hljs-property">byteLength</span> + <span class="hljs-string">&quot;&lt;br&gt;&quot;</span>;
+text += <span class="hljs-string">&quot;Int32Array length: &quot;</span> + sharedView.<span class="hljs-property">length</span> + <span class="hljs-string">&quot; (4 bytes each)&lt;br&gt;&lt;br&gt;&quot;</span>;
 
-text += &quot;Values: &quot;;
-for (let i = 0; i &lt; sharedView.length; i++) {
-  text += sharedView[i] + &quot; &quot;;
+text += <span class="hljs-string">&quot;Values: &quot;</span>;
+<span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; sharedView.<span class="hljs-property">length</span>; i++) {
+  text += sharedView[i] + <span class="hljs-string">&quot; &quot;</span>;
 }
-text += &quot;&lt;br&gt;&lt;br&gt;&quot;;
+text += <span class="hljs-string">&quot;&lt;br&gt;&lt;br&gt;&quot;</span>;
 
-text += &quot;SharedArrayBuffer can be used with:&lt;br&gt;&quot;;
-text += &quot;- Atomics.add()&lt;br&gt;&quot;;
-text += &quot;- Atomics.load()&lt;br&gt;&quot;;
-text += &quot;- Atomics.store()&lt;br&gt;&quot;;
-text += &quot;- Web Workers for multi-threading&quot;;
+text += <span class="hljs-string">&quot;SharedArrayBuffer can be used with:&lt;br&gt;&quot;</span>;
+text += <span class="hljs-string">&quot;- Atomics.add()&lt;br&gt;&quot;</span>;
+text += <span class="hljs-string">&quot;- Atomics.load()&lt;br&gt;&quot;</span>;
+text += <span class="hljs-string">&quot;- Atomics.store()&lt;br&gt;&quot;</span>;
+text += <span class="hljs-string">&quot;- Web Workers for multi-threading&quot;</span>;
 
-document.getElementById(&quot;demo&quot;).innerHTML = text;
-&lt;/script&gt;
+<span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&quot;demo&quot;</span>).<span class="hljs-property">innerHTML</span> = text;
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
 
-&lt;/body&gt;
-&lt;/html&gt;
-</code></pre>
+<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span>
+</div></code></pre>
 <p><img src="images/p5.png" alt=""></p>
-<h3>Example 5</h3>
+<h3 id="example-5">Example 5</h3>
 <p><strong>Result</strong> <a href="ex5-shared_buffer/index.html">View Example</a></p>
-<h2>Document</h2>
+<h2 id="document">Document</h2>
 <p>Document in project</p>
 <p>You can <a href="js-arraybuffer.pdf">Download PDF</a> file.</p>
-<h2>Reference</h2>
+<h2 id="reference">Reference</h2>
 <ul>
 <li><a href="https://www.w3schools.com/js/js_arraybuffers.asp">W3Schools JavaScript ArrayBuffer</a></li>
 </ul>

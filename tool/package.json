@@ -1,0 +1,13 @@
+{
+  "name": "md2html-convert-all",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Batch-convert 05.*/js-*.md to .html, matching the Markdown PDF extension's output",
+  "bin": {
+    "md2html-convert-all": "./md2html-convert-all.js"
+  },
+  "dependencies": {
+    "highlight.js": "^11.12.0",
+    "markdown-it": "^15.0.2"
+  }
+}

@@ -12,7 +12,7 @@ Table of Contents
     - [Example 3](#example-3)
   - [Full RegExp Assertions Reference](#full-regexp-assertions-reference)
     - [Example 4](#example-4)
-  - [RexExp Quantifiers](#regexp-quantifiers)
+  - [RexExp Quantifiers](#rexexp-quantifiers)
     - [Example 5](#example-5)
   - [Document](#document)
   - [Reference](#reference)

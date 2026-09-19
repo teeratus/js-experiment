@@ -1,112 +1,398 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>js-primitive_types</title>
-  <style>
-    body {
-      box-sizing: border-box;
-      min-width: 200px;
-      max-width: 980px;
-      margin: 0 auto;
-      padding: 45px;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
-      font-size: 16px;
-      line-height: 1.5;
-      color: #24292e;
-      background-color: #ffffff;
-    }
-    h1, h2, h3, h4, h5, h6 {
-      margin-top: 24px;
-      margin-bottom: 16px;
-      font-weight: 600;
-      line-height: 1.25;
-      border-bottom: 1px solid #eaecef;
-      padding-bottom: .3em;
-    }
-    h1 { font-size: 2em; }
-    h2 { font-size: 1.5em; }
-    h3 { font-size: 1.25em; }
-    code {
-      padding: .2em .4em;
-      margin: 0;
-      font-size: 85%;
-      background-color: rgba(27,31,35,.05);
-      border-radius: 3px;
-      font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
-    }
-    pre {
-      padding: 16px;
-      overflow: auto;
-      font-size: 85%;
-      line-height: 1.45;
-      background-color: #f6f8fa;
-      border-radius: 3px;
-      word-wrap: normal;
-    }
-    pre code {
-      background-color: transparent;
-      padding: 0;
-    }
-    blockquote {
-      padding: 0 1em;
-      color: #6a737d;
-      border-left: .25em solid #dfe2e5;
-      margin: 0 0 16px 0;
-    }
-    table {
-      border-spacing: 0;
-      border-collapse: collapse;
-      margin-top: 0;
-      margin-bottom: 16px;
-      width: 100%;
-    }
-    table th, table td {
-      padding: 6px 13px;
-      border: 1px solid #dfe2e5;
-    }
-    table tr:nth-child(2n) {
-      background-color: #f6f8fa;
-    }
-    img {
-      max-width: 100%;
-      box-sizing: content-box;
-    }
-    @media print {
-      body {
-        max-width: 100%;
-        padding: 0;
-      }
-      pre, blockquote, table, tr, img {
-        page-break-inside: avoid;
-      }
-    }
-  </style>
+<title>js-primitive_types.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> or <div class="page"></div> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
 </head>
 <body>
-<h1>JavaScript Primitive Types</h1>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="javascript-primitive-types">JavaScript Primitive Types</h1>
 <p><a href="../">Back to JS page</a></p>
 <p>Table of Contents</p>
 <ul>
-<li><a href="#javascript-primitive-types">JavaScript Primitive Types</a><ul>
-<li><a href="#javascript-strings">JavaScript Strings</a><ul>
+<li><a href="#javascript-primitive-types">JavaScript Primitive Types</a>
+<ul>
+<li><a href="#javascript-strings">JavaScript Strings</a>
+<ul>
 <li><a href="#example-1">Example 1</a></li>
 </ul>
 </li>
-<li><a href="#javascript-numbers">JavaScript Numbers</a><ul>
+<li><a href="#javascript-numbers">JavaScript Numbers</a>
+<ul>
 <li><a href="#example-2">Example 2</a></li>
 </ul>
 </li>
-<li><a href="#javascript-bigint">JavaScript BigInt</a><ul>
+<li><a href="#javascript-bigint">JavaScript BigInt</a>
+<ul>
 <li><a href="#example-3">Example 3</a></li>
 </ul>
 </li>
-<li><a href="#javascript-booleans">JavaScript Booleans</a><ul>
+<li><a href="#javascript-booleans">JavaScript Booleans</a>
+<ul>
 <li><a href="#example-4">Example 4</a></li>
 </ul>
 </li>
-<li><a href="#undefined-empty-values-and-null">Undefined, Empty Values, and null</a><ul>
+<li><a href="#undefined-empty-values-and-null">Undefined, Empty Values, and null</a>
+<ul>
 <li><a href="#example-5">Example 5</a></li>
 </ul>
 </li>
@@ -115,201 +401,201 @@
 </ul>
 </li>
 </ul>
-<h2>JavaScript Strings</h2>
+<h2 id="javascript-strings">JavaScript Strings</h2>
 <p>A string is a sequence of characters. Strings are written inside quotes. You can use single or double quotes:</p>
-<pre><code class="language-html">&lt;!DOCTYPE html&gt;
-&lt;html&gt;
-&lt;body&gt;
+<pre class="hljs"><code><div><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-keyword">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
 
-&lt;h2&gt;JavaScript Primitive Types&lt;/h2&gt;
-&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+<span class="hljs-tag">&lt;<span class="hljs-name">h2</span>&gt;</span>JavaScript Primitive Types<span class="hljs-tag">&lt;/<span class="hljs-name">h2</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>From w3schools.com, Experiment by Teeratus_R<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
 
-&lt;h4&gt;JavaScript Strings&lt;/h4&gt;
-&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+<span class="hljs-tag">&lt;<span class="hljs-name">h4</span>&gt;</span>JavaScript Strings<span class="hljs-tag">&lt;/<span class="hljs-name">h4</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;demo&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
 
-&lt;script&gt;
-// Strings can be written in single or double quotes
-const name1 = &quot;John Doe&quot;;
-const name2 = &#39;John Doe&#39;;
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="language-javascript">
+<span class="hljs-comment">// Strings can be written in single or double quotes</span>
+<span class="hljs-keyword">const</span> name1 = <span class="hljs-string">&quot;John Doe&quot;</span>;
+<span class="hljs-keyword">const</span> name2 = <span class="hljs-string">&#x27;John Doe&#x27;</span>;
 
-// Numbers in quotes are still strings
-const num1 = &quot;25&quot;;
-const num2 = &quot;25.5&quot;;
+<span class="hljs-comment">// Numbers in quotes are still strings</span>
+<span class="hljs-keyword">const</span> num1 = <span class="hljs-string">&quot;25&quot;</span>;
+<span class="hljs-keyword">const</span> num2 = <span class="hljs-string">&quot;25.5&quot;</span>;
 
-let text = &quot;name1: &quot; + name1 + &quot;&lt;br&gt;&quot;;
-text += &quot;name2: &quot; + name2 + &quot;&lt;br&gt;&quot;;
-text += &quot;typeof &#39;25&#39;: &quot; + typeof num1 + &quot;&lt;br&gt;&quot;;
-text += &quot;typeof &#39;25.5&#39;: &quot; + typeof num2 + &quot;&lt;br&gt;&lt;br&gt;&quot;;
+<span class="hljs-keyword">let</span> text = <span class="hljs-string">&quot;name1: &quot;</span> + name1 + <span class="hljs-string">&quot;&lt;br&gt;&quot;</span>;
+text += <span class="hljs-string">&quot;name2: &quot;</span> + name2 + <span class="hljs-string">&quot;&lt;br&gt;&quot;</span>;
+text += <span class="hljs-string">&quot;typeof &#x27;25&#x27;: &quot;</span> + <span class="hljs-keyword">typeof</span> num1 + <span class="hljs-string">&quot;&lt;br&gt;&quot;</span>;
+text += <span class="hljs-string">&quot;typeof &#x27;25.5&#x27;: &quot;</span> + <span class="hljs-keyword">typeof</span> num2 + <span class="hljs-string">&quot;&lt;br&gt;&lt;br&gt;&quot;</span>;
 
-text += &quot;Strings can be concatenated:&lt;br&gt;&quot;;
-text += name1 + &quot; is &quot; + 25 + &quot; years old&quot;;
+text += <span class="hljs-string">&quot;Strings can be concatenated:&lt;br&gt;&quot;</span>;
+text += name1 + <span class="hljs-string">&quot; is &quot;</span> + <span class="hljs-number">25</span> + <span class="hljs-string">&quot; years old&quot;</span>;
 
-document.getElementById(&quot;demo&quot;).innerHTML = text;
-&lt;/script&gt;
+<span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&quot;demo&quot;</span>).<span class="hljs-property">innerHTML</span> = text;
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
 
-&lt;/body&gt;
-&lt;/html&gt;
-</code></pre>
+<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span>
+</div></code></pre>
 <p><img src="images/p1.png" alt=""></p>
-<h3>Example 1</h3>
+<h3 id="example-1">Example 1</h3>
 <p><strong>Result</strong> <a href="ex1-strings/index.html">View Example</a></p>
-<h2>JavaScript Numbers</h2>
+<h2 id="javascript-numbers">JavaScript Numbers</h2>
 <p>Numbers can be written with or without decimals. They can also use exponential notation:</p>
-<pre><code class="language-html">&lt;!DOCTYPE html&gt;
-&lt;html&gt;
-&lt;body&gt;
+<pre class="hljs"><code><div><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-keyword">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
 
-&lt;h2&gt;JavaScript Primitive Types&lt;/h2&gt;
-&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+<span class="hljs-tag">&lt;<span class="hljs-name">h2</span>&gt;</span>JavaScript Primitive Types<span class="hljs-tag">&lt;/<span class="hljs-name">h2</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>From w3schools.com, Experiment by Teeratus_R<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
 
-&lt;h4&gt;JavaScript Numbers&lt;/h4&gt;
-&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+<span class="hljs-tag">&lt;<span class="hljs-name">h4</span>&gt;</span>JavaScript Numbers<span class="hljs-tag">&lt;/<span class="hljs-name">h4</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;demo&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
 
-&lt;script&gt;
-// Numbers can be integers or floats
-const x1 = 34.00;
-const x2 = 34;
-const x3 = 3.14;
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="language-javascript">
+<span class="hljs-comment">// Numbers can be integers or floats</span>
+<span class="hljs-keyword">const</span> x1 = <span class="hljs-number">34.00</span>;
+<span class="hljs-keyword">const</span> x2 = <span class="hljs-number">34</span>;
+<span class="hljs-keyword">const</span> x3 = <span class="hljs-number">3.14</span>;
 
-// Exponential notation
-const y1 = 123e5;      // 12300000
-const y2 = 123e-5;     // 0.00123
+<span class="hljs-comment">// Exponential notation</span>
+<span class="hljs-keyword">const</span> y1 = <span class="hljs-number">123e5</span>;      <span class="hljs-comment">// 12300000</span>
+<span class="hljs-keyword">const</span> y2 = <span class="hljs-number">123e-5</span>;     <span class="hljs-comment">// 0.00123</span>
 
-let text = &quot;x1 = 34.00: &quot; + x1 + &quot; (&quot; + typeof x1 + &quot;)&lt;br&gt;&quot;;
-text += &quot;x2 = 34: &quot; + x2 + &quot; (&quot; + typeof x2 + &quot;)&lt;br&gt;&quot;;
-text += &quot;x3 = 3.14: &quot; + x3 + &quot;&lt;br&gt;&lt;br&gt;&quot;;
-text += &quot;123e5 = &quot; + y1 + &quot;&lt;br&gt;&quot;;
-text += &quot;123e-5 = &quot; + y2 + &quot;&lt;br&gt;&lt;br&gt;&quot;;
+<span class="hljs-keyword">let</span> text = <span class="hljs-string">&quot;x1 = 34.00: &quot;</span> + x1 + <span class="hljs-string">&quot; (&quot;</span> + <span class="hljs-keyword">typeof</span> x1 + <span class="hljs-string">&quot;)&lt;br&gt;&quot;</span>;
+text += <span class="hljs-string">&quot;x2 = 34: &quot;</span> + x2 + <span class="hljs-string">&quot; (&quot;</span> + <span class="hljs-keyword">typeof</span> x2 + <span class="hljs-string">&quot;)&lt;br&gt;&quot;</span>;
+text += <span class="hljs-string">&quot;x3 = 3.14: &quot;</span> + x3 + <span class="hljs-string">&quot;&lt;br&gt;&lt;br&gt;&quot;</span>;
+text += <span class="hljs-string">&quot;123e5 = &quot;</span> + y1 + <span class="hljs-string">&quot;&lt;br&gt;&quot;</span>;
+text += <span class="hljs-string">&quot;123e-5 = &quot;</span> + y2 + <span class="hljs-string">&quot;&lt;br&gt;&lt;br&gt;&quot;</span>;
 
-text += &quot;Integer (32-bit): &quot; + (x2 | 0) + &quot;&lt;br&gt;&quot;;
-text += &quot;Float (64-bit): &quot; + x3;
+text += <span class="hljs-string">&quot;Integer (32-bit): &quot;</span> + (x2 | <span class="hljs-number">0</span>) + <span class="hljs-string">&quot;&lt;br&gt;&quot;</span>;
+text += <span class="hljs-string">&quot;Float (64-bit): &quot;</span> + x3;
 
-document.getElementById(&quot;demo&quot;).innerHTML = text;
-&lt;/script&gt;
+<span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&quot;demo&quot;</span>).<span class="hljs-property">innerHTML</span> = text;
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
 
-&lt;/body&gt;
-&lt;/html&gt;
-</code></pre>
+<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span>
+</div></code></pre>
 <p><img src="images/p2.png" alt=""></p>
-<h3>Example 2</h3>
+<h3 id="example-2">Example 2</h3>
 <p><strong>Result</strong> <a href="ex2-numbers/index.html">View Example</a></p>
-<h2>JavaScript BigInt</h2>
+<h2 id="javascript-bigint">JavaScript BigInt</h2>
 <p><code>BigInt</code> is for numbers too large for normal Number. Created by appending <code>n</code> to the end:</p>
-<pre><code class="language-html">&lt;!DOCTYPE html&gt;
-&lt;html&gt;
-&lt;body&gt;
+<pre class="hljs"><code><div><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-keyword">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
 
-&lt;h2&gt;JavaScript Primitive Types&lt;/h2&gt;
-&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+<span class="hljs-tag">&lt;<span class="hljs-name">h2</span>&gt;</span>JavaScript Primitive Types<span class="hljs-tag">&lt;/<span class="hljs-name">h2</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>From w3schools.com, Experiment by Teeratus_R<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
 
-&lt;h4&gt;JavaScript BigInt&lt;/h4&gt;
-&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+<span class="hljs-tag">&lt;<span class="hljs-name">h4</span>&gt;</span>JavaScript BigInt<span class="hljs-tag">&lt;/<span class="hljs-name">h4</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;demo&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
 
-&lt;script&gt;
-// BigInt is for very large integers
-const big1 = 123456789012345678901234567890n;
-const big2 = BigInt(&quot;123456789012345678901234567890&quot;);
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="language-javascript">
+<span class="hljs-comment">// BigInt is for very large integers</span>
+<span class="hljs-keyword">const</span> big1 = <span class="hljs-number">123456789012345678901234567890n</span>;
+<span class="hljs-keyword">const</span> big2 = <span class="hljs-title class_">BigInt</span>(<span class="hljs-string">&quot;123456789012345678901234567890&quot;</span>);
 
-// Normal number (limited precision)
-const normal = 123456789012345678901234567890;
+<span class="hljs-comment">// Normal number (limited precision)</span>
+<span class="hljs-keyword">const</span> normal = <span class="hljs-number">123456789012345678901234567890</span>;
 
-let text = &quot;Normal number: &quot; + normal + &quot;&lt;br&gt;&quot;;
-text += &quot;(loses precision for large values)&lt;br&gt;&lt;br&gt;&quot;;
-text += &quot;BigInt: &quot; + big1 + &quot;&lt;br&gt;&quot;;
-text += &quot;big2: &quot; + big2 + &quot;&lt;br&gt;&lt;br&gt;&quot;;
-text += &quot;typeof BigInt: &quot; + typeof big1 + &quot;&lt;br&gt;&lt;br&gt;&quot;;
+<span class="hljs-keyword">let</span> text = <span class="hljs-string">&quot;Normal number: &quot;</span> + normal + <span class="hljs-string">&quot;&lt;br&gt;&quot;</span>;
+text += <span class="hljs-string">&quot;(loses precision for large values)&lt;br&gt;&lt;br&gt;&quot;</span>;
+text += <span class="hljs-string">&quot;BigInt: &quot;</span> + big1 + <span class="hljs-string">&quot;&lt;br&gt;&quot;</span>;
+text += <span class="hljs-string">&quot;big2: &quot;</span> + big2 + <span class="hljs-string">&quot;&lt;br&gt;&lt;br&gt;&quot;</span>;
+text += <span class="hljs-string">&quot;typeof BigInt: &quot;</span> + <span class="hljs-keyword">typeof</span> big1 + <span class="hljs-string">&quot;&lt;br&gt;&lt;br&gt;&quot;</span>;
 
-text += &quot;BigInt supports arithmetic:&lt;br&gt;&quot;;
-text += &quot;big1 + 1n: &quot; + (big1 + 1n);
+text += <span class="hljs-string">&quot;BigInt supports arithmetic:&lt;br&gt;&quot;</span>;
+text += <span class="hljs-string">&quot;big1 + 1n: &quot;</span> + (big1 + <span class="hljs-number">1n</span>);
 
-document.getElementById(&quot;demo&quot;).innerHTML = text;
-&lt;/script&gt;
+<span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&quot;demo&quot;</span>).<span class="hljs-property">innerHTML</span> = text;
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
 
-&lt;/body&gt;
-&lt;/html&gt;
-</code></pre>
+<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span>
+</div></code></pre>
 <p><img src="images/p3.png" alt=""></p>
-<h3>Example 3</h3>
+<h3 id="example-3">Example 3</h3>
 <p><strong>Result</strong> <a href="ex3-bigint/index.html">View Example</a></p>
-<h2>JavaScript Booleans</h2>
+<h2 id="javascript-booleans">JavaScript Booleans</h2>
 <p>Booleans can only have two values: <code>true</code> or <code>false</code>:</p>
-<pre><code class="language-html">&lt;!DOCTYPE html&gt;
-&lt;html&gt;
-&lt;body&gt;
+<pre class="hljs"><code><div><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-keyword">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
 
-&lt;h2&gt;JavaScript Primitive Types&lt;/h2&gt;
-&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+<span class="hljs-tag">&lt;<span class="hljs-name">h2</span>&gt;</span>JavaScript Primitive Types<span class="hljs-tag">&lt;/<span class="hljs-name">h2</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>From w3schools.com, Experiment by Teeratus_R<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
 
-&lt;h4&gt;JavaScript Booleans&lt;/h4&gt;
-&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+<span class="hljs-tag">&lt;<span class="hljs-name">h4</span>&gt;</span>JavaScript Booleans<span class="hljs-tag">&lt;/<span class="hljs-name">h4</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;demo&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
 
-&lt;script&gt;
-// Booleans are true or false
-const isTrue = true;
-const isFalse = false;
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="language-javascript">
+<span class="hljs-comment">// Booleans are true or false</span>
+<span class="hljs-keyword">const</span> isTrue = <span class="hljs-literal">true</span>;
+<span class="hljs-keyword">const</span> isFalse = <span class="hljs-literal">false</span>;
 
-// Booleans from comparisons
-const isGreater = 5 &gt; 2;
-const isEqual = 5 === 2;
+<span class="hljs-comment">// Booleans from comparisons</span>
+<span class="hljs-keyword">const</span> isGreater = <span class="hljs-number">5</span> &gt; <span class="hljs-number">2</span>;
+<span class="hljs-keyword">const</span> isEqual = <span class="hljs-number">5</span> === <span class="hljs-number">2</span>;
 
-let text = &quot;true: &quot; + isTrue + &quot; (&quot; + typeof isTrue + &quot;)&lt;br&gt;&quot;;
-text += &quot;false: &quot; + isFalse + &quot; (&quot; + typeof isFalse + &quot;)&lt;br&gt;&lt;br&gt;&quot;;
-text += &quot;5 &gt; 2: &quot; + isGreater + &quot;&lt;br&gt;&quot;;
-text += &quot;5 === 2: &quot; + isEqual;
+<span class="hljs-keyword">let</span> text = <span class="hljs-string">&quot;true: &quot;</span> + isTrue + <span class="hljs-string">&quot; (&quot;</span> + <span class="hljs-keyword">typeof</span> isTrue + <span class="hljs-string">&quot;)&lt;br&gt;&quot;</span>;
+text += <span class="hljs-string">&quot;false: &quot;</span> + isFalse + <span class="hljs-string">&quot; (&quot;</span> + <span class="hljs-keyword">typeof</span> isFalse + <span class="hljs-string">&quot;)&lt;br&gt;&lt;br&gt;&quot;</span>;
+text += <span class="hljs-string">&quot;5 &gt; 2: &quot;</span> + isGreater + <span class="hljs-string">&quot;&lt;br&gt;&quot;</span>;
+text += <span class="hljs-string">&quot;5 === 2: &quot;</span> + isEqual;
 
-document.getElementById(&quot;demo&quot;).innerHTML = text;
-&lt;/script&gt;
+<span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&quot;demo&quot;</span>).<span class="hljs-property">innerHTML</span> = text;
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
 
-&lt;/body&gt;
-&lt;/html&gt;
-</code></pre>
+<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span>
+</div></code></pre>
 <p><img src="images/p4.png" alt=""></p>
-<h3>Example 4</h3>
+<h3 id="example-4">Example 4</h3>
 <p><strong>Result</strong> <a href="ex4-booleans/index.html">View Example</a></p>
-<h2>Undefined, Empty Values, and null</h2>
+<h2 id="undefined-empty-values-and-null">Undefined, Empty Values, and null</h2>
 <p><code>undefined</code> is a variable without a value. <code>null</code> is an empty value. <code>&quot;&quot;</code> is an empty string:</p>
-<pre><code class="language-html">&lt;!DOCTYPE html&gt;
-&lt;html&gt;
-&lt;body&gt;
+<pre class="hljs"><code><div><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-keyword">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
 
-&lt;h2&gt;JavaScript Primitive Types&lt;/h2&gt;
-&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+<span class="hljs-tag">&lt;<span class="hljs-name">h2</span>&gt;</span>JavaScript Primitive Types<span class="hljs-tag">&lt;/<span class="hljs-name">h2</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>From w3schools.com, Experiment by Teeratus_R<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
 
-&lt;h4&gt;Undefined, Empty Values, and null&lt;/h4&gt;
-&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+<span class="hljs-tag">&lt;<span class="hljs-name">h4</span>&gt;</span>Undefined, Empty Values, and null<span class="hljs-tag">&lt;/<span class="hljs-name">h4</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;demo&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
 
-&lt;script&gt;
-// Undefined - variable without a value
-let car;   // undefined
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="language-javascript">
+<span class="hljs-comment">// Undefined - variable without a value</span>
+<span class="hljs-keyword">let</span> car;   <span class="hljs-comment">// undefined</span>
 
-// null - explicitly empty value
-let person = null;
+<span class="hljs-comment">// null - explicitly empty value</span>
+<span class="hljs-keyword">let</span> person = <span class="hljs-literal">null</span>;
 
-// Empty string
-let text = &quot;&quot;;
+<span class="hljs-comment">// Empty string</span>
+<span class="hljs-keyword">let</span> text = <span class="hljs-string">&quot;&quot;</span>;
 
-let output = &quot;let car; → &quot; + car + &quot; (&quot; + typeof car + &quot;)&lt;br&gt;&quot;;
-output += &quot;let person = null; → &quot; + person + &quot; (&quot; + typeof person + &quot;)&lt;br&gt;&quot;;
-output += &quot;let text = &#39;&#39;; → &#39;&quot; + text + &quot;&#39; (&quot; + typeof text + &quot;)&lt;br&gt;&lt;br&gt;&quot;;
+<span class="hljs-keyword">let</span> output = <span class="hljs-string">&quot;let car; → &quot;</span> + car + <span class="hljs-string">&quot; (&quot;</span> + <span class="hljs-keyword">typeof</span> car + <span class="hljs-string">&quot;)&lt;br&gt;&quot;</span>;
+output += <span class="hljs-string">&quot;let person = null; → &quot;</span> + person + <span class="hljs-string">&quot; (&quot;</span> + <span class="hljs-keyword">typeof</span> person + <span class="hljs-string">&quot;)&lt;br&gt;&quot;</span>;
+output += <span class="hljs-string">&quot;let text = &#x27;&#x27;; → &#x27;&quot;</span> + text + <span class="hljs-string">&quot;&#x27; (&quot;</span> + <span class="hljs-keyword">typeof</span> text + <span class="hljs-string">&quot;)&lt;br&gt;&lt;br&gt;&quot;</span>;
 
-// Setting to undefined
-let x = &quot;Hello&quot;;
-x = undefined;
-output += &quot;x = &#39;Hello&#39;; x = undefined → &quot; + x + &quot; (&quot; + typeof x + &quot;)&quot;;
+<span class="hljs-comment">// Setting to undefined</span>
+<span class="hljs-keyword">let</span> x = <span class="hljs-string">&quot;Hello&quot;</span>;
+x = <span class="hljs-literal">undefined</span>;
+output += <span class="hljs-string">&quot;x = &#x27;Hello&#x27;; x = undefined → &quot;</span> + x + <span class="hljs-string">&quot; (&quot;</span> + <span class="hljs-keyword">typeof</span> x + <span class="hljs-string">&quot;)&quot;</span>;
 
-document.getElementById(&quot;demo&quot;).innerHTML = output;
-&lt;/script&gt;
+<span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&quot;demo&quot;</span>).<span class="hljs-property">innerHTML</span> = output;
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
 
-&lt;/body&gt;
-&lt;/html&gt;
-</code></pre>
+<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span>
+</div></code></pre>
 <p><img src="images/p5.png" alt=""></p>
-<h3>Example 5</h3>
+<h3 id="example-5">Example 5</h3>
 <p><strong>Result</strong> <a href="ex5-undefined_null/index.html">View Example</a></p>
-<h2>Document</h2>
+<h2 id="document">Document</h2>
 <p>Document in project</p>
 <p>You can <a href="js-primitive_types.pdf">Download PDF</a> file.</p>
-<h2>Reference</h2>
+<h2 id="reference">Reference</h2>
 <ul>
 <li><a href="https://www.w3schools.com/js/js_datatypes_primitives.asp">W3Schools JavaScript Primitive Types</a></li>
 </ul>

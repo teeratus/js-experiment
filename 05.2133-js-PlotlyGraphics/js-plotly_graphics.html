@@ -1,112 +1,398 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>js-plotly_graphics</title>
-  <style>
-    body {
-      box-sizing: border-box;
-      min-width: 200px;
-      max-width: 980px;
-      margin: 0 auto;
-      padding: 45px;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
-      font-size: 16px;
-      line-height: 1.5;
-      color: #24292e;
-      background-color: #ffffff;
-    }
-    h1, h2, h3, h4, h5, h6 {
-      margin-top: 24px;
-      margin-bottom: 16px;
-      font-weight: 600;
-      line-height: 1.25;
-      border-bottom: 1px solid #eaecef;
-      padding-bottom: .3em;
-    }
-    h1 { font-size: 2em; }
-    h2 { font-size: 1.5em; }
-    h3 { font-size: 1.25em; }
-    code {
-      padding: .2em .4em;
-      margin: 0;
-      font-size: 85%;
-      background-color: rgba(27,31,35,.05);
-      border-radius: 3px;
-      font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
-    }
-    pre {
-      padding: 16px;
-      overflow: auto;
-      font-size: 85%;
-      line-height: 1.45;
-      background-color: #f6f8fa;
-      border-radius: 3px;
-      word-wrap: normal;
-    }
-    pre code {
-      background-color: transparent;
-      padding: 0;
-    }
-    blockquote {
-      padding: 0 1em;
-      color: #6a737d;
-      border-left: .25em solid #dfe2e5;
-      margin: 0 0 16px 0;
-    }
-    table {
-      border-spacing: 0;
-      border-collapse: collapse;
-      margin-top: 0;
-      margin-bottom: 16px;
-      width: 100%;
-    }
-    table th, table td {
-      padding: 6px 13px;
-      border: 1px solid #dfe2e5;
-    }
-    table tr:nth-child(2n) {
-      background-color: #f6f8fa;
-    }
-    img {
-      max-width: 100%;
-      box-sizing: content-box;
-    }
-    @media print {
-      body {
-        max-width: 100%;
-        padding: 0;
-      }
-      pre, blockquote, table, tr, img {
-        page-break-inside: avoid;
-      }
-    }
-  </style>
+<title>js-plotly_graphics.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> or <div class="page"></div> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
 </head>
 <body>
-<h1>JavaScript Plotly Graphics</h1>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="javascript-plotly-graphics">JavaScript Plotly Graphics</h1>
 <p><a href="../">Back to JS page</a></p>
 <p>Table of Contents</p>
 <ul>
-<li><a href="#javascript-plotly-graphics">JavaScript Plotly Graphics</a><ul>
-<li><a href="#bar-charts">Bar Charts</a><ul>
+<li><a href="#javascript-plotly-graphics">JavaScript Plotly Graphics</a>
+<ul>
+<li><a href="#bar-charts">Bar Charts</a>
+<ul>
 <li><a href="#example-1">Example 1</a></li>
 </ul>
 </li>
-<li><a href="#pie-charts">Pie Charts</a><ul>
+<li><a href="#pie-charts">Pie Charts</a>
+<ul>
 <li><a href="#example-2">Example 2</a></li>
 </ul>
 </li>
-<li><a href="#scatter-plots">Scatter Plots</a><ul>
+<li><a href="#scatter-plots">Scatter Plots</a>
+<ul>
 <li><a href="#example-3">Example 3</a></li>
 </ul>
 </li>
-<li><a href="#bubble-plots">Bubble Plots</a><ul>
+<li><a href="#bubble-plots">Bubble Plots</a>
+<ul>
 <li><a href="#example-4">Example 4</a></li>
 </ul>
 </li>
-<li><a href="#multiple-lines">Multiple Lines</a><ul>
+<li><a href="#multiple-lines">Multiple Lines</a>
+<ul>
 <li><a href="#example-5">Example 5</a></li>
 </ul>
 </li>
@@ -115,245 +401,245 @@
 </ul>
 </li>
 </ul>
-<h2>Bar Charts</h2>
+<h2 id="bar-charts">Bar Charts</h2>
 <p>Bar charts display data with rectangular bars with heights proportional to the values:</p>
-<pre><code class="language-html">&lt;!DOCTYPE html&gt;
-&lt;html&gt;
-&lt;body&gt;
+<pre class="hljs"><code><div><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-keyword">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
 
-&lt;h2&gt;JavaScript Plotly Graphics&lt;/h2&gt;
-&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+<span class="hljs-tag">&lt;<span class="hljs-name">h2</span>&gt;</span>JavaScript Plotly Graphics<span class="hljs-tag">&lt;/<span class="hljs-name">h2</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>From w3schools.com, Experiment by Teeratus_R<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
 
-&lt;h4&gt;Bar Charts&lt;/h4&gt;
+<span class="hljs-tag">&lt;<span class="hljs-name">h4</span>&gt;</span>Bar Charts<span class="hljs-tag">&lt;/<span class="hljs-name">h4</span>&gt;</span>
 
-&lt;div id=&quot;barChart&quot;&gt;&lt;/div&gt;
+<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;barChart&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
 
-&lt;script src=&quot;https://cdn.plot.ly/plotly-2.27.0.min.js&quot;&gt;&lt;/script&gt;
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;https://cdn.plot.ly/plotly-2.27.0.min.js&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
 
-&lt;script&gt;
-const data = [{
-  x: [&#39;Product A&#39;, &#39;Product B&#39;, &#39;Product C&#39;, &#39;Product D&#39;, &#39;Product E&#39;],
-  y: [25, 40, 30, 55, 20],
-  type: &#39;bar&#39;,
-  marker: {
-    color: [&#39;#4CAF50&#39;, &#39;#2196F3&#39;, &#39;#FF9800&#39;, &#39;#F44336&#39;, &#39;#9C27B0&#39;]
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="language-javascript">
+<span class="hljs-keyword">const</span> data = [{
+  <span class="hljs-attr">x</span>: [<span class="hljs-string">&#x27;Product A&#x27;</span>, <span class="hljs-string">&#x27;Product B&#x27;</span>, <span class="hljs-string">&#x27;Product C&#x27;</span>, <span class="hljs-string">&#x27;Product D&#x27;</span>, <span class="hljs-string">&#x27;Product E&#x27;</span>],
+  <span class="hljs-attr">y</span>: [<span class="hljs-number">25</span>, <span class="hljs-number">40</span>, <span class="hljs-number">30</span>, <span class="hljs-number">55</span>, <span class="hljs-number">20</span>],
+  <span class="hljs-attr">type</span>: <span class="hljs-string">&#x27;bar&#x27;</span>,
+  <span class="hljs-attr">marker</span>: {
+    <span class="hljs-attr">color</span>: [<span class="hljs-string">&#x27;#4CAF50&#x27;</span>, <span class="hljs-string">&#x27;#2196F3&#x27;</span>, <span class="hljs-string">&#x27;#FF9800&#x27;</span>, <span class="hljs-string">&#x27;#F44336&#x27;</span>, <span class="hljs-string">&#x27;#9C27B0&#x27;</span>]
   }
 }];
 
-const layout = {
-  title: &#39;Product Sales (Bar Chart)&#39;,
-  xaxis: {title: &#39;Product&#39;},
-  yaxis: {title: &#39;Sales ($)&#39;}
+<span class="hljs-keyword">const</span> layout = {
+  <span class="hljs-attr">title</span>: <span class="hljs-string">&#x27;Product Sales (Bar Chart)&#x27;</span>,
+  <span class="hljs-attr">xaxis</span>: {<span class="hljs-attr">title</span>: <span class="hljs-string">&#x27;Product&#x27;</span>},
+  <span class="hljs-attr">yaxis</span>: {<span class="hljs-attr">title</span>: <span class="hljs-string">&#x27;Sales ($)&#x27;</span>}
 };
 
-Plotly.newPlot(&#39;barChart&#39;, data, layout);
-&lt;/script&gt;
+<span class="hljs-title class_">Plotly</span>.<span class="hljs-title function_">newPlot</span>(<span class="hljs-string">&#x27;barChart&#x27;</span>, data, layout);
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
 
-&lt;/body&gt;
-&lt;/html&gt;
-</code></pre>
+<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span>
+</div></code></pre>
 <p><img src="images/p1.png" alt=""></p>
-<h3>Example 1</h3>
+<h3 id="example-1">Example 1</h3>
 <p><strong>Result</strong> <a href="ex1-bar_chart/index.html">View Example</a></p>
-<h2>Pie Charts</h2>
+<h2 id="pie-charts">Pie Charts</h2>
 <p>Pie charts show data as slices of a circle:</p>
-<pre><code class="language-html">&lt;!DOCTYPE html&gt;
-&lt;html&gt;
-&lt;body&gt;
+<pre class="hljs"><code><div><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-keyword">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
 
-&lt;h2&gt;JavaScript Plotly Graphics&lt;/h2&gt;
-&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+<span class="hljs-tag">&lt;<span class="hljs-name">h2</span>&gt;</span>JavaScript Plotly Graphics<span class="hljs-tag">&lt;/<span class="hljs-name">h2</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>From w3schools.com, Experiment by Teeratus_R<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
 
-&lt;h4&gt;Pie Charts&lt;/h4&gt;
+<span class="hljs-tag">&lt;<span class="hljs-name">h4</span>&gt;</span>Pie Charts<span class="hljs-tag">&lt;/<span class="hljs-name">h4</span>&gt;</span>
 
-&lt;div id=&quot;pieChart&quot;&gt;&lt;/div&gt;
+<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;pieChart&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
 
-&lt;script src=&quot;https://cdn.plot.ly/plotly-2.27.0.min.js&quot;&gt;&lt;/script&gt;
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;https://cdn.plot.ly/plotly-2.27.0.min.js&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
 
-&lt;script&gt;
-const data = [{
-  labels: [&#39;Chrome&#39;, &#39;Firefox&#39;, &#39;Safari&#39;, &#39;Edge&#39;, &#39;Other&#39;],
-  values: [55, 20, 15, 8, 2],
-  type: &#39;pie&#39;,
-  marker: {
-    colors: [&#39;#4CAF50&#39;, &#39;#2196F3&#39;, &#39;#FF9800&#39;, &#39;#F44336&#39;, &#39;#9C27B0&#39;]
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="language-javascript">
+<span class="hljs-keyword">const</span> data = [{
+  <span class="hljs-attr">labels</span>: [<span class="hljs-string">&#x27;Chrome&#x27;</span>, <span class="hljs-string">&#x27;Firefox&#x27;</span>, <span class="hljs-string">&#x27;Safari&#x27;</span>, <span class="hljs-string">&#x27;Edge&#x27;</span>, <span class="hljs-string">&#x27;Other&#x27;</span>],
+  <span class="hljs-attr">values</span>: [<span class="hljs-number">55</span>, <span class="hljs-number">20</span>, <span class="hljs-number">15</span>, <span class="hljs-number">8</span>, <span class="hljs-number">2</span>],
+  <span class="hljs-attr">type</span>: <span class="hljs-string">&#x27;pie&#x27;</span>,
+  <span class="hljs-attr">marker</span>: {
+    <span class="hljs-attr">colors</span>: [<span class="hljs-string">&#x27;#4CAF50&#x27;</span>, <span class="hljs-string">&#x27;#2196F3&#x27;</span>, <span class="hljs-string">&#x27;#FF9800&#x27;</span>, <span class="hljs-string">&#x27;#F44336&#x27;</span>, <span class="hljs-string">&#x27;#9C27B0&#x27;</span>]
   },
-  textinfo: &#39;label+percent&#39;
+  <span class="hljs-attr">textinfo</span>: <span class="hljs-string">&#x27;label+percent&#x27;</span>
 }];
 
-const layout = {
-  title: &#39;Browser Market Share (Pie Chart)&#39;,
-  height: 400
+<span class="hljs-keyword">const</span> layout = {
+  <span class="hljs-attr">title</span>: <span class="hljs-string">&#x27;Browser Market Share (Pie Chart)&#x27;</span>,
+  <span class="hljs-attr">height</span>: <span class="hljs-number">400</span>
 };
 
-Plotly.newPlot(&#39;pieChart&#39;, data, layout);
-&lt;/script&gt;
+<span class="hljs-title class_">Plotly</span>.<span class="hljs-title function_">newPlot</span>(<span class="hljs-string">&#x27;pieChart&#x27;</span>, data, layout);
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
 
-&lt;/body&gt;
-&lt;/html&gt;
-</code></pre>
+<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span>
+</div></code></pre>
 <p><img src="images/p2.png" alt=""></p>
-<h3>Example 2</h3>
+<h3 id="example-2">Example 2</h3>
 <p><strong>Result</strong> <a href="ex2-pie_chart/index.html">View Example</a></p>
-<h2>Scatter Plots</h2>
+<h2 id="scatter-plots">Scatter Plots</h2>
 <p>Scatter plots display values for two variables using dots:</p>
-<pre><code class="language-html">&lt;!DOCTYPE html&gt;
-&lt;html&gt;
-&lt;body&gt;
+<pre class="hljs"><code><div><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-keyword">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
 
-&lt;h2&gt;JavaScript Plotly Graphics&lt;/h2&gt;
-&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+<span class="hljs-tag">&lt;<span class="hljs-name">h2</span>&gt;</span>JavaScript Plotly Graphics<span class="hljs-tag">&lt;/<span class="hljs-name">h2</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>From w3schools.com, Experiment by Teeratus_R<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
 
-&lt;h4&gt;Scatter Plots&lt;/h4&gt;
+<span class="hljs-tag">&lt;<span class="hljs-name">h4</span>&gt;</span>Scatter Plots<span class="hljs-tag">&lt;/<span class="hljs-name">h4</span>&gt;</span>
 
-&lt;div id=&quot;scatterChart&quot;&gt;&lt;/div&gt;
+<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;scatterChart&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
 
-&lt;script src=&quot;https://cdn.plot.ly/plotly-2.27.0.min.js&quot;&gt;&lt;/script&gt;
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;https://cdn.plot.ly/plotly-2.27.0.min.js&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
 
-&lt;script&gt;
-const trace1 = {
-  x: [1, 3, 4, 6, 7, 9],
-  y: [2, 5, 4, 8, 7, 10],
-  mode: &#39;markers&#39;,
-  type: &#39;scatter&#39;,
-  name: &#39;Dataset 1&#39;,
-  marker: {color: &#39;#4CAF50&#39;, size: 10}
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="language-javascript">
+<span class="hljs-keyword">const</span> trace1 = {
+  <span class="hljs-attr">x</span>: [<span class="hljs-number">1</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">6</span>, <span class="hljs-number">7</span>, <span class="hljs-number">9</span>],
+  <span class="hljs-attr">y</span>: [<span class="hljs-number">2</span>, <span class="hljs-number">5</span>, <span class="hljs-number">4</span>, <span class="hljs-number">8</span>, <span class="hljs-number">7</span>, <span class="hljs-number">10</span>],
+  <span class="hljs-attr">mode</span>: <span class="hljs-string">&#x27;markers&#x27;</span>,
+  <span class="hljs-attr">type</span>: <span class="hljs-string">&#x27;scatter&#x27;</span>,
+  <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;Dataset 1&#x27;</span>,
+  <span class="hljs-attr">marker</span>: {<span class="hljs-attr">color</span>: <span class="hljs-string">&#x27;#4CAF50&#x27;</span>, <span class="hljs-attr">size</span>: <span class="hljs-number">10</span>}
 };
 
-const trace2 = {
-  x: [2, 4, 5, 7, 8, 10],
-  y: [3, 6, 5, 9, 8, 11],
-  mode: &#39;markers&#39;,
-  type: &#39;scatter&#39;,
-  name: &#39;Dataset 2&#39;,
-  marker: {color: &#39;#F44336&#39;, size: 10, symbol: &#39;square&#39;}
+<span class="hljs-keyword">const</span> trace2 = {
+  <span class="hljs-attr">x</span>: [<span class="hljs-number">2</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">7</span>, <span class="hljs-number">8</span>, <span class="hljs-number">10</span>],
+  <span class="hljs-attr">y</span>: [<span class="hljs-number">3</span>, <span class="hljs-number">6</span>, <span class="hljs-number">5</span>, <span class="hljs-number">9</span>, <span class="hljs-number">8</span>, <span class="hljs-number">11</span>],
+  <span class="hljs-attr">mode</span>: <span class="hljs-string">&#x27;markers&#x27;</span>,
+  <span class="hljs-attr">type</span>: <span class="hljs-string">&#x27;scatter&#x27;</span>,
+  <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;Dataset 2&#x27;</span>,
+  <span class="hljs-attr">marker</span>: {<span class="hljs-attr">color</span>: <span class="hljs-string">&#x27;#F44336&#x27;</span>, <span class="hljs-attr">size</span>: <span class="hljs-number">10</span>, <span class="hljs-attr">symbol</span>: <span class="hljs-string">&#x27;square&#x27;</span>}
 };
 
-const data = [trace1, trace2];
+<span class="hljs-keyword">const</span> data = [trace1, trace2];
 
-const layout = {
-  title: &#39;Two Datasets (Scatter Plot)&#39;,
-  xaxis: {title: &#39;X Values&#39;},
-  yaxis: {title: &#39;Y Values&#39;}
+<span class="hljs-keyword">const</span> layout = {
+  <span class="hljs-attr">title</span>: <span class="hljs-string">&#x27;Two Datasets (Scatter Plot)&#x27;</span>,
+  <span class="hljs-attr">xaxis</span>: {<span class="hljs-attr">title</span>: <span class="hljs-string">&#x27;X Values&#x27;</span>},
+  <span class="hljs-attr">yaxis</span>: {<span class="hljs-attr">title</span>: <span class="hljs-string">&#x27;Y Values&#x27;</span>}
 };
 
-Plotly.newPlot(&#39;scatterChart&#39;, data, layout);
-&lt;/script&gt;
+<span class="hljs-title class_">Plotly</span>.<span class="hljs-title function_">newPlot</span>(<span class="hljs-string">&#x27;scatterChart&#x27;</span>, data, layout);
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
 
-&lt;/body&gt;
-&lt;/html&gt;
-</code></pre>
+<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span>
+</div></code></pre>
 <p><img src="images/p3.png" alt=""></p>
-<h3>Example 3</h3>
+<h3 id="example-3">Example 3</h3>
 <p><strong>Result</strong> <a href="ex3-scatter_plot/index.html">View Example</a></p>
-<h2>Bubble Plots</h2>
+<h2 id="bubble-plots">Bubble Plots</h2>
 <p>Bubble plots are scatter plots where the size of markers represents a third dimension of data:</p>
-<pre><code class="language-html">&lt;!DOCTYPE html&gt;
-&lt;html&gt;
-&lt;body&gt;
+<pre class="hljs"><code><div><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-keyword">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
 
-&lt;h2&gt;JavaScript Plotly Graphics&lt;/h2&gt;
-&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+<span class="hljs-tag">&lt;<span class="hljs-name">h2</span>&gt;</span>JavaScript Plotly Graphics<span class="hljs-tag">&lt;/<span class="hljs-name">h2</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>From w3schools.com, Experiment by Teeratus_R<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
 
-&lt;h4&gt;Bubble Plots&lt;/h4&gt;
+<span class="hljs-tag">&lt;<span class="hljs-name">h4</span>&gt;</span>Bubble Plots<span class="hljs-tag">&lt;/<span class="hljs-name">h4</span>&gt;</span>
 
-&lt;div id=&quot;bubbleChart&quot;&gt;&lt;/div&gt;
+<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;bubbleChart&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
 
-&lt;script src=&quot;https://cdn.plot.ly/plotly-2.27.0.min.js&quot;&gt;&lt;/script&gt;
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;https://cdn.plot.ly/plotly-2.27.0.min.js&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
 
-&lt;script&gt;
-const trace = {
-  x: [1, 2, 3, 4, 5, 6, 7],
-  y: [10, 15, 13, 20, 18, 25, 22],
-  mode: &#39;markers&#39;,
-  type: &#39;scatter&#39;,
-  marker: {
-    size: [20, 30, 15, 45, 25, 50, 35],
-    color: [&#39;#4CAF50&#39;, &#39;#2196F3&#39;, &#39;#FF9800&#39;, &#39;#F44336&#39;, &#39;#9C27B0&#39;, &#39;#00BCD4&#39;, &#39;#E91E63&#39;],
-    sizeref: 2
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="language-javascript">
+<span class="hljs-keyword">const</span> trace = {
+  <span class="hljs-attr">x</span>: [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span>, <span class="hljs-number">7</span>],
+  <span class="hljs-attr">y</span>: [<span class="hljs-number">10</span>, <span class="hljs-number">15</span>, <span class="hljs-number">13</span>, <span class="hljs-number">20</span>, <span class="hljs-number">18</span>, <span class="hljs-number">25</span>, <span class="hljs-number">22</span>],
+  <span class="hljs-attr">mode</span>: <span class="hljs-string">&#x27;markers&#x27;</span>,
+  <span class="hljs-attr">type</span>: <span class="hljs-string">&#x27;scatter&#x27;</span>,
+  <span class="hljs-attr">marker</span>: {
+    <span class="hljs-attr">size</span>: [<span class="hljs-number">20</span>, <span class="hljs-number">30</span>, <span class="hljs-number">15</span>, <span class="hljs-number">45</span>, <span class="hljs-number">25</span>, <span class="hljs-number">50</span>, <span class="hljs-number">35</span>],
+    <span class="hljs-attr">color</span>: [<span class="hljs-string">&#x27;#4CAF50&#x27;</span>, <span class="hljs-string">&#x27;#2196F3&#x27;</span>, <span class="hljs-string">&#x27;#FF9800&#x27;</span>, <span class="hljs-string">&#x27;#F44336&#x27;</span>, <span class="hljs-string">&#x27;#9C27B0&#x27;</span>, <span class="hljs-string">&#x27;#00BCD4&#x27;</span>, <span class="hljs-string">&#x27;#E91E63&#x27;</span>],
+    <span class="hljs-attr">sizeref</span>: <span class="hljs-number">2</span>
   },
-  name: &#39;Bubbles&#39;
+  <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;Bubbles&#x27;</span>
 };
 
-const data = [trace];
+<span class="hljs-keyword">const</span> data = [trace];
 
-const layout = {
-  title: &#39;Bubble Plot (Size = Third Dimension)&#39;,
-  xaxis: {title: &#39;X Values&#39;},
-  yaxis: {title: &#39;Y Values&#39;},
-  showlegend: true
+<span class="hljs-keyword">const</span> layout = {
+  <span class="hljs-attr">title</span>: <span class="hljs-string">&#x27;Bubble Plot (Size = Third Dimension)&#x27;</span>,
+  <span class="hljs-attr">xaxis</span>: {<span class="hljs-attr">title</span>: <span class="hljs-string">&#x27;X Values&#x27;</span>},
+  <span class="hljs-attr">yaxis</span>: {<span class="hljs-attr">title</span>: <span class="hljs-string">&#x27;Y Values&#x27;</span>},
+  <span class="hljs-attr">showlegend</span>: <span class="hljs-literal">true</span>
 };
 
-Plotly.newPlot(&#39;bubbleChart&#39;, data, layout);
-&lt;/script&gt;
+<span class="hljs-title class_">Plotly</span>.<span class="hljs-title function_">newPlot</span>(<span class="hljs-string">&#x27;bubbleChart&#x27;</span>, data, layout);
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
 
-&lt;/body&gt;
-&lt;/html&gt;
-</code></pre>
+<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span>
+</div></code></pre>
 <p><img src="images/p4.png" alt=""></p>
-<h3>Example 4</h3>
+<h3 id="example-4">Example 4</h3>
 <p><strong>Result</strong> <a href="ex4-bubble_plot/index.html">View Example</a></p>
-<h2>Multiple Lines</h2>
+<h2 id="multiple-lines">Multiple Lines</h2>
 <p>Multiple line graphs display several data series as connected lines:</p>
-<pre><code class="language-html">&lt;!DOCTYPE html&gt;
-&lt;html&gt;
-&lt;body&gt;
+<pre class="hljs"><code><div><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-keyword">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
 
-&lt;h2&gt;JavaScript Plotly Graphics&lt;/h2&gt;
-&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+<span class="hljs-tag">&lt;<span class="hljs-name">h2</span>&gt;</span>JavaScript Plotly Graphics<span class="hljs-tag">&lt;/<span class="hljs-name">h2</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>From w3schools.com, Experiment by Teeratus_R<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
 
-&lt;h4&gt;Multiple Lines&lt;/h4&gt;
+<span class="hljs-tag">&lt;<span class="hljs-name">h4</span>&gt;</span>Multiple Lines<span class="hljs-tag">&lt;/<span class="hljs-name">h4</span>&gt;</span>
 
-&lt;div id=&quot;multiLineChart&quot;&gt;&lt;/div&gt;
+<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;multiLineChart&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
 
-&lt;script src=&quot;https://cdn.plot.ly/plotly-2.27.0.min.js&quot;&gt;&lt;/script&gt;
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;https://cdn.plot.ly/plotly-2.27.0.min.js&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
 
-&lt;script&gt;
-const trace1 = {
-  x: [1, 2, 3, 4, 5, 6, 7, 8],
-  y: [10, 12, 15, 14, 18, 20, 22, 25],
-  mode: &#39;lines+markers&#39;,
-  name: &#39;Series 1&#39;,
-  line: {color: &#39;#4CAF50&#39;, width: 3}
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="language-javascript">
+<span class="hljs-keyword">const</span> trace1 = {
+  <span class="hljs-attr">x</span>: [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span>, <span class="hljs-number">7</span>, <span class="hljs-number">8</span>],
+  <span class="hljs-attr">y</span>: [<span class="hljs-number">10</span>, <span class="hljs-number">12</span>, <span class="hljs-number">15</span>, <span class="hljs-number">14</span>, <span class="hljs-number">18</span>, <span class="hljs-number">20</span>, <span class="hljs-number">22</span>, <span class="hljs-number">25</span>],
+  <span class="hljs-attr">mode</span>: <span class="hljs-string">&#x27;lines+markers&#x27;</span>,
+  <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;Series 1&#x27;</span>,
+  <span class="hljs-attr">line</span>: {<span class="hljs-attr">color</span>: <span class="hljs-string">&#x27;#4CAF50&#x27;</span>, <span class="hljs-attr">width</span>: <span class="hljs-number">3</span>}
 };
 
-const trace2 = {
-  x: [1, 2, 3, 4, 5, 6, 7, 8],
-  y: [5, 8, 7, 11, 9, 13, 12, 16],
-  mode: &#39;lines+markers&#39;,
-  name: &#39;Series 2&#39;,
-  line: {color: &#39;#F44336&#39;, width: 3, dash: &#39;dash&#39;}
+<span class="hljs-keyword">const</span> trace2 = {
+  <span class="hljs-attr">x</span>: [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span>, <span class="hljs-number">7</span>, <span class="hljs-number">8</span>],
+  <span class="hljs-attr">y</span>: [<span class="hljs-number">5</span>, <span class="hljs-number">8</span>, <span class="hljs-number">7</span>, <span class="hljs-number">11</span>, <span class="hljs-number">9</span>, <span class="hljs-number">13</span>, <span class="hljs-number">12</span>, <span class="hljs-number">16</span>],
+  <span class="hljs-attr">mode</span>: <span class="hljs-string">&#x27;lines+markers&#x27;</span>,
+  <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;Series 2&#x27;</span>,
+  <span class="hljs-attr">line</span>: {<span class="hljs-attr">color</span>: <span class="hljs-string">&#x27;#F44336&#x27;</span>, <span class="hljs-attr">width</span>: <span class="hljs-number">3</span>, <span class="hljs-attr">dash</span>: <span class="hljs-string">&#x27;dash&#x27;</span>}
 };
 
-const trace3 = {
-  x: [1, 2, 3, 4, 5, 6, 7, 8],
-  y: [3, 5, 4, 7, 6, 9, 8, 11],
-  mode: &#39;lines+markers&#39;,
-  name: &#39;Series 3&#39;,
-  line: {color: &#39;#2196F3&#39;, width: 3, dash: &#39;dot&#39;}
+<span class="hljs-keyword">const</span> trace3 = {
+  <span class="hljs-attr">x</span>: [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span>, <span class="hljs-number">7</span>, <span class="hljs-number">8</span>],
+  <span class="hljs-attr">y</span>: [<span class="hljs-number">3</span>, <span class="hljs-number">5</span>, <span class="hljs-number">4</span>, <span class="hljs-number">7</span>, <span class="hljs-number">6</span>, <span class="hljs-number">9</span>, <span class="hljs-number">8</span>, <span class="hljs-number">11</span>],
+  <span class="hljs-attr">mode</span>: <span class="hljs-string">&#x27;lines+markers&#x27;</span>,
+  <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;Series 3&#x27;</span>,
+  <span class="hljs-attr">line</span>: {<span class="hljs-attr">color</span>: <span class="hljs-string">&#x27;#2196F3&#x27;</span>, <span class="hljs-attr">width</span>: <span class="hljs-number">3</span>, <span class="hljs-attr">dash</span>: <span class="hljs-string">&#x27;dot&#x27;</span>}
 };
 
-const data = [trace1, trace2, trace3];
+<span class="hljs-keyword">const</span> data = [trace1, trace2, trace3];
 
-const layout = {
-  title: &#39;Multiple Line Graphs&#39;,
-  xaxis: {title: &#39;Time&#39;},
-  yaxis: {title: &#39;Values&#39;}
+<span class="hljs-keyword">const</span> layout = {
+  <span class="hljs-attr">title</span>: <span class="hljs-string">&#x27;Multiple Line Graphs&#x27;</span>,
+  <span class="hljs-attr">xaxis</span>: {<span class="hljs-attr">title</span>: <span class="hljs-string">&#x27;Time&#x27;</span>},
+  <span class="hljs-attr">yaxis</span>: {<span class="hljs-attr">title</span>: <span class="hljs-string">&#x27;Values&#x27;</span>}
 };
 
-Plotly.newPlot(&#39;multiLineChart&#39;, data, layout);
-&lt;/script&gt;
+<span class="hljs-title class_">Plotly</span>.<span class="hljs-title function_">newPlot</span>(<span class="hljs-string">&#x27;multiLineChart&#x27;</span>, data, layout);
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
 
-&lt;/body&gt;
-&lt;/html&gt;
-</code></pre>
+<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span>
+</div></code></pre>
 <p><img src="images/p5.png" alt=""></p>
-<h3>Example 5</h3>
+<h3 id="example-5">Example 5</h3>
 <p><strong>Result</strong> <a href="ex5-multiple_lines/index.html">View Example</a></p>
-<h2>Document</h2>
+<h2 id="document">Document</h2>
 <p>Document in project</p>
 <p>You can <a href="js-plotly_graphics.pdf">Download PDF</a> file.</p>
-<h2>Reference</h2>
+<h2 id="reference">Reference</h2>
 <ul>
 <li><a href="https://www.w3schools.com/js/js_graphics_plotly.asp">W3Schools JavaScript Plotly Graphics</a></li>
 </ul>

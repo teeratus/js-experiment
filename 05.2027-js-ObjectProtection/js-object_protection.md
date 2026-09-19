@@ -4,9 +4,9 @@
 
 Table of Contents
 - [JavaScript Object Protection](#javascript-object-protection)
-  - [JavaScript Object.preventExtensions()](#javascript-object-preventextensions)
+  - [JavaScript Object.preventExtensions()](#javascript-objectpreventextensions)
     - [Example 1](#example-1)
-  - [JavaScript Object.isExtensible()](#javascript-object-isextensible)
+  - [JavaScript Object.isExtensible()](#javascript-objectisextensible)
     - [Example 2](#example-2)
   - [JavaScript Object.seal()](#javascript-objectseal)
     - [Example 3](#example-3)

@@ -1,112 +1,398 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>js-typed_arrays</title>
-  <style>
-    body {
-      box-sizing: border-box;
-      min-width: 200px;
-      max-width: 980px;
-      margin: 0 auto;
-      padding: 45px;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
-      font-size: 16px;
-      line-height: 1.5;
-      color: #24292e;
-      background-color: #ffffff;
-    }
-    h1, h2, h3, h4, h5, h6 {
-      margin-top: 24px;
-      margin-bottom: 16px;
-      font-weight: 600;
-      line-height: 1.25;
-      border-bottom: 1px solid #eaecef;
-      padding-bottom: .3em;
-    }
-    h1 { font-size: 2em; }
-    h2 { font-size: 1.5em; }
-    h3 { font-size: 1.25em; }
-    code {
-      padding: .2em .4em;
-      margin: 0;
-      font-size: 85%;
-      background-color: rgba(27,31,35,.05);
-      border-radius: 3px;
-      font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
-    }
-    pre {
-      padding: 16px;
-      overflow: auto;
-      font-size: 85%;
-      line-height: 1.45;
-      background-color: #f6f8fa;
-      border-radius: 3px;
-      word-wrap: normal;
-    }
-    pre code {
-      background-color: transparent;
-      padding: 0;
-    }
-    blockquote {
-      padding: 0 1em;
-      color: #6a737d;
-      border-left: .25em solid #dfe2e5;
-      margin: 0 0 16px 0;
-    }
-    table {
-      border-spacing: 0;
-      border-collapse: collapse;
-      margin-top: 0;
-      margin-bottom: 16px;
-      width: 100%;
-    }
-    table th, table td {
-      padding: 6px 13px;
-      border: 1px solid #dfe2e5;
-    }
-    table tr:nth-child(2n) {
-      background-color: #f6f8fa;
-    }
-    img {
-      max-width: 100%;
-      box-sizing: content-box;
-    }
-    @media print {
-      body {
-        max-width: 100%;
-        padding: 0;
-      }
-      pre, blockquote, table, tr, img {
-        page-break-inside: avoid;
-      }
-    }
-  </style>
+<title>js-typed_arrays.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> or <div class="page"></div> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
 </head>
 <body>
-<h1>JavaScript Typed Arrays</h1>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="javascript-typed-arrays">JavaScript Typed Arrays</h1>
 <p><a href="../">Back to JS page</a></p>
 <p>Table of Contents</p>
 <ul>
-<li><a href="#javascript-typed-arrays">JavaScript Typed Arrays</a><ul>
-<li><a href="#typed-array-basics">Typed Array Basics</a><ul>
+<li><a href="#javascript-typed-arrays">JavaScript Typed Arrays</a>
+<ul>
+<li><a href="#typed-array-basics">Typed Array Basics</a>
+<ul>
 <li><a href="#example-1">Example 1</a></li>
 </ul>
 </li>
-<li><a href="#8-bit-integers">8 Bit Integers</a><ul>
+<li><a href="#8-bit-integers">8 Bit Integers</a>
+<ul>
 <li><a href="#example-2">Example 2</a></li>
 </ul>
 </li>
-<li><a href="#16-bit-and-32-bit-integers">16-Bit and 32-Bit Integers</a><ul>
+<li><a href="#16-bit-and-32-bit-integers">16-Bit and 32-Bit Integers</a>
+<ul>
 <li><a href="#example-3">Example 3</a></li>
 </ul>
 </li>
-<li><a href="#floating-point-numbers">Floating Point Numbers</a><ul>
+<li><a href="#floating-point-numbers">Floating Point Numbers</a>
+<ul>
 <li><a href="#example-4">Example 4</a></li>
 </ul>
 </li>
-<li><a href="#uint8array-vs-uint8clampedarray">Uint8Array vs Uint8ClampedArray</a><ul>
+<li><a href="#uint8array-vs-uint8clampedarray">Uint8Array vs Uint8ClampedArray</a>
+<ul>
 <li><a href="#example-5">Example 5</a></li>
 </ul>
 </li>
@@ -115,7 +401,7 @@
 </ul>
 </li>
 </ul>
-<h2>Typed Array Basics</h2>
+<h2 id="typed-array-basics">Typed Array Basics</h2>
 <p>Typed arrays are array-like objects that provide a mechanism for reading and writing raw binary data in memory buffers.</p>
 <p>Unlike regular arrays, typed arrays always hold the same type of data and have a fixed length.</p>
 <p>Common typed array types:</p>
@@ -127,7 +413,8 @@
 <th>Size</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td><code>Int8Array</code></td>
 <td>8-bit signed integer</td>
 <td>1 byte</td>
@@ -172,210 +459,211 @@
 <td>64-bit floating point</td>
 <td>8 bytes</td>
 </tr>
-</tbody></table>
-<pre><code class="language-html">&lt;!DOCTYPE html&gt;
-&lt;html&gt;
-&lt;body&gt;
+</tbody>
+</table>
+<pre class="hljs"><code><div><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-keyword">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
 
-&lt;h2&gt;JavaScript Typed Arrays&lt;/h2&gt;
-&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+<span class="hljs-tag">&lt;<span class="hljs-name">h2</span>&gt;</span>JavaScript Typed Arrays<span class="hljs-tag">&lt;/<span class="hljs-name">h2</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>From w3schools.com, Experiment by Teeratus_R<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
 
-&lt;h4&gt;Typed Array Basics&lt;/h4&gt;
-&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+<span class="hljs-tag">&lt;<span class="hljs-name">h4</span>&gt;</span>Typed Array Basics<span class="hljs-tag">&lt;/<span class="hljs-name">h4</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;demo&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
 
-&lt;script&gt;
-// Create a typed array with initial values
-const numbers = new Int8Array([10, 20, 30, 40, 50]);
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="language-javascript">
+<span class="hljs-comment">// Create a typed array with initial values</span>
+<span class="hljs-keyword">const</span> numbers = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Int8Array</span>([<span class="hljs-number">10</span>, <span class="hljs-number">20</span>, <span class="hljs-number">30</span>, <span class="hljs-number">40</span>, <span class="hljs-number">50</span>]);
 
-let text = &quot;Int8Array values:&lt;br&gt;&quot;;
-for (let num of numbers) {
-  text += num + &quot; &quot;;
+<span class="hljs-keyword">let</span> text = <span class="hljs-string">&quot;Int8Array values:&lt;br&gt;&quot;</span>;
+<span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> num <span class="hljs-keyword">of</span> numbers) {
+  text += num + <span class="hljs-string">&quot; &quot;</span>;
 }
-text += &quot;&lt;br&gt;&lt;br&gt;&quot;;
-text += &quot;Length: &quot; + numbers.length + &quot;&lt;br&gt;&quot;;
-text += &quot;BYTES_PER_ELEMENT: &quot; + numbers.BYTES_PER_ELEMENT + &quot;&lt;br&gt;&quot;;
-text += &quot;Constructor: &quot; + numbers.constructor.name;
+text += <span class="hljs-string">&quot;&lt;br&gt;&lt;br&gt;&quot;</span>;
+text += <span class="hljs-string">&quot;Length: &quot;</span> + numbers.<span class="hljs-property">length</span> + <span class="hljs-string">&quot;&lt;br&gt;&quot;</span>;
+text += <span class="hljs-string">&quot;BYTES_PER_ELEMENT: &quot;</span> + numbers.<span class="hljs-property">BYTES_PER_ELEMENT</span> + <span class="hljs-string">&quot;&lt;br&gt;&quot;</span>;
+text += <span class="hljs-string">&quot;Constructor: &quot;</span> + numbers.<span class="hljs-property">constructor</span>.<span class="hljs-property">name</span>;
 
-document.getElementById(&quot;demo&quot;).innerHTML = text;
-&lt;/script&gt;
+<span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&quot;demo&quot;</span>).<span class="hljs-property">innerHTML</span> = text;
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
 
-&lt;/body&gt;
-&lt;/html&gt;
-</code></pre>
+<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span>
+</div></code></pre>
 <p><img src="images/p1.png" alt=""></p>
-<h3>Example 1</h3>
+<h3 id="example-1">Example 1</h3>
 <p><strong>Result</strong> <a href="ex1-typed_array_basics/index.html">View Example</a></p>
-<h2>8 Bit Integers</h2>
+<h2 id="8-bit-integers">8 Bit Integers</h2>
 <p><code>Int8Array</code> holds 8-bit signed integers (-128 to 127). <code>Uint8Array</code> holds 8-bit unsigned integers (0 to 255):</p>
-<pre><code class="language-html">&lt;!DOCTYPE html&gt;
-&lt;html&gt;
-&lt;body&gt;
+<pre class="hljs"><code><div><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-keyword">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
 
-&lt;h2&gt;JavaScript Typed Arrays&lt;/h2&gt;
-&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+<span class="hljs-tag">&lt;<span class="hljs-name">h2</span>&gt;</span>JavaScript Typed Arrays<span class="hljs-tag">&lt;/<span class="hljs-name">h2</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>From w3schools.com, Experiment by Teeratus_R<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
 
-&lt;h4&gt;8 Bit Integers&lt;/h4&gt;
-&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+<span class="hljs-tag">&lt;<span class="hljs-name">h4</span>&gt;</span>8 Bit Integers<span class="hljs-tag">&lt;/<span class="hljs-name">h4</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;demo&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
 
-&lt;script&gt;
-// Int8Array - signed (-128 to 127)
-const signed = new Int8Array([-10, 0, 50, 127, -128]);
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="language-javascript">
+<span class="hljs-comment">// Int8Array - signed (-128 to 127)</span>
+<span class="hljs-keyword">const</span> signed = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Int8Array</span>([-<span class="hljs-number">10</span>, <span class="hljs-number">0</span>, <span class="hljs-number">50</span>, <span class="hljs-number">127</span>, -<span class="hljs-number">128</span>]);
 
-// Uint8Array - unsigned (0 to 255)
-const unsigned = new Uint8Array([0, 100, 200, 255]);
+<span class="hljs-comment">// Uint8Array - unsigned (0 to 255)</span>
+<span class="hljs-keyword">const</span> unsigned = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Uint8Array</span>([<span class="hljs-number">0</span>, <span class="hljs-number">100</span>, <span class="hljs-number">200</span>, <span class="hljs-number">255</span>]);
 
-let text = &quot;Int8Array (signed -128 to 127):&lt;br&gt;&quot;;
-for (let num of signed) {
-  text += num + &quot; &quot;;
+<span class="hljs-keyword">let</span> text = <span class="hljs-string">&quot;Int8Array (signed -128 to 127):&lt;br&gt;&quot;</span>;
+<span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> num <span class="hljs-keyword">of</span> signed) {
+  text += num + <span class="hljs-string">&quot; &quot;</span>;
 }
-text += &quot;&lt;br&gt;&lt;br&gt;&quot;;
+text += <span class="hljs-string">&quot;&lt;br&gt;&lt;br&gt;&quot;</span>;
 
-text += &quot;Uint8Array (unsigned 0 to 255):&lt;br&gt;&quot;;
-for (let num of unsigned) {
-  text += num + &quot; &quot;;
+text += <span class="hljs-string">&quot;Uint8Array (unsigned 0 to 255):&lt;br&gt;&quot;</span>;
+<span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> num <span class="hljs-keyword">of</span> unsigned) {
+  text += num + <span class="hljs-string">&quot; &quot;</span>;
 }
 
-document.getElementById(&quot;demo&quot;).innerHTML = text;
-&lt;/script&gt;
+<span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&quot;demo&quot;</span>).<span class="hljs-property">innerHTML</span> = text;
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
 
-&lt;/body&gt;
-&lt;/html&gt;
-</code></pre>
+<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span>
+</div></code></pre>
 <p><img src="images/p2.png" alt=""></p>
-<h3>Example 2</h3>
+<h3 id="example-2">Example 2</h3>
 <p><strong>Result</strong> <a href="ex2-8bit_integers/index.html">View Example</a></p>
-<h2>16-Bit and 32-Bit Integers</h2>
+<h2 id="16-bit-and-32-bit-integers">16-Bit and 32-Bit Integers</h2>
 <p><code>Int16Array</code> holds 16-bit signed integers. <code>Int32Array</code> holds 32-bit signed integers:</p>
-<pre><code class="language-html">&lt;!DOCTYPE html&gt;
-&lt;html&gt;
-&lt;body&gt;
+<pre class="hljs"><code><div><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-keyword">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
 
-&lt;h2&gt;JavaScript Typed Arrays&lt;/h2&gt;
-&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+<span class="hljs-tag">&lt;<span class="hljs-name">h2</span>&gt;</span>JavaScript Typed Arrays<span class="hljs-tag">&lt;/<span class="hljs-name">h2</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>From w3schools.com, Experiment by Teeratus_R<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
 
-&lt;h4&gt;16-Bit and 32-Bit Integers&lt;/h4&gt;
-&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+<span class="hljs-tag">&lt;<span class="hljs-name">h4</span>&gt;</span>16-Bit and 32-Bit Integers<span class="hljs-tag">&lt;/<span class="hljs-name">h4</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;demo&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
 
-&lt;script&gt;
-// Int16Array - larger range
-const int16 = new Int16Array([1000, 20000, 30000]);
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="language-javascript">
+<span class="hljs-comment">// Int16Array - larger range</span>
+<span class="hljs-keyword">const</span> int16 = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Int16Array</span>([<span class="hljs-number">1000</span>, <span class="hljs-number">20000</span>, <span class="hljs-number">30000</span>]);
 
-// Int32Array - even larger range
-const int32 = new Int32Array([100000, 2000000]);
+<span class="hljs-comment">// Int32Array - even larger range</span>
+<span class="hljs-keyword">const</span> int32 = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Int32Array</span>([<span class="hljs-number">100000</span>, <span class="hljs-number">2000000</span>]);
 
-let text = &quot;Int16Array (16-bit):&lt;br&gt;&quot;;
-for (let num of int16) {
-  text += num + &quot; &quot;;
+<span class="hljs-keyword">let</span> text = <span class="hljs-string">&quot;Int16Array (16-bit):&lt;br&gt;&quot;</span>;
+<span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> num <span class="hljs-keyword">of</span> int16) {
+  text += num + <span class="hljs-string">&quot; &quot;</span>;
 }
-text += &quot;&lt;br&gt;BYTES_PER_ELEMENT: &quot; + int16.BYTES_PER_ELEMENT + &quot;&lt;br&gt;&lt;br&gt;&quot;;
+text += <span class="hljs-string">&quot;&lt;br&gt;BYTES_PER_ELEMENT: &quot;</span> + int16.<span class="hljs-property">BYTES_PER_ELEMENT</span> + <span class="hljs-string">&quot;&lt;br&gt;&lt;br&gt;&quot;</span>;
 
-text += &quot;Int32Array (32-bit):&lt;br&gt;&quot;;
-for (let num of int32) {
-  text += num + &quot; &quot;;
+text += <span class="hljs-string">&quot;Int32Array (32-bit):&lt;br&gt;&quot;</span>;
+<span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> num <span class="hljs-keyword">of</span> int32) {
+  text += num + <span class="hljs-string">&quot; &quot;</span>;
 }
-text += &quot;&lt;br&gt;BYTES_PER_ELEMENT: &quot; + int32.BYTES_PER_ELEMENT;
+text += <span class="hljs-string">&quot;&lt;br&gt;BYTES_PER_ELEMENT: &quot;</span> + int32.<span class="hljs-property">BYTES_PER_ELEMENT</span>;
 
-document.getElementById(&quot;demo&quot;).innerHTML = text;
-&lt;/script&gt;
+<span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&quot;demo&quot;</span>).<span class="hljs-property">innerHTML</span> = text;
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
 
-&lt;/body&gt;
-&lt;/html&gt;
-</code></pre>
+<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span>
+</div></code></pre>
 <p><img src="images/p3.png" alt=""></p>
-<h3>Example 3</h3>
+<h3 id="example-3">Example 3</h3>
 <p><strong>Result</strong> <a href="ex3-16_32bit_integers/index.html">View Example</a></p>
-<h2>Floating Point Numbers</h2>
+<h2 id="floating-point-numbers">Floating Point Numbers</h2>
 <p><code>Float32Array</code> and <code>Float64Array</code> hold floating point numbers:</p>
-<pre><code class="language-html">&lt;!DOCTYPE html&gt;
-&lt;html&gt;
-&lt;body&gt;
+<pre class="hljs"><code><div><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-keyword">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
 
-&lt;h2&gt;JavaScript Typed Arrays&lt;/h2&gt;
-&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+<span class="hljs-tag">&lt;<span class="hljs-name">h2</span>&gt;</span>JavaScript Typed Arrays<span class="hljs-tag">&lt;/<span class="hljs-name">h2</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>From w3schools.com, Experiment by Teeratus_R<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
 
-&lt;h4&gt;Floating Point Numbers&lt;/h4&gt;
-&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+<span class="hljs-tag">&lt;<span class="hljs-name">h4</span>&gt;</span>Floating Point Numbers<span class="hljs-tag">&lt;/<span class="hljs-name">h4</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;demo&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
 
-&lt;script&gt;
-// Float32Array - 32-bit floating point
-const float32 = new Float32Array([1.5, 3.14, 9.99, 100.05]);
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="language-javascript">
+<span class="hljs-comment">// Float32Array - 32-bit floating point</span>
+<span class="hljs-keyword">const</span> float32 = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Float32Array</span>([<span class="hljs-number">1.5</span>, <span class="hljs-number">3.14</span>, <span class="hljs-number">9.99</span>, <span class="hljs-number">100.05</span>]);
 
-// Float64Array - 64-bit floating point (double precision)
-const float64 = new Float64Array([0.123456789, 123456.789]);
+<span class="hljs-comment">// Float64Array - 64-bit floating point (double precision)</span>
+<span class="hljs-keyword">const</span> float64 = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Float64Array</span>([<span class="hljs-number">0.123456789</span>, <span class="hljs-number">123456.789</span>]);
 
-let text = &quot;Float32Array (32-bit float):&lt;br&gt;&quot;;
-for (let num of float32) {
-  text += num + &quot; &quot;;
+<span class="hljs-keyword">let</span> text = <span class="hljs-string">&quot;Float32Array (32-bit float):&lt;br&gt;&quot;</span>;
+<span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> num <span class="hljs-keyword">of</span> float32) {
+  text += num + <span class="hljs-string">&quot; &quot;</span>;
 }
-text += &quot;&lt;br&gt;&lt;br&gt;&quot;;
+text += <span class="hljs-string">&quot;&lt;br&gt;&lt;br&gt;&quot;</span>;
 
-text += &quot;Float64Array (64-bit double):&lt;br&gt;&quot;;
-for (let num of float64) {
-  text += num + &quot; &quot;;
+text += <span class="hljs-string">&quot;Float64Array (64-bit double):&lt;br&gt;&quot;</span>;
+<span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> num <span class="hljs-keyword">of</span> float64) {
+  text += num + <span class="hljs-string">&quot; &quot;</span>;
 }
-text += &quot;&lt;br&gt;&lt;br&gt;&quot;;
+text += <span class="hljs-string">&quot;&lt;br&gt;&lt;br&gt;&quot;</span>;
 
-text += &quot;Float32 BYTES_PER_ELEMENT: &quot; + float32.BYTES_PER_ELEMENT + &quot;&lt;br&gt;&quot;;
-text += &quot;Float64 BYTES_PER_ELEMENT: &quot; + float64.BYTES_PER_ELEMENT;
+text += <span class="hljs-string">&quot;Float32 BYTES_PER_ELEMENT: &quot;</span> + float32.<span class="hljs-property">BYTES_PER_ELEMENT</span> + <span class="hljs-string">&quot;&lt;br&gt;&quot;</span>;
+text += <span class="hljs-string">&quot;Float64 BYTES_PER_ELEMENT: &quot;</span> + float64.<span class="hljs-property">BYTES_PER_ELEMENT</span>;
 
-document.getElementById(&quot;demo&quot;).innerHTML = text;
-&lt;/script&gt;
+<span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&quot;demo&quot;</span>).<span class="hljs-property">innerHTML</span> = text;
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
 
-&lt;/body&gt;
-&lt;/html&gt;
-</code></pre>
+<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span>
+</div></code></pre>
 <p><img src="images/p4.png" alt=""></p>
-<h3>Example 4</h3>
+<h3 id="example-4">Example 4</h3>
 <p><strong>Result</strong> <a href="ex4-floating_point/index.html">View Example</a></p>
-<h2>Uint8Array vs Uint8ClampedArray</h2>
+<h2 id="uint8array-vs-uint8clampedarray">Uint8Array vs Uint8ClampedArray</h2>
 <p>The difference between <code>Uint8Array</code> and <code>Uint8ClampedArray</code> is how they handle values outside the 0-255 range:</p>
 <ul>
 <li><code>Uint8Array</code>: wraps around (modulo 256)</li>
 <li><code>Uint8ClampedArray</code>: clamps to 0 or 255</li>
 </ul>
-<pre><code class="language-html">&lt;!DOCTYPE html&gt;
-&lt;html&gt;
-&lt;body&gt;
+<pre class="hljs"><code><div><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-keyword">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
 
-&lt;h2&gt;JavaScript Typed Arrays&lt;/h2&gt;
-&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+<span class="hljs-tag">&lt;<span class="hljs-name">h2</span>&gt;</span>JavaScript Typed Arrays<span class="hljs-tag">&lt;/<span class="hljs-name">h2</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>From w3schools.com, Experiment by Teeratus_R<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
 
-&lt;h4&gt;Uint8Array vs Uint8ClampedArray&lt;/h4&gt;
-&lt;p id=&quot;demo&quot;&gt;&lt;/p&gt;
+<span class="hljs-tag">&lt;<span class="hljs-name">h4</span>&gt;</span>Uint8Array vs Uint8ClampedArray<span class="hljs-tag">&lt;/<span class="hljs-name">h4</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;demo&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
 
-&lt;script&gt;
-// Uint8Array - wraps around (modulo 256)
-const uint8 = new Uint8Array([-10, 0, 100, 255, 300]);
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="language-javascript">
+<span class="hljs-comment">// Uint8Array - wraps around (modulo 256)</span>
+<span class="hljs-keyword">const</span> uint8 = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Uint8Array</span>([-<span class="hljs-number">10</span>, <span class="hljs-number">0</span>, <span class="hljs-number">100</span>, <span class="hljs-number">255</span>, <span class="hljs-number">300</span>]);
 
-// Uint8ClampedArray - clamps to 0 or 255
-const clamped = new Uint8ClampedArray([-10, 0, 100, 255, 300]);
+<span class="hljs-comment">// Uint8ClampedArray - clamps to 0 or 255</span>
+<span class="hljs-keyword">const</span> clamped = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Uint8ClampedArray</span>([-<span class="hljs-number">10</span>, <span class="hljs-number">0</span>, <span class="hljs-number">100</span>, <span class="hljs-number">255</span>, <span class="hljs-number">300</span>]);
 
-let text = &quot;Uint8Array (wraps around):&lt;br&gt;&quot;;
-for (let num of uint8) {
-  text += num + &quot; &quot;;
+<span class="hljs-keyword">let</span> text = <span class="hljs-string">&quot;Uint8Array (wraps around):&lt;br&gt;&quot;</span>;
+<span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> num <span class="hljs-keyword">of</span> uint8) {
+  text += num + <span class="hljs-string">&quot; &quot;</span>;
 }
-text += &quot;&lt;br&gt;(-10 wraps to &quot; + uint8[0] + &quot;, 300 wraps to &quot; + uint8[4] + &quot;)&quot;;
-text += &quot;&lt;br&gt;&lt;br&gt;&quot;;
+text += <span class="hljs-string">&quot;&lt;br&gt;(-10 wraps to &quot;</span> + uint8[<span class="hljs-number">0</span>] + <span class="hljs-string">&quot;, 300 wraps to &quot;</span> + uint8[<span class="hljs-number">4</span>] + <span class="hljs-string">&quot;)&quot;</span>;
+text += <span class="hljs-string">&quot;&lt;br&gt;&lt;br&gt;&quot;</span>;
 
-text += &quot;Uint8ClampedArray (clamps):&lt;br&gt;&quot;;
-for (let num of clamped) {
-  text += num + &quot; &quot;;
+text += <span class="hljs-string">&quot;Uint8ClampedArray (clamps):&lt;br&gt;&quot;</span>;
+<span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> num <span class="hljs-keyword">of</span> clamped) {
+  text += num + <span class="hljs-string">&quot; &quot;</span>;
 }
-text += &quot;&lt;br&gt;(-10 clamped to &quot; + clamped[0] + &quot;, 300 clamped to &quot; + clamped[4] + &quot;)&quot;;
+text += <span class="hljs-string">&quot;&lt;br&gt;(-10 clamped to &quot;</span> + clamped[<span class="hljs-number">0</span>] + <span class="hljs-string">&quot;, 300 clamped to &quot;</span> + clamped[<span class="hljs-number">4</span>] + <span class="hljs-string">&quot;)&quot;</span>;
 
-document.getElementById(&quot;demo&quot;).innerHTML = text;
-&lt;/script&gt;
+<span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&quot;demo&quot;</span>).<span class="hljs-property">innerHTML</span> = text;
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
 
-&lt;/body&gt;
-&lt;/html&gt;
-</code></pre>
+<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span>
+</div></code></pre>
 <p><img src="images/p5.png" alt=""></p>
-<h3>Example 5</h3>
+<h3 id="example-5">Example 5</h3>
 <p><strong>Result</strong> <a href="ex5-clamped/index.html">View Example</a></p>
-<h2>Document</h2>
+<h2 id="document">Document</h2>
 <p>Document in project</p>
 <p>You can <a href="js-typed_arrays.pdf">Download PDF</a> file.</p>
-<h2>Reference</h2>
+<h2 id="reference">Reference</h2>
 <ul>
 <li><a href="https://www.w3schools.com/js/js_typed_arrays.asp">W3Schools JavaScript Typed Arrays</a></li>
 </ul>

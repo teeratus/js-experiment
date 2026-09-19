@@ -1,0 +1,9 @@
+{
+  "markdown-pdf.type": ["html"],
+  "markdown-pdf.convertOnSave": true,
+  "markdown-pdf.convertOnSaveExclude": [
+    "README.md",
+    "INSTRUCTION.md",
+    "Hands-on-Practice.md"
+  ]
+}

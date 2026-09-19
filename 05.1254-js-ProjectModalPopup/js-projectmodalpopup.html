@@ -1,107 +1,391 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>js-projectmodalpopup</title>
-  <style>
-    body {
-      box-sizing: border-box;
-      min-width: 200px;
-      max-width: 980px;
-      margin: 0 auto;
-      padding: 45px;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
-      font-size: 16px;
-      line-height: 1.5;
-      color: #24292e;
-      background-color: #ffffff;
-    }
-    h1, h2, h3, h4, h5, h6 {
-      margin-top: 24px;
-      margin-bottom: 16px;
-      font-weight: 600;
-      line-height: 1.25;
-      border-bottom: 1px solid #eaecef;
-      padding-bottom: .3em;
-    }
-    h1 { font-size: 2em; }
-    h2 { font-size: 1.5em; }
-    h3 { font-size: 1.25em; }
-    code {
-      padding: .2em .4em;
-      margin: 0;
-      font-size: 85%;
-      background-color: rgba(27,31,35,.05);
-      border-radius: 3px;
-      font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
-    }
-    pre {
-      padding: 16px;
-      overflow: auto;
-      font-size: 85%;
-      line-height: 1.45;
-      background-color: #f6f8fa;
-      border-radius: 3px;
-      word-wrap: normal;
-    }
-    pre code {
-      background-color: transparent;
-      padding: 0;
-    }
-    blockquote {
-      padding: 0 1em;
-      color: #6a737d;
-      border-left: .25em solid #dfe2e5;
-      margin: 0 0 16px 0;
-    }
-    table {
-      border-spacing: 0;
-      border-collapse: collapse;
-      margin-top: 0;
-      margin-bottom: 16px;
-      width: 100%;
-    }
-    table th, table td {
-      padding: 6px 13px;
-      border: 1px solid #dfe2e5;
-    }
-    table tr:nth-child(2n) {
-      background-color: #f6f8fa;
-    }
-    img {
-      max-width: 100%;
-      box-sizing: content-box;
-    }
-    @media print {
-      body {
-        max-width: 100%;
-        padding: 0;
-      }
-      pre, blockquote, table, tr, img {
-        page-break-inside: avoid;
-      }
-    }
-  </style>
+<title>js-projectmodalpopup.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> or <div class="page"></div> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
 </head>
 <body>
-<h1>JavaScript Project - Modal Popup</h1>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="javascript-project---modal-popup">JavaScript Project - Modal Popup</h1>
 <p><a href="../">Back to JS page</a></p>
 <p>Table of Contents</p>
 <ul>
-<li><a href="#javascript-project---modal-popup">JavaScript Project - Modal Popup</a><ul>
+<li><a href="#javascript-project---modal-popup">JavaScript Project - Modal Popup</a>
+<ul>
 <li><a href="#modal-popup-overview">Modal Popup Overview</a></li>
 <li><a href="#what-you-will-learn">What You Will Learn</a></li>
-<li><a href="#first-create-the-html">First: Create the HTML</a><ul>
+<li><a href="#first-create-the-html">First: Create the HTML</a>
+<ul>
 <li><a href="#example-1">Example 1</a></li>
 </ul>
 </li>
-<li><a href="#then-create-the-css">Then: Create the CSS</a><ul>
+<li><a href="#then-create-the-css">Then: Create the CSS</a>
+<ul>
 <li><a href="#example-2">Example 2</a></li>
 </ul>
 </li>
 <li><a href="#css-explained">CSS Explained</a></li>
-<li><a href="#then-create-the-javascript">Then: Create the JavaScript</a><ul>
+<li><a href="#then-create-the-javascript">Then: Create the JavaScript</a>
+<ul>
 <li><a href="#example-3">Example 3</a></li>
 </ul>
 </li>
@@ -110,7 +394,8 @@
 <li><a href="#connect-function-to-clicking-outside">Connect Function to Clicking Outside</a></li>
 <li><a href="#connect-function-to-escape-key">Connect Function to Escape Key</a></li>
 <li><a href="#common-mistakes">Common Mistakes</a></li>
-<li><a href="#bonus-challenges-level-up">Bonus Challenges (Level Up)</a><ul>
+<li><a href="#bonus-challenges-level-up">Bonus Challenges (Level Up)</a>
+<ul>
 <li><a href="#example-4">Example 4</a></li>
 </ul>
 </li>
@@ -119,7 +404,7 @@
 </ul>
 </li>
 </ul>
-<h2>Modal Popup Overview</h2>
+<h2 id="modal-popup-overview">Modal Popup Overview</h2>
 <p>A <strong>modal is a popup window</strong> that appears on top of the main webpage overlaying the current view.</p>
 <p>In this project, we will build a modal that can be closed in three ways:</p>
 <ol>
@@ -127,161 +412,162 @@
 <li>Clicking outside the modal container</li>
 <li>Pressing the Escape key</li>
 </ol>
-<h2>What You Will Learn</h2>
+<h2 id="what-you-will-learn">What You Will Learn</h2>
 <ul>
 <li>How to dynamically show and hide HTML elements</li>
 <li>How to add and remove CSS classes using JavaScript</li>
 <li>How to listen to click and keydown event targets</li>
 <li>How to detect clicks outside a bounding element box</li>
 </ul>
-<h2>First: Create the HTML</h2>
+<h2 id="first-create-the-html">First: Create the HTML</h2>
 <p>The modal layout consists of two main parts:</p>
 <ul>
 <li><strong>The overlay background:</strong> Dims the page context behind.</li>
 <li><strong>The modal content box:</strong> Displays the pop-up text and controls.</li>
 </ul>
-<pre><code class="language-html">&lt;!DOCTYPE html&gt;
-&lt;html&gt;
-&lt;body&gt;
+<pre class="hljs"><code><div><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-keyword">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
 
-&lt;h2&gt;Modal Popup&lt;/h2&gt;
-&lt;p&gt;From w3schools.com, Experiment by Teeratus_R&lt;/p&gt;
+<span class="hljs-tag">&lt;<span class="hljs-name">h2</span>&gt;</span>Modal Popup<span class="hljs-tag">&lt;/<span class="hljs-name">h2</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>From w3schools.com, Experiment by Teeratus_R<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
 
-&lt;button id=&quot;openBtn&quot;&gt;Open Modal&lt;/button&gt;
+<span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;openBtn&quot;</span>&gt;</span>Open Modal<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
 
-&lt;div id=&quot;modal&quot; class=&quot;modal-overlay&quot;&gt;
-  &lt;div class=&quot;modal-box&quot;&gt;
-    &lt;button id=&quot;closeBtn&quot; class=&quot;modal-close&quot;&gt;&amp;times;&lt;/button&gt;
-    &lt;h3&gt;Hello!&lt;/h3&gt;
-    &lt;p&gt;This is a modal popup.&lt;/p&gt;
-  &lt;/div&gt;
-&lt;/div&gt;
+<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;modal&quot;</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;modal-overlay&quot;</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;modal-box&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;closeBtn&quot;</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;modal-close&quot;</span>&gt;</span><span class="hljs-symbol">&amp;times;</span><span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">h3</span>&gt;</span>Hello!<span class="hljs-tag">&lt;/<span class="hljs-name">h3</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>This is a modal popup.<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
 
-&lt;/body&gt;
-&lt;/html&gt;
-</code></pre>
+<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span>
+</div></code></pre>
 <p><img src="images/p1.png" alt=""></p>
-<h3>Example 1</h3>
+<h3 id="example-1">Example 1</h3>
 <p><strong>Result</strong> <a href="ex1-html_structure/index.html">View Example</a></p>
-<h2>Then: Create the CSS</h2>
+<h2 id="then-create-the-css">Then: Create the CSS</h2>
 <p>Define structural position attributes to overlay the window and control visual overlays:</p>
-<pre><code class="language-html">&lt;style&gt;
-/* The overlay (background) */
-.modal-overlay {
-  display: none;
-  position: fixed;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.5);
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">style</span>&gt;</span><span class="language-css">
+<span class="hljs-comment">/* The overlay (background) */</span>
+<span class="hljs-selector-class">.modal-overlay</span> {
+  <span class="hljs-attribute">display</span>: none;
+  <span class="hljs-attribute">position</span>: fixed;
+  <span class="hljs-attribute">left</span>: <span class="hljs-number">0</span>;
+  <span class="hljs-attribute">top</span>: <span class="hljs-number">0</span>;
+  <span class="hljs-attribute">width</span>: <span class="hljs-number">100%</span>;
+  <span class="hljs-attribute">height</span>: <span class="hljs-number">100%</span>;
+  <span class="hljs-attribute">background</span>: <span class="hljs-built_in">rgba</span>(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0.5</span>);
 }
 
-/* Show the modal */
-.modal-overlay.show {
-  display: block;
+<span class="hljs-comment">/* Show the modal */</span>
+<span class="hljs-selector-class">.modal-overlay</span><span class="hljs-selector-class">.show</span> {
+  <span class="hljs-attribute">display</span>: block;
 }
 
-/* The modal box */
-.modal-box {
-  background: white;
-  width: 90%;
-  max-width: 400px;
-  margin: 100px auto;
-  padding: 20px;
-  border-radius: 10px;
-  position: relative;
+<span class="hljs-comment">/* The modal box */</span>
+<span class="hljs-selector-class">.modal-box</span> {
+  <span class="hljs-attribute">background</span>: white;
+  <span class="hljs-attribute">width</span>: <span class="hljs-number">90%</span>;
+  <span class="hljs-attribute">max-width</span>: <span class="hljs-number">400px</span>;
+  <span class="hljs-attribute">margin</span>: <span class="hljs-number">100px</span> auto;
+  <span class="hljs-attribute">padding</span>: <span class="hljs-number">20px</span>;
+  <span class="hljs-attribute">border-radius</span>: <span class="hljs-number">10px</span>;
+  <span class="hljs-attribute">position</span>: relative;
 }
 
-/* Close button */
-.modal-close {
-  position: absolute;
-  right: 12px;
-  top: 8px;
-  font-size: 24px;
-  border: none;
-  background: none;
-  cursor: pointer;
+<span class="hljs-comment">/* Close button */</span>
+<span class="hljs-selector-class">.modal-close</span> {
+  <span class="hljs-attribute">position</span>: absolute;
+  <span class="hljs-attribute">right</span>: <span class="hljs-number">12px</span>;
+  <span class="hljs-attribute">top</span>: <span class="hljs-number">8px</span>;
+  <span class="hljs-attribute">font-size</span>: <span class="hljs-number">24px</span>;
+  <span class="hljs-attribute">border</span>: none;
+  <span class="hljs-attribute">background</span>: none;
+  <span class="hljs-attribute">cursor</span>: pointer;
 }
-&lt;/style&gt;
-</code></pre>
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span>
+</div></code></pre>
 <p><img src="images/p2.png" alt=""></p>
-<h3>Example 2</h3>
+<h3 id="example-2">Example 2</h3>
 <p><strong>Result</strong> <a href="ex2-styling/index.html">View Example</a></p>
-<h2>CSS Explained</h2>
+<h2 id="css-explained">CSS Explained</h2>
 <ul>
 <li><strong>Hide modal by default:</strong> We use <code>display: none</code> on <code>.modal-overlay</code>.</li>
 <li><strong>Toggle visibility:</strong> We define a <code>.modal-overlay.show</code> selector specifying <code>display: block</code>. JavaScript will add and remove this helper class dynamically.</li>
 </ul>
-<h2>Then: Create the JavaScript</h2>
+<h2 id="then-create-the-javascript">Then: Create the JavaScript</h2>
 <p>Select elements and implement toggle helpers mapping handlers to events:</p>
-<pre><code class="language-html">&lt;script&gt;
-const modal = document.getElementById(&quot;modal&quot;);
-const openBtn = document.getElementById(&quot;openBtn&quot;);
-const closeBtn = document.getElementById(&quot;closeBtn&quot;);
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="language-javascript">
+<span class="hljs-keyword">const</span> modal = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&quot;modal&quot;</span>);
+<span class="hljs-keyword">const</span> openBtn = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&quot;openBtn&quot;</span>);
+<span class="hljs-keyword">const</span> closeBtn = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&quot;closeBtn&quot;</span>);
 
-function openModal() {
-  modal.classList.add(&quot;show&quot;);
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">openModal</span>(<span class="hljs-params"></span>) {
+  modal.<span class="hljs-property">classList</span>.<span class="hljs-title function_">add</span>(<span class="hljs-string">&quot;show&quot;</span>);
 }
 
-function closeModal() {
-  modal.classList.remove(&quot;show&quot;);
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">closeModal</span>(<span class="hljs-params"></span>) {
+  modal.<span class="hljs-property">classList</span>.<span class="hljs-title function_">remove</span>(<span class="hljs-string">&quot;show&quot;</span>);
 }
 
-openBtn.addEventListener(&quot;click&quot;, openModal);
-closeBtn.addEventListener(&quot;click&quot;, closeModal);
+openBtn.<span class="hljs-title function_">addEventListener</span>(<span class="hljs-string">&quot;click&quot;</span>, openModal);
+closeBtn.<span class="hljs-title function_">addEventListener</span>(<span class="hljs-string">&quot;click&quot;</span>, closeModal);
 
-/* Close when clicking outside the modal box */
-modal.addEventListener(&quot;click&quot;, function (event) {
-  if (event.target === modal) {
-    closeModal();
+<span class="hljs-comment">/* Close when clicking outside the modal box */</span>
+modal.<span class="hljs-title function_">addEventListener</span>(<span class="hljs-string">&quot;click&quot;</span>, <span class="hljs-keyword">function</span> (<span class="hljs-params">event</span>) {
+  <span class="hljs-keyword">if</span> (event.<span class="hljs-property">target</span> === modal) {
+    <span class="hljs-title function_">closeModal</span>();
   }
 });
 
-/* Close when pressing Escape */
-document.addEventListener(&quot;keydown&quot;, function (event) {
-  if (event.key === &quot;Escape&quot;) {
-    closeModal();
+<span class="hljs-comment">/* Close when pressing Escape */</span>
+<span class="hljs-variable language_">document</span>.<span class="hljs-title function_">addEventListener</span>(<span class="hljs-string">&quot;keydown&quot;</span>, <span class="hljs-keyword">function</span> (<span class="hljs-params">event</span>) {
+  <span class="hljs-keyword">if</span> (event.<span class="hljs-property">key</span> === <span class="hljs-string">&quot;Escape&quot;</span>) {
+    <span class="hljs-title function_">closeModal</span>();
   }
 });
-&lt;/script&gt;
-</code></pre>
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+</div></code></pre>
 <p><img src="images/p3.png" alt=""></p>
-<h3>Example 3</h3>
+<h3 id="example-3">Example 3</h3>
 <p><strong>Result</strong> <a href="ex3-modal_js/index.html">View Example</a></p>
-<h2>JavaScript Explained</h2>
+<h2 id="javascript-explained">JavaScript Explained</h2>
 <p>We use <code>classList.add(&quot;show&quot;)</code> and <code>classList.remove(&quot;show&quot;)</code> to adjust display states on triggers.</p>
-<h2>Connect Functions to Buttons</h2>
+<h2 id="connect-functions-to-buttons">Connect Functions to Buttons</h2>
 <p>Register listeners to handle standard interaction click paths:</p>
-<pre><code class="language-javascript">openBtn.addEventListener(&quot;click&quot;, openModal);
-closeBtn.addEventListener(&quot;click&quot;, closeModal);
-</code></pre>
-<h2>Connect Function to Clicking Outside</h2>
+<pre class="hljs"><code><div>openBtn.<span class="hljs-title function_">addEventListener</span>(<span class="hljs-string">&quot;click&quot;</span>, openModal);
+closeBtn.<span class="hljs-title function_">addEventListener</span>(<span class="hljs-string">&quot;click&quot;</span>, closeModal);
+</div></code></pre>
+<h2 id="connect-function-to-clicking-outside">Connect Function to Clicking Outside</h2>
 <p>Check whether the target element triggering click events is the overlay container node itself:</p>
-<pre><code class="language-javascript">modal.addEventListener(&quot;click&quot;, function (event) {
-  if (event.target === modal) {
-    closeModal();
+<pre class="hljs"><code><div>modal.<span class="hljs-title function_">addEventListener</span>(<span class="hljs-string">&quot;click&quot;</span>, <span class="hljs-keyword">function</span> (<span class="hljs-params">event</span>) {
+  <span class="hljs-keyword">if</span> (event.<span class="hljs-property">target</span> === modal) {
+    <span class="hljs-title function_">closeModal</span>();
   }
 });
-</code></pre>
+</div></code></pre>
 <blockquote>
-<p>[!NOTE]<br><code>event.target === modal</code> checks if click bubbles up/originates on the overlay background surface (outside the white <code>.modal-box</code>).</p>
+<p>[!NOTE]
+<code>event.target === modal</code> checks if click bubbles up/originates on the overlay background surface (outside the white <code>.modal-box</code>).</p>
 </blockquote>
-<h2>Connect Function to Escape Key</h2>
+<h2 id="connect-function-to-escape-key">Connect Function to Escape Key</h2>
 <p>Listen globally for Escape keystrokes to allow quick exits:</p>
-<pre><code class="language-javascript">document.addEventListener(&quot;keydown&quot;, function (event) {
-  if (event.key === &quot;Escape&quot;) {
-    closeModal();
+<pre class="hljs"><code><div><span class="hljs-variable language_">document</span>.<span class="hljs-title function_">addEventListener</span>(<span class="hljs-string">&quot;keydown&quot;</span>, <span class="hljs-keyword">function</span> (<span class="hljs-params">event</span>) {
+  <span class="hljs-keyword">if</span> (event.<span class="hljs-property">key</span> === <span class="hljs-string">&quot;Escape&quot;</span>) {
+    <span class="hljs-title function_">closeModal</span>();
   }
 });
-</code></pre>
-<h2>Common Mistakes</h2>
+</div></code></pre>
+<h2 id="common-mistakes">Common Mistakes</h2>
 <ul>
 <li><strong>Modal overlay does not close when clicked:</strong> Check that you compare <code>event.target === modal</code> strictly.</li>
 <li><strong>Escape closes invisible modals:</strong> You can optionally check <code>modal.classList.contains(&quot;show&quot;)</code> before hiding.</li>
 <li><strong>Display none overrides animation:</strong> Animations require opacity transitions or fade keyframe steps rather than display swaps.</li>
 </ul>
-<h2>Bonus Challenges (Level Up)</h2>
+<h2 id="bonus-challenges-level-up">Bonus Challenges (Level Up)</h2>
 <p>Elevate the design with premium UX transitions and accessibility support:</p>
 <ul>
 <li>Add a fade-in and scale-up effect using CSS opacity and transform transition metrics.</li>
@@ -289,57 +575,57 @@ closeBtn.addEventListener(&quot;click&quot;, closeModal);
 <li>Lock/Trap tab key navigation focus cycles within active boundaries.</li>
 <li>Restore focus tracking state to previous active elements on exit.</li>
 </ul>
-<pre><code class="language-html">&lt;!-- Bonus Challenge Implementation --&gt;
-&lt;script&gt;
-const modal = document.getElementById(&quot;modal&quot;);
-const modalBox = modal.querySelector(&quot;.modal-box&quot;);
-const openBtn = document.getElementById(&quot;openBtn&quot;);
-const closeBtn = document.getElementById(&quot;closeBtn&quot;);
+<pre class="hljs"><code><div><span class="hljs-comment">&lt;!-- Bonus Challenge Implementation --&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="language-javascript">
+<span class="hljs-keyword">const</span> modal = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&quot;modal&quot;</span>);
+<span class="hljs-keyword">const</span> modalBox = modal.<span class="hljs-title function_">querySelector</span>(<span class="hljs-string">&quot;.modal-box&quot;</span>);
+<span class="hljs-keyword">const</span> openBtn = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&quot;openBtn&quot;</span>);
+<span class="hljs-keyword">const</span> closeBtn = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&quot;closeBtn&quot;</span>);
 
-let previousActiveElement = null;
+<span class="hljs-keyword">let</span> previousActiveElement = <span class="hljs-literal">null</span>;
 
-function openModal() {
-  previousActiveElement = document.activeElement;
-  modal.classList.add(&quot;show&quot;);
-  modalBox.focus();
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">openModal</span>(<span class="hljs-params"></span>) {
+  previousActiveElement = <span class="hljs-variable language_">document</span>.<span class="hljs-property">activeElement</span>;
+  modal.<span class="hljs-property">classList</span>.<span class="hljs-title function_">add</span>(<span class="hljs-string">&quot;show&quot;</span>);
+  modalBox.<span class="hljs-title function_">focus</span>();
 }
 
-function closeModal() {
-  modal.classList.remove(&quot;show&quot;);
-  if (previousActiveElement) {
-    previousActiveElement.focus();
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">closeModal</span>(<span class="hljs-params"></span>) {
+  modal.<span class="hljs-property">classList</span>.<span class="hljs-title function_">remove</span>(<span class="hljs-string">&quot;show&quot;</span>);
+  <span class="hljs-keyword">if</span> (previousActiveElement) {
+    previousActiveElement.<span class="hljs-title function_">focus</span>();
   }
 }
 
-// Focus Trap inside the modal
-modalBox.addEventListener(&quot;keydown&quot;, function (event) {
-  const focusable = modalBox.querySelectorAll(&#39;button, [href], input, [tabindex]:not([tabindex=&quot;-1&quot;])&#39;);
-  const first = focusable[0];
-  const last = focusable[focusable.length - 1];
+<span class="hljs-comment">// Focus Trap inside the modal</span>
+modalBox.<span class="hljs-title function_">addEventListener</span>(<span class="hljs-string">&quot;keydown&quot;</span>, <span class="hljs-keyword">function</span> (<span class="hljs-params">event</span>) {
+  <span class="hljs-keyword">const</span> focusable = modalBox.<span class="hljs-title function_">querySelectorAll</span>(<span class="hljs-string">&#x27;button, [href], input, [tabindex]:not([tabindex=&quot;-1&quot;])&#x27;</span>);
+  <span class="hljs-keyword">const</span> first = focusable[<span class="hljs-number">0</span>];
+  <span class="hljs-keyword">const</span> last = focusable[focusable.<span class="hljs-property">length</span> - <span class="hljs-number">1</span>];
 
-  if (event.key === &quot;Tab&quot;) {
-    if (event.shiftKey) {
-      if (document.activeElement === first) {
-        last.focus();
-        event.preventDefault();
+  <span class="hljs-keyword">if</span> (event.<span class="hljs-property">key</span> === <span class="hljs-string">&quot;Tab&quot;</span>) {
+    <span class="hljs-keyword">if</span> (event.<span class="hljs-property">shiftKey</span>) {
+      <span class="hljs-keyword">if</span> (<span class="hljs-variable language_">document</span>.<span class="hljs-property">activeElement</span> === first) {
+        last.<span class="hljs-title function_">focus</span>();
+        event.<span class="hljs-title function_">preventDefault</span>();
       }
-    } else {
-      if (document.activeElement === last) {
-        first.focus();
-        event.preventDefault();
+    } <span class="hljs-keyword">else</span> {
+      <span class="hljs-keyword">if</span> (<span class="hljs-variable language_">document</span>.<span class="hljs-property">activeElement</span> === last) {
+        first.<span class="hljs-title function_">focus</span>();
+        event.<span class="hljs-title function_">preventDefault</span>();
       }
     }
   }
 });
-&lt;/script&gt;
-</code></pre>
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+</div></code></pre>
 <p><img src="images/p4.png" alt=""></p>
-<h3>Example 4</h3>
+<h3 id="example-4">Example 4</h3>
 <p><strong>Result</strong> <a href="ex4-bonus_challenges/index.html">View Example</a></p>
-<h2>Document</h2>
+<h2 id="document">Document</h2>
 <p>Document in project</p>
 <p>You can <a href="js-projectmodalpopup.pdf">Download PDF</a> file.</p>
-<h2>Reference</h2>
+<h2 id="reference">Reference</h2>
 <ul>
 <li><a href="https://www.w3schools.com/js/js_project_modal_popup.asp">W3Schools JavaScript Modal Popup Project</a></li>
 </ul>
