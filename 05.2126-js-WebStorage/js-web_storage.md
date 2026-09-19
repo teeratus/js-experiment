@@ -1,6 +1,6 @@
 # JavaScript Web Storage API
 
-[Back to JS page](../README.md)
+[Back to JS page](../)
 
 Table of Contents
 - [JavaScript Web Storage API](#javascript-web-storage-api)

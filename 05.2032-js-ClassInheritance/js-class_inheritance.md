@@ -1,6 +1,6 @@
 # JavaScript Class Inheritance
 
-[Back to JS page](../README.md)
+[Back to JS page](../)
 
 Table of Contents
 - [JavaScript Class Inheritance](#javascript-class-inheritance)

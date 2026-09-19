@@ -1,6 +1,6 @@
 # JavaScript Window History
 
-[Back to JS page](../README.md)
+[Back to JS page](../)
 
 Table of Contents
 - [JavaScript Window History](#javascript-window-history)

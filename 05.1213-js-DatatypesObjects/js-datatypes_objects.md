@@ -1,6 +1,6 @@
 # JavaScript Datatypes Objects
 
-[Back to JS page](../README.md)
+[Back to JS page](../)
 
 Table of Contents
 - [JavaScript Datatypes Objects](#javascript-datatypes-objects)

@@ -1,6 +1,6 @@
 # JavaScript Debugging Console
 
-[Back to JS page](../README.md)
+[Back to JS page](../)
 
 Table of Contents
 - [JavaScript Debugging Console](#javascript-debugging-console)

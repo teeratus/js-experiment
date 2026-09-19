@@ -1,6 +1,6 @@
 # JavaScript Object Definition
 
-[Back to JS page](../README.md)
+[Back to JS page](../)
 
 Table of Contents
 - [JavaScript Object Definition](#javascript-object-definition)

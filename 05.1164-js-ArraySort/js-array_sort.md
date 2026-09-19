@@ -1,6 +1,6 @@
 # JavaScript Array Sort
 
-[Back to JS page](../README.md)
+[Back to JS page](../)
 
 Table of Contents
 - [JavaScript Array Sort](#javascript-array-sort)

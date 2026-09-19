@@ -1,6 +1,6 @@
 # JavaScript Keyboard Events
 
-[Back to JS page](../README.md)
+[Back to JS page](../)
 
 Table of Contents
 - [JavaScript Keyboard Events](#javascript-keyboard-events)

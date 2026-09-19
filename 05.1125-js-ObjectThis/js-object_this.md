@@ -1,6 +1,6 @@
 # JavaScript Object this
 
-[Back to JS page](../README.md)
+[Back to JS page](../)
 
 Table of Contents
 - [JavaScript Object this](#javascript-object-this)

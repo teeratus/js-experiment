@@ -1,6 +1,6 @@
 # JavaScript Error Reference
 
-[Back to JS page](../README.md)
+[Back to JS page](../)
 
 Table of Contents
 - [JavaScript Error Reference](#javascript-error-reference)

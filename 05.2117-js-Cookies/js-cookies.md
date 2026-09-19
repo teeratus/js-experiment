@@ -1,6 +1,6 @@
 # JavaScript Cookies
 
-[Back to JS page](../README.md)
+[Back to JS page](../)
 
 Table of Contents
 - [JavaScript Cookies](#javascript-cookies)

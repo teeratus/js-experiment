@@ -1,6 +1,6 @@
 # JavaScript HTML DOM Methods
 
-[Back to JS page](../README.md)
+[Back to JS page](../)
 
 Table of Contents
 - [JavaScript HTML DOM Methods](#javascript-html-dom-methods)

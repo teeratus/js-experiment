@@ -1,6 +1,6 @@
 # JavaScript Object Protection
 
-[Back to JS page](../README.md)
+[Back to JS page](../)
 
 Table of Contents
 - [JavaScript Object Protection](#javascript-object-protection)

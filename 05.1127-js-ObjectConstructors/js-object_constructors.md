@@ -1,6 +1,6 @@
 # JavaScript Object Constructors
 
-[Back to JS page](../README.md)
+[Back to JS page](../)
 
 Table of Contents
 - [JavaScript Object Constructors](#javascript-object-constructors)

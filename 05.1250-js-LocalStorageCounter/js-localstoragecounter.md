@@ -1,6 +1,6 @@
 # JavaScript localStorage Counter
 
-[Back to JS page](../README.md)
+[Back to JS page](../)
 
 Table of Contents
 - [JavaScript localStorage Counter](#javascript-localstorage-counter)

@@ -1,6 +1,6 @@
 # JavaScript RegExp Characters
 
-[Back to JS page](../README.md)
+[Back to JS page](../)
 
 Table of Contents
 - [JavaScript RegExp Characters](#javascript-regexp-characters)

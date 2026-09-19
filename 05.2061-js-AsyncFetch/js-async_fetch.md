@@ -1,6 +1,6 @@
 # JavaScript Async Fetch
 
-[Back to JS page](../README.md)
+[Back to JS page](../)
 
 Table of Contents
 - [JavaScript Async Fetch](#javascript-async-fetch)

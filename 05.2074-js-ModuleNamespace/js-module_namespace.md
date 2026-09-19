@@ -1,6 +1,6 @@
 # JavaScript Module Namespace
 
-[Back to JS page](../README.md)
+[Back to JS page](../)
 
 Table of Contents
 - [JavaScript Module Namespace](#javascript-module-namespace)

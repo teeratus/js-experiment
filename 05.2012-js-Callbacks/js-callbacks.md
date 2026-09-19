@@ -1,6 +1,6 @@
 # JavaScript Callbacks
 
-[Back to JS page](../README.md)
+[Back to JS page](../)
 
 Table of Contents
 - [JavaScript Callbacks](#javascript-callbacks)

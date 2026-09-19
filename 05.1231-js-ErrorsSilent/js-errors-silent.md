@@ -1,6 +1,6 @@
 # JavaScript Silent Errors
 
-[Back to JS page](../README.md)
+[Back to JS page](../)
 
 Table of Contents
 - [JavaScript Silent Errors](#javascript-silent-errors)

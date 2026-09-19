@@ -1,6 +1,6 @@
 # JavaScript Async/Await
 
-[Back to JS page](../README.md)
+[Back to JS page](../)
 
 Table of Contents
 - [JavaScript Async/Await](#javascript-asyncawait)

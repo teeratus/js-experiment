@@ -1,6 +1,6 @@
 # JavaScript Async Common Mistakes
 
-[Back to JS page](../README.md)
+[Back to JS page](../)
 
 Table of Contents
 - [JavaScript Async Common Mistakes](#javascript-async-common-mistakes)

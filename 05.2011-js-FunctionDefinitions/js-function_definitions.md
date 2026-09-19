@@ -1,6 +1,6 @@
 # JavaScript Function Definitions
 
-[Back to JS page](../README.md)
+[Back to JS page](../)
 
 Table of Contents
 - [JavaScript Function Definitions](#javascript-function-definitions)

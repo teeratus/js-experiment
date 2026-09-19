@@ -1,6 +1,6 @@
 # JavaScript Function Parameters
 
-[Back to JS page](../README.md)
+[Back to JS page](../)
 
 Table of Contents
 - [JavaScript Function Parameters](#javascript-function-parameters)

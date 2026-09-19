@@ -1,6 +1,6 @@
 # JavaScript Module Import
 
-[Back to JS page](../README.md)
+[Back to JS page](../)
 
 Table of Contents
 - [JavaScript Module Import](#javascript-module-import)

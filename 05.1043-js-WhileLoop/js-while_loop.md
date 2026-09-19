@@ -1,6 +1,6 @@
 # JavaScript While Loop
 
-[Back to JS page](../README.md)
+[Back to JS page](../)
 
 Table of Contents
 - [JavaScript While Loop](#javascript-while-loop)

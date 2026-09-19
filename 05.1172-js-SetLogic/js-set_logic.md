@@ -1,6 +1,6 @@
 # JavaScript Set Logic
 
-[Back to JS page](../README.md)
+[Back to JS page](../)
 
 Table of Contents
 - [JavaScript Set Logic](#javascript-set-logic)

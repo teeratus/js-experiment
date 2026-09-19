@@ -1,6 +1,6 @@
 # JavaScript Window Location
 
-[Back to JS page](../README.md)
+[Back to JS page](../)
 
 Table of Contents
 - [JavaScript Window Location](#javascript-window-location)

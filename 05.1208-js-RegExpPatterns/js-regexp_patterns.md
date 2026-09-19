@@ -1,6 +1,6 @@
 # JavaScript RegExp Patterns
 
-[Back to JS page](../README.md)
+[Back to JS page](../)
 
 Table of Contents
 - [JavaScript RegExp Patterns](#javascript-regexp-patterns)

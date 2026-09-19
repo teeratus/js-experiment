@@ -1,6 +1,6 @@
 # JavaScript Window Navigator
 
-[Back to JS page](../README.md)
+[Back to JS page](../)
 
 Table of Contents
 - [JavaScript Window Navigator](#javascript-window-navigator)

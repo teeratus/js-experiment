@@ -1,6 +1,6 @@
 # JavaScript Object Iterations
 
-[Back to JS page](../README.md)
+[Back to JS page](../)
 
 Table of Contents
 - [JavaScript Object Iterations](#javascript-object-iterations)

@@ -1,6 +1,6 @@
 # JavaScript Google Chart Graphics
 
-[Back to JS page](../README.md)
+[Back to JS page](../)
 
 Table of Contents
 - [JavaScript Google Chart Graphics](#javascript-google-chart-graphics)

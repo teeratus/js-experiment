@@ -1,6 +1,6 @@
 # JavaScript Event Listener
 
-[Back to JS page](../README.md)
+[Back to JS page](../)
 
 Table of Contents
 - [JavaScript Event Listener](#javascript-event-listener)

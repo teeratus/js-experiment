@@ -1,6 +1,6 @@
 # JavaScript Function apply()
 
-[Back to JS page](../README.md)
+[Back to JS page](../)
 
 Table of Contents
 - [JavaScript Function apply()](#javascript-function-apply)

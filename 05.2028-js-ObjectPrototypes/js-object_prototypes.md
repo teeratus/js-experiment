@@ -1,6 +1,6 @@
 # JavaScript Object Prototypes
 
-[Back to JS page](../README.md)
+[Back to JS page](../)
 
 Table of Contents
 - [JavaScript Object Prototypes](#javascript-object-prototypes)

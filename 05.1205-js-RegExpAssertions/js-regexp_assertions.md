@@ -1,6 +1,6 @@
 # JavaScript RegExp Assertions
 
-[Back to JS page](../README.md)
+[Back to JS page](../)
 
 Table of Contents
 - [JavaScript RegExp Assertions](#javascript-regexp-assertions)

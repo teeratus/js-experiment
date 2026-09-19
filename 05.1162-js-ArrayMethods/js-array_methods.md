@@ -1,6 +1,6 @@
 # JavaScript Array Methods
 
-[Back to JS page](../README.md)
+[Back to JS page](../)
 
 Table of Contents
 - [JavaScript Array Methods](#javascript-array-methods)

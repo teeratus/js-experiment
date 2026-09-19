@@ -1,6 +1,6 @@
 # JavaScript Symbol Datatype
 
-[Back to JS page](../README.md)
+[Back to JS page](../)
 
 Table of Contents
 - [JavaScript Symbol Datatype](#javascript-symbol-datatype)

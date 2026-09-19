@@ -1,6 +1,6 @@
 # JavaScript JSON
 
-[Back to JS page](../README.md)
+[Back to JS page](../)
 
 Table of Contents
 - [JavaScript JSON](#javascript-json)

@@ -1,6 +1,6 @@
 # JavaScript Module Export
 
-[Back to JS page](../README.md)
+[Back to JS page](../)
 
 Table of Contents
 - [JavaScript Module Export](#javascript-module-export)

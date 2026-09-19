@@ -1,6 +1,6 @@
 # JavaScript D3.js Graphics
 
-[Back to JS page](../README.md)
+[Back to JS page](../)
 
 Table of Contents
 - [JavaScript D3.js Graphics](#javascript-d3js-graphics)

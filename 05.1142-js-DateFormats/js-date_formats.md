@@ -1,6 +1,6 @@
 # JavaScript Date Formats
 
-[Back to JS page](../README.md)
+[Back to JS page](../)
 
 Table of Contents
 - [JavaScript Date Formats](#javascript-date-formats)

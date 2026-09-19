@@ -1,6 +1,6 @@
 # JavaScript Typed Array Methods
 
-[Back to JS page](../README.md)
+[Back to JS page](../)
 
 Table of Contents
 - [JavaScript Typed Array Methods](#javascript-typed-array-methods)

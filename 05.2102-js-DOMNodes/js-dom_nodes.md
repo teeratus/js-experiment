@@ -1,6 +1,6 @@
 # JavaScript DOM Nodes
 
-[Back to JS page](../README.md)
+[Back to JS page](../)
 
 Table of Contents
 - [JavaScript DOM Nodes](#javascript-dom-nodes)

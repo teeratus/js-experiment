@@ -1,6 +1,6 @@
 # JavaScript Timers
 
-[Back to JS page](../README.md)
+[Back to JS page](../)
 
 Table of Contents
 - [JavaScript Timers](#javascript-timers)

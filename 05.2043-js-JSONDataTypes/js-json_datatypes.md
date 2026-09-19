@@ -1,6 +1,6 @@
 # JavaScript JSON Data Types
 
-[Back to JS page](../README.md)
+[Back to JS page](../)
 
 Table of Contents
 - [JavaScript JSON Data Types](#javascript-json-data-types)

@@ -1,6 +1,6 @@
 # JavaScript Where To
 
-[Back to JS page](../README.md)
+[Back to JS page](../)
 
 Table of Contents
 - [JavaScript Where To](#javascript-where-to)

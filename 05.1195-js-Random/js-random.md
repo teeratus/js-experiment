@@ -1,6 +1,6 @@
 # JavaScript Random
 
-[Back to JS page](../README.md)
+[Back to JS page](../)
 
 Table of Contents
 - [JavaScript Random](#javascript-random)

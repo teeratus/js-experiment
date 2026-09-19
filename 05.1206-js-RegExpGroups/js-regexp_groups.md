@@ -1,6 +1,6 @@
 # JavaScript RegExp Groups
 
-[Back to JS page](../README.md)
+[Back to JS page](../)
 
 Table of Contents
 - [JavaScript RegExp Groups](#javascript-regexp-groups)

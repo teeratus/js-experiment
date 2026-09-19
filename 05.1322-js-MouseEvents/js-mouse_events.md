@@ -1,6 +1,6 @@
 # JavaScript Mouse Events
 
-[Back to JS page](../README.md)
+[Back to JS page](../)
 
 Table of Contents
 - [JavaScript Mouse Events](#javascript-mouse-events)

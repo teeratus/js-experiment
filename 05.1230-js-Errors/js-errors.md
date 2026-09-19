@@ -1,6 +1,6 @@
 # JavaScript Errors
 
-[Back to JS page](../README.md)
+[Back to JS page](../)
 
 Table of Contents
 - [JavaScript Errors](#javascript-errors)

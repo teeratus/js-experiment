@@ -1,6 +1,6 @@
 # JavaScript Event Management
 
-[Back to JS page](../README.md)
+[Back to JS page](../)
 
 Table of Contents
 - [JavaScript Event Management](#javascript-event-management)

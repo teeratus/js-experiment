@@ -1,6 +1,6 @@
 # JavaScript Destructuring
 
-[Back to JS page](../README.md)
+[Back to JS page](../)
 
 Table of Contents
 - [JavaScript Destructuring](#javascript-destructuring)

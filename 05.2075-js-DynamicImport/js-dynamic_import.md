@@ -1,6 +1,6 @@
 # JavaScript Dynamic Import
 
-[Back to JS page](../README.md)
+[Back to JS page](../)
 
 Table of Contents
 - [JavaScript Dynamic Import](#javascript-dynamic-import)

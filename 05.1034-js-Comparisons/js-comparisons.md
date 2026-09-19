@@ -1,6 +1,6 @@
 # JavaScript Comparisons
 
-[Back to JS page](../README.md)
+[Back to JS page](../)
 
 Table of Contents
 - [JavaScript Comparisons](#javascript-comparisons)

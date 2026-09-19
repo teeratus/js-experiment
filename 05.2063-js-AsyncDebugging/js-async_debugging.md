@@ -1,6 +1,6 @@
 # JavaScript Async Debugging
 
-[Back to JS page](../README.md)
+[Back to JS page](../)
 
 Table of Contents
 - [JavaScript Async Debugging](#javascript-async-debugging)

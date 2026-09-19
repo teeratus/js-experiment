@@ -1,6 +1,6 @@
 # JavaScript API Web Workers
 
-[Back to JS page](../README.md)
+[Back to JS page](../)
 
 > **Note:** For a complete tutorial on creating and managing Web Workers, see [05.2065-js-WebWorkers](../05.2065-js-WebWorkers/js-web_workers.md). This topic covers the Web Workers API from the Web API perspective.
 

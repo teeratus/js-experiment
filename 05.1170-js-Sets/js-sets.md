@@ -1,6 +1,6 @@
 # JavaScript Sets
 
-[Back to JS page](../README.md)
+[Back to JS page](../)
 
 Table of Contents
 - [JavaScript Sets](#javascript-sets)

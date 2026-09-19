@@ -1,6 +1,6 @@
 # JavaScript Async Parallel
 
-[Back to JS page](../README.md)
+[Back to JS page](../)
 
 Table of Contents
 - [JavaScript Async Parallel](#javascript-async-parallel)

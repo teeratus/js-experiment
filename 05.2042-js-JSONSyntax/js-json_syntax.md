@@ -1,6 +1,6 @@
 # JavaScript JSON Syntax
 
-[Back to JS page](../README.md)
+[Back to JS page](../)
 
 Table of Contents
 - [JavaScript JSON Syntax](#javascript-json-syntax)

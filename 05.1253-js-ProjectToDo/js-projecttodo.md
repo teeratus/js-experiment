@@ -1,6 +1,6 @@
 # JavaScript Project - To-Do List
 
-[Back to JS page](../README.md)
+[Back to JS page](../)
 
 Table of Contents
 - [JavaScript Project - To-Do List](#javascript-project---to-do-list)

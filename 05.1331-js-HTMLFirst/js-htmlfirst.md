@@ -1,6 +1,6 @@
 # JavaScript HTML-First
 
-[Back to JS page](../README.md)
+[Back to JS page](../)
 
 Table of Contents
 - [JavaScript HTML-First](#javascript-html-first)

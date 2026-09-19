@@ -1,6 +1,6 @@
 # JavaScript Arrow Functions
 
-[Back to JS page](../README.md)
+[Back to JS page](../)
 
 Table of Contents
 - [JavaScript Arrow Functions](#javascript-arrow-functions)

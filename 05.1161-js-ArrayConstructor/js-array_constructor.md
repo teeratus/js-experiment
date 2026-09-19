@@ -1,6 +1,6 @@
 # JavaScript Array Constructor
 
-[Back to JS page](../README.md)
+[Back to JS page](../)
 
 Table of Contents
 - [JavaScript Array Constructor](#javascript-array-constructor)

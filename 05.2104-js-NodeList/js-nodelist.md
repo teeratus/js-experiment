@@ -1,6 +1,6 @@
 # JavaScript NodeList
 
-[Back to JS page](../README.md)
+[Back to JS page](../)
 
 Table of Contents
 - [JavaScript NodeList](#javascript-nodelist)

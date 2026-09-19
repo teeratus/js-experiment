@@ -1,6 +1,6 @@
 # JavaScript RegExp Flags
 
-[Back to JS page](../README.md)
+[Back to JS page](../)
 
 Table of Contents
 - [JavaScript RegExp Flags](#javascript-regexp-flags)

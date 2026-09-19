@@ -1,6 +1,6 @@
 # JavaScript Window Object
 
-[Back to JS page](../README.md)
+[Back to JS page](../)
 
 Table of Contents
 - [JavaScript Window Object](#javascript-window-object)

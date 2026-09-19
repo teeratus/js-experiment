@@ -1,6 +1,6 @@
 # JavaScript Function Return
 
-[Back to JS page](../README.md)
+[Back to JS page](../)
 
 Table of Contents
 - [JavaScript Function Return](#javascript-function-return)

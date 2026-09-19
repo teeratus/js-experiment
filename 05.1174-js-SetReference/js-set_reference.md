@@ -1,6 +1,6 @@
 # JavaScript Set Reference
 
-[Back to JS page](../README.md)
+[Back to JS page](../)
 
 Table of Contents
 - [JavaScript Set Reference](#javascript-set-reference)
