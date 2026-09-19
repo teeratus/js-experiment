@@ -1,4 +1,4 @@
-# JavaScript Output 4
+# JavaScript Output
 
 [Back to JS page](../)
 
