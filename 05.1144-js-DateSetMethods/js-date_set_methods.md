@@ -1,6 +1,6 @@
 # JavaScript Date Set Methods
 
-[Back to JS page](../index.html)
+[Back to JS page](../README.md)
 
 Table of Contents
 - [JavaScript Date Set Methods](#javascript-date-set-methods)

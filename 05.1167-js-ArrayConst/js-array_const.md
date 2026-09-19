@@ -1,6 +1,6 @@
 # JavaScript Array const
 
-[Back to JS page](../index.html)
+[Back to JS page](../README.md)
 
 Table of Contents
 - [JavaScript Array const](#javascript-array-const)

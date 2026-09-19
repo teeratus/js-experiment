@@ -1,6 +1,6 @@
 # JavaScript HTML DOM Elements
 
-[Back to JS page](../index.html)
+[Back to JS page](../README.md)
 
 Table of Contents
 - [JavaScript HTML DOM Elements](#javascript-html-dom-elements)

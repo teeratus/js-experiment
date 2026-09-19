@@ -1,6 +1,6 @@
 # JavaScript Chart.js Graphics
 
-[Back to JS page](../index.html)
+[Back to JS page](../README.md)
 
 Table of Contents
 - [JavaScript Chart.js Graphics](#javascript-chartjs-graphics)

@@ -1,6 +1,6 @@
 # JavaScript CSS Features
 
-[Back to JS page](../index.html)
+[Back to JS page](../README.md)
 
 Table of Contents
 - [JavaScript CSS Features](#javascript-css-features)

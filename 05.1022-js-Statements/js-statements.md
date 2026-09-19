@@ -1,6 +1,6 @@
 # JavaScript Statements
 
-[Back to JS page](../index.html)
+[Back to JS page](../README.md)
 
 Table of Contents
 - [JavaScript Statements](#javascript-statements)

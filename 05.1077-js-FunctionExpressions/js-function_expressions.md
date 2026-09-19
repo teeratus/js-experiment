@@ -1,6 +1,6 @@
 # JavaScript Function Expressions
 
-[Back to JS page](../index.html)
+[Back to JS page](../README.md)
 
 Table of Contents
 - [JavaScript Function Expressions](#javascript-function-expressions)

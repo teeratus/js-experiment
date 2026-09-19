@@ -1,6 +1,6 @@
 # JavaScript Typed Arrays
 
-[Back to JS page](../index.html)
+[Back to JS page](../README.md)
 
 Table of Contents
 - [JavaScript Typed Arrays](#javascript-typed-arrays)

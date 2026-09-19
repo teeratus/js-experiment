@@ -1,6 +1,6 @@
 # JavaScript Comments
 
-[Back to JS page](../index.html)
+[Back to JS page](../README.md)
 
 Table of Contents
 - [JavaScript Comments](#javascript-comments)

@@ -1,6 +1,6 @@
 # JavaScript this Keyword
 
-[Back to JS page](../index.html)
+[Back to JS page](../README.md)
 
 Table of Contents
 - [JavaScript this Keyword](#javascript-this-keyword)

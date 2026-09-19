@@ -1,6 +1,6 @@
 # JavaScript Function Arguments
 
-[Back to JS page](../index.html)
+[Back to JS page](../README.md)
 
 Table of Contents
 - [JavaScript Function Arguments](#javascript-function-arguments)

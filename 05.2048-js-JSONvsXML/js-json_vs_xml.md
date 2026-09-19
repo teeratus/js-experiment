@@ -1,6 +1,6 @@
 # JavaScript JSON vs XML
 
-[Back to JS page](../index.html)
+[Back to JS page](../README.md)
 
 Table of Contents
 - [JavaScript JSON vs XML](#javascript-json-vs-xml)

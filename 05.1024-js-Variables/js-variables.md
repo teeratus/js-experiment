@@ -1,6 +1,6 @@
 # JavaScript Variables
 
-[Back to JS page](../index.html)
+[Back to JS page](../README.md)
 
 Table of Contents
 - [JavaScript Variables](#javascript-variables)

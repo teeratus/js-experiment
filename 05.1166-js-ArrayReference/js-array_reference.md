@@ -1,6 +1,6 @@
 # JavaScript Array Reference
 
-[Back to JS page](../index.html)
+[Back to JS page](../README.md)
 
 Table of Contents
 - [JavaScript Array Reference](#javascript-array-reference)

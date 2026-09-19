@@ -1,6 +1,6 @@
 # JavaScript Math Reference
 
-[Back to JS page](../index.html)
+[Back to JS page](../README.md)
 
 Table of Contents
 - [JavaScript Math Reference](#javascript-math-reference)

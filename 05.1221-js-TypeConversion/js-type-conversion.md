@@ -1,6 +1,6 @@
 # JavaScript Type Conversion
 
-[Back to JS page](../index.html)
+[Back to JS page](../README.md)
 
 Table of Contents
 - [JavaScript Type Conversion](#javascript-type-conversion)

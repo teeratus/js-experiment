@@ -1,6 +1,6 @@
 # JavaScript Data Types
 
-[Back to JS page](../index.html)
+[Back to JS page](../README.md)
 
 Table of Contents
 - [JavaScript Data Types](#javascript-data-types)

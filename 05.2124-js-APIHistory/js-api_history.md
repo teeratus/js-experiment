@@ -1,6 +1,6 @@
 # JavaScript API History
 
-[Back to JS page](../index.html)
+[Back to JS page](../README.md)
 
 > **Note:** For the basic `window.history` object (back/forward/go), see [05.2114-js-WindowHistory](../05.2114-js-WindowHistory/js-window_history.md). This topic covers the History API from the Web API perspective.
 

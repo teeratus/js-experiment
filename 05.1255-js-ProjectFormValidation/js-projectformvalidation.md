@@ -1,6 +1,6 @@
 # JavaScript Project - Form Validation
 
-[Back to JS page](../index.html)
+[Back to JS page](../README.md)
 
 Table of Contents
 - [JavaScript Project - Form Validation](#javascript-project---form-validation)

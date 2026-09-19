@@ -1,6 +1,6 @@
 # JavaScript Function call()
 
-[Back to JS page](../index.html)
+[Back to JS page](../README.md)
 
 Table of Contents
 - [JavaScript Function call()](#javascript-function-call)

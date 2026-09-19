@@ -1,6 +1,6 @@
 # JavaScript API Fetch
 
-[Back to JS page](../index.html)
+[Back to JS page](../README.md)
 
 > **Note:** This topic covers the Fetch API from the Web API perspective. For async/await patterns with fetch, see [05.2061-js-AsyncFetch](../05.2061-js-AsyncFetch/js-async_fetch.md).
 

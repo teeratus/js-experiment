@@ -1,6 +1,6 @@
 # JavaScript Function bind()
 
-[Back to JS page](../index.html)
+[Back to JS page](../README.md)
 
 Table of Contents
 - [JavaScript Function bind()](#javascript-function-bind)

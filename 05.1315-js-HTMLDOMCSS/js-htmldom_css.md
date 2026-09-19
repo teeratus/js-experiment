@@ -1,6 +1,6 @@
 # JavaScript HTML DOM CSS
 
-[Back to JS page](../index.html)
+[Back to JS page](../README.md)
 
 Table of Contents
 - [JavaScript HTML DOM CSS](#javascript-html-dom-css)

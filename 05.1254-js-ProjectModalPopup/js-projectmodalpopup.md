@@ -1,6 +1,6 @@
 # JavaScript Project - Modal Popup
 
-[Back to JS page](../index.html)
+[Back to JS page](../README.md)
 
 Table of Contents
 - [JavaScript Project - Modal Popup](#javascript-project---modal-popup)

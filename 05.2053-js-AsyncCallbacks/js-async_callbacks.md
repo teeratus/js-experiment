@@ -1,6 +1,6 @@
 # JavaScript Async Callbacks
 
-[Back to JS page](../index.html)
+[Back to JS page](../README.md)
 
 > **Note:** This topic builds on the Callbacks fundamentals covered in [05.2012-js-Callbacks](../05.2012-js-Callbacks/js-callbacks.md).
 

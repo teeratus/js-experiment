@@ -1,6 +1,6 @@
 # JavaScript Web API Intro
 
-[Back to JS page](../index.html)
+[Back to JS page](../README.md)
 
 Table of Contents
 - [JavaScript Web API Intro](#javascript-web-api-intro)

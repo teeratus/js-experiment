@@ -1,6 +1,6 @@
 # JavaScript Set Methods
 
-[Back to JS page](../index.html)
+[Back to JS page](../README.md)
 
 Table of Contents
 - [JavaScript Set Methods](#javascript-set-methods)

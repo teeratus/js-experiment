@@ -1,6 +1,6 @@
 # JavaScript var, let, const
 
-[Back to JS page](../index.html)
+[Back to JS page](../README.md)
 
 Table of Contents
 - [JavaScript var, let, const](#javascript-var-let-const)
