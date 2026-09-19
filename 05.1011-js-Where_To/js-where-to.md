@@ -1,4 +1,4 @@
-# JavaScript Where To 3
+# JavaScript Where To
 
 [Back to JS page](../)
 
